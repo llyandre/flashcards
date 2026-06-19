@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcard Kosakata Jepang</title>
+  <style>
+    :root {
+      --bg1: #fff7ed;
+      --bg2: #eef2ff;
+      --bg3: #ecfeff;
+      --text: #223047;
+      --muted: #637083;
+      --card: rgba(255, 255, 255, 0.88);
+      --card-solid: #ffffff;
+      --line: rgba(34, 48, 71, 0.12);
+      --primary: #7c3aed;
+      --primary-soft: #ede9fe;
+      --green: #16a34a;
+      --green-soft: #dcfce7;
+      --red: #dc2626;
+      --red-soft: #fee2e2;
+      --yellow: #f59e0b;
+      --shadow: 0 22px 65px rgba(76, 29, 149, 0.16);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(251, 191, 36, 0.25), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(124, 58, 237, 0.18), transparent 32%),
+        radial-gradient(circle at 50% 88%, rgba(14, 165, 233, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--bg1), var(--bg2) 55%, var(--bg3));
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.42);
+      filter: blur(3px);
+      z-index: -1;
+    }
+
+    body::before {
+      left: -70px;
+      top: 120px;
+    }
+
+    body::after {
+      right: -80px;
+      bottom: 90px;
+    }
+
+    .app {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: clamp(18px, 4vw, 36px);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+
+    .screen {
+      width: 100%;
+      display: none;
+      animation: fadeIn 0.35s ease both;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .panel {
+      width: min(780px, 100%);
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      padding: clamp(22px, 5vw, 42px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.72), transparent 40%),
+        radial-gradient(circle at 85% 5%, rgba(124, 58, 237, .12), transparent 25%);
+      pointer-events: none;
+    }
+
+    .panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: #5b21b6;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    h1 {
+      font-size: clamp(32px, 7vw, 58px);
+    }
+
+    h2 {
+      font-size: clamp(26px, 5vw, 42px);
+    }
+
+    .lead {
+      color: var(--muted);
+      margin: 18px auto 26px;
+      max-width: 620px;
+      line-height: 1.7;
+      font-size: clamp(15px, 2.7vw, 18px);
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 22px 0 28px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    button {
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease, filter 0.18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .danger-outline {
+      border-radius: 18px;
+      padding: 13px 19px;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: white;
+      box-shadow: 0 14px 28px rgba(99, 102, 241, 0.28);
+      min-width: 180px;
+    }
+
+    .secondary-btn {
+      background: var(--card-solid);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .danger-outline {
+      background: var(--card-solid);
+      color: var(--red);
+      border: 1px solid rgba(220, 38, 38, 0.22);
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover,
+    .danger-outline:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(34, 48, 71, 0.12);
+    }
+
+    .practice-wrap {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .counter-card,
+    .timer-card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 22px;
+      box-shadow: 0 14px 34px rgba(34, 48, 71, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .counter-card {
+      padding: 14px 16px;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .counter-card small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .timer-card {
+      min-width: 138px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .time-number {
+      font-size: clamp(26px, 6vw, 38px);
+      line-height: 1;
+      font-weight: 950;
+      color: var(--primary);
+      letter-spacing: -0.05em;
+    }
+
+    .timer-label {
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .timer-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(124, 58, 237, 0.13);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 11px;
+    }
+
+    .timer-fill {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      border-radius: inherit;
+      transform-origin: left center;
+      transition: width 1s linear, background 0.2s ease;
+    }
+
+    .timer-fill.warning {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+    }
+
+    .flip-hint {
+      margin: 12px 0 14px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* Flip card */
+    .flashcard {
+      width: min(100%, 620px);
+      height: clamp(310px, 55vh, 430px);
+      margin: 0 auto;
+      perspective: 1200px;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.62s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .flashcard.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.88);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card-front {
+      padding: clamp(18px, 5vw, 34px);
+    }
+
+    .card-front::before,
+    .card-back::before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(124, 58, 237, .12), rgba(6, 182, 212, .10));
+      right: -48px;
+      top: -50px;
+    }
+
+    .card-front::after,
+    .card-back::after {
+      content: "日本語";
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      color: rgba(124, 58, 237, 0.10);
+      font-size: clamp(28px, 11vw, 72px);
+      font-weight: 950;
+      letter-spacing: -0.08em;
+      pointer-events: none;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      padding: clamp(18px, 4vw, 28px);
+      flex-direction: column;
+    }
+
+    .back-content {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: minmax(0, 1.45fr) auto;
+      gap: 12px;
+      align-items: center;
+      justify-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .illustration-wrap {
+      width: min(72%, 330px);
+      min-height: 150px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.9), transparent 24%),
+        linear-gradient(145deg, #fef3c7, #e0e7ff 54%, #cffafe);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 16px 30px rgba(99,102,241,.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .illustration-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border-radius: 22px;
+      border: 1px dashed rgba(124, 58, 237, 0.16);
+    }
+
+    .illustration {
+      font-size: clamp(52px, 15vw, 95px);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 12px 20px rgba(34, 48, 71, 0.12));
+    }
+
+    .jp-box {
+      width: min(96%, 500px);
+      padding: 6px 10px 0;
+      display: grid;
+      gap: 7px;
+      justify-items: center;
+      align-content: center;
+      min-height: 88px;
+    }
+
+    .card-text {
+      font-size: clamp(15px, 3.6vw, 22px);
+      line-height: 1.45;
+      text-align: center;
+      padding: 12px;
+      max-width: 95%;
+      word-wrap: break-word;
+      font-weight: 850;
+      letter-spacing: -0.015em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-text.long {
+      font-size: clamp(12px, 3vw, 17px);
+      line-height: 1.35;
+    }
+
+    .jp-main {
+      font-size: clamp(22px, 5vw, 34px);
+      font-weight: 800;
+      line-height: 1.25;
+      text-align: center;
+      word-break: keep-all;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      letter-spacing: -0.01em;
+    }
+
+    .jp-sub {
+      font-size: clamp(13px, 3vw, 18px);
+      line-height: 1.35;
+      text-align: center;
+      opacity: 0.85;
+      word-break: break-word;
+      max-width: 100%;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .jp-sub.long {
+      font-size: clamp(11px, 2.7vw, 15px);
+    }
+
+    .answer-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: min(100%, 620px);
+      margin: 18px auto 0;
+    }
+
+    .answer-btn {
+      min-height: 56px;
+      border-radius: 20px;
+      font-weight: 950;
+      color: white;
+      font-size: clamp(15px, 3vw, 18px);
+      box-shadow: 0 14px 25px rgba(34, 48, 71, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.48;
+      filter: grayscale(0.35);
+      box-shadow: none;
+      transform: none;
+    }
+
+    .answer-btn.correct.pulse {
+      animation: correctPulse .38s ease;
+    }
+
+    .answer-btn.wrong.pulse {
+      animation: wrongPulse .38s ease;
+    }
+
+    .results-layout {
+      width: min(1050px, 100%);
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(255,255,255,.82);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      padding: clamp(16px, 4vw, 30px);
+    }
+
+    .results-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: rgba(124, 58, 237, 0.08);
+      border-radius: 19px;
+      padding: 6px;
+    }
+
+    .tab-btn {
+      border-radius: 14px;
+      padding: 10px 14px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 7px 20px rgba(34, 48, 71, 0.09);
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn .22s ease both;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 16px 0 20px;
+    }
+
+    .score-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(34, 48, 71, 0.07);
+    }
+
+    .score-card .label {
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .score-card .value {
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 950;
+      letter-spacing: -0.05em;
+    }
+
+    .score-card.green .value {
+      color: var(--green);
+    }
+
+    .score-card.red .value {
+      color: var(--red);
+    }
+
+    .score-card.purple .value {
+      color: var(--primary);
+    }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: white;
+      box-shadow: 0 10px 24px rgba(34, 48, 71, 0.06);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 13px 14px;
+      border-bottom: 1px solid rgba(34, 48, 71, 0.08);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    th {
+      background: #faf7ff;
+      color: #4c1d95;
+      font-weight: 950;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 950;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .status.ok {
+      color: #166534;
+      background: var(--green-soft);
+    }
+
+    .status.no {
+      color: #991b1b;
+      background: var(--red-soft);
+    }
+
+    .jp-review {
+      font-weight: 850;
+    }
+
+    .jp-review small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--muted);
+      padding: 30px 12px;
+      font-weight: 750;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes correctPulse {
+      0% { box-shadow: 0 0 0 0 rgba(34,197,94,.45); }
+      100% { box-shadow: 0 0 0 16px rgba(34,197,94,0); }
+    }
+
+    @keyframes wrongPulse {
+      0% { box-shadow: 0 0 0 0 rgba(239,68,68,.45); }
+      100% { box-shadow: 0 0 0 16px rgba(239,68,68,0); }
+    }
+
+    @media (max-width: 720px) {
+      .app {
+        padding: 16px;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .timer-card {
+        min-width: 100%;
+      }
+
+      .flashcard {
+        height: clamp(300px, 58vh, 390px);
+      }
+
+      .card-face {
+        border-radius: 28px;
+      }
+
+      .illustration-wrap {
+        width: 82%;
+        min-height: 132px;
+        border-radius: 24px;
+      }
+
+      .answer-row {
+        gap: 10px;
+      }
+
+      .score-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .score-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .results-head {
+        align-items: stretch;
+      }
+
+      .tabs {
+        width: 100%;
+      }
+
+      .tab-btn {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .answer-row {
+        grid-template-columns: 1fr;
+      }
+
+      .flashcard {
+        height: 330px;
+      }
+
+      .jp-box {
+        min-height: 100px;
+      }
+
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section id="startScreen" class="screen active">
+      <div class="panel">
+        <div class="brand-badge">🌸 Flashcard Jepang Pemula</div>
+        <h1>Latihan Kosa Kata</h1>
+        <p class="lead">
+          Klik kartu untuk melihat kosakata Jepang, lalu pilih Benar atau Salah.
+          Setiap kartu memiliki waktu 30 detik dan urutannya selalu diacak.
+        </p>
+        <div class="stats-row">
+          <span class="pill">🎴 <span id="vocabCountStart">0 kartu</span></span>
+          <span class="pill">⏱️ 30 detik/kartu</span>
+          <span class="pill">📊 Ranking tersimpan</span>
+        </div>
+        <button class="primary-btn" id="startBtn">Start</button>
+      </div>
+    </section>
+
+    <section id="practiceScreen" class="screen">
+      <div class="practice-wrap">
+        <div class="topbar">
+          <div class="counter-card">
+            <span id="cardCounter">Kartu ke-1 dari 1</span>
+            <small>Klik kartu untuk membalik</small>
+          </div>
+          <div class="timer-card">
+            <div class="time-number" id="timeNumber">30</div>
+            <div class="timer-label">detik tersisa</div>
+            <div class="timer-track">
+              <div class="timer-fill" id="timerFill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-hint" id="flipHint">Lihat arti, lalu klik kartu untuk membuka jawabannya.</div>
+
+        <article class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Klik untuk membalik flashcard">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-text" id="frontText"></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-content">
+                <div class="illustration-wrap">
+                  <div class="illustration" id="illustration"></div>
+                </div>
+                <div class="jp-box" id="jpText"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="answer-row">
+          <button class="answer-btn correct" id="correctBtn" disabled>✓ Benar</button>
+          <button class="answer-btn wrong" id="wrongBtn" disabled>✕ Salah</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="results-layout">
+        <div class="results-head">
+          <div>
+            <div class="brand-badge">📌 Sesi selesai</div>
+            <h2>Hasil Latihan</h2>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Tab hasil latihan">
+            <button class="tab-btn active" data-tab="summaryTab">Hasil</button>
+            <button class="tab-btn" data-tab="reviewTab">Review Jawaban</button>
+            <button class="tab-btn" data-tab="rankingTab">Ranking</button>
+          </div>
+        </div>
+
+        <div class="tab-panel active" id="summaryTab">
+          <div class="score-grid">
+            <div class="score-card purple">
+              <div class="label">Total kosakata</div>
+              <div class="value" id="totalVocab">0</div>
+            </div>
+            <div class="score-card green">
+              <div class="label">Jumlah benar</div>
+              <div class="value" id="totalCorrect">0</div>
+            </div>
+            <div class="score-card red">
+              <div class="label">Jumlah salah</div>
+              <div class="value" id="totalWrong">0</div>
+            </div>
+            <div class="score-card purple">
+              <div class="label">Persentase nilai</div>
+              <div class="value" id="scorePercent">0%</div>
+            </div>
+            <div class="score-card">
+              <div class="label">Rata-rata waktu</div>
+              <div class="value" id="avgTime">0s</div>
+            </div>
+          </div>
+          <div class="score-card">
+            <div class="label">Total waktu menjawab</div>
+            <div class="value" id="totalTime">0s</div>
+          </div>
+          <div class="action-row">
+            <button class="primary-btn" id="retryBtn">Ulangi Latihan</button>
+            <button class="secondary-btn" data-open-tab="reviewTab">Lihat Review</button>
+            <button class="secondary-btn" data-open-tab="rankingTab">Lihat Ranking</button>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="reviewTab">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Indonesia</th>
+                  <th>Jepang</th>
+                  <th>Status</th>
+                  <th>Waktu</th>
+                </tr>
+              </thead>
+              <tbody id="reviewBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="rankingTab">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Sesi</th>
+                  <th>Benar</th>
+                  <th>Salah</th>
+                  <th>Nilai</th>
+                  <th>Total Waktu</th>
+                </tr>
+              </thead>
+              <tbody id="rankingBody"></tbody>
+            </table>
+          </div>
+          <div class="action-row">
+            <button class="danger-outline" id="clearRankingBtn">Hapus Ranking</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    "use strict";
+
+    // =========================
+    // Data array kosakata
+    // =========================
+    const vocabulary = [
+  {
+    "indonesia": "saya",
+    "kanji": "",
+    "kana": "わたし",
+    "romaji": "watashi",
+    "gambar": "👤"
+  },
+  {
+    "indonesia": "Anda",
+    "kanji": "",
+    "kana": "あなた",
+    "romaji": "anata",
+    "gambar": "🧍"
+  },
+  {
+    "indonesia": "orang itu, beliau. あのかた adalah bentuk sopan dari あのひと.",
+    "kanji": "あの人 / あの方",
+    "kana": "あのひと / あのかた",
+    "romaji": "ano hito / ano kata",
+    "gambar": "👥"
+  },
+  {
+    "indonesia": "Sdr. ~, Bapak ~, Ibu ~. Akhiran untuk mengekspresikan kesopanan yang diletakkan di belakang nama orang.",
+    "kanji": "",
+    "kana": "～さん",
+    "romaji": "-san",
+    "gambar": "🙇"
+  },
+  {
+    "indonesia": "Akhiran yang dipakai untuk anak laki-laki dan anak perempuan sebagai pengganti ～さん yang diletakkan di belakang nama anak.",
+    "kanji": "",
+    "kana": "～ちゃん",
+    "romaji": "-chan",
+    "gambar": "🧒"
+  },
+  {
+    "indonesia": "orang ~. Akhiran yang menyatakan warga negara. Contoh: アメリカじん berarti orang Amerika Serikat.",
+    "kanji": "～人",
+    "kana": "～じん",
+    "romaji": "-jin",
+    "gambar": "🌍"
+  },
+  {
+    "indonesia": "guru, dosen. Tidak dipakai jika menyebutkan pekerjaan sendiri.",
+    "kanji": "先生",
+    "kana": "せんせい",
+    "romaji": "sensei",
+    "gambar": "👩‍🏫"
+  },
+  {
+    "indonesia": "guru, dosen.",
+    "kanji": "教師",
+    "kana": "きょうし",
+    "romaji": "kyoushi",
+    "gambar": "📚"
+  },
+  {
+    "indonesia": "mahasiswa.",
+    "kanji": "学生",
+    "kana": "がくせい",
+    "romaji": "gakusei",
+    "gambar": "🎓"
+  },
+  {
+    "indonesia": "karyawan perusahaan.",
+    "kanji": "会社員",
+    "kana": "かいしゃいん",
+    "romaji": "kaishain",
+    "gambar": "🏢"
+  },
+  {
+    "indonesia": "karyawan perusahaan. Dipakai bersama dengan nama perusahaan. Contoh: IMC の しゃいん berarti karyawan perusahaan IMC.",
+    "kanji": "社員",
+    "kana": "しゃいん",
+    "romaji": "shain",
+    "gambar": "💼"
+  },
+  {
+    "indonesia": "pegawai bank.",
+    "kanji": "銀行員",
+    "kana": "ぎんこういん",
+    "romaji": "ginkouin",
+    "gambar": "🏦"
+  },
+  {
+    "indonesia": "dokter.",
+    "kanji": "医者",
+    "kana": "いしゃ",
+    "romaji": "isha",
+    "gambar": "👨‍⚕️"
+  },
+  {
+    "indonesia": "peneliti.",
+    "kanji": "研究者",
+    "kana": "けんきゅうしゃ",
+    "romaji": "kenkyuusha",
+    "gambar": "🔬"
+  },
+  {
+    "indonesia": "universitas.",
+    "kanji": "大学",
+    "kana": "だいがく",
+    "romaji": "daigaku",
+    "gambar": "🏫"
+  },
+  {
+    "indonesia": "rumah sakit.",
+    "kanji": "病院",
+    "kana": "びょういん",
+    "romaji": "byouin",
+    "gambar": "🏥"
+  },
+  {
+    "indonesia": "siapa. どなた adalah bentuk sopan dari だれ.",
+    "kanji": "誰",
+    "kana": "だれ / どなた",
+    "romaji": "dare / donata",
+    "gambar": "❓"
+  },
+  {
+    "indonesia": "~ tahun. Akhiran untuk menyatakan umur.",
+    "kanji": "～歳",
+    "kana": "～さい",
+    "romaji": "-sai",
+    "gambar": "🎂"
+  },
+  {
+    "indonesia": "umur berapa. おいくつ adalah bentuk sopan dari なんさい.",
+    "kanji": "何歳",
+    "kana": "なんさい / おいくつ",
+    "romaji": "nansai / oikutsu",
+    "gambar": "🎈"
+  },
+  {
+    "indonesia": "ya.",
+    "kanji": "",
+    "kana": "はい",
+    "romaji": "hai",
+    "gambar": "✅"
+  },
+  {
+    "indonesia": "tidak, bukan.",
+    "kanji": "",
+    "kana": "いいえ",
+    "romaji": "iie",
+    "gambar": "❌"
+  },
+  {
+    "indonesia": "Perkenalkan. Ucapan salam pada waktu pertama kali berkenalan.",
+    "kanji": "初めまして",
+    "kana": "はじめまして",
+    "romaji": "hajimemashite",
+    "gambar": "🤝"
+  },
+  {
+    "indonesia": "datang dari ~, berasal dari ~.",
+    "kanji": "～から来ました",
+    "kana": "～からきました",
+    "romaji": "-kara kimashita",
+    "gambar": "🧳"
+  },
+  {
+    "indonesia": "Salam kenal. Ucapan terakhir untuk perkenalan diri.",
+    "kanji": "どうぞよろしくお願いします",
+    "kana": "どうぞよろしくおねがいします",
+    "romaji": "douzo yoroshiku onegaishimasu",
+    "gambar": "😊"
+  },
+  {
+    "indonesia": "permisi, maaf. Digunakan ketika bertanya tentang hal yang pribadi seperti nama, alamat, dan sebagainya.",
+    "kanji": "失礼ですが",
+    "kana": "しつれいですが",
+    "romaji": "shitsurei desu ga",
+    "gambar": "🙇‍♀️"
+  },
+  {
+    "indonesia": "Siapa namanya?",
+    "kanji": "お名前は？",
+    "kana": "おなまえは？",
+    "romaji": "onamae wa?",
+    "gambar": "🪪"
+  },
+  {
+    "indonesia": "Ini Bapak ~/Ini Ibu, Sdr. ~.",
+    "kanji": "こちらは～さんです",
+    "kana": "こちらは～さんです",
+    "romaji": "kochira wa -san desu",
+    "gambar": "👋"
+  },
+  {
+    "indonesia": "Amerika Serikat.",
+    "kanji": "",
+    "kana": "アメリカ",
+    "romaji": "Amerika",
+    "gambar": "🇺🇸"
+  },
+  {
+    "indonesia": "Inggris.",
+    "kanji": "",
+    "kana": "イギリス",
+    "romaji": "Igirisu",
+    "gambar": "🇬🇧"
+  },
+  {
+    "indonesia": "India.",
+    "kanji": "",
+    "kana": "インド",
+    "romaji": "Indo",
+    "gambar": "🇮🇳"
+  },
+  {
+    "indonesia": "Indonesia.",
+    "kanji": "",
+    "kana": "インドネシア",
+    "romaji": "Indoneshia",
+    "gambar": "🇮🇩"
+  },
+  {
+    "indonesia": "Korea Selatan.",
+    "kanji": "韓国",
+    "kana": "かんこく",
+    "romaji": "Kankoku",
+    "gambar": "🇰🇷"
+  },
+  {
+    "indonesia": "Thailand.",
+    "kanji": "",
+    "kana": "タイ",
+    "romaji": "Tai",
+    "gambar": "🇹🇭"
+  },
+  {
+    "indonesia": "Cina.",
+    "kanji": "中国",
+    "kana": "ちゅうごく",
+    "romaji": "Chuugoku",
+    "gambar": "🇨🇳"
+  },
+  {
+    "indonesia": "Jerman.",
+    "kanji": "",
+    "kana": "ドイツ",
+    "romaji": "Doitsu",
+    "gambar": "🇩🇪"
+  },
+  {
+    "indonesia": "Jepang.",
+    "kanji": "日本",
+    "kana": "にほん",
+    "romaji": "Nihon",
+    "gambar": "🇯🇵"
+  },
+  {
+    "indonesia": "Brasil.",
+    "kanji": "",
+    "kana": "ブラジル",
+    "romaji": "Burajiru",
+    "gambar": "🇧🇷"
+  },
+  {
+    "indonesia": "perusahaan fiksi.",
+    "kanji": "パワー電気",
+    "kana": "IMC / パワーでんき / ブラジルエアー",
+    "romaji": "IMC / Pawaa Denki / Burajiru Eaa",
+    "gambar": "🏭"
+  },
+  {
+    "indonesia": "organisasi fiksi.",
+    "kanji": "",
+    "kana": "AKC",
+    "romaji": "ee kee shii",
+    "gambar": "🏛️"
+  },
+  {
+    "indonesia": "rumah sakit fiksi.",
+    "kanji": "神戸病院",
+    "kana": "こうべびょういん",
+    "romaji": "Koube Byouin",
+    "gambar": "🏥"
+  },
+  {
+    "indonesia": "universitas fiksi.",
+    "kanji": "さくら大学 / 富士大学",
+    "kana": "さくらだいがく / ふじだいがく",
+    "romaji": "Sakura Daigaku / Fuji Daigaku",
+    "gambar": "🎓"
+  }
+];
+
+    const STORAGE_KEY = "jpFlashcardRankingV1";
+    const TIMER_SECONDS = 30;
+
+    let deck = [];
+    let currentIndex = 0;
+    let currentItem = null;
+    let isFlipped = false;
+    let timerId = null;
+    let remainingTime = TIMER_SECONDS;
+    let cardStartTime = 0;
+    let answers = [];
+
+    const startScreen = document.getElementById("startScreen");
+    const practiceScreen = document.getElementById("practiceScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const startBtn = document.getElementById("startBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const flashcard = document.getElementById("flashcard");
+    const frontText = document.getElementById("frontText");
+    const illustration = document.getElementById("illustration");
+    const jpText = document.getElementById("jpText");
+    const correctBtn = document.getElementById("correctBtn");
+    const wrongBtn = document.getElementById("wrongBtn");
+    const cardCounter = document.getElementById("cardCounter");
+    const timeNumber = document.getElementById("timeNumber");
+    const timerFill = document.getElementById("timerFill");
+    const flipHint = document.getElementById("flipHint");
+    const vocabCountStart = document.getElementById("vocabCountStart");
+
+    vocabCountStart.textContent = `${vocabulary.length} kartu`;
+
+    // =========================
+    // Helper aman untuk teks HTML
+    // =========================
+    function escapeHTML(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function showScreen(screen) {
+      [startScreen, practiceScreen, resultScreen].forEach(item => item.classList.remove("active"));
+      screen.classList.add("active");
+    }
+
+    // =========================
+    // Shuffle kartu
+    // =========================
+    function shuffle(array) {
+      const result = [...array];
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    }
+
+    function startPractice() {
+      deck = shuffle(vocabulary);
+      currentIndex = 0;
+      answers = [];
+      showScreen(practiceScreen);
+      nextCard();
+    }
+
+    // =========================
+    // Format tampilan teks Jepang
+    // =========================
+    function displayJapanese(item) {
+      const hasKanji = item.kanji && item.kanji.trim() !== "";
+      const mainText = hasKanji ? item.kanji : item.kana;
+      const subText = hasKanji ? `${item.kana} / ${item.romaji}` : item.romaji;
+      const longClass = `${item.kana} ${item.romaji}`.length > 35 ? " long" : "";
+
+      return `
+        <div class="jp-main">${escapeHTML(mainText)}</div>
+        <div class="jp-sub${longClass}">${escapeHTML(subText)}</div>
+      `;
+    }
+
+    // =========================
+    // Timer 30 detik
+    // =========================
+    function startTimer() {
+      stopTimer();
+      remainingTime = TIMER_SECONDS;
+      cardStartTime = Date.now();
+      updateTimerUI();
+
+      timerId = setInterval(() => {
+        remainingTime -= 1;
+        updateTimerUI();
+
+        if (remainingTime <= 0) {
+          stopTimer();
+          markAnswer(false, true);
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+    }
+
+    function updateTimerUI() {
+      timeNumber.textContent = remainingTime;
+      const percent = Math.max(0, (remainingTime / TIMER_SECONDS) * 100);
+      timerFill.style.width = `${percent}%`;
+      timerFill.classList.toggle("warning", remainingTime <= 10);
+    }
+
+    // =========================
+    // Flip card
+    // =========================
+    function flipCard() {
+      if (isFlipped || !currentItem) return;
+      isFlipped = true;
+      flashcard.classList.add("flipped");
+      correctBtn.disabled = false;
+      wrongBtn.disabled = false;
+      flipHint.textContent = "Pilih Benar jika kamu mengingatnya, atau Salah jika belum yakin.";
+    }
+
+    function setCardContent(item) {
+      frontText.textContent = item.indonesia;
+      frontText.classList.toggle("long", item.indonesia.length > 55);
+      illustration.textContent = item.gambar;
+      jpText.innerHTML = displayJapanese(item);
+    }
+
+    // =========================
+    // Lanjut kartu berikutnya
+    // =========================
+    function nextCard() {
+      stopTimer();
+
+      if (currentIndex >= deck.length) {
+        showResults();
+        return;
+      }
+
+      currentItem = deck[currentIndex];
+      isFlipped = false;
+
+      flashcard.classList.remove("flipped");
+      correctBtn.disabled = true;
+      wrongBtn.disabled = true;
+      correctBtn.classList.remove("pulse");
+      wrongBtn.classList.remove("pulse");
+
+      cardCounter.textContent = `Kartu ke-${currentIndex + 1} dari ${deck.length}`;
+      flipHint.textContent = "Lihat arti, lalu klik kartu untuk membuka jawabannya.";
+
+      setCardContent(currentItem);
+      startTimer();
+    }
+
+    // =========================
+    // Penilaian dan penyimpanan jawaban
+    // =========================
+    function markAnswer(status, byTimeout = false) {
+      if (!currentItem) return;
+
+      if (!byTimeout && !isFlipped) return;
+
+      stopTimer();
+      const elapsed = Math.min(TIMER_SECONDS, Math.max(0, (Date.now() - cardStartTime) / 1000));
+      const answerTime = byTimeout ? TIMER_SECONDS : elapsed;
+
+      answers.push({
+        indonesia: currentItem.indonesia,
+        kanji: currentItem.kanji,
+        kana: currentItem.kana,
+        romaji: currentItem.romaji,
+        status: Boolean(status),
+        waktu: answerTime
+      });
+
+      const targetBtn = status ? correctBtn : wrongBtn;
+      targetBtn.classList.add("pulse");
+
+      currentIndex += 1;
+      setTimeout(nextCard, 260);
+    }
+
+    function formatSeconds(value) {
+      const seconds = Number(value) || 0;
+      if (seconds < 60) return `${seconds.toFixed(1)}s`;
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins}m ${secs.toFixed(1)}s`;
+    }
+
+    function japaneseReviewText(answer) {
+      const hasKanji = answer.kanji && answer.kanji.trim() !== "";
+      const mainText = hasKanji ? answer.kanji : answer.kana;
+      const subText = hasKanji ? `${answer.kana} / ${answer.romaji}` : answer.romaji;
+      return `
+        <span class="jp-review">
+          ${escapeHTML(mainText)}
+          <small>${escapeHTML(subText)}</small>
+        </span>
+      `;
+    }
+
+    // =========================
+    // Hasil akhir
+    // =========================
+    function showResults() {
+      showScreen(resultScreen);
+
+      const total = answers.length;
+      const correct = answers.filter(item => item.status).length;
+      const wrong = total - correct;
+      const percent = total ? Math.round((correct / total) * 100) : 0;
+      const totalTime = answers.reduce((sum, item) => sum + item.waktu, 0);
+      const avgTime = total ? totalTime / total : 0;
+
+      document.getElementById("totalVocab").textContent = total;
+      document.getElementById("totalCorrect").textContent = correct;
+      document.getElementById("totalWrong").textContent = wrong;
+      document.getElementById("scorePercent").textContent = `${percent}%`;
+      document.getElementById("totalTime").textContent = formatSeconds(totalTime);
+      document.getElementById("avgTime").textContent = formatSeconds(avgTime);
+
+      renderReview();
+      saveRanking({
+        session: new Date().toLocaleString("id-ID", {
+          dateStyle: "medium",
+          timeStyle: "short"
+        }),
+        total,
+        correct,
+        wrong,
+        percent,
+        totalTime
+      });
+      renderRanking();
+      openTab("summaryTab");
+    }
+
+    // =========================
+    // Review jawaban
+    // =========================
+    function renderReview() {
+      const reviewBody = document.getElementById("reviewBody");
+
+      reviewBody.innerHTML = answers.map((answer, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHTML(answer.indonesia)}</td>
+          <td>${japaneseReviewText(answer)}</td>
+          <td>
+            <span class="status ${answer.status ? "ok" : "no"}">
+              ${answer.status ? "✓ Benar" : "✕ Salah"}
+            </span>
+          </td>
+          <td>${formatSeconds(answer.waktu)}</td>
+        </tr>
+      `).join("");
+    }
+
+    // =========================
+    // Ranking localStorage
+    // =========================
+    function getRanking() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveRanking(entry) {
+      const ranking = getRanking();
+      ranking.push(entry);
+
+      ranking.sort((a, b) => {
+        if (b.correct !== a.correct) return b.correct - a.correct;
+        return a.totalTime - b.totalTime;
+      });
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ranking.slice(0, 20)));
+    }
+
+    function renderRanking() {
+      const rankingBody = document.getElementById("rankingBody");
+      const ranking = getRanking();
+
+      if (!ranking.length) {
+        rankingBody.innerHTML = `
+          <tr>
+            <td colspan="6">
+              <div class="empty-state">Belum ada ranking tersimpan.</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      rankingBody.innerHTML = ranking.map((entry, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHTML(entry.session)}</td>
+          <td>${entry.correct}</td>
+          <td>${entry.wrong}</td>
+          <td>${entry.percent}%</td>
+          <td>${formatSeconds(entry.totalTime)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function clearRanking() {
+      localStorage.removeItem(STORAGE_KEY);
+      renderRanking();
+    }
+
+    function openTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === tabId);
+      });
+
+      document.querySelectorAll(".tab-panel").forEach(panel => {
+        panel.classList.toggle("active", panel.id === tabId);
+      });
+    }
+
+    startBtn.addEventListener("click", startPractice);
+    retryBtn.addEventListener("click", startPractice);
+    flashcard.addEventListener("click", flipCard);
+    flashcard.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        flipCard();
+      }
+    });
+
+    correctBtn.addEventListener("click", () => markAnswer(true));
+    wrongBtn.addEventListener("click", () => markAnswer(false));
+
+    document.querySelectorAll(".tab-btn").forEach(button => {
+      button.addEventListener("click", () => openTab(button.dataset.tab));
+    });
+
+    document.querySelectorAll("[data-open-tab]").forEach(button => {
+      button.addEventListener("click", () => openTab(button.dataset.openTab));
+    });
+
+    document.getElementById("clearRankingBtn").addEventListener("click", clearRanking);
+
+    renderRanking();
+  </script>
+</body>
+</html>
