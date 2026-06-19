@@ -660,6 +660,108 @@
       pointer-events: none;
     }
 
+
+    /* =========================
+       Modal contoh penggunaan
+       ========================= */
+    .example-btn {
+      border: 0;
+      margin-top: 4px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(124, 111, 246, 0.12);
+      color: #6557df;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 9px 18px rgba(82, 73, 134, 0.09);
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .example-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(124, 111, 246, 0.18);
+      box-shadow: 0 12px 22px rgba(82, 73, 134, 0.13);
+    }
+
+    .example-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: rgba(37, 48, 68, 0.28);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .example-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .example-modal-card {
+      width: min(420px, 94vw);
+      position: relative;
+      padding: 28px 24px 24px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(124, 111, 246, 0.16), transparent 36%),
+        rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.22);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .example-modal.show .example-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .example-modal-card h3 {
+      margin: 0 34px 10px 0;
+      color: #514a9e;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .example-modal-card p {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 750;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
+    .example-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.11);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .example-close:hover {
+      transform: rotate(8deg) scale(1.04);
+      background: rgba(124, 111, 246, 0.18);
+    }
+
     /* =========================
        Result page dari HTML 2
        ========================= */
@@ -1255,6 +1357,14 @@
         </div>
       </div>
     </section>
+
+    <div id="exampleModal" class="example-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="exampleModalTitle">
+      <div class="example-modal-card">
+        <button id="closeExampleModal" class="example-close" type="button" aria-label="Tutup contoh">×</button>
+        <h3 id="exampleModalTitle">Contoh Penggunaan</h3>
+        <p id="exampleText"></p>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -1279,11 +1389,18 @@
     "gambar": "🧍"
   },
   {
-    "indonesia": "orang itu, beliau. あのかた adalah bentuk sopan dari あのひと.",
-    "kanji": "あの人 / あの方",
-    "kana": "あのひと / あのかた",
-    "romaji": "ano hito / ano kata",
+    "indonesia": "orang itu",
+    "kanji": "あの人",
+    "kana": "あのひと",
+    "romaji": "ano hito",
     "gambar": "👥"
+  },
+  {
+    "indonesia": "orang itu, beliau. Bentuk sopan dari あの人.",
+    "kanji": "あの方",
+    "kana": "あのかた",
+    "romaji": "ano kata",
+    "gambar": "🙇"
   },
   {
     "indonesia": "Sdr. ~, Bapak ~, Ibu ~. Akhiran untuk mengekspresikan kesopanan yang diletakkan di belakang nama orang.",
@@ -1300,11 +1417,12 @@
     "gambar": "🧒"
   },
   {
-    "indonesia": "orang ~. Akhiran yang menyatakan warga negara. Contoh: アメリカじん berarti orang Amerika Serikat.",
+    "indonesia": "orang ~. Akhiran yang menyatakan warga negara.",
     "kanji": "～人",
     "kana": "～じん",
     "romaji": "-jin",
-    "gambar": "🌍"
+    "gambar": "🌍",
+    "contoh": "アメリカ人（アメリカじん）= orang Amerika Serikat."
   },
   {
     "indonesia": "guru, dosen. Tidak dipakai jika menyebutkan pekerjaan sendiri.",
@@ -1335,11 +1453,12 @@
     "gambar": "🏢"
   },
   {
-    "indonesia": "karyawan perusahaan. Dipakai bersama dengan nama perusahaan. Contoh: IMC の しゃいん berarti karyawan perusahaan IMC.",
+    "indonesia": "karyawan perusahaan. Dipakai bersama dengan nama perusahaan.",
     "kanji": "社員",
     "kana": "しゃいん",
     "romaji": "shain",
-    "gambar": "💼"
+    "gambar": "💼",
+    "contoh": "IMC の社員（IMC のしゃいん）= karyawan perusahaan IMC."
   },
   {
     "indonesia": "pegawai bank.",
@@ -1377,11 +1496,18 @@
     "gambar": "🏥"
   },
   {
-    "indonesia": "siapa. どなた adalah bentuk sopan dari だれ.",
+    "indonesia": "siapa",
     "kanji": "誰",
-    "kana": "だれ / どなた",
-    "romaji": "dare / donata",
+    "kana": "だれ",
+    "romaji": "dare",
     "gambar": "❓"
+  },
+  {
+    "indonesia": "siapa. Bentuk sopan dari だれ.",
+    "kanji": "",
+    "kana": "どなた",
+    "romaji": "donata",
+    "gambar": "❔"
   },
   {
     "indonesia": "~ tahun. Akhiran untuk menyatakan umur.",
@@ -1391,11 +1517,18 @@
     "gambar": "🎂"
   },
   {
-    "indonesia": "umur berapa. おいくつ adalah bentuk sopan dari なんさい.",
+    "indonesia": "umur berapa",
     "kanji": "何歳",
-    "kana": "なんさい / おいくつ",
-    "romaji": "nansai / oikutsu",
+    "kana": "なんさい",
+    "romaji": "nansai",
     "gambar": "🎈"
+  },
+  {
+    "indonesia": "umur berapa. Bentuk sopan dari なんさい.",
+    "kanji": "",
+    "kana": "おいくつ",
+    "romaji": "oikutsu",
+    "gambar": "🎁"
   },
   {
     "indonesia": "ya.",
@@ -1447,7 +1580,7 @@
     "gambar": "🪪"
   },
   {
-    "indonesia": "Ini Bapak ~/Ini Ibu, Sdr. ~.",
+    "indonesia": "Ini adalah Bapak, Ibu, atau Sdr. ~.",
     "kanji": "こちらは～さんです",
     "kana": "こちらは～さんです",
     "romaji": "kochira wa -san desu",
@@ -1524,31 +1657,52 @@
     "gambar": "🇧🇷"
   },
   {
-    "indonesia": "IMC / Power Denki / Brazil Air (perusahaan fiksi)",
-    "kanji": "パワー電気",
-    "kana": "IMC / パワーでんき / ブラジルエアー",
-    "romaji": "IMC / Pawaa Denki / Burajiru Eaa",
+    "indonesia": "IMC. Perusahaan fiksi.",
+    "kanji": "",
+    "kana": "IMC",
+    "romaji": "ai emu shii",
     "gambar": "🏭"
   },
   {
-    "indonesia": "AKC (organisasi fiksi)",
+    "indonesia": "Power Denki. Perusahaan fiksi.",
+    "kanji": "パワー電気",
+    "kana": "パワーでんき",
+    "romaji": "Pawaa Denki",
+    "gambar": "🏭"
+  },
+  {
+    "indonesia": "Brazil Air. Perusahaan fiksi.",
+    "kanji": "",
+    "kana": "ブラジルエアー",
+    "romaji": "Burajiru Eaa",
+    "gambar": "✈️"
+  },
+  {
+    "indonesia": "AKC. Organisasi fiksi.",
     "kanji": "",
     "kana": "AKC",
     "romaji": "ee kee shii",
     "gambar": "🏛️"
   },
   {
-    "indonesia": "Rumah Sakit Kobe (rumah sakit fiksi)",
+    "indonesia": "Rumah Sakit Kobe. Rumah sakit fiksi.",
     "kanji": "神戸病院",
     "kana": "こうべびょういん",
     "romaji": "Koube Byouin",
     "gambar": "🏥"
   },
   {
-    "indonesia": "Universitas Sakura / Universitas Fuji (universitas fiksi)",
-    "kanji": "さくら大学 / 富士大学",
-    "kana": "さくらだいがく / ふじだいがく",
-    "romaji": "Sakura Daigaku / Fuji Daigaku",
+    "indonesia": "Universitas Sakura. Universitas fiksi.",
+    "kanji": "さくら大学",
+    "kana": "さくらだいがく",
+    "romaji": "Sakura Daigaku",
+    "gambar": "🎓"
+  },
+  {
+    "indonesia": "Universitas Fuji. Universitas fiksi.",
+    "kanji": "富士大学",
+    "kana": "ふじだいがく",
+    "romaji": "Fuji Daigaku",
     "gambar": "🎓"
   }
 ];
@@ -1574,6 +1728,9 @@
     const frontText = document.getElementById("frontText");
     const illustration = document.getElementById("illustration");
     const jpText = document.getElementById("jpText");
+    const exampleModal = document.getElementById("exampleModal");
+    const exampleText = document.getElementById("exampleText");
+    const closeExampleModal = document.getElementById("closeExampleModal");
     const correctBtn = document.getElementById("correctBtn");
     const wrongBtn = document.getElementById("wrongBtn");
 
@@ -1678,6 +1835,7 @@
       const kanji = String(item.kanji || "").trim();
       const kana = String(item.kana || "").trim();
       const romaji = String(item.romaji || "").trim();
+      const contoh = String(item.contoh || "").trim();
 
       const mainText = kanji.length > 0 ? kanji : kana;
       const readingText = kanji.length > 0 && kana && kana !== kanji
@@ -1686,11 +1844,15 @@
 
       const mainClass = mainText.length > 18 ? "jp-main-display long" : "jp-main-display";
       const readingClass = readingText.length > 35 ? "jp-reading long" : "jp-reading";
+      const exampleButton = contoh
+        ? `<button class="example-btn" id="showExampleBtn" type="button">Lihat contoh</button>`
+        : "";
 
       jpText.innerHTML = `
         <div class="${mainClass}">${escapeHTML(mainText)}</div>
         <div class="jp-divider"></div>
         <div class="${readingClass}">${escapeHTML(readingText)}</div>
+        ${exampleButton}
       `;
     }
 
@@ -1699,6 +1861,20 @@
       wrongBtn.disabled = true;
       correctBtn.classList.remove("pulse");
       wrongBtn.classList.remove("pulse");
+    }
+
+    function openExampleModal(text) {
+      if (!text) return;
+
+      exampleText.textContent = text;
+      exampleModal.classList.add("show");
+      exampleModal.setAttribute("aria-hidden", "false");
+      closeExampleModal.focus({ preventScroll: true });
+    }
+
+    function closeExampleModalBox() {
+      exampleModal.classList.remove("show");
+      exampleModal.setAttribute("aria-hidden", "true");
     }
 
     // =========================
@@ -1736,6 +1912,7 @@
         return;
       }
 
+      closeExampleModalBox();
       currentItem = deck[currentIndex];
       isFlipped = false;
       answered = false;
@@ -1990,6 +2167,29 @@
 
     correctBtn.addEventListener("click", () => markAnswer(true));
     wrongBtn.addEventListener("click", () => markAnswer(false));
+
+    jpText.addEventListener("click", event => {
+      const button = event.target.closest("#showExampleBtn");
+
+      if (!button || !currentItem || !currentItem.contoh) return;
+
+      event.stopPropagation();
+      openExampleModal(currentItem.contoh);
+    });
+
+    closeExampleModal.addEventListener("click", closeExampleModalBox);
+
+    exampleModal.addEventListener("click", event => {
+      if (event.target === exampleModal) {
+        closeExampleModalBox();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && exampleModal.classList.contains("show")) {
+        closeExampleModalBox();
+      }
+    });
 
     document.querySelectorAll(".tab-btn").forEach(button => {
       button.addEventListener("click", () => activateTab(button.dataset.tab));
