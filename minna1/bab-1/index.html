@@ -109,8 +109,8 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: clamp(20px, 5vw, 42px);
+      grid-template-columns: 1fr;
+      gap: 0;
       align-items: center;
     }
 
@@ -132,6 +132,43 @@
     h3,
     p {
       margin-top: 0;
+    }
+
+    .hero-info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hero-info-card {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 145px;
+      padding: 11px 14px;
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.48)),
+        radial-gradient(circle at top left, rgba(255, 143, 179, 0.18), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(124, 111, 246, 0.16), transparent 42%);
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      box-shadow: 0 12px 26px rgba(82, 73, 134, 0.09);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-info-card span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.2px;
+    }
+
+    .hero-info-card strong {
+      color: #514a9e;
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: -0.01em;
     }
 
     .hero h1 {
@@ -430,34 +467,13 @@
     }
 
     .card-front::before,
-    .card-back::before {
-      content: "";
-      position: absolute;
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(124, 58, 237, .12), rgba(6, 182, 212, .10));
-      right: -48px;
-      top: -50px;
-    }
-
-    .card-front::after {
-      content: "日本語";
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      left: auto;
-      bottom: auto;
-      color: rgba(124, 58, 237, 0.11);
-      font-size: clamp(20px, 5vw, 34px);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      pointer-events: none;
-    }
-
+    .card-front::after,
+    .card-back::before,
     .card-back::after {
       content: none;
+      display: none;
     }
+
 
     .card-back {
       transform: rotateY(180deg);
@@ -638,26 +654,6 @@
     .flashcard.feedback-wrong .card-inner {
       animation: wrongShake 0.55s ease both;
       border-radius: 34px;
-    }
-
-    .flashcard.feedback-correct .card-back::after {
-      content: "✓";
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(34, 197, 94, 0.12);
-      color: #16a34a;
-      font-size: 25px;
-      font-weight: 950;
-      box-shadow: 0 12px 28px rgba(34, 197, 94, 0.18);
-      animation: checkBounce 0.58s ease both;
-      z-index: 3;
-      pointer-events: none;
     }
 
 
@@ -1114,6 +1110,10 @@
         width: max-content;
       }
 
+      .hero-info-row {
+        justify-content: center;
+      }
+
       .username-box {
         margin-inline: auto;
       }
@@ -1201,9 +1201,18 @@
     <section id="startScreen" class="screen active">
       <div class="panel hero">
         <div>
-          <span class="badge">🌸 Flashcard Jepang Pemula</span>
+          <div class="hero-info-row" aria-label="Informasi latihan">
+            <div class="hero-info-card">
+              <span>Jumlah Kartu</span>
+              <strong>47 Kosakata</strong>
+            </div>
+            <div class="hero-info-card">
+              <span>Durasi Waktu</span>
+              <strong>30 Detik / Kartu</strong>
+            </div>
+          </div>
           <h1>Latihan kosakata Jepang dengan kartu interaktif</h1>
-          <p>Klik kartu untuk melihat jawaban, lalu pilih benar atau salah. Setiap kartu memiliki timer 30 detik dan hasil latihan tersimpan dalam ranking browser.</p>
+          <p>Masukkan nama, lalu klik Start. Baca arti pada kartu, buka jawabannya, kemudian pilih Benar jika kamu ingat atau Salah jika belum. Setiap kartu memiliki waktu 30 detik, dan hasil latihan akan tersimpan di ranking browser.</p>
 
           <div class="username-box">
             <input id="usernameInput" type="text" autocomplete="name" placeholder="Masukkan nama pengguna" aria-label="Nama pengguna" />
@@ -1213,11 +1222,6 @@
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled>Start</button>
           </div>
-        </div>
-        <div class="hero-card" aria-hidden="true">
-          <div class="mini-card one">わたし</div>
-          <div class="hero-emoji">🎌</div>
-          <div class="mini-card two">先生</div>
         </div>
       </div>
     </section>
