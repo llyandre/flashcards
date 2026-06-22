@@ -2828,6 +2828,17 @@
         pdfGeneratedAt: "Dibuat pada",
         pdfInfoHeader: "Info",
         pdfDetailHeader: "Detail",
+        adminPdfTitle: "Rekap Progress Siswa",
+        adminPdfSubtitle: "Rekap ini hanya berisi daftar username dan ringkasan progress per kategori. Detail jawaban tidak disertakan.",
+        adminPdfSummarySection: "Ringkasan kategori",
+        adminPdfUserListSection: "Daftar username per kategori",
+        adminPdfCategoryHeader: "Kategori",
+        adminPdfUsernameCountHeader: "Jumlah username",
+        adminPdfAttemptCountHeader: "Jumlah pengerjaan",
+        adminPdfUsernameHeader: "Username",
+        adminPdfAttemptsHeader: "Pengerjaan",
+        adminPdfBestScoreHeader: "Nilai terbaik",
+        adminPdfLastAttemptHeader: "Terakhir mengerjakan",
         pdfBlocked: "Popup browser diblokir. Izinkan popup untuk menyimpan hasil sebagai PDF."
       },
       ja: {
@@ -2942,6 +2953,17 @@
         pdfGeneratedAt: "作成日時",
         pdfInfoHeader: "情報",
         pdfDetailHeader: "詳細",
+        adminPdfTitle: "生徒の進捗まとめ",
+        adminPdfSubtitle: "このまとめには、カテゴリー別のユーザー名一覧と簡単な進捗だけを表示します。解答の詳細は含まれません。",
+        adminPdfSummarySection: "カテゴリー別まとめ",
+        adminPdfUserListSection: "カテゴリー別ユーザー名一覧",
+        adminPdfCategoryHeader: "カテゴリー",
+        adminPdfUsernameCountHeader: "ユーザー名数",
+        adminPdfAttemptCountHeader: "練習回数",
+        adminPdfUsernameHeader: "ユーザー名",
+        adminPdfAttemptsHeader: "回数",
+        adminPdfBestScoreHeader: "最高点",
+        adminPdfLastAttemptHeader: "最終練習",
         pdfBlocked: "ブラウザでポップアップがブロックされました。PDF保存のためにポップアップを許可してください。"
       }
     };
@@ -3668,10 +3690,134 @@
       `;
     }
 
+    function reportStyles() {
+      return `
+        @page { margin: 18mm; }
+        * { box-sizing: border-box; }
+        body {
+          margin: 0;
+          color: #1f2937;
+          font-family: Arial, "Noto Sans JP", sans-serif;
+          font-size: 12px;
+          line-height: 1.5;
+        }
+        h1 { margin: 0 0 4px; font-size: 22px; }
+        h2 { margin: 22px 0 8px; font-size: 16px; }
+        p { margin: 0 0 8px; color: #4b5563; }
+        .note { margin-top: 8px; padding: 8px 10px; border-radius: 8px; background: #f3f4f6; }
+        table { width: 100%; border-collapse: collapse; margin-top: 8px; page-break-inside: auto; }
+        th, td { padding: 7px 8px; border: 1px solid #d1d5db; text-align: left; vertical-align: top; }
+        th { background: #eef2ff; color: #3730a3; font-weight: 700; }
+        tr { page-break-inside: avoid; }
+        .summary table { max-width: 620px; }
+        .empty { padding: 10px; border: 1px dashed #c7cdd8; border-radius: 8px; }
+        @media print { .note { display: none; } }
+      `;
+    }
+
+    function printReport(printWindow, reportHtml) {
+      printWindow.document.open();
+      printWindow.document.write(reportHtml);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => printWindow.print(), 350);
+    }
+
+    async function saveAdminRecapAsPdf(printWindow) {
+      printWindow.document.open();
+      printWindow.document.write(`<!doctype html><title>${escapeHTML(t("adminPdfTitle"))}</title><p>${escapeHTML(t("historyLoading"))}</p>`);
+      printWindow.document.close();
+
+      const history = await getResults();
+      const groupOrder = ["Badung", "Jembrana", "Singaraja", "Umum"];
+      const groupLabels = new Set(groupOrder);
+      const usersByGroup = new Map(groupOrder.map(group => [group, new Map()]));
+
+      history.forEach(item => {
+        const group = groupLabels.has(item.group) ? item.group : "Umum";
+        const name = String(item.name || t("defaultParticipant")).trim() || t("defaultParticipant");
+        const key = name.toLowerCase();
+        const groupMap = usersByGroup.get(group);
+        const existing = groupMap.get(key) || {
+          name,
+          group,
+          attempts: 0,
+          bestPercent: 0,
+          lastDate: "-"
+        };
+
+        existing.attempts += 1;
+        existing.bestPercent = Math.max(existing.bestPercent, Number(item.percent || 0));
+        if (existing.lastDate === "-") {
+          existing.lastDate = item.date || "-";
+        }
+        groupMap.set(key, existing);
+      });
+
+      const summaryRows = groupOrder.map(group => {
+        const users = [...usersByGroup.get(group).values()];
+        const attemptCount = users.reduce((sum, user) => sum + user.attempts, 0);
+        return [group, users.length, attemptCount];
+      });
+      const userRows = groupOrder.flatMap(group => [...usersByGroup.get(group).values()]
+        .sort((a, b) => a.name.localeCompare(b.name, "id"))
+        .map((user, index) => [
+          index + 1,
+          user.name,
+          user.group,
+          user.attempts,
+          `${user.bestPercent}%`,
+          user.lastDate
+        ]));
+      const generatedAt = new Date().toLocaleString(currentLanguage === "ja" ? "ja-JP" : "id-ID");
+
+      const reportHtml = `
+        <!doctype html>
+        <html lang="${currentLanguage === "ja" ? "ja" : "id"}">
+        <head>
+          <meta charset="utf-8">
+          <title>${escapeHTML(t("adminPdfTitle"))}</title>
+          <style>${reportStyles()}</style>
+        </head>
+        <body>
+          <h1>${escapeHTML(t("adminPdfTitle"))}</h1>
+          <p>${escapeHTML(t("adminPdfSubtitle"))}</p>
+          <p>${escapeHTML(t("pdfGeneratedAt"))}: ${escapeHTML(generatedAt)}</p>
+          <p class="note">${escapeHTML(t("pdfPrintNote"))}</p>
+
+          <section class="summary">
+            <h2>${escapeHTML(t("adminPdfSummarySection"))}</h2>
+            ${pdfTable(
+              [t("adminPdfCategoryHeader"), t("adminPdfUsernameCountHeader"), t("adminPdfAttemptCountHeader")],
+              summaryRows,
+              t("historyEmpty")
+            )}
+          </section>
+
+          <section>
+            <h2>${escapeHTML(t("adminPdfUserListSection"))}</h2>
+            ${pdfTable(
+              ["No", t("adminPdfUsernameHeader"), t("adminPdfCategoryHeader"), t("adminPdfAttemptsHeader"), t("adminPdfBestScoreHeader"), t("adminPdfLastAttemptHeader")],
+              userRows,
+              t("historyEmpty")
+            )}
+          </section>
+        </body>
+        </html>
+      `;
+
+      printReport(printWindow, reportHtml);
+    }
+
     async function saveResultsAsPdf() {
       const printWindow = window.open("", "_blank");
       if (!printWindow) {
         alert(t("pdfBlocked"));
+        return;
+      }
+
+      if (isAdmin) {
+        await saveAdminRecapAsPdf(printWindow);
         return;
       }
 
@@ -3730,28 +3876,7 @@
         <head>
           <meta charset="utf-8">
           <title>${escapeHTML(t("pdfTitle"))}</title>
-          <style>
-            @page { margin: 18mm; }
-            * { box-sizing: border-box; }
-            body {
-              margin: 0;
-              color: #1f2937;
-              font-family: Arial, "Noto Sans JP", sans-serif;
-              font-size: 12px;
-              line-height: 1.5;
-            }
-            h1 { margin: 0 0 4px; font-size: 22px; }
-            h2 { margin: 22px 0 8px; font-size: 16px; }
-            p { margin: 0 0 8px; color: #4b5563; }
-            .note { margin-top: 8px; padding: 8px 10px; border-radius: 8px; background: #f3f4f6; }
-            table { width: 100%; border-collapse: collapse; margin-top: 8px; page-break-inside: auto; }
-            th, td { padding: 7px 8px; border: 1px solid #d1d5db; text-align: left; vertical-align: top; }
-            th { background: #eef2ff; color: #3730a3; font-weight: 700; }
-            tr { page-break-inside: avoid; }
-            .summary table { max-width: 480px; }
-            .empty { padding: 10px; border: 1px dashed #c7cdd8; border-radius: 8px; }
-            @media print { .note { display: none; } }
-          </style>
+          <style>${reportStyles()}</style>
         </head>
         <body>
           <h1>${escapeHTML(t("pdfTitle"))}</h1>
@@ -3782,11 +3907,7 @@
         </html>
       `;
 
-      printWindow.document.open();
-      printWindow.document.write(reportHtml);
-      printWindow.document.close();
-      printWindow.focus();
-      setTimeout(() => printWindow.print(), 350);
+      printReport(printWindow, reportHtml);
     }
 
     // =========================
