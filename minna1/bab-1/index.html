@@ -127,6 +127,11 @@
       line-height: 1.58;
     }
 
+    p strong {
+      color: var(--heading);
+      font-weight: 700;
+    }
+
     button,
     input,
     .btn,
@@ -419,6 +424,10 @@
       display: inline-flex;
     }
 
+    .username-box.is-complete {
+      display: none;
+    }
+
     .group-box {
       width: min(540px, 100%);
       margin: 0 auto 16px;
@@ -427,6 +436,13 @@
       background: rgba(255, 255, 255, 0.56);
       border: 1px solid rgba(124, 111, 246, 0.14);
       box-shadow: var(--shadow-soft);
+    }
+
+    .login-modal-card .group-box {
+      width: 100%;
+      margin: 0 0 14px;
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: var(--shadow-tiny);
     }
 
     .group-box[hidden] {
@@ -1816,7 +1832,7 @@
             </div>
           </div>
           <h1>Latihan kosakata Jepang dengan kartu interaktif</h1>
-          <p>Klik Isi Username, pilih grup, lalu klik Start. Baca arti pada kartu, buka jawabannya, kemudian pilih Benar jika kamu ingat atau Salah jika belum. Setiap kartu memiliki waktu 30 detik, dan hasil latihan akan tersimpan di riwayat serta ranking browser.</p>
+          <p>Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.</p>
 
           <div class="username-box">
             <button id="openLoginBtn" class="login-trigger" type="button">Isi Username</button>
@@ -1824,19 +1840,9 @@
             <p id="usernameNote" class="username-note">Klik tombol di atas untuk mengisi username melalui popup.</p>
           </div>
 
-          <div id="groupBox" class="group-box" hidden>
-            <p>Pilih kategori sebelum mulai kuis.</p>
-            <div class="group-options" aria-label="Pilihan kategori">
-              <button class="group-btn" data-group="Badung" type="button">Badung</button>
-              <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
-              <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
-              <button class="group-btn" data-group="Umum" type="button">Umum</button>
-            </div>
-          </div>
-
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled>Start</button>
-            <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden>Result Page</button>
+            <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden>Skip ke Result Page</button>
           </div>
         </div>
       </div>
@@ -2004,7 +2010,7 @@
       <div class="login-modal-card">
         <button id="closeLoginModal" class="example-close" type="button" aria-label="Tutup login">×</button>
         <h3 id="loginModalTitle">Masuk Peserta</h3>
-        <p>Isi username dulu. Khusus username admin404 akan muncul kolom password.</p>
+        <p>Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
 
         <div class="login-field">
           <label for="usernameInput">Username</label>
@@ -2016,11 +2022,21 @@
           <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Masukkan password admin" />
         </div>
 
+        <div id="groupBox" class="group-box" hidden>
+          <p>Pilih kategori sebelum mulai kuis.</p>
+          <div class="group-options" aria-label="Pilihan kategori">
+            <button class="group-btn" data-group="Badung" type="button">Badung</button>
+            <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
+            <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
+            <button class="group-btn" data-group="Umum" type="button">Umum</button>
+          </div>
+        </div>
+
         <div id="loginError" class="login-error" aria-live="polite"></div>
 
         <div class="login-modal-actions">
           <button id="cancelLoginBtn" class="btn secondary" type="button">Batal</button>
-          <button id="loginSubmitBtn" class="btn" type="button">Masuk</button>
+          <button id="loginSubmitBtn" class="btn" type="button">Simpan</button>
         </div>
       </div>
     </div>
@@ -2382,6 +2398,7 @@
     const resultScreen = document.getElementById("resultScreen");
 
     const openLoginBtn = document.getElementById("openLoginBtn");
+    const usernameBox = document.querySelector("#startScreen .username-box");
     const loginSummary = document.getElementById("loginSummary");
     const usernameNote = document.getElementById("usernameNote");
     const loginModal = document.getElementById("loginModal");
@@ -2568,10 +2585,16 @@
     function updatePasswordBox() {
       const typedUsername = usernameInput.value.trim();
       const needsPassword = typedUsername === ADMIN_USERNAME;
+      const needsGroup = Boolean(typedUsername) && !needsPassword;
 
       passwordBox.hidden = !needsPassword;
       if (!needsPassword) {
         passwordInput.value = "";
+      }
+
+      groupBox.hidden = !needsGroup;
+      if (!needsGroup) {
+        resetGroupSelection();
       }
     }
 
@@ -2582,6 +2605,7 @@
       startBtn.classList.toggle("show", Boolean(currentUsername));
       resultPageBtn.hidden = !isAdmin;
       clearRankingBtn.hidden = !isAdmin;
+      usernameBox.classList.toggle("is-complete", Boolean(currentUsername));
     }
 
     function updateLoginSummary() {
@@ -2635,9 +2659,6 @@
       if (isAdmin) {
         resetGroupSelection();
         groupBox.hidden = true;
-      } else {
-        resetGroupSelection();
-        groupBox.hidden = false;
       }
 
       updateLoginSummary();
@@ -2662,20 +2683,25 @@
         return;
       }
 
+      if (name !== ADMIN_USERNAME && !currentGroup) {
+        loginError.textContent = "Pilih grup terlebih dahulu.";
+        return;
+      }
+
       setLoggedInUser(name, name === ADMIN_USERNAME);
       closeLoginModalBox();
     }
 
     function selectGroup(groupName) {
-      if (!currentUsername || isAdmin) return;
+      const typedUsername = usernameInput.value.trim();
+      if (!typedUsername || typedUsername === ADMIN_USERNAME) return;
 
       currentGroup = groupName;
       document.querySelectorAll(".group-btn").forEach(button => {
         button.classList.toggle("active", button.dataset.group === groupName);
       });
 
-      updateLoginSummary();
-      updateStartState();
+      loginError.textContent = "";
     }
 
     // =========================
