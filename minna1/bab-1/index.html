@@ -629,6 +629,73 @@
       box-shadow: 0 8px 16px rgba(124, 111, 246, 0.2);
     }
 
+    .fiction-toggle {
+      position: absolute;
+      top: clamp(16px, 2.4vw, 24px);
+      right: clamp(18px, 3vw, 28px);
+      min-height: 42px;
+      padding: 6px 7px 6px 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      border-radius: var(--radius-pill);
+      color: #4f596d;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-tiny);
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.1;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .fiction-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(76, 87, 125, 0.12);
+    }
+
+    .fiction-switch {
+      width: 54px;
+      height: 28px;
+      position: relative;
+      flex: 0 0 auto;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--primary), #9d8dfd);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+      transition: background 0.18s ease;
+    }
+
+    .fiction-switch::after {
+      content: "";
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(61, 72, 104, 0.18);
+      transition: transform 0.18s ease;
+    }
+
+    .fiction-toggle[aria-pressed="false"] .fiction-switch {
+      background: #d6dce9;
+    }
+
+    .fiction-toggle[aria-pressed="false"] .fiction-switch::after {
+      transform: translateX(-26px);
+    }
+
+    .fiction-state {
+      min-width: 24px;
+      color: #514a9e;
+      text-align: left;
+    }
+
+    .fiction-toggle[aria-pressed="false"] .fiction-state {
+      color: #6b7280;
+    }
+
     #startScreen .hero-info-row {
       justify-content: center;
       gap: 12px;
@@ -1705,6 +1772,28 @@
         top: 14px;
       }
 
+      .fiction-toggle {
+        top: 14px;
+        right: 16px;
+        min-height: 38px;
+        padding: 5px 6px 5px 10px;
+        gap: 7px;
+      }
+
+      .fiction-switch {
+        width: 48px;
+        height: 26px;
+      }
+
+      .fiction-switch::after {
+        width: 20px;
+        height: 20px;
+      }
+
+      .fiction-toggle[aria-pressed="false"] .fiction-switch::after {
+        transform: translateX(-22px);
+      }
+
       .language-btn {
         min-height: 30px;
         padding: 6px 10px;
@@ -1897,6 +1986,10 @@
         grid-template-columns: 1fr;
       }
 
+      .fiction-label {
+        display: none;
+      }
+
       #startScreen .hero-info-card {
         gap: 12px;
         min-height: 64px;
@@ -1919,6 +2012,12 @@
             <button class="language-btn active" data-lang="id" type="button">Indonesia</button>
             <button class="language-btn" data-lang="ja" type="button">日本語</button>
           </div>
+
+          <button id="fictionToggle" class="fiction-toggle" type="button" aria-pressed="true" aria-label="Kosakata fiksi aktif" data-i18n-aria-label="fictionToggleAriaOn">
+            <span class="fiction-label" data-i18n="fictionToggleLabel">Fiksi</span>
+            <span class="fiction-state" id="fictionToggleState">ON</span>
+            <span class="fiction-switch" aria-hidden="true"></span>
+          </button>
 
           <div class="hero-info-row" aria-label="Informasi latihan" data-i18n-aria-label="practiceInfoLabel">
             <div class="hero-info-card">
@@ -2541,6 +2640,9 @@
     const resultScreen = document.getElementById("resultScreen");
 
     const languageButtons = document.querySelectorAll(".language-btn");
+    const fictionToggle = document.getElementById("fictionToggle");
+    const fictionToggleState = document.getElementById("fictionToggleState");
+    const cardCountValue = document.querySelector('[data-i18n="cardCountValue"]');
     const openLoginBtn = document.getElementById("openLoginBtn");
     const usernameBox = document.querySelector("#startScreen .username-box");
     const loginSummary = document.getElementById("loginSummary");
@@ -2611,6 +2713,7 @@
     let cardStartTime = 0;
     let answers = [];
     let currentLanguage = "id";
+    let includeFictionWords = true;
 
     const translations = {
       id: {
@@ -2619,6 +2722,11 @@
         durationLabel: "Durasi waktu",
         durationValue: "30 detik/kartu",
         practiceInfoLabel: "Informasi latihan",
+        fictionToggleLabel: "Fiksi",
+        fictionToggleOn: "ON",
+        fictionToggleOff: "OFF",
+        fictionToggleAriaOn: "Kosakata fiksi aktif",
+        fictionToggleAriaOff: "Kosakata fiksi nonaktif",
         homeTitle: "Latihan kosakata Jepang dengan kartu interaktif",
         homeDescription: 'Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.',
         usernameButton: "Isi Username",
@@ -2728,6 +2836,11 @@
         durationLabel: "制限時間",
         durationValue: "1カード 30秒",
         practiceInfoLabel: "練習情報",
+        fictionToggleLabel: "架空語",
+        fictionToggleOn: "ON",
+        fictionToggleOff: "OFF",
+        fictionToggleAriaOn: "架空の単語を表示",
+        fictionToggleAriaOff: "架空の単語を非表示",
         homeTitle: "インタラクティブカードで日本語単語を練習",
         homeDescription: '<strong>ユーザー名</strong>を入力し、ポップアップで項目を選んでから始めましょう。カードを開き、覚えていたら<strong>正解</strong>、まだなら<strong>不正解</strong>を選びます。',
         usernameButton: "ユーザー名を入力",
@@ -2879,6 +2992,7 @@
         button.classList.toggle("active", button.dataset.lang === currentLanguage);
       });
 
+      updateFictionToggleUI();
       updateLoginSummary();
       if (currentItem && practiceScreen.classList.contains("active")) {
         cardCounter.textContent = t("cardCounterPattern")
@@ -2945,9 +3059,28 @@
       return result;
     }
 
+    function isFictionVocabulary(item) {
+      return /fiksi/i.test(String(item?.indonesia || ""));
+    }
+
+    function getAvailableVocabulary() {
+      return includeFictionWords
+        ? vocabulary
+        : vocabulary.filter(item => !isFictionVocabulary(item));
+    }
+
+    function updateFictionToggleUI() {
+      fictionToggle.setAttribute("aria-pressed", String(includeFictionWords));
+      fictionToggle.setAttribute("aria-label", includeFictionWords ? t("fictionToggleAriaOn") : t("fictionToggleAriaOff"));
+      fictionToggleState.textContent = includeFictionWords ? t("fictionToggleOn") : t("fictionToggleOff");
+
+      const count = getAvailableVocabulary().length;
+      cardCountValue.textContent = currentLanguage === "ja" ? `${count}語` : `${count} kosakata`;
+    }
+
     function buildSessionDeck() {
       const counts = new Map();
-      return shuffle(vocabulary).filter(item => {
+      return shuffle(getAvailableVocabulary()).filter(item => {
         const key = `${item.kanji || ""}|${item.kana || ""}|${item.romaji || ""}|${item.indonesia || ""}`;
         const used = counts.get(key) || 0;
         if (used >= 2) return false;
@@ -3821,6 +3954,11 @@
 
     languageButtons.forEach(button => {
       button.addEventListener("click", () => applyHomeLanguage(button.dataset.lang));
+    });
+
+    fictionToggle.addEventListener("click", () => {
+      includeFictionWords = !includeFictionWords;
+      updateFictionToggleUI();
     });
 
     openLoginBtn.addEventListener("click", openLoginModalBox);
