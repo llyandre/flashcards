@@ -677,6 +677,8 @@
     #startScreen .hero-info-text {
       display: grid;
       gap: 2px;
+      min-width: 0;
+      text-align: left;
     }
 
     #startScreen .hero-info-card span {
@@ -1688,7 +1690,11 @@
     }
 
     @media (max-width: 720px) {
-      .panel,
+      .panel {
+        border-radius: var(--radius-xl);
+        padding: var(--panel-pad-mobile);
+      }
+
       #startScreen .panel.hero {
         border-radius: var(--radius-xl);
         padding: clamp(76px, 16vw, 86px) var(--panel-pad-mobile) var(--panel-pad-mobile);
@@ -1705,8 +1711,10 @@
       }
 
       #startScreen .hero-info-row {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         align-items: stretch;
+        gap: 10px;
         margin-bottom: 18px;
       }
 
@@ -1714,6 +1722,7 @@
         width: 100%;
         min-height: 72px;
         padding: 13px 15px;
+        justify-content: flex-start;
       }
 
       #startScreen .hero-info-icon {
@@ -1779,7 +1788,11 @@
         width: min(100% - 22px, 1120px);
       }
 
-      .panel,
+      .panel {
+        border-radius: 22px;
+        padding: 18px;
+      }
+
       #startScreen .panel.hero {
         border-radius: 22px;
         padding: 74px 18px 18px;
@@ -1861,18 +1874,32 @@
       }
 
       table {
-        min-width: 570px;
+        min-width: 540px;
+        font-size: 13px;
+      }
+
+      th,
+      td {
+        padding: 11px 12px;
       }
     }
 
     @media (max-width: 380px) {
-      .panel,
-      #startScreen .panel.hero {
+      .panel {
         padding: 18px 16px;
+      }
+
+      #startScreen .panel.hero {
+        padding: 72px 16px 18px;
+      }
+
+      #startScreen .hero-info-row {
+        grid-template-columns: 1fr;
       }
 
       #startScreen .hero-info-card {
         gap: 12px;
+        min-height: 64px;
       }
 
       #startScreen .input-shell {
@@ -1893,7 +1920,7 @@
             <button class="language-btn" data-lang="ja" type="button">日本語</button>
           </div>
 
-          <div class="hero-info-row" aria-label="Informasi Latihan">
+          <div class="hero-info-row" aria-label="Informasi latihan" data-i18n-aria-label="practiceInfoLabel">
             <div class="hero-info-card">
               <div class="hero-info-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
@@ -1940,23 +1967,23 @@
     <!-- Question page dari HTML 1 -->
     <section id="practiceScreen" class="screen">
       <div class="practice-wrap">
-        <div class="topbar">
-          <div class="counter-card">
-            <span id="cardCounter">Kartu 1 dari 1</span>
-            <small>Klik kartu untuk membalik</small>
+          <div class="topbar">
+            <div class="counter-card">
+              <span id="cardCounter">Kartu 1 dari 1</span>
+            <small data-i18n="cardFlipSmall">Klik kartu untuk membalik</small>
           </div>
           <div class="timer-card" aria-live="polite">
             <div class="time-number" id="timeNumber">30</div>
-            <div class="timer-label">detik tersisa</div>
+            <div class="timer-label" data-i18n="timerLabel">detik tersisa</div>
             <div class="timer-track">
               <div class="timer-fill" id="timerFill"></div>
             </div>
           </div>
         </div>
 
-        <div class="flip-hint" id="flipHint">Lihat arti, lalu klik kartu untuk membuka jawabannya.</div>
+        <div class="flip-hint" id="flipHint" data-i18n="flipHintInitial">Lihat arti, lalu klik kartu untuk membuka jawabannya.</div>
 
-        <article class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Klik untuk membalik flashcard">
+        <article class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Klik untuk membalik flashcard" data-i18n-aria-label="flashcardAriaLabel">
           <div class="card-inner">
             <div class="card-face card-front">
               <div class="card-text" id="frontText"></div>
@@ -1973,8 +2000,8 @@
         </article>
 
         <div class="answer-row">
-          <button class="answer-btn correct" id="correctBtn" type="button" disabled>✓ Benar</button>
-          <button class="answer-btn wrong" id="wrongBtn" type="button" disabled>✕ Salah</button>
+          <button class="answer-btn correct" id="correctBtn" type="button" disabled data-i18n="correctButton">✓ Benar</button>
+          <button class="answer-btn wrong" id="wrongBtn" type="button" disabled data-i18n="wrongButton">✕ Salah</button>
         </div>
       </div>
     </section>
@@ -1983,17 +2010,17 @@
     <section id="resultScreen" class="screen">
       <div class="panel">
         <div class="results-head">
-          <span class="badge">✨ Selesai</span>
-          <h2>Hasil latihan</h2>
-          <p>Ringkasan nilai, review jawaban, dan ranking tersimpan di halaman ini.</p>
+          <span class="badge" data-i18n="doneBadge">✨ Selesai</span>
+          <h2 data-i18n="resultTitle">Hasil latihan</h2>
+          <p data-i18n="resultDescription">Ringkasan nilai, review jawaban, dan ranking tersimpan di halaman ini.</p>
           <div class="participant-name" id="participantName">Peserta: -</div>
         </div>
 
-        <div class="tabs" role="tablist" aria-label="Tab hasil latihan">
-          <button class="tab-btn active" data-tab="hasil" type="button">Hasil</button>
-          <button class="tab-btn" data-tab="review" type="button">Review jawaban</button>
-          <button class="tab-btn" data-tab="history" type="button">Riwayat</button>
-          <button class="tab-btn" data-tab="ranking" type="button">Ranking</button>
+        <div class="tabs" role="tablist" aria-label="Tab hasil latihan" data-i18n-aria-label="resultTabsLabel">
+          <button class="tab-btn active" data-tab="hasil" type="button" data-i18n="tabResult">Hasil</button>
+          <button class="tab-btn" data-tab="review" type="button" data-i18n="tabReview">Review jawaban</button>
+          <button class="tab-btn" data-tab="history" type="button" data-i18n="tabHistory">Riwayat</button>
+          <button class="tab-btn" data-tab="ranking" type="button" data-i18n="tabRanking">Ranking</button>
         </div>
 
         <section id="hasilTab" class="tab-panel active">
@@ -2002,30 +2029,30 @@
               <strong id="scorePercent">0%</strong>
             </div>
             <div class="summary-text">
-              <h3 id="summaryTitle">Terus berlatih!</h3>
-              <p id="summaryDescription">Hasil akan muncul setelah latihan selesai.</p>
+              <h3 id="summaryTitle" data-i18n="summaryTitleDefault">Terus berlatih!</h3>
+              <p id="summaryDescription" data-i18n="summaryDescriptionDefault">Hasil akan muncul setelah latihan selesai.</p>
             </div>
           </div>
 
           <div class="stats-grid">
             <div class="stat-card">
-              <span>Total kosakata</span>
+              <span data-i18n="statTotalLabel">Total kosakata</span>
               <strong id="statTotal">0</strong>
             </div>
             <div class="stat-card">
-              <span>Benar</span>
+              <span data-i18n="statCorrectLabel">Benar</span>
               <strong id="statCorrect">0</strong>
             </div>
             <div class="stat-card">
-              <span>Salah</span>
+              <span data-i18n="statWrongLabel">Salah</span>
               <strong id="statWrong">0</strong>
             </div>
             <div class="stat-card">
-              <span>Total waktu</span>
+              <span data-i18n="statTimeLabel">Total waktu</span>
               <strong id="statTime">0s</strong>
             </div>
             <div class="stat-card">
-              <span>Rata-rata</span>
+              <span data-i18n="statAverageLabel">Rata-rata</span>
               <strong id="statAverage">0s</strong>
             </div>
           </div>
@@ -2037,10 +2064,10 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Indonesia</th>
-                  <th>Jepang</th>
-                  <th>Status</th>
-                  <th>Waktu</th>
+                  <th data-i18n="reviewIndonesiaHeader">Indonesia</th>
+                  <th data-i18n="reviewJapaneseHeader">Jepang</th>
+                  <th data-i18n="reviewStatusHeader">Status</th>
+                  <th data-i18n="reviewTimeHeader">Waktu</th>
                 </tr>
               </thead>
               <tbody id="reviewBody"></tbody>
@@ -2054,13 +2081,13 @@
               <thead>
                 <tr>
                   <th>Rank</th>
-                  <th>Peserta</th>
-                  <th>Grup</th>
-                  <th>Benar</th>
-                  <th>Salah</th>
-                  <th>Nilai</th>
-                  <th>Total waktu</th>
-                  <th>Tanggal</th>
+                  <th data-i18n="participantHeader">Peserta</th>
+                  <th data-i18n="groupHeader">Grup</th>
+                  <th data-i18n="correctHeader">Benar</th>
+                  <th data-i18n="wrongHeader">Salah</th>
+                  <th data-i18n="scoreHeader">Nilai</th>
+                  <th data-i18n="totalTimeHeader">Total waktu</th>
+                  <th data-i18n="dateHeader">Tanggal</th>
                 </tr>
               </thead>
               <tbody id="rankingBody"></tbody>
@@ -2074,13 +2101,13 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Peserta</th>
-                  <th>Grup</th>
-                  <th>Benar</th>
-                  <th>Salah</th>
-                  <th>Nilai</th>
-                  <th>Total waktu</th>
-                  <th>Tanggal</th>
+                  <th data-i18n="participantHeader">Peserta</th>
+                  <th data-i18n="groupHeader">Grup</th>
+                  <th data-i18n="correctHeader">Benar</th>
+                  <th data-i18n="wrongHeader">Salah</th>
+                  <th data-i18n="scoreHeader">Nilai</th>
+                  <th data-i18n="totalTimeHeader">Total waktu</th>
+                  <th data-i18n="dateHeader">Tanggal</th>
                 </tr>
               </thead>
               <tbody id="historyBody"></tbody>
@@ -2089,31 +2116,32 @@
         </section>
 
         <div class="result-actions">
-          <button id="restartBtn" class="btn" type="button">Ulangi Latihan</button>
-          <button id="clearRankingBtn" class="btn danger-outline admin-only" type="button" hidden>Hapus riwayat dan ranking</button>
+          <button id="savePdfBtn" class="btn secondary" type="button" data-i18n="savePdfButton">Simpan sebagai PDF</button>
+          <button id="restartBtn" class="btn" type="button" data-i18n="restartButton">Ulangi Latihan</button>
+          <button id="clearRankingBtn" class="btn danger-outline admin-only" type="button" hidden data-i18n="clearButton">Hapus riwayat dan ranking</button>
         </div>
       </div>
     </section>
 
     <div id="loginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
       <div class="login-modal-card">
-        <button id="closeLoginModal" class="example-close" type="button" aria-label="Tutup login">×</button>
-        <h3 id="loginModalTitle">Masuk peserta</h3>
-        <p>Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
+        <button id="closeLoginModal" class="example-close" type="button" aria-label="Tutup login" data-i18n-aria-label="closeLoginLabel">×</button>
+        <h3 id="loginModalTitle" data-i18n="loginTitle">Masuk peserta</h3>
+        <p data-i18n-html="loginDescription">Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
 
         <div class="login-field">
-          <label for="usernameInput">Username</label>
-          <input id="usernameInput" type="text" autocomplete="username" placeholder="Masukkan username" />
+          <label for="usernameInput" data-i18n="usernameLabel">Username</label>
+          <input id="usernameInput" type="text" autocomplete="username" placeholder="Masukkan username" data-i18n-placeholder="usernamePlaceholder" />
         </div>
 
         <div id="passwordBox" class="login-field password-box" hidden>
-          <label for="passwordInput">Password admin</label>
-          <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Masukkan password admin" />
+          <label for="passwordInput" data-i18n="passwordLabel">Password admin</label>
+          <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Masukkan password admin" data-i18n-placeholder="passwordPlaceholder" />
         </div>
 
         <div id="groupBox" class="group-box" hidden>
-          <p>Pilih kategori sebelum mulai kuis.</p>
-          <div class="group-options" aria-label="Pilihan Kategori">
+          <p data-i18n="groupPrompt">Pilih kategori sebelum mulai kuis.</p>
+          <div class="group-options" aria-label="Pilihan Kategori" data-i18n-aria-label="groupOptionsLabel">
             <button class="group-btn" data-group="Badung" type="button">Badung</button>
             <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
             <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
@@ -2124,16 +2152,16 @@
         <div id="loginError" class="login-error" aria-live="polite"></div>
 
         <div class="login-modal-actions">
-          <button id="cancelLoginBtn" class="btn secondary" type="button">Batal</button>
-          <button id="loginSubmitBtn" class="btn" type="button">Simpan</button>
+          <button id="cancelLoginBtn" class="btn secondary" type="button" data-i18n="cancelButton">Batal</button>
+          <button id="loginSubmitBtn" class="btn" type="button" data-i18n="saveButton">Simpan</button>
         </div>
       </div>
     </div>
 
     <div id="exampleModal" class="example-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="exampleModalTitle">
       <div class="example-modal-card">
-        <button id="closeExampleModal" class="example-close" type="button" aria-label="Tutup contoh">×</button>
-        <h3 id="exampleModalTitle">Contoh penggunaan</h3>
+        <button id="closeExampleModal" class="example-close" type="button" aria-label="Tutup contoh" data-i18n-aria-label="closeExampleLabel">×</button>
+        <h3 id="exampleModalTitle" data-i18n="exampleTitle">Contoh penggunaan</h3>
         <p id="exampleText"></p>
       </div>
     </div>
@@ -2529,6 +2557,7 @@
     const usernameInput = document.getElementById("usernameInput");
     const startBtn = document.getElementById("startBtn");
     const restartBtn = document.getElementById("restartBtn");
+    const savePdfBtn = document.getElementById("savePdfBtn");
     const clearRankingBtn = document.getElementById("clearRankingBtn");
 
     const cardCounter = document.getElementById("cardCounter");
@@ -2583,30 +2612,224 @@
     let answers = [];
     let currentLanguage = "id";
 
-    const homeTranslations = {
+    const translations = {
       id: {
         cardCountLabel: "Jumlah kartu",
         cardCountValue: "47 kosakata",
         durationLabel: "Durasi waktu",
         durationValue: "30 detik/kartu",
+        practiceInfoLabel: "Informasi latihan",
         homeTitle: "Latihan kosakata Jepang dengan kartu interaktif",
         homeDescription: 'Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.',
         usernameButton: "Isi Username",
         usernameNote: "Klik tombol di atas untuk mengisi username melalui popup.",
         startButton: "Start",
-        skipButton: "Lewati ke halaman hasil"
+        skipButton: "Lewati ke halaman hasil",
+        cardFlipSmall: "Klik kartu untuk membalik",
+        timerLabel: "detik tersisa",
+        correctButton: "✓ Benar",
+        wrongButton: "✕ Salah",
+        doneBadge: "✨ Selesai",
+        resultTitle: "Hasil latihan",
+        resultDescription: "Ringkasan nilai, review jawaban, dan ranking tersimpan di halaman ini.",
+        resultTabsLabel: "Tab hasil latihan",
+        tabResult: "Hasil",
+        tabReview: "Review jawaban",
+        tabHistory: "Riwayat",
+        tabRanking: "Ranking",
+        statTotalLabel: "Total kosakata",
+        statCorrectLabel: "Benar",
+        statWrongLabel: "Salah",
+        statTimeLabel: "Total waktu",
+        statAverageLabel: "Rata-rata",
+        reviewIndonesiaHeader: "Indonesia",
+        reviewJapaneseHeader: "Jepang",
+        reviewStatusHeader: "Status",
+        reviewTimeHeader: "Waktu",
+        participantHeader: "Peserta",
+        groupHeader: "Grup",
+        correctHeader: "Benar",
+        wrongHeader: "Salah",
+        scoreHeader: "Nilai",
+        totalTimeHeader: "Total waktu",
+        dateHeader: "Tanggal",
+        savePdfButton: "Simpan sebagai PDF",
+        restartButton: "Ulangi Latihan",
+        clearButton: "Hapus riwayat dan ranking",
+        loginTitle: "Masuk peserta",
+        loginDescription: 'Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.',
+        closeLoginLabel: "Tutup login",
+        closeExampleLabel: "Tutup contoh",
+        usernameLabel: "Username",
+        usernamePlaceholder: "Masukkan username",
+        passwordLabel: "Password admin",
+        passwordPlaceholder: "Masukkan password admin",
+        groupPrompt: "Pilih kategori sebelum mulai kuis.",
+        groupOptionsLabel: "Pilihan kategori",
+        cancelButton: "Batal",
+        saveButton: "Simpan",
+        exampleTitle: "Contoh penggunaan",
+        cardCounterPattern: "Kartu {current} dari {total}",
+        flipHintInitial: "Lihat arti, lalu klik kartu untuk membuka jawabannya.",
+        flipHintAnswer: "Pilih Benar jika kamu ingat jawabannya, atau Salah jika belum.",
+        flashcardAriaLabel: "Klik untuk membalik flashcard",
+        correctFeedback: "Bagus, jawaban ditandai benar.",
+        wrongFeedback: "Tidak apa-apa, jawaban ditandai salah.",
+        exampleButton: "Lihat contoh",
+        audioButton: "🔊 Dengarkan",
+        audioUnavailable: "Audio tidak tersedia",
+        audioUnavailableAlert: "Audio tidak tersedia di browser ini.",
+        audioPlaying: "🔊 Memutar...",
+        participantLabel: "Peserta",
+        adminLabel: "Admin",
+        groupLabel: "Grup",
+        defaultParticipant: "Peserta",
+        usernameNoteEmpty: "Klik tombol di atas untuk mengisi username melalui popup.",
+        usernameNoteAdmin: "Admin dapat membuka halaman hasil dan menghapus riwayat serta ranking.",
+        usernameNoteReady: "Grup sudah dipilih. Klik Start untuk mulai kuis.",
+        usernameNoteNeedGroup: "Pilih salah satu kategori terlebih dahulu.",
+        usernameRequired: "Username wajib diisi.",
+        passwordWrong: "Password admin salah.",
+        groupRequired: "Pilih grup terlebih dahulu.",
+        groupRequiredHome: "Pilih grup dulu: Badung, Jembrana, Singaraja, atau Umum.",
+        summaryTitleDefault: "Terus berlatih!",
+        summaryDescriptionDefault: "Hasil akan muncul setelah latihan selesai.",
+        summaryExcellentTitle: "Hebat sekali!",
+        summaryExcellentDescription: "Kamu sudah sangat kuat mengenali kosakata. Pertahankan kecepatan dan akurasinya.",
+        summaryGoodTitle: "Bagus, teruskan!",
+        summaryGoodDescription: "Pemahamanmu sudah berkembang. Review jawaban salah agar kosakata makin melekat.",
+        summaryRetryTitle: "Ayo latihan lagi!",
+        summaryRetryDescription: "Ulangi latihan dan perhatikan kartu yang masih salah pada tab review.",
+        adminResultTitle: "Halaman hasil admin",
+        adminResultDescription: "Admin bisa melihat riwayat dan ranking. Data pengerjaan admin tidak disimpan.",
+        reviewEmpty: "Belum ada data review.",
+        statusCorrect: "Benar",
+        statusWrong: "Salah",
+        historyLoading: "Memuat riwayat...",
+        historyEmpty: "Belum ada riwayat pengerjaan.",
+        rankingLoading: "Memuat ranking...",
+        rankingEmpty: "Belum ada ranking.",
+        clearLocalDone: "Data lokal sudah dibersihkan. Data Firebase tidak dihapus karena rules saat ini menolak delete.",
+        pdfTitle: "Laporan Hasil Ujian Flashcard",
+        pdfSubtitle: "Semua hasil ujian, review jawaban, riwayat, dan ranking.",
+        pdfPrintNote: "Pada dialog print, pilih Save as PDF atau Simpan sebagai PDF.",
+        pdfSummarySection: "Ringkasan",
+        pdfReviewSection: "Review jawaban",
+        pdfHistorySection: "Riwayat pengerjaan",
+        pdfRankingSection: "Ranking",
+        pdfGeneratedAt: "Dibuat pada",
+        pdfInfoHeader: "Info",
+        pdfDetailHeader: "Detail",
+        pdfBlocked: "Popup browser diblokir. Izinkan popup untuk menyimpan hasil sebagai PDF."
       },
       ja: {
         cardCountLabel: "カード数",
         cardCountValue: "47語",
         durationLabel: "制限時間",
         durationValue: "1カード 30秒",
+        practiceInfoLabel: "練習情報",
         homeTitle: "インタラクティブカードで日本語単語を練習",
         homeDescription: '<strong>ユーザー名</strong>を入力し、ポップアップで項目を選んでから始めましょう。カードを開き、覚えていたら<strong>正解</strong>、まだなら<strong>不正解</strong>を選びます。',
         usernameButton: "ユーザー名を入力",
         usernameNote: "上のボタンからユーザー名を入力してください。",
         startButton: "スタート",
-        skipButton: "結果ページへ"
+        skipButton: "結果ページへ",
+        cardFlipSmall: "カードをクリックして裏返す",
+        timerLabel: "秒残り",
+        correctButton: "✓ 正解",
+        wrongButton: "✕ 不正解",
+        doneBadge: "✨ 完了",
+        resultTitle: "練習結果",
+        resultDescription: "点数の概要、解答レビュー、ランキングをこのページで確認できます。",
+        resultTabsLabel: "練習結果タブ",
+        tabResult: "結果",
+        tabReview: "解答レビュー",
+        tabHistory: "履歴",
+        tabRanking: "ランキング",
+        statTotalLabel: "単語数",
+        statCorrectLabel: "正解",
+        statWrongLabel: "不正解",
+        statTimeLabel: "合計時間",
+        statAverageLabel: "平均",
+        reviewIndonesiaHeader: "インドネシア語",
+        reviewJapaneseHeader: "日本語",
+        reviewStatusHeader: "状態",
+        reviewTimeHeader: "時間",
+        participantHeader: "参加者",
+        groupHeader: "グループ",
+        correctHeader: "正解",
+        wrongHeader: "不正解",
+        scoreHeader: "点数",
+        totalTimeHeader: "合計時間",
+        dateHeader: "日時",
+        savePdfButton: "PDFとして保存",
+        restartButton: "もう一度練習",
+        clearButton: "履歴とランキングを削除",
+        loginTitle: "参加者ログイン",
+        loginDescription: '先にユーザー名を入力してください。通常ユーザーはここでグループを選び、<strong>admin404</strong> はパスワードを入力します。',
+        closeLoginLabel: "ログインを閉じる",
+        closeExampleLabel: "例文を閉じる",
+        usernameLabel: "ユーザー名",
+        usernamePlaceholder: "ユーザー名を入力",
+        passwordLabel: "管理者パスワード",
+        passwordPlaceholder: "管理者パスワードを入力",
+        groupPrompt: "クイズを始める前にカテゴリーを選んでください。",
+        groupOptionsLabel: "カテゴリー選択",
+        cancelButton: "キャンセル",
+        saveButton: "保存",
+        exampleTitle: "使い方の例",
+        cardCounterPattern: "カード {current}/{total}",
+        flipHintInitial: "意味を見てから、カードをクリックして答えを開きます。",
+        flipHintAnswer: "覚えていたら正解、まだなら不正解を選んでください。",
+        flashcardAriaLabel: "クリックしてカードを裏返す",
+        correctFeedback: "よくできました。正解として記録しました。",
+        wrongFeedback: "大丈夫です。不正解として記録しました。",
+        exampleButton: "例を見る",
+        audioButton: "🔊 聞く",
+        audioUnavailable: "音声は利用できません",
+        audioUnavailableAlert: "このブラウザでは音声を利用できません。",
+        audioPlaying: "🔊 再生中...",
+        participantLabel: "参加者",
+        adminLabel: "管理者",
+        groupLabel: "グループ",
+        defaultParticipant: "参加者",
+        usernameNoteEmpty: "上のボタンからユーザー名を入力してください。",
+        usernameNoteAdmin: "管理者は結果ページを開き、履歴とランキングを削除できます。",
+        usernameNoteReady: "グループが選択されました。スタートを押して始めてください。",
+        usernameNoteNeedGroup: "カテゴリーを1つ選んでください。",
+        usernameRequired: "ユーザー名を入力してください。",
+        passwordWrong: "管理者パスワードが違います。",
+        groupRequired: "先にグループを選んでください。",
+        groupRequiredHome: "先にグループを選んでください: Badung、Jembrana、Singaraja、Umum。",
+        summaryTitleDefault: "練習を続けましょう",
+        summaryDescriptionDefault: "練習が終わると結果が表示されます。",
+        summaryExcellentTitle: "すばらしいです！",
+        summaryExcellentDescription: "単語の理解がとても安定しています。スピードと正確さを保ちましょう。",
+        summaryGoodTitle: "いい調子です！",
+        summaryGoodDescription: "理解が伸びています。間違えた答えを復習して、さらに覚えましょう。",
+        summaryRetryTitle: "もう一度練習しましょう",
+        summaryRetryDescription: "もう一度練習して、レビュータブで間違えたカードを確認しましょう。",
+        adminResultTitle: "管理者結果ページ",
+        adminResultDescription: "管理者は履歴とランキングを確認できます。管理者の練習データは保存されません。",
+        reviewEmpty: "レビューするデータはまだありません。",
+        statusCorrect: "正解",
+        statusWrong: "不正解",
+        historyLoading: "履歴を読み込み中...",
+        historyEmpty: "練習履歴はまだありません。",
+        rankingLoading: "ランキングを読み込み中...",
+        rankingEmpty: "ランキングはまだありません。",
+        clearLocalDone: "ローカルデータを削除しました。現在のルールではFirebaseの削除は許可されていません。",
+        pdfTitle: "Flashcard 試験結果レポート",
+        pdfSubtitle: "すべての試験結果、解答レビュー、履歴、ランキング。",
+        pdfPrintNote: "印刷ダイアログで PDFとして保存 を選んでください。",
+        pdfSummarySection: "概要",
+        pdfReviewSection: "解答レビュー",
+        pdfHistorySection: "練習履歴",
+        pdfRankingSection: "ランキング",
+        pdfGeneratedAt: "作成日時",
+        pdfInfoHeader: "情報",
+        pdfDetailHeader: "詳細",
+        pdfBlocked: "ブラウザでポップアップがブロックされました。PDF保存のためにポップアップを許可してください。"
       }
     };
 
@@ -2622,9 +2845,13 @@
         .replaceAll("'", "&#039;");
     }
 
+    function t(key) {
+      return translations[currentLanguage]?.[key] || translations.id[key] || key;
+    }
+
     function applyHomeLanguage(lang) {
-      currentLanguage = homeTranslations[lang] ? lang : "id";
-      const dictionary = homeTranslations[currentLanguage];
+      currentLanguage = translations[lang] ? lang : "id";
+      const dictionary = translations[currentLanguage];
 
       document.documentElement.lang = currentLanguage === "ja" ? "ja" : "id";
 
@@ -2638,9 +2865,32 @@
         if (dictionary[key]) element.innerHTML = dictionary[key];
       });
 
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+        const key = element.dataset.i18nPlaceholder;
+        if (dictionary[key]) element.placeholder = dictionary[key];
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach(element => {
+        const key = element.dataset.i18nAriaLabel;
+        if (dictionary[key]) element.setAttribute("aria-label", dictionary[key]);
+      });
+
       languageButtons.forEach(button => {
         button.classList.toggle("active", button.dataset.lang === currentLanguage);
       });
+
+      updateLoginSummary();
+      if (currentItem && practiceScreen.classList.contains("active")) {
+        cardCounter.textContent = t("cardCounterPattern")
+          .replace("{current}", currentIndex + 1)
+          .replace("{total}", deck.length);
+        flipHint.textContent = isFlipped ? t("flipHintAnswer") : t("flipHintInitial");
+        displayJapanese(currentItem);
+      }
+
+      if (resultScreen.classList.contains("active")) {
+        refreshResultLanguage();
+      }
     }
 
     function blockBrowserShortcuts() {
@@ -2671,7 +2921,7 @@
 
     function formatSeconds(seconds) {
       const rounded = Math.round(Number(seconds || 0) * 10) / 10;
-      return `${rounded}s`;
+      return `${rounded}${currentLanguage === "ja" ? "秒" : "s"}`;
     }
 
     function getAnsweredSeconds() {
@@ -2738,9 +2988,9 @@
       const mainClass = mainText.length > 18 ? "jp-main-display long" : "jp-main-display";
       const readingClass = readingText.length > 35 ? "jp-reading long" : "jp-reading";
       const exampleButton = contoh
-        ? `<button class="example-btn" id="showExampleBtn" type="button">Lihat contoh</button>`
+        ? `<button class="example-btn" id="showExampleBtn" type="button">${escapeHTML(t("exampleButton"))}</button>`
         : "";
-      const audioButton = `<button class="audio-btn" id="playAudioBtn" type="button">🔊 Dengarkan</button>`;
+      const audioButton = `<button class="audio-btn" id="playAudioBtn" type="button">${escapeHTML(t("audioButton"))}</button>`;
 
       jpText.innerHTML = `
         <div class="${mainClass}">${escapeHTML(mainText)}</div>
@@ -2755,7 +3005,7 @@
       if (!("speechSynthesis" in window)) {
         const button = jpText.querySelector("#playAudioBtn");
         button.disabled = true;
-        button.textContent = "Audio tidak tersedia";
+        button.textContent = t("audioUnavailable");
       }
     }
 
@@ -2782,7 +3032,7 @@
 
     function speakJapanese(item) {
       if (!("speechSynthesis" in window)) {
-        alert("Audio tidak tersedia di browser ini.");
+        alert(t("audioUnavailableAlert"));
         return;
       }
 
@@ -2802,19 +3052,19 @@
 
       if (button) {
         button.classList.add("is-speaking");
-        button.textContent = "🔊 Memutar...";
+        button.textContent = t("audioPlaying");
       }
 
       utterance.onend = () => {
         if (!button) return;
         button.classList.remove("is-speaking");
-        button.textContent = "🔊 Dengarkan";
+        button.textContent = t("audioButton");
       };
 
       utterance.onerror = () => {
         if (!button) return;
         button.classList.remove("is-speaking");
-        button.textContent = "🔊 Dengarkan";
+        button.textContent = t("audioButton");
       };
 
       window.speechSynthesis.speak(utterance);
@@ -2874,21 +3124,21 @@
       if (!currentUsername) {
         loginSummary.textContent = "";
         loginSummary.classList.remove("show");
-        usernameNote.textContent = "Klik tombol di atas untuk mengisi username melalui popup.";
+        usernameNote.textContent = t("usernameNoteEmpty");
         return;
       }
 
       loginSummary.textContent = isAdmin
-        ? `Admin: ${currentUsername}`
-        : `Peserta: ${currentUsername}${currentGroup ? ` | Grup: ${currentGroup}` : ""}`;
+        ? `${t("adminLabel")}: ${currentUsername}`
+        : `${t("participantLabel")}: ${currentUsername}${currentGroup ? ` | ${t("groupLabel")}: ${currentGroup}` : ""}`;
       loginSummary.classList.add("show");
 
       if (isAdmin) {
-        usernameNote.textContent = "Admin dapat membuka halaman hasil dan menghapus riwayat serta ranking.";
+        usernameNote.textContent = t("usernameNoteAdmin");
       } else if (currentGroup) {
-        usernameNote.textContent = "Grup sudah dipilih. Klik Start untuk mulai kuis.";
+        usernameNote.textContent = t("usernameNoteReady");
       } else {
-        usernameNote.textContent = "Pilih salah satu kategori terlebih dahulu.";
+        usernameNote.textContent = t("usernameNoteNeedGroup");
       }
     }
 
@@ -2934,19 +3184,19 @@
       loginError.textContent = "";
 
       if (!name) {
-        loginError.textContent = "Username wajib diisi.";
+        loginError.textContent = t("usernameRequired");
         usernameInput.focus();
         return;
       }
 
       if (name === ADMIN_USERNAME && password !== ADMIN_PASSWORD) {
-        loginError.textContent = "Password admin salah.";
+        loginError.textContent = t("passwordWrong");
         passwordInput.focus();
         return;
       }
 
       if (name !== ADMIN_USERNAME && !currentGroup) {
-        loginError.textContent = "Pilih grup terlebih dahulu.";
+        loginError.textContent = t("groupRequired");
         return;
       }
 
@@ -2978,7 +3228,7 @@
       }
 
       if (!isAdmin && !currentGroup) {
-        usernameNote.textContent = "Pilih grup dulu: Badung, Jembrana, Singaraja, atau Umum.";
+        usernameNote.textContent = t("groupRequiredHome");
         return;
       }
 
@@ -3010,8 +3260,10 @@
       flashcard.classList.remove("flipped", "feedback-correct", "feedback-wrong");
       resetAnswerButtons();
 
-      cardCounter.textContent = `Kartu ${currentIndex + 1} dari ${deck.length}`;
-      flipHint.textContent = "Lihat arti, lalu klik kartu untuk membuka jawabannya.";
+      cardCounter.textContent = t("cardCounterPattern")
+        .replace("{current}", currentIndex + 1)
+        .replace("{total}", deck.length);
+      flipHint.textContent = t("flipHintInitial");
 
       const isLongText = String(currentItem.indonesia || "").length > 55;
       frontText.className = isLongText ? "card-text long" : "card-text";
@@ -3043,7 +3295,7 @@
         flashcard.classList.add("flipped");
         correctBtn.disabled = false;
         wrongBtn.disabled = false;
-        flipHint.textContent = "Pilih Benar jika kamu ingat jawabannya, atau Salah jika belum.";
+        flipHint.textContent = t("flipHintAnswer");
       }
     }
 
@@ -3100,7 +3352,7 @@
 
       flashcard.classList.add(status ? "feedback-correct" : "feedback-wrong");
       (status ? correctBtn : wrongBtn).classList.add("pulse");
-      flipHint.textContent = status ? "Bagus, jawaban ditandai benar." : "Tidak apa-apa, jawaban ditandai salah.";
+      flipHint.textContent = status ? t("correctFeedback") : t("wrongFeedback");
 
       setTimeout(() => {
         currentIndex += 1;
@@ -3125,8 +3377,8 @@
       const percent = total ? Math.round((correct / total) * 100) : 0;
 
       participantName.textContent = isAdmin
-        ? `Admin: ${currentUsername || ADMIN_USERNAME}`
-        : `Peserta: ${currentUsername || "Peserta"} | Grup: ${currentGroup || "-"}`;
+        ? `${t("adminLabel")}: ${currentUsername || ADMIN_USERNAME}`
+        : `${t("participantLabel")}: ${currentUsername || t("defaultParticipant")} | ${t("groupLabel")}: ${currentGroup || "-"}`;
       statTotal.textContent = total;
       statCorrect.textContent = correct;
       statWrong.textContent = wrong;
@@ -3136,14 +3388,14 @@
       scoreCircle.style.setProperty("--score-deg", `${percent * 3.6}deg`);
 
       if (percent >= 85) {
-        summaryTitle.textContent = "Hebat sekali!";
-        summaryDescription.textContent = "Kamu sudah sangat kuat mengenali kosakata. Pertahankan kecepatan dan akurasinya.";
+        summaryTitle.textContent = t("summaryExcellentTitle");
+        summaryDescription.textContent = t("summaryExcellentDescription");
       } else if (percent >= 60) {
-        summaryTitle.textContent = "Bagus, teruskan!";
-        summaryDescription.textContent = "Pemahamanmu sudah berkembang. Review jawaban salah agar kosakata makin melekat.";
+        summaryTitle.textContent = t("summaryGoodTitle");
+        summaryDescription.textContent = t("summaryGoodDescription");
       } else {
-        summaryTitle.textContent = "Ayo latihan lagi!";
-        summaryDescription.textContent = "Ulangi latihan dan perhatikan kartu yang masih salah pada tab review.";
+        summaryTitle.textContent = t("summaryRetryTitle");
+        summaryDescription.textContent = t("summaryRetryDescription");
       }
 
       renderReview();
@@ -3173,7 +3425,7 @@
 
       stopTimer();
       answers = [];
-      participantName.textContent = `Admin: ${currentUsername || ADMIN_USERNAME}`;
+      participantName.textContent = `${t("adminLabel")}: ${currentUsername || ADMIN_USERNAME}`;
       statTotal.textContent = 0;
       statCorrect.textContent = 0;
       statWrong.textContent = 0;
@@ -3181,8 +3433,8 @@
       statAverage.textContent = "0s";
       scorePercent.textContent = "0%";
       scoreCircle.style.setProperty("--score-deg", "0deg");
-      summaryTitle.textContent = "Halaman hasil admin";
-      summaryDescription.textContent = "Admin bisa melihat riwayat dan ranking. Data pengerjaan admin tidak disimpan.";
+      summaryTitle.textContent = t("adminResultTitle");
+      summaryDescription.textContent = t("adminResultDescription");
       renderReview();
       await renderHistory();
       await renderRanking();
@@ -3190,15 +3442,63 @@
       showScreen(resultScreen);
     }
 
+    function refreshResultLanguage() {
+      if (!answers.length) {
+        participantName.textContent = isAdmin
+          ? `${t("adminLabel")}: ${currentUsername || ADMIN_USERNAME}`
+          : `${t("participantLabel")}: ${currentUsername || t("defaultParticipant")}`;
+        summaryTitle.textContent = isAdmin ? t("adminResultTitle") : t("summaryTitleDefault");
+        summaryDescription.textContent = isAdmin ? t("adminResultDescription") : t("summaryDescriptionDefault");
+        statTime.textContent = formatSeconds(0);
+        statAverage.textContent = formatSeconds(0);
+        renderReview();
+        renderHistory();
+        renderRanking();
+        return;
+      }
+
+      const total = answers.length;
+      const correct = answers.filter(item => item.status).length;
+      const wrong = total - correct;
+      const totalTime = answers.reduce((sum, item) => sum + Number(item.waktu || 0), 0);
+      const averageTime = total ? totalTime / total : 0;
+      const percent = total ? Math.round((correct / total) * 100) : 0;
+
+      participantName.textContent = isAdmin
+        ? `${t("adminLabel")}: ${currentUsername || ADMIN_USERNAME}`
+        : `${t("participantLabel")}: ${currentUsername || t("defaultParticipant")} | ${t("groupLabel")}: ${currentGroup || "-"}`;
+      statTotal.textContent = total;
+      statCorrect.textContent = correct;
+      statWrong.textContent = wrong;
+      statTime.textContent = formatSeconds(totalTime);
+      statAverage.textContent = formatSeconds(averageTime);
+      scorePercent.textContent = `${percent}%`;
+
+      if (percent >= 85) {
+        summaryTitle.textContent = t("summaryExcellentTitle");
+        summaryDescription.textContent = t("summaryExcellentDescription");
+      } else if (percent >= 60) {
+        summaryTitle.textContent = t("summaryGoodTitle");
+        summaryDescription.textContent = t("summaryGoodDescription");
+      } else {
+        summaryTitle.textContent = t("summaryRetryTitle");
+        summaryDescription.textContent = t("summaryRetryDescription");
+      }
+
+      renderReview();
+      renderHistory();
+      renderRanking();
+    }
+
     function renderReview() {
       if (!answers.length) {
-        reviewBody.innerHTML = `<tr><td colspan="5"><p class="empty-state">Belum ada data review.</p></td></tr>`;
+        reviewBody.innerHTML = `<tr><td colspan="5"><p class="empty-state">${escapeHTML(t("reviewEmpty"))}</p></td></tr>`;
         return;
       }
 
       reviewBody.innerHTML = answers.map((item, index) => {
         const jp = getJapanesePlain(item);
-        const statusText = item.status ? "Benar" : "Salah";
+        const statusText = item.status ? t("statusCorrect") : t("statusWrong");
         const statusClass = item.status ? "correct" : "wrong";
 
         return `
@@ -3214,6 +3514,146 @@
           </tr>
         `;
       }).join("");
+    }
+
+    function pdfTable(headers, rows, emptyText) {
+      if (!rows.length) {
+        return `<p class="empty">${escapeHTML(emptyText)}</p>`;
+      }
+
+      return `
+        <table>
+          <thead>
+            <tr>${headers.map(header => `<th>${escapeHTML(header)}</th>`).join("")}</tr>
+          </thead>
+          <tbody>
+            ${rows.map(row => `
+              <tr>${row.map(cell => `<td>${escapeHTML(cell)}</td>`).join("")}</tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    async function saveResultsAsPdf() {
+      const printWindow = window.open("", "_blank");
+      if (!printWindow) {
+        alert(t("pdfBlocked"));
+        return;
+      }
+
+      printWindow.document.open();
+      printWindow.document.write(`<!doctype html><title>${escapeHTML(t("pdfTitle"))}</title><p>${escapeHTML(t("historyLoading"))}</p>`);
+      printWindow.document.close();
+
+      const history = await getResults();
+      const ranking = [...history].sort(sortRanking).slice(0, 20);
+      const generatedAt = new Date().toLocaleString(currentLanguage === "ja" ? "ja-JP" : "id-ID");
+      const reviewRows = answers.map((item, index) => {
+        const jp = getJapanesePlain(item);
+        return [
+          index + 1,
+          item.indonesia || "-",
+          `${jp.main}${jp.sub ? ` (${jp.sub})` : ""}`,
+          item.status ? t("statusCorrect") : t("statusWrong"),
+          formatSeconds(item.waktu)
+        ];
+      });
+      const historyRows = history.map((item, index) => [
+        index + 1,
+        item.name || t("defaultParticipant"),
+        item.group || "-",
+        Number(item.correct || 0),
+        Number(item.wrong || 0),
+        `${Number(item.percent || 0)}%`,
+        formatSeconds(item.totalTime),
+        item.date || "-"
+      ]);
+      const rankingRows = ranking.map((item, index) => [
+        index + 1,
+        item.name || t("defaultParticipant"),
+        item.group || "-",
+        Number(item.correct || 0),
+        Number(item.wrong || 0),
+        `${Number(item.percent || 0)}%`,
+        formatSeconds(item.totalTime),
+        item.date || "-"
+      ]);
+      const summaryRows = [
+        [t("participantHeader"), participantName.textContent || "-"],
+        [t("statTotalLabel"), statTotal.textContent || "0"],
+        [t("statCorrectLabel"), statCorrect.textContent || "0"],
+        [t("statWrongLabel"), statWrong.textContent || "0"],
+        [t("statTimeLabel"), statTime.textContent || formatSeconds(0)],
+        [t("statAverageLabel"), statAverage.textContent || formatSeconds(0)],
+        [t("scoreHeader"), scorePercent.textContent || "0%"]
+      ];
+      const reviewHeaders = ["No", t("reviewIndonesiaHeader"), t("reviewJapaneseHeader"), t("reviewStatusHeader"), t("reviewTimeHeader")];
+      const resultHeaders = ["No", t("participantHeader"), t("groupHeader"), t("correctHeader"), t("wrongHeader"), t("scoreHeader"), t("totalTimeHeader"), t("dateHeader")];
+
+      const reportHtml = `
+        <!doctype html>
+        <html lang="${currentLanguage === "ja" ? "ja" : "id"}">
+        <head>
+          <meta charset="utf-8">
+          <title>${escapeHTML(t("pdfTitle"))}</title>
+          <style>
+            @page { margin: 18mm; }
+            * { box-sizing: border-box; }
+            body {
+              margin: 0;
+              color: #1f2937;
+              font-family: Arial, "Noto Sans JP", sans-serif;
+              font-size: 12px;
+              line-height: 1.5;
+            }
+            h1 { margin: 0 0 4px; font-size: 22px; }
+            h2 { margin: 22px 0 8px; font-size: 16px; }
+            p { margin: 0 0 8px; color: #4b5563; }
+            .note { margin-top: 8px; padding: 8px 10px; border-radius: 8px; background: #f3f4f6; }
+            table { width: 100%; border-collapse: collapse; margin-top: 8px; page-break-inside: auto; }
+            th, td { padding: 7px 8px; border: 1px solid #d1d5db; text-align: left; vertical-align: top; }
+            th { background: #eef2ff; color: #3730a3; font-weight: 700; }
+            tr { page-break-inside: avoid; }
+            .summary table { max-width: 480px; }
+            .empty { padding: 10px; border: 1px dashed #c7cdd8; border-radius: 8px; }
+            @media print { .note { display: none; } }
+          </style>
+        </head>
+        <body>
+          <h1>${escapeHTML(t("pdfTitle"))}</h1>
+          <p>${escapeHTML(t("pdfSubtitle"))}</p>
+          <p>${escapeHTML(t("pdfGeneratedAt"))}: ${escapeHTML(generatedAt)}</p>
+          <p class="note">${escapeHTML(t("pdfPrintNote"))}</p>
+
+          <section class="summary">
+            <h2>${escapeHTML(t("pdfSummarySection"))}</h2>
+            ${pdfTable([t("pdfInfoHeader"), t("pdfDetailHeader")], summaryRows, "-")}
+          </section>
+
+          <section>
+            <h2>${escapeHTML(t("pdfReviewSection"))}</h2>
+            ${pdfTable(reviewHeaders, reviewRows, t("reviewEmpty"))}
+          </section>
+
+          <section>
+            <h2>${escapeHTML(t("pdfHistorySection"))}</h2>
+            ${pdfTable(resultHeaders, historyRows, t("historyEmpty"))}
+          </section>
+
+          <section>
+            <h2>${escapeHTML(t("pdfRankingSection"))}</h2>
+            ${pdfTable(resultHeaders, rankingRows, t("rankingEmpty"))}
+          </section>
+        </body>
+        </html>
+      `;
+
+      printWindow.document.open();
+      printWindow.document.write(reportHtml);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => printWindow.print(), 350);
     }
 
     // =========================
@@ -3293,18 +3733,18 @@
     }
 
     async function renderHistory() {
-      historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Memuat riwayat...</p></td></tr>`;
+      historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">${escapeHTML(t("historyLoading"))}</p></td></tr>`;
       const history = await getResults();
 
       if (!history.length) {
-        historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Belum ada riwayat pengerjaan.</p></td></tr>`;
+        historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">${escapeHTML(t("historyEmpty"))}</p></td></tr>`;
         return;
       }
 
       historyBody.innerHTML = history.map((item, index) => `
         <tr>
           <td>${index + 1}</td>
-          <td>${escapeHTML(item.name || "Peserta")}</td>
+          <td>${escapeHTML(item.name || t("defaultParticipant"))}</td>
           <td>${escapeHTML(item.group || "-")}</td>
           <td>${Number(item.correct || 0)}</td>
           <td>${Number(item.wrong || 0)}</td>
@@ -3316,18 +3756,18 @@
     }
 
     async function renderRanking() {
-      rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Memuat ranking...</p></td></tr>`;
+      rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">${escapeHTML(t("rankingLoading"))}</p></td></tr>`;
       const ranking = (await getResults()).sort(sortRanking).slice(0, 20);
 
       if (!ranking.length) {
-        rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Belum ada ranking.</p></td></tr>`;
+        rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">${escapeHTML(t("rankingEmpty"))}</p></td></tr>`;
         return;
       }
 
       rankingBody.innerHTML = ranking.map((item, index) => `
         <tr>
           <td>${index + 1}</td>
-          <td>${escapeHTML(item.name || "Peserta")}</td>
+          <td>${escapeHTML(item.name || t("defaultParticipant"))}</td>
           <td>${escapeHTML(item.group || "-")}</td>
           <td>${Number(item.correct || 0)}</td>
           <td>${Number(item.wrong || 0)}</td>
@@ -3347,7 +3787,7 @@
       renderReview();
       renderHistory();
       renderRanking();
-      alert("Data lokal sudah dibersihkan. Data Firebase tidak dihapus karena rules saat ini menolak delete.");
+      alert(t("clearLocalDone"));
     }
 
     // =========================
@@ -3420,6 +3860,7 @@
 
     startBtn.addEventListener("click", startPractice);
     restartBtn.addEventListener("click", startPractice);
+    savePdfBtn.addEventListener("click", saveResultsAsPdf);
     clearRankingBtn.addEventListener("click", clearRanking);
 
     flashcard.addEventListener("click", flipCard);
