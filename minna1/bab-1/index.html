@@ -1046,6 +1046,15 @@
       animation: wrongShake 0.55s ease both;
     }
 
+    .jp-actions {
+      margin-top: 2px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .audio-btn,
     .example-btn {
       margin-top: 4px;
       padding: 8px 13px;
@@ -1060,6 +1069,23 @@
       transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
     }
 
+    .audio-btn {
+      color: #256f76;
+      background: rgba(45, 212, 191, 0.14);
+    }
+
+    .audio-btn.is-speaking {
+      color: #fff;
+      background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+    }
+
+    .audio-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.54;
+      box-shadow: none;
+    }
+
+    .audio-btn:hover:not(:disabled),
     .example-btn:hover {
       transform: translateY(-1px);
       background: rgba(124, 111, 246, 0.18);
@@ -2050,8 +2076,34 @@
     </div>
   </main>
 
-  <script>
+  <script type="module">
     "use strict";
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import {
+      addDoc,
+      collection,
+      getDocs,
+      getFirestore,
+      limit,
+      orderBy,
+      query,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCOWbX-nWP7qw4dmEpkwA5wo7G-r9fI-g",
+      authDomain: "flashcard-kosakata-jepang.firebaseapp.com",
+      projectId: "flashcard-kosakata-jepang",
+      storageBucket: "flashcard-kosakata-jepang.firebasestorage.app",
+      messagingSenderId: "169917378552",
+      appId: "1:169917378552:web:d006bfac063631efa8f00d",
+      measurementId: "G-HBCG7KL5W8"
+    };
+
+    const firebaseApp = initializeApp(firebaseConfig);
+    const db = getFirestore(firebaseApp);
+    const resultsCollection = collection(db, "quizResults");
 
     // =========================
     // Data array kosakata
@@ -2549,13 +2601,84 @@
       const exampleButton = contoh
         ? `<button class="example-btn" id="showExampleBtn" type="button">Lihat contoh</button>`
         : "";
+      const audioButton = `<button class="audio-btn" id="playAudioBtn" type="button">🔊 Dengarkan</button>`;
 
       jpText.innerHTML = `
         <div class="${mainClass}">${escapeHTML(mainText)}</div>
         <div class="jp-divider"></div>
         <div class="${readingClass}">${escapeHTML(readingText)}</div>
-        ${exampleButton}
+        <div class="jp-actions">
+          ${audioButton}
+          ${exampleButton}
+        </div>
       `;
+
+      if (!("speechSynthesis" in window)) {
+        const button = jpText.querySelector("#playAudioBtn");
+        button.disabled = true;
+        button.textContent = "Audio tidak tersedia";
+      }
+    }
+
+    function getJapaneseSpeechText(item) {
+      const kana = String(item?.kana || "").trim();
+      const kanji = String(item?.kanji || "").trim();
+      const fallback = kana || kanji || String(item?.romaji || "").trim();
+
+      return fallback
+        .replaceAll("～", "")
+        .replaceAll("（", "")
+        .replaceAll("）", "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function getJapaneseVoice() {
+      if (!("speechSynthesis" in window)) return null;
+
+      return window.speechSynthesis.getVoices().find(voice =>
+        /^ja(-|_)?JP/i.test(voice.lang) || /Japanese|日本/i.test(voice.name)
+      ) || null;
+    }
+
+    function speakJapanese(item) {
+      if (!("speechSynthesis" in window)) {
+        alert("Audio tidak tersedia di browser ini.");
+        return;
+      }
+
+      const text = getJapaneseSpeechText(item);
+      if (!text) return;
+
+      const button = jpText.querySelector("#playAudioBtn");
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voice = getJapaneseVoice();
+      utterance.lang = "ja-JP";
+      utterance.rate = 0.86;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      if (voice) utterance.voice = voice;
+
+      if (button) {
+        button.classList.add("is-speaking");
+        button.textContent = "🔊 Memutar...";
+      }
+
+      utterance.onend = () => {
+        if (!button) return;
+        button.classList.remove("is-speaking");
+        button.textContent = "🔊 Dengarkan";
+      };
+
+      utterance.onerror = () => {
+        if (!button) return;
+        button.classList.remove("is-speaking");
+        button.textContent = "🔊 Dengarkan";
+      };
+
+      window.speechSynthesis.speak(utterance);
     }
 
     function resetAnswerButtons() {
@@ -2734,6 +2857,10 @@
         return;
       }
 
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+
       closeExampleModalBox();
       currentItem = deck[currentIndex];
       isFlipped = false;
@@ -2845,8 +2972,11 @@
     // =========================
     // Hasil
     // =========================
-    function showResults() {
+    async function showResults() {
       stopTimer();
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
 
       const total = answers.length;
       const correct = answers.filter(item => item.status).length;
@@ -2890,17 +3020,16 @@
       };
 
       if (!isAdmin) {
-        saveHistory(resultEntry);
-        saveRanking(resultEntry);
+        await saveResult(resultEntry);
       }
 
-      renderHistory();
-      renderRanking();
+      await renderHistory();
+      await renderRanking();
       activateTab("hasil");
       showScreen(resultScreen);
     }
 
-    function showAdminResultPage() {
+    async function showAdminResultPage() {
       if (!isAdmin) return;
 
       stopTimer();
@@ -2916,8 +3045,8 @@
       summaryTitle.textContent = "Result Page Admin";
       summaryDescription.textContent = "Admin bisa melihat dan menghapus riwayat serta ranking. Data pengerjaan admin tidak disimpan.";
       renderReview();
-      renderHistory();
-      renderRanking();
+      await renderHistory();
+      await renderRanking();
       activateTab("history");
       showScreen(resultScreen);
     }
@@ -2949,9 +3078,9 @@
     }
 
     // =========================
-    // Ranking localStorage
+    // Riwayat dan ranking Firebase
     // =========================
-    function getHistory() {
+    function getLocalHistory() {
       try {
         return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
       } catch (error) {
@@ -2959,14 +3088,74 @@
       }
     }
 
-    function saveHistory(entry) {
-      const history = getHistory();
-      history.unshift(entry);
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, 100)));
+    function getLocalRanking() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch (error) {
+        return [];
+      }
     }
 
-    function renderHistory() {
-      const history = getHistory();
+    function saveLocalFallback(entry) {
+      const history = getLocalHistory();
+      history.unshift(entry);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, 100)));
+
+      const ranking = getLocalRanking();
+      ranking.push(entry);
+      ranking.sort(sortRanking);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ranking.slice(0, 20)));
+    }
+
+    function normalizeResult(item) {
+      return {
+        name: item.name || "Peserta",
+        group: item.group || "-",
+        total: Number(item.total || 0),
+        correct: Number(item.correct || 0),
+        wrong: Number(item.wrong || 0),
+        percent: Number(item.percent || 0),
+        totalTime: Number(item.totalTime || 0),
+        date: item.date || "-"
+      };
+    }
+
+    function sortRanking(a, b) {
+      if (Number(b.correct) !== Number(a.correct)) return Number(b.correct) - Number(a.correct);
+      return Number(a.totalTime) - Number(b.totalTime);
+    }
+
+    async function getFirebaseResults() {
+      const snapshot = await getDocs(query(resultsCollection, orderBy("createdAt", "desc"), limit(100)));
+      return snapshot.docs.map(doc => normalizeResult(doc.data()));
+    }
+
+    async function saveResult(entry) {
+      try {
+        await addDoc(resultsCollection, {
+          ...entry,
+          createdAt: serverTimestamp()
+        });
+      } catch (error) {
+        console.warn("Firebase gagal menyimpan data, memakai localStorage.", error);
+        saveLocalFallback(entry);
+      }
+    }
+
+    async function getResults() {
+      try {
+        const firebaseResults = await getFirebaseResults();
+        if (firebaseResults.length) return firebaseResults;
+      } catch (error) {
+        console.warn("Firebase gagal mengambil data, memakai localStorage.", error);
+      }
+
+      return getLocalHistory().map(normalizeResult);
+    }
+
+    async function renderHistory() {
+      historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Memuat riwayat...</p></td></tr>`;
+      const history = await getResults();
 
       if (!history.length) {
         historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Belum ada riwayat pengerjaan.</p></td></tr>`;
@@ -2987,28 +3176,9 @@
       `).join("");
     }
 
-    function getRanking() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      } catch (error) {
-        return [];
-      }
-    }
-
-    function saveRanking(entry) {
-      const ranking = getRanking();
-      ranking.push(entry);
-
-      ranking.sort((a, b) => {
-        if (Number(b.correct) !== Number(a.correct)) return Number(b.correct) - Number(a.correct);
-        return Number(a.totalTime) - Number(b.totalTime);
-      });
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(ranking.slice(0, 20)));
-    }
-
-    function renderRanking() {
-      const ranking = getRanking();
+    async function renderRanking() {
+      rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Memuat ranking...</p></td></tr>`;
+      const ranking = (await getResults()).sort(sortRanking).slice(0, 20);
 
       if (!ranking.length) {
         rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Belum ada ranking.</p></td></tr>`;
@@ -3038,6 +3208,7 @@
       renderReview();
       renderHistory();
       renderRanking();
+      alert("Data lokal sudah dibersihkan. Data Firebase tidak dihapus karena rules saat ini menolak delete.");
     }
 
     // =========================
@@ -3117,6 +3288,13 @@
     wrongBtn.addEventListener("click", () => markAnswer(false));
 
     jpText.addEventListener("click", event => {
+      const audioButton = event.target.closest("#playAudioBtn");
+      if (audioButton && currentItem) {
+        event.stopPropagation();
+        speakJapanese(currentItem);
+        return;
+      }
+
       const button = event.target.closest("#showExampleBtn");
 
       if (!button || !currentItem || !currentItem.contoh) return;
