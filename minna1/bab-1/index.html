@@ -374,6 +374,101 @@
       line-height: 1.45;
     }
 
+    .login-trigger {
+      width: 100%;
+      min-height: var(--control-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 22px;
+      border: 1px solid rgba(255, 255, 255, 0.88);
+      border-radius: var(--radius-lg);
+      color: #17254e;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58));
+      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12);
+      backdrop-filter: blur(16px);
+      font-size: var(--fs-input);
+      font-weight: 850;
+      line-height: 1.25;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .login-trigger:hover {
+      transform: translateY(-1px);
+      border-color: rgba(124, 111, 246, 0.34);
+      box-shadow: 0 16px 34px rgba(54, 65, 101, 0.14);
+    }
+
+    .login-summary {
+      display: none;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 8px 13px;
+      border-radius: var(--radius-pill);
+      color: #514a9e;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      font-size: var(--fs-small);
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .login-summary.show {
+      display: inline-flex;
+    }
+
+    .group-box {
+      width: min(620px, 100%);
+      margin: 2px auto 22px;
+      padding: 16px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .group-box[hidden] {
+      display: none;
+    }
+
+    .group-box p {
+      margin: 0 0 12px;
+      color: #505a70;
+      font-size: var(--fs-small);
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .group-options {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .group-btn {
+      min-height: 48px;
+      padding: 10px;
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      border-radius: var(--radius-md);
+      color: #514a9e;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow-tiny);
+      font-size: var(--fs-small);
+      font-weight: 850;
+      line-height: 1.2;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .group-btn:hover,
+    .group-btn.active {
+      transform: translateY(-1px);
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #9d8dfd);
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.2);
+    }
+
     .btn {
       min-height: 52px;
       display: inline-flex;
@@ -963,6 +1058,117 @@
       pointer-events: auto;
     }
 
+    .login-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: rgba(37, 48, 68, 0.3);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .login-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .login-modal-card {
+      width: min(430px, 94vw);
+      position: relative;
+      padding: 28px 24px 24px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+        rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.24);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .login-modal.show .login-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .login-modal-card h3 {
+      margin: 0 34px 8px 0;
+      color: #514a9e;
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 850;
+      letter-spacing: -0.03em;
+    }
+
+    .login-modal-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      font-weight: 650;
+      line-height: 1.55;
+    }
+
+    .login-field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 13px;
+      text-align: left;
+    }
+
+    .login-field label {
+      color: #505a70;
+      font-size: var(--fs-small);
+      font-weight: 850;
+    }
+
+    .login-field input {
+      min-height: 50px;
+      width: 100%;
+      padding: 0 14px;
+      border: 1px solid rgba(124, 111, 246, 0.22);
+      border-radius: var(--radius-md);
+      outline: none;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: var(--shadow-tiny);
+      font-size: var(--fs-input);
+      font-weight: 700;
+    }
+
+    .login-field input:focus {
+      border-color: rgba(124, 111, 246, 0.5);
+      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-tiny);
+    }
+
+    .password-box[hidden] {
+      display: none;
+    }
+
+    .login-error {
+      min-height: 20px;
+      margin: 2px 0 14px;
+      color: var(--red-dark);
+      font-size: var(--fs-small);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .login-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .admin-only[hidden] {
+      display: none;
+    }
+
     .example-modal-card {
       width: min(420px, 94vw);
       position: relative;
@@ -1478,6 +1684,10 @@
         margin-top: 18px;
       }
 
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .answer-row {
         grid-template-columns: 1fr;
       }
@@ -1577,23 +1787,27 @@
             </div>
           </div>
           <h1>Latihan kosakata Jepang dengan kartu interaktif</h1>
-          <p>Masukkan nama, lalu klik Start. Baca arti pada kartu, buka jawabannya, kemudian pilih Benar jika kamu ingat atau Salah jika belum. Setiap kartu memiliki waktu 30 detik, dan hasil latihan akan tersimpan di ranking browser.</p>
+          <p>Klik Isi Username, pilih grup, lalu klik Start. Baca arti pada kartu, buka jawabannya, kemudian pilih Benar jika kamu ingat atau Salah jika belum. Setiap kartu memiliki waktu 30 detik, dan hasil latihan akan tersimpan di riwayat serta ranking browser.</p>
 
           <div class="username-box">
-            <div class="input-shell">
-              <span class="input-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <circle cx="12" cy="7.5" r="3.2" />
-                  <path d="M5.2 20c.8-3.5 3.2-5.4 6.8-5.4s6 1.9 6.8 5.4" />
-                </svg>
-              </span>
-              <input id="usernameInput" type="text" autocomplete="name" placeholder="Masukkan nama pengguna" aria-label="Nama pengguna" />
+            <button id="openLoginBtn" class="login-trigger" type="button">Isi Username</button>
+            <div id="loginSummary" class="login-summary" aria-live="polite"></div>
+            <p id="usernameNote" class="username-note">Klik tombol di atas untuk mengisi username melalui popup.</p>
+          </div>
+
+          <div id="groupBox" class="group-box" hidden>
+            <p>Pilih kategori sebelum mulai kuis.</p>
+            <div class="group-options" aria-label="Pilihan kategori">
+              <button class="group-btn" data-group="Badung" type="button">Badung</button>
+              <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
+              <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
+              <button class="group-btn" data-group="Umum" type="button">Umum</button>
             </div>
-            <p class="username-note">Masukkan nama terlebih dahulu untuk memulai.</p>
           </div>
 
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled>Start</button>
+            <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden>Result Page</button>
           </div>
         </div>
       </div>
@@ -1654,6 +1868,7 @@
         <div class="tabs" role="tablist" aria-label="Tab hasil latihan">
           <button class="tab-btn active" data-tab="hasil" type="button">Hasil</button>
           <button class="tab-btn" data-tab="review" type="button">Review Jawaban</button>
+          <button class="tab-btn" data-tab="history" type="button">Riwayat</button>
           <button class="tab-btn" data-tab="ranking" type="button">Ranking</button>
         </div>
 
@@ -1716,6 +1931,7 @@
                 <tr>
                   <th>Rank</th>
                   <th>Peserta</th>
+                  <th>Grup</th>
                   <th>Benar</th>
                   <th>Salah</th>
                   <th>Nilai</th>
@@ -1728,12 +1944,57 @@
           </div>
         </section>
 
+        <section id="historyTab" class="tab-panel">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Peserta</th>
+                  <th>Grup</th>
+                  <th>Benar</th>
+                  <th>Salah</th>
+                  <th>Nilai</th>
+                  <th>Total Waktu</th>
+                  <th>Tanggal</th>
+                </tr>
+              </thead>
+              <tbody id="historyBody"></tbody>
+            </table>
+          </div>
+        </section>
+
         <div class="result-actions">
           <button id="restartBtn" class="btn" type="button">Ulangi Latihan</button>
-          <button id="clearRankingBtn" class="btn danger-outline" type="button">Hapus Ranking</button>
+          <button id="clearRankingBtn" class="btn danger-outline admin-only" type="button" hidden>Hapus Riwayat & Ranking</button>
         </div>
       </div>
     </section>
+
+    <div id="loginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+      <div class="login-modal-card">
+        <button id="closeLoginModal" class="example-close" type="button" aria-label="Tutup login">×</button>
+        <h3 id="loginModalTitle">Masuk Peserta</h3>
+        <p>Isi username dulu. Khusus username admin404 akan muncul kolom password.</p>
+
+        <div class="login-field">
+          <label for="usernameInput">Username</label>
+          <input id="usernameInput" type="text" autocomplete="username" placeholder="Masukkan username" />
+        </div>
+
+        <div id="passwordBox" class="login-field password-box" hidden>
+          <label for="passwordInput">Password Admin</label>
+          <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Masukkan password admin" />
+        </div>
+
+        <div id="loginError" class="login-error" aria-live="polite"></div>
+
+        <div class="login-modal-actions">
+          <button id="cancelLoginBtn" class="btn secondary" type="button">Batal</button>
+          <button id="loginSubmitBtn" class="btn" type="button">Masuk</button>
+        </div>
+      </div>
+    </div>
 
     <div id="exampleModal" class="example-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="exampleModalTitle">
       <div class="example-modal-card">
@@ -2091,6 +2352,18 @@
     const practiceScreen = document.getElementById("practiceScreen");
     const resultScreen = document.getElementById("resultScreen");
 
+    const openLoginBtn = document.getElementById("openLoginBtn");
+    const loginSummary = document.getElementById("loginSummary");
+    const usernameNote = document.getElementById("usernameNote");
+    const loginModal = document.getElementById("loginModal");
+    const closeLoginModal = document.getElementById("closeLoginModal");
+    const cancelLoginBtn = document.getElementById("cancelLoginBtn");
+    const loginSubmitBtn = document.getElementById("loginSubmitBtn");
+    const passwordBox = document.getElementById("passwordBox");
+    const passwordInput = document.getElementById("passwordInput");
+    const loginError = document.getElementById("loginError");
+    const groupBox = document.getElementById("groupBox");
+    const resultPageBtn = document.getElementById("resultPageBtn");
     const usernameInput = document.getElementById("usernameInput");
     const startBtn = document.getElementById("startBtn");
     const restartBtn = document.getElementById("restartBtn");
@@ -2123,14 +2396,20 @@
     const summaryDescription = document.getElementById("summaryDescription");
     const reviewBody = document.getElementById("reviewBody");
     const rankingBody = document.getElementById("rankingBody");
+    const historyBody = document.getElementById("historyBody");
 
     // =========================
     // State latihan
     // =========================
     const TIMER_SECONDS = 30;
     const STORAGE_KEY = "jpFlashcardRankingV2";
+    const HISTORY_KEY = "jpFlashcardHistoryV2";
+    const ADMIN_USERNAME = "admin404";
+    const ADMIN_PASSWORD = "kuis44GAKKOU";
 
     let currentUsername = "";
+    let currentGroup = "";
+    let isAdmin = false;
     let deck = [];
     let currentIndex = 0;
     let currentItem = null;
@@ -2255,14 +2534,120 @@
     }
 
     // =========================
-    // Username
+    // Login, admin, dan grup
     // =========================
-    usernameInput.addEventListener("input", () => {
-      const name = usernameInput.value.trim();
+    function updatePasswordBox() {
+      const typedUsername = usernameInput.value.trim();
+      const needsPassword = typedUsername === ADMIN_USERNAME;
+
+      passwordBox.hidden = !needsPassword;
+      if (!needsPassword) {
+        passwordInput.value = "";
+      }
+    }
+
+    function updateStartState() {
+      const canStart = Boolean(currentUsername) && (isAdmin || Boolean(currentGroup));
+
+      startBtn.disabled = !canStart;
+      startBtn.classList.toggle("show", Boolean(currentUsername));
+      resultPageBtn.hidden = !isAdmin;
+      clearRankingBtn.hidden = !isAdmin;
+    }
+
+    function updateLoginSummary() {
+      if (!currentUsername) {
+        loginSummary.textContent = "";
+        loginSummary.classList.remove("show");
+        usernameNote.textContent = "Klik tombol di atas untuk mengisi username melalui popup.";
+        return;
+      }
+
+      loginSummary.textContent = isAdmin
+        ? `Admin: ${currentUsername}`
+        : `Peserta: ${currentUsername}${currentGroup ? ` | Grup: ${currentGroup}` : ""}`;
+      loginSummary.classList.add("show");
+
+      if (isAdmin) {
+        usernameNote.textContent = "Admin dapat membuka Result Page dan menghapus riwayat serta ranking.";
+      } else if (currentGroup) {
+        usernameNote.textContent = "Grup sudah dipilih. Klik Start untuk mulai kuis.";
+      } else {
+        usernameNote.textContent = "Pilih salah satu kategori/grup terlebih dahulu.";
+      }
+    }
+
+    function openLoginModalBox() {
+      usernameInput.value = currentUsername;
+      passwordInput.value = "";
+      loginError.textContent = "";
+      updatePasswordBox();
+      loginModal.classList.add("show");
+      loginModal.setAttribute("aria-hidden", "false");
+      usernameInput.focus({ preventScroll: true });
+    }
+
+    function closeLoginModalBox() {
+      loginModal.classList.remove("show");
+      loginModal.setAttribute("aria-hidden", "true");
+    }
+
+    function resetGroupSelection() {
+      currentGroup = "";
+      document.querySelectorAll(".group-btn").forEach(button => {
+        button.classList.remove("active");
+      });
+    }
+
+    function setLoggedInUser(name, adminStatus) {
       currentUsername = name;
-      startBtn.disabled = name.length === 0;
-      startBtn.classList.toggle("show", name.length > 0);
-    });
+      isAdmin = adminStatus;
+
+      if (isAdmin) {
+        resetGroupSelection();
+        groupBox.hidden = true;
+      } else {
+        resetGroupSelection();
+        groupBox.hidden = false;
+      }
+
+      updateLoginSummary();
+      updateStartState();
+    }
+
+    function submitLogin() {
+      const name = usernameInput.value.trim();
+      const password = passwordInput.value;
+
+      loginError.textContent = "";
+
+      if (!name) {
+        loginError.textContent = "Username wajib diisi.";
+        usernameInput.focus();
+        return;
+      }
+
+      if (name === ADMIN_USERNAME && password !== ADMIN_PASSWORD) {
+        loginError.textContent = "Password admin salah.";
+        passwordInput.focus();
+        return;
+      }
+
+      setLoggedInUser(name, name === ADMIN_USERNAME);
+      closeLoginModalBox();
+    }
+
+    function selectGroup(groupName) {
+      if (!currentUsername || isAdmin) return;
+
+      currentGroup = groupName;
+      document.querySelectorAll(".group-btn").forEach(button => {
+        button.classList.toggle("active", button.dataset.group === groupName);
+      });
+
+      updateLoginSummary();
+      updateStartState();
+    }
 
     // =========================
     // Flashcard
@@ -2271,7 +2656,12 @@
       const name = currentUsername.trim();
 
       if (!name) {
-        usernameInput.focus();
+        openLoginModalBox();
+        return;
+      }
+
+      if (!isAdmin && !currentGroup) {
+        usernameNote.textContent = "Pilih grup dulu: Badung, Jembrana, Singaraja, atau Umum.";
         return;
       }
 
@@ -2398,7 +2788,9 @@
       const averageTime = total ? totalTime / total : 0;
       const percent = total ? Math.round((correct / total) * 100) : 0;
 
-      participantName.textContent = `Peserta: ${currentUsername || "Peserta"}`;
+      participantName.textContent = isAdmin
+        ? `Admin: ${currentUsername || ADMIN_USERNAME}`
+        : `Peserta: ${currentUsername || "Peserta"} | Grup: ${currentGroup || "-"}`;
       statTotal.textContent = total;
       statCorrect.textContent = correct;
       statWrong.textContent = wrong;
@@ -2419,17 +2811,47 @@
       }
 
       renderReview();
-      saveRanking({
+      const resultEntry = {
         name: currentUsername || "Peserta",
+        group: currentGroup || "-",
         total,
         correct,
         wrong,
         percent,
         totalTime: Math.round(totalTime * 10) / 10,
         date: new Date().toLocaleString("id-ID")
-      });
+      };
+
+      if (!isAdmin) {
+        saveHistory(resultEntry);
+        saveRanking(resultEntry);
+      }
+
+      renderHistory();
       renderRanking();
       activateTab("hasil");
+      showScreen(resultScreen);
+    }
+
+    function showAdminResultPage() {
+      if (!isAdmin) return;
+
+      stopTimer();
+      answers = [];
+      participantName.textContent = `Admin: ${currentUsername || ADMIN_USERNAME}`;
+      statTotal.textContent = 0;
+      statCorrect.textContent = 0;
+      statWrong.textContent = 0;
+      statTime.textContent = "0s";
+      statAverage.textContent = "0s";
+      scorePercent.textContent = "0%";
+      scoreCircle.style.setProperty("--score-deg", "0deg");
+      summaryTitle.textContent = "Result Page Admin";
+      summaryDescription.textContent = "Admin bisa melihat dan menghapus riwayat serta ranking. Data pengerjaan admin tidak disimpan.";
+      renderReview();
+      renderHistory();
+      renderRanking();
+      activateTab("history");
       showScreen(resultScreen);
     }
 
@@ -2462,6 +2884,42 @@
     // =========================
     // Ranking localStorage
     // =========================
+    function getHistory() {
+      try {
+        return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveHistory(entry) {
+      const history = getHistory();
+      history.unshift(entry);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, 100)));
+    }
+
+    function renderHistory() {
+      const history = getHistory();
+
+      if (!history.length) {
+        historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Belum ada riwayat pengerjaan.</p></td></tr>`;
+        return;
+      }
+
+      historyBody.innerHTML = history.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHTML(item.name || "Peserta")}</td>
+          <td>${escapeHTML(item.group || "-")}</td>
+          <td>${Number(item.correct || 0)}</td>
+          <td>${Number(item.wrong || 0)}</td>
+          <td>${Number(item.percent || 0)}%</td>
+          <td>${formatSeconds(item.totalTime)}</td>
+          <td>${escapeHTML(item.date || "-")}</td>
+        </tr>
+      `).join("");
+    }
+
     function getRanking() {
       try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
@@ -2486,7 +2944,7 @@
       const ranking = getRanking();
 
       if (!ranking.length) {
-        rankingBody.innerHTML = `<tr><td colspan="7"><p class="empty-state">Belum ada ranking.</p></td></tr>`;
+        rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Belum ada ranking.</p></td></tr>`;
         return;
       }
 
@@ -2494,6 +2952,7 @@
         <tr>
           <td>${index + 1}</td>
           <td>${escapeHTML(item.name || "Peserta")}</td>
+          <td>${escapeHTML(item.group || "-")}</td>
           <td>${Number(item.correct || 0)}</td>
           <td>${Number(item.wrong || 0)}</td>
           <td>${Number(item.percent || 0)}%</td>
@@ -2504,7 +2963,13 @@
     }
 
     function clearRanking() {
+      if (!isAdmin) return;
+
       localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(HISTORY_KEY);
+      answers = [];
+      renderReview();
+      renderHistory();
       renderRanking();
     }
 
@@ -2522,6 +2987,10 @@
 
       document.getElementById(`${tabName}Tab`).classList.add("active");
 
+      if (tabName === "history") {
+        renderHistory();
+      }
+
       if (tabName === "ranking") {
         renderRanking();
       }
@@ -2530,6 +2999,41 @@
     // =========================
     // Event listener
     // =========================
+    openLoginBtn.addEventListener("click", openLoginModalBox);
+    closeLoginModal.addEventListener("click", closeLoginModalBox);
+    cancelLoginBtn.addEventListener("click", closeLoginModalBox);
+    loginSubmitBtn.addEventListener("click", submitLogin);
+    resultPageBtn.addEventListener("click", showAdminResultPage);
+
+    usernameInput.addEventListener("input", () => {
+      loginError.textContent = "";
+      updatePasswordBox();
+    });
+
+    usernameInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        submitLogin();
+      }
+    });
+
+    passwordInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        submitLogin();
+      }
+    });
+
+    loginModal.addEventListener("click", event => {
+      if (event.target === loginModal) {
+        closeLoginModalBox();
+      }
+    });
+
+    document.querySelectorAll(".group-btn").forEach(button => {
+      button.addEventListener("click", () => selectGroup(button.dataset.group));
+    });
+
     startBtn.addEventListener("click", startPractice);
     restartBtn.addEventListener("click", startPractice);
     clearRankingBtn.addEventListener("click", clearRanking);
@@ -2566,13 +3070,19 @@
       if (event.key === "Escape" && exampleModal.classList.contains("show")) {
         closeExampleModalBox();
       }
+
+      if (event.key === "Escape" && loginModal.classList.contains("show")) {
+        closeLoginModalBox();
+      }
     });
 
     document.querySelectorAll(".tab-btn").forEach(button => {
       button.addEventListener("click", () => activateTab(button.dataset.tab));
     });
 
+    renderHistory();
     renderRanking();
+    updateStartState();
   </script>
 </body>
 </html>
