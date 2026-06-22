@@ -793,7 +793,7 @@
 
     .flashcard {
       width: min(100%, 620px);
-      height: clamp(310px, 52svh, 430px);
+      height: clamp(380px, 58svh, 520px);
       margin: 0 auto;
       perspective: 1200px;
     }
@@ -832,7 +832,7 @@
     .card-back {
       transform: rotateY(180deg);
       flex-direction: column;
-      padding: clamp(20px, 4vw, 30px);
+      padding: clamp(18px, 3.4vw, 28px);
     }
 
     .card-front::before,
@@ -849,53 +849,66 @@
       width: 100%;
       height: 100%;
       display: grid;
-      grid-template-rows: minmax(0, 1.35fr) auto;
-      gap: 13px;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: clamp(8px, 1.8vw, 14px);
       align-items: center;
       justify-items: center;
+      overflow: hidden;
     }
 
     .illustration-wrap {
-      width: min(70%, 320px);
-      min-height: 145px;
+      width: min(78%, 350px);
+      height: 100%;
+      min-height: 0;
       display: grid;
       place-items: center;
       position: relative;
-      border-radius: var(--radius-xl);
-      background:
-        radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.9), transparent 24%),
-        linear-gradient(145deg, #fef3c7, #e0e7ff 54%, #cffafe);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 28px rgba(99,102,241,.12);
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
       overflow: hidden;
     }
 
     .illustration-wrap::before {
-      content: "";
-      position: absolute;
-      inset: 13px;
-      border-radius: var(--radius-lg);
-      border: 1px dashed rgba(124, 58, 237, 0.16);
+      content: none;
+      display: none;
     }
 
     .illustration {
       position: relative;
       z-index: 1;
-      margin-bottom: 10px;
+      width: 100%;
+      height: 100%;
+      margin-bottom: 0;
+      display: grid;
+      place-items: center;
       font-size: clamp(52px, 14vw, 92px);
       line-height: 1;
-      filter: drop-shadow(0 12px 20px rgba(34, 48, 71, 0.12));
+      filter: none;
+    }
+
+    .illustration img {
+      width: 100%;
+      height: 100%;
+      max-height: 250px;
+      display: block;
+      object-fit: contain;
+      border: 0;
+      box-shadow: none;
+      background: transparent;
     }
 
     .jp-box {
       width: min(96%, 520px);
-      min-height: 108px;
-      padding: 6px 10px 0;
+      min-height: 0;
+      padding: 0 10px;
       display: grid;
       align-content: center;
       justify-items: center;
-      gap: 8px;
+      gap: clamp(5px, 1vw, 8px);
       text-align: center;
+      overflow-wrap: anywhere;
     }
 
     .card-text {
@@ -1639,7 +1652,7 @@
       }
 
       .flashcard {
-        height: clamp(300px, 58svh, 390px);
+        height: clamp(380px, 62svh, 460px);
       }
 
       .card-face {
@@ -1648,7 +1661,7 @@
 
       .illustration-wrap {
         width: 82%;
-        min-height: 132px;
+        min-height: 0;
         border-radius: var(--radius-lg);
       }
 
@@ -1697,21 +1710,37 @@
       }
 
       .flashcard {
-        height: 330px;
+        height: 390px;
       }
 
       .back-content {
         grid-template-rows: minmax(0, 1fr) auto;
-        gap: 10px;
+        gap: 8px;
       }
 
       .illustration-wrap {
         width: 88%;
-        min-height: 120px;
+        min-height: 0;
       }
 
       .jp-box {
-        min-height: 98px;
+        min-height: 0;
+      }
+
+      .illustration img {
+        max-height: 210px;
+      }
+
+      .jp-main-display {
+        font-size: clamp(28px, 9vw, 42px);
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(22px, 7vw, 34px);
+      }
+
+      .jp-reading {
+        font-size: clamp(13px, 4vw, 17px);
       }
 
       .stats-grid {
@@ -2005,34 +2034,8 @@
     </div>
   </main>
 
-  <script type="module">
+  <script>
     "use strict";
-
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import {
-      addDoc,
-      collection,
-      getDocs,
-      getFirestore,
-      limit,
-      orderBy,
-      query,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBCOWbX-nWP7qw4dmEpkwA5wo7G-r9fI-g",
-      authDomain: "flashcard-kosakata-jepang.firebaseapp.com",
-      projectId: "flashcard-kosakata-jepang",
-      storageBucket: "flashcard-kosakata-jepang.firebasestorage.app",
-      messagingSenderId: "169917378552",
-      appId: "1:169917378552:web:d006bfac063631efa8f00d",
-      measurementId: "G-HBCG7KL5W8"
-    };
-
-    const firebaseApp = initializeApp(firebaseConfig);
-    const db = getFirestore(firebaseApp);
-    const resultsCollection = collection(db, "quizResults");
 
     // =========================
     // Data array kosakata
@@ -2043,49 +2046,49 @@
     "kanji": "",
     "kana": "わたし",
     "romaji": "watashi",
-    "gambar": "👤"
+    "gambar": "https://i.ibb.co/0jdDtFdj/image.png"
   },
   {
     "indonesia": "Anda",
     "kanji": "",
     "kana": "あなた",
     "romaji": "anata",
-    "gambar": "🧍"
+    "gambar": "https://i.ibb.co/21SsCVHN/image.png"
   },
   {
     "indonesia": "orang itu",
     "kanji": "あの人",
     "kana": "あのひと",
     "romaji": "ano hito",
-    "gambar": "👥"
+    "gambar": "https://i.ibb.co/35PWBTsF/image.png"
   },
   {
     "indonesia": "orang itu, beliau. Bentuk sopan dari あの人.",
     "kanji": "あの方",
     "kana": "あのかた",
     "romaji": "ano kata",
-    "gambar": "🙇"
+    "gambar": "https://i.ibb.co/GvJppGqV/image.png"
   },
   {
     "indonesia": "Sdr. ~, Bapak ~, Ibu ~. Akhiran untuk mengekspresikan kesopanan yang diletakkan di belakang nama orang.",
     "kanji": "",
     "kana": "～さん",
     "romaji": "-san",
-    "gambar": "🙇"
+    "gambar": "https://i.ibb.co/0VphgBQj/image.png"
   },
   {
     "indonesia": "Akhiran yang dipakai untuk anak laki-laki dan anak perempuan sebagai pengganti ～さん yang diletakkan di belakang nama anak.",
     "kanji": "",
     "kana": "～ちゃん",
     "romaji": "-chan",
-    "gambar": "🧒"
+    "gambar": "https://i.ibb.co/whd1qg0x/image.png"
   },
   {
     "indonesia": "orang ~. Akhiran yang menyatakan warga negara.",
     "kanji": "～人",
     "kana": "～じん",
     "romaji": "-jin",
-    "gambar": "🌍",
+    "gambar": "https://i.ibb.co/Tx0QtT29/image.png",
     "contoh": "アメリカ人（アメリカじん）= orang Amerika Serikat."
   },
   {
@@ -2093,35 +2096,35 @@
     "kanji": "先生",
     "kana": "せんせい",
     "romaji": "sensei",
-    "gambar": "👩‍🏫"
+    "gambar": "https://i.ibb.co/S4bZMbBS/image.png"
   },
   {
     "indonesia": "guru, dosen.",
     "kanji": "教師",
     "kana": "きょうし",
     "romaji": "kyoushi",
-    "gambar": "📚"
+    "gambar": "https://i.ibb.co/h1t4BNGn/image.png"
   },
   {
     "indonesia": "mahasiswa.",
     "kanji": "学生",
     "kana": "がくせい",
     "romaji": "gakusei",
-    "gambar": "🎓"
+    "gambar": "https://i.ibb.co/xK5Sysyx/image.png"
   },
   {
     "indonesia": "karyawan perusahaan.",
     "kanji": "会社員",
     "kana": "かいしゃいん",
     "romaji": "kaishain",
-    "gambar": "🏢"
+    "gambar": "https://i.ibb.co/gZnh0jG0/image.png"
   },
   {
     "indonesia": "karyawan perusahaan. Dipakai bersama dengan nama perusahaan.",
     "kanji": "社員",
     "kana": "しゃいん",
     "romaji": "shain",
-    "gambar": "💼",
+    "gambar": "https://i.ibb.co/7tR5qDMT/image.png",
     "contoh": "IMC の社員（IMC のしゃいん）= karyawan perusahaan IMC."
   },
   {
@@ -2129,245 +2132,245 @@
     "kanji": "銀行員",
     "kana": "ぎんこういん",
     "romaji": "ginkouin",
-    "gambar": "🏦"
+    "gambar": "https://i.ibb.co/Gv2y70Cc/image.png"
   },
   {
     "indonesia": "dokter.",
     "kanji": "医者",
     "kana": "いしゃ",
     "romaji": "isha",
-    "gambar": "👨‍⚕️"
+    "gambar": "https://i.ibb.co/fz4StC4f/image.png"
   },
   {
     "indonesia": "peneliti.",
     "kanji": "研究者",
     "kana": "けんきゅうしゃ",
     "romaji": "kenkyuusha",
-    "gambar": "🔬"
+    "gambar": "https://i.ibb.co/TBpWWZHB/image.png"
   },
   {
     "indonesia": "universitas.",
     "kanji": "大学",
     "kana": "だいがく",
     "romaji": "daigaku",
-    "gambar": "🏫"
+    "gambar": "https://i.ibb.co/HScx3px/image.png"
   },
   {
     "indonesia": "rumah sakit.",
     "kanji": "病院",
     "kana": "びょういん",
     "romaji": "byouin",
-    "gambar": "🏥"
+    "gambar": "https://i.ibb.co/f31Dnmh/image.png"
   },
   {
     "indonesia": "siapa",
     "kanji": "誰",
     "kana": "だれ",
     "romaji": "dare",
-    "gambar": "❓"
+    "gambar": "https://i.ibb.co/Z1Gzndf0/image.png"
   },
   {
     "indonesia": "siapa. Bentuk sopan dari だれ.",
     "kanji": "",
     "kana": "どなた",
     "romaji": "donata",
-    "gambar": "❔"
+    "gambar": "https://i.ibb.co/4gX1vVqJ/image.png"
   },
   {
     "indonesia": "~ tahun. Akhiran untuk menyatakan umur.",
     "kanji": "～歳",
     "kana": "～さい",
     "romaji": "-sai",
-    "gambar": "🎂"
+    "gambar": "https://i.ibb.co/8DVW8j5j/image.png"
   },
   {
     "indonesia": "umur berapa",
     "kanji": "何歳",
     "kana": "なんさい",
     "romaji": "nansai",
-    "gambar": "🎈"
+    "gambar": "https://i.ibb.co/zWgqYrXT/image.png"
   },
   {
     "indonesia": "umur berapa. Bentuk sopan dari なんさい.",
     "kanji": "",
     "kana": "おいくつ",
     "romaji": "oikutsu",
-    "gambar": "🎁"
+    "gambar": "https://i.ibb.co/pj807tFk/image.png"
   },
   {
     "indonesia": "ya.",
     "kanji": "",
     "kana": "はい",
     "romaji": "hai",
-    "gambar": "✅"
+    "gambar": "https://i.ibb.co/4RWGWZyJ/image.png"
   },
   {
     "indonesia": "tidak, bukan.",
     "kanji": "",
     "kana": "いいえ",
     "romaji": "iie",
-    "gambar": "❌"
+    "gambar": "https://i.ibb.co/YTTyG6Zr/image.png"
   },
   {
     "indonesia": "Perkenalkan. Ucapan salam pada waktu pertama kali berkenalan.",
     "kanji": "初めまして",
     "kana": "はじめまして",
     "romaji": "hajimemashite",
-    "gambar": "🤝"
+    "gambar": "https://i.ibb.co/XMTSWXL/image.png"
   },
   {
     "indonesia": "datang dari ~, berasal dari ~.",
     "kanji": "～から来ました",
     "kana": "～からきました",
     "romaji": "-kara kimashita",
-    "gambar": "🧳"
+    "gambar": "https://i.ibb.co/FknTpK8Y/image.png"
   },
   {
     "indonesia": "Salam kenal. Ucapan terakhir untuk perkenalan diri.",
     "kanji": "どうぞよろしくお願いします",
     "kana": "どうぞよろしくおねがいします",
     "romaji": "douzo yoroshiku onegaishimasu",
-    "gambar": "😊"
+    "gambar": "https://i.ibb.co/4wW3z0jB/image.png"
   },
   {
     "indonesia": "permisi, maaf. Digunakan ketika bertanya tentang hal yang pribadi seperti nama, alamat, dan sebagainya.",
     "kanji": "失礼ですが",
     "kana": "しつれいですが",
     "romaji": "shitsurei desu ga",
-    "gambar": "🙇‍♀️"
+    "gambar": "https://i.ibb.co/GvqH67zV/image.png"
   },
   {
     "indonesia": "Siapa namanya?",
     "kanji": "お名前は？",
     "kana": "おなまえは？",
     "romaji": "onamae wa?",
-    "gambar": "🪪"
+    "gambar": "https://i.ibb.co/5Xb78y9W/image.png"
   },
   {
     "indonesia": "Ini adalah Bapak, Ibu, atau Sdr. ~.",
     "kanji": "こちらは～さんです",
     "kana": "こちらは～さんです",
     "romaji": "kochira wa -san desu",
-    "gambar": "👋"
+    "gambar": "https://i.ibb.co/bg68t8qs/image.png"
   },
   {
     "indonesia": "Amerika Serikat.",
     "kanji": "",
     "kana": "アメリカ",
     "romaji": "Amerika",
-    "gambar": "🇺🇸"
+    "gambar": "https://i.ibb.co/7tjGW25g/image.png"
   },
   {
     "indonesia": "Inggris.",
     "kanji": "",
     "kana": "イギリス",
     "romaji": "Igirisu",
-    "gambar": "🇬🇧"
+    "gambar": "https://i.ibb.co/fzQTMV89/image.png"
   },
   {
     "indonesia": "India.",
     "kanji": "",
     "kana": "インド",
     "romaji": "Indo",
-    "gambar": "🇮🇳"
+    "gambar": "https://i.ibb.co/dwyk326x/image.png"
   },
   {
     "indonesia": "Indonesia.",
     "kanji": "",
     "kana": "インドネシア",
     "romaji": "Indoneshia",
-    "gambar": "🇮🇩"
+    "gambar": "https://i.ibb.co/Xdwx0ZS/image.png"
   },
   {
     "indonesia": "Korea Selatan.",
     "kanji": "韓国",
     "kana": "かんこく",
     "romaji": "Kankoku",
-    "gambar": "🇰🇷"
+    "gambar": "https://i.ibb.co/Lswj8LV/image.png"
   },
   {
     "indonesia": "Thailand.",
     "kanji": "",
     "kana": "タイ",
     "romaji": "Tai",
-    "gambar": "🇹🇭"
+    "gambar": "https://i.ibb.co/5gxYrTb0/image.png"
   },
   {
     "indonesia": "Cina.",
     "kanji": "中国",
     "kana": "ちゅうごく",
     "romaji": "Chuugoku",
-    "gambar": "🇨🇳"
+    "gambar": "https://i.ibb.co/5XRK5mzW/image.png"
   },
   {
     "indonesia": "Jerman.",
     "kanji": "",
     "kana": "ドイツ",
     "romaji": "Doitsu",
-    "gambar": "🇩🇪"
+    "gambar": "https://i.ibb.co/sdPjWxz6/image.png"
   },
   {
     "indonesia": "Jepang.",
     "kanji": "日本",
     "kana": "にほん",
     "romaji": "Nihon",
-    "gambar": "🇯🇵"
+    "gambar": "https://i.ibb.co/N6PQ27xL/image.png"
   },
   {
     "indonesia": "Brasil.",
     "kanji": "",
     "kana": "ブラジル",
     "romaji": "Burajiru",
-    "gambar": "🇧🇷"
+    "gambar": "https://i.ibb.co/nMhbb9jn/image.png"
   },
   {
     "indonesia": "IMC. Perusahaan fiksi.",
     "kanji": "",
     "kana": "IMC",
     "romaji": "ai emu shii",
-    "gambar": "🏭"
+    "gambar": "https://i.ibb.co/CpJvLtYm/IMC.png"
   },
   {
     "indonesia": "Power Denki. Perusahaan fiksi.",
     "kanji": "パワー電気",
     "kana": "パワーでんき",
     "romaji": "Pawaa Denki",
-    "gambar": "🏭"
+    "gambar": "https://i.ibb.co/fdnrGF1L/image.png"
   },
   {
     "indonesia": "Brazil Air. Perusahaan fiksi.",
     "kanji": "",
     "kana": "ブラジルエアー",
     "romaji": "Burajiru Eaa",
-    "gambar": "✈️"
+    "gambar": "https://i.ibb.co/0jfcRJmZ/image.png"
   },
   {
     "indonesia": "AKC. Organisasi fiksi.",
     "kanji": "",
     "kana": "AKC",
     "romaji": "ee kee shii",
-    "gambar": "🏛️"
+    "gambar": "https://i.ibb.co/JWKDpHvn/AKC.png"
   },
   {
     "indonesia": "Rumah Sakit Kobe. Rumah sakit fiksi.",
     "kanji": "神戸病院",
     "kana": "こうべびょういん",
     "romaji": "Koube Byouin",
-    "gambar": "🏥"
+    "gambar": "https://i.ibb.co/1G6C4D8d/image.png"
   },
   {
     "indonesia": "Universitas Sakura. Universitas fiksi.",
     "kanji": "さくら大学",
     "kana": "さくらだいがく",
     "romaji": "Sakura Daigaku",
-    "gambar": "🎓"
+    "gambar": "https://i.ibb.co/q3NrtR5N/image.png"
   },
   {
     "indonesia": "Universitas Fuji. Universitas fiksi.",
     "kanji": "富士大学",
     "kana": "ふじだいがく",
     "romaji": "Fuji Daigaku",
-    "gambar": "🎓"
+    "gambar": "https://i.ibb.co/q3Bs5fXQ/image.png"
   }
 ];
 
@@ -2722,7 +2725,19 @@
       frontText.className = isLongText ? "card-text long" : "card-text";
       frontText.textContent = currentItem.indonesia;
 
-      illustration.textContent = currentItem.gambar || "🎴";
+      illustration.replaceChildren();
+      const imageUrl = String(currentItem.gambar || "").trim();
+
+      if (/^https?:\/\//i.test(imageUrl)) {
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = getJapanesePlain(currentItem).main || currentItem.indonesia || "Ilustrasi kosakata";
+        img.loading = "lazy";
+        illustration.appendChild(img);
+      } else {
+        illustration.textContent = imageUrl || "🎴";
+      }
+
       displayJapanese(currentItem);
       updateTimerUI();
       startTimer();
@@ -2804,7 +2819,7 @@
     // =========================
     // Hasil
     // =========================
-    async function showResults() {
+    function showResults() {
       stopTimer();
 
       const total = answers.length;
@@ -2849,16 +2864,17 @@
       };
 
       if (!isAdmin) {
-        await saveResult(resultEntry);
+        saveHistory(resultEntry);
+        saveRanking(resultEntry);
       }
 
-      await renderHistory();
-      await renderRanking();
+      renderHistory();
+      renderRanking();
       activateTab("hasil");
       showScreen(resultScreen);
     }
 
-    async function showAdminResultPage() {
+    function showAdminResultPage() {
       if (!isAdmin) return;
 
       stopTimer();
@@ -2874,8 +2890,8 @@
       summaryTitle.textContent = "Result Page Admin";
       summaryDescription.textContent = "Admin bisa melihat dan menghapus riwayat serta ranking. Data pengerjaan admin tidak disimpan.";
       renderReview();
-      await renderHistory();
-      await renderRanking();
+      renderHistory();
+      renderRanking();
       activateTab("history");
       showScreen(resultScreen);
     }
@@ -2907,9 +2923,9 @@
     }
 
     // =========================
-    // Riwayat dan ranking Firebase
+    // Ranking localStorage
     // =========================
-    function getLocalHistory() {
+    function getHistory() {
       try {
         return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
       } catch (error) {
@@ -2917,74 +2933,14 @@
       }
     }
 
-    function getLocalRanking() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      } catch (error) {
-        return [];
-      }
-    }
-
-    function saveLocalFallback(entry) {
-      const history = getLocalHistory();
+    function saveHistory(entry) {
+      const history = getHistory();
       history.unshift(entry);
       localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, 100)));
-
-      const ranking = getLocalRanking();
-      ranking.push(entry);
-      ranking.sort(sortRanking);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(ranking.slice(0, 20)));
     }
 
-    function normalizeResult(item) {
-      return {
-        name: item.name || "Peserta",
-        group: item.group || "-",
-        total: Number(item.total || 0),
-        correct: Number(item.correct || 0),
-        wrong: Number(item.wrong || 0),
-        percent: Number(item.percent || 0),
-        totalTime: Number(item.totalTime || 0),
-        date: item.date || "-"
-      };
-    }
-
-    function sortRanking(a, b) {
-      if (Number(b.correct) !== Number(a.correct)) return Number(b.correct) - Number(a.correct);
-      return Number(a.totalTime) - Number(b.totalTime);
-    }
-
-    async function getFirebaseResults() {
-      const snapshot = await getDocs(query(resultsCollection, orderBy("createdAt", "desc"), limit(100)));
-      return snapshot.docs.map(doc => normalizeResult(doc.data()));
-    }
-
-    async function saveResult(entry) {
-      try {
-        await addDoc(resultsCollection, {
-          ...entry,
-          createdAt: serverTimestamp()
-        });
-      } catch (error) {
-        console.warn("Firebase gagal menyimpan data, memakai localStorage.", error);
-        saveLocalFallback(entry);
-      }
-    }
-
-    async function getResults() {
-      try {
-        const firebaseResults = await getFirebaseResults();
-        if (firebaseResults.length) return firebaseResults;
-      } catch (error) {
-        console.warn("Firebase gagal mengambil data, memakai localStorage.", error);
-      }
-
-      return getLocalHistory().map(normalizeResult);
-    }
-
-    async function renderHistory() {
-      historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Memuat riwayat...</p></td></tr>`;
-      const history = await getResults();
+    function renderHistory() {
+      const history = getHistory();
 
       if (!history.length) {
         historyBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Belum ada riwayat pengerjaan.</p></td></tr>`;
@@ -3005,9 +2961,28 @@
       `).join("");
     }
 
-    async function renderRanking() {
-      rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Memuat ranking...</p></td></tr>`;
-      const ranking = (await getResults()).sort(sortRanking).slice(0, 20);
+    function getRanking() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveRanking(entry) {
+      const ranking = getRanking();
+      ranking.push(entry);
+
+      ranking.sort((a, b) => {
+        if (Number(b.correct) !== Number(a.correct)) return Number(b.correct) - Number(a.correct);
+        return Number(a.totalTime) - Number(b.totalTime);
+      });
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ranking.slice(0, 20)));
+    }
+
+    function renderRanking() {
+      const ranking = getRanking();
 
       if (!ranking.length) {
         rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">Belum ada ranking.</p></td></tr>`;
@@ -3037,7 +3012,6 @@
       renderReview();
       renderHistory();
       renderRanking();
-      alert("Data lokal sudah dibersihkan. Data Firebase tidak dihapus karena rules saat ini sengaja menolak delete agar lebih aman.");
     }
 
     // =========================
