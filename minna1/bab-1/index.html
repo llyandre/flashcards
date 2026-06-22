@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flashcard Kosakata Bahasa Jepang</title>
+  <title>Flashcard Kosakata Jepang</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -144,6 +144,17 @@
     .answer-btn {
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    input,
+    button {
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     .app-shell {
@@ -561,10 +572,11 @@
     #startScreen .panel.hero {
       width: min(900px, 100%);
       min-height: auto;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: var(--panel-pad-desktop);
+      padding: clamp(78px, 7vw, 90px) var(--panel-pad-desktop) var(--panel-pad-desktop);
       border-radius: 26px;
       background:
         radial-gradient(circle at 14% 16%, rgba(219, 237, 255, 0.72), transparent 34%),
@@ -582,9 +594,45 @@
       text-align: center;
     }
 
+    .language-switch {
+      position: absolute;
+      left: clamp(18px, 3vw, 28px);
+      top: clamp(16px, 2.4vw, 24px);
+      width: max-content;
+      max-width: 100%;
+      margin: 0;
+      padding: 5px;
+      display: inline-flex;
+      gap: 5px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .language-btn {
+      min-height: 32px;
+      padding: 7px 12px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #596174;
+      background: transparent;
+      font-size: var(--fs-small);
+      font-weight: 650;
+      line-height: 1.1;
+      transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .language-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #9d8dfd);
+      box-shadow: 0 8px 16px rgba(124, 111, 246, 0.2);
+    }
+
     #startScreen .hero-info-row {
       justify-content: center;
       gap: 12px;
+      margin-top: 0;
       margin-bottom: clamp(18px, 2.8vw, 26px);
     }
 
@@ -1619,7 +1667,7 @@
 
       #startScreen .panel.hero {
         min-height: auto;
-        padding: clamp(32px, 6vw, 44px) clamp(20px, 5vw, 30px);
+        padding: clamp(78px, 10vw, 88px) clamp(20px, 5vw, 30px) clamp(28px, 5vw, 40px);
       }
 
       .summary-box {
@@ -1643,7 +1691,17 @@
       .panel,
       #startScreen .panel.hero {
         border-radius: var(--radius-xl);
-        padding: var(--panel-pad-mobile);
+        padding: clamp(76px, 16vw, 86px) var(--panel-pad-mobile) var(--panel-pad-mobile);
+      }
+
+      .language-switch {
+        left: 16px;
+        top: 14px;
+      }
+
+      .language-btn {
+        min-height: 30px;
+        padding: 6px 10px;
       }
 
       #startScreen .hero-info-row {
@@ -1724,7 +1782,7 @@
       .panel,
       #startScreen .panel.hero {
         border-radius: 22px;
-        padding: 18px;
+        padding: 74px 18px 18px;
       }
 
       #startScreen .hero p {
@@ -1830,7 +1888,12 @@
     <section id="startScreen" class="screen active">
       <div class="panel hero">
         <div>
-          <div class="hero-info-row" aria-label="Informasi latihan">
+          <div class="language-switch" aria-label="Ganti bahasa">
+            <button class="language-btn active" data-lang="id" type="button">Indonesia</button>
+            <button class="language-btn" data-lang="ja" type="button">日本語</button>
+          </div>
+
+          <div class="hero-info-row" aria-label="Informasi Latihan">
             <div class="hero-info-card">
               <div class="hero-info-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
@@ -1840,8 +1903,8 @@
                 </svg>
               </div>
               <div class="hero-info-text">
-                <span>Jumlah Kartu</span>
-                <strong>47 Kosakata</strong>
+                <span data-i18n="cardCountLabel">Jumlah kartu</span>
+                <strong data-i18n="cardCountValue">47 kosakata</strong>
               </div>
             </div>
             <div class="hero-info-card">
@@ -1852,23 +1915,23 @@
                 </svg>
               </div>
               <div class="hero-info-text">
-                <span>Durasi Waktu</span>
-                <strong>30 Detik / Kartu</strong>
+                <span data-i18n="durationLabel">Durasi waktu</span>
+                <strong data-i18n="durationValue">30 detik/kartu</strong>
               </div>
             </div>
           </div>
-          <h1>Latihan kosakata Jepang dengan kartu interaktif</h1>
-          <p>Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.</p>
+          <h1 data-i18n="homeTitle">Latihan kosakata Jepang dengan kartu interaktif</h1>
+          <p data-i18n-html="homeDescription">Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.</p>
 
           <div class="username-box">
-            <button id="openLoginBtn" class="login-trigger" type="button">Isi Username</button>
+            <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="usernameButton">Isi Username</button>
             <div id="loginSummary" class="login-summary" aria-live="polite"></div>
-            <p id="usernameNote" class="username-note">Klik tombol di atas untuk mengisi username melalui popup.</p>
+            <p id="usernameNote" class="username-note" data-i18n="usernameNote">Klik tombol di atas untuk mengisi username melalui popup.</p>
           </div>
 
           <div class="hero-actions">
-            <button id="startBtn" class="btn" type="button" disabled>Start</button>
-            <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden>Skip ke Result Page</button>
+            <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
+            <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
         </div>
       </div>
@@ -1879,7 +1942,7 @@
       <div class="practice-wrap">
         <div class="topbar">
           <div class="counter-card">
-            <span id="cardCounter">Kartu ke-1 dari 1</span>
+            <span id="cardCounter">Kartu 1 dari 1</span>
             <small>Klik kartu untuk membalik</small>
           </div>
           <div class="timer-card" aria-live="polite">
@@ -1921,14 +1984,14 @@
       <div class="panel">
         <div class="results-head">
           <span class="badge">✨ Selesai</span>
-          <h2>Hasil Latihan</h2>
-          <p>Ringkasan nilai, review jawaban, dan ranking tersimpan di browser ini.</p>
+          <h2>Hasil latihan</h2>
+          <p>Ringkasan nilai, review jawaban, dan ranking tersimpan di halaman ini.</p>
           <div class="participant-name" id="participantName">Peserta: -</div>
         </div>
 
         <div class="tabs" role="tablist" aria-label="Tab hasil latihan">
           <button class="tab-btn active" data-tab="hasil" type="button">Hasil</button>
-          <button class="tab-btn" data-tab="review" type="button">Review Jawaban</button>
+          <button class="tab-btn" data-tab="review" type="button">Review jawaban</button>
           <button class="tab-btn" data-tab="history" type="button">Riwayat</button>
           <button class="tab-btn" data-tab="ranking" type="button">Ranking</button>
         </div>
@@ -1946,7 +2009,7 @@
 
           <div class="stats-grid">
             <div class="stat-card">
-              <span>Total Kosakata</span>
+              <span>Total kosakata</span>
               <strong id="statTotal">0</strong>
             </div>
             <div class="stat-card">
@@ -1958,7 +2021,7 @@
               <strong id="statWrong">0</strong>
             </div>
             <div class="stat-card">
-              <span>Total Waktu</span>
+              <span>Total waktu</span>
               <strong id="statTime">0s</strong>
             </div>
             <div class="stat-card">
@@ -1996,7 +2059,7 @@
                   <th>Benar</th>
                   <th>Salah</th>
                   <th>Nilai</th>
-                  <th>Total Waktu</th>
+                  <th>Total waktu</th>
                   <th>Tanggal</th>
                 </tr>
               </thead>
@@ -2016,7 +2079,7 @@
                   <th>Benar</th>
                   <th>Salah</th>
                   <th>Nilai</th>
-                  <th>Total Waktu</th>
+                  <th>Total waktu</th>
                   <th>Tanggal</th>
                 </tr>
               </thead>
@@ -2027,7 +2090,7 @@
 
         <div class="result-actions">
           <button id="restartBtn" class="btn" type="button">Ulangi Latihan</button>
-          <button id="clearRankingBtn" class="btn danger-outline admin-only" type="button" hidden>Hapus Riwayat & Ranking</button>
+          <button id="clearRankingBtn" class="btn danger-outline admin-only" type="button" hidden>Hapus riwayat dan ranking</button>
         </div>
       </div>
     </section>
@@ -2035,7 +2098,7 @@
     <div id="loginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
       <div class="login-modal-card">
         <button id="closeLoginModal" class="example-close" type="button" aria-label="Tutup login">×</button>
-        <h3 id="loginModalTitle">Masuk Peserta</h3>
+        <h3 id="loginModalTitle">Masuk peserta</h3>
         <p>Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
 
         <div class="login-field">
@@ -2044,13 +2107,13 @@
         </div>
 
         <div id="passwordBox" class="login-field password-box" hidden>
-          <label for="passwordInput">Password Admin</label>
+          <label for="passwordInput">Password admin</label>
           <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Masukkan password admin" />
         </div>
 
         <div id="groupBox" class="group-box" hidden>
           <p>Pilih kategori sebelum mulai kuis.</p>
-          <div class="group-options" aria-label="Pilihan kategori">
+          <div class="group-options" aria-label="Pilihan Kategori">
             <button class="group-btn" data-group="Badung" type="button">Badung</button>
             <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
             <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
@@ -2070,7 +2133,7 @@
     <div id="exampleModal" class="example-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="exampleModalTitle">
       <div class="example-modal-card">
         <button id="closeExampleModal" class="example-close" type="button" aria-label="Tutup contoh">×</button>
-        <h3 id="exampleModalTitle">Contoh Penggunaan</h3>
+        <h3 id="exampleModalTitle">Contoh penggunaan</h3>
         <p id="exampleText"></p>
       </div>
     </div>
@@ -2449,6 +2512,7 @@
     const practiceScreen = document.getElementById("practiceScreen");
     const resultScreen = document.getElementById("resultScreen");
 
+    const languageButtons = document.querySelectorAll(".language-btn");
     const openLoginBtn = document.getElementById("openLoginBtn");
     const usernameBox = document.querySelector("#startScreen .username-box");
     const loginSummary = document.getElementById("loginSummary");
@@ -2517,6 +2581,34 @@
     let remainingTime = TIMER_SECONDS;
     let cardStartTime = 0;
     let answers = [];
+    let currentLanguage = "id";
+
+    const homeTranslations = {
+      id: {
+        cardCountLabel: "Jumlah kartu",
+        cardCountValue: "47 kosakata",
+        durationLabel: "Durasi waktu",
+        durationValue: "30 detik/kartu",
+        homeTitle: "Latihan kosakata Jepang dengan kartu interaktif",
+        homeDescription: 'Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.',
+        usernameButton: "Isi Username",
+        usernameNote: "Klik tombol di atas untuk mengisi username melalui popup.",
+        startButton: "Start",
+        skipButton: "Lewati ke halaman hasil"
+      },
+      ja: {
+        cardCountLabel: "カード数",
+        cardCountValue: "47語",
+        durationLabel: "制限時間",
+        durationValue: "1カード 30秒",
+        homeTitle: "インタラクティブカードで日本語単語を練習",
+        homeDescription: '<strong>ユーザー名</strong>を入力し、ポップアップで項目を選んでから始めましょう。カードを開き、覚えていたら<strong>正解</strong>、まだなら<strong>不正解</strong>を選びます。',
+        usernameButton: "ユーザー名を入力",
+        usernameNote: "上のボタンからユーザー名を入力してください。",
+        startButton: "スタート",
+        skipButton: "結果ページへ"
+      }
+    };
 
     // =========================
     // Helper dasar
@@ -2528,6 +2620,53 @@
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+    }
+
+    function applyHomeLanguage(lang) {
+      currentLanguage = homeTranslations[lang] ? lang : "id";
+      const dictionary = homeTranslations[currentLanguage];
+
+      document.documentElement.lang = currentLanguage === "ja" ? "ja" : "id";
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+        if (dictionary[key]) element.textContent = dictionary[key];
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach(element => {
+        const key = element.dataset.i18nHtml;
+        if (dictionary[key]) element.innerHTML = dictionary[key];
+      });
+
+      languageButtons.forEach(button => {
+        button.classList.toggle("active", button.dataset.lang === currentLanguage);
+      });
+    }
+
+    function blockBrowserShortcuts() {
+      const blockedEvents = ["contextmenu", "copy", "cut", "paste", "selectstart", "dragstart"];
+
+      blockedEvents.forEach(eventName => {
+        document.addEventListener(eventName, event => {
+          event.preventDefault();
+        });
+      });
+
+      document.addEventListener("keydown", event => {
+        const key = event.key.toLowerCase();
+        const ctrlOrCmd = event.ctrlKey || event.metaKey;
+        const blockedCtrlKeys = ["a", "c", "i", "j", "p", "s", "u", "v", "x"];
+        const blockedShiftCombos = ctrlOrCmd && event.shiftKey && ["c", "i", "j"].includes(key);
+
+        if (
+          event.key === "F12" ||
+          blockedShiftCombos ||
+          (ctrlOrCmd && blockedCtrlKeys.includes(key))
+        ) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
     }
 
     function formatSeconds(seconds) {
@@ -2745,11 +2884,11 @@
       loginSummary.classList.add("show");
 
       if (isAdmin) {
-        usernameNote.textContent = "Admin dapat membuka Result Page dan menghapus riwayat serta ranking.";
+        usernameNote.textContent = "Admin dapat membuka halaman hasil dan menghapus riwayat serta ranking.";
       } else if (currentGroup) {
         usernameNote.textContent = "Grup sudah dipilih. Klik Start untuk mulai kuis.";
       } else {
-        usernameNote.textContent = "Pilih salah satu kategori/grup terlebih dahulu.";
+        usernameNote.textContent = "Pilih salah satu kategori terlebih dahulu.";
       }
     }
 
@@ -2871,7 +3010,7 @@
       flashcard.classList.remove("flipped", "feedback-correct", "feedback-wrong");
       resetAnswerButtons();
 
-      cardCounter.textContent = `Kartu ke-${currentIndex + 1} dari ${deck.length}`;
+      cardCounter.textContent = `Kartu ${currentIndex + 1} dari ${deck.length}`;
       flipHint.textContent = "Lihat arti, lalu klik kartu untuk membuka jawabannya.";
 
       const isLongText = String(currentItem.indonesia || "").length > 55;
@@ -2904,7 +3043,7 @@
         flashcard.classList.add("flipped");
         correctBtn.disabled = false;
         wrongBtn.disabled = false;
-        flipHint.textContent = "Pilih Benar jika kamu sudah mengingat jawabannya, atau Salah jika belum.";
+        flipHint.textContent = "Pilih Benar jika kamu ingat jawabannya, atau Salah jika belum.";
       }
     }
 
@@ -2961,7 +3100,7 @@
 
       flashcard.classList.add(status ? "feedback-correct" : "feedback-wrong");
       (status ? correctBtn : wrongBtn).classList.add("pulse");
-      flipHint.textContent = status ? "Bagus! Jawaban ditandai benar." : "Tidak apa-apa. Jawaban ditandai salah.";
+      flipHint.textContent = status ? "Bagus, jawaban ditandai benar." : "Tidak apa-apa, jawaban ditandai salah.";
 
       setTimeout(() => {
         currentIndex += 1;
@@ -3042,8 +3181,8 @@
       statAverage.textContent = "0s";
       scorePercent.textContent = "0%";
       scoreCircle.style.setProperty("--score-deg", "0deg");
-      summaryTitle.textContent = "Result Page Admin";
-      summaryDescription.textContent = "Admin bisa melihat dan menghapus riwayat serta ranking. Data pengerjaan admin tidak disimpan.";
+      summaryTitle.textContent = "Halaman hasil admin";
+      summaryDescription.textContent = "Admin bisa melihat riwayat dan ranking. Data pengerjaan admin tidak disimpan.";
       renderReview();
       await renderHistory();
       await renderRanking();
@@ -3237,6 +3376,13 @@
     // =========================
     // Event listener
     // =========================
+    blockBrowserShortcuts();
+    applyHomeLanguage("id");
+
+    languageButtons.forEach(button => {
+      button.addEventListener("click", () => applyHomeLanguage(button.dataset.lang));
+    });
+
     openLoginBtn.addEventListener("click", openLoginModalBox);
     closeLoginModal.addEventListener("click", closeLoginModalBox);
     cancelLoginBtn.addEventListener("click", closeLoginModalBox);
