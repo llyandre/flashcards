@@ -974,6 +974,7 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
       transition: transform 0.62s cubic-bezier(.2,.8,.2,1);
     }
 
@@ -993,18 +994,36 @@
       box-shadow: 0 22px 60px rgba(76, 29, 149, 0.15);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: opacity 0.16s ease, visibility 0.16s ease;
       overflow: hidden;
     }
 
     .card-front {
       padding: clamp(22px, 5vw, 36px);
+      transform: rotateY(0deg) translateZ(1px);
+      opacity: 1;
+      visibility: visible;
     }
 
     .card-back {
-      transform: rotateY(180deg);
+      transform: rotateY(180deg) translateZ(1px);
       flex-direction: column;
       padding: clamp(18px, 3.4vw, 30px);
       overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .flashcard.flipped .card-front {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .flashcard.flipped .card-back {
+      opacity: 1;
+      visibility: visible;
     }
 
     .card-front::before,
