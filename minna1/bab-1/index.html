@@ -2495,6 +2495,269 @@
       }
     }
 
+
+    /* =========================================================
+       COMPACT FIX: kartu diperkecil agar halaman tidak terlalu scroll
+       - Tetap pisah area gambar dan tulisan
+       - Semua ukuran dibuat lebih proporsional untuk mobile
+       ========================================================= */
+    .practice-wrap {
+      width: min(680px, 100%) !important;
+    }
+
+    .topbar {
+      margin-bottom: 8px !important;
+      gap: 8px !important;
+    }
+
+    .counter-card {
+      padding: 10px 13px !important;
+      line-height: 1.35 !important;
+    }
+
+    .timer-card {
+      padding: 9px 12px !important;
+    }
+
+    .time-number {
+      font-size: clamp(22px, 4vw, 30px) !important;
+    }
+
+    .timer-track {
+      height: 7px !important;
+      margin-top: 8px !important;
+    }
+
+    .flip-hint {
+      margin: 7px 0 9px !important;
+      line-height: 1.35 !important;
+      font-size: clamp(11.5px, 1.8vw, 12.5px) !important;
+    }
+
+    .flashcard {
+      width: min(100%, 540px) !important;
+      height: clamp(470px, 68svh, 560px) !important;
+      min-height: 470px !important;
+    }
+
+    .card-front,
+    .card-back {
+      padding: clamp(12px, 2.4vw, 20px) !important;
+    }
+
+    .back-content {
+      grid-template-rows: 59% 41% !important;
+      gap: 7px !important;
+    }
+
+    .illustration-wrap {
+      width: min(92%, 340px) !important;
+      max-height: 100% !important;
+    }
+
+    .jp-box {
+      padding: 3px 7px 2px !important;
+      gap: 4px !important;
+    }
+
+    .jp-main-display {
+      font-size: clamp(23px, 5.8vw, 34px) !important;
+      line-height: 1.12 !important;
+    }
+
+    .jp-main-display.long {
+      font-size: clamp(17px, 4.8vw, 26px) !important;
+      line-height: 1.16 !important;
+    }
+
+    .jp-divider {
+      margin: 1px auto 2px !important;
+    }
+
+    .jp-reading,
+    .jp-reading.long {
+      font-size: clamp(11px, 2.8vw, 14px) !important;
+      line-height: 1.24 !important;
+    }
+
+    .jp-actions {
+      gap: 5px !important;
+      margin-top: 0 !important;
+    }
+
+    .audio-btn,
+    .example-btn {
+      min-height: 31px !important;
+      padding: 6px 9px !important;
+      font-size: 11px !important;
+      margin-top: 2px !important;
+    }
+
+    .answer-row {
+      width: min(100%, 540px) !important;
+      margin-top: 10px !important;
+      gap: 9px !important;
+    }
+
+    .answer-btn {
+      min-height: 48px !important;
+      font-size: clamp(14px, 2.6vw, 16px) !important;
+      border-radius: 16px !important;
+    }
+
+    @media (max-width: 720px) {
+      .app-shell {
+        padding-top: max(10px, env(safe-area-inset-top)) !important;
+        padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
+      }
+
+      .topbar {
+        gap: 8px !important;
+        margin-bottom: 7px !important;
+      }
+
+      .flashcard {
+        width: min(100%, 500px) !important;
+        height: clamp(455px, 62svh, 535px) !important;
+        min-height: 455px !important;
+      }
+
+      .back-content {
+        grid-template-rows: 57% 43% !important;
+        gap: 6px !important;
+      }
+
+      .illustration-wrap {
+        width: min(90%, 310px) !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        width: min(100% - 18px, 1120px) !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        border-radius: 16px !important;
+      }
+
+      .counter-card small,
+      .timer-label {
+        font-size: 11.5px !important;
+      }
+
+      .flashcard {
+        width: 100% !important;
+        height: clamp(430px, 58svh, 505px) !important;
+        min-height: 430px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 12px !important;
+      }
+
+      .back-content {
+        grid-template-rows: 56% 44% !important;
+        gap: 5px !important;
+      }
+
+      .illustration-wrap {
+        width: min(88%, 285px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(21px, 6.8vw, 30px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(16px, 5.3vw, 23px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(10.5px, 3.3vw, 13px) !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr 1fr !important;
+        margin-top: 8px !important;
+      }
+
+      .answer-btn {
+        min-height: 44px !important;
+        font-size: 13.5px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .flashcard {
+        height: clamp(405px, 56svh, 475px) !important;
+        min-height: 405px !important;
+      }
+
+      .illustration-wrap {
+        width: min(86%, 255px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(19px, 6.6vw, 28px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(15px, 5vw, 21px) !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 29px !important;
+        padding: 5px 8px !important;
+        font-size: 10.5px !important;
+      }
+    }
+
+    @media (max-height: 760px) and (max-width: 720px) {
+      .flip-hint {
+        display: none !important;
+      }
+
+      .topbar {
+        margin-bottom: 6px !important;
+      }
+
+      .flashcard {
+        height: clamp(380px, 55svh, 440px) !important;
+        min-height: 380px !important;
+      }
+
+      .illustration-wrap {
+        width: min(82%, 250px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(18px, 5.8vw, 26px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(14px, 4.7vw, 20px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(10px, 3vw, 12px) !important;
+      }
+
+      .answer-btn {
+        min-height: 40px !important;
+      }
+    }
+
 </style>
 </head>
 <body>
