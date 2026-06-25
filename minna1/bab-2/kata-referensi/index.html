@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Interaktif Nama Keluarga Jepang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-main: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-jp: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      --bg-1: #f8fbff;
+      --bg-2: #fff2f7;
+      --bg-3: #f2fff8;
+      --card: rgba(255, 255, 255, 0.78);
+      --card-solid: #ffffff;
+      --text: #253044;
+      --heading: #101d48;
+      --muted: #64748b;
+      --primary: #7c6ff6;
+      --primary-deep: #6d46e8;
+      --primary-soft: rgba(124, 111, 246, 0.12);
+      --green: #20b486;
+      --green-dark: #168763;
+      --red: #ef5d75;
+      --red-dark: #c8465c;
+      --line: rgba(34, 48, 71, 0.12);
+      --border: rgba(124, 111, 246, 0.18);
+      --glass-border: rgba(255, 255, 255, 0.78);
+      --shadow: 0 18px 44px rgba(82, 73, 134, 0.12);
+      --shadow-soft: 0 10px 24px rgba(82, 73, 134, 0.08);
+      --shadow-tiny: 0 6px 14px rgba(82, 73, 134, 0.07);
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 30px;
+      --radius-pill: 999px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: var(--font-main);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 195, 217, 0.5), transparent 34%),
+        radial-gradient(circle at top right, rgba(184, 232, 255, 0.58), transparent 34%),
+        radial-gradient(circle at 50% 88%, rgba(167, 243, 208, 0.28), transparent 34%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      width: 230px;
+      height: 230px;
+      border-radius: var(--radius-pill);
+      opacity: 0.34;
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    body::before { left: -76px; bottom: 8%; background: #c9fff1; }
+    body::after { right: -92px; top: 18%; background: #ffd2e5; }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+    .app-shell {
+      width: min(1120px, calc(100% - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: clamp(18px, 3vw, 34px) 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .screen { display: none; width: 100%; animation: fadeIn 0.32s ease both; }
+    .screen.active { display: block; }
+
+    .panel {
+      width: min(940px, 100%);
+      margin: 0 auto;
+      padding: clamp(22px, 4vw, 42px);
+      border-radius: 34px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.66)),
+        var(--card);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero {
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: var(--radius-pill);
+      background: var(--primary-soft);
+      color: #6557df;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 760px;
+      margin: 18px auto 12px;
+      color: var(--heading);
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      color: var(--heading);
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.18;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: clamp(14px, 1.4vw, 16px);
+    }
+
+    .hero-text {
+      max-width: 720px;
+      margin: 0 auto 22px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .info-card,
+    .material-card,
+    .name-card,
+    .quiz-card,
+    .stat-card {
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58));
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .info-card {
+      min-height: 92px;
+      padding: 18px 16px;
+      display: grid;
+      align-content: center;
+      gap: 4px;
+      text-align: left;
+    }
+
+    .info-card span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .info-card strong {
+      color: #514a9e;
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.2;
+    }
+
+    .input-area {
+      width: min(520px, 100%);
+      margin: 0 auto 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .input-shell {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(124, 111, 246, 0.22);
+      box-shadow: var(--shadow-soft);
+      transition: 0.18s ease;
+    }
+
+    .input-shell:focus-within {
+      border-color: rgba(124, 111, 246, 0.48);
+      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-soft);
+      transform: translateY(-1px);
+    }
+
+    .input-shell input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn {
+      min-height: 54px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: var(--radius-md);
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #9d8dfd);
+      box-shadow: 0 14px 26px rgba(124, 111, 246, 0.24);
+      font-weight: 800;
+      line-height: 1.2;
+      transition: 0.18s ease;
+    }
+
+    .btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.02); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+    .btn.secondary {
+      color: #5c5972;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.22);
+      box-shadow: var(--shadow-soft);
+    }
+    .btn.danger {
+      color: var(--red-dark);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(239, 93, 117, 0.34);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .section-title p { margin-bottom: 0; max-width: 660px; }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 18px 0 22px;
+    }
+
+    .material-card {
+      padding: 14px;
+      overflow: hidden;
+    }
+
+    .material-card h3,
+    .name-card h3 { margin: 0 0 10px; color: #514a9e; }
+
+    .material-card img {
+      width: 100%;
+      height: 290px;
+      object-fit: contain;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(124, 111, 246, 0.16);
+    }
+
+    .name-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .name-card {
+      padding: 14px;
+      min-height: 132px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .name-card::before {
+      content: attr(data-number);
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      color: rgba(81, 74, 158, 0.25);
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .jp {
+      font-family: var(--font-jp);
+      color: #2f2d2c;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .kana {
+      margin-top: 6px;
+      font-family: var(--font-jp);
+      color: #817a75;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .romaji {
+      margin-top: 3px;
+      color: #514a9e;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .greeting-box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .greeting-card {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .greeting-card .jp { font-size: clamp(24px, 3.6vw, 36px); }
+    .greeting-card p { margin: 10px 0 0; }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: stretch;
+      margin-bottom: 16px;
+    }
+
+    .counter-card,
+    .timer-card {
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 13px 30px rgba(34, 48, 71, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .counter-card { padding: 14px 16px; font-weight: 800; }
+    .counter-card small { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; font-weight: 600; }
+
+    .timer-card { min-width: 138px; padding: 12px 14px; text-align: center; }
+    .time-number { color: var(--primary-deep); font-size: 36px; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+    .timer-label { margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 700; }
+    .timer-track { width: 100%; height: 9px; margin-top: 11px; border-radius: var(--radius-pill); background: rgba(124, 58, 237, 0.13); overflow: hidden; }
+    .timer-fill { width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #8b5cf6, #06b6d4); transition: width 0.2s linear, background 0.2s ease; }
+    .timer-fill.warning { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+
+    .quiz-card {
+      padding: clamp(20px, 4vw, 34px);
+      min-height: 470px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+      gap: 18px;
+      position: relative;
+    }
+
+    .quiz-type {
+      display: inline-flex;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--primary-soft);
+      color: #6557df;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .question-main {
+      max-width: 760px;
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(22px, 4vw, 34px);
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .question-main .jp { display: block; margin-top: 10px; font-size: clamp(44px, 9vw, 72px); }
+
+    .answer-grid {
+      width: min(720px, 100%);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .answer-btn {
+      min-height: 62px;
+      padding: 12px 14px;
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.78);
+      color: #353d53;
+      box-shadow: var(--shadow-tiny);
+      font-weight: 800;
+      line-height: 1.25;
+      transition: 0.18s ease;
+    }
+
+    .answer-btn:hover:not(:disabled) { transform: translateY(-2px); border-color: rgba(124, 111, 246, 0.34); }
+    .answer-btn.correct { color: #fff; background: linear-gradient(135deg, #22c55e, #16a34a); border-color: transparent; }
+    .answer-btn.wrong { color: #fff; background: linear-gradient(135deg, #ef4444, #dc2626); border-color: transparent; }
+    .answer-btn:disabled { cursor: not-allowed; }
+
+    .feedback {
+      min-height: 58px;
+      display: grid;
+      align-content: center;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .feedback strong { color: var(--heading); }
+
+    .result-head { text-align: center; margin-bottom: 22px; }
+    .participant-name {
+      width: max-content;
+      max-width: 100%;
+      margin: 14px auto 0;
+      padding: 9px 14px;
+      border-radius: var(--radius-pill);
+      color: #514a9e;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .summary-box {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      align-items: center;
+      gap: 18px;
+      padding: 18px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%), rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .score-circle {
+      width: 170px;
+      height: 170px;
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-pill);
+      background: conic-gradient(var(--primary) var(--score-deg, 0deg), rgba(124, 111, 246, 0.14) 0deg);
+    }
+
+    .score-circle::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: inherit;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: inset 0 0 0 1px rgba(124, 111, 246, 0.12);
+    }
+
+    .score-circle strong { position: relative; color: #413f73; font-size: 34px; font-weight: 900; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .stat-card { padding: 16px 12px; text-align: center; }
+    .stat-card span { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .stat-card strong { display: block; color: #413f73; font-size: 25px; font-weight: 900; }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+      margin-top: 16px;
+    }
+
+    table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 13px 14px; border-bottom: 1px solid rgba(124, 111, 246, 0.12); text-align: left; vertical-align: top; }
+    th { color: #514a9e; background: rgba(124, 111, 246, 0.09); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+
+    .status-pill {
+      min-width: 74px;
+      display: inline-flex;
+      justify-content: center;
+      padding: 6px 9px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .status-pill.correct { color: var(--green-dark); background: rgba(32, 180, 134, 0.14); }
+    .status-pill.wrong { color: var(--red-dark); background: rgba(239, 93, 117, 0.14); }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      z-index: 30;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 12px 16px;
+      border-radius: var(--radius-pill);
+      color: #fff;
+      background: linear-gradient(135deg, #1f2937, #4b5563);
+      box-shadow: 0 18px 40px rgba(31, 41, 55, 0.22);
+      font-weight: 800;
+      transition: 0.24s ease;
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .info-grid, .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .name-grid { grid-template-columns: repeat(3, 1fr); }
+      .summary-box { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    @media (max-width: 720px) {
+      .app-shell { width: min(100% - 24px, 1120px); align-items: flex-start; }
+      .panel { border-radius: 24px; padding: 20px; }
+      .section-title { display: block; }
+      .material-grid, .greeting-box, .topbar { grid-template-columns: 1fr; }
+      .timer-card { min-width: 100%; }
+      .answer-grid { grid-template-columns: 1fr; }
+      .quiz-card { min-height: 520px; }
+      .name-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 460px) {
+      .info-grid, .stats-grid, .name-grid { grid-template-columns: 1fr; }
+      .actions .btn { width: 100%; }
+      .material-card img { height: 230px; }
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <section id="startScreen" class="screen active">
+      <div class="panel hero">
+        <span class="badge">日本語クイズ • Kuis Interaktif</span>
+        <h1>Nama Keluarga Jepang & Salam</h1>
+        <p class="hero-text">Pelajari 20 nama keluarga yang lazim di Jepang, ungkapan salam ketika pertama bertemu, dan sopan santun ketika pindah rumah. Kuis ini cocok untuk GitHub Pages dan bisa langsung disimpan sebagai <strong>index.html</strong>.</p>
+
+        <div class="info-grid" aria-label="Info kuis">
+          <div class="info-card"><span>Materi</span><strong>Nama keluarga</strong></div>
+          <div class="info-card"><span>Total latihan</span><strong>30 soal acak</strong></div>
+          <div class="info-card"><span>Waktu</span><strong>30 detik/soal</strong></div>
+        </div>
+
+        <div class="input-area">
+          <div class="input-shell">
+            <span aria-hidden="true">👤</span>
+            <input id="studentName" type="text" placeholder="Masukkan nama peserta" maxlength="32" />
+          </div>
+          <p class="note">Nama akan muncul pada halaman hasil. Tidak wajib diisi.</p>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="startQuizBtn" type="button">Mulai Kuis</button>
+          <button class="btn secondary" id="openMaterialBtn" type="button">Lihat Materi</button>
+          <button class="btn secondary" id="openHistoryBtn" type="button">Riwayat Nilai</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="materialScreen" class="screen">
+      <div class="panel">
+        <div class="section-title">
+          <div>
+            <span class="badge">Materi gambar</span>
+            <h2>Nama Keluarga dan Salam</h2>
+            <p>Bagian ini memakai dua link gambar yang kamu berikan, lalu kontennya dijadikan kartu materi dan soal kuis.</p>
+          </div>
+          <div class="actions">
+            <button class="btn" id="materialStartBtn" type="button">Mulai Kuis</button>
+            <button class="btn secondary" data-back-home type="button">Home</button>
+          </div>
+        </div>
+
+        <div class="material-grid">
+          <div class="material-card">
+            <h3>Gambar 1: Nama Keluarga</h3>
+            <img src="https://i.ibb.co/JjKg645k/image.png" alt="Materi nama keluarga Jepang" loading="lazy" />
+          </div>
+          <div class="material-card">
+            <h3>Gambar 2: Salam</h3>
+            <img src="https://i.ibb.co/5gKdK22H/image.png" alt="Materi salam bahasa Jepang" loading="lazy" />
+          </div>
+        </div>
+
+        <h2>20 Nama Keluarga Jepang</h2>
+        <p>Tekan tombol mulai kuis untuk menguji hafalan kanji, cara baca, dan pemahaman materi salam.</p>
+        <div id="nameGrid" class="name-grid"></div>
+
+        <h2 style="margin-top:28px">Salam dan Sopan Santun</h2>
+        <div class="greeting-box">
+          <div class="greeting-card">
+            <div class="jp">初めまして。</div>
+            <div class="kana">はじめまして • Hajimemashite</div>
+            <p>Digunakan ketika seseorang bertemu pertama kali, misalnya saat perjalanan dinas atau ketika bertukar kartu nama.</p>
+          </div>
+          <div class="greeting-card">
+            <div class="jp">どうぞよろしくお願いします。</div>
+            <div class="kana">どうぞよろしくおねがいします • Douzo yoroshiku onegaishimasu</div>
+            <p>Ungkapan sopan setelah memperkenalkan diri. Maknanya kurang lebih “senang berkenalan dengan Anda / mohon bantuannya”.</p>
+          </div>
+          <div class="greeting-card">
+            <div class="jp">引っ越しの挨拶</div>
+            <div class="kana">ひっこしのあいさつ • Hikkoshi no aisatsu</div>
+            <p>Ketika pindah rumah, sopan untuk memperkenalkan diri kepada tetangga baru.</p>
+          </div>
+          <div class="greeting-card">
+            <div class="jp">手土産</div>
+            <div class="kana">てみやげ • Temiyage</div>
+            <p>Hadiah sederhana untuk tetangga baru dapat berupa handuk, sabun, atau manisan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quizScreen" class="screen">
+      <div class="panel">
+        <div class="topbar">
+          <div class="counter-card">
+            <span id="counterText">Soal 1 dari 30</span>
+            <small id="questionInfo">Pilih jawaban yang benar.</small>
+          </div>
+          <div class="timer-card" aria-live="polite">
+            <div id="timeNumber" class="time-number">30</div>
+            <div class="timer-label">detik</div>
+            <div class="timer-track"><div id="timerFill" class="timer-fill"></div></div>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <span id="quizType" class="quiz-type">Nama keluarga</span>
+          <h2 id="questionText" class="question-main">Pertanyaan</h2>
+          <div id="answerGrid" class="answer-grid"></div>
+          <div id="feedback" class="feedback" aria-live="polite"></div>
+          <div class="actions">
+            <button id="nextBtn" class="btn" type="button" disabled>Soal Berikutnya</button>
+            <button id="quitBtn" class="btn secondary" type="button">Keluar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="panel">
+        <div class="result-head">
+          <span class="badge">Hasil Kuis</span>
+          <h2 id="resultTitle">Kuis selesai!</h2>
+          <p id="resultMessage">Berikut ringkasan hasil latihanmu.</p>
+          <div id="participantName" class="participant-name"></div>
+        </div>
+
+        <div class="summary-box">
+          <div id="scoreCircle" class="score-circle"><strong id="scorePercent">0%</strong></div>
+          <div>
+            <h2 id="scoreComment">Tetap semangat!</h2>
+            <p id="scoreDescription">Ulangi bagian yang belum tepat, lalu coba lagi untuk meningkatkan skor.</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><span>Benar</span><strong id="correctCount">0</strong></div>
+          <div class="stat-card"><span>Salah</span><strong id="wrongCount">0</strong></div>
+          <div class="stat-card"><span>Total</span><strong id="totalCount">0</strong></div>
+          <div class="stat-card"><span>Nilai</span><strong id="scoreValue">0</strong></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="retryBtn" type="button">Coba Lagi</button>
+          <button class="btn secondary" id="reviewBtn" type="button">Tampilkan Review</button>
+          <button class="btn danger" id="clearHistoryBtn" type="button">Hapus Riwayat</button>
+          <button class="btn secondary" data-back-home type="button">Home</button>
+        </div>
+
+        <div id="reviewArea" class="table-wrap" hidden>
+          <table>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Pertanyaan</th>
+                <th>Jawabanmu</th>
+                <th>Jawaban Benar</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="reviewBody"></tbody>
+          </table>
+        </div>
+
+        <div id="historyArea" class="table-wrap" hidden>
+          <table>
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Nama</th>
+                <th>Nilai</th>
+                <th>Benar</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    const IMAGE_LINKS = [
+      "https://i.ibb.co/JjKg645k/image.png",
+      "https://i.ibb.co/5gKdK22H/image.png"
+    ];
+
+    const familyNames = [
+      { no: 1, kanji: "佐藤", kana: "さとう", romaji: "Satou / Sato" },
+      { no: 2, kanji: "鈴木", kana: "すずき", romaji: "Suzuki" },
+      { no: 3, kanji: "高橋", kana: "たかはし", romaji: "Takahashi" },
+      { no: 4, kanji: "田中", kana: "たなか", romaji: "Tanaka" },
+      { no: 5, kanji: "渡辺", kana: "わたなべ", romaji: "Watanabe" },
+      { no: 6, kanji: "伊藤", kana: "いとう", romaji: "Itou / Ito" },
+      { no: 7, kanji: "山本", kana: "やまもと", romaji: "Yamamoto" },
+      { no: 8, kanji: "中村", kana: "なかむら", romaji: "Nakamura" },
+      { no: 9, kanji: "小林", kana: "こばやし", romaji: "Kobayashi" },
+      { no: 10, kanji: "加藤", kana: "かとう", romaji: "Katou / Kato" },
+      { no: 11, kanji: "吉田", kana: "よしだ", romaji: "Yoshida" },
+      { no: 12, kanji: "山田", kana: "やまだ", romaji: "Yamada" },
+      { no: 13, kanji: "佐々木", kana: "ささき", romaji: "Sasaki" },
+      { no: 14, kanji: "斎藤", kana: "さいとう", romaji: "Saitou / Saito" },
+      { no: 15, kanji: "山口", kana: "やまぐち", romaji: "Yamaguchi" },
+      { no: 16, kanji: "松本", kana: "まつもと", romaji: "Matsumoto" },
+      { no: 17, kanji: "井上", kana: "いのうえ", romaji: "Inoue" },
+      { no: 18, kanji: "木村", kana: "きむら", romaji: "Kimura" },
+      { no: 19, kanji: "林", kana: "はやし", romaji: "Hayashi" },
+      { no: 20, kanji: "清水", kana: "しみず", romaji: "Shimizu" }
+    ];
+
+    const conceptQuestions = [
+      {
+        type: "Salam",
+        question: "Ungkapan yang digunakan ketika bertemu seseorang untuk pertama kali adalah ...",
+        answer: "初めまして。",
+        options: ["初めまして。", "おやすみなさい。", "いただきます。", "さようなら。"],
+        explanation: "初めまして dibaca Hajimemashite, digunakan saat pertama kali berkenalan."
+      },
+      {
+        type: "Salam",
+        question: "どうぞよろしくお願いします。 biasanya diucapkan setelah ...",
+        answer: "memperkenalkan diri",
+        options: ["memperkenalkan diri", "selesai makan", "sebelum tidur", "membeli tiket"],
+        explanation: "Ungkapan ini menunjukkan kesopanan setelah perkenalan."
+      },
+      {
+        type: "Sopan santun",
+        question: "Ketika pindah rumah di Jepang, tindakan yang sopan adalah ...",
+        answer: "memperkenalkan diri kepada tetangga baru",
+        options: ["memperkenalkan diri kepada tetangga baru", "langsung mengadakan pesta besar", "tidak menyapa siapa pun", "meminta kartu nama semua tetangga"],
+        explanation: "Materi gambar menjelaskan bahwa memperkenalkan diri kepada tetangga baru adalah sopan santun."
+      },
+      {
+        type: "Sopan santun",
+        question: "Contoh hadiah sederhana untuk tetangga baru adalah ...",
+        answer: "handuk, sabun, atau manisan",
+        options: ["handuk, sabun, atau manisan", "sepeda motor", "uang sewa", "komputer"],
+        explanation: "Hadiah sederhana dapat berupa handuk, sabun, atau manisan."
+      },
+      {
+        type: "Salam",
+        question: "Cara baca 初めまして adalah ...",
+        answer: "Hajimemashite",
+        options: ["Hajimemashite", "Itadakimasu", "Sumimasen", "Oyasuminasai"],
+        explanation: "初めまして dibaca Hajimemashite."
+      },
+      {
+        type: "Salam",
+        question: "どうぞよろしくお願いします。 memiliki nuansa makna ...",
+        answer: "mohon bantuannya / senang berkenalan",
+        options: ["mohon bantuannya / senang berkenalan", "selamat tidur", "maaf mengganggu", "sampai jumpa"],
+        explanation: "Ungkapan ini dipakai untuk menunjukkan kerendahan hati dan kesopanan dalam perkenalan."
+      }
+    ];
+
+    const screens = {
+      start: document.getElementById("startScreen"),
+      material: document.getElementById("materialScreen"),
+      quiz: document.getElementById("quizScreen"),
+      result: document.getElementById("resultScreen")
+    };
+
+    const studentNameInput = document.getElementById("studentName");
+    const nameGrid = document.getElementById("nameGrid");
+    const counterText = document.getElementById("counterText");
+    const questionInfo = document.getElementById("questionInfo");
+    const timeNumber = document.getElementById("timeNumber");
+    const timerFill = document.getElementById("timerFill");
+    const quizType = document.getElementById("quizType");
+    const questionText = document.getElementById("questionText");
+    const answerGrid = document.getElementById("answerGrid");
+    const feedback = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+    const toast = document.getElementById("toast");
+
+    let quizQuestions = [];
+    let currentIndex = 0;
+    let correctTotal = 0;
+    let userAnswers = [];
+    let selectedAnswer = null;
+    let timer = null;
+    let timeLeft = 30;
+    let hasAnswered = false;
+
+    function showScreen(name) {
+      Object.values(screens).forEach(screen => screen.classList.remove("active"));
+      screens[name].classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function shuffle(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function sampleWrongOptions(list, correct, key, amount = 3) {
+      return shuffle(list.filter(item => item[key] !== correct).map(item => item[key])).slice(0, amount);
+    }
+
+    function cleanRomaji(value) {
+      return value.replace(" / ", " atau ");
+    }
+
+    function buildQuestions() {
+      const readingQuestions = familyNames.map(item => {
+        const correct = cleanRomaji(item.romaji);
+        const wrong = sampleWrongOptions(familyNames, item.romaji, "romaji", 3).map(cleanRomaji);
+        return {
+          type: "Nama keluarga",
+          question: `Cara baca nama keluarga berikut adalah ... <span class="jp">${item.kanji}</span>`,
+          answer: correct,
+          options: shuffle([correct, ...wrong]),
+          explanation: `${item.kanji} dibaca ${item.kana} (${correct}).`
+        };
+      });
+
+      const kanjiQuestions = familyNames.slice(0, 14).map(item => {
+        const wrong = sampleWrongOptions(familyNames, item.kanji, "kanji", 3);
+        return {
+          type: "Kanji",
+          question: `Kanji yang sesuai untuk <strong>${cleanRomaji(item.romaji)}</strong> adalah ...`,
+          answer: item.kanji,
+          options: shuffle([item.kanji, ...wrong]),
+          explanation: `${cleanRomaji(item.romaji)} ditulis ${item.kanji}.`
+        };
+      });
+
+      return shuffle([...readingQuestions, ...kanjiQuestions, ...conceptQuestions]).slice(0, 30);
+    }
+
+    function renderNameCards() {
+      nameGrid.innerHTML = familyNames.map(item => `
+        <article class="name-card" data-number="${item.no}">
+          <div class="jp">${item.kanji}</div>
+          <div class="kana">${item.kana}</div>
+          <div class="romaji">${cleanRomaji(item.romaji)}</div>
+        </article>
+      `).join("");
+    }
+
+    function startQuiz() {
+      quizQuestions = buildQuestions();
+      currentIndex = 0;
+      correctTotal = 0;
+      userAnswers = [];
+      selectedAnswer = null;
+      hasAnswered = false;
+      showScreen("quiz");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      clearInterval(timer);
+      selectedAnswer = null;
+      hasAnswered = false;
+      nextBtn.disabled = true;
+      feedback.innerHTML = "";
+
+      const question = quizQuestions[currentIndex];
+      counterText.textContent = `Soal ${currentIndex + 1} dari ${quizQuestions.length}`;
+      questionInfo.textContent = "Pilih satu jawaban yang paling tepat.";
+      quizType.textContent = question.type;
+      questionText.innerHTML = question.question;
+      answerGrid.innerHTML = "";
+
+      question.options.forEach(option => {
+        const button = document.createElement("button");
+        button.className = "answer-btn";
+        button.type = "button";
+        button.innerHTML = option;
+        button.addEventListener("click", () => checkAnswer(option, button));
+        answerGrid.appendChild(button);
+      });
+
+      startTimer();
+    }
+
+    function startTimer() {
+      timeLeft = 30;
+      updateTimer();
+      timer = setInterval(() => {
+        timeLeft -= 1;
+        updateTimer();
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          checkAnswer(null, null);
+        }
+      }, 1000);
+    }
+
+    function updateTimer() {
+      timeNumber.textContent = timeLeft;
+      const percent = Math.max(0, (timeLeft / 30) * 100);
+      timerFill.style.width = `${percent}%`;
+      timerFill.classList.toggle("warning", timeLeft <= 10);
+    }
+
+    function checkAnswer(answer, clickedButton) {
+      if (hasAnswered) return;
+      hasAnswered = true;
+      clearInterval(timer);
+
+      const question = quizQuestions[currentIndex];
+      const isCorrect = answer === question.answer;
+      if (isCorrect) correctTotal += 1;
+
+      selectedAnswer = answer || "Tidak dijawab";
+      userAnswers.push({
+        question: question.question.replace(/<[^>]+>/g, ""),
+        selected: selectedAnswer,
+        correct: question.answer,
+        isCorrect,
+        explanation: question.explanation
+      });
+
+      [...answerGrid.children].forEach(button => {
+        button.disabled = true;
+        if (button.textContent === question.answer || button.innerHTML === question.answer) button.classList.add("correct");
+      });
+
+      if (clickedButton && !isCorrect) clickedButton.classList.add("wrong");
+
+      feedback.innerHTML = isCorrect
+        ? `✅ Benar! <strong>${question.explanation}</strong>`
+        : `❌ Jawaban benar: <strong>${question.answer}</strong><br>${question.explanation}`;
+
+      nextBtn.disabled = false;
+      nextBtn.textContent = currentIndex === quizQuestions.length - 1 ? "Lihat Hasil" : "Soal Berikutnya";
+    }
+
+    function nextQuestion() {
+      if (!hasAnswered) return;
+      if (currentIndex < quizQuestions.length - 1) {
+        currentIndex += 1;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      clearInterval(timer);
+      showScreen("result");
+
+      const total = quizQuestions.length;
+      const wrong = total - correctTotal;
+      const percent = Math.round((correctTotal / total) * 100);
+      const participant = studentNameInput.value.trim() || "Peserta";
+
+      document.getElementById("participantName").textContent = `Nama: ${participant}`;
+      document.getElementById("scorePercent").textContent = `${percent}%`;
+      document.getElementById("scoreCircle").style.setProperty("--score-deg", `${percent * 3.6}deg`);
+      document.getElementById("correctCount").textContent = correctTotal;
+      document.getElementById("wrongCount").textContent = wrong;
+      document.getElementById("totalCount").textContent = total;
+      document.getElementById("scoreValue").textContent = percent;
+
+      const comment = percent >= 90 ? "Luar biasa!" : percent >= 75 ? "Bagus sekali!" : percent >= 60 ? "Cukup baik!" : "Tetap semangat!";
+      const desc = percent >= 90
+        ? "Kamu sudah sangat menguasai materi nama keluarga dan salam."
+        : percent >= 75
+          ? "Pemahamanmu sudah kuat, tinggal ulangi beberapa nama yang mirip."
+          : percent >= 60
+            ? "Dasarnya sudah ada. Ulangi tabel nama keluarga agar lebih lancar."
+            : "Baca lagi materi, hafalkan cara baca, lalu coba kuisnya sekali lagi.";
+
+      document.getElementById("scoreComment").textContent = comment;
+      document.getElementById("scoreDescription").textContent = desc;
+
+      renderReview();
+      saveHistory({ participant, percent, correct: correctTotal, total, date: new Date().toLocaleString("id-ID") });
+      renderHistory();
+    }
+
+    function renderReview() {
+      const reviewBody = document.getElementById("reviewBody");
+      reviewBody.innerHTML = userAnswers.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${item.question}<br><small>${item.explanation}</small></td>
+          <td>${item.selected}</td>
+          <td>${item.correct}</td>
+          <td><span class="status-pill ${item.isCorrect ? "correct" : "wrong"}">${item.isCorrect ? "Benar" : "Salah"}</span></td>
+        </tr>
+      `).join("");
+    }
+
+    function getHistory() {
+      try {
+        return JSON.parse(localStorage.getItem("namaKeluargaQuizHistory")) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveHistory(data) {
+      const history = getHistory();
+      history.unshift(data);
+      localStorage.setItem("namaKeluargaQuizHistory", JSON.stringify(history.slice(0, 10)));
+    }
+
+    function renderHistory() {
+      const historyBody = document.getElementById("historyBody");
+      const history = getHistory();
+      historyBody.innerHTML = history.length ? history.map(item => `
+        <tr>
+          <td>${item.date}</td>
+          <td>${item.participant}</td>
+          <td>${item.percent}</td>
+          <td>${item.correct}</td>
+          <td>${item.total}</td>
+        </tr>
+      `).join("") : `<tr><td colspan="5">Belum ada riwayat nilai.</td></tr>`;
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    document.getElementById("startQuizBtn").addEventListener("click", startQuiz);
+    document.getElementById("materialStartBtn").addEventListener("click", startQuiz);
+    document.getElementById("openMaterialBtn").addEventListener("click", () => showScreen("material"));
+    document.getElementById("openHistoryBtn").addEventListener("click", () => {
+      showScreen("result");
+      document.getElementById("resultTitle").textContent = "Riwayat Nilai";
+      document.getElementById("resultMessage").textContent = "Riwayat tersimpan di browser perangkat ini.";
+      document.getElementById("participantName").textContent = "";
+      document.getElementById("scorePercent").textContent = "0%";
+      document.getElementById("scoreCircle").style.setProperty("--score-deg", "0deg");
+      document.getElementById("scoreComment").textContent = "Belum mulai kuis";
+      document.getElementById("scoreDescription").textContent = "Mulai kuis untuk mendapatkan nilai baru.";
+      document.getElementById("correctCount").textContent = "-";
+      document.getElementById("wrongCount").textContent = "-";
+      document.getElementById("totalCount").textContent = "-";
+      document.getElementById("scoreValue").textContent = "-";
+      document.getElementById("reviewArea").hidden = true;
+      document.getElementById("historyArea").hidden = false;
+      renderHistory();
+    });
+
+    nextBtn.addEventListener("click", nextQuestion);
+    document.getElementById("quitBtn").addEventListener("click", () => {
+      clearInterval(timer);
+      showScreen("start");
+    });
+    document.getElementById("retryBtn").addEventListener("click", startQuiz);
+    document.getElementById("reviewBtn").addEventListener("click", () => {
+      const area = document.getElementById("reviewArea");
+      const history = document.getElementById("historyArea");
+      history.hidden = true;
+      area.hidden = !area.hidden;
+    });
+    document.getElementById("clearHistoryBtn").addEventListener("click", () => {
+      localStorage.removeItem("namaKeluargaQuizHistory");
+      renderHistory();
+      showToast("Riwayat nilai dihapus.");
+    });
+    document.querySelectorAll("[data-back-home]").forEach(btn => btn.addEventListener("click", () => showScreen("start")));
+
+    renderNameCards();
+    renderHistory();
+  </script>
+</body>
+</html>
