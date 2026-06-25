@@ -6,6 +6,8 @@
   <title>Flashcard Kosakata Jepang</title>
   <link rel="dns-prefetch" href="https://i.postimg.cc" />
   <link rel="preconnect" href="https://i.postimg.cc" crossorigin />
+  <link rel="dns-prefetch" href="https://i.ibb.co" />
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -146,7 +148,8 @@
     .login-summary,
     .participant-name,
     .stat-card,
-    .modal-card {
+    .login-modal-card,
+    .example-modal-card {
       overflow-wrap: anywhere;
       word-break: normal;
     }
@@ -732,6 +735,10 @@
       color: #6b7280;
     }
 
+    .fiction-toggle[hidden] {
+      display: none;
+    }
+
     #startScreen .hero-info-row {
       justify-content: center;
       gap: 12px;
@@ -963,8 +970,8 @@
 
     .flashcard {
       width: min(100%, 620px);
-      height: clamp(440px, 60svh, 560px);
-      min-height: 440px;
+      height: clamp(560px, 72svh, 700px);
+      min-height: 560px;
       margin: 0 auto;
       perspective: 1200px;
     }
@@ -1005,25 +1012,30 @@
       transform: rotateY(0deg) translateZ(1px);
       opacity: 1;
       visibility: visible;
+      z-index: 2;
     }
 
     .card-back {
       transform: rotateY(180deg) translateZ(1px);
       flex-direction: column;
-      padding: clamp(18px, 3.4vw, 30px);
+      padding: clamp(18px, 3.4vw, 28px);
       overflow: hidden;
       opacity: 0;
       visibility: hidden;
+      z-index: 1;
     }
 
     .flashcard.flipped .card-front {
       opacity: 0;
       visibility: hidden;
+      z-index: 1;
+      pointer-events: none;
     }
 
     .flashcard.flipped .card-back {
       opacity: 1;
       visibility: visible;
+      z-index: 2;
     }
 
     .card-front::before,
@@ -1040,18 +1052,20 @@
       width: 100%;
       height: 100%;
       display: grid;
-      grid-template-rows: minmax(0, 58%) auto;
-      gap: clamp(10px, 1.8vw, 16px);
+      grid-template-rows: minmax(0, 58%) minmax(155px, max-content);
+      gap: clamp(12px, 1.8vw, 16px);
       align-items: center;
       justify-items: center;
       overflow: hidden;
+      min-width: 0;
+      min-height: 0;
     }
 
     .illustration-wrap {
-      width: min(72%, 300px);
+      width: min(88%, 420px);
       height: 100%;
       max-width: 100%;
-      max-height: 245px;
+      max-height: 285px;
       display: grid;
       place-items: center;
       position: relative;
@@ -1060,6 +1074,10 @@
       border: 0;
       box-shadow: none;
       overflow: hidden;
+      min-width: 0;
+      min-height: 0;
+      align-self: stretch;
+      grid-row: 1;
     }
 
     .illustration-wrap::before {
@@ -1073,19 +1091,54 @@
       display: grid;
       place-items: center;
       overflow: hidden;
+      min-width: 0;
+      min-height: 0;
+      font-size: clamp(52px, 14vw, 92px);
+      line-height: 1;
+      filter: none;
     }
 
     .illustration img {
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
+      width: 82%;
+      height: 82%;
+      max-width: 82%;
+      max-height: 82%;
       display: block;
       object-fit: contain;
       object-position: center center;
+      box-sizing: border-box;
+      padding: 0;
       border: 0;
       box-shadow: none;
       background: transparent;
+    }
+
+    .illustration.image-landscape img {
+      width: 88%;
+      height: auto;
+      max-width: 88%;
+      max-height: 86%;
+    }
+
+    .illustration.image-portrait img {
+      width: auto;
+      height: 82%;
+      max-width: 72%;
+      max-height: 82%;
+    }
+
+    .illustration.image-tall img {
+      width: auto;
+      height: 76%;
+      max-width: 66%;
+      max-height: 76%;
+    }
+
+    .illustration.image-square img {
+      width: 78%;
+      height: 78%;
+      max-width: 78%;
+      max-height: 78%;
     }
 
     .image-fallback {
@@ -1106,7 +1159,7 @@
 
     .jp-box {
       width: min(96%, 520px);
-      min-height: 120px;
+      min-height: 150px;
       display: grid;
       align-content: center;
       justify-items: center;
@@ -1116,6 +1169,9 @@
       padding: 0 8px;
       overflow-wrap: anywhere;
       word-break: normal;
+      z-index: 2;
+      grid-row: 2;
+      align-self: center;
     }
 
     .card-text {
@@ -1131,11 +1187,10 @@
       text-align: center;
       word-wrap: break-word;
       overflow-wrap: anywhere;
-      overflow: hidden;
     }
 
     .card-text.long {
-      font-size: clamp(13px, 2.35vw, 18px);
+      font-size: clamp(14px, 2.6vw, 18px);
       line-height: 1.45;
     }
 
@@ -1149,8 +1204,6 @@
       text-align: center;
       word-break: keep-all;
       overflow-wrap: anywhere;
-      max-width: 100%;
-      overflow: visible;
     }
 
     .jp-main-display.long {
@@ -1175,8 +1228,6 @@
       text-align: center;
       word-break: break-word;
       overflow-wrap: anywhere;
-      max-width: 100%;
-      overflow: visible;
     }
 
     .jp-reading.long {
@@ -1489,6 +1540,8 @@
       min-height: 44px;
       font-size: 28px;
       line-height: 1;
+      display: grid;
+      place-items: center;
       box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
     }
 
@@ -1950,8 +2003,8 @@
       }
 
       .flashcard {
-        height: clamp(470px, 72svh, 580px);
-        min-height: 470px;
+        height: clamp(560px, 76svh, 700px);
+        min-height: 560px;
       }
 
       .card-face {
@@ -1959,9 +2012,9 @@
       }
 
       .illustration-wrap {
-        width: min(74%, 300px);
+        width: min(88%, 390px);
         height: 100%;
-        max-height: 235px;
+        max-height: 270px;
         border-radius: var(--radius-lg);
         overflow: hidden;
       }
@@ -2072,34 +2125,27 @@
       }
 
       .flashcard {
-        height: clamp(520px, 76svh, 620px);
-        min-height: 520px;
+        height: clamp(590px, 84svh, 730px);
+        min-height: 590px;
       }
 
       .back-content {
-        grid-template-rows: minmax(0, 56%) auto;
-        gap: 10px;
+        grid-template-rows: minmax(0, 56%) minmax(165px, max-content);
+        gap: 12px;
         overflow: hidden;
       }
 
       .illustration-wrap {
-        width: min(78%, 270px);
+        width: min(86%, 320px);
         height: 100%;
-        max-height: 220px;
+        max-height: 250px;
         overflow: hidden;
       }
 
       .jp-box {
-        min-height: 125px;
+        min-height: 165px;
         padding-inline: 8px;
         gap: 6px;
-      }
-
-      .illustration img {
-        width: auto;
-        height: auto;
-        max-width: 100%;
-        max-height: 100%;
       }
 
       .jp-main-display {
@@ -2111,10 +2157,6 @@
         font-size: clamp(20px, 6vw, 30px);
       }
 
-      .jp-reading {
-        font-size: clamp(13px, 4vw, 17px);
-      }
-
       #closeLoginModal {
         top: 12px;
         right: 12px;
@@ -2123,6 +2165,10 @@
         min-width: 44px;
         min-height: 44px;
         font-size: 28px;
+      }
+
+      .jp-reading {
+        font-size: clamp(13px, 4vw, 17px);
       }
 
       .stats-grid {
@@ -2155,8 +2201,8 @@
 
     @media (max-width: 430px) {
       .flashcard {
-        height: clamp(560px, 80svh, 660px);
-        min-height: 560px;
+        height: clamp(590px, 84svh, 730px);
+        min-height: 590px;
       }
 
       .card-front,
@@ -2165,21 +2211,21 @@
       }
 
       .back-content {
-        grid-template-rows: minmax(0, 56%) auto;
-        gap: 10px;
+        grid-template-rows: minmax(0, 56%) minmax(165px, max-content);
+        gap: 12px;
         overflow: hidden;
       }
 
       .illustration-wrap {
-        width: min(82%, 280px);
+        width: min(86%, 320px);
         height: 100%;
-        max-height: 230px;
+        max-height: 250px;
         overflow: hidden;
       }
 
       .jp-box {
         width: 100%;
-        min-height: 125px;
+        min-height: 165px;
         padding-inline: 8px;
         gap: 5px;
       }
@@ -2224,25 +2270,25 @@
 
     @media (max-width: 390px) {
       .flashcard {
-        height: clamp(540px, 80svh, 640px);
-        min-height: 540px;
+        height: clamp(610px, 88svh, 750px);
+        min-height: 610px;
       }
 
       .back-content {
-        grid-template-rows: minmax(0, 56%) auto;
-        gap: 10px;
+        grid-template-rows: minmax(0, 54%) minmax(170px, max-content);
+        gap: 12px;
         overflow: hidden;
       }
 
       .illustration-wrap {
-        width: min(80%, 245px);
+        width: min(84%, 285px);
         height: 100%;
-        max-height: 205px;
+        max-height: 230px;
         overflow: hidden;
       }
 
       .jp-box {
-        min-height: 130px;
+        min-height: 170px;
       }
 
       .jp-main-display.long {
@@ -2282,8 +2328,8 @@
       }
 
       .flashcard {
-        height: clamp(540px, 80svh, 640px);
-        min-height: 540px;
+        height: clamp(610px, 88svh, 750px);
+        min-height: 610px;
       }
 
       .card-back {
@@ -2291,16 +2337,16 @@
       }
 
       .back-content {
-        grid-template-rows: minmax(0, 56%) auto;
-        gap: 10px;
+        grid-template-rows: minmax(0, 54%) minmax(170px, max-content);
+        gap: 12px;
         overflow: hidden;
       }
     }
 
     @media (max-width: 360px) {
       .flashcard {
-        height: clamp(540px, 80svh, 640px);
-        min-height: 540px;
+        height: clamp(610px, 88svh, 750px);
+        min-height: 610px;
       }
 
       .card-front,
@@ -2309,14 +2355,14 @@
       }
 
       .illustration-wrap {
-        width: min(80%, 245px);
+        width: min(84%, 285px);
         height: 100%;
-        max-height: 205px;
+        max-height: 230px;
         overflow: hidden;
       }
 
       .jp-box {
-        min-height: 130px;
+        min-height: 170px;
         gap: 4px;
       }
 
@@ -2348,7 +2394,7 @@
             <button class="language-btn" data-lang="ja" type="button">日本語</button>
           </div>
 
-          <button id="fictionToggle" class="fiction-toggle" type="button" aria-pressed="true" aria-label="Kosakata fiksi aktif" data-i18n-aria-label="fictionToggleAriaOn">
+          <button id="fictionToggle" class="fiction-toggle" type="button" aria-pressed="true" aria-label="Kosakata fiksi aktif" data-i18n-aria-label="fictionToggleAriaOn" hidden>
             <span class="fiction-label" data-i18n="fictionToggleLabel">Fiksi</span>
             <span class="fiction-state" id="fictionToggleState">ON</span>
             <span class="fiction-switch" aria-hidden="true"></span>
@@ -2365,7 +2411,7 @@
               </div>
               <div class="hero-info-text">
                 <span data-i18n="cardCountLabel">Jumlah kartu</span>
-                <strong data-i18n="cardCountValue">47 kosakata</strong>
+                <strong data-i18n="cardCountValue">66 kosakata</strong>
               </div>
             </div>
             <div class="hero-info-card">
@@ -2381,8 +2427,8 @@
               </div>
             </div>
           </div>
-          <h1 data-i18n="homeTitle">Latihan kosakata Jepang dengan kartu interaktif</h1>
-          <p data-i18n-html="homeDescription">Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.</p>
+          <h1 data-i18n="homeTitle">Latihan kosakata negara, orang, dan bahasa</h1>
+          <p data-i18n-html="homeDescription">Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Kartu berisi kosakata negara, warga negara, dan bahasa dalam bahasa Jepang.</p>
 
           <div class="username-box">
             <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="usernameButton">Isi Username</button>
@@ -2628,344 +2674,81 @@
 
     const firebaseApp = initializeApp(firebaseConfig);
     const db = getFirestore(firebaseApp);
-    const resultsCollection = collection(db, "quizResults_bab1");
+    const resultsCollection = collection(db, "quizResults_kata_referensi_informasi_bab1");
 
     // =========================
     // Data array kosakata
     // =========================
     const vocabulary = [
-  {
-    "indonesia": "saya",
-    "kanji": "",
-    "kana": "わたし",
-    "romaji": "watashi",
-    "gambar": "https://i.postimg.cc/jq6WjpbX/watashi.png"
-  },
-  {
-    "indonesia": "Anda",
-    "kanji": "",
-    "kana": "あなた",
-    "romaji": "anata",
-    "gambar": "https://i.postimg.cc/WpmD4BvS/anata.png"
-  },
-  {
-    "indonesia": "orang itu",
-    "kanji": "あの人",
-    "kana": "あのひと",
-    "romaji": "ano hito",
-    "gambar": "https://i.postimg.cc/bY0Gv7hk/ano-ren.png"
-  },
-  {
-    "indonesia": "orang itu, beliau. Bentuk sopan dari あの人.",
-    "kanji": "あの方",
-    "kana": "あのかた",
-    "romaji": "ano kata",
-    "gambar": "https://i.postimg.cc/v871mJst/ano-fang.png"
-  },
-  {
-    "indonesia": "Sdr. ~, Bapak ~, Ibu ~. Akhiran untuk mengekspresikan kesopanan yang diletakkan di belakang nama orang.",
-    "kanji": "",
-    "kana": "～さん",
-    "romaji": "-san",
-    "gambar": "https://i.postimg.cc/7Yx5JKHj/san.png"
-  },
-  {
-    "indonesia": "Akhiran yang dipakai untuk anak laki-laki dan anak perempuan sebagai pengganti ～さん yang diletakkan di belakang nama anak.",
-    "kanji": "",
-    "kana": "～ちゃん",
-    "romaji": "-chan",
-    "gambar": "https://i.postimg.cc/7Yx5JKHd/chan.png"
-  },
-  {
-    "indonesia": "orang ~. Akhiran yang menyatakan warga negara.",
-    "kanji": "～人",
-    "kana": "～じん",
-    "romaji": "-jin",
-    "gambar": "https://i.postimg.cc/J41sHp7V/ren.png",
-    "contoh": "アメリカ人（アメリカじん）= orang Amerika Serikat."
-  },
-  {
-    "indonesia": "guru, dosen. Tidak dipakai jika menyebutkan pekerjaan sendiri.",
-    "kanji": "先生",
-    "kana": "せんせい",
-    "romaji": "sensei",
-    "gambar": "https://i.postimg.cc/QxXFKfNZ/xian-sheng.png"
-  },
-  {
-    "indonesia": "guru, dosen.",
-    "kanji": "教師",
-    "kana": "きょうし",
-    "romaji": "kyoushi",
-    "gambar": "https://i.postimg.cc/jdZLHyCS/jiao-shi.png"
-  },
-  {
-    "indonesia": "mahasiswa.",
-    "kanji": "学生",
-    "kana": "がくせい",
-    "romaji": "gakusei",
-    "gambar": "https://i.postimg.cc/X7VrBsNY/xue-sheng.png"
-  },
-  {
-    "indonesia": "karyawan perusahaan.",
-    "kanji": "会社員",
-    "kana": "かいしゃいん",
-    "romaji": "kaishain",
-    "gambar": "https://i.postimg.cc/282VQn3W/hui-she-yuan.png"
-  },
-  {
-    "indonesia": "karyawan perusahaan. Dipakai bersama dengan nama perusahaan.",
-    "kanji": "社員",
-    "kana": "しゃいん",
-    "romaji": "shain",
-    "gambar": "https://i.postimg.cc/FsD7y01J/she-yuan.png",
-    "contoh": "IMC の社員（IMC のしゃいん）= karyawan perusahaan IMC."
-  },
-  {
-    "indonesia": "pegawai bank.",
-    "kanji": "銀行員",
-    "kana": "ぎんこういん",
-    "romaji": "ginkouin",
-    "gambar": "https://i.postimg.cc/qvqgjgCc/yin-xing-yuan.png"
-  },
-  {
-    "indonesia": "dokter.",
-    "kanji": "医者",
-    "kana": "いしゃ",
-    "romaji": "isha",
-    "gambar": "https://i.postimg.cc/hPpfLVh9/yi-zhe.png"
-  },
-  {
-    "indonesia": "peneliti.",
-    "kanji": "研究者",
-    "kana": "けんきゅうしゃ",
-    "romaji": "kenkyuusha",
-    "gambar": "https://i.postimg.cc/FHz1D1L4/yan-jiu-zhe.png"
-  },
-  {
-    "indonesia": "universitas.",
-    "kanji": "大学",
-    "kana": "だいがく",
-    "romaji": "daigaku",
-    "gambar": "https://i.postimg.cc/3xqN67gs/da-xue.png"
-  },
-  {
-    "indonesia": "rumah sakit.",
-    "kanji": "病院",
-    "kana": "びょういん",
-    "romaji": "byouin",
-    "gambar": "https://i.postimg.cc/g27j5dVG/bing-yuan.png"
-  },
-  {
-    "indonesia": "siapa",
-    "kanji": "誰",
-    "kana": "だれ",
-    "romaji": "dare",
-    "gambar": "https://i.postimg.cc/VkhvT1qP/shui.png"
-  },
-  {
-    "indonesia": "siapa. Bentuk sopan dari だれ.",
-    "kanji": "",
-    "kana": "どなた",
-    "romaji": "donata",
-    "gambar": "https://i.postimg.cc/FKJzXqpK/donata.png"
-  },
-  {
-    "indonesia": "~ tahun. Akhiran untuk menyatakan umur.",
-    "kanji": "～歳",
-    "kana": "～さい",
-    "romaji": "-sai",
-    "gambar": "https://i.postimg.cc/Xvyq6hL8/sui.png"
-  },
-  {
-    "indonesia": "umur berapa",
-    "kanji": "何歳",
-    "kana": "なんさい",
-    "romaji": "nansai",
-    "gambar": "https://i.postimg.cc/CKf5pt74/he-sui.png"
-  },
-  {
-    "indonesia": "umur berapa. Bentuk sopan dari なんさい.",
-    "kanji": "",
-    "kana": "おいくつ",
-    "romaji": "oikutsu",
-    "gambar": "https://i.postimg.cc/fb0yQFCH/oikutsu.png"
-  },
-  {
-    "indonesia": "ya.",
-    "kanji": "",
-    "kana": "はい",
-    "romaji": "hai",
-    "gambar": "https://i.postimg.cc/d120Lyzd/hai.png"
-  },
-  {
-    "indonesia": "tidak, bukan.",
-    "kanji": "",
-    "kana": "いいえ",
-    "romaji": "iie",
-    "gambar": "https://i.postimg.cc/JnNhGk9D/iie.png"
-  },
-  {
-    "indonesia": "Perkenalkan. Ucapan salam pada waktu pertama kali berkenalan.",
-    "kanji": "初めまして",
-    "kana": "はじめまして",
-    "romaji": "hajimemashite",
-    "gambar": "https://i.postimg.cc/FRyK7L2j/chumemashite.png"
-  },
-  {
-    "indonesia": "datang dari ~, berasal dari ~.",
-    "kanji": "～から来ました",
-    "kana": "～からきました",
-    "romaji": "-kara kimashita",
-    "gambar": "https://i.postimg.cc/hG7vRws5/kara-laimashita.png"
-  },
-  {
-    "indonesia": "Salam kenal. Ucapan terakhir untuk perkenalan diri.",
-    "kanji": "どうぞよろしくお願いします",
-    "kana": "どうぞよろしくおねがいします",
-    "romaji": "douzo yoroshiku onegaishimasu",
-    "gambar": "https://i.postimg.cc/C1GKzqWf/douzoyoroshikuo-yuanishimasu.png"
-  },
-  {
-    "indonesia": "permisi, maaf. Digunakan ketika bertanya tentang hal yang pribadi seperti nama, alamat, dan sebagainya.",
-    "kanji": "失礼ですが",
-    "kana": "しつれいですが",
-    "romaji": "shitsurei desu ga",
-    "gambar": "https://i.postimg.cc/nz4LCD6m/shi-lidesuga.png"
-  },
-  {
-    "indonesia": "Siapa namanya?",
-    "kanji": "お名前は？",
-    "kana": "おなまえは？",
-    "romaji": "onamae wa?",
-    "gambar": "https://i.postimg.cc/C5wxDKgJ/o-ming-qianha.png"
-  },
-  {
-    "indonesia": "Ini adalah Bapak, Ibu, atau Sdr. ~.",
-    "kanji": "こちらは～さんです",
-    "kana": "こちらは～さんです",
-    "romaji": "kochira wa -san desu",
-    "gambar": "https://i.postimg.cc/zvqGWfrP/kochiraha-sandesu.png"
-  },
-  {
-    "indonesia": "Amerika Serikat.",
-    "kanji": "",
-    "kana": "アメリカ",
-    "romaji": "Amerika",
-    "gambar": "https://i.postimg.cc/j2RSNjb3/amerika.png"
-  },
-  {
-    "indonesia": "Inggris.",
-    "kanji": "",
-    "kana": "イギリス",
-    "romaji": "Igirisu",
-    "gambar": "https://i.postimg.cc/0j9ymNsF/igirisu.png"
-  },
-  {
-    "indonesia": "India.",
-    "kanji": "",
-    "kana": "インド",
-    "romaji": "Indo",
-    "gambar": "https://i.postimg.cc/J0K4QWrv/indo.png"
-  },
-  {
-    "indonesia": "Indonesia.",
-    "kanji": "",
-    "kana": "インドネシア",
-    "romaji": "Indoneshia",
-    "gambar": "https://i.postimg.cc/MHtKY8ZS/indoneshia.png"
-  },
-  {
-    "indonesia": "Korea Selatan.",
-    "kanji": "韓国",
-    "kana": "かんこく",
-    "romaji": "Kankoku",
-    "gambar": "https://i.postimg.cc/vTXHvd8c/han-guo.png"
-  },
-  {
-    "indonesia": "Thailand.",
-    "kanji": "",
-    "kana": "タイ",
-    "romaji": "Tai",
-    "gambar": "https://i.postimg.cc/WzSb7Ppp/tai.png"
-  },
-  {
-    "indonesia": "Cina.",
-    "kanji": "中国",
-    "kana": "ちゅうごく",
-    "romaji": "Chuugoku",
-    "gambar": "https://i.postimg.cc/sfJXz5Y5/zhong-guo.png"
-  },
-  {
-    "indonesia": "Jerman.",
-    "kanji": "",
-    "kana": "ドイツ",
-    "romaji": "Doitsu",
-    "gambar": "https://i.postimg.cc/7PN64S3W/doitsu.png"
-  },
-  {
-    "indonesia": "Jepang.",
-    "kanji": "日本",
-    "kana": "にほん",
-    "romaji": "Nihon",
-    "gambar": "https://i.postimg.cc/tRzTbF3c/ri-ben.png"
-  },
-  {
-    "indonesia": "Brasil.",
-    "kanji": "",
-    "kana": "ブラジル",
-    "romaji": "Burajiru",
-    "gambar": "https://i.postimg.cc/2jx6YnQ0/burajiru.png"
-  },
-  {
-    "indonesia": "IMC. Perusahaan fiksi.",
-    "kanji": "",
-    "kana": "IMC",
-    "romaji": "ai emu shii",
-    "gambar": "https://i.postimg.cc/ZYLRm6Ph/IMC.png"
-  },
-  {
-    "indonesia": "Power Denki. Perusahaan fiksi.",
-    "kanji": "パワー電気",
-    "kana": "パワーでんき",
-    "romaji": "Pawaa Denki",
-    "gambar": "https://i.postimg.cc/022NyrZv/pawa-dian-qi.png"
-  },
-  {
-    "indonesia": "Brazil Air. Perusahaan fiksi.",
-    "kanji": "",
-    "kana": "ブラジルエアー",
-    "romaji": "Burajiru Eaa",
-    "gambar": "https://i.postimg.cc/pXXdLykX/burajiruea.png"
-  },
-  {
-    "indonesia": "AKC. Organisasi fiksi.",
-    "kanji": "",
-    "kana": "AKC",
-    "romaji": "ee kee shii",
-    "gambar": "https://i.postimg.cc/gkk02r4r/AKC.png"
-  },
-  {
-    "indonesia": "Rumah Sakit Kobe. Rumah sakit fiksi.",
-    "kanji": "神戸病院",
-    "kana": "こうべびょういん",
-    "romaji": "Koube Byouin",
-    "gambar": "https://i.postimg.cc/3JJwxW9D/shen-hu-bing-yuan.png"
-  },
-  {
-    "indonesia": "Universitas Sakura. Universitas fiksi.",
-    "kanji": "さくら大学",
-    "kana": "さくらだいがく",
-    "romaji": "Sakura Daigaku",
-    "gambar": "https://i.postimg.cc/tCS4ZymV/sakura-da-xue.png"
-  },
-  {
-    "indonesia": "Universitas Fuji. Universitas fiksi.",
-    "kanji": "富士大学",
-    "kana": "ふじだいがく",
-    "romaji": "Fuji Daigaku",
-    "gambar": "https://i.postimg.cc/Pr35phFw/fu-shi-da-xue.png"
-  }
-];
+      { indonesia: "Amerika Serikat", kanji: "", kana: "アメリカ", romaji: "Amerika", gambar: "https://i.ibb.co/ym9mxfRW/image.png" },
+      { indonesia: "Inggris", kanji: "", kana: "イギリス", romaji: "Igirisu", gambar: "https://i.ibb.co/0RKNNf2Q/image.png" },
+      { indonesia: "Italia", kanji: "", kana: "イタリア", romaji: "Itaria", gambar: "https://i.ibb.co/G4V9wDkH/image.png" },
+      { indonesia: "Iran", kanji: "", kana: "イラン", romaji: "Iran", gambar: "https://i.ibb.co/tpbrLFgY/image.png" },
+      { indonesia: "India", kanji: "", kana: "インド", romaji: "Indo", gambar: "https://i.ibb.co/73HnR46/image.png" },
+      { indonesia: "Indonesia", kanji: "", kana: "インドネシア", romaji: "Indoneshia", gambar: "https://i.ibb.co/GfXpd6zw/image.png" },
+      { indonesia: "Mesir", kanji: "", kana: "エジプト", romaji: "Ejiputo", gambar: "https://i.ibb.co/PvCstZ6F/image.png" },
+      { indonesia: "Australia", kanji: "", kana: "オーストラリア", romaji: "Oosutoraria", gambar: "https://i.ibb.co/DHD3jp9G/image.png" },
+      { indonesia: "Kanada", kanji: "", kana: "カナダ", romaji: "Kanada", gambar: "https://i.ibb.co/svvD6fz0/image.png" },
+      { indonesia: "Korea Selatan", kanji: "韓国", kana: "かんこく", romaji: "Kankoku", gambar: "https://i.ibb.co/7dcsPq64/image.png" },
+      { indonesia: "Arab Saudi", kanji: "", kana: "サウジアラビア", romaji: "Sauji Arabia", gambar: "https://i.ibb.co/WvFFD8yh/image.png" },
+      { indonesia: "Singapura", kanji: "", kana: "シンガポール", romaji: "Shingapooru", gambar: "https://i.ibb.co/pr5c8rkz/image.png" },
+      { indonesia: "Spanyol", kanji: "", kana: "スペイン", romaji: "Supein", gambar: "https://i.ibb.co/8ns0Rqqm/image.png" },
+      { indonesia: "Thailand", kanji: "", kana: "タイ", romaji: "Tai", gambar: "https://i.ibb.co/5Wb5BHMd/image.png" },
+      { indonesia: "Cina", kanji: "中国", kana: "ちゅうごく", romaji: "Chuugoku", gambar: "https://i.ibb.co/3XgkJsp/image.png" },
+      { indonesia: "Jerman", kanji: "", kana: "ドイツ", romaji: "Doitsu", gambar: "https://i.ibb.co/R4yhH54v/image.png" },
+      { indonesia: "Jepang", kanji: "日本", kana: "にほん", romaji: "Nihon", gambar: "https://i.ibb.co/kgXHMHCq/image.png" },
+      { indonesia: "Perancis", kanji: "", kana: "フランス", romaji: "Furansu", gambar: "https://i.ibb.co/spdG5ZLX/image.png" },
+      { indonesia: "Filipina", kanji: "", kana: "フィリピン", romaji: "Firipin", gambar: "https://i.ibb.co/LXsWrqcw/image.png" },
+      { indonesia: "Brazil", kanji: "", kana: "ブラジル", romaji: "Burajiru", gambar: "https://i.ibb.co/N2TkTBsq/image.png" },
+      { indonesia: "Vietnam", kanji: "", kana: "ベトナム", romaji: "Betonamu", gambar: "https://i.ibb.co/B2MvmWZx/image.png" },
+      { indonesia: "Malaysia", kanji: "", kana: "マレーシア", romaji: "Mareeshia", gambar: "https://i.ibb.co/8gZk22Xz/image.png" },
+      { indonesia: "Meksiko", kanji: "", kana: "メキシコ", romaji: "Mekishiko", gambar: "https://i.ibb.co/xSkvzdF3/image.png" },
+      { indonesia: "Rusia", kanji: "", kana: "ロシア", romaji: "Roshia", gambar: "https://i.ibb.co/VRWsm7r/image.png" },
+
+      { indonesia: "Orang Amerika Serikat", kanji: "", kana: "アメリカ人", romaji: "Amerika-jin", gambar: "https://i.ibb.co/Z6S0SxKW/image.png" },
+      { indonesia: "Orang Inggris", kanji: "", kana: "イギリス人", romaji: "Igirisu-jin", gambar: "https://i.ibb.co/5gxQWKbM/image.png" },
+      { indonesia: "Orang Italia", kanji: "", kana: "イタリア人", romaji: "Itaria-jin", gambar: "https://i.ibb.co/vx9ZrTXQ/image.png" },
+      { indonesia: "Orang Iran", kanji: "", kana: "イラン人", romaji: "Iran-jin", gambar: "https://i.ibb.co/tP3WQtbG/image.png" },
+      { indonesia: "Orang India", kanji: "", kana: "インド人", romaji: "Indo-jin", gambar: "https://i.ibb.co/MDwp1DQ5/image.png" },
+      { indonesia: "Orang Indonesia", kanji: "", kana: "インドネシア人", romaji: "Indoneshia-jin", gambar: "https://i.ibb.co/DDX6Xmj8/image.png" },
+      { indonesia: "Orang Mesir", kanji: "", kana: "エジプト人", romaji: "Ejiputo-jin", gambar: "https://i.ibb.co/v6Xn0sVT/image.png" },
+      { indonesia: "Orang Australia", kanji: "", kana: "オーストラリア人", romaji: "Oosutoraria-jin", gambar: "https://i.ibb.co/Z1b9YML5/image.png" },
+      { indonesia: "Orang Kanada", kanji: "", kana: "カナダ人", romaji: "Kanada-jin", gambar: "https://i.ibb.co/zWhjqpp5/image.png" },
+      { indonesia: "Orang Korea Selatan", kanji: "韓国人", kana: "かんこくじん", romaji: "Kankoku-jin", gambar: "https://i.ibb.co/XkNJBrTt/image.png" },
+      { indonesia: "Orang Arab Saudi", kanji: "", kana: "サウジアラビア人", romaji: "Sauji Arabia-jin", gambar: "https://i.ibb.co/GQxJJtYW/image.png" },
+      { indonesia: "Orang Singapura", kanji: "", kana: "シンガポール人", romaji: "Shingapooru-jin", gambar: "https://i.ibb.co/RpwnQXM0/image.png" },
+      { indonesia: "Orang Spanyol", kanji: "", kana: "スペイン人", romaji: "Supein-jin", gambar: "https://i.ibb.co/dskhYD6j/image.png" },
+      { indonesia: "Orang Thailand", kanji: "", kana: "タイ人", romaji: "Tai-jin", gambar: "https://i.ibb.co/TxwvRDh6/image.png" },
+      { indonesia: "Orang Cina", kanji: "中国人", kana: "ちゅうごくじん", romaji: "Chuugoku-jin", gambar: "https://i.ibb.co/6RvvnTXb/image.png" },
+      { indonesia: "Orang Jerman", kanji: "", kana: "ドイツ人", romaji: "Doitsu-jin", gambar: "https://i.ibb.co/d4600BTz/image.png" },
+      { indonesia: "Orang Jepang", kanji: "日本人", kana: "にほんじん", romaji: "Nihon-jin", gambar: "https://i.ibb.co/HDfT5Pmh/image.png" },
+      { indonesia: "Orang Perancis", kanji: "", kana: "フランス人", romaji: "Furansu-jin", gambar: "https://i.ibb.co/pVYqKdh/image.png" },
+      { indonesia: "Orang Filipina", kanji: "", kana: "フィリピン人", romaji: "Firipin-jin", gambar: "https://i.ibb.co/tWDBMMm/image.png" },
+      { indonesia: "Orang Brazil", kanji: "", kana: "ブラジル人", romaji: "Burajiru-jin", gambar: "https://i.ibb.co/QjCSCbqV/image.png" },
+      { indonesia: "Orang Vietnam", kanji: "", kana: "ベトナム人", romaji: "Betonamu-jin", gambar: "https://i.ibb.co/JLTMZ7t/image.png" },
+      { indonesia: "Orang Malaysia", kanji: "", kana: "マレーシア人", romaji: "Mareeshia-jin", gambar: "https://i.ibb.co/jk2bnVQH/image.png" },
+      { indonesia: "Orang Meksiko", kanji: "", kana: "メキシコ人", romaji: "Mekishiko-jin", gambar: "https://i.ibb.co/hrWRRwT/image.png" },
+      { indonesia: "Orang Rusia", kanji: "", kana: "ロシア人", romaji: "Roshia-jin", gambar: "https://i.ibb.co/9HZvvM3q/image.png" },
+
+      { indonesia: "Bahasa Inggris", kanji: "英語", kana: "えいご", romaji: "Eigo", gambar: "https://i.ibb.co/9HCX43nG/image.png" },
+      { indonesia: "Bahasa Italia", kanji: "", kana: "イタリア語", romaji: "Itaria-go", gambar: "https://i.ibb.co/MxhDWdWW/image.png" },
+      { indonesia: "Bahasa Persia", kanji: "", kana: "ペルシア語", romaji: "Perushia-go", gambar: "https://i.ibb.co/M5NcYvQg/image.png" },
+      { indonesia: "Bahasa India", kanji: "", kana: "ヒンディー語", romaji: "Hindii-go", gambar: "https://i.ibb.co/knkGxSP/image.png" },
+      { indonesia: "Bahasa Indonesia", kanji: "", kana: "インドネシア語", romaji: "Indoneshia-go", gambar: "https://i.ibb.co/3mjtyqXh/image.png" },
+      { indonesia: "Bahasa Arab", kanji: "", kana: "アラビア語", romaji: "Arabia-go", gambar: "https://i.ibb.co/5XQWjVSM/image.png" },
+      { indonesia: "Bahasa Perancis", kanji: "", kana: "フランス語", romaji: "Furansu-go", gambar: "https://i.ibb.co/nND2Xfn2/image.png" },
+      { indonesia: "Bahasa Korea", kanji: "韓国語", kana: "かんこくご", romaji: "Kankoku-go", gambar: "https://i.ibb.co/0pLjXqFY/image.png" },
+      { indonesia: "Bahasa Spanyol", kanji: "", kana: "スペイン語", romaji: "Supein-go", gambar: "https://i.ibb.co/G49dpHdh/image.png" },
+      { indonesia: "Bahasa Thailand", kanji: "", kana: "タイ語", romaji: "Tai-go", gambar: "https://i.ibb.co/WWYPZLW1/image.png" },
+      { indonesia: "Bahasa Cina", kanji: "中国語", kana: "ちゅうごくご", romaji: "Chuugoku-go", gambar: "https://i.ibb.co/5yfjyrs/image.png" },
+      { indonesia: "Bahasa Jerman", kanji: "", kana: "ドイツ語", romaji: "Doitsu-go", gambar: "https://i.ibb.co/8gwGLhx8/image.png" },
+      { indonesia: "Bahasa Jepang", kanji: "日本語", kana: "にほんご", romaji: "Nihon-go", gambar: "https://i.ibb.co/QFK4B6ZT/image.png" },
+      { indonesia: "Bahasa Filipina", kanji: "", kana: "フィリピン語", romaji: "Firipin-go", gambar: "https://i.ibb.co/C3LrdmLQ/image.png" },
+      { indonesia: "Bahasa Portugis", kanji: "", kana: "ポルトガル語", romaji: "Porutogaru-go", gambar: "https://i.ibb.co/VW6x9BG2/image.png" },
+      { indonesia: "Bahasa Vietnam", kanji: "", kana: "ベトナム語", romaji: "Betonamu-go", gambar: "https://i.ibb.co/MQfGmkZ/image.png" },
+      { indonesia: "Bahasa Malaysia", kanji: "", kana: "マレーシア語", romaji: "Mareeshia-go", gambar: "https://i.ibb.co/3mCtjgGG/image.png" },
+      { indonesia: "Bahasa Rusia", kanji: "", kana: "ロシア語", romaji: "Roshia-go", gambar: "https://i.ibb.co/KzNv12CW/image.png" }
+    ];
 
     // =========================
     // Elemen utama
@@ -3030,8 +2813,8 @@
     // State latihan
     // =========================
     const TIMER_SECONDS = 30;
-    const STORAGE_KEY = "jpFlashcardRanking_bab1_V2";
-    const HISTORY_KEY = "jpFlashcardHistory_bab1_V2";
+    const STORAGE_KEY = "jpFlashcardRanking_kata_referensi_informasi_bab1_V2";
+    const HISTORY_KEY = "jpFlashcardHistory_kata_referensi_informasi_bab1_V2";
     const ADMIN_USERNAME = "admin404";
     const ADMIN_PASSWORD = "kuis44GAKKOU";
 
@@ -3053,7 +2836,7 @@
     const translations = {
       id: {
         cardCountLabel: "Jumlah kartu",
-        cardCountValue: "47 kosakata",
+        cardCountValue: "66 kosakata",
         durationLabel: "Durasi waktu",
         durationValue: "30 detik/kartu",
         practiceInfoLabel: "Informasi latihan",
@@ -3062,8 +2845,8 @@
         fictionToggleOff: "OFF",
         fictionToggleAriaOn: "Kosakata fiksi aktif",
         fictionToggleAriaOff: "Kosakata fiksi nonaktif",
-        homeTitle: "Latihan kosakata Jepang dengan kartu interaktif",
-        homeDescription: 'Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.',
+        homeTitle: "Latihan kosakata negara, orang, dan bahasa",
+        homeDescription: 'Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Kartu berisi kosakata negara, warga negara, dan bahasa dalam bahasa Jepang.',
         usernameButton: "Isi Username",
         usernameNote: "Klik tombol di atas untuk mengisi username melalui popup.",
         startButton: "Start",
@@ -3178,7 +2961,7 @@
       },
       ja: {
         cardCountLabel: "カード数",
-        cardCountValue: "47語",
+        cardCountValue: "66語",
         durationLabel: "制限時間",
         durationValue: "1カード 30秒",
         practiceInfoLabel: "練習情報",
@@ -3187,8 +2970,8 @@
         fictionToggleOff: "OFF",
         fictionToggleAriaOn: "架空の単語を表示",
         fictionToggleAriaOff: "架空の単語を非表示",
-        homeTitle: "インタラクティブカードで日本語単語を練習",
-        homeDescription: '<strong>ユーザー名</strong>を入力し、ポップアップで項目を選んでから始めましょう。カードを開き、覚えていたら<strong>正解</strong>、まだなら<strong>不正解</strong>を選びます。',
+        homeTitle: "国・人・言語の単語を練習",
+        homeDescription: '<strong>ユーザー名</strong>を入力し、ポップアップで項目を選んでから始めましょう。カードには国名、国籍、言語の日本語単語が出ます。',
         usernameButton: "ユーザー名を入力",
         usernameNote: "上のボタンからユーザー名を入力してください。",
         startButton: "スタート",
@@ -3760,14 +3543,31 @@
       frontText.textContent = currentItem.indonesia;
 
       illustration.replaceChildren();
+      illustration.classList.remove("image-landscape", "image-portrait", "image-tall", "image-square");
       const imageUrl = String(currentItem.gambar || "").trim();
 
       if (/^https?:\/\//i.test(imageUrl)) {
         const img = document.createElement("img");
         img.alt = getJapanesePlain(currentItem).main || currentItem.indonesia || "Ilustrasi kosakata";
-        img.loading = "eager";
+        img.loading = "lazy";
         img.decoding = "async";
         img.referrerPolicy = "no-referrer";
+        img.onload = () => {
+          const ratio = img.naturalHeight && img.naturalWidth
+            ? img.naturalHeight / img.naturalWidth
+            : 1;
+          illustration.classList.remove("image-landscape", "image-portrait", "image-tall", "image-square");
+
+          if (ratio >= 1.35) {
+            illustration.classList.add("image-tall");
+          } else if (ratio >= 1.08) {
+            illustration.classList.add("image-portrait");
+          } else if (ratio <= 0.82) {
+            illustration.classList.add("image-landscape");
+          } else {
+            illustration.classList.add("image-square");
+          }
+        };
         img.onerror = () => {
           const fallback = document.createElement("div");
           fallback.className = "image-fallback";
