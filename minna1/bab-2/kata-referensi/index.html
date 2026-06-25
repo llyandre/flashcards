@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kuis Interaktif Nama Keluarga Jepang</title>
+  <title>Kuis Interaktif: Nama Keluarga Jepang dan Salam</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://i.ibb.co" crossorigin />
@@ -16,19 +16,14 @@
       --bg-2: #fff2f7;
       --bg-3: #f2fff8;
       --card: rgba(255, 255, 255, 0.78);
-      --card-solid: #ffffff;
       --text: #253044;
       --heading: #101d48;
       --muted: #64748b;
       --primary: #7c6ff6;
       --primary-deep: #6d46e8;
       --primary-soft: rgba(124, 111, 246, 0.12);
-      --green: #20b486;
       --green-dark: #168763;
-      --red: #ef5d75;
       --red-dark: #c8465c;
-      --line: rgba(34, 48, 71, 0.12);
-      --border: rgba(124, 111, 246, 0.18);
       --glass-border: rgba(255, 255, 255, 0.78);
       --shadow: 0 18px 44px rgba(82, 73, 134, 0.12);
       --shadow-soft: 0 10px 24px rgba(82, 73, 134, 0.08);
@@ -40,9 +35,7 @@
     }
 
     * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body {
       min-height: 100vh;
       margin: 0;
@@ -54,8 +47,11 @@
         radial-gradient(circle at 50% 88%, rgba(167, 243, 208, 0.28), transparent 34%),
         linear-gradient(135deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
       overflow-x: hidden;
+      text-rendering: geometricPrecision;
     }
-
+    html:lang(ja) body,
+    html:lang(ja) button,
+    html:lang(ja) input { font-family: var(--font-jp); line-height: 1.65; }
     body::before,
     body::after {
       content: "";
@@ -68,26 +64,57 @@
       filter: blur(2px);
       pointer-events: none;
     }
-
     body::before { left: -76px; bottom: 8%; background: #c9fff1; }
     body::after { right: -92px; top: 18%; background: #ffd2e5; }
-
     button, input { font: inherit; }
     button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    h1, h2, h3, p { margin-top: 0; }
+    p { color: var(--muted); line-height: 1.62; font-size: clamp(14px, 1.4vw, 16px); }
+    p strong { color: var(--heading); }
+
+    .language-switch {
+      position: fixed;
+      top: max(14px, env(safe-area-inset-top));
+      right: max(14px, env(safe-area-inset-right));
+      z-index: 50;
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      box-shadow: var(--shadow-tiny);
+      backdrop-filter: blur(14px);
+    }
+    .language-switch button {
+      min-height: 34px;
+      padding: 7px 12px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #596174;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.1;
+      transition: 0.18s ease;
+    }
+    .language-switch button.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #9d8dfd);
+      box-shadow: 0 8px 16px rgba(124, 111, 246, 0.2);
+    }
 
     .app-shell {
       width: min(1120px, calc(100% - 32px));
       min-height: 100vh;
       margin: 0 auto;
-      padding: clamp(18px, 3vw, 34px) 0;
+      padding: clamp(60px, 8vw, 76px) 0 clamp(18px, 3vw, 34px);
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
     .screen { display: none; width: 100%; animation: fadeIn 0.32s ease both; }
     .screen.active { display: block; }
-
     .panel {
       width: min(940px, 100%);
       margin: 0 auto;
@@ -100,13 +127,7 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(18px);
     }
-
-    .hero {
-      position: relative;
-      text-align: center;
-      overflow: hidden;
-    }
-
+    .hero { position: relative; text-align: center; overflow: hidden; }
     .badge {
       display: inline-flex;
       align-items: center;
@@ -120,127 +141,59 @@
       font-weight: 800;
       line-height: 1.2;
     }
-
-    h1, h2, h3, p { margin-top: 0; }
-
     h1 {
-      max-width: 760px;
+      max-width: 780px;
       margin: 18px auto 12px;
       color: var(--heading);
       font-size: clamp(30px, 5vw, 52px);
       line-height: 1.12;
       letter-spacing: -0.03em;
     }
-
-    h2 {
-      color: var(--heading);
-      font-size: clamp(24px, 4vw, 36px);
-      line-height: 1.18;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: var(--muted);
-      line-height: 1.62;
-      font-size: clamp(14px, 1.4vw, 16px);
-    }
-
-    .hero-text {
-      max-width: 720px;
-      margin: 0 auto 22px;
-    }
-
+    h2 { color: var(--heading); font-size: clamp(24px, 4vw, 36px); line-height: 1.18; margin-bottom: 10px; }
+    .hero-text { max-width: 760px; margin: 0 auto 22px; }
     .info-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin: 24px 0;
     }
-
     .info-card,
     .material-card,
     .name-card,
     .quiz-card,
     .stat-card {
       border-radius: var(--radius-lg);
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58));
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58));
       border: 1px solid rgba(255, 255, 255, 0.86);
       box-shadow: var(--shadow-soft);
     }
+    .info-card { min-height: 92px; padding: 18px 16px; display: grid; align-content: center; gap: 4px; text-align: left; }
+    .info-card span { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .info-card strong { color: #514a9e; font-size: clamp(17px, 2vw, 21px); line-height: 1.2; }
 
-    .info-card {
-      min-height: 92px;
-      padding: 18px 16px;
-      display: grid;
-      align-content: center;
-      gap: 4px;
-      text-align: left;
-    }
-
-    .info-card span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .info-card strong {
-      color: #514a9e;
-      font-size: clamp(17px, 2vw, 21px);
-      line-height: 1.2;
-    }
-
-    .input-area {
-      width: min(520px, 100%);
-      margin: 0 auto 18px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .input-shell {
+    .login-area { width: min(540px, 100%); margin: 0 auto 18px; display: grid; gap: 9px; }
+    .login-trigger,
+    .login-summary {
+      width: 100%;
       min-height: 58px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: center;
+      gap: 10px;
       padding: 0 18px;
       border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.82);
       border: 1px solid rgba(124, 111, 246, 0.22);
+      background: rgba(255, 255, 255, 0.82);
       box-shadow: var(--shadow-soft);
+      color: #17254e;
+      font-weight: 800;
       transition: 0.18s ease;
     }
-
-    .input-shell:focus-within {
-      border-color: rgba(124, 111, 246, 0.48);
-      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-soft);
-      transform: translateY(-1px);
-    }
-
-    .input-shell input {
-      width: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      color: var(--text);
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-
+    .login-trigger:hover { transform: translateY(-1px); border-color: rgba(124, 111, 246, 0.44); }
+    .login-summary { display: none; min-height: auto; padding: 10px 14px; color: #514a9e; background: rgba(124, 111, 246, 0.1); }
+    .login-summary.show { display: flex; }
+    .note { margin: 0; color: var(--muted); font-size: 13px; font-weight: 600; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
     .btn {
       min-height: 54px;
       display: inline-flex;
@@ -257,338 +210,207 @@
       line-height: 1.2;
       transition: 0.18s ease;
     }
-
     .btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.02); }
     .btn:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
-    .btn.secondary {
-      color: #5c5972;
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(124, 111, 246, 0.22);
-      box-shadow: var(--shadow-soft);
-    }
-    .btn.danger {
-      color: var(--red-dark);
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(239, 93, 117, 0.34);
-      box-shadow: var(--shadow-soft);
-    }
+    .btn.secondary { color: #5c5972; background: rgba(255, 255, 255, 0.78); border: 1px solid rgba(124, 111, 246, 0.22); box-shadow: var(--shadow-soft); }
+    .btn.danger { color: var(--red-dark); background: rgba(255, 255, 255, 0.82); border: 1px solid rgba(239, 93, 117, 0.34); box-shadow: var(--shadow-soft); }
+    .admin-only[hidden] { display: none !important; }
 
-    .section-title {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 16px;
-    }
-
+    .section-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
     .section-title p { margin-bottom: 0; max-width: 660px; }
-
-    .material-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin: 18px 0 22px;
-    }
-
-    .material-card {
-      padding: 14px;
-      overflow: hidden;
-    }
-
-    .material-card h3,
-    .name-card h3 { margin: 0 0 10px; color: #514a9e; }
-
-    .material-card img {
-      width: 100%;
-      height: 290px;
-      object-fit: contain;
-      border-radius: 18px;
-      background: #fff;
-      border: 1px solid rgba(124, 111, 246, 0.16);
-    }
-
-    .name-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .name-card {
-      padding: 14px;
-      min-height: 132px;
-      display: grid;
-      align-content: center;
-      justify-items: center;
-      text-align: center;
+    .material-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 18px 0 22px; }
+    .material-card { padding: 14px; overflow: visible; }
+    .material-card h3, .name-card h3 { margin: 0 0 10px; color: #514a9e; }
+    .material-card img { width: 100%; height: auto; max-height: none; object-fit: contain; border-radius: 18px; background: #fff; border: 1px solid rgba(124, 111, 246, 0.16); padding: 10px; }
+    .name-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+    .name-card { padding: 14px; min-height: 132px; display: grid; align-content: center; justify-items: center; text-align: center; position: relative; overflow: hidden; }
+    .name-card::before { content: attr(data-number); position: absolute; left: 12px; top: 10px; color: rgba(81, 74, 158, 0.25); font-size: 28px; font-weight: 900; }
+    .jp { font-family: var(--font-jp); color: #2f2d2c; font-size: clamp(28px, 4vw, 42px); font-weight: 900; line-height: 1.15; }
+    .kana { margin-top: 6px; font-family: var(--font-jp); color: #817a75; font-size: 15px; font-weight: 700; }
+    .romaji { margin-top: 3px; color: #514a9e; font-size: 14px; font-weight: 800; }
+    .greeting-box { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 18px; }
+    .greeting-card {
+      min-height: 178px;
+      padding: 18px;
       position: relative;
       overflow: hidden;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.94), transparent 38%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 255, 0.68));
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      box-shadow: 0 16px 34px rgba(82, 73, 134, 0.10);
     }
-
-    .name-card::before {
-      content: attr(data-number);
+    .greeting-card::after {
+      content: "";
       position: absolute;
-      left: 12px;
-      top: 10px;
-      color: rgba(81, 74, 158, 0.25);
-      font-size: 28px;
-      font-weight: 900;
+      inset: auto -48px -54px auto;
+      width: 130px;
+      height: 130px;
+      border-radius: 999px;
+      background: rgba(124, 111, 246, 0.08);
+      pointer-events: none;
     }
-
-    .jp {
-      font-family: var(--font-jp);
-      color: #2f2d2c;
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 900;
-      line-height: 1.15;
-    }
-
-    .kana {
-      margin-top: 6px;
-      font-family: var(--font-jp);
-      color: #817a75;
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .romaji {
-      margin-top: 3px;
-      color: #514a9e;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .greeting-box {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .greeting-card {
-      padding: 18px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.72);
+    .greeting-illustrated { padding: 16px 16px 20px; }
+    .greeting-figure {
+      min-height: 260px;
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 250, 255, 0.94));
       border: 1px solid rgba(124, 111, 246, 0.16);
-      box-shadow: var(--shadow-soft);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
     }
-
-    .greeting-card .jp { font-size: clamp(24px, 3.6vw, 36px); }
-    .greeting-card p { margin: 10px 0 0; }
-
-    .topbar {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 14px;
-      align-items: stretch;
-      margin-bottom: 16px;
+    .greeting-figure img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      padding: 12px;
     }
-
-    .counter-card,
-    .timer-card {
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.76);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 0 13px 30px rgba(34, 48, 71, 0.08);
-      backdrop-filter: blur(12px);
+    .greeting-content { position: relative; z-index: 1; }
+    .greeting-card .jp {
+      color: #101d48;
+      font-size: clamp(25px, 3.8vw, 38px);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      line-height: 1.12;
     }
+    .greeting-card .kana {
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 9px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: #5f57c8;
+      background: rgba(124, 111, 246, 0.10);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .greeting-card .kana em { font-style: italic; font-weight: 900; }
+    .greeting-card p { margin: 12px 0 0; color: #5c667a; font-weight: 600; line-height: 1.64; }
 
+    .topbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: stretch; margin-bottom: 16px; }
+    .counter-card, .timer-card { border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.76); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 13px 30px rgba(34, 48, 71, 0.08); backdrop-filter: blur(12px); }
     .counter-card { padding: 14px 16px; font-weight: 800; }
     .counter-card small { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; font-weight: 600; }
-
     .timer-card { min-width: 138px; padding: 12px 14px; text-align: center; }
     .time-number { color: var(--primary-deep); font-size: 36px; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
     .timer-label { margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 700; }
     .timer-track { width: 100%; height: 9px; margin-top: 11px; border-radius: var(--radius-pill); background: rgba(124, 58, 237, 0.13); overflow: hidden; }
     .timer-fill { width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #8b5cf6, #06b6d4); transition: width 0.2s linear, background 0.2s ease; }
     .timer-fill.warning { background: linear-gradient(90deg, #f59e0b, #ef4444); }
-
-    .quiz-card {
-      padding: clamp(20px, 4vw, 34px);
-      min-height: 470px;
-      display: grid;
-      align-content: center;
-      justify-items: center;
-      text-align: center;
-      gap: 18px;
-      position: relative;
-    }
-
-    .quiz-type {
-      display: inline-flex;
-      padding: 7px 12px;
-      border-radius: var(--radius-pill);
-      background: var(--primary-soft);
-      color: #6557df;
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .question-main {
-      max-width: 760px;
-      margin: 0;
-      color: var(--heading);
-      font-size: clamp(22px, 4vw, 34px);
-      line-height: 1.25;
-      font-weight: 900;
-    }
-
+    .quiz-card { padding: clamp(20px, 4vw, 34px); min-height: 470px; display: grid; align-content: center; justify-items: center; text-align: center; gap: 18px; position: relative; }
+    .quiz-type { display: inline-flex; padding: 7px 12px; border-radius: var(--radius-pill); background: var(--primary-soft); color: #6557df; font-size: 12px; font-weight: 900; }
+    .question-main { max-width: 760px; margin: 0; color: var(--heading); font-size: clamp(22px, 4vw, 34px); line-height: 1.25; font-weight: 900; }
     .question-main .jp { display: block; margin-top: 10px; font-size: clamp(44px, 9vw, 72px); }
-
-    .answer-grid {
-      width: min(720px, 100%);
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .answer-btn {
-      min-height: 62px;
-      padding: 12px 14px;
-      border: 1px solid rgba(124, 111, 246, 0.16);
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.78);
-      color: #353d53;
-      box-shadow: var(--shadow-tiny);
-      font-weight: 800;
-      line-height: 1.25;
-      transition: 0.18s ease;
-    }
-
+    .answer-grid { width: min(720px, 100%); display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .answer-btn { min-height: 62px; padding: 12px 14px; border: 1px solid rgba(124, 111, 246, 0.16); border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.78); color: #353d53; box-shadow: var(--shadow-tiny); font-weight: 800; line-height: 1.25; transition: 0.18s ease; }
     .answer-btn:hover:not(:disabled) { transform: translateY(-2px); border-color: rgba(124, 111, 246, 0.34); }
     .answer-btn.correct { color: #fff; background: linear-gradient(135deg, #22c55e, #16a34a); border-color: transparent; }
     .answer-btn.wrong { color: #fff; background: linear-gradient(135deg, #ef4444, #dc2626); border-color: transparent; }
     .answer-btn:disabled { cursor: not-allowed; }
-
-    .feedback {
-      min-height: 58px;
-      display: grid;
-      align-content: center;
-      color: var(--muted);
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
+    .feedback { min-height: 58px; display: grid; align-content: center; color: var(--muted); font-weight: 700; line-height: 1.4; }
     .feedback strong { color: var(--heading); }
 
     .result-head { text-align: center; margin-bottom: 22px; }
-    .participant-name {
-      width: max-content;
-      max-width: 100%;
-      margin: 14px auto 0;
-      padding: 9px 14px;
-      border-radius: var(--radius-pill);
-      color: #514a9e;
-      background: rgba(124, 111, 246, 0.1);
-      border: 1px solid rgba(124, 111, 246, 0.18);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .summary-box {
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      align-items: center;
-      gap: 18px;
-      padding: 18px;
-      border-radius: var(--radius-xl);
-      background: radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%), rgba(255, 255, 255, 0.66);
-      border: 1px solid rgba(124, 111, 246, 0.16);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .score-circle {
-      width: 170px;
-      height: 170px;
-      margin: 0 auto;
-      position: relative;
-      display: grid;
-      place-items: center;
-      border-radius: var(--radius-pill);
-      background: conic-gradient(var(--primary) var(--score-deg, 0deg), rgba(124, 111, 246, 0.14) 0deg);
-    }
-
-    .score-circle::before {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border-radius: inherit;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: inset 0 0 0 1px rgba(124, 111, 246, 0.12);
-    }
-
+    .participant-name { width: max-content; max-width: 100%; margin: 14px auto 0; padding: 9px 14px; border-radius: var(--radius-pill); color: #514a9e; background: rgba(124, 111, 246, 0.1); border: 1px solid rgba(124, 111, 246, 0.18); font-size: 13px; font-weight: 800; }
+    .summary-box { display: grid; grid-template-columns: 0.75fr 1.25fr; align-items: center; gap: 18px; padding: 18px; border-radius: var(--radius-xl); background: radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%), rgba(255, 255, 255, 0.66); border: 1px solid rgba(124, 111, 246, 0.16); box-shadow: var(--shadow-soft); }
+    .score-circle { width: 170px; height: 170px; margin: 0 auto; position: relative; display: grid; place-items: center; border-radius: var(--radius-pill); background: conic-gradient(var(--primary) var(--score-deg, 0deg), rgba(124, 111, 246, 0.14) 0deg); }
+    .score-circle::before { content: ""; position: absolute; inset: 14px; border-radius: inherit; background: rgba(255, 255, 255, 0.92); box-shadow: inset 0 0 0 1px rgba(124, 111, 246, 0.12); }
     .score-circle strong { position: relative; color: #413f73; font-size: 34px; font-weight: 900; }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin: 22px 0;
-    }
-
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 22px 0; }
     .stat-card { padding: 16px 12px; text-align: center; }
     .stat-card span { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 800; }
     .stat-card strong { display: block; color: #413f73; font-size: 25px; font-weight: 900; }
-
-    .table-wrap {
-      width: 100%;
-      overflow-x: auto;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(124, 111, 246, 0.16);
-      box-shadow: var(--shadow-soft);
-      margin-top: 16px;
-    }
-
-    table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px; }
+    .table-wrap { width: 100%; overflow-x: auto; border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(124, 111, 246, 0.16); box-shadow: var(--shadow-soft); margin-top: 16px; }
+    table { width: 100%; min-width: 820px; border-collapse: collapse; font-size: 14px; }
     th, td { padding: 13px 14px; border-bottom: 1px solid rgba(124, 111, 246, 0.12); text-align: left; vertical-align: top; }
     th { color: #514a9e; background: rgba(124, 111, 246, 0.09); font-size: 12px; font-weight: 900; text-transform: uppercase; }
     tr:last-child td { border-bottom: 0; }
-
-    .status-pill {
-      min-width: 74px;
-      display: inline-flex;
-      justify-content: center;
-      padding: 6px 9px;
-      border-radius: var(--radius-pill);
-      font-size: 12px;
-      font-weight: 900;
-    }
+    .status-pill { min-width: 74px; display: inline-flex; justify-content: center; padding: 6px 9px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 900; }
     .status-pill.correct { color: var(--green-dark); background: rgba(32, 180, 134, 0.14); }
     .status-pill.wrong { color: var(--red-dark); background: rgba(239, 93, 117, 0.14); }
+    .empty-state { margin: 0; padding: 18px; text-align: center; color: var(--muted); font-weight: 800; }
 
-    .toast {
+    .login-modal {
       position: fixed;
-      left: 50%;
-      bottom: 22px;
-      z-index: 30;
-      transform: translateX(-50%) translateY(20px);
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: rgba(20, 24, 38, 0.48);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
-      padding: 12px 16px;
-      border-radius: var(--radius-pill);
-      color: #fff;
-      background: linear-gradient(135deg, #1f2937, #4b5563);
-      box-shadow: 0 18px 40px rgba(31, 41, 55, 0.22);
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+    .login-modal.show { opacity: 1; visibility: visible; pointer-events: auto; }
+    .login-modal-card {
+      width: min(440px, 94vw);
+      position: relative;
+      padding: 28px 24px 24px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+        rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.24);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+    .login-modal.show .login-modal-card { transform: translateY(0) scale(1); }
+    .login-modal-card h3 { margin: 0 42px 8px 0; color: #514a9e; font-size: clamp(20px, 3vw, 24px); font-weight: 900; }
+    .login-modal-card p { margin: 0 0 16px; }
+    .login-field { display: grid; gap: 7px; margin-bottom: 13px; text-align: left; }
+    .login-field label { color: #505a70; font-size: 13px; font-weight: 800; }
+    .login-field input {
+      min-height: 50px;
+      width: 100%;
+      padding: 0 14px;
+      border: 1px solid rgba(124, 111, 246, 0.22);
+      border-radius: var(--radius-md);
+      outline: none;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: var(--shadow-tiny);
+      font-size: 16px;
       font-weight: 800;
-      transition: 0.24s ease;
     }
-
+    .login-field input:focus { border-color: rgba(124, 111, 246, 0.5); box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-tiny); }
+    .password-box[hidden], .group-box[hidden] { display: none; }
+    .group-box { width: 100%; margin: 0 0 14px; padding: 13px; border-radius: 20px; background: rgba(255, 255, 255, 0.68); border: 1px solid rgba(124, 111, 246, 0.14); box-shadow: var(--shadow-tiny); }
+    .group-box p { margin: 0 0 10px; color: #505a70; font-size: 13px; font-weight: 800; text-align: center; }
+    .group-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .group-btn { min-height: 42px; padding: 9px 8px; border: 1px solid rgba(124, 111, 246, 0.18); border-radius: 14px; color: #514a9e; background: rgba(255, 255, 255, 0.78); box-shadow: var(--shadow-tiny); font-size: 13px; font-weight: 800; line-height: 1.2; transition: 0.18s ease; }
+    .group-btn:hover, .group-btn.active { transform: translateY(-1px); color: #fff; background: linear-gradient(135deg, var(--primary), #9d8dfd); box-shadow: 0 12px 22px rgba(124, 111, 246, 0.2); }
+    .login-error { min-height: 20px; margin: 2px 0 14px; color: var(--red-dark); font-size: 13px; font-weight: 800; line-height: 1.35; }
+    .login-modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+    .modal-close { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: var(--radius-pill); color: #6557df; background: rgba(124, 111, 246, 0.11); font-size: 28px; font-weight: 900; line-height: 1; box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12); transition: 0.18s ease; }
+    .modal-close:hover { transform: rotate(8deg) scale(1.04); background: rgba(124, 111, 246, 0.18); }
+    .toast { position: fixed; left: 50%; bottom: 22px; z-index: 90; transform: translateX(-50%) translateY(20px); opacity: 0; pointer-events: none; padding: 12px 16px; border-radius: var(--radius-pill); color: #fff; background: linear-gradient(135deg, #1f2937, #4b5563); box-shadow: 0 18px 40px rgba(31, 41, 55, 0.22); font-weight: 800; transition: 0.24s ease; text-align: center; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 900px) {
       .info-grid, .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .name-grid { grid-template-columns: repeat(3, 1fr); }
       .summary-box { grid-template-columns: 1fr; text-align: center; }
     }
-
     @media (max-width: 720px) {
-      .app-shell { width: min(100% - 24px, 1120px); align-items: flex-start; }
+      .app-shell { width: min(100% - 24px, 1120px); align-items: flex-start; padding-top: 70px; }
       .panel { border-radius: 24px; padding: 20px; }
       .section-title { display: block; }
       .material-grid, .greeting-box, .topbar { grid-template-columns: 1fr; }
@@ -597,41 +419,50 @@
       .quiz-card { min-height: 520px; }
       .name-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (max-width: 460px) {
+      .language-switch { left: 50%; right: auto; transform: translateX(-50%); }
       .info-grid, .stats-grid, .name-grid { grid-template-columns: 1fr; }
       .actions .btn { width: 100%; }
-      .material-card img { height: 230px; }
+      .greeting-figure { min-height: 245px; }
+      .greeting-figure img { max-height: 235px; padding: 10px; }
       h1 { font-size: 32px; }
+      table { min-width: 720px; }
+      .group-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .login-modal-actions { flex-direction: column; }
+      .login-modal-actions .btn { width: 100%; }
     }
   </style>
 </head>
 <body>
+  <div class="language-switch" aria-label="Language selector">
+    <button type="button" data-lang-btn="id">Indonesia</button>
+    <button type="button" data-lang-btn="ja">日本語</button>
+  </div>
+
   <main class="app-shell">
     <section id="startScreen" class="screen active">
       <div class="panel hero">
-        <span class="badge">日本語クイズ • Kuis Interaktif</span>
-        <h1>Nama Keluarga Jepang & Salam</h1>
-        <p class="hero-text">Pelajari 20 nama keluarga yang lazim di Jepang, ungkapan salam ketika pertama bertemu, dan sopan santun ketika pindah rumah. Kuis ini cocok untuk GitHub Pages dan bisa langsung disimpan sebagai <strong>index.html</strong>.</p>
+        <span class="badge" data-i18n="heroBadge">日本語クイズ • Kuis Interaktif</span>
+        <h1 data-i18n="heroTitle">Nama Keluarga Jepang dan Salam</h1>
+        <p class="hero-text" data-i18n-html="heroText">Kenali nama keluarga yang sering digunakan di Jepang dan pelajari ungkapan sopan saat berkenalan. Masukkan nama, pilih grup, lalu jawab soal acak untuk melihat hasil dan ranking.</p>
 
         <div class="info-grid" aria-label="Info kuis">
-          <div class="info-card"><span>Materi</span><strong>Nama keluarga</strong></div>
-          <div class="info-card"><span>Total latihan</span><strong>30 soal acak</strong></div>
-          <div class="info-card"><span>Waktu</span><strong>30 detik/soal</strong></div>
+          <div class="info-card"><span data-i18n="infoMaterialLabel">Materi</span><strong data-i18n="infoMaterialValue">Nama keluarga & salam</strong></div>
+          <div class="info-card"><span data-i18n="infoTotalLabel">Total latihan</span><strong data-i18n="infoTotalValue">30 soal acak</strong></div>
+          <div class="info-card"><span data-i18n="infoTimeLabel">Waktu</span><strong data-i18n="infoTimeValue">30 detik/soal</strong></div>
         </div>
 
-        <div class="input-area">
-          <div class="input-shell">
-            <span aria-hidden="true">👤</span>
-            <input id="studentName" type="text" placeholder="Masukkan nama peserta" maxlength="32" />
-          </div>
-          <p class="note">Nama akan muncul pada halaman hasil. Tidak wajib diisi.</p>
+        <div class="login-area">
+          <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="participantButton">Isi Nama Peserta</button>
+          <div id="loginSummary" class="login-summary" aria-live="polite"></div>
+          <p id="loginNote" class="note" data-i18n="loginNote">Nama peserta wajib diisi melalui popup. Peserta biasa juga harus memilih grup.</p>
         </div>
 
         <div class="actions">
-          <button class="btn" id="startQuizBtn" type="button">Mulai Kuis</button>
-          <button class="btn secondary" id="openMaterialBtn" type="button">Lihat Materi</button>
-          <button class="btn secondary" id="openHistoryBtn" type="button">Riwayat Nilai</button>
+          <button class="btn" id="startQuizBtn" type="button" data-i18n="startQuiz">Mulai Kuis</button>
+          <button class="btn secondary" id="openMaterialBtn" type="button" data-i18n="openMaterial">Lihat Materi</button>
+          <button class="btn secondary" id="openHistoryBtn" type="button" data-i18n="openHistory">Riwayat & Ranking</button>
+          <button class="btn secondary admin-only" id="adminResultBtn" type="button" hidden data-i18n="adminResultPage">Halaman Admin</button>
         </div>
       </div>
     </section>
@@ -640,52 +471,52 @@
       <div class="panel">
         <div class="section-title">
           <div>
-            <span class="badge">Materi gambar</span>
-            <h2>Nama Keluarga dan Salam</h2>
-            <p>Bagian ini memakai dua link gambar yang kamu berikan, lalu kontennya dijadikan kartu materi dan soal kuis.</p>
+            <span class="badge" data-i18n="materialBadge">Materi gambar</span>
+            <h2 data-i18n="materialTitle">Nama Keluarga dan Salam</h2>
+            <p data-i18n="materialIntro">Materi ini berisi daftar nama keluarga yang umum digunakan di Jepang serta contoh salam dalam situasi pertama bertemu dan saat pindah rumah.</p>
           </div>
           <div class="actions">
-            <button class="btn" id="materialStartBtn" type="button">Mulai Kuis</button>
-            <button class="btn secondary" data-back-home type="button">Home</button>
+            <button class="btn" id="materialStartBtn" type="button" data-i18n="startQuiz">Mulai Kuis</button>
+            <button class="btn secondary" data-back-home type="button" data-i18n="home">Home</button>
           </div>
         </div>
 
-        <div class="material-grid">
-          <div class="material-card">
-            <h3>Gambar 1: Nama Keluarga</h3>
-            <img src="https://i.ibb.co/JjKg645k/image.png" alt="Materi nama keluarga Jepang" loading="lazy" />
-          </div>
-          <div class="material-card">
-            <h3>Gambar 2: Salam</h3>
-            <img src="https://i.ibb.co/5gKdK22H/image.png" alt="Materi salam bahasa Jepang" loading="lazy" />
-          </div>
-        </div>
 
-        <h2>20 Nama Keluarga Jepang</h2>
-        <p>Tekan tombol mulai kuis untuk menguji hafalan kanji, cara baca, dan pemahaman materi salam.</p>
+        <h2 data-i18n="familyListTitle">20 Nama Keluarga Jepang</h2>
+        <p data-i18n="familyListIntro">Tekan tombol mulai kuis untuk menguji hafalan kanji, cara baca, dan pemahaman materi salam.</p>
         <div id="nameGrid" class="name-grid"></div>
 
-        <h2 style="margin-top:28px">Salam dan Sopan Santun</h2>
+        <h2 style="margin-top:28px" data-i18n="greetingTitle">Salam dan Sopan Santun</h2>
         <div class="greeting-box">
-          <div class="greeting-card">
-            <div class="jp">初めまして。</div>
-            <div class="kana">はじめまして • Hajimemashite</div>
-            <p>Digunakan ketika seseorang bertemu pertama kali, misalnya saat perjalanan dinas atau ketika bertukar kartu nama.</p>
+          <div class="greeting-card greeting-illustrated">
+            <figure class="greeting-figure">
+              <img src="https://i.ibb.co/5gKdK22H/image.png" alt="Ilustrasi 初めまして" loading="lazy" />
+            </figure>
+            <div class="greeting-content">
+              <div class="jp">初めまして。</div>
+              <div class="kana">はじめまして • <em>Hajimemashite</em></div>
+              <p data-i18n="greetingOneText">Digunakan saat bertemu seseorang untuk pertama kalinya, misalnya dalam perjalanan dinas atau ketika bertukar kartu nama.</p>
+            </div>
           </div>
-          <div class="greeting-card">
-            <div class="jp">どうぞよろしくお願いします。</div>
-            <div class="kana">どうぞよろしくおねがいします • Douzo yoroshiku onegaishimasu</div>
-            <p>Ungkapan sopan setelah memperkenalkan diri. Maknanya kurang lebih “senang berkenalan dengan Anda / mohon bantuannya”.</p>
+          <div class="greeting-card greeting-illustrated">
+            <figure class="greeting-figure">
+              <img src="https://i.ibb.co/JjKg645k/image.png" alt="Ilustrasi どうぞよろしくお願いします" loading="lazy" />
+            </figure>
+            <div class="greeting-content">
+              <div class="jp">どうぞよろしくお願いします。</div>
+              <div class="kana">どうぞよろしくおねがいします • <em>Douzo yoroshiku onegaishimasu</em></div>
+              <p data-i18n="greetingTwoText">Ungkapan sopan setelah memperkenalkan diri. Maknanya kurang lebih “senang berkenalan dengan Anda / mohon bantuannya”.</p>
+            </div>
           </div>
           <div class="greeting-card">
             <div class="jp">引っ越しの挨拶</div>
             <div class="kana">ひっこしのあいさつ • Hikkoshi no aisatsu</div>
-            <p>Ketika pindah rumah, sopan untuk memperkenalkan diri kepada tetangga baru.</p>
+            <p data-i18n="greetingThreeText">Saat pindah rumah, memperkenalkan diri kepada tetangga baru merupakan sopan santun yang baik.</p>
           </div>
           <div class="greeting-card">
             <div class="jp">手土産</div>
             <div class="kana">てみやげ • Temiyage</div>
-            <p>Hadiah sederhana untuk tetangga baru dapat berupa handuk, sabun, atau manisan.</p>
+            <p data-i18n="greetingFourText">Hadiah sederhana untuk tetangga baru dapat berupa handuk, sabun, atau manisan.</p>
           </div>
         </div>
       </div>
@@ -700,7 +531,7 @@
           </div>
           <div class="timer-card" aria-live="polite">
             <div id="timeNumber" class="time-number">30</div>
-            <div class="timer-label">detik</div>
+            <div class="timer-label" data-i18n="seconds">detik</div>
             <div class="timer-track"><div id="timerFill" class="timer-fill"></div></div>
           </div>
         </div>
@@ -711,8 +542,8 @@
           <div id="answerGrid" class="answer-grid"></div>
           <div id="feedback" class="feedback" aria-live="polite"></div>
           <div class="actions">
-            <button id="nextBtn" class="btn" type="button" disabled>Soal Berikutnya</button>
-            <button id="quitBtn" class="btn secondary" type="button">Keluar</button>
+            <button id="nextBtn" class="btn" type="button" disabled data-i18n="nextQuestion">Soal Berikutnya</button>
+            <button id="quitBtn" class="btn secondary" type="button" data-i18n="quit">Keluar</button>
           </div>
         </div>
       </div>
@@ -721,9 +552,9 @@
     <section id="resultScreen" class="screen">
       <div class="panel">
         <div class="result-head">
-          <span class="badge">Hasil Kuis</span>
-          <h2 id="resultTitle">Kuis selesai!</h2>
-          <p id="resultMessage">Berikut ringkasan hasil latihanmu.</p>
+          <span class="badge" data-i18n="resultBadge">Hasil Kuis</span>
+          <h2 id="resultTitle" data-i18n="resultTitle">Kuis selesai!</h2>
+          <p id="resultMessage" data-i18n="resultMessage">Berikut ringkasan hasil latihanmu.</p>
           <div id="participantName" class="participant-name"></div>
         </div>
 
@@ -736,28 +567,30 @@
         </div>
 
         <div class="stats-grid">
-          <div class="stat-card"><span>Benar</span><strong id="correctCount">0</strong></div>
-          <div class="stat-card"><span>Salah</span><strong id="wrongCount">0</strong></div>
-          <div class="stat-card"><span>Total</span><strong id="totalCount">0</strong></div>
-          <div class="stat-card"><span>Nilai</span><strong id="scoreValue">0</strong></div>
+          <div class="stat-card"><span data-i18n="correctLabel">Benar</span><strong id="correctCount">0</strong></div>
+          <div class="stat-card"><span data-i18n="wrongLabel">Salah</span><strong id="wrongCount">0</strong></div>
+          <div class="stat-card"><span data-i18n="totalLabel">Total</span><strong id="totalCount">0</strong></div>
+          <div class="stat-card"><span data-i18n="scoreLabel">Nilai</span><strong id="scoreValue">0</strong></div>
         </div>
 
         <div class="actions">
-          <button class="btn" id="retryBtn" type="button">Coba Lagi</button>
-          <button class="btn secondary" id="reviewBtn" type="button">Tampilkan Review</button>
-          <button class="btn danger" id="clearHistoryBtn" type="button">Hapus Riwayat</button>
-          <button class="btn secondary" data-back-home type="button">Home</button>
+          <button class="btn" id="retryBtn" type="button" data-i18n="retry">Coba Lagi</button>
+          <button class="btn secondary" id="reviewBtn" type="button" data-i18n="showReview">Tampilkan Review</button>
+          <button class="btn secondary" id="historyBtn" type="button" data-i18n="showHistory">Tampilkan Riwayat</button>
+          <button class="btn secondary" id="rankingBtn" type="button" data-i18n="showRanking">Tampilkan Ranking</button>
+          <button class="btn danger admin-only" id="clearHistoryBtn" type="button" hidden data-i18n="clearHistory">Hapus Riwayat & Ranking</button>
+          <button class="btn secondary" data-back-home type="button" data-i18n="home">Home</button>
         </div>
 
         <div id="reviewArea" class="table-wrap" hidden>
           <table>
             <thead>
               <tr>
-                <th>No.</th>
-                <th>Pertanyaan</th>
-                <th>Jawabanmu</th>
-                <th>Jawaban Benar</th>
-                <th>Status</th>
+                <th data-i18n="thNo">No.</th>
+                <th data-i18n="thQuestion">Pertanyaan</th>
+                <th data-i18n="thYourAnswer">Jawabanmu</th>
+                <th data-i18n="thCorrectAnswer">Jawaban Benar</th>
+                <th data-i18n="thStatus">Status</th>
               </tr>
             </thead>
             <tbody id="reviewBody"></tbody>
@@ -768,29 +601,335 @@
           <table>
             <thead>
               <tr>
-                <th>Tanggal</th>
-                <th>Nama</th>
-                <th>Nilai</th>
-                <th>Benar</th>
-                <th>Total</th>
+                <th data-i18n="thDate">Tanggal</th>
+                <th data-i18n="thName">Nama</th>
+                <th data-i18n="thGroup">Grup</th>
+                <th data-i18n="thScore">Nilai</th>
+                <th data-i18n="correctLabel">Benar</th>
+                <th data-i18n="wrongLabel">Salah</th>
+                <th data-i18n="totalLabel">Total</th>
               </tr>
             </thead>
             <tbody id="historyBody"></tbody>
+          </table>
+        </div>
+
+        <div id="rankingArea" class="table-wrap" hidden>
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th data-i18n="thName">Nama</th>
+                <th data-i18n="thGroup">Grup</th>
+                <th data-i18n="thScore">Nilai</th>
+                <th data-i18n="correctLabel">Benar</th>
+                <th data-i18n="wrongLabel">Salah</th>
+                <th data-i18n="totalLabel">Total</th>
+                <th data-i18n="thDate">Tanggal</th>
+              </tr>
+            </thead>
+            <tbody id="rankingBody"></tbody>
           </table>
         </div>
       </div>
     </section>
   </main>
 
+  <div id="loginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="login-modal-card">
+      <button id="closeLoginModal" class="modal-close" type="button" aria-label="Tutup">×</button>
+      <h3 id="loginTitle" data-i18n="loginTitle">Data Peserta</h3>
+      <p data-i18n-html="loginDescription">Isi nama peserta dan pilih grup. Khusus admin, gunakan username <strong>admin404</strong> dan masukkan password.</p>
+      <div class="login-field">
+        <label for="usernameInput" data-i18n="nameLabel">Nama peserta / admin</label>
+        <input id="usernameInput" type="text" autocomplete="name" maxlength="32" data-i18n-placeholder="namePlaceholder" placeholder="Masukkan nama peserta" />
+      </div>
+      <div id="passwordBox" class="login-field password-box" hidden>
+        <label for="passwordInput" data-i18n="passwordLabel">Password admin</label>
+        <input id="passwordInput" type="password" autocomplete="current-password" data-i18n-placeholder="passwordPlaceholder" placeholder="Masukkan password admin" />
+      </div>
+      <div id="groupBox" class="group-box">
+        <p data-i18n="groupPrompt">Pilih grup sebelum mulai kuis.</p>
+        <div class="group-options" aria-label="Pilihan grup">
+          <button class="group-btn" data-group="Badung" type="button">Badung</button>
+          <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
+          <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
+          <button class="group-btn" data-group="Umum" type="button">Umum</button>
+        </div>
+      </div>
+      <div id="loginError" class="login-error" aria-live="polite"></div>
+      <div class="login-modal-actions">
+        <button id="cancelLogin" class="btn secondary" type="button" data-i18n="cancel">Batal</button>
+        <button id="saveLogin" class="btn" type="button" data-i18n="saveParticipant">Simpan</button>
+      </div>
+    </div>
+  </div>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script>
+  <script type="module">
     "use strict";
 
-    const IMAGE_LINKS = [
-      "https://i.ibb.co/JjKg645k/image.png",
-      "https://i.ibb.co/5gKdK22H/image.png"
-    ];
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import {
+      addDoc,
+      collection,
+      deleteDoc,
+      getDocs,
+      getFirestore,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCOWbX-nWP7qw4dmEpkwA5wo7G-r9fI-g",
+      authDomain: "flashcard-kosakata-jepang.firebaseapp.com",
+      projectId: "flashcard-kosakata-jepang",
+      storageBucket: "flashcard-kosakata-jepang.firebasestorage.app",
+      messagingSenderId: "169917378552",
+      appId: "1:169917378552:web:d006bfac063631efa8f00d",
+      measurementId: "G-HBCG7KL5W8"
+    };
+
+    const firebaseApp = initializeApp(firebaseConfig);
+    const db = getFirestore(firebaseApp);
+    const resultsCollection = collection(db, "quizResults");
+    const QUIZ_ID = "namaKeluargaSalamQuiz";
+    const LOCAL_BACKUP_KEY = "namaKeluargaSalamQuizBackup";
+    const ADMIN_USERNAME = "admin404";
+    const ADMIN_PASSWORD = "kuis44GAKKOU";
+
+    const I18N = {
+      id: {
+        pageTitle: "Kuis Interaktif: Nama Keluarga Jepang dan Salam",
+        heroBadge: "日本語クイズ • Kuis Interaktif",
+        heroTitle: "Nama Keluarga Jepang dan Salam",
+        heroText: "Kenali nama keluarga yang sering digunakan di Jepang dan pelajari ungkapan sopan saat berkenalan. Masukkan nama, pilih grup, lalu jawab soal acak untuk melihat hasil dan ranking.",
+        infoMaterialLabel: "Materi",
+        infoMaterialValue: "Nama keluarga & salam",
+        infoTotalLabel: "Total latihan",
+        infoTotalValue: "30 soal acak",
+        infoTimeLabel: "Waktu",
+        infoTimeValue: "30 detik/soal",
+        participantButton: "Isi Nama Peserta",
+        loginNote: "Nama peserta wajib diisi melalui popup. Peserta biasa juga harus memilih grup.",
+        startQuiz: "Mulai Kuis",
+        openMaterial: "Lihat Materi",
+        openHistory: "Riwayat & Ranking",
+        adminResultPage: "Halaman Admin",
+        materialBadge: "Materi utama",
+        materialTitle: "Nama Keluarga dan Salam",
+        materialIntro: "Pelajari nama keluarga Jepang yang sering dijumpai, lalu pahami ungkapan salam yang dipakai saat berkenalan dan saat menjaga sopan santun dengan tetangga.",
+        imageOneTitle: "Ilustrasi: どうぞよろしくお願いします",
+        imageTwoTitle: "Ilustrasi: 初めまして",
+        familyListTitle: "20 Nama Keluarga Jepang",
+        familyListIntro: "Tekan tombol mulai kuis untuk menguji hafalan kanji, cara baca, dan pemahaman materi salam.",
+        greetingTitle: "Salam dan Sopan Santun",
+        greetingOneText: "Digunakan saat bertemu seseorang untuk pertama kalinya, misalnya dalam perjalanan dinas atau ketika bertukar kartu nama.",
+        greetingTwoText: "Ungkapan sopan setelah memperkenalkan diri. Maknanya kurang lebih “senang berkenalan dengan Anda / mohon bantuannya”.",
+        greetingThreeText: "Saat pindah rumah, memperkenalkan diri kepada tetangga baru merupakan sopan santun yang baik.",
+        greetingFourText: "Hadiah sederhana untuk tetangga baru dapat berupa handuk, sabun, atau manisan.",
+        home: "Home",
+        seconds: "detik",
+        counter: "Soal {current} dari {total}",
+        questionInfo: "Pilih satu jawaban yang paling tepat.",
+        questionPlaceholder: "Pertanyaan",
+        nextQuestion: "Soal Berikutnya",
+        seeResult: "Lihat Hasil",
+        quit: "Keluar",
+        resultBadge: "Hasil Kuis",
+        resultTitle: "Kuis selesai!",
+        resultMessage: "Berikut ringkasan hasil latihanmu.",
+        participant: "Peserta: {name} | Grup: {group}",
+        adminParticipant: "Admin: {name}",
+        correctLabel: "Benar",
+        wrongLabel: "Salah",
+        totalLabel: "Total",
+        scoreLabel: "Nilai",
+        retry: "Coba Lagi",
+        showReview: "Tampilkan Review",
+        showHistory: "Tampilkan Riwayat",
+        showRanking: "Tampilkan Ranking",
+        clearHistory: "Hapus Riwayat & Ranking",
+        thNo: "No.",
+        thQuestion: "Pertanyaan",
+        thYourAnswer: "Jawabanmu",
+        thCorrectAnswer: "Jawaban Benar",
+        thStatus: "Status",
+        thDate: "Tanggal",
+        thName: "Nama",
+        thGroup: "Grup",
+        thScore: "Nilai",
+        correctStatus: "Benar",
+        wrongStatus: "Salah",
+        emptyHistory: "Belum ada riwayat nilai.",
+        emptyRanking: "Belum ada ranking.",
+        notAnswered: "Tidak dijawab",
+        correctFeedback: "✅ Benar! <strong>{explanation}</strong>",
+        wrongFeedback: "❌ Jawaban benar: <strong>{answer}</strong><br>{explanation}",
+        scoreExcellent: "Luar biasa!",
+        scoreGood: "Bagus sekali!",
+        scoreFair: "Cukup baik!",
+        scoreKeepTrying: "Tetap semangat!",
+        descExcellent: "Kamu sudah sangat menguasai materi nama keluarga dan salam.",
+        descGood: "Pemahamanmu sudah kuat, tinggal ulangi beberapa nama yang mirip.",
+        descFair: "Dasarnya sudah ada. Ulangi tabel nama keluarga agar lebih lancar.",
+        descLow: "Baca lagi materi, hafalkan cara baca, lalu coba kuisnya sekali lagi.",
+        historyTitle: "Riwayat dan Ranking",
+        historyMessage: "Data riwayat dan ranking tersimpan di Firebase.",
+        adminResultTitle: "Halaman Admin",
+        adminResultMessage: "Admin dapat melihat dan menghapus riwayat serta ranking.",
+        notStarted: "Belum mulai kuis",
+        notStartedDesc: "Mulai kuis untuk mendapatkan nilai baru.",
+        historyDeleted: "Riwayat dan ranking berhasil dihapus.",
+        historyDeleteFailed: "Data Firebase gagal dihapus. Periksa rules Firebase.",
+        historyLoading: "Memuat data dari Firebase...",
+        saveFailedLocal: "Firebase gagal diakses. Data disimpan sementara di browser ini.",
+        languageChanged: "Bahasa diubah ke Indonesia.",
+        quizRestarted: "Bahasa diubah. Kuis dimulai ulang.",
+        typeFamily: "Nama keluarga",
+        typeKanji: "Kanji",
+        typeGreeting: "Salam",
+        typeManners: "Sopan santun",
+        readingQuestion: "Cara baca nama keluarga berikut adalah ... <span class='jp'>{kanji}</span>",
+        kanjiQuestion: "Kanji yang sesuai untuk <strong>{romaji}</strong> adalah ...",
+        readingExplanation: "{kanji} dibaca {kana} ({romaji}).",
+        kanjiExplanation: "{romaji} ditulis {kanji}.",
+        romajiJoin: " atau ",
+        loginTitle: "Data Peserta",
+        loginDescription: "Isi nama peserta dan pilih grup. Khusus admin, gunakan username <strong>admin404</strong> dan masukkan password.",
+        nameLabel: "Nama peserta / admin",
+        namePlaceholder: "Masukkan nama peserta",
+        passwordLabel: "Password admin",
+        passwordPlaceholder: "Masukkan password admin",
+        groupPrompt: "Pilih grup sebelum mulai kuis.",
+        cancel: "Batal",
+        saveParticipant: "Simpan",
+        usernameRequired: "Nama peserta wajib diisi.",
+        groupRequired: "Pilih grup terlebih dahulu.",
+        passwordWrong: "Password admin salah.",
+        adminOnly: "Hanya akun admin yang dapat menghapus riwayat dan ranking.",
+        participantSaved: "Data peserta berhasil disimpan.",
+        adminSaved: "Login admin berhasil.",
+        participantLabel: "Peserta",
+        adminLabel: "Admin",
+        groupLabel: "Grup"
+      },
+      ja: {
+        pageTitle: "日本の名字とあいさつクイズ",
+        heroBadge: "日本語クイズ・インタラクティブ",
+        heroTitle: "日本の名字とあいさつ",
+        heroText: "日本でよく使われる名字と、初対面で使う丁寧なあいさつを楽しく学びましょう。名前とグループを入力してから、ランダム問題に挑戦し、ランキングで結果を確認できます。",
+        infoMaterialLabel: "教材",
+        infoMaterialValue: "名字とあいさつ",
+        infoTotalLabel: "問題数",
+        infoTotalValue: "ランダム30問",
+        infoTimeLabel: "制限時間",
+        infoTimeValue: "1問30秒",
+        participantButton: "参加者名を入力",
+        loginNote: "参加者名は必ずポップアップで入力してください。通常の参加者はグループも選択します。",
+        startQuiz: "クイズを始める",
+        openMaterial: "教材を見る",
+        openHistory: "履歴・ランキング",
+        adminResultPage: "管理者ページ",
+        materialBadge: "メイン教材",
+        materialTitle: "名字とあいさつ",
+        materialIntro: "日本でよく見かける名字を確認し、初対面や近所づきあいで使う丁寧なあいさつを楽しく学びましょう。",
+        imageOneTitle: "イラスト：どうぞよろしくお願いします",
+        imageTwoTitle: "イラスト：初めまして",
+        familyListTitle: "日本の名字 20",
+        familyListIntro: "クイズを始めると、漢字・読み方・あいさつの理解を確認できます。",
+        greetingTitle: "あいさつとマナー",
+        greetingOneText: "初めて会う人に使う表現です。出張先でのあいさつや名刺交換の場面で使われます。",
+        greetingTwoText: "自己紹介の後に使う丁寧な表現です。「これからよろしくお願いします」という気持ちを表します。",
+        greetingThreeText: "引っ越しをした時、新しい近所の人に自己紹介をすることは丁寧なマナーです。",
+        greetingFourText: "新しい近所の人への簡単な贈り物として、タオル、石けん、お菓子などがあります。",
+        home: "ホーム",
+        seconds: "秒",
+        counter: "{total}問中 {current}問目",
+        questionInfo: "正しい答えを1つ選んでください。",
+        questionPlaceholder: "問題",
+        nextQuestion: "次の問題",
+        seeResult: "結果を見る",
+        quit: "終了",
+        resultBadge: "クイズ結果",
+        resultTitle: "クイズ終了！",
+        resultMessage: "練習結果のまとめです。",
+        participant: "参加者：{name}｜グループ：{group}",
+        adminParticipant: "管理者：{name}",
+        correctLabel: "正解",
+        wrongLabel: "不正解",
+        totalLabel: "合計",
+        scoreLabel: "点数",
+        retry: "もう一度",
+        showReview: "復習を表示",
+        showHistory: "履歴を表示",
+        showRanking: "ランキングを表示",
+        clearHistory: "履歴・ランキングを削除",
+        thNo: "番号",
+        thQuestion: "問題",
+        thYourAnswer: "あなたの答え",
+        thCorrectAnswer: "正しい答え",
+        thStatus: "判定",
+        thDate: "日時",
+        thName: "名前",
+        thGroup: "グループ",
+        thScore: "点数",
+        correctStatus: "正解",
+        wrongStatus: "不正解",
+        emptyHistory: "成績履歴はまだありません。",
+        emptyRanking: "ランキングはまだありません。",
+        notAnswered: "未回答",
+        correctFeedback: "✅ 正解！ <strong>{explanation}</strong>",
+        wrongFeedback: "❌ 正しい答え：<strong>{answer}</strong><br>{explanation}",
+        scoreExcellent: "すばらしい！",
+        scoreGood: "とても良いです！",
+        scoreFair: "よくできました！",
+        scoreKeepTrying: "がんばりましょう！",
+        descExcellent: "名字とあいさつの内容をとてもよく理解しています。",
+        descGood: "理解はかなりできています。似ている名字をもう一度復習しましょう。",
+        descFair: "基本はできています。名字の表を見直して、さらに慣れましょう。",
+        descLow: "教材をもう一度読み、読み方を覚えてから再挑戦しましょう。",
+        historyTitle: "履歴とランキング",
+        historyMessage: "履歴とランキングのデータはFirebaseに保存されます。",
+        adminResultTitle: "管理者ページ",
+        adminResultMessage: "管理者は履歴とランキングを確認し、削除できます。",
+        notStarted: "まだ開始していません",
+        notStartedDesc: "クイズを始めると新しい点数が表示されます。",
+        historyDeleted: "履歴とランキングを削除しました。",
+        historyDeleteFailed: "Firebaseのデータを削除できませんでした。Firebase rulesを確認してください。",
+        historyLoading: "Firebaseからデータを読み込み中です...",
+        saveFailedLocal: "Firebaseに接続できませんでした。データはこのブラウザに一時保存されました。",
+        languageChanged: "日本語に切り替えました。",
+        quizRestarted: "言語を切り替えたため、クイズを最初から始めます。",
+        typeFamily: "名字",
+        typeKanji: "漢字",
+        typeGreeting: "あいさつ",
+        typeManners: "マナー",
+        readingQuestion: "次の名字の読み方はどれですか。<span class='jp'>{kanji}</span>",
+        kanjiQuestion: "「<strong>{romaji}</strong>」に合う漢字はどれですか。",
+        readingExplanation: "{kanji}の読み方は「{kana}」（{romaji}）です。",
+        kanjiExplanation: "{romaji}は「{kanji}」と書きます。",
+        romajiJoin: " / ",
+        loginTitle: "参加者情報",
+        loginDescription: "参加者名を入力し、グループを選んでください。管理者はユーザー名 <strong>admin404</strong> とパスワードを入力します。",
+        nameLabel: "参加者名 / 管理者",
+        namePlaceholder: "参加者名を入力",
+        passwordLabel: "管理者パスワード",
+        passwordPlaceholder: "管理者パスワードを入力",
+        groupPrompt: "クイズを始める前にグループを選んでください。",
+        cancel: "キャンセル",
+        saveParticipant: "保存",
+        usernameRequired: "参加者名を入力してください。",
+        groupRequired: "先にグループを選んでください。",
+        passwordWrong: "管理者パスワードが違います。",
+        adminOnly: "履歴とランキングを削除できるのは管理者だけです。",
+        participantSaved: "参加者情報を保存しました。",
+        adminSaved: "管理者としてログインしました。",
+        participantLabel: "参加者",
+        adminLabel: "管理者",
+        groupLabel: "グループ"
+      }
+    };
 
     const familyNames = [
       { no: 1, kanji: "佐藤", kana: "さとう", romaji: "Satou / Sato" },
@@ -815,48 +954,48 @@
       { no: 20, kanji: "清水", kana: "しみず", romaji: "Shimizu" }
     ];
 
-    const conceptQuestions = [
+    const conceptQuestionTemplates = [
       {
-        type: "Salam",
-        question: "Ungkapan yang digunakan ketika bertemu seseorang untuk pertama kali adalah ...",
-        answer: "初めまして。",
-        options: ["初めまして。", "おやすみなさい。", "いただきます。", "さようなら。"],
-        explanation: "初めまして dibaca Hajimemashite, digunakan saat pertama kali berkenalan."
+        typeKey: "typeGreeting",
+        question: { id: "Ungkapan yang digunakan ketika bertemu seseorang untuk pertama kali adalah ...", ja: "初めて会う人に使う表現はどれですか。" },
+        answer: { id: "初めまして。", ja: "初めまして。" },
+        options: { id: ["初めまして。", "おやすみなさい。", "いただきます。", "さようなら。"], ja: ["初めまして。", "おやすみなさい。", "いただきます。", "さようなら。"] },
+        explanation: { id: "初めまして dibaca Hajimemashite dan digunakan saat pertama kali berkenalan.", ja: "初めましては、初対面の時に使うあいさつです。" }
       },
       {
-        type: "Salam",
-        question: "どうぞよろしくお願いします。 biasanya diucapkan setelah ...",
-        answer: "memperkenalkan diri",
-        options: ["memperkenalkan diri", "selesai makan", "sebelum tidur", "membeli tiket"],
-        explanation: "Ungkapan ini menunjukkan kesopanan setelah perkenalan."
+        typeKey: "typeGreeting",
+        question: { id: "どうぞよろしくお願いします。 biasanya diucapkan setelah ...", ja: "「どうぞよろしくお願いします。」は普通、何の後に言いますか。" },
+        answer: { id: "memperkenalkan diri", ja: "自己紹介をした後" },
+        options: { id: ["memperkenalkan diri", "selesai makan", "sebelum tidur", "membeli tiket"], ja: ["自己紹介をした後", "食事が終わった後", "寝る前", "切符を買う時"] },
+        explanation: { id: "Ungkapan ini menunjukkan kesopanan setelah perkenalan.", ja: "この表現は、自己紹介の後に丁寧な気持ちを表すために使います。" }
       },
       {
-        type: "Sopan santun",
-        question: "Ketika pindah rumah di Jepang, tindakan yang sopan adalah ...",
-        answer: "memperkenalkan diri kepada tetangga baru",
-        options: ["memperkenalkan diri kepada tetangga baru", "langsung mengadakan pesta besar", "tidak menyapa siapa pun", "meminta kartu nama semua tetangga"],
-        explanation: "Materi gambar menjelaskan bahwa memperkenalkan diri kepada tetangga baru adalah sopan santun."
+        typeKey: "typeManners",
+        question: { id: "Ketika pindah rumah di Jepang, tindakan yang sopan adalah ...", ja: "日本で引っ越しをした時、丁寧な行動はどれですか。" },
+        answer: { id: "memperkenalkan diri kepada tetangga baru", ja: "新しい近所の人に自己紹介をする" },
+        options: { id: ["memperkenalkan diri kepada tetangga baru", "langsung mengadakan pesta besar", "tidak menyapa siapa pun", "meminta kartu nama semua tetangga"], ja: ["新しい近所の人に自己紹介をする", "すぐ大きなパーティーを開く", "誰にもあいさつしない", "近所の人全員に名刺を頼む"] },
+        explanation: { id: "Materi gambar menjelaskan bahwa memperkenalkan diri kepada tetangga baru adalah sopan santun.", ja: "画像教材では、新しい近所の人に自己紹介をすることが丁寧なマナーだと説明されています。" }
       },
       {
-        type: "Sopan santun",
-        question: "Contoh hadiah sederhana untuk tetangga baru adalah ...",
-        answer: "handuk, sabun, atau manisan",
-        options: ["handuk, sabun, atau manisan", "sepeda motor", "uang sewa", "komputer"],
-        explanation: "Hadiah sederhana dapat berupa handuk, sabun, atau manisan."
+        typeKey: "typeManners",
+        question: { id: "Contoh hadiah sederhana untuk tetangga baru adalah ...", ja: "新しい近所の人への簡単な贈り物の例はどれですか。" },
+        answer: { id: "handuk, sabun, atau manisan", ja: "タオル、石けん、お菓子" },
+        options: { id: ["handuk, sabun, atau manisan", "sepeda motor", "uang sewa", "komputer"], ja: ["タオル、石けん、お菓子", "オートバイ", "家賃", "コンピューター"] },
+        explanation: { id: "Hadiah sederhana dapat berupa handuk, sabun, atau manisan.", ja: "簡単な贈り物として、タオル、石けん、お菓子などがあります。" }
       },
       {
-        type: "Salam",
-        question: "Cara baca 初めまして adalah ...",
-        answer: "Hajimemashite",
-        options: ["Hajimemashite", "Itadakimasu", "Sumimasen", "Oyasuminasai"],
-        explanation: "初めまして dibaca Hajimemashite."
+        typeKey: "typeGreeting",
+        question: { id: "Cara baca 初めまして adalah ...", ja: "「初めまして」のローマ字はどれですか。" },
+        answer: { id: "Hajimemashite", ja: "Hajimemashite" },
+        options: { id: ["Hajimemashite", "Itadakimasu", "Sumimasen", "Oyasuminasai"], ja: ["Hajimemashite", "Itadakimasu", "Sumimasen", "Oyasuminasai"] },
+        explanation: { id: "初めまして dibaca Hajimemashite.", ja: "初めましては Hajimemashite と読みます。" }
       },
       {
-        type: "Salam",
-        question: "どうぞよろしくお願いします。 memiliki nuansa makna ...",
-        answer: "mohon bantuannya / senang berkenalan",
-        options: ["mohon bantuannya / senang berkenalan", "selamat tidur", "maaf mengganggu", "sampai jumpa"],
-        explanation: "Ungkapan ini dipakai untuk menunjukkan kerendahan hati dan kesopanan dalam perkenalan."
+        typeKey: "typeGreeting",
+        question: { id: "どうぞよろしくお願いします。 memiliki makna yang paling dekat dengan ...", ja: "「どうぞよろしくお願いします。」の意味に近いものはどれですか。" },
+        answer: { id: "mohon bantuannya / senang berkenalan", ja: "よろしくお願いします／お会いできてうれしいです" },
+        options: { id: ["mohon bantuannya / senang berkenalan", "selamat tidur", "maaf mengganggu", "sampai jumpa"], ja: ["よろしくお願いします／お会いできてうれしいです", "おやすみなさい", "失礼します", "また会いましょう"] },
+        explanation: { id: "Ungkapan ini dipakai untuk menunjukkan kerendahan hati dan kesopanan dalam perkenalan.", ja: "この表現は、自己紹介の場面で丁寧さと相手への敬意を表します。" }
       }
     ];
 
@@ -867,7 +1006,16 @@
       result: document.getElementById("resultScreen")
     };
 
-    const studentNameInput = document.getElementById("studentName");
+    const loginSummary = document.getElementById("loginSummary");
+    const loginNote = document.getElementById("loginNote");
+    const loginModal = document.getElementById("loginModal");
+    const usernameInput = document.getElementById("usernameInput");
+    const passwordInput = document.getElementById("passwordInput");
+    const passwordBox = document.getElementById("passwordBox");
+    const groupBox = document.getElementById("groupBox");
+    const loginError = document.getElementById("loginError");
+    const adminResultBtn = document.getElementById("adminResultBtn");
+    const clearHistoryBtn = document.getElementById("clearHistoryBtn");
     const nameGrid = document.getElementById("nameGrid");
     const counterText = document.getElementById("counterText");
     const questionInfo = document.getElementById("questionInfo");
@@ -880,19 +1028,75 @@
     const nextBtn = document.getElementById("nextBtn");
     const toast = document.getElementById("toast");
 
+    let currentLang = localStorage.getItem("namaKeluargaQuizLang") || "id";
+    if (!I18N[currentLang]) currentLang = "id";
+    let currentUsername = "";
+    let currentGroup = "";
+    let isAdmin = false;
     let quizQuestions = [];
     let currentIndex = 0;
     let correctTotal = 0;
     let userAnswers = [];
-    let selectedAnswer = null;
     let timer = null;
     let timeLeft = 30;
     let hasAnswered = false;
+
+    function t(key, values = {}) {
+      let text = (I18N[currentLang] && I18N[currentLang][key]) || I18N.id[key] || key;
+      Object.entries(values).forEach(([name, value]) => {
+        text = text.replaceAll(`{${name}}`, value);
+      });
+      return text;
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
+    }
 
     function showScreen(name) {
       Object.values(screens).forEach(screen => screen.classList.remove("active"));
       screens[name].classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function applyLanguage() {
+      document.documentElement.lang = currentLang === "ja" ? "ja" : "id";
+      document.title = t("pageTitle");
+      document.querySelectorAll("[data-i18n]").forEach(element => { element.textContent = t(element.dataset.i18n); });
+      document.querySelectorAll("[data-i18n-html]").forEach(element => { element.innerHTML = t(element.dataset.i18nHtml); });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(element => { element.placeholder = t(element.dataset.i18nPlaceholder); });
+      document.querySelectorAll("[data-lang-btn]").forEach(button => {
+        const active = button.dataset.langBtn === currentLang;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      if (!screens.quiz.classList.contains("active")) {
+        counterText.textContent = t("counter", { current: 1, total: 30 });
+        questionInfo.textContent = t("questionInfo");
+        quizType.textContent = t("typeFamily");
+        questionText.textContent = t("questionPlaceholder");
+        nextBtn.textContent = t("nextQuestion");
+      }
+      updateLoginSummary();
+      updatePasswordAndGroupBox();
+      renderNameCards();
+      void renderHistory();
+      void renderRanking();
+    }
+
+    function setLanguage(lang) {
+      if (!I18N[lang] || lang === currentLang) return;
+      const wasQuiz = screens.quiz.classList.contains("active");
+      currentLang = lang;
+      localStorage.setItem("namaKeluargaQuizLang", currentLang);
+      applyLanguage();
+      if (wasQuiz) {
+        clearInterval(timer);
+        startQuiz();
+        showToast(t("quizRestarted"));
+      } else {
+        showToast(t("languageChanged"));
+      }
     }
 
     function shuffle(array) {
@@ -904,57 +1108,154 @@
       return copy;
     }
 
-    function sampleWrongOptions(list, correct, key, amount = 3) {
-      return shuffle(list.filter(item => item[key] !== correct).map(item => item[key])).slice(0, amount);
+    function sampleWrongItems(list, currentNo, amount = 3) {
+      return shuffle(list.filter(item => item.no !== currentNo)).slice(0, amount);
     }
 
     function cleanRomaji(value) {
-      return value.replace(" / ", " atau ");
+      return value.replace(" / ", t("romajiJoin"));
+    }
+
+    function readingOption(item) {
+      const roman = cleanRomaji(item.romaji);
+      return currentLang === "ja" ? `${item.kana}（${roman}）` : roman;
     }
 
     function buildQuestions() {
       const readingQuestions = familyNames.map(item => {
-        const correct = cleanRomaji(item.romaji);
-        const wrong = sampleWrongOptions(familyNames, item.romaji, "romaji", 3).map(cleanRomaji);
+        const correct = readingOption(item);
+        const wrong = sampleWrongItems(familyNames, item.no, 3).map(readingOption);
         return {
-          type: "Nama keluarga",
-          question: `Cara baca nama keluarga berikut adalah ... <span class="jp">${item.kanji}</span>`,
+          type: t("typeFamily"),
+          question: t("readingQuestion", { kanji: item.kanji }),
           answer: correct,
           options: shuffle([correct, ...wrong]),
-          explanation: `${item.kanji} dibaca ${item.kana} (${correct}).`
+          explanation: t("readingExplanation", { kanji: item.kanji, kana: item.kana, romaji: cleanRomaji(item.romaji) })
         };
       });
-
       const kanjiQuestions = familyNames.slice(0, 14).map(item => {
-        const wrong = sampleWrongOptions(familyNames, item.kanji, "kanji", 3);
+        const wrong = sampleWrongItems(familyNames, item.no, 3).map(other => other.kanji);
+        const roman = cleanRomaji(item.romaji);
         return {
-          type: "Kanji",
-          question: `Kanji yang sesuai untuk <strong>${cleanRomaji(item.romaji)}</strong> adalah ...`,
+          type: t("typeKanji"),
+          question: t("kanjiQuestion", { romaji: roman }),
           answer: item.kanji,
           options: shuffle([item.kanji, ...wrong]),
-          explanation: `${cleanRomaji(item.romaji)} ditulis ${item.kanji}.`
+          explanation: t("kanjiExplanation", { romaji: roman, kanji: item.kanji })
         };
       });
-
+      const conceptQuestions = conceptQuestionTemplates.map(item => ({
+        type: t(item.typeKey),
+        question: item.question[currentLang],
+        answer: item.answer[currentLang],
+        options: shuffle(item.options[currentLang]),
+        explanation: item.explanation[currentLang]
+      }));
       return shuffle([...readingQuestions, ...kanjiQuestions, ...conceptQuestions]).slice(0, 30);
     }
 
     function renderNameCards() {
       nameGrid.innerHTML = familyNames.map(item => `
         <article class="name-card" data-number="${item.no}">
-          <div class="jp">${item.kanji}</div>
-          <div class="kana">${item.kana}</div>
-          <div class="romaji">${cleanRomaji(item.romaji)}</div>
+          <div class="jp">${escapeHTML(item.kanji)}</div>
+          <div class="kana">${escapeHTML(item.kana)}</div>
+          <div class="romaji">${escapeHTML(cleanRomaji(item.romaji))}</div>
         </article>
       `).join("");
     }
 
+    function updatePasswordAndGroupBox() {
+      const typed = usernameInput.value.trim();
+      const typedAdmin = typed === ADMIN_USERNAME;
+      passwordBox.hidden = !typedAdmin;
+      groupBox.hidden = typedAdmin;
+      if (typedAdmin) currentGroup = "";
+      document.querySelectorAll(".group-btn").forEach(button => {
+        button.classList.toggle("active", button.dataset.group === currentGroup);
+      });
+    }
+
+    function updateLoginSummary() {
+      adminResultBtn.hidden = !isAdmin;
+      clearHistoryBtn.hidden = !isAdmin;
+      if (!currentUsername) {
+        loginSummary.classList.remove("show");
+        loginSummary.textContent = "";
+        loginNote.textContent = t("loginNote");
+        return;
+      }
+      loginSummary.classList.add("show");
+      loginSummary.textContent = isAdmin
+        ? `${t("adminLabel")}: ${currentUsername}`
+        : `${t("participantLabel")}: ${currentUsername} | ${t("groupLabel")}: ${currentGroup || "-"}`;
+      loginNote.textContent = isAdmin
+        ? t("adminResultMessage")
+        : `${t("participantLabel")}: ${currentUsername}. ${t("groupLabel")}: ${currentGroup || "-"}.`;
+    }
+
+    function openLoginModalBox() {
+      usernameInput.value = currentUsername;
+      passwordInput.value = "";
+      loginError.textContent = "";
+      updatePasswordAndGroupBox();
+      loginModal.classList.add("show");
+      loginModal.setAttribute("aria-hidden", "false");
+      setTimeout(() => usernameInput.focus({ preventScroll: true }), 50);
+    }
+
+    function closeLoginModalBox() {
+      loginModal.classList.remove("show");
+      loginModal.setAttribute("aria-hidden", "true");
+    }
+
+    function submitLogin() {
+      const name = usernameInput.value.trim();
+      const password = passwordInput.value;
+      loginError.textContent = "";
+      if (!name) {
+        loginError.textContent = t("usernameRequired");
+        usernameInput.focus();
+        return;
+      }
+      if (name === ADMIN_USERNAME) {
+        if (password !== ADMIN_PASSWORD) {
+          loginError.textContent = t("passwordWrong");
+          passwordInput.focus();
+          return;
+        }
+        currentUsername = name;
+        currentGroup = "";
+        isAdmin = true;
+        updateLoginSummary();
+        closeLoginModalBox();
+        showToast(t("adminSaved"));
+        return;
+      }
+      if (!currentGroup) {
+        loginError.textContent = t("groupRequired");
+        return;
+      }
+      currentUsername = name;
+      isAdmin = false;
+      updateLoginSummary();
+      closeLoginModalBox();
+      showToast(t("participantSaved"));
+    }
+
+    function ensureParticipantReady() {
+      if (!currentUsername || (!isAdmin && !currentGroup)) {
+        openLoginModalBox();
+        return false;
+      }
+      return true;
+    }
+
     function startQuiz() {
+      if (!ensureParticipantReady()) return;
       quizQuestions = buildQuestions();
       currentIndex = 0;
       correctTotal = 0;
       userAnswers = [];
-      selectedAnswer = null;
       hasAnswered = false;
       showScreen("quiz");
       renderQuestion();
@@ -962,18 +1263,16 @@
 
     function renderQuestion() {
       clearInterval(timer);
-      selectedAnswer = null;
       hasAnswered = false;
       nextBtn.disabled = true;
+      nextBtn.textContent = t("nextQuestion");
       feedback.innerHTML = "";
-
       const question = quizQuestions[currentIndex];
-      counterText.textContent = `Soal ${currentIndex + 1} dari ${quizQuestions.length}`;
-      questionInfo.textContent = "Pilih satu jawaban yang paling tepat.";
+      counterText.textContent = t("counter", { current: currentIndex + 1, total: quizQuestions.length });
+      questionInfo.textContent = t("questionInfo");
       quizType.textContent = question.type;
       questionText.innerHTML = question.question;
       answerGrid.innerHTML = "";
-
       question.options.forEach(option => {
         const button = document.createElement("button");
         button.className = "answer-btn";
@@ -982,7 +1281,6 @@
         button.addEventListener("click", () => checkAnswer(option, button));
         answerGrid.appendChild(button);
       });
-
       startTimer();
     }
 
@@ -1010,12 +1308,10 @@
       if (hasAnswered) return;
       hasAnswered = true;
       clearInterval(timer);
-
       const question = quizQuestions[currentIndex];
       const isCorrect = answer === question.answer;
       if (isCorrect) correctTotal += 1;
-
-      selectedAnswer = answer || "Tidak dijawab";
+      const selectedAnswer = answer || t("notAnswered");
       userAnswers.push({
         question: question.question.replace(/<[^>]+>/g, ""),
         selected: selectedAnswer,
@@ -1023,20 +1319,16 @@
         isCorrect,
         explanation: question.explanation
       });
-
       [...answerGrid.children].forEach(button => {
         button.disabled = true;
         if (button.textContent === question.answer || button.innerHTML === question.answer) button.classList.add("correct");
       });
-
       if (clickedButton && !isCorrect) clickedButton.classList.add("wrong");
-
       feedback.innerHTML = isCorrect
-        ? `✅ Benar! <strong>${question.explanation}</strong>`
-        : `❌ Jawaban benar: <strong>${question.answer}</strong><br>${question.explanation}`;
-
+        ? t("correctFeedback", { explanation: question.explanation })
+        : t("wrongFeedback", { answer: question.answer, explanation: question.explanation });
       nextBtn.disabled = false;
-      nextBtn.textContent = currentIndex === quizQuestions.length - 1 ? "Lihat Hasil" : "Soal Berikutnya";
+      nextBtn.textContent = currentIndex === quizQuestions.length - 1 ? t("seeResult") : t("nextQuestion");
     }
 
     function nextQuestion() {
@@ -1045,133 +1337,270 @@
         currentIndex += 1;
         renderQuestion();
       } else {
-        showResult();
+        void showResult();
       }
     }
 
-    function showResult() {
+    async function showResult() {
       clearInterval(timer);
       showScreen("result");
-
       const total = quizQuestions.length;
       const wrong = total - correctTotal;
       const percent = Math.round((correctTotal / total) * 100);
-      const participant = studentNameInput.value.trim() || "Peserta";
-
-      document.getElementById("participantName").textContent = `Nama: ${participant}`;
+      document.getElementById("resultTitle").textContent = t("resultTitle");
+      document.getElementById("resultMessage").textContent = t("resultMessage");
+      document.getElementById("participantName").textContent = isAdmin
+        ? t("adminParticipant", { name: currentUsername })
+        : t("participant", { name: currentUsername, group: currentGroup });
       document.getElementById("scorePercent").textContent = `${percent}%`;
       document.getElementById("scoreCircle").style.setProperty("--score-deg", `${percent * 3.6}deg`);
       document.getElementById("correctCount").textContent = correctTotal;
       document.getElementById("wrongCount").textContent = wrong;
       document.getElementById("totalCount").textContent = total;
       document.getElementById("scoreValue").textContent = percent;
-
-      const comment = percent >= 90 ? "Luar biasa!" : percent >= 75 ? "Bagus sekali!" : percent >= 60 ? "Cukup baik!" : "Tetap semangat!";
-      const desc = percent >= 90
-        ? "Kamu sudah sangat menguasai materi nama keluarga dan salam."
-        : percent >= 75
-          ? "Pemahamanmu sudah kuat, tinggal ulangi beberapa nama yang mirip."
-          : percent >= 60
-            ? "Dasarnya sudah ada. Ulangi tabel nama keluarga agar lebih lancar."
-            : "Baca lagi materi, hafalkan cara baca, lalu coba kuisnya sekali lagi.";
-
+      const comment = percent >= 90 ? t("scoreExcellent") : percent >= 75 ? t("scoreGood") : percent >= 60 ? t("scoreFair") : t("scoreKeepTrying");
+      const desc = percent >= 90 ? t("descExcellent") : percent >= 75 ? t("descGood") : percent >= 60 ? t("descFair") : t("descLow");
       document.getElementById("scoreComment").textContent = comment;
       document.getElementById("scoreDescription").textContent = desc;
-
       renderReview();
-      saveHistory({ participant, percent, correct: correctTotal, total, date: new Date().toLocaleString("id-ID") });
-      renderHistory();
+      document.getElementById("reviewArea").hidden = true;
+      document.getElementById("historyArea").hidden = true;
+      document.getElementById("rankingArea").hidden = true;
+      if (!isAdmin) {
+        await saveResult({
+          name: currentUsername,
+          group: currentGroup,
+          percent,
+          correct: correctTotal,
+          wrong,
+          total,
+          date: new Date().toLocaleString(currentLang === "ja" ? "ja-JP" : "id-ID"),
+          timestamp: Date.now()
+        });
+      }
+      await renderHistory();
+      await renderRanking();
     }
 
     function renderReview() {
       const reviewBody = document.getElementById("reviewBody");
-      reviewBody.innerHTML = userAnswers.map((item, index) => `
+      reviewBody.innerHTML = userAnswers.length ? userAnswers.map((item, index) => `
         <tr>
           <td>${index + 1}</td>
-          <td>${item.question}<br><small>${item.explanation}</small></td>
-          <td>${item.selected}</td>
-          <td>${item.correct}</td>
-          <td><span class="status-pill ${item.isCorrect ? "correct" : "wrong"}">${item.isCorrect ? "Benar" : "Salah"}</span></td>
+          <td>${escapeHTML(item.question)}<br><small>${escapeHTML(item.explanation)}</small></td>
+          <td>${escapeHTML(item.selected)}</td>
+          <td>${escapeHTML(item.correct)}</td>
+          <td><span class="status-pill ${item.isCorrect ? "correct" : "wrong"}">${item.isCorrect ? t("correctStatus") : t("wrongStatus")}</span></td>
         </tr>
-      `).join("");
+      `).join("") : `<tr><td colspan="5"><p class="empty-state">${escapeHTML(t("emptyHistory"))}</p></td></tr>`;
     }
 
-    function getHistory() {
+    function getLocalBackup() {
       try {
-        return JSON.parse(localStorage.getItem("namaKeluargaQuizHistory")) || [];
+        return JSON.parse(localStorage.getItem(LOCAL_BACKUP_KEY)) || [];
       } catch (error) {
         return [];
       }
     }
 
-    function saveHistory(data) {
-      const history = getHistory();
-      history.unshift(data);
-      localStorage.setItem("namaKeluargaQuizHistory", JSON.stringify(history.slice(0, 10)));
+    function saveLocalBackup(data) {
+      const backup = getLocalBackup();
+      backup.unshift({ ...data, quizId: QUIZ_ID, localOnly: true });
+      localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(backup.slice(0, 50)));
     }
 
-    function renderHistory() {
+    async function saveResult(data) {
+      try {
+        await addDoc(resultsCollection, {
+          ...data,
+          quizId: QUIZ_ID,
+          createdAt: serverTimestamp()
+        });
+      } catch (error) {
+        console.error(error);
+        saveLocalBackup(data);
+        showToast(t("saveFailedLocal"));
+      }
+    }
+
+    async function getResults() {
+      const items = [];
+      try {
+        const snapshot = await getDocs(resultsCollection);
+        snapshot.forEach(documentSnapshot => {
+          const data = documentSnapshot.data();
+          if (data.quizId === QUIZ_ID) {
+            items.push({
+              id: documentSnapshot.id,
+              ref: documentSnapshot.ref,
+              name: data.name || "-",
+              group: data.group || "-",
+              percent: Number(data.percent || 0),
+              correct: Number(data.correct || 0),
+              wrong: Number(data.wrong || 0),
+              total: Number(data.total || 0),
+              date: data.date || "-",
+              timestamp: Number(data.timestamp || data.createdAt?.seconds * 1000 || 0)
+            });
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
+      getLocalBackup().forEach(data => items.push(data));
+      return items.sort((a, b) => Number(b.timestamp || 0) - Number(a.timestamp || 0));
+    }
+
+    async function renderHistory() {
       const historyBody = document.getElementById("historyBody");
-      const history = getHistory();
+      if (!historyBody) return;
+      historyBody.innerHTML = `<tr><td colspan="7"><p class="empty-state">${escapeHTML(t("historyLoading"))}</p></td></tr>`;
+      const history = await getResults();
       historyBody.innerHTML = history.length ? history.map(item => `
         <tr>
-          <td>${item.date}</td>
-          <td>${item.participant}</td>
-          <td>${item.percent}</td>
-          <td>${item.correct}</td>
-          <td>${item.total}</td>
+          <td>${escapeHTML(item.date || "-")}</td>
+          <td>${escapeHTML(item.name || "-")}</td>
+          <td>${escapeHTML(item.group || "-")}</td>
+          <td>${Number(item.percent || 0)}%</td>
+          <td>${Number(item.correct || 0)}</td>
+          <td>${Number(item.wrong || 0)}</td>
+          <td>${Number(item.total || 0)}</td>
         </tr>
-      `).join("") : `<tr><td colspan="5">Belum ada riwayat nilai.</td></tr>`;
+      `).join("") : `<tr><td colspan="7"><p class="empty-state">${escapeHTML(t("emptyHistory"))}</p></td></tr>`;
+    }
+
+    function sortRanking(a, b) {
+      return Number(b.percent || 0) - Number(a.percent || 0)
+        || Number(b.correct || 0) - Number(a.correct || 0)
+        || Number(a.wrong || 0) - Number(b.wrong || 0)
+        || Number(b.timestamp || 0) - Number(a.timestamp || 0);
+    }
+
+    async function renderRanking() {
+      const rankingBody = document.getElementById("rankingBody");
+      if (!rankingBody) return;
+      rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">${escapeHTML(t("historyLoading"))}</p></td></tr>`;
+      const ranking = (await getResults()).sort(sortRanking).slice(0, 20);
+      rankingBody.innerHTML = ranking.length ? ranking.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHTML(item.name || "-")}</td>
+          <td>${escapeHTML(item.group || "-")}</td>
+          <td>${Number(item.percent || 0)}%</td>
+          <td>${Number(item.correct || 0)}</td>
+          <td>${Number(item.wrong || 0)}</td>
+          <td>${Number(item.total || 0)}</td>
+          <td>${escapeHTML(item.date || "-")}</td>
+        </tr>
+      `).join("") : `<tr><td colspan="8"><p class="empty-state">${escapeHTML(t("emptyRanking"))}</p></td></tr>`;
+    }
+
+    async function deleteResultsAsAdmin() {
+      if (!isAdmin) {
+        showToast(t("adminOnly"));
+        return;
+      }
+      try {
+        const snapshot = await getDocs(resultsCollection);
+        const deletions = [];
+        snapshot.forEach(documentSnapshot => {
+          if (documentSnapshot.data().quizId === QUIZ_ID) deletions.push(deleteDoc(documentSnapshot.ref));
+        });
+        await Promise.all(deletions);
+        localStorage.removeItem(LOCAL_BACKUP_KEY);
+        await renderHistory();
+        await renderRanking();
+        showToast(t("historyDeleted"));
+      } catch (error) {
+        console.error(error);
+        showToast(t("historyDeleteFailed"));
+      }
     }
 
     function showToast(message) {
       toast.textContent = message;
       toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 1800);
+      setTimeout(() => toast.classList.remove("show"), 2100);
     }
 
-    document.getElementById("startQuizBtn").addEventListener("click", startQuiz);
-    document.getElementById("materialStartBtn").addEventListener("click", startQuiz);
-    document.getElementById("openMaterialBtn").addEventListener("click", () => showScreen("material"));
-    document.getElementById("openHistoryBtn").addEventListener("click", () => {
-      showScreen("result");
-      document.getElementById("resultTitle").textContent = "Riwayat Nilai";
-      document.getElementById("resultMessage").textContent = "Riwayat tersimpan di browser perangkat ini.";
-      document.getElementById("participantName").textContent = "";
+    function resetResultForHistory(adminMode = false) {
+      clearInterval(timer);
+      document.getElementById("resultTitle").textContent = adminMode ? t("adminResultTitle") : t("historyTitle");
+      document.getElementById("resultMessage").textContent = adminMode ? t("adminResultMessage") : t("historyMessage");
+      document.getElementById("participantName").textContent = isAdmin ? t("adminParticipant", { name: currentUsername || ADMIN_USERNAME }) : "";
       document.getElementById("scorePercent").textContent = "0%";
       document.getElementById("scoreCircle").style.setProperty("--score-deg", "0deg");
-      document.getElementById("scoreComment").textContent = "Belum mulai kuis";
-      document.getElementById("scoreDescription").textContent = "Mulai kuis untuk mendapatkan nilai baru.";
+      document.getElementById("scoreComment").textContent = adminMode ? t("adminResultTitle") : t("notStarted");
+      document.getElementById("scoreDescription").textContent = adminMode ? t("adminResultMessage") : t("notStartedDesc");
       document.getElementById("correctCount").textContent = "-";
       document.getElementById("wrongCount").textContent = "-";
       document.getElementById("totalCount").textContent = "-";
       document.getElementById("scoreValue").textContent = "-";
       document.getElementById("reviewArea").hidden = true;
       document.getElementById("historyArea").hidden = false;
-      renderHistory();
-    });
+      document.getElementById("rankingArea").hidden = false;
+      void renderHistory();
+      void renderRanking();
+      showScreen("result");
+    }
 
-    nextBtn.addEventListener("click", nextQuestion);
-    document.getElementById("quitBtn").addEventListener("click", () => {
-      clearInterval(timer);
-      showScreen("start");
+    document.querySelectorAll("[data-lang-btn]").forEach(button => {
+      button.addEventListener("click", () => setLanguage(button.dataset.langBtn));
     });
+    document.getElementById("openLoginBtn").addEventListener("click", openLoginModalBox);
+    document.getElementById("closeLoginModal").addEventListener("click", closeLoginModalBox);
+    document.getElementById("cancelLogin").addEventListener("click", closeLoginModalBox);
+    document.getElementById("saveLogin").addEventListener("click", submitLogin);
+    usernameInput.addEventListener("input", updatePasswordAndGroupBox);
+    passwordInput.addEventListener("keydown", event => { if (event.key === "Enter") submitLogin(); });
+    usernameInput.addEventListener("keydown", event => { if (event.key === "Enter") submitLogin(); });
+    document.querySelectorAll(".group-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        currentGroup = button.dataset.group;
+        document.querySelectorAll(".group-btn").forEach(item => item.classList.toggle("active", item.dataset.group === currentGroup));
+        loginError.textContent = "";
+      });
+    });
+    loginModal.addEventListener("click", event => { if (event.target === loginModal) closeLoginModalBox(); });
+    document.getElementById("startQuizBtn").addEventListener("click", startQuiz);
+    document.getElementById("materialStartBtn").addEventListener("click", startQuiz);
+    document.getElementById("openMaterialBtn").addEventListener("click", () => showScreen("material"));
+    document.getElementById("openHistoryBtn").addEventListener("click", () => resetResultForHistory(false));
+    adminResultBtn.addEventListener("click", () => {
+      if (!isAdmin) {
+        openLoginModalBox();
+        return;
+      }
+      resetResultForHistory(true);
+    });
+    nextBtn.addEventListener("click", nextQuestion);
+    document.getElementById("quitBtn").addEventListener("click", () => { clearInterval(timer); showScreen("start"); });
     document.getElementById("retryBtn").addEventListener("click", startQuiz);
     document.getElementById("reviewBtn").addEventListener("click", () => {
       const area = document.getElementById("reviewArea");
-      const history = document.getElementById("historyArea");
-      history.hidden = true;
+      document.getElementById("historyArea").hidden = true;
+      document.getElementById("rankingArea").hidden = true;
+      renderReview();
       area.hidden = !area.hidden;
     });
-    document.getElementById("clearHistoryBtn").addEventListener("click", () => {
-      localStorage.removeItem("namaKeluargaQuizHistory");
-      renderHistory();
-      showToast("Riwayat nilai dihapus.");
+    document.getElementById("historyBtn").addEventListener("click", async () => {
+      const area = document.getElementById("historyArea");
+      document.getElementById("reviewArea").hidden = true;
+      document.getElementById("rankingArea").hidden = true;
+      await renderHistory();
+      area.hidden = !area.hidden;
     });
+    document.getElementById("rankingBtn").addEventListener("click", async () => {
+      const area = document.getElementById("rankingArea");
+      document.getElementById("reviewArea").hidden = true;
+      document.getElementById("historyArea").hidden = true;
+      await renderRanking();
+      area.hidden = !area.hidden;
+    });
+    clearHistoryBtn.addEventListener("click", deleteResultsAsAdmin);
     document.querySelectorAll("[data-back-home]").forEach(btn => btn.addEventListener("click", () => showScreen("start")));
 
-    renderNameCards();
-    renderHistory();
+    applyLanguage();
   </script>
 </body>
 </html>
