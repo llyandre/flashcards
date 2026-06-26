@@ -2331,6 +2331,475 @@
         font-size: 11.5px;
       }
     }
+
+    /* =========================================================
+       FINAL COMPACT + POPUP GAMBAR
+       - Gambar kartu dibuat kecil agar utuh terlihat
+       - Jarak gambar dan kata dibuat rapat tapi tetap ada space
+       - Klik gambar membuka popup gambar penuh
+       ========================================================= */
+    .practice-wrap {
+      width: min(660px, 100%) !important;
+    }
+
+    .topbar {
+      gap: 9px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .counter-card {
+      padding: 10px 13px !important;
+      border-radius: 17px !important;
+    }
+
+    .timer-card {
+      min-width: 118px !important;
+      padding: 9px 12px !important;
+      border-radius: 17px !important;
+    }
+
+    .time-number {
+      font-size: clamp(22px, 4vw, 30px) !important;
+    }
+
+    .timer-track {
+      height: 7px !important;
+      margin-top: 8px !important;
+    }
+
+    .flip-hint {
+      margin: 7px 0 9px !important;
+      line-height: 1.35 !important;
+      font-size: clamp(11.5px, 1.8vw, 12.5px) !important;
+    }
+
+    .flashcard {
+      width: min(100%, 540px) !important;
+      height: clamp(470px, 68svh, 560px) !important;
+      min-height: 470px !important;
+    }
+
+    .card-front,
+    .card-back {
+      padding: clamp(12px, 2.4vw, 20px) !important;
+    }
+
+    .back-content {
+      display: grid !important;
+      grid-template-rows: 57% 43% !important;
+      gap: 6px !important;
+      align-items: center !important;
+      justify-items: center !important;
+      overflow: hidden !important;
+      min-height: 0 !important;
+    }
+
+    .illustration-wrap {
+      grid-row: 1 !important;
+      align-self: end !important;
+      width: min(90%, 315px) !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      display: grid !important;
+      place-items: end center !important;
+      overflow: visible !important;
+    }
+
+    .illustration {
+      width: 100% !important;
+      height: 100% !important;
+      display: grid !important;
+      place-items: end center !important;
+      overflow: visible !important;
+      cursor: zoom-in !important;
+      min-height: 0 !important;
+    }
+
+    .illustration img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 74% !important;
+      max-height: 78% !important;
+      object-fit: contain !important;
+      object-position: center bottom !important;
+      cursor: zoom-in !important;
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .illustration img:hover,
+    .illustration img:focus-visible {
+      transform: scale(1.025);
+      filter: drop-shadow(0 10px 16px rgba(34, 48, 71, 0.12));
+      outline: none;
+    }
+
+    .illustration.image-landscape img {
+      width: 80% !important;
+      height: auto !important;
+      max-width: 80% !important;
+      max-height: 70% !important;
+    }
+
+    .illustration.image-portrait img {
+      width: auto !important;
+      height: 76% !important;
+      max-width: 68% !important;
+      max-height: 76% !important;
+    }
+
+    .illustration.image-tall img {
+      width: auto !important;
+      height: 70% !important;
+      max-width: 62% !important;
+      max-height: 70% !important;
+    }
+
+    .illustration.image-square img {
+      width: 72% !important;
+      height: 72% !important;
+      max-width: 72% !important;
+      max-height: 72% !important;
+    }
+
+    .jp-box {
+      grid-row: 2 !important;
+      align-self: start !important;
+      width: min(96%, 520px) !important;
+      min-height: 132px !important;
+      padding: 2px 7px 2px !important;
+      gap: 4px !important;
+      display: grid !important;
+      align-content: start !important;
+      justify-items: center !important;
+      overflow: visible !important;
+    }
+
+    .jp-main-display {
+      font-size: clamp(23px, 5.8vw, 34px) !important;
+      line-height: 1.12 !important;
+    }
+
+    .jp-main-display.long {
+      font-size: clamp(17px, 4.8vw, 26px) !important;
+      line-height: 1.16 !important;
+    }
+
+    .jp-divider {
+      margin: 1px auto 2px !important;
+    }
+
+    .jp-reading,
+    .jp-reading.long {
+      font-size: clamp(11px, 2.8vw, 14px) !important;
+      line-height: 1.24 !important;
+    }
+
+    .jp-actions {
+      gap: 5px !important;
+      margin-top: 0 !important;
+    }
+
+    .audio-btn,
+    .example-btn {
+      min-height: 31px !important;
+      padding: 6px 9px !important;
+      font-size: 11px !important;
+      margin-top: 2px !important;
+    }
+
+    .answer-row {
+      width: min(100%, 540px) !important;
+      margin-top: 10px !important;
+      gap: 9px !important;
+    }
+
+    .answer-btn {
+      min-height: 48px !important;
+      font-size: clamp(14px, 2.6vw, 16px) !important;
+      border-radius: 16px !important;
+    }
+
+    @media (max-width: 720px) {
+      .app-shell {
+        padding-top: max(10px, env(safe-area-inset-top)) !important;
+        padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
+      }
+
+      .topbar {
+        gap: 8px !important;
+        margin-bottom: 7px !important;
+      }
+
+      .flashcard {
+        width: min(100%, 500px) !important;
+        height: clamp(455px, 62svh, 535px) !important;
+        min-height: 455px !important;
+      }
+
+      .back-content {
+        grid-template-rows: 56% 44% !important;
+        gap: 5px !important;
+      }
+
+      .illustration-wrap {
+        width: min(88%, 300px) !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        width: min(100% - 18px, 1120px) !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        border-radius: 16px !important;
+      }
+
+      .counter-card small,
+      .timer-label {
+        font-size: 11.5px !important;
+      }
+
+      .flashcard {
+        width: 100% !important;
+        height: clamp(430px, 58svh, 505px) !important;
+        min-height: 430px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 12px !important;
+      }
+
+      .back-content {
+        grid-template-rows: 55% 45% !important;
+        gap: 5px !important;
+      }
+
+      .illustration-wrap {
+        width: min(86%, 275px) !important;
+      }
+
+      .illustration img {
+        max-width: 70% !important;
+        max-height: 72% !important;
+      }
+
+      .illustration.image-landscape img {
+        width: 78% !important;
+        max-width: 78% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-portrait img {
+        height: 70% !important;
+        max-width: 64% !important;
+        max-height: 70% !important;
+      }
+
+      .illustration.image-tall img {
+        height: 66% !important;
+        max-width: 58% !important;
+        max-height: 66% !important;
+      }
+
+      .illustration.image-square img {
+        width: 68% !important;
+        height: 68% !important;
+        max-width: 68% !important;
+        max-height: 68% !important;
+      }
+
+      .jp-box {
+        min-height: 138px !important;
+        padding-inline: 8px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(21px, 6.8vw, 30px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(16px, 5.3vw, 23px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(10.5px, 3.3vw, 13px) !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr 1fr !important;
+        margin-top: 8px !important;
+      }
+
+      .answer-btn {
+        min-height: 44px !important;
+        font-size: 13.5px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .flashcard {
+        height: clamp(405px, 56svh, 475px) !important;
+        min-height: 405px !important;
+      }
+
+      .illustration-wrap {
+        width: min(84%, 245px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(19px, 6.6vw, 28px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(15px, 5vw, 21px) !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 29px !important;
+        padding: 5px 8px !important;
+        font-size: 10.5px !important;
+      }
+    }
+
+    @media (max-height: 760px) and (max-width: 720px) {
+      .flip-hint {
+        display: none !important;
+      }
+
+      .topbar {
+        margin-bottom: 6px !important;
+      }
+
+      .flashcard {
+        height: clamp(380px, 55svh, 440px) !important;
+        min-height: 380px !important;
+      }
+
+      .illustration-wrap {
+        width: min(82%, 245px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(18px, 5.8vw, 26px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(14px, 4.7vw, 20px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(10px, 3vw, 12px) !important;
+      }
+
+      .answer-btn {
+        min-height: 40px !important;
+      }
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(20, 24, 38, 0.58);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .image-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .image-modal-card {
+      width: min(760px, 94vw);
+      max-height: 90svh;
+      position: relative;
+      padding: clamp(14px, 3vw, 22px);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.28);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .image-modal.show .image-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .image-modal-body {
+      min-height: 220px;
+      max-height: 76svh;
+      display: grid;
+      place-items: center;
+      padding: 42px 8px 8px;
+      overflow: hidden;
+    }
+
+    .image-modal-body img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 72svh;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      border: 0;
+      background: transparent;
+    }
+
+    .image-modal-caption {
+      margin: 8px 8px 0;
+      color: #4f596d;
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
@@ -2589,6 +3058,17 @@
         <p id="exampleText"></p>
       </div>
     </div>
+
+    <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gambar penuh">
+      <div class="image-modal-card">
+        <button id="closeImageModal" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
+        <div class="image-modal-body">
+          <img id="imageModalImg" alt="" />
+        </div>
+        <p id="imageModalCaption" class="image-modal-caption"></p>
+      </div>
+    </div>
+
   </main>
 
   <script type="module">
@@ -2625,328 +3105,328 @@
     // =========================
     const vocabulary = [
       {
-        "indonesia": "ini, benda yang ada di dekat pembicara",
-        "kanji": "",
-        "kana": "これ",
-        "romaji": "kore",
-        "gambar": "https://i.ibb.co/whbmvfNM/image.png"
+            "indonesia": "ini, benda yang ada di dekat pembicara",
+            "kanji": "",
+            "kana": "これ",
+            "romaji": "kore",
+            "gambar": "https://i.ibb.co/whbmvfNM/image.png"
       },
       {
-        "indonesia": "itu, benda yang ada di dekat lawan bicara",
-        "kanji": "",
-        "kana": "それ",
-        "romaji": "sore",
-        "gambar": "https://i.ibb.co/dw3xcZ1b/image.png"
+            "indonesia": "itu, benda yang ada di dekat lawan bicara",
+            "kanji": "",
+            "kana": "それ",
+            "romaji": "sore",
+            "gambar": "https://i.ibb.co/dw3xcZ1b/image.png"
       },
       {
-        "indonesia": "itu, benda yang ada jauh dari pembicara dan lawan bicara",
-        "kanji": "",
-        "kana": "あれ",
-        "romaji": "are",
-        "gambar": "https://i.ibb.co/nMbWcT6f/image.png"
+            "indonesia": "itu, benda yang ada jauh dari pembicara dan lawan bicara",
+            "kanji": "",
+            "kana": "あれ",
+            "romaji": "are",
+            "gambar": "https://i.ibb.co/nMbWcT6f/image.png"
       },
       {
-        "indonesia": "~ ini, benda/orang dekat pembicara",
-        "kanji": "",
-        "kana": "この〜",
-        "romaji": "kono-",
-        "gambar": "https://i.ibb.co/S15XNHW/image.png"
+            "indonesia": "~ ini, benda/orang dekat pembicara",
+            "kanji": "",
+            "kana": "この〜",
+            "romaji": "kono-",
+            "gambar": "https://i.ibb.co/S15XNHW/image.png"
       },
       {
-        "indonesia": "~ itu, benda/orang dekat lawan bicara",
-        "kanji": "",
-        "kana": "その〜",
-        "romaji": "sono-",
-        "gambar": "https://i.ibb.co/9HCt0NpS/image.png"
+            "indonesia": "~ itu, benda/orang dekat lawan bicara",
+            "kanji": "",
+            "kana": "その〜",
+            "romaji": "sono-",
+            "gambar": "https://i.ibb.co/9HCt0NpS/image.png"
       },
       {
-        "indonesia": "~ itu, benda/orang jauh dari pembicara dan lawan bicara",
-        "kanji": "",
-        "kana": "あの〜",
-        "romaji": "ano-",
-        "gambar": "https://i.ibb.co/nq5zN48x/image.png"
+            "indonesia": "~ itu, benda/orang jauh dari pembicara dan lawan bicara",
+            "kanji": "",
+            "kana": "あの〜",
+            "romaji": "ano-",
+            "gambar": "https://i.ibb.co/nq5zN48x/image.png"
       },
       {
-        "indonesia": "buku",
-        "kanji": "本",
-        "kana": "ほん",
-        "romaji": "hon",
-        "gambar": "https://i.ibb.co/TBBPJV4K/image.png"
+            "indonesia": "buku",
+            "kanji": "本",
+            "kana": "ほん",
+            "romaji": "hon",
+            "gambar": "https://i.ibb.co/TBBPJV4K/image.png"
       },
       {
-        "indonesia": "kamus",
-        "kanji": "辞書",
-        "kana": "じしょ",
-        "romaji": "jisho",
-        "gambar": "https://i.ibb.co/8n9dbFYm/image.png"
+            "indonesia": "kamus",
+            "kanji": "辞書",
+            "kana": "じしょ",
+            "romaji": "jisho",
+            "gambar": "https://i.ibb.co/8n9dbFYm/image.png"
       },
       {
-        "indonesia": "majalah",
-        "kanji": "雑誌",
-        "kana": "ざっし",
-        "romaji": "zasshi",
-        "gambar": "https://i.ibb.co/0yy1Njv7/image.png"
+            "indonesia": "majalah",
+            "kanji": "雑誌",
+            "kana": "ざっし",
+            "romaji": "zasshi",
+            "gambar": "https://i.ibb.co/0yy1Njv7/image.png"
       },
       {
-        "indonesia": "koran, surat kabar",
-        "kanji": "新聞",
-        "kana": "しんぶん",
-        "romaji": "shinbun",
-        "gambar": "https://i.ibb.co/B2QHTBjJ/image.png"
+            "indonesia": "koran, surat kabar",
+            "kanji": "新聞",
+            "kana": "しんぶん",
+            "romaji": "shinbun",
+            "gambar": "https://i.ibb.co/B2QHTBjJ/image.png"
       },
       {
-        "indonesia": "buku tulis, buku catatan",
-        "kanji": "",
-        "kana": "ノート",
-        "romaji": "nooto",
-        "gambar": "https://i.ibb.co/BK3w0pV9/image.png"
+            "indonesia": "buku tulis, buku catatan",
+            "kanji": "",
+            "kana": "ノート",
+            "romaji": "nooto",
+            "gambar": "https://i.ibb.co/BK3w0pV9/image.png"
       },
       {
-        "indonesia": "buku agenda",
-        "kanji": "手帳",
-        "kana": "てちょう",
-        "romaji": "techou",
-        "gambar": "https://i.ibb.co/qYmWPvpq/image.png"
+            "indonesia": "buku agenda",
+            "kanji": "手帳",
+            "kana": "てちょう",
+            "romaji": "techou",
+            "gambar": "https://i.ibb.co/qYmWPvpq/image.png"
       },
       {
-        "indonesia": "kartu nama",
-        "kanji": "名刺",
-        "kana": "めいし",
-        "romaji": "meishi",
-        "gambar": "https://i.ibb.co/7JvrtZnG/image.png"
+            "indonesia": "kartu nama",
+            "kanji": "名刺",
+            "kana": "めいし",
+            "romaji": "meishi",
+            "gambar": "https://i.ibb.co/7JvrtZnG/image.png"
       },
       {
-        "indonesia": "kartu",
-        "kanji": "",
-        "kana": "カード",
-        "romaji": "kaado",
-        "gambar": "https://i.ibb.co/b5GssL4S/image.png"
+            "indonesia": "kartu",
+            "kanji": "",
+            "kana": "カード",
+            "romaji": "kaado",
+            "gambar": "https://i.ibb.co/b5GssL4S/image.png"
       },
       {
-        "indonesia": "pensil",
-        "kanji": "鉛筆",
-        "kana": "えんぴつ",
-        "romaji": "enpitsu",
-        "gambar": "https://i.ibb.co/3yhLGrs3/image.png"
+            "indonesia": "pensil",
+            "kanji": "鉛筆",
+            "kana": "えんぴつ",
+            "romaji": "enpitsu",
+            "gambar": "https://i.ibb.co/3yhLGrs3/image.png"
       },
       {
-        "indonesia": "bolpoin",
-        "kanji": "",
-        "kana": "ボールペン",
-        "romaji": "boorupen",
-        "gambar": "https://i.ibb.co/Hf12NxZ0/image.png"
+            "indonesia": "bolpoin",
+            "kanji": "",
+            "kana": "ボールペン",
+            "romaji": "boorupen",
+            "gambar": "https://i.ibb.co/Hf12NxZ0/image.png"
       },
       {
-        "indonesia": "pensil mekanik, pensil isi ulang",
-        "kanji": "",
-        "kana": "シャープペンシル",
-        "romaji": "shaapu penshiru",
-        "gambar": "https://i.ibb.co/q307TTHD/image.png"
+            "indonesia": "pensil mekanik, pensil isi ulang",
+            "kanji": "",
+            "kana": "シャープペンシル",
+            "romaji": "shaapu penshiru",
+            "gambar": "https://i.ibb.co/q307TTHD/image.png"
       },
       {
-        "indonesia": "kunci",
-        "kanji": "",
-        "kana": "かぎ",
-        "romaji": "kagi",
-        "gambar": "https://i.ibb.co/wF8fb4Zq/image.png"
+            "indonesia": "kunci",
+            "kanji": "",
+            "kana": "かぎ",
+            "romaji": "kagi",
+            "gambar": "https://i.ibb.co/wF8fb4Zq/image.png"
       },
       {
-        "indonesia": "jam, arloji",
-        "kanji": "時計",
-        "kana": "とけい",
-        "romaji": "tokei",
-        "gambar": "https://i.ibb.co/RGJbSRXG/image.png"
+            "indonesia": "jam, arloji",
+            "kanji": "時計",
+            "kana": "とけい",
+            "romaji": "tokei",
+            "gambar": "https://i.ibb.co/RGJbSRXG/image.png"
       },
       {
-        "indonesia": "payung",
-        "kanji": "傘",
-        "kana": "かさ",
-        "romaji": "kasa",
-        "gambar": "https://i.ibb.co/3yZGhQXV/image.png"
+            "indonesia": "payung",
+            "kanji": "傘",
+            "kana": "かさ",
+            "romaji": "kasa",
+            "gambar": "https://i.ibb.co/3yZGhQXV/image.png"
       },
       {
-        "indonesia": "tas",
-        "kanji": "",
-        "kana": "かばん",
-        "romaji": "kaban",
-        "gambar": "https://i.ibb.co/KjBSv2xv/image.png"
+            "indonesia": "tas",
+            "kanji": "",
+            "kana": "かばん",
+            "romaji": "kaban",
+            "gambar": "https://i.ibb.co/KjBSv2xv/image.png"
       },
       {
-        "indonesia": "CD",
-        "kanji": "",
-        "kana": "CD",
-        "romaji": "shii dii",
-        "gambar": "https://i.ibb.co/7J4vj1qW/CD.png"
+            "indonesia": "CD",
+            "kanji": "",
+            "kana": "CD",
+            "romaji": "shii dii",
+            "gambar": "https://i.ibb.co/7J4vj1qW/CD.png"
       },
       {
-        "indonesia": "televisi",
-        "kanji": "",
-        "kana": "テレビ",
-        "romaji": "terebi",
-        "gambar": "https://i.ibb.co/ZRkTPwp5/image.png"
+            "indonesia": "televisi",
+            "kanji": "",
+            "kana": "テレビ",
+            "romaji": "terebi",
+            "gambar": "https://i.ibb.co/ZRkTPwp5/image.png"
       },
       {
-        "indonesia": "radio",
-        "kanji": "",
-        "kana": "ラジオ",
-        "romaji": "rajio",
-        "gambar": "https://i.ibb.co/Mq0BPFM/image.png"
+            "indonesia": "radio",
+            "kanji": "",
+            "kana": "ラジオ",
+            "romaji": "rajio",
+            "gambar": "https://i.ibb.co/Mq0BPFM/image.png"
       },
       {
-        "indonesia": "kamera",
-        "kanji": "",
-        "kana": "カメラ",
-        "romaji": "kamera",
-        "gambar": "https://i.ibb.co/x8dhcYkN/image.png"
+            "indonesia": "kamera",
+            "kanji": "",
+            "kana": "カメラ",
+            "romaji": "kamera",
+            "gambar": "https://i.ibb.co/x8dhcYkN/image.png"
       },
       {
-        "indonesia": "komputer, PC",
-        "kanji": "",
-        "kana": "コンピューター",
-        "romaji": "konpyuutaa",
-        "gambar": "https://i.ibb.co/N2svLwLx/image.png"
+            "indonesia": "komputer, PC",
+            "kanji": "",
+            "kana": "コンピューター",
+            "romaji": "konpyuutaa",
+            "gambar": "https://i.ibb.co/N2svLwLx/image.png"
       },
       {
-        "indonesia": "mobil",
-        "kanji": "車",
-        "kana": "くるま",
-        "romaji": "kuruma",
-        "gambar": "https://i.ibb.co/sdcvkx5j/image.png"
+            "indonesia": "mobil",
+            "kanji": "車",
+            "kana": "くるま",
+            "romaji": "kuruma",
+            "gambar": "https://i.ibb.co/sdcvkx5j/image.png"
       },
       {
-        "indonesia": "meja, meja tulis",
-        "kanji": "机",
-        "kana": "つくえ",
-        "romaji": "tsukue",
-        "gambar": "https://i.ibb.co/ds6xpcBc/image.png"
+            "indonesia": "meja, meja tulis",
+            "kanji": "机",
+            "kana": "つくえ",
+            "romaji": "tsukue",
+            "gambar": "https://i.ibb.co/ds6xpcBc/image.png"
       },
       {
-        "indonesia": "kursi",
-        "kanji": "",
-        "kana": "いす",
-        "romaji": "isu",
-        "gambar": "https://i.ibb.co/wFrnDpdG/image.png"
+            "indonesia": "kursi",
+            "kanji": "",
+            "kana": "いす",
+            "romaji": "isu",
+            "gambar": "https://i.ibb.co/wFrnDpdG/image.png"
       },
       {
-        "indonesia": "coklat",
-        "kanji": "",
-        "kana": "チョコレート",
-        "romaji": "chokoreeto",
-        "gambar": "https://i.ibb.co/7J98VKs2/image.png"
+            "indonesia": "coklat",
+            "kanji": "",
+            "kana": "チョコレート",
+            "romaji": "chokoreeto",
+            "gambar": "https://i.ibb.co/7J98VKs2/image.png"
       },
       {
-        "indonesia": "kopi",
-        "kanji": "",
-        "kana": "コーヒー",
-        "romaji": "koohii",
-        "gambar": "https://i.ibb.co/C3vG5SHy/image.png"
+            "indonesia": "kopi",
+            "kanji": "",
+            "kana": "コーヒー",
+            "romaji": "koohii",
+            "gambar": "https://i.ibb.co/C3vG5SHy/image.png"
       },
       {
-        "indonesia": "oleh-oleh",
-        "kanji": "[お]土産",
-        "kana": "[お]みやげ",
-        "romaji": "[o]miyage",
-        "gambar": "https://i.ibb.co/1JZfPs2d/image.png"
+            "indonesia": "oleh-oleh",
+            "kanji": "[お]土産",
+            "kana": "[お]みやげ",
+            "romaji": "[o]miyage",
+            "gambar": "https://i.ibb.co/1JZfPs2d/image.png"
       },
       {
-        "indonesia": "bahasa Inggris",
-        "kanji": "英語",
-        "kana": "えいご",
-        "romaji": "eigo",
-        "gambar": "https://i.ibb.co/yFyssF1j/image.png"
+            "indonesia": "bahasa Inggris",
+            "kanji": "英語",
+            "kana": "えいご",
+            "romaji": "eigo",
+            "gambar": "https://i.ibb.co/yFyssF1j/image.png"
       },
       {
-        "indonesia": "bahasa Jepang",
-        "kanji": "日本語",
-        "kana": "にほんご",
-        "romaji": "nihongo",
-        "gambar": "https://i.ibb.co/Y43pCvtf/image.png"
+            "indonesia": "bahasa Jepang",
+            "kanji": "日本語",
+            "kana": "にほんご",
+            "romaji": "nihongo",
+            "gambar": "https://i.ibb.co/Y43pCvtf/image.png"
       },
       {
-        "indonesia": "bahasa ~",
-        "kanji": "〜語",
-        "kana": "〜ご",
-        "romaji": "-go",
-        "gambar": "https://i.ibb.co/jPd5Hbcv/image.png"
+            "indonesia": "bahasa ~",
+            "kanji": "〜語",
+            "kana": "〜ご",
+            "romaji": "-go",
+            "gambar": "https://i.ibb.co/jPd5Hbcv/image.png"
       },
       {
-        "indonesia": "apa",
-        "kanji": "何",
-        "kana": "なん",
-        "romaji": "nan",
-        "gambar": "https://i.ibb.co/VWwn4qsm/image.png"
+            "indonesia": "apa",
+            "kanji": "何",
+            "kana": "なん",
+            "romaji": "nan",
+            "gambar": "https://i.ibb.co/VWwn4qsm/image.png"
       },
       {
-        "indonesia": "begitu",
-        "kanji": "",
-        "kana": "そう",
-        "romaji": "sou",
-        "gambar": "https://i.ibb.co/Z6nQx98j/image.png"
+            "indonesia": "begitu",
+            "kanji": "",
+            "kana": "そう",
+            "romaji": "sou",
+            "gambar": "https://i.ibb.co/Z6nQx98j/image.png"
       },
       {
-        "indonesia": "ungkapan saat ragu-ragu / ingin memulai bicara",
-        "kanji": "",
-        "kana": "あのう",
-        "romaji": "anou",
-        "gambar": "https://i.ibb.co/sJq6H65R/image.png"
+            "indonesia": "ungkapan saat ragu-ragu / ingin memulai bicara",
+            "kanji": "",
+            "kana": "あのう",
+            "romaji": "anou",
+            "gambar": "https://i.ibb.co/sJq6H65R/image.png"
       },
       {
-        "indonesia": "eh, ekspresi kaget saat mendengar hal tidak terduga",
-        "kanji": "",
-        "kana": "えっ",
-        "romaji": "e",
-        "gambar": "https://i.ibb.co/MyHw1xNF/image.png"
+            "indonesia": "eh, ekspresi kaget saat mendengar hal tidak terduga",
+            "kanji": "",
+            "kana": "えっ",
+            "romaji": "e",
+            "gambar": "https://i.ibb.co/MyHw1xNF/image.png"
       },
       {
-        "indonesia": "silakan, dipakai saat menawarkan sesuatu",
-        "kanji": "",
-        "kana": "どうぞ。",
-        "romaji": "douzo",
-        "gambar": "https://i.ibb.co/svydgGR2/image.png"
+            "indonesia": "silakan, dipakai saat menawarkan sesuatu",
+            "kanji": "",
+            "kana": "どうぞ。",
+            "romaji": "douzo",
+            "gambar": "https://i.ibb.co/svydgGR2/image.png"
       },
       {
-        "indonesia": "terima kasih banyak",
-        "kanji": "",
-        "kana": "[どうも]ありがとう[ございます]。",
-        "romaji": "[doumo] arigatou [gozaimasu]",
-        "gambar": "https://i.ibb.co/MQFghhv/image.png"
+            "indonesia": "terima kasih banyak",
+            "kanji": "",
+            "kana": "[どうも]ありがとう[ございます]。",
+            "romaji": "[doumo] arigatou [gozaimasu]",
+            "gambar": "https://i.ibb.co/MQFghhv/image.png"
       },
       {
-        "indonesia": "begitu ya / oh begitu",
-        "kanji": "",
-        "kana": "そうですか。",
-        "romaji": "sou desu ka",
-        "gambar": "https://i.ibb.co/7d6gwygb/image.png"
+            "indonesia": "begitu ya / oh begitu",
+            "kanji": "",
+            "kana": "そうですか。",
+            "romaji": "sou desu ka",
+            "gambar": "https://i.ibb.co/7d6gwygb/image.png"
       },
       {
-        "indonesia": "bukan / tidak / salah",
-        "kanji": "",
-        "kana": "ちがいます。",
-        "romaji": "chigaimasu",
-        "gambar": "https://i.ibb.co/DfCfH7K0/image.png"
+            "indonesia": "bukan / tidak / salah",
+            "kanji": "",
+            "kana": "ちがいます。",
+            "romaji": "chigaimasu",
+            "gambar": "https://i.ibb.co/DfCfH7K0/image.png"
       },
       {
-        "indonesia": "o, eh, dipakai ketika sadar",
-        "kanji": "",
-        "kana": "あ",
-        "romaji": "a",
-        "gambar": "https://i.ibb.co/BH7ffYFp/image.png"
+            "indonesia": "o, eh, dipakai ketika sadar",
+            "kanji": "",
+            "kana": "あ",
+            "romaji": "a",
+            "gambar": "https://i.ibb.co/BH7ffYFp/image.png"
       },
       {
-        "indonesia": "Mulai sekarang, saya akan meminta bantuannya",
-        "kanji": "これから お世話になります",
-        "kana": "これから おせわになります。",
-        "romaji": "korekara osewa ni narimasu",
-        "gambar": "https://i.ibb.co/Jw4RNs29/image.png"
+            "indonesia": "Mulai sekarang, saya akan meminta bantuannya",
+            "kanji": "これから お世話になります",
+            "kana": "これから おせわになります。",
+            "romaji": "korekara osewa ni narimasu",
+            "gambar": "https://i.ibb.co/Jw4RNs29/image.png"
       },
       {
-        "indonesia": "Ya, sama-sama / mohon kerja samanya juga",
-        "kanji": "",
-        "kana": "こちらこそ [どうぞ] よろしく [お願いします]。",
-        "romaji": "kochira koso [douzo] yoroshiku [onegaishimasu]",
-        "gambar": "https://i.ibb.co/zhqtdBnj/image.png"
+            "indonesia": "Ya, sama-sama / mohon kerja samanya juga",
+            "kanji": "",
+            "kana": "こちらこそ [どうぞ] よろしく [お願いします]。",
+            "romaji": "kochira koso [douzo] yoroshiku [onegaishimasu]",
+            "gambar": "https://i.ibb.co/zhqtdBnj/image.png"
       }
-    ];
+];
 
     // =========================
     // Elemen utama
@@ -2988,6 +3468,10 @@
     const exampleModal = document.getElementById("exampleModal");
     const exampleText = document.getElementById("exampleText");
     const closeExampleModal = document.getElementById("closeExampleModal");
+    const imageModal = document.getElementById("imageModal");
+    const imageModalImg = document.getElementById("imageModalImg");
+    const imageModalCaption = document.getElementById("imageModalCaption");
+    const closeImageModal = document.getElementById("closeImageModal");
     const correctBtn = document.getElementById("correctBtn");
     const wrongBtn = document.getElementById("wrongBtn");
 
@@ -3539,6 +4023,28 @@
       exampleModal.setAttribute("aria-hidden", "true");
     }
 
+
+    function openImageModal(src, altText = "Gambar kosakata") {
+      if (!src || !imageModal || !imageModalImg) return;
+
+      imageModalImg.src = src;
+      imageModalImg.alt = altText || "Gambar kosakata";
+      if (imageModalCaption) imageModalCaption.textContent = altText || "Gambar kosakata";
+      imageModal.classList.add("show");
+      imageModal.setAttribute("aria-hidden", "false");
+      closeImageModal?.focus({ preventScroll: true });
+    }
+
+    function closeImageModalBox() {
+      if (!imageModal || !imageModalImg) return;
+
+      imageModal.classList.remove("show");
+      imageModal.setAttribute("aria-hidden", "true");
+      imageModalImg.removeAttribute("src");
+      imageModalImg.alt = "";
+      if (imageModalCaption) imageModalCaption.textContent = "";
+    }
+
     // =========================
     // Login, admin, dan grup
     // =========================
@@ -3718,6 +4224,7 @@
       frontText.textContent = currentItem.indonesia;
 
       illustration.replaceChildren();
+      illustration.classList.remove("image-landscape", "image-portrait", "image-tall", "image-square");
       const imageUrl = String(currentItem.gambar || "").trim();
 
       if (/^https?:\/\//i.test(imageUrl)) {
@@ -3726,12 +4233,43 @@
         img.loading = "lazy";
         img.decoding = "async";
         img.referrerPolicy = "no-referrer";
+        img.tabIndex = 0;
+        img.role = "button";
+        img.title = "Klik untuk melihat gambar penuh";
+        img.setAttribute("aria-label", `Lihat gambar penuh: ${img.alt}`);
+        img.onload = () => {
+          const ratio = img.naturalHeight && img.naturalWidth
+            ? img.naturalHeight / img.naturalWidth
+            : 1;
+
+          illustration.classList.remove("image-landscape", "image-portrait", "image-tall", "image-square");
+          if (ratio >= 1.35) {
+            illustration.classList.add("image-tall");
+          } else if (ratio >= 1.08) {
+            illustration.classList.add("image-portrait");
+          } else if (ratio <= 0.82) {
+            illustration.classList.add("image-landscape");
+          } else {
+            illustration.classList.add("image-square");
+          }
+        };
         img.onerror = () => {
           const fallback = document.createElement("div");
           fallback.className = "image-fallback";
           fallback.textContent = `Gambar belum bisa dimuat: ${img.alt}`;
           illustration.replaceChildren(fallback);
         };
+        const openFromImage = event => {
+          event.preventDefault();
+          event.stopPropagation();
+          openImageModal(img.currentSrc || img.src || imageUrl, img.alt);
+        };
+        img.addEventListener("click", openFromImage);
+        img.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            openFromImage(event);
+          }
+        });
         img.src = imageUrl;
         illustration.appendChild(img);
       } else {
@@ -4453,6 +4991,14 @@
       }
     });
 
+    closeImageModal?.addEventListener("click", closeImageModalBox);
+
+    imageModal?.addEventListener("click", event => {
+      if (event.target === imageModal) {
+        closeImageModalBox();
+      }
+    });
+
     document.addEventListener("keydown", event => {
       if (event.key === "Escape" && exampleModal.classList.contains("show")) {
         closeExampleModalBox();
@@ -4460,6 +5006,10 @@
 
       if (event.key === "Escape" && loginModal.classList.contains("show")) {
         closeLoginModalBox();
+      }
+
+      if (event.key === "Escape" && imageModal?.classList.contains("show")) {
+        closeImageModalBox();
       }
     });
 
