@@ -2381,6 +2381,615 @@
         font-size: 11.5px;
       }
     }
+      /* =========================================================
+       TOP REKOMENDASI FIX: gambar dan tulisan selalu kelihatan
+       - Area gambar dan teks dipisah stabil (62% / 38%)
+       - Gambar utuh dengan object-fit: contain
+       - Teks diberi area aman supaya tidak tertimpa gambar
+       ========================================================= */
+    .flashcard {
+      width: min(100%, 620px) !important;
+      height: clamp(620px, 88svh, 780px) !important;
+      min-height: 620px !important;
+    }
+
+    .card-back {
+      padding: clamp(14px, 3vw, 24px) !important;
+      overflow: hidden !important;
+    }
+
+    .back-content {
+      width: 100% !important;
+      height: 100% !important;
+      display: grid !important;
+      grid-template-rows: 62% 38% !important;
+      gap: 10px !important;
+      align-items: center !important;
+      justify-items: center !important;
+      overflow: hidden !important;
+    }
+
+    .illustration-wrap {
+      width: min(96%, 430px) !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      display: grid !important;
+      place-items: center !important;
+      position: relative !important;
+      z-index: 1 !important;
+      overflow: hidden !important;
+    }
+
+    .illustration {
+      width: 100% !important;
+      height: 100% !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+    }
+
+    .illustration img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+    }
+
+    .jp-box {
+      width: 100% !important;
+      min-height: 100% !important;
+      padding: 6px 8px 4px !important;
+      display: grid !important;
+      align-content: center !important;
+      justify-items: center !important;
+      position: relative !important;
+      z-index: 2 !important;
+      overflow: visible !important;
+      background: transparent !important;
+    }
+
+    .jp-main-display {
+      max-width: 100% !important;
+      font-size: clamp(25px, 7vw, 38px) !important;
+      line-height: 1.16 !important;
+      overflow-wrap: anywhere !important;
+      word-break: keep-all !important;
+    }
+
+    .jp-main-display.long {
+      font-size: clamp(19px, 5.8vw, 29px) !important;
+      line-height: 1.2 !important;
+    }
+
+    .jp-reading,
+    .jp-reading.long {
+      max-width: 100% !important;
+      font-size: clamp(12px, 3.7vw, 16px) !important;
+      line-height: 1.35 !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    .jp-actions {
+      max-width: 100% !important;
+      gap: 7px !important;
+    }
+
+    .audio-btn,
+    .example-btn {
+      flex-shrink: 0 !important;
+      min-height: 36px !important;
+      padding: 7px 11px !important;
+      font-size: 12px !important;
+    }
+
+    @media (max-width: 520px) {
+      .flashcard {
+        height: clamp(660px, 92svh, 820px) !important;
+        min-height: 660px !important;
+      }
+
+      .back-content {
+        grid-template-rows: 60% 40% !important;
+        gap: 9px !important;
+      }
+
+      .illustration-wrap {
+        width: min(100%, 350px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(23px, 7.6vw, 34px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(18px, 6vw, 27px) !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .flashcard {
+        height: clamp(690px, 94svh, 850px) !important;
+        min-height: 690px !important;
+      }
+
+      .back-content {
+        grid-template-rows: 58% 42% !important;
+        gap: 8px !important;
+      }
+
+      .illustration-wrap {
+        width: min(100%, 310px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(22px, 7.8vw, 32px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(17px, 5.8vw, 25px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(11.5px, 3.6vw, 14.5px) !important;
+      }
+    }
+
+
+    /* =========================================================
+       COMPACT FIX: kartu diperkecil agar halaman tidak terlalu scroll
+       - Tetap pisah area gambar dan tulisan
+       - Semua ukuran dibuat lebih proporsional untuk mobile
+       ========================================================= */
+    .practice-wrap {
+      width: min(680px, 100%) !important;
+    }
+
+    .topbar {
+      margin-bottom: 8px !important;
+      gap: 8px !important;
+    }
+
+    .counter-card {
+      padding: 10px 13px !important;
+      line-height: 1.35 !important;
+    }
+
+    .timer-card {
+      padding: 9px 12px !important;
+    }
+
+    .time-number {
+      font-size: clamp(22px, 4vw, 30px) !important;
+    }
+
+    .timer-track {
+      height: 7px !important;
+      margin-top: 8px !important;
+    }
+
+    .flip-hint {
+      margin: 7px 0 9px !important;
+      line-height: 1.35 !important;
+      font-size: clamp(11.5px, 1.8vw, 12.5px) !important;
+    }
+
+    .flashcard {
+      width: min(100%, 540px) !important;
+      height: clamp(470px, 68svh, 560px) !important;
+      min-height: 470px !important;
+    }
+
+    .card-front,
+    .card-back {
+      padding: clamp(12px, 2.4vw, 20px) !important;
+    }
+
+    .back-content {
+      grid-template-rows: 59% 41% !important;
+      gap: 7px !important;
+    }
+
+    .illustration-wrap {
+      width: min(92%, 340px) !important;
+      max-height: 100% !important;
+    }
+
+    .jp-box {
+      padding: 3px 7px 2px !important;
+      gap: 4px !important;
+    }
+
+    .jp-main-display {
+      font-size: clamp(23px, 5.8vw, 34px) !important;
+      line-height: 1.12 !important;
+    }
+
+    .jp-main-display.long {
+      font-size: clamp(17px, 4.8vw, 26px) !important;
+      line-height: 1.16 !important;
+    }
+
+    .jp-divider {
+      margin: 1px auto 2px !important;
+    }
+
+    .jp-reading,
+    .jp-reading.long {
+      font-size: clamp(11px, 2.8vw, 14px) !important;
+      line-height: 1.24 !important;
+    }
+
+    .jp-actions {
+      gap: 5px !important;
+      margin-top: 0 !important;
+    }
+
+    .audio-btn,
+    .example-btn {
+      min-height: 31px !important;
+      padding: 6px 9px !important;
+      font-size: 11px !important;
+      margin-top: 2px !important;
+    }
+
+    .answer-row {
+      width: min(100%, 540px) !important;
+      margin-top: 10px !important;
+      gap: 9px !important;
+    }
+
+    .answer-btn {
+      min-height: 48px !important;
+      font-size: clamp(14px, 2.6vw, 16px) !important;
+      border-radius: 16px !important;
+    }
+
+    @media (max-width: 720px) {
+      .app-shell {
+        padding-top: max(10px, env(safe-area-inset-top)) !important;
+        padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
+      }
+
+      .topbar {
+        gap: 8px !important;
+        margin-bottom: 7px !important;
+      }
+
+      .flashcard {
+        width: min(100%, 500px) !important;
+        height: clamp(455px, 62svh, 535px) !important;
+        min-height: 455px !important;
+      }
+
+      .back-content {
+        grid-template-rows: 57% 43% !important;
+        gap: 6px !important;
+      }
+
+      .illustration-wrap {
+        width: min(90%, 310px) !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        width: min(100% - 18px, 1120px) !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        border-radius: 16px !important;
+      }
+
+      .counter-card small,
+      .timer-label {
+        font-size: 11.5px !important;
+      }
+
+      .flashcard {
+        width: 100% !important;
+        height: clamp(430px, 58svh, 505px) !important;
+        min-height: 430px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 12px !important;
+      }
+
+      .back-content {
+        grid-template-rows: 56% 44% !important;
+        gap: 5px !important;
+      }
+
+      .illustration-wrap {
+        width: min(88%, 285px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(21px, 6.8vw, 30px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(16px, 5.3vw, 23px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(10.5px, 3.3vw, 13px) !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr 1fr !important;
+        margin-top: 8px !important;
+      }
+
+      .answer-btn {
+        min-height: 44px !important;
+        font-size: 13.5px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .flashcard {
+        height: clamp(405px, 56svh, 475px) !important;
+        min-height: 405px !important;
+      }
+
+      .illustration-wrap {
+        width: min(86%, 255px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(19px, 6.6vw, 28px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(15px, 5vw, 21px) !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 29px !important;
+        padding: 5px 8px !important;
+        font-size: 10.5px !important;
+      }
+    }
+
+    @media (max-height: 760px) and (max-width: 720px) {
+      .flip-hint {
+        display: none !important;
+      }
+
+      .topbar {
+        margin-bottom: 6px !important;
+      }
+
+      .flashcard {
+        height: clamp(380px, 55svh, 440px) !important;
+        min-height: 380px !important;
+      }
+
+      .illustration-wrap {
+        width: min(82%, 250px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(18px, 5.8vw, 26px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(14px, 4.7vw, 20px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(10px, 3vw, 12px) !important;
+      }
+
+      .answer-btn {
+        min-height: 40px !important;
+      }
+    }
+
+
+    /* =========================================================
+       FINAL COMPACT + POPUP GAMBAR
+       - Gambar di kartu dibuat lebih kecil agar utuh terlihat
+       - Klik gambar membuka popup gambar penuh
+       ========================================================= */
+    .illustration-wrap {
+      overflow: visible !important;
+    }
+
+    .illustration {
+      overflow: visible !important;
+      cursor: zoom-in !important;
+    }
+
+    .illustration img {
+      width: 74% !important;
+      height: 74% !important;
+      max-width: 74% !important;
+      max-height: 74% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      cursor: zoom-in !important;
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .illustration img:hover,
+    .illustration img:focus-visible {
+      transform: scale(1.025);
+      filter: drop-shadow(0 10px 16px rgba(34, 48, 71, 0.12));
+      outline: none;
+    }
+
+    .illustration.image-landscape img {
+      width: 80% !important;
+      height: auto !important;
+      max-width: 80% !important;
+      max-height: 72% !important;
+    }
+
+    .illustration.image-portrait img {
+      width: auto !important;
+      height: 74% !important;
+      max-width: 68% !important;
+      max-height: 74% !important;
+    }
+
+    .illustration.image-tall img {
+      width: auto !important;
+      height: 70% !important;
+      max-width: 62% !important;
+      max-height: 70% !important;
+    }
+
+    .illustration.image-square img {
+      width: 72% !important;
+      height: 72% !important;
+      max-width: 72% !important;
+      max-height: 72% !important;
+    }
+
+    @media (max-width: 520px) {
+      .illustration img {
+        width: 70% !important;
+        height: 70% !important;
+        max-width: 70% !important;
+        max-height: 70% !important;
+      }
+
+      .illustration.image-landscape img {
+        width: 78% !important;
+        max-width: 78% !important;
+        max-height: 70% !important;
+      }
+
+      .illustration.image-portrait img {
+        height: 70% !important;
+        max-width: 64% !important;
+        max-height: 70% !important;
+      }
+
+      .illustration.image-tall img {
+        height: 66% !important;
+        max-width: 58% !important;
+        max-height: 66% !important;
+      }
+
+      .illustration.image-square img {
+        width: 68% !important;
+        height: 68% !important;
+        max-width: 68% !important;
+        max-height: 68% !important;
+      }
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(20, 24, 38, 0.58);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .image-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .image-modal-card {
+      width: min(760px, 94vw);
+      max-height: 90svh;
+      position: relative;
+      padding: clamp(14px, 3vw, 22px);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.28);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .image-modal.show .image-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .image-modal-body {
+      min-height: 220px;
+      max-height: 76svh;
+      display: grid;
+      place-items: center;
+      padding: 42px 8px 8px;
+      overflow: hidden;
+    }
+
+    .image-modal-body img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 72svh;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      border: 0;
+      background: transparent;
+    }
+
+    .image-modal-caption {
+      margin: 8px 8px 0;
+      color: #4f596d;
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
@@ -2645,6 +3254,17 @@
         <p id="exampleText"></p>
       </div>
     </div>
+
+    <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gambar penuh">
+      <div class="image-modal-card">
+        <button id="closeImageModal" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
+        <div class="image-modal-body">
+          <img id="imageModalImg" alt="" />
+        </div>
+        <p id="imageModalCaption" class="image-modal-caption"></p>
+      </div>
+    </div>
+
   </main>
 
   <script type="module">
@@ -2694,10 +3314,10 @@
       { indonesia: "Singapura", kanji: "", kana: "シンガポール", romaji: "Shingapooru", gambar: "https://i.ibb.co/pr5c8rkz/image.png" },
       { indonesia: "Spanyol", kanji: "", kana: "スペイン", romaji: "Supein", gambar: "https://i.ibb.co/8ns0Rqqm/image.png" },
       { indonesia: "Thailand", kanji: "", kana: "タイ", romaji: "Tai", gambar: "https://i.ibb.co/5Wb5BHMd/image.png" },
-      { indonesia: "Cina", kanji: "中国", kana: "ちゅうごく", romaji: "Chuugoku", gambar: "https://i.ibb.co/3XgkJsp/image.png" },
-      { indonesia: "Jerman", kanji: "", kana: "ドイツ", romaji: "Doitsu", gambar: "https://i.ibb.co/R4yhH54v/image.png" },
-      { indonesia: "Jepang", kanji: "日本", kana: "にほん", romaji: "Nihon", gambar: "https://i.ibb.co/kgXHMHCq/image.png" },
-      { indonesia: "Perancis", kanji: "", kana: "フランス", romaji: "Furansu", gambar: "https://i.ibb.co/spdG5ZLX/image.png" },
+      { indonesia: "Cina", kanji: "中国", kana: "ちゅうごく", romaji: "Chuugoku", gambar: "https://i.ibb.co/R4yhH54v/image.png" },
+      { indonesia: "Jerman", kanji: "", kana: "ドイツ", romaji: "Doitsu", gambar: "https://i.ibb.co/3XgkJsp/image.png" },
+      { indonesia: "Jepang", kanji: "日本", kana: "にほん", romaji: "Nihon", gambar: "https://i.ibb.co/spdG5ZLX/image.png" },
+      { indonesia: "Perancis", kanji: "", kana: "フランス", romaji: "Furansu", gambar: "https://i.ibb.co/kgXHMHCq/image.png" },
       { indonesia: "Filipina", kanji: "", kana: "フィリピン", romaji: "Firipin", gambar: "https://i.ibb.co/LXsWrqcw/image.png" },
       { indonesia: "Brazil", kanji: "", kana: "ブラジル", romaji: "Burajiru", gambar: "https://i.ibb.co/N2TkTBsq/image.png" },
       { indonesia: "Vietnam", kanji: "", kana: "ベトナム", romaji: "Betonamu", gambar: "https://i.ibb.co/B2MvmWZx/image.png" },
@@ -2719,10 +3339,10 @@
       { indonesia: "Orang Singapura", kanji: "", kana: "シンガポール人", romaji: "Shingapooru-jin", gambar: "https://i.ibb.co/RpwnQXM0/image.png" },
       { indonesia: "Orang Spanyol", kanji: "", kana: "スペイン人", romaji: "Supein-jin", gambar: "https://i.ibb.co/dskhYD6j/image.png" },
       { indonesia: "Orang Thailand", kanji: "", kana: "タイ人", romaji: "Tai-jin", gambar: "https://i.ibb.co/TxwvRDh6/image.png" },
-      { indonesia: "Orang Cina", kanji: "中国人", kana: "ちゅうごくじん", romaji: "Chuugoku-jin", gambar: "https://i.ibb.co/6RvvnTXb/image.png" },
-      { indonesia: "Orang Jerman", kanji: "", kana: "ドイツ人", romaji: "Doitsu-jin", gambar: "https://i.ibb.co/d4600BTz/image.png" },
-      { indonesia: "Orang Jepang", kanji: "日本人", kana: "にほんじん", romaji: "Nihon-jin", gambar: "https://i.ibb.co/HDfT5Pmh/image.png" },
-      { indonesia: "Orang Perancis", kanji: "", kana: "フランス人", romaji: "Furansu-jin", gambar: "https://i.ibb.co/pVYqKdh/image.png" },
+      { indonesia: "Orang Cina", kanji: "中国人", kana: "ちゅうごくじん", romaji: "Chuugoku-jin", gambar: "https://i.ibb.co/d4600BTz/image.png" },
+      { indonesia: "Orang Jerman", kanji: "", kana: "ドイツ人", romaji: "Doitsu-jin", gambar: "https://i.ibb.co/6RvvnTXb/image.png" },
+      { indonesia: "Orang Jepang", kanji: "日本人", kana: "にほんじん", romaji: "Nihon-jin", gambar: "https://i.ibb.co/pVYqKdh/image.png" },
+      { indonesia: "Orang Perancis", kanji: "", kana: "フランス人", romaji: "Furansu-jin", gambar: "https://i.ibb.co/HDfT5Pmh/image.png" },
       { indonesia: "Orang Filipina", kanji: "", kana: "フィリピン人", romaji: "Firipin-jin", gambar: "https://i.ibb.co/tWDBMMm/image.png" },
       { indonesia: "Orang Brazil", kanji: "", kana: "ブラジル人", romaji: "Burajiru-jin", gambar: "https://i.ibb.co/QjCSCbqV/image.png" },
       { indonesia: "Orang Vietnam", kanji: "", kana: "ベトナム人", romaji: "Betonamu-jin", gambar: "https://i.ibb.co/JLTMZ7t/image.png" },
@@ -2735,16 +3355,16 @@
       { indonesia: "Bahasa Persia", kanji: "", kana: "ペルシア語", romaji: "Perushia-go", gambar: "https://i.ibb.co/M5NcYvQg/image.png" },
       { indonesia: "Bahasa India", kanji: "", kana: "ヒンディー語", romaji: "Hindii-go", gambar: "https://i.ibb.co/knkGxSP/image.png" },
       { indonesia: "Bahasa Indonesia", kanji: "", kana: "インドネシア語", romaji: "Indoneshia-go", gambar: "https://i.ibb.co/3mjtyqXh/image.png" },
-      { indonesia: "Bahasa Arab", kanji: "", kana: "アラビア語", romaji: "Arabia-go", gambar: "https://i.ibb.co/5XQWjVSM/image.png" },
-      { indonesia: "Bahasa Perancis", kanji: "", kana: "フランス語", romaji: "Furansu-go", gambar: "https://i.ibb.co/nND2Xfn2/image.png" },
-      { indonesia: "Bahasa Korea", kanji: "韓国語", kana: "かんこくご", romaji: "Kankoku-go", gambar: "https://i.ibb.co/0pLjXqFY/image.png" },
-      { indonesia: "Bahasa Spanyol", kanji: "", kana: "スペイン語", romaji: "Supein-go", gambar: "https://i.ibb.co/G49dpHdh/image.png" },
-      { indonesia: "Bahasa Thailand", kanji: "", kana: "タイ語", romaji: "Tai-go", gambar: "https://i.ibb.co/WWYPZLW1/image.png" },
-      { indonesia: "Bahasa Cina", kanji: "中国語", kana: "ちゅうごくご", romaji: "Chuugoku-go", gambar: "https://i.ibb.co/5yfjyrs/image.png" },
-      { indonesia: "Bahasa Jerman", kanji: "", kana: "ドイツ語", romaji: "Doitsu-go", gambar: "https://i.ibb.co/8gwGLhx8/image.png" },
-      { indonesia: "Bahasa Jepang", kanji: "日本語", kana: "にほんご", romaji: "Nihon-go", gambar: "https://i.ibb.co/QFK4B6ZT/image.png" },
-      { indonesia: "Bahasa Filipina", kanji: "", kana: "フィリピン語", romaji: "Firipin-go", gambar: "https://i.ibb.co/C3LrdmLQ/image.png" },
-      { indonesia: "Bahasa Portugis", kanji: "", kana: "ポルトガル語", romaji: "Porutogaru-go", gambar: "https://i.ibb.co/VW6x9BG2/image.png" },
+      { indonesia: "Bahasa Arab", kanji: "", kana: "アラビア語", romaji: "Arabia-go", gambar: "https://i.ibb.co/knkGxSP/image.png" },
+      { indonesia: "Bahasa Perancis", kanji: "", kana: "フランス語", romaji: "Furansu-go", gambar: "https://i.ibb.co/WWYPZLW1/image.png" },
+      { indonesia: "Bahasa Korea", kanji: "韓国語", kana: "かんこくご", romaji: "Kankoku-go", gambar: "https://i.ibb.co/5yfjyrs/image.png" },
+      { indonesia: "Bahasa Spanyol", kanji: "", kana: "スペイン語", romaji: "Supein-go", gambar: "https://i.ibb.co/nND2Xfn2/image.png" },
+      { indonesia: "Bahasa Thailand", kanji: "", kana: "タイ語", romaji: "Tai-go", gambar: "https://i.ibb.co/0pLjXqFY/image.png" },
+      { indonesia: "Bahasa Cina", kanji: "中国語", kana: "ちゅうごくご", romaji: "Chuugoku-go", gambar: "https://i.ibb.co/8gwGLhx8/image.png" },
+      { indonesia: "Bahasa Jerman", kanji: "", kana: "ドイツ語", romaji: "Doitsu-go", gambar: "https://i.ibb.co/G49dpHdh/image.png" },
+      { indonesia: "Bahasa Jepang", kanji: "日本語", kana: "にほんご", romaji: "Nihon-go", gambar: "https://i.ibb.co/VW6x9BG2/image.png" },
+      { indonesia: "Bahasa Filipina", kanji: "", kana: "フィリピン語", romaji: "Firipin-go", gambar: "https://i.ibb.co/QFK4B6ZT/image.png" },
+      { indonesia: "Bahasa Portugis", kanji: "", kana: "ポルトガル語", romaji: "Porutogaru-go", gambar: "https://i.ibb.co/C3LrdmLQ/image.png" },
       { indonesia: "Bahasa Vietnam", kanji: "", kana: "ベトナム語", romaji: "Betonamu-go", gambar: "https://i.ibb.co/MQfGmkZ/image.png" },
       { indonesia: "Bahasa Malaysia", kanji: "", kana: "マレーシア語", romaji: "Mareeshia-go", gambar: "https://i.ibb.co/3mCtjgGG/image.png" },
       { indonesia: "Bahasa Rusia", kanji: "", kana: "ロシア語", romaji: "Roshia-go", gambar: "https://i.ibb.co/KzNv12CW/image.png" }
@@ -2792,6 +3412,10 @@
     const exampleModal = document.getElementById("exampleModal");
     const exampleText = document.getElementById("exampleText");
     const closeExampleModal = document.getElementById("closeExampleModal");
+    const imageModal = document.getElementById("imageModal");
+    const imageModalImg = document.getElementById("imageModalImg");
+    const imageModalCaption = document.getElementById("imageModalCaption");
+    const closeImageModal = document.getElementById("closeImageModal");
     const correctBtn = document.getElementById("correctBtn");
     const wrongBtn = document.getElementById("wrongBtn");
 
@@ -3364,6 +3988,27 @@
       exampleModal.setAttribute("aria-hidden", "true");
     }
 
+    function openImageModal(src, altText = "Gambar kosakata") {
+      if (!src || !imageModal || !imageModalImg) return;
+
+      imageModalImg.src = src;
+      imageModalImg.alt = altText || "Gambar kosakata";
+      imageModalCaption.textContent = altText || "Gambar kosakata";
+      imageModal.classList.add("show");
+      imageModal.setAttribute("aria-hidden", "false");
+      closeImageModal?.focus({ preventScroll: true });
+    }
+
+    function closeImageModalBox() {
+      if (!imageModal || !imageModalImg) return;
+
+      imageModal.classList.remove("show");
+      imageModal.setAttribute("aria-hidden", "true");
+      imageModalImg.removeAttribute("src");
+      imageModalImg.alt = "";
+      if (imageModalCaption) imageModalCaption.textContent = "";
+    }
+
     // =========================
     // Login, admin, dan grup
     // =========================
@@ -3552,6 +4197,10 @@
         img.loading = "lazy";
         img.decoding = "async";
         img.referrerPolicy = "no-referrer";
+        img.tabIndex = 0;
+        img.role = "button";
+        img.title = "Klik untuk melihat gambar penuh";
+        img.setAttribute("aria-label", `Lihat gambar penuh: ${img.alt}`);
         img.onload = () => {
           const ratio = img.naturalHeight && img.naturalWidth
             ? img.naturalHeight / img.naturalWidth
@@ -4019,7 +4668,97 @@
         <head>
           <meta charset="utf-8">
           <title>${escapeHTML(t("pdfTitle"))}</title>
-          <style>${reportStyles()}</style>
+          <style>${reportStyles()}
+
+    /* =========================================================
+       FINAL ADJUSTMENT: JARAK GAMBAR DAN KATA LEBIH RAPAT
+       - Gambar tetap kecil dan utuh
+       - Kata tidak terlalu jauh dari gambar
+       - Masih ada space agar tidak menempel
+       ========================================================= */
+    .back-content {
+      grid-template-rows: minmax(0, 54%) minmax(130px, max-content) !important;
+      gap: clamp(5px, 1vw, 9px) !important;
+      align-items: center !important;
+    }
+
+    .illustration-wrap {
+      align-self: end !important;
+      max-height: 255px !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    .illustration {
+      place-items: end center !important;
+      padding-bottom: 0 !important;
+    }
+
+    .jp-box {
+      align-self: start !important;
+      min-height: 128px !important;
+      padding-top: 4px !important;
+      padding-bottom: 0 !important;
+      gap: 4px !important;
+    }
+
+    .jp-divider {
+      margin: 1px auto 2px !important;
+    }
+
+    .jp-actions {
+      margin-top: 1px !important;
+    }
+
+    @media (max-width: 720px) {
+      .back-content {
+        grid-template-rows: minmax(0, 53%) minmax(128px, max-content) !important;
+        gap: 6px !important;
+      }
+
+      .illustration-wrap {
+        max-height: 235px !important;
+      }
+
+      .jp-box {
+        min-height: 126px !important;
+        padding-top: 3px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .back-content {
+        grid-template-rows: minmax(0, 52%) minmax(130px, max-content) !important;
+        gap: 5px !important;
+      }
+
+      .illustration-wrap {
+        max-height: 215px !important;
+      }
+
+      .jp-box {
+        min-height: 128px !important;
+        padding-top: 3px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .back-content {
+        grid-template-rows: minmax(0, 51%) minmax(126px, max-content) !important;
+        gap: 4px !important;
+      }
+
+      .illustration-wrap {
+        max-height: 198px !important;
+      }
+
+      .jp-box {
+        min-height: 124px !important;
+        padding-top: 2px !important;
+      }
+    }
+
+  </style>
         </head>
         <body>
           <h1>${escapeHTML(t("pdfTitle"))}</h1>
@@ -4273,6 +5012,32 @@
       }
     });
 
+    illustration.addEventListener("click", event => {
+      const img = event.target.closest("img");
+      if (!img) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
+    });
+
+    illustration.addEventListener("keydown", event => {
+      const img = event.target.closest("img");
+      if (!img || (event.key !== "Enter" && event.key !== " ")) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
+    });
+
+    closeImageModal?.addEventListener("click", closeImageModalBox);
+
+    imageModal?.addEventListener("click", event => {
+      if (event.target === imageModal) {
+        closeImageModalBox();
+      }
+    });
+
     correctBtn.addEventListener("click", () => markAnswer(true));
     wrongBtn.addEventListener("click", () => markAnswer(false));
 
@@ -4303,6 +5068,10 @@
     document.addEventListener("keydown", event => {
       if (event.key === "Escape" && exampleModal.classList.contains("show")) {
         closeExampleModalBox();
+      }
+
+      if (event.key === "Escape" && imageModal?.classList.contains("show")) {
+        closeImageModalBox();
       }
 
       if (event.key === "Escape" && loginModal.classList.contains("show")) {
