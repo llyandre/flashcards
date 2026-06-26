@@ -2758,7 +2758,319 @@
       }
     }
 
-</style>
+
+    /* =========================================================
+       FINAL COMPACT + POPUP GAMBAR
+       - Gambar di kartu dibuat lebih kecil agar utuh terlihat
+       - Jarak gambar dan kata dibuat rapat tapi tetap ada space
+       - Klik gambar membuka popup gambar penuh
+       ========================================================= */
+    .flashcard {
+      height: clamp(480px, 66svh, 575px) !important;
+      min-height: 480px !important;
+    }
+
+    .card-back {
+      padding: clamp(14px, 2.7vw, 22px) !important;
+    }
+
+    .back-content {
+      grid-template-rows: minmax(0, 54%) minmax(112px, auto) !important;
+      gap: clamp(5px, 1vw, 9px) !important;
+      align-items: center !important;
+      justify-items: center !important;
+      align-content: center !important;
+      overflow: hidden !important;
+    }
+
+    .illustration-wrap {
+      width: min(68%, 255px) !important;
+      height: 100% !important;
+      max-height: 205px !important;
+      align-self: end !important;
+      margin: 0 !important;
+      overflow: visible !important;
+    }
+
+    .illustration {
+      width: 100% !important;
+      height: 100% !important;
+      display: grid !important;
+      place-items: end center !important;
+      overflow: visible !important;
+      cursor: zoom-in !important;
+    }
+
+    .illustration img {
+      width: 72% !important;
+      height: 72% !important;
+      max-width: 72% !important;
+      max-height: 72% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      cursor: zoom-in !important;
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .illustration img:hover,
+    .illustration img:focus-visible {
+      transform: scale(1.025);
+      filter: drop-shadow(0 10px 16px rgba(34, 48, 71, 0.12));
+      outline: none;
+    }
+
+    .illustration.image-landscape img {
+      width: 80% !important;
+      height: auto !important;
+      max-width: 80% !important;
+      max-height: 72% !important;
+    }
+
+    .illustration.image-portrait img {
+      width: auto !important;
+      height: 72% !important;
+      max-width: 66% !important;
+      max-height: 72% !important;
+    }
+
+    .illustration.image-tall img {
+      width: auto !important;
+      height: 68% !important;
+      max-width: 60% !important;
+      max-height: 68% !important;
+    }
+
+    .illustration.image-square img {
+      width: 70% !important;
+      height: 70% !important;
+      max-width: 70% !important;
+      max-height: 70% !important;
+    }
+
+    .jp-box {
+      min-height: 112px !important;
+      align-self: start !important;
+      padding-top: 0 !important;
+      gap: 4px !important;
+    }
+
+    .jp-main-display {
+      font-size: clamp(24px, 4.6vw, 36px) !important;
+      line-height: 1.16 !important;
+    }
+
+    .jp-main-display.long {
+      font-size: clamp(19px, 4vw, 29px) !important;
+      line-height: 1.18 !important;
+    }
+
+    .jp-divider {
+      margin: 0 auto 2px !important;
+    }
+
+    .jp-reading,
+    .jp-reading.long {
+      line-height: 1.28 !important;
+    }
+
+    .jp-actions {
+      margin-top: 0 !important;
+      gap: 7px !important;
+    }
+
+    .audio-btn,
+    .example-btn {
+      margin-top: 2px !important;
+    }
+
+    @media (max-width: 720px) {
+      .flashcard {
+        height: clamp(500px, 72svh, 610px) !important;
+        min-height: 500px !important;
+      }
+
+      .illustration-wrap {
+        width: min(72%, 255px) !important;
+        max-height: 205px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .flashcard {
+        height: clamp(520px, 77svh, 640px) !important;
+        min-height: 520px !important;
+      }
+
+      .back-content {
+        grid-template-rows: minmax(0, 53%) minmax(120px, auto) !important;
+        gap: 5px !important;
+      }
+
+      .illustration-wrap {
+        width: min(74%, 245px) !important;
+        max-height: 200px !important;
+      }
+
+      .illustration img {
+        width: 68% !important;
+        height: 68% !important;
+        max-width: 68% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-landscape img {
+        width: 76% !important;
+        max-width: 76% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-portrait img {
+        height: 68% !important;
+        max-width: 62% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-tall img {
+        height: 64% !important;
+        max-width: 56% !important;
+        max-height: 64% !important;
+      }
+
+      .illustration.image-square img {
+        width: 66% !important;
+        height: 66% !important;
+        max-width: 66% !important;
+        max-height: 66% !important;
+      }
+
+      .jp-box {
+        min-height: 120px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(23px, 7.2vw, 34px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(18px, 5.7vw, 27px) !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .flashcard {
+        height: clamp(520px, 78svh, 630px) !important;
+        min-height: 520px !important;
+      }
+
+      .illustration-wrap {
+        width: min(76%, 230px) !important;
+        max-height: 190px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(22px, 7vw, 32px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(17px, 5.3vw, 25px) !important;
+      }
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(20, 24, 38, 0.58);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .image-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .image-modal-card {
+      width: min(760px, 94vw);
+      max-height: 90svh;
+      position: relative;
+      padding: clamp(14px, 3vw, 22px);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.28);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .image-modal.show .image-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .image-modal-body {
+      min-height: 220px;
+      max-height: 76svh;
+      display: grid;
+      place-items: center;
+      padding: 42px 8px 8px;
+      overflow: hidden;
+    }
+
+    .image-modal-body img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 72svh;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      border: 0;
+      background: transparent;
+    }
+
+    .image-modal-caption {
+      margin: 8px 8px 0;
+      color: #4f596d;
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+
+  </style>
 </head>
 <body>
   <main class="app-shell">
@@ -3020,6 +3332,16 @@
         <button id="closeExampleModal" class="example-close" type="button" aria-label="Tutup contoh" data-i18n-aria-label="closeExampleLabel">×</button>
         <h3 id="exampleModalTitle" data-i18n="exampleTitle">Contoh penggunaan</h3>
         <p id="exampleText"></p>
+      </div>
+    </div>
+
+    <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gambar penuh">
+      <div class="image-modal-card">
+        <button id="closeImageModal" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
+        <div class="image-modal-body">
+          <img id="imageModalImg" alt="" />
+        </div>
+        <p id="imageModalCaption" class="image-modal-caption"></p>
       </div>
     </div>
   </main>
@@ -3432,6 +3754,10 @@
     const exampleModal = document.getElementById("exampleModal");
     const exampleText = document.getElementById("exampleText");
     const closeExampleModal = document.getElementById("closeExampleModal");
+    const imageModal = document.getElementById("imageModal");
+    const imageModalImg = document.getElementById("imageModalImg");
+    const imageModalCaption = document.getElementById("imageModalCaption");
+    const closeImageModal = document.getElementById("closeImageModal");
     const correctBtn = document.getElementById("correctBtn");
     const wrongBtn = document.getElementById("wrongBtn");
 
@@ -4004,6 +4330,27 @@
       exampleModal.setAttribute("aria-hidden", "true");
     }
 
+    function openImageModal(src, altText = "Gambar kosakata") {
+      if (!src || !imageModal || !imageModalImg) return;
+
+      imageModalImg.src = src;
+      imageModalImg.alt = altText || "Gambar kosakata";
+      imageModalCaption.textContent = altText || "Gambar kosakata";
+      imageModal.classList.add("show");
+      imageModal.setAttribute("aria-hidden", "false");
+      closeImageModal?.focus({ preventScroll: true });
+    }
+
+    function closeImageModalBox() {
+      if (!imageModal || !imageModalImg) return;
+
+      imageModal.classList.remove("show");
+      imageModal.setAttribute("aria-hidden", "true");
+      imageModalImg.removeAttribute("src");
+      imageModalImg.alt = "";
+      if (imageModalCaption) imageModalCaption.textContent = "";
+    }
+
     // =========================
     // Login, admin, dan grup
     // =========================
@@ -4164,6 +4511,7 @@
       }
 
       closeExampleModalBox();
+      closeImageModalBox();
       currentItem = deck[currentIndex];
       isFlipped = false;
       answered = false;
@@ -4183,6 +4531,7 @@
       frontText.textContent = currentItem.indonesia;
 
       illustration.replaceChildren();
+      illustration.classList.remove("image-landscape", "image-portrait", "image-tall", "image-square");
       const imageUrl = String(currentItem.gambar || "").trim();
 
       if (/^https?:\/\//i.test(imageUrl)) {
@@ -4191,6 +4540,27 @@
         img.loading = "eager";
         img.decoding = "async";
         img.referrerPolicy = "no-referrer";
+        img.tabIndex = 0;
+        img.role = "button";
+        img.title = "Klik untuk melihat gambar penuh";
+        img.setAttribute("aria-label", `Lihat gambar penuh: ${img.alt}`);
+        img.onload = () => {
+          const ratio = img.naturalHeight && img.naturalWidth
+            ? img.naturalHeight / img.naturalWidth
+            : 1;
+
+          illustration.classList.remove("image-landscape", "image-portrait", "image-tall", "image-square");
+
+          if (ratio >= 1.35) {
+            illustration.classList.add("image-tall");
+          } else if (ratio >= 1.08) {
+            illustration.classList.add("image-portrait");
+          } else if (ratio <= 0.82) {
+            illustration.classList.add("image-landscape");
+          } else {
+            illustration.classList.add("image-square");
+          }
+        };
         img.onerror = () => {
           const fallback = document.createElement("div");
           fallback.className = "image-fallback";
@@ -4543,7 +4913,319 @@
         <head>
           <meta charset="utf-8">
           <title>${escapeHTML(t("adminPdfTitle"))}</title>
-          <style>${reportStyles()}</style>
+          <style>${reportStyles()}
+    /* =========================================================
+       FINAL COMPACT + POPUP GAMBAR
+       - Gambar di kartu dibuat lebih kecil agar utuh terlihat
+       - Jarak gambar dan kata dibuat rapat tapi tetap ada space
+       - Klik gambar membuka popup gambar penuh
+       ========================================================= */
+    .flashcard {
+      height: clamp(480px, 66svh, 575px) !important;
+      min-height: 480px !important;
+    }
+
+    .card-back {
+      padding: clamp(14px, 2.7vw, 22px) !important;
+    }
+
+    .back-content {
+      grid-template-rows: minmax(0, 54%) minmax(112px, auto) !important;
+      gap: clamp(5px, 1vw, 9px) !important;
+      align-items: center !important;
+      justify-items: center !important;
+      align-content: center !important;
+      overflow: hidden !important;
+    }
+
+    .illustration-wrap {
+      width: min(68%, 255px) !important;
+      height: 100% !important;
+      max-height: 205px !important;
+      align-self: end !important;
+      margin: 0 !important;
+      overflow: visible !important;
+    }
+
+    .illustration {
+      width: 100% !important;
+      height: 100% !important;
+      display: grid !important;
+      place-items: end center !important;
+      overflow: visible !important;
+      cursor: zoom-in !important;
+    }
+
+    .illustration img {
+      width: 72% !important;
+      height: 72% !important;
+      max-width: 72% !important;
+      max-height: 72% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      cursor: zoom-in !important;
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .illustration img:hover,
+    .illustration img:focus-visible {
+      transform: scale(1.025);
+      filter: drop-shadow(0 10px 16px rgba(34, 48, 71, 0.12));
+      outline: none;
+    }
+
+    .illustration.image-landscape img {
+      width: 80% !important;
+      height: auto !important;
+      max-width: 80% !important;
+      max-height: 72% !important;
+    }
+
+    .illustration.image-portrait img {
+      width: auto !important;
+      height: 72% !important;
+      max-width: 66% !important;
+      max-height: 72% !important;
+    }
+
+    .illustration.image-tall img {
+      width: auto !important;
+      height: 68% !important;
+      max-width: 60% !important;
+      max-height: 68% !important;
+    }
+
+    .illustration.image-square img {
+      width: 70% !important;
+      height: 70% !important;
+      max-width: 70% !important;
+      max-height: 70% !important;
+    }
+
+    .jp-box {
+      min-height: 112px !important;
+      align-self: start !important;
+      padding-top: 0 !important;
+      gap: 4px !important;
+    }
+
+    .jp-main-display {
+      font-size: clamp(24px, 4.6vw, 36px) !important;
+      line-height: 1.16 !important;
+    }
+
+    .jp-main-display.long {
+      font-size: clamp(19px, 4vw, 29px) !important;
+      line-height: 1.18 !important;
+    }
+
+    .jp-divider {
+      margin: 0 auto 2px !important;
+    }
+
+    .jp-reading,
+    .jp-reading.long {
+      line-height: 1.28 !important;
+    }
+
+    .jp-actions {
+      margin-top: 0 !important;
+      gap: 7px !important;
+    }
+
+    .audio-btn,
+    .example-btn {
+      margin-top: 2px !important;
+    }
+
+    @media (max-width: 720px) {
+      .flashcard {
+        height: clamp(500px, 72svh, 610px) !important;
+        min-height: 500px !important;
+      }
+
+      .illustration-wrap {
+        width: min(72%, 255px) !important;
+        max-height: 205px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .flashcard {
+        height: clamp(520px, 77svh, 640px) !important;
+        min-height: 520px !important;
+      }
+
+      .back-content {
+        grid-template-rows: minmax(0, 53%) minmax(120px, auto) !important;
+        gap: 5px !important;
+      }
+
+      .illustration-wrap {
+        width: min(74%, 245px) !important;
+        max-height: 200px !important;
+      }
+
+      .illustration img {
+        width: 68% !important;
+        height: 68% !important;
+        max-width: 68% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-landscape img {
+        width: 76% !important;
+        max-width: 76% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-portrait img {
+        height: 68% !important;
+        max-width: 62% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-tall img {
+        height: 64% !important;
+        max-width: 56% !important;
+        max-height: 64% !important;
+      }
+
+      .illustration.image-square img {
+        width: 66% !important;
+        height: 66% !important;
+        max-width: 66% !important;
+        max-height: 66% !important;
+      }
+
+      .jp-box {
+        min-height: 120px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(23px, 7.2vw, 34px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(18px, 5.7vw, 27px) !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .flashcard {
+        height: clamp(520px, 78svh, 630px) !important;
+        min-height: 520px !important;
+      }
+
+      .illustration-wrap {
+        width: min(76%, 230px) !important;
+        max-height: 190px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(22px, 7vw, 32px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(17px, 5.3vw, 25px) !important;
+      }
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(20, 24, 38, 0.58);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .image-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .image-modal-card {
+      width: min(760px, 94vw);
+      max-height: 90svh;
+      position: relative;
+      padding: clamp(14px, 3vw, 22px);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.28);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .image-modal.show .image-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .image-modal-body {
+      min-height: 220px;
+      max-height: 76svh;
+      display: grid;
+      place-items: center;
+      padding: 42px 8px 8px;
+      overflow: hidden;
+    }
+
+    .image-modal-body img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 72svh;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      border: 0;
+      background: transparent;
+    }
+
+    .image-modal-caption {
+      margin: 8px 8px 0;
+      color: #4f596d;
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+
+  </style>
         </head>
         <body>
           <h1>${escapeHTML(t("adminPdfTitle"))}</h1>
@@ -4642,7 +5324,319 @@
         <head>
           <meta charset="utf-8">
           <title>${escapeHTML(t("pdfTitle"))}</title>
-          <style>${reportStyles()}</style>
+          <style>${reportStyles()}
+    /* =========================================================
+       FINAL COMPACT + POPUP GAMBAR
+       - Gambar di kartu dibuat lebih kecil agar utuh terlihat
+       - Jarak gambar dan kata dibuat rapat tapi tetap ada space
+       - Klik gambar membuka popup gambar penuh
+       ========================================================= */
+    .flashcard {
+      height: clamp(480px, 66svh, 575px) !important;
+      min-height: 480px !important;
+    }
+
+    .card-back {
+      padding: clamp(14px, 2.7vw, 22px) !important;
+    }
+
+    .back-content {
+      grid-template-rows: minmax(0, 54%) minmax(112px, auto) !important;
+      gap: clamp(5px, 1vw, 9px) !important;
+      align-items: center !important;
+      justify-items: center !important;
+      align-content: center !important;
+      overflow: hidden !important;
+    }
+
+    .illustration-wrap {
+      width: min(68%, 255px) !important;
+      height: 100% !important;
+      max-height: 205px !important;
+      align-self: end !important;
+      margin: 0 !important;
+      overflow: visible !important;
+    }
+
+    .illustration {
+      width: 100% !important;
+      height: 100% !important;
+      display: grid !important;
+      place-items: end center !important;
+      overflow: visible !important;
+      cursor: zoom-in !important;
+    }
+
+    .illustration img {
+      width: 72% !important;
+      height: 72% !important;
+      max-width: 72% !important;
+      max-height: 72% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      cursor: zoom-in !important;
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .illustration img:hover,
+    .illustration img:focus-visible {
+      transform: scale(1.025);
+      filter: drop-shadow(0 10px 16px rgba(34, 48, 71, 0.12));
+      outline: none;
+    }
+
+    .illustration.image-landscape img {
+      width: 80% !important;
+      height: auto !important;
+      max-width: 80% !important;
+      max-height: 72% !important;
+    }
+
+    .illustration.image-portrait img {
+      width: auto !important;
+      height: 72% !important;
+      max-width: 66% !important;
+      max-height: 72% !important;
+    }
+
+    .illustration.image-tall img {
+      width: auto !important;
+      height: 68% !important;
+      max-width: 60% !important;
+      max-height: 68% !important;
+    }
+
+    .illustration.image-square img {
+      width: 70% !important;
+      height: 70% !important;
+      max-width: 70% !important;
+      max-height: 70% !important;
+    }
+
+    .jp-box {
+      min-height: 112px !important;
+      align-self: start !important;
+      padding-top: 0 !important;
+      gap: 4px !important;
+    }
+
+    .jp-main-display {
+      font-size: clamp(24px, 4.6vw, 36px) !important;
+      line-height: 1.16 !important;
+    }
+
+    .jp-main-display.long {
+      font-size: clamp(19px, 4vw, 29px) !important;
+      line-height: 1.18 !important;
+    }
+
+    .jp-divider {
+      margin: 0 auto 2px !important;
+    }
+
+    .jp-reading,
+    .jp-reading.long {
+      line-height: 1.28 !important;
+    }
+
+    .jp-actions {
+      margin-top: 0 !important;
+      gap: 7px !important;
+    }
+
+    .audio-btn,
+    .example-btn {
+      margin-top: 2px !important;
+    }
+
+    @media (max-width: 720px) {
+      .flashcard {
+        height: clamp(500px, 72svh, 610px) !important;
+        min-height: 500px !important;
+      }
+
+      .illustration-wrap {
+        width: min(72%, 255px) !important;
+        max-height: 205px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .flashcard {
+        height: clamp(520px, 77svh, 640px) !important;
+        min-height: 520px !important;
+      }
+
+      .back-content {
+        grid-template-rows: minmax(0, 53%) minmax(120px, auto) !important;
+        gap: 5px !important;
+      }
+
+      .illustration-wrap {
+        width: min(74%, 245px) !important;
+        max-height: 200px !important;
+      }
+
+      .illustration img {
+        width: 68% !important;
+        height: 68% !important;
+        max-width: 68% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-landscape img {
+        width: 76% !important;
+        max-width: 76% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-portrait img {
+        height: 68% !important;
+        max-width: 62% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-tall img {
+        height: 64% !important;
+        max-width: 56% !important;
+        max-height: 64% !important;
+      }
+
+      .illustration.image-square img {
+        width: 66% !important;
+        height: 66% !important;
+        max-width: 66% !important;
+        max-height: 66% !important;
+      }
+
+      .jp-box {
+        min-height: 120px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(23px, 7.2vw, 34px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(18px, 5.7vw, 27px) !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .flashcard {
+        height: clamp(520px, 78svh, 630px) !important;
+        min-height: 520px !important;
+      }
+
+      .illustration-wrap {
+        width: min(76%, 230px) !important;
+        max-height: 190px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(22px, 7vw, 32px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(17px, 5.3vw, 25px) !important;
+      }
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(20, 24, 38, 0.58);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .image-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .image-modal-card {
+      width: min(760px, 94vw);
+      max-height: 90svh;
+      position: relative;
+      padding: clamp(14px, 3vw, 22px);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.28);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .image-modal.show .image-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .image-modal-body {
+      min-height: 220px;
+      max-height: 76svh;
+      display: grid;
+      place-items: center;
+      padding: 42px 8px 8px;
+      overflow: hidden;
+    }
+
+    .image-modal-body img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 72svh;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      border: 0;
+      background: transparent;
+    }
+
+    .image-modal-caption {
+      margin: 8px 8px 0;
+      color: #4f596d;
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+
+  </style>
         </head>
         <body>
           <h1>${escapeHTML(t("pdfTitle"))}</h1>
@@ -4896,6 +5890,32 @@
       }
     });
 
+    illustration.addEventListener("click", event => {
+      const img = event.target.closest("img");
+      if (!img) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
+    });
+
+    illustration.addEventListener("keydown", event => {
+      const img = event.target.closest("img");
+      if (!img || (event.key !== "Enter" && event.key !== " ")) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
+    });
+
+    closeImageModal?.addEventListener("click", closeImageModalBox);
+
+    imageModal?.addEventListener("click", event => {
+      if (event.target === imageModal) {
+        closeImageModalBox();
+      }
+    });
+
     correctBtn.addEventListener("click", () => markAnswer(true));
     wrongBtn.addEventListener("click", () => markAnswer(false));
 
@@ -4926,6 +5946,10 @@
     document.addEventListener("keydown", event => {
       if (event.key === "Escape" && exampleModal.classList.contains("show")) {
         closeExampleModalBox();
+      }
+
+      if (event.key === "Escape" && imageModal?.classList.contains("show")) {
+        closeImageModalBox();
       }
 
       if (event.key === "Escape" && loginModal.classList.contains("show")) {
