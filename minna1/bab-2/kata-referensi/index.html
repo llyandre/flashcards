@@ -431,6 +431,40 @@
       .login-modal-actions { flex-direction: column; }
       .login-modal-actions .btn { width: 100%; }
     }
+
+    /* ===== Proteksi dasar: anti seleksi, anti copy, anti drag, dan anti print ===== */
+    html,
+    body,
+    body * {
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+
+    img,
+    svg,
+    canvas,
+    video {
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+    }
+
+    input,
+    textarea,
+    button,
+    select,
+    label {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @media print {
+      body {
+        display: none !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1602,5 +1636,91 @@
 
     applyLanguage();
   </script>
+
+  <script>
+    /* ===== Proteksi dasar: anti klik kanan, copas, drag, shortcut inspect/source/print/save ===== */
+    (() => {
+      "use strict";
+
+      const blockedMessage = "Aksi ini dinonaktifkan untuk melindungi konten kuis.";
+
+      const showProtectionToast = () => {
+        const toast = document.getElementById("toast");
+        if (!toast) return;
+
+        toast.textContent = blockedMessage;
+        toast.classList.add("show");
+
+        window.clearTimeout(showProtectionToast.timer);
+        showProtectionToast.timer = window.setTimeout(() => {
+          toast.classList.remove("show");
+        }, 1800);
+      };
+
+      const blockEvent = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        showProtectionToast();
+        return false;
+      };
+
+      [
+        "contextmenu",
+        "copy",
+        "cut",
+        "paste",
+        "dragstart",
+        "selectstart"
+      ].forEach((eventName) => {
+        document.addEventListener(eventName, blockEvent, true);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        const key = (event.key || "").toLowerCase();
+
+        const blockedShortcuts =
+          event.key === "F12" ||
+          (event.ctrlKey && event.shiftKey && ["i", "j", "c", "k"].includes(key)) ||
+          (event.metaKey && event.altKey && ["i", "j", "c", "k"].includes(key)) ||
+          ((event.ctrlKey || event.metaKey) && ["a", "c", "x", "v", "s", "p", "u"].includes(key));
+
+        if (blockedShortcuts) {
+          blockEvent(event);
+        }
+      }, true);
+
+      document.addEventListener("mousedown", (event) => {
+        if (event.button === 2) {
+          blockEvent(event);
+        }
+      }, true);
+
+      document.addEventListener("touchstart", (event) => {
+        if (event.touches && event.touches.length > 1) {
+          blockEvent(event);
+        }
+      }, { capture: true, passive: false });
+
+      document.addEventListener("gesturestart", blockEvent, true);
+
+      // Perlindungan tambahan sederhana saat DevTools dibuka lewat shortcut/menu browser.
+      let devtoolsWarningShown = false;
+      window.setInterval(() => {
+        const threshold = 170;
+        const widthGap = Math.abs(window.outerWidth - window.innerWidth);
+        const heightGap = Math.abs(window.outerHeight - window.innerHeight);
+
+        if ((widthGap > threshold || heightGap > threshold) && !devtoolsWarningShown) {
+          devtoolsWarningShown = true;
+          showProtectionToast();
+        }
+
+        if (widthGap <= threshold && heightGap <= threshold) {
+          devtoolsWarningShown = false;
+        }
+      }, 1200);
+    })();
+  </script>
+
 </body>
 </html>
