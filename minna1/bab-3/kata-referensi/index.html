@@ -18,91 +18,279 @@
       --primary:#7c6ff6; --primary2:#9d8dfd; --soft:rgba(124,111,246,.12);
       --green:#20b486; --red:#ef5d75; --amber:#f6b73c;
       --line:rgba(34,48,71,.13); --glass:rgba(255,255,255,.78);
-      --radius:24px; --radius-lg:32px; --pill:999px;
-      --shadow:0 20px 48px rgba(82,73,134,.14); --shadow2:0 10px 24px rgba(82,73,134,.09);
+      --radius:24px; --shadow:0 20px 48px rgba(61,72,104,.13); --shadow2:0 10px 24px rgba(82,73,134,.08);
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-height:100svh;font-family:var(--font-main);color:var(--text);background:radial-gradient(circle at top left,rgba(255,195,217,.5),transparent 34%),radial-gradient(circle at top right,rgba(184,232,255,.58),transparent 34%),radial-gradient(circle at 50% 88%,rgba(167,243,208,.28),transparent 34%),linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));overflow-x:hidden;-webkit-user-select:none;user-select:none} body:before,body:after{content:"";position:fixed;z-index:-1;width:230px;height:230px;border-radius:999px;opacity:.34;filter:blur(2px);pointer-events:none}body:before{left:-76px;bottom:8%;background:#c9fff1}body:after{right:-92px;top:18%;background:#ffd2e5}.jp{font-family:var(--font-jp)}button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}.app{width:min(1120px,calc(100% - 32px));margin:0 auto;min-height:100svh;padding:clamp(16px,2.4vw,28px) 0 34px;display:none;align-items:center;justify-content:center}.app.unlocked{display:flex}.app.top{align-items:flex-start}.screen{display:none;width:100%;animation:fadeIn .28s ease both}.screen.active{display:block}.panel{width:min(960px,100%);margin:0 auto;padding:clamp(20px,3.4vw,40px);border-radius:34px;background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,255,255,.66));border:1px solid var(--glass);box-shadow:var(--shadow);backdrop-filter:blur(18px)}.hero{text-align:center;position:relative;overflow:hidden;padding-top:clamp(18px,3vw,34px)}.language-switch{position:absolute;right:clamp(16px,2.4vw,26px);top:clamp(16px,2.4vw,26px);left:auto;z-index:5;display:inline-flex;align-items:center;gap:5px;padding:5px;border-radius:999px;background:rgba(255,255,255,.88);border:1px solid rgba(124,111,246,.18);box-shadow:0 10px 24px rgba(61,72,104,.12);backdrop-filter:blur(14px)}.language-btn{border:0;border-radius:999px;background:transparent;padding:7px 12px;color:#596174;font-size:13px;font-weight:750;line-height:1.1}.language-btn.active{color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:0 8px 16px rgba(124,111,246,.2)}.badge{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 13px;border-radius:999px;background:var(--soft);color:#6557df;font-size:13px;font-weight:900}.hero h1{margin:18px 0 12px;color:var(--heading);font-size:clamp(30px,4.5vw,48px);line-height:1.13}.lead{color:#5b6476;font-size:clamp(14.5px,1.2vw,16px);line-height:1.6}.info-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px auto;max-width:780px}.info-card{display:flex;align-items:center;gap:12px;text-align:left;min-height:76px;padding:14px 16px;border-radius:20px;background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.86);box-shadow:var(--shadow2)}.info-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:999px;background:white;color:#6f50ff;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}.info-card span{display:block;color:#64748b;font-size:12px;font-weight:700}.info-card strong{display:block;color:#17254e;font-size:17px}.login-summary{display:inline-flex;margin:0 auto 14px;padding:8px 13px;border-radius:999px;color:#514a9e;background:rgba(124,111,246,.1);border:1px solid rgba(124,111,246,.18);font-size:13px;font-weight:900}.admin-actions{display:none;justify-content:center;gap:10px;margin:10px 0 0}.admin-actions.show{display:flex}.hero-dept{display:none!important;margin:10px auto 22px;max-width:640px;border-radius:28px;padding:18px;background:linear-gradient(145deg,rgba(255,255,255,.7),rgba(255,255,255,.45));border:1px solid rgba(124,111,246,.16);box-shadow:var(--shadow2)}.mini-building{display:grid;gap:7px}.mini-floor{display:grid;grid-template-columns:64px 1fr 90px;gap:10px;align-items:center;padding:8px 12px;border-radius:16px;background:rgba(255,255,255,.82);border:1px solid rgba(34,48,71,.08)}.mini-floor b{font-family:var(--font-jp);color:#514a9e}.mini-floor span{text-align:left;font-size:13px;font-weight:800;color:#263044}.mini-floor img{height:34px;width:100%;object-fit:contain}.actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px}.btn{min-height:52px;padding:12px 18px;border:0;border-radius:18px;color:white;background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:0 14px 26px rgba(124,111,246,.24);font-weight:900}.btn.secondary{color:#5c5972;background:rgba(255,255,255,.78);border:1px solid rgba(124,111,246,.22);box-shadow:var(--shadow2)}.btn.danger{color:#c8465c;background:rgba(255,255,255,.82);border:1px solid rgba(239,93,117,.35);box-shadow:var(--shadow2)}.btn:disabled{opacity:.5;cursor:not-allowed}.topbar{width:min(900px,100%);margin:0 auto 14px;display:grid;grid-template-columns:1fr auto;gap:14px}.counter,.timer{border-radius:24px;background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.82);box-shadow:var(--shadow2);padding:14px 16px}.counter small,.timer small{display:block;color:var(--muted);font-size:13px;font-weight:700}.timer{min-width:132px;text-align:center}.time{color:var(--primary);font-size:36px;font-weight:900;line-height:1}.track{height:9px;border-radius:999px;background:rgba(124,58,237,.13);margin-top:10px;overflow:hidden}.fill{height:100%;width:100%;border-radius:inherit;background:linear-gradient(90deg,#8b5cf6,#06b6d4);transition:.2s}.fill.warn{background:linear-gradient(90deg,#f59e0b,#ef4444)}.quiz-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:18px;align-items:stretch}.map-card,.question-card{border-radius:30px;background:rgba(255,255,255,.86);border:1px solid rgba(255,255,255,.86);box-shadow:var(--shadow2);overflow:hidden}.map-title{padding:18px 18px 12px;border-bottom:1px solid var(--line)}.map-title h2{margin:0 0 4px;color:#17254e}.map-title p{margin:0;color:var(--muted);font-weight:700;font-size:13px}.floor-list{display:grid;gap:8px;padding:14px}.floor-row{display:grid;grid-template-columns:58px 1fr 80px;gap:10px;align-items:center;padding:9px 10px;border-radius:18px;background:rgba(248,250,252,.8);border:1px solid rgba(124,111,246,.12);transition:.18s}.floor-row:hover,.floor-row.active{transform:translateY(-2px);background:rgba(124,111,246,.1);border-color:rgba(124,111,246,.24)}.floor-no{font-family:var(--font-jp);font-weight:900;color:#514a9e}.floor-name{font-weight:900;color:#253044}.floor-sub{font-size:12px;color:var(--muted);font-weight:700}.floor-imgs{display:flex;gap:4px;justify-content:flex-end}.floor-imgs img{width:24px;height:24px;object-fit:contain}.question-card{padding:20px;display:flex;flex-direction:column;gap:14px}.mode-pill{align-self:flex-start;border-radius:999px;padding:7px 10px;background:rgba(32,180,134,.12);color:#168763;font-size:12px;font-weight:900}.qbox{min-height:230px;display:grid;place-items:center;text-align:center;border-radius:24px;background:radial-gradient(circle at top left,rgba(255,205,102,.18),transparent 34%),rgba(255,255,255,.58);border:1px solid rgba(124,111,246,.13);padding:18px}.q-img{max-width:100%;max-height:170px;object-fit:contain}.q-title{font-family:var(--font-jp);font-size:clamp(30px,5vw,46px);font-weight:900;color:#2f2d2c}.q-reading{font-family:var(--font-jp);font-size:15px;color:#817a75;font-weight:800;margin-top:6px}.q-sub{font-size:14px;color:var(--muted);font-weight:800;margin-top:8px}.options{display:grid;gap:10px}.option{min-height:50px;border:1px solid rgba(124,111,246,.18);border-radius:18px;background:rgba(255,255,255,.82);color:#263044;font-weight:900;box-shadow:var(--shadow2);transition:.16s}.option:hover:not(:disabled){transform:translateY(-1px);border-color:rgba(124,111,246,.34)}.option.correct{background:linear-gradient(135deg,#22c55e,#16a34a);color:white}.option.wrong{background:linear-gradient(135deg,#ef4444,#dc2626);color:white}.feedback{min-height:22px;text-align:center;font-weight:900}.study-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}#floorDetailCard{scroll-margin-top:22px}.vocab-card{border:1px solid rgba(124,111,246,.15);border-radius:22px;background:rgba(255,255,255,.78);box-shadow:var(--shadow2);padding:15px;text-align:center;transition:.18s}.vocab-card:hover{transform:translateY(-3px)}.vocab-card img{height:92px;width:100%;object-fit:contain}.vocab-card h3{margin:10px 0 2px;font-family:var(--font-jp);font-size:24px;color:#17254e}.vocab-card p{margin:0;color:#64748b;font-weight:800;font-size:13px}.vocab-card .reading{font-family:var(--font-jp);color:#817a75;font-size:13px;margin:2px 0 4px}.vocab-card .tag{display:inline-flex;margin-top:9px;padding:5px 9px;border-radius:99px;background:rgba(32,180,134,.12);color:#168763;font-size:12px;font-weight:900}.tabs{display:flex;justify-content:center;gap:8px;margin:18px 0;padding:6px;border-radius:20px;background:rgba(124,111,246,.09);overflow:auto}.tab{border:0;border-radius:16px;padding:10px 14px;background:transparent;color:#5d5f7c;font-size:13px;font-weight:900;white-space:nowrap}.tab.active{background:white;color:var(--primary);box-shadow:var(--shadow2)}.hidden{display:none!important}.result{text-align:center}.participant-name{display:inline-flex;margin:10px auto 0;padding:8px 13px;border-radius:999px;color:#514a9e;background:rgba(124,111,246,.1);border:1px solid rgba(124,111,246,.18);font-size:13px;font-weight:900}.score-circle{width:172px;height:172px;margin:18px auto;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--primary) var(--deg),rgba(124,111,246,.14) 0deg);position:relative}.score-circle:before{content:"";position:absolute;inset:14px;border-radius:inherit;background:white}.score-circle strong{position:relative;font-size:34px;color:#413f73}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}.stat{padding:16px;border-radius:20px;background:rgba(255,255,255,.74);border:1px solid rgba(124,111,246,.17);box-shadow:var(--shadow2)}.stat span{display:block;color:var(--muted);font-size:12px;font-weight:700}.stat b{display:block;color:#413f73;font-size:24px;margin-top:4px}.table-wrap{margin-top:16px;text-align:left;overflow:auto;border-radius:22px;border:1px solid rgba(124,111,246,.16);background:rgba(255,255,255,.72)}table{width:100%;min-width:760px;border-collapse:collapse;font-size:14px}th,td{padding:12px 14px;border-bottom:1px solid rgba(124,111,246,.12);vertical-align:top}th{color:#514a9e;background:rgba(124,111,246,.09);font-size:12px;text-transform:uppercase}tr:last-child td{border-bottom:0}.pill{display:inline-flex;border-radius:99px;padding:5px 9px;font-size:12px;font-weight:900}.pill.ok{background:rgba(32,180,134,.14);color:#168763}.pill.no{background:rgba(239,93,117,.14);color:#c8465c}.empty-state{padding:20px;text-align:center;color:#64748b;font-weight:900}.login-modal,.image-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:22px;background:rgba(20,24,38,.48);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:.22s}.login-modal.show,.image-modal.show{opacity:1;visibility:visible;pointer-events:auto}.login-card,.image-card{width:min(440px,94vw);position:relative;padding:28px 24px 24px;border-radius:30px;background:radial-gradient(circle at top left,rgba(203,226,255,.34),transparent 34%),radial-gradient(circle at bottom right,rgba(255,218,236,.32),transparent 36%),rgba(255,255,255,.98);border:1px solid rgba(255,255,255,.82);box-shadow:0 24px 70px rgba(31,41,55,.24)}.login-card h3{margin:0 40px 8px 0;color:#514a9e;font-size:24px}.login-card p{color:#64748b;font-size:13px;line-height:1.55}.login-field{display:grid;gap:7px;margin-bottom:13px;text-align:left}.login-field label{font-size:13px;color:#505a70;font-weight:900}.login-field input{min-height:50px;width:100%;padding:0 14px;border:1px solid rgba(124,111,246,.22);border-radius:18px;outline:none;color:#263044;background:rgba(255,255,255,.86);box-shadow:var(--shadow2);font-size:16px;font-weight:800}.group-box{margin:0 0 14px;padding:13px;border-radius:20px;background:rgba(255,255,255,.68);border:1px solid rgba(124,111,246,.14);box-shadow:var(--shadow2)}.group-box p{margin:0 0 10px;text-align:center;font-size:13px;font-weight:900;color:#505a70}.group-options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.group-btn{min-height:42px;border:1px solid rgba(124,111,246,.18);border-radius:14px;background:rgba(255,255,255,.78);box-shadow:var(--shadow2);color:#514a9e;font-size:13px;font-weight:900}.group-btn.active{color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary2))}.login-error{min-height:20px;color:#c8465c;font-size:13px;font-weight:900}.modal-actions{display:flex;justify-content:flex-end;gap:10px}.close{position:absolute;top:14px;right:14px;width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:999px;background:rgba(124,111,246,.11);color:#6557df;font-size:26px;font-weight:900}.floor-imgs img,.vocab-card img,.q-img{cursor:zoom-in}.image-modal{z-index:90}.image-card{width:min(780px,94vw);max-height:90svh;padding:18px}.image-body{min-height:220px;max-height:76svh;display:grid;place-items:center;padding:42px 8px 8px}.image-body img{width:100%;height:100%;max-height:72svh;object-fit:contain}.image-caption{text-align:center;color:#4f596d;font-size:13px;font-weight:900;margin-top:8px}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:880px){.quiz-layout{grid-template-columns:1fr}.topbar{grid-template-columns:1fr}.timer{min-width:100%}.floor-row{grid-template-columns:62px 1fr 82px}.stats{grid-template-columns:repeat(2,1fr)}.stat:last-child{grid-column:1/-1}.info-row{grid-template-columns:1fr}.app{width:min(100% - 22px,1120px)}.hero{padding-top:72px}.language-switch{right:14px;left:auto;top:14px}.group-options{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.panel{border-radius:24px;padding:18px}.mini-floor{grid-template-columns:52px 1fr 70px}.floor-row{grid-template-columns:54px 1fr 70px}.actions{flex-direction:column}.actions .btn{width:100%}.qbox{min-height:210px}.q-img{max-height:145px}.stats{grid-template-columns:1fr}.stat:last-child{grid-column:auto}table{min-width:680px}}
+  
+
+    /* ===== Layout & typography polish update ===== */
     body{
-      min-height:100vh;margin:0;font-family:var(--font-main);color:var(--text);
-      background:radial-gradient(circle at 12% 8%,rgba(255,198,220,.55),transparent 32%),
-                 radial-gradient(circle at 88% 12%,rgba(190,232,255,.62),transparent 33%),
-                 radial-gradient(circle at 50% 92%,rgba(167,243,208,.32),transparent 36%),
-                 linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));
-      overflow-x:hidden;
+      font-size:15px;
+      line-height:1.62;
+      letter-spacing:.01em;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
-    body:before,body:after{content:"";position:fixed;z-index:-1;width:260px;height:260px;border-radius:50%;filter:blur(2px);opacity:.34;pointer-events:none}
-    body:before{left:-95px;bottom:10%;background:#c9fff1} body:after{right:-105px;top:17%;background:#ffd2e5}
-    button,input{font:inherit} button{cursor:pointer;-webkit-tap-highlight-color:transparent}
-    .jp{font-family:var(--font-jp)}
-    .app{width:min(1180px,calc(100% - 28px));margin:0 auto;padding:24px 0 34px}
-    .screen{display:none;animation:fade .28s ease both}.screen.active{display:block}
-    .panel{border:1px solid var(--glass);border-radius:var(--radius-lg);background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,255,255,.67));box-shadow:var(--shadow);backdrop-filter:blur(18px);padding:clamp(20px,4vw,42px)}
-    .hero{position:relative;overflow:hidden;text-align:center;min-height:620px;display:grid;place-items:center;background:radial-gradient(circle at 15% 16%,rgba(219,237,255,.78),transparent 34%),radial-gradient(circle at 87% 18%,rgba(255,225,241,.8),transparent 38%),rgba(255,255,255,.74)}
-    .badge{display:inline-flex;gap:8px;align-items:center;padding:8px 14px;border-radius:var(--pill);background:var(--soft);color:#6557df;font-size:13px;font-weight:800}
-    h1{margin:18px 0 12px;color:var(--heading);font-size:clamp(30px,5vw,54px);line-height:1.1;letter-spacing:-.03em}
-    .lead{max-width:760px;margin:0 auto 22px;color:#5b6476;font-size:clamp(15px,1.5vw,18px);line-height:1.65}
-    .info-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:24px 0}
-    .info-card{min-width:160px;display:flex;gap:12px;align-items:center;text-align:left;padding:14px 17px;border-radius:20px;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.68);box-shadow:var(--shadow2)}
-    .info-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#6f50ff;font-size:21px}
-    .info-card span{display:block;color:var(--muted);font-size:12px;font-weight:700}.info-card strong{display:block;color:#17254e;font-size:18px;font-weight:850}
-    .hero-dept{width:min(760px,100%);margin:10px auto 24px;padding:14px;border-radius:26px;border:1px solid rgba(124,111,246,.17);background:rgba(255,255,255,.6);box-shadow:var(--shadow2)}
-    .mini-building{display:grid;gap:7px}
-    .mini-floor{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:10px;min-height:42px;padding:8px 12px;border-radius:15px;background:rgba(255,255,255,.74);border:1px solid rgba(34,48,71,.08);text-align:left}
-    .mini-floor b{font-family:var(--font-jp);color:#514a9e}.mini-floor span{font-size:13px;color:#4f596d;font-weight:700}.mini-floor em{font-style:normal;color:#8892a6;font-size:12px;font-weight:800}
-    .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:16px}
-    .btn{min-height:54px;padding:12px 20px;border:0;border-radius:18px;font-weight:800;color:white;background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:0 14px 28px rgba(124,111,246,.26);transition:.18s}
-    .btn:hover{transform:translateY(-2px);filter:brightness(1.02)}.btn.secondary{color:#5c5972;background:rgba(255,255,255,.82);border:1px solid rgba(124,111,246,.22);box-shadow:var(--shadow2)}
-    .btn.danger{background:linear-gradient(135deg,#ef4444,#dc2626)}
-    .topbar{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;margin-bottom:16px}
-    .counter,.timer{border-radius:22px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.82);box-shadow:var(--shadow2);padding:14px 17px}
-    .counter b{color:#514a9e}.counter small{display:block;color:var(--muted);font-weight:600;margin-top:2px}.timer{text-align:center;min-width:132px}.time{color:var(--primary);font-size:34px;font-weight:900;line-height:1}.timer small{color:var(--muted);font-size:12px;font-weight:700}.track{height:9px;margin-top:10px;border-radius:99px;background:rgba(124,58,237,.13);overflow:hidden}.fill{width:100%;height:100%;background:linear-gradient(90deg,#8b5cf6,#06b6d4);transition:.2s linear}.fill.warn{background:linear-gradient(90deg,#f59e0b,#ef4444)}
-    .quiz-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:18px;align-items:stretch}
-    .map-card,.question-card{border-radius:28px;background:rgba(255,255,255,.83);border:1px solid rgba(255,255,255,.86);box-shadow:var(--shadow2);overflow:hidden}
-    .map-title{padding:18px 18px 12px;text-align:center;border-bottom:1px dashed var(--line)}.map-title h2{margin:0;color:#17254e}.map-title p{margin:4px 0 0;color:var(--muted);font-size:13px;font-weight:600}
-    .floor-list{padding:10px}.floor-row{display:grid;grid-template-columns:72px 1fr 92px;align-items:center;gap:10px;min-height:58px;padding:8px 10px;border-radius:14px;border:1px solid transparent;transition:.18s;background:rgba(255,255,255,.5)}
-    .floor-row+ .floor-row{margin-top:4px}.floor-row:hover{transform:translateY(-1px);border-color:rgba(124,111,246,.2);box-shadow:var(--shadow2)}.floor-row.active{background:rgba(124,111,246,.11);border-color:rgba(124,111,246,.28)}
-    .floor-code{font-family:var(--font-jp);font-size:19px;font-weight:900;color:#514a9e}.floor-text strong{display:block;font-family:var(--font-jp);font-size:15px;color:#1f2937}.floor-text span{display:block;font-size:12px;color:#64748b;font-weight:700}.floor-imgs{display:flex;justify-content:flex-end;gap:4px}.floor-imgs img{width:38px;height:38px;object-fit:contain;background:white;border-radius:10px;border:1px solid rgba(34,48,71,.08);padding:3px}
-    .question-card{padding:22px;display:flex;flex-direction:column}.mode-pill{width:max-content;margin-bottom:12px;padding:7px 12px;border-radius:99px;background:var(--soft);color:#6557df;font-size:12px;font-weight:900}.qbox{flex:1;display:grid;place-items:center;text-align:center;min-height:270px;border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(255,255,255,.48));border:1px solid rgba(124,111,246,.12);padding:18px}.q-img{width:min(210px,70%);height:170px;object-fit:contain;margin:4px auto 12px;display:block}.q-jp{font-family:var(--font-jp);font-size:clamp(30px,4vw,46px);font-weight:900;color:#242b3d;line-height:1.15}.q-id{font-size:19px;font-weight:800;color:#4f596d;margin-top:8px}.q-instruction{margin:12px 0 0;color:var(--muted);font-weight:650;line-height:1.5}.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.option{min-height:54px;border:1px solid rgba(124,111,246,.18);border-radius:17px;background:rgba(255,255,255,.84);color:#514a9e;font-weight:900;box-shadow:var(--shadow2);transition:.16s}.option:hover:not(:disabled){transform:translateY(-2px);border-color:rgba(124,111,246,.38)}.option.correct{color:#fff;background:linear-gradient(135deg,#22c55e,#16a34a)}.option.wrong{color:#fff;background:linear-gradient(135deg,#ef4444,#dc2626)}.option:disabled{cursor:not-allowed;opacity:.78}.feedback{min-height:42px;margin-top:12px;text-align:center;font-weight:800}.feedback.ok{color:#168763}.feedback.no{color:#c8465c}
-    .study-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}.vocab-card{border:1px solid rgba(124,111,246,.15);border-radius:22px;background:rgba(255,255,255,.78);box-shadow:var(--shadow2);padding:15px;text-align:center;transition:.18s}.vocab-card:hover{transform:translateY(-3px)}.vocab-card img{height:92px;width:100%;object-fit:contain}.vocab-card h3{margin:10px 0 4px;font-family:var(--font-jp);font-size:24px;color:#17254e}.vocab-card p{margin:0;color:#64748b;font-weight:700;font-size:13px}.vocab-card .tag{display:inline-flex;margin-top:9px;padding:5px 9px;border-radius:99px;background:rgba(32,180,134,.12);color:#168763;font-size:12px;font-weight:900}
-    .tabs{width:max-content;max-width:100%;margin:0 auto 18px;padding:6px;display:flex;gap:8px;border-radius:20px;background:rgba(124,111,246,.09);overflow:auto}.tab{border:0;border-radius:15px;background:transparent;color:#5d5f7c;font-size:13px;font-weight:800;padding:10px 14px;white-space:nowrap}.tab.active{background:#fff;color:#6557df;box-shadow:var(--shadow2)}
-    .result{text-align:center}.score-circle{width:172px;height:172px;margin:18px auto;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--primary) var(--deg),rgba(124,111,246,.14) 0deg);position:relative}.score-circle:before{content:"";position:absolute;inset:14px;border-radius:inherit;background:white}.score-circle strong{position:relative;font-size:34px;color:#413f73}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{padding:16px;border-radius:20px;background:rgba(255,255,255,.74);border:1px solid rgba(124,111,246,.17);box-shadow:var(--shadow2)}.stat span{display:block;color:var(--muted);font-size:12px;font-weight:700}.stat b{display:block;color:#413f73;font-size:25px;margin-top:4px}.review{margin-top:18px;text-align:left;overflow:auto;border-radius:22px;border:1px solid rgba(124,111,246,.16);background:rgba(255,255,255,.72)}table{width:100%;min-width:650px;border-collapse:collapse;font-size:14px}th,td{padding:12px 14px;border-bottom:1px solid rgba(124,111,246,.12);vertical-align:top}th{color:#514a9e;background:rgba(124,111,246,.09);font-size:12px;text-transform:uppercase}tr:last-child td{border-bottom:0}.pill{display:inline-flex;border-radius:99px;padding:5px 9px;font-size:12px;font-weight:900}.pill.ok{background:rgba(32,180,134,.14);color:#168763}.pill.no{background:rgba(239,93,117,.14);color:#c8465c}
+    h1,h2,h3,p{margin-top:0;overflow-wrap:anywhere;word-break:normal}
+    h1,h2,h3{letter-spacing:-.02em;font-weight:760}
+    strong,b{font-weight:720}
+    .jp{letter-spacing:0;line-height:1.35}
+    .panel{padding:clamp(22px,3.2vw,38px);border-radius:30px}
+    .hero{overflow:visible}
+    .hero .language-switch{
+      position:absolute;
+      right:clamp(16px,2.4vw,26px);
+      top:clamp(16px,2.4vw,26px);
+      left:auto;
+      width:max-content;
+      max-width:calc(100% - 32px);
+      margin:0;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .language-btn,.tab,.badge,.btn,.group-btn,.option{font-weight:720}
+    .badge{font-size:12.5px;line-height:1.25}
+    .hero h1{margin:16px auto 12px;max-width:760px;font-size:clamp(28px,4vw,44px);line-height:1.16}
+    .lead{max-width:760px;margin-left:auto;margin-right:auto;color:#586274;font-weight:470}
+    .login-summary{display:inline-flex;max-width:100%;line-height:1.35;white-space:normal;font-weight:720}
 
-    /* Popup gambar ukuran penuh */
-    .floor-imgs img,.vocab-card img,.q-img{cursor:zoom-in}
-    .image-modal{position:fixed;inset:0;z-index:999;display:grid;place-items:center;padding:22px;background:rgba(15,23,42,.62);backdrop-filter:blur(14px);opacity:0;visibility:hidden;pointer-events:none;transition:.2s ease}
-    .image-modal.show{opacity:1;visibility:visible;pointer-events:auto}
-    .image-modal-card{width:min(94vw,920px);max-height:92vh;position:relative;display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px;padding:18px;border-radius:26px;background:rgba(255,255,255,.96);border:1px solid rgba(255,255,255,.8);box-shadow:0 26px 80px rgba(15,23,42,.34);transform:scale(.96) translateY(8px);transition:.2s ease}
-    .image-modal.show .image-modal-card{transform:scale(1) translateY(0)}
-    .image-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px}
-    .image-modal-title{font-family:var(--font-jp);font-size:clamp(18px,3vw,24px);font-weight:900;color:#17254e;line-height:1.2}
-    .image-modal-close{width:42px;height:42px;min-width:42px;border:0;border-radius:999px;background:rgba(124,111,246,.12);color:#6557df;font-size:28px;font-weight:900;line-height:1;cursor:pointer}
-    .image-modal-body{min-height:0;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,rgba(248,251,255,.9),rgba(255,242,247,.7));border:1px solid rgba(124,111,246,.12);overflow:auto;padding:14px}
-    .image-modal-body img{max-width:100%;max-height:calc(92vh - 120px);object-fit:contain;display:block;cursor:zoom-out}
-    @media(max-width:540px){.image-modal{padding:12px}.image-modal-card{padding:14px;border-radius:22px}.image-modal-close{width:40px;height:40px;min-width:40px}.image-modal-body{padding:10px}.image-modal-body img{max-height:calc(92vh - 108px)}}
+    .info-row{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      align-items:stretch;
+      margin:22px auto;
+    }
+    .info-card{min-width:0;min-height:74px;padding:14px 15px;border-radius:18px}
+    .info-icon{flex:0 0 40px;width:40px;height:40px;font-size:20px}
+    .info-card span{font-weight:600;line-height:1.25}
+    .info-card strong{font-size:clamp(14px,1.25vw,17px);line-height:1.28;font-weight:720}
 
-    .hidden{display:none!important}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-    @media(max-width:880px){.quiz-layout{grid-template-columns:1fr}.topbar{grid-template-columns:1fr}.timer{min-width:100%}.floor-row{grid-template-columns:62px 1fr 82px}.stats{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:540px){.app{width:min(100% - 20px,1180px);padding-top:14px}.panel{padding:17px;border-radius:24px}.hero{min-height:auto;padding:34px 17px}.info-row{display:grid;grid-template-columns:1fr 1fr}.info-card{min-width:0;padding:12px}.info-icon{width:36px;height:36px}.mini-floor{grid-template-columns:55px 1fr}.mini-floor em{display:none}.floor-row{grid-template-columns:54px 1fr}.floor-imgs{display:none}.options{grid-template-columns:1fr}.stats{grid-template-columns:1fr}h1{font-size:32px}.qbox{min-height:245px}.q-img{height:145px}}
+    .hero-dept{max-width:760px;padding:14px;border-radius:24px;margin-bottom:22px}
+    .mini-building{gap:8px}
+    .mini-floor{
+      grid-template-columns:56px minmax(0,1fr) minmax(70px,110px);
+      gap:10px;
+      min-height:54px;
+      padding:9px 11px;
+      border-radius:15px;
+    }
+    .mini-floor b{font-weight:760;white-space:nowrap}
+    .mini-floor span{font-size:13px;line-height:1.32;font-weight:650;overflow-wrap:anywhere}
+    .mini-floor img{height:32px;max-width:100%;object-fit:contain}
+
+    .actions{gap:10px}
+    .btn{min-height:50px;border-radius:16px;padding:12px 16px;line-height:1.22;white-space:normal;text-align:center}
+    .admin-actions.show{display:flex;flex-wrap:wrap}
+
+    .topbar{width:min(980px,100%);grid-template-columns:minmax(0,1fr) minmax(132px,auto);align-items:stretch}
+    .counter,.timer{border-radius:20px;padding:13px 15px}
+    .counter b{display:block;font-weight:740;line-height:1.3}
+    .counter small,.timer small{font-weight:600;line-height:1.35}
+    .time{font-size:clamp(28px,4vw,34px);font-weight:760}
+
+    .quiz-layout{grid-template-columns:minmax(0,1fr) minmax(320px,.88fr);gap:16px;align-items:start}
+    .map-card,.question-card{border-radius:26px}
+    .map-title{padding:17px 18px 12px}
+    .map-title h2{font-size:clamp(20px,2.4vw,26px);line-height:1.22}
+    .map-title p{font-weight:560;line-height:1.42}
+    .floor-list{gap:8px;padding:13px}
+    .floor-row{
+      grid-template-columns:54px minmax(0,1fr) minmax(74px,96px);
+      gap:9px;
+      padding:9px 10px;
+      border-radius:16px;
+      min-height:58px;
+    }
+    .floor-no{font-weight:760;line-height:1.2;white-space:nowrap}
+    .floor-name{font-weight:690;line-height:1.28;overflow-wrap:anywhere}
+    .floor-sub{font-size:12px;line-height:1.3;font-weight:560;margin-top:2px}
+    .floor-imgs{align-items:center;gap:5px;min-width:0;flex-wrap:wrap}
+    .floor-imgs img{width:25px;height:25px;flex:0 0 auto}
+
+    .question-card{padding:18px;gap:13px}
+    .mode-pill{font-weight:720;line-height:1.2}
+    .qbox{min-height:220px;border-radius:22px;padding:16px;overflow:hidden}
+    .q-img{max-height:150px}
+    .q-title{font-size:clamp(28px,4.4vw,42px);font-weight:760;line-height:1.22;overflow-wrap:anywhere}
+    .q-reading{font-size:14px;font-weight:560;line-height:1.35}
+    .q-sub{font-size:13.5px;font-weight:560;line-height:1.45}
+    .option{min-height:50px;padding:10px 14px;border-radius:16px;line-height:1.28;font-size:15px}
+    .feedback{font-weight:720;line-height:1.35}
+
+    .tabs{max-width:100%;justify-content:center;flex-wrap:wrap;gap:7px;border-radius:18px}
+    .tab{font-size:13px;line-height:1.2;padding:9px 13px}
+    .study-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:13px}
+    #detailItems{padding:14px!important}
+    .vocab-card{padding:14px;border-radius:20px;display:grid;align-content:start;min-height:205px}
+    .vocab-card img{height:82px;margin-bottom:8px}
+    .vocab-card h3{font-size:clamp(20px,2.3vw,24px);font-weight:740;line-height:1.25;margin:6px 0 2px}
+    .vocab-card p{font-weight:560;line-height:1.35}
+    .vocab-card .reading{font-weight:500;line-height:1.35;color:#756f69}
+    .vocab-card .tag{justify-self:center;font-weight:720;line-height:1.25}
+
+    .result h1{font-size:clamp(26px,4vw,40px);margin:14px 0 8px;line-height:1.15}
+    .participant-name{font-weight:720;line-height:1.35;max-width:100%;white-space:normal}
+    .score-circle{width:clamp(138px,18vw,168px);height:clamp(138px,18vw,168px)}
+    .score-circle strong{font-weight:760}
+    .stats{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+    .stat{padding:14px 10px;border-radius:18px}
+    .stat span{font-weight:560;line-height:1.25}
+    .stat b{font-size:clamp(19px,2.7vw,24px);font-weight:740;line-height:1.15}
+    .table-wrap{border-radius:20px;box-shadow:var(--shadow2)}
+    table{min-width:720px;font-size:13.5px;line-height:1.42}
+    th,td{padding:11px 12px}
+    th{font-size:11.5px;letter-spacing:.02em;font-weight:720;white-space:nowrap}
+    .pill,.empty-state{font-weight:720}
+
+    .login-modal{padding:18px}
+    .login-card{width:min(440px,94vw);padding:26px 22px 22px;border-radius:28px}
+    .login-card h3{font-size:clamp(21px,4vw,24px);font-weight:760;line-height:1.22;margin-right:0;padding-right:40px}
+    .login-card p{font-weight:470;line-height:1.55;margin-bottom:16px}
+    .login-field label,.group-box p,.login-error{font-weight:650}
+    .login-field input{font-weight:600;line-height:1.25}
+    .group-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .group-btn{font-weight:720;line-height:1.25;padding:9px 8px}
+    .close{font-weight:720}
+    .image-card{border-radius:26px}
+
+    @media (max-width: 980px){
+      .quiz-layout{grid-template-columns:1fr}
+      .question-card{order:-1}
+      .map-card{width:100%}
+      .qbox{min-height:210px}
+      .q-img{max-height:155px}
+    }
+    @media (max-width: 760px){
+      .app{width:min(100% - 24px,1120px);padding-top:18px}
+      .panel{border-radius:24px;padding:20px}
+      .info-row{grid-template-columns:1fr;gap:10px;margin:18px auto}
+      .info-card{min-height:64px}
+      .hero-dept{padding:12px;border-radius:22px}
+      .mini-floor{grid-template-columns:52px minmax(0,1fr) 76px;gap:8px;padding:8px 9px}
+      .mini-floor span{font-size:12.5px}
+      .mini-floor img{height:30px}
+      .topbar{grid-template-columns:1fr;gap:10px}
+      .timer{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;text-align:left}
+      .timer small{grid-column:1/2}.timer .track{grid-column:2/3;grid-row:1/3;margin-top:0}
+      .floor-row{grid-template-columns:52px minmax(0,1fr) 80px;min-height:56px}
+      .floor-imgs img{width:23px;height:23px}
+      .study-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .stat:last-child{grid-column:1/-1}
+      table{min-width:640px}
+    }
+    @media (max-width: 520px){
+      body{font-size:14px}
+      .app{width:min(100% - 18px,1120px);padding-bottom:24px}
+      .panel{padding:16px;border-radius:22px}
+      .hero .language-switch{padding:4px}
+      .language-btn{font-size:12px;padding:7px 9px}
+      .badge{font-size:12px;padding:7px 10px}
+      .hero h1{font-size:clamp(26px,8vw,36px);margin:13px auto 10px}
+      .lead{font-size:13.5px;line-height:1.55}
+      .info-card{padding:12px;border-radius:16px}
+      .info-icon{width:36px;height:36px;flex-basis:36px;font-size:18px}
+      .hero-dept{max-height:none;overflow:visible}
+      .mini-building{gap:6px}
+      .mini-floor{grid-template-columns:48px minmax(0,1fr);position:relative;padding-right:72px;min-height:58px}
+      .mini-floor img{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:54px;height:32px}
+      .actions{display:grid;grid-template-columns:1fr;gap:9px}
+      .actions .btn{width:100%}
+      .admin-actions.show{display:grid;grid-template-columns:1fr}
+      .counter,.timer{border-radius:18px;padding:12px}
+      .question-card{padding:14px;border-radius:22px}
+      .qbox{min-height:200px;padding:14px;border-radius:18px}
+      .q-img{max-height:130px}
+      .q-title{font-size:clamp(25px,8vw,34px)}
+      .floor-list{padding:10px;gap:7px}
+      .floor-row{grid-template-columns:48px minmax(0,1fr);padding:9px 9px 9px 10px;position:relative;padding-right:82px}
+      .floor-imgs{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:66px;justify-content:flex-end}
+      .floor-imgs img{width:22px;height:22px}
+      .map-title{padding:15px 15px 10px}
+      .study-grid{grid-template-columns:1fr 1fr;gap:10px}
+      .vocab-card{min-height:190px;padding:12px}
+      .vocab-card img{height:70px}
+      .vocab-card h3{font-size:20px}
+      .vocab-card p,.vocab-card .reading{font-size:12.3px}
+      .tabs{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}
+      .tab{flex:0 0 auto}
+      .login-card{padding:24px 18px 20px;border-radius:24px}
+      .group-options{grid-template-columns:1fr 1fr;gap:7px}
+      .modal-actions{display:grid;grid-template-columns:1fr}
+      .image-card{padding:14px;border-radius:22px}
+    }
+    @media (max-width: 380px){
+      .study-grid{grid-template-columns:1fr}
+      .mini-floor{grid-template-columns:44px minmax(0,1fr);padding-right:64px}
+      .mini-floor img{width:48px;height:30px}
+      .floor-row{grid-template-columns:44px minmax(0,1fr);padding-right:72px}
+      .floor-imgs{width:58px}
+    }
+
+    /* Layout & typography refinement */
+    body{font-weight:500}
+    .panel{padding-top:clamp(24px,3.4vw,42px)}
+    .hero h1,.map-title h2,.result h1{font-weight:780;letter-spacing:-.02em}
+    .lead,.map-title p,.floor-sub,.q-sub,.vocab-card p{font-weight:650;line-height:1.45}
+    .btn{font-weight:760;letter-spacing:-.01em}
+    .badge,.login-summary,.mode-pill,.tab,.option,.floor-name{font-weight:760}
+    .floor-row{grid-template-columns:64px minmax(0,1fr) 96px;min-height:74px;gap:14px;padding:11px 14px}
+    .floor-no{font-size:18px;white-space:nowrap}
+    .floor-name{font-size:18px;line-height:1.25;letter-spacing:-.01em}
+    .floor-sub{font-size:14px;color:#66758d}
+    .floor-imgs{display:flex;gap:6px;align-items:center;justify-content:flex-end;min-width:0}
+    .floor-imgs img{width:28px;height:28px;flex:0 0 auto}
+    #studyFloors .quiz-layout{align-items:start;grid-template-columns:minmax(330px,.95fr) minmax(320px,1.05fr)}
+    #studyFloors .map-card{align-self:start}
+    #detailItems.study-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));align-items:start}
+    .study-actions{width:100%;margin-top:28px;padding-top:20px;border-top:1px solid rgba(124,111,246,.12);clear:both}
+    .study-actions .btn{min-width:132px}
+    .vocab-card h3{font-weight:760;letter-spacing:-.01em}
+    .vocab-card .reading{font-weight:650}.vocab-card .tag{font-weight:760}
+    .q-title{font-weight:780}.q-reading{font-weight:650}.option{font-weight:760;text-align:center}
+
+    @media (max-width: 860px){
+      #studyFloors .quiz-layout{grid-template-columns:1fr;gap:16px}
+      .study-actions{position:static;margin-top:22px;padding-top:18px}
+    }
+    @media (max-width: 560px){
+      .language-switch{right:12px;top:12px;left:auto;padding:4px;transform:none}
+      .language-btn{padding:6px 9px;font-size:12px}
+      .floor-row{grid-template-columns:54px minmax(0,1fr) 76px;gap:10px;min-height:72px}
+      .floor-name{font-size:16px}.floor-sub{font-size:12.5px}.floor-imgs img{width:24px;height:24px}
+      .study-actions{display:grid;grid-template-columns:1fr;gap:10px}.study-actions .btn{width:100%}
+    }
+
+
   </style>
 </head>
 <body>
-  <main class="app">
+  <main id="app" class="app">
     <section id="home" class="screen active">
       <div class="panel hero">
+        <div class="language-switch" aria-label="Ganti bahasa">
+          <button class="language-btn active" data-lang="id" type="button">Indonesia</button>
+          <button class="language-btn" data-lang="ja" type="button">日本語</button>
+        </div>
         <div>
-          <span class="badge">🏬 Kuis Interaktif Jepang</span>
-          <h1><span class="jp">デパート</span><br/>Toserba / Department Store</h1>
-          <p class="lead">Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Klik peta lantai, lihat kartu kosakata, lalu jawab kuis pilihan ganda.</p>
+          <span class="badge" data-i18n="badge">🏬 Kuis Interaktif Jepang</span>
+          <h1><span class="jp">デパート</span><br/><span data-i18n="title">Toserba</span></h1>
+          <p class="lead" data-i18n="homeLead">Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Isi nama pengguna melalui popup terlebih dahulu, lalu mulai kuis.</p>
+          <div id="loginSummary" class="login-summary"></div>
           <div class="info-row">
-            <div class="info-card"><div class="info-icon">🗂️</div><div><span>Materi</span><strong>34 kartu</strong></div></div>
-            <div class="info-card"><div class="info-icon">⏱️</div><div><span>Waktu</span><strong>30 detik/soal</strong></div></div>
-            <div class="info-card"><div class="info-icon">🎯</div><div><span>Mode</span><strong>Gambar + Lantai</strong></div></div>
+            <div class="info-card"><div class="info-icon">🗂️</div><div><span data-i18n="infoMaterial">Materi</span><strong id="cardCount">34 kartu</strong></div></div>
+            <div class="info-card"><div class="info-icon">⏱️</div><div><span data-i18n="infoTime">Waktu</span><strong data-i18n="timePerQuestion">30 detik/soal</strong></div></div>
+            <div class="info-card"><div class="info-icon">🎯</div><div><span data-i18n="infoMode">Mode</span><strong data-i18n="modeName">Gambar + Lantai</strong></div></div>
           </div>
           <div class="hero-dept"><div id="miniBuilding" class="mini-building"></div></div>
           <div class="actions">
-            <button class="btn" id="startQuizBtn">Mulai Kuis</button>
-            <button class="btn secondary" id="studyBtn">Lihat Materi</button>
+            <button class="btn" id="startQuizBtn" data-i18n="startQuiz">Mulai Kuis</button>
+            <button class="btn secondary" id="studyBtn" data-i18n="studyMaterial">Lihat Materi</button>
+            <button class="btn secondary" id="openLoginAgainBtn" data-i18n="changeUser">Ganti Nama Pengguna</button>
+          </div>
+          <div id="adminActions" class="admin-actions">
+            <button class="btn" id="adminResultBtn" data-i18n="adminResult">Halaman Hasil Admin</button>
           </div>
         </div>
       </div>
@@ -110,24 +298,22 @@
 
     <section id="quiz" class="screen">
       <div class="topbar">
-        <div class="counter"><b id="counterText">Soal 1/20</b><small id="counterHint">Pilih jawaban yang paling tepat.</small></div>
-        <div class="timer"><div class="time" id="timeText">30</div><small>detik</small><div class="track"><div id="timerFill" class="fill"></div></div></div>
+        <div class="counter"><b id="counterText">Soal 1/20</b><small id="counterHint" data-i18n="counterHint">Pilih jawaban yang paling tepat.</small></div>
+        <div class="timer"><div class="time" id="timeText">30</div><small data-i18n="seconds">detik</small><div class="track"><div id="timerFill" class="fill"></div></div></div>
       </div>
       <div class="quiz-layout">
         <div class="map-card">
-          <div class="map-title"><h2><span class="jp">デパート</span> 案内</h2><p>Klik baris lantai untuk melihat isinya.</p></div>
+          <div class="map-title"><h2><span class="jp">デパート</span> 案内</h2><p data-i18n="floorHint">Klik baris lantai untuk melihat isinya.</p></div>
           <div id="floorList" class="floor-list"></div>
         </div>
         <div class="question-card">
           <span id="modePill" class="mode-pill">Mode Gambar</span>
-          <div class="qbox">
-            <div id="questionContent"></div>
-          </div>
+          <div class="qbox"><div id="questionContent"></div></div>
           <div id="options" class="options"></div>
           <div id="feedback" class="feedback"></div>
           <div class="actions">
-            <button class="btn secondary" id="backHomeBtn">Beranda</button>
-            <button class="btn" id="nextBtn" disabled>Lanjut</button>
+            <button class="btn secondary" id="backHomeBtn" data-i18n="homeButton">Beranda</button>
+            <button class="btn" id="nextBtn" disabled data-i18n="nextButton">Lanjut</button>
           </div>
         </div>
       </div>
@@ -136,148 +322,157 @@
     <section id="study" class="screen">
       <div class="panel">
         <div class="map-title" style="border-bottom:0;padding-top:0">
-          <span class="badge">📚 Materi Lengkap</span>
-          <h2 style="margin:12px 0 6px;color:#17254e">Kosakata <span class="jp">デパート</span></h2>
-          <p>Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata.</p>
+          <span class="badge" data-i18n="fullMaterial">📚 Materi Lengkap</span>
+          <h2 style="margin:12px 0 6px;color:#17254e"><span data-i18n="vocabTitle">Kosakata</span> <span class="jp">デパート</span></h2>
+          <p data-i18n="studyLead">Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata. Klik gambar untuk melihat ukuran penuh.</p>
         </div>
         <div class="tabs">
-          <button class="tab active" data-tab="floors">Peta Lantai</button>
-          <button class="tab" data-tab="vocab">Kosakata</button>
+          <button class="tab active" data-tab="floors" data-i18n="floorMap">Peta Lantai</button>
+          <button class="tab" data-tab="vocab" data-i18n="vocabTab">Kosakata</button>
         </div>
-        <div id="studyFloors"><div class="quiz-layout"><div class="map-card"><div id="studyFloorList" class="floor-list"></div></div><div class="map-card"><div class="map-title"><h2 id="detailFloor">Pilih lantai</h2><p id="detailDesc">Klik baris di kiri.</p></div><div id="detailItems" class="study-grid" style="padding:16px"></div></div></div></div>
+        <div id="studyFloors"><div class="quiz-layout"><div class="map-card"><div id="studyFloorList" class="floor-list"></div></div><div id="floorDetailCard" class="map-card"><div class="map-title"><h2 id="detailFloor">Pilih lantai</h2><p id="detailDesc">Klik baris di kiri.</p></div><div id="detailItems" class="study-grid" style="padding:16px"></div></div></div></div>
         <div id="studyVocab" class="hidden"><div id="vocabGrid" class="study-grid"></div></div>
-        <div class="actions"><button class="btn" id="studyStartBtn">Mulai Kuis</button><button class="btn secondary" id="homeBtn2">Beranda</button></div>
+        <div class="actions study-actions"><button class="btn" id="studyStartBtn" data-i18n="startQuiz">Mulai Kuis</button><button class="btn secondary" id="homeBtn2" data-i18n="homeButton">Beranda</button></div>
       </div>
     </section>
 
     <section id="result" class="screen">
       <div class="panel result">
-        <span class="badge">🏆 Hasil Kuis</span>
-        <h1>Skor Kamu</h1>
+        <span class="badge" data-i18n="resultBadge">🏆 Hasil Kuis</span>
+        <h1 data-i18n="resultTitle">Skor Kamu</h1>
+        <div id="participantName" class="participant-name"></div>
         <div id="scoreCircle" class="score-circle" style="--deg:0deg"><strong id="scoreText">0%</strong></div>
         <p id="resultMessage" class="lead"></p>
         <div class="stats">
-          <div class="stat"><span>Benar</span><b id="rightStat">0</b></div>
-          <div class="stat"><span>Salah</span><b id="wrongStat">0</b></div>
-          <div class="stat"><span>Total</span><b id="totalStat">0</b></div>
-          <div class="stat"><span>Nilai</span><b id="pointStat">0</b></div>
+          <div class="stat"><span data-i18n="correctLabel">Benar</span><b id="rightStat">0</b></div>
+          <div class="stat"><span data-i18n="wrongLabel">Salah</span><b id="wrongStat">0</b></div>
+          <div class="stat"><span data-i18n="totalLabel">Total</span><b id="totalStat">0</b></div>
+          <div class="stat"><span data-i18n="scoreLabel">Nilai</span><b id="pointStat">0</b></div>
+          <div class="stat"><span data-i18n="timeLabel">Waktu</span><b id="timeStat">0s</b></div>
         </div>
-        <div class="actions"><button class="btn" id="retryBtn">Ulangi Kuis</button><button class="btn secondary" id="reviewStudyBtn">Belajar Lagi</button></div>
-        <div class="review"><table><thead><tr><th>No</th><th>Soal</th><th>Jawaban Kamu</th><th>Jawaban Benar</th><th>Status</th></tr></thead><tbody id="reviewBody"></tbody></table></div>
+        <div class="tabs">
+          <button class="tab active" data-result-tab="review" data-i18n="reviewTab">Tinjauan Jawaban</button>
+          <button class="tab" data-result-tab="history" data-i18n="historyTab">Riwayat</button>
+          <button class="tab" data-result-tab="ranking" data-i18n="rankingTab">Peringkat</button>
+        </div>
+        <div id="reviewPanel" class="table-wrap"><table><thead><tr><th>No</th><th data-i18n="questionHeader">Soal</th><th data-i18n="yourAnswerHeader">Jawaban Kamu</th><th data-i18n="correctAnswerHeader">Jawaban Benar</th><th data-i18n="statusHeader">Status</th></tr></thead><tbody id="reviewBody"></tbody></table></div>
+        <div id="historyPanel" class="table-wrap hidden"><table><thead><tr><th>No</th><th>Nama Pengguna</th><th data-i18n="groupHeader">Grup</th><th data-i18n="categoryHeader">Kategori</th><th data-i18n="scoreHeader2">Nilai</th><th data-i18n="timeHeader">Waktu</th><th data-i18n="dateHeader">Tanggal</th></tr></thead><tbody id="historyBody"></tbody></table></div>
+        <div id="rankingPanel" class="table-wrap hidden"><table><thead><tr><th>Peringkat</th><th>Nama Pengguna</th><th data-i18n="groupHeader">Grup</th><th data-i18n="categoryHeader">Kategori</th><th data-i18n="correctHeader">Benar</th><th data-i18n="scoreHeader2">Nilai</th><th data-i18n="timeHeader">Waktu</th></tr></thead><tbody id="rankingBody"></tbody></table></div>
+        <div class="actions" style="margin-top:18px"><button class="btn" id="retryBtn" data-i18n="retryButton">Ulangi Kuis</button><button class="btn secondary" id="reviewStudyBtn" data-i18n="studyAgain">Belajar Lagi</button><button class="btn secondary" id="resultHomeBtn" data-i18n="homeButton">Beranda</button></div>
       </div>
     </section>
   </main>
-  <div class="image-modal" id="imageModal" aria-hidden="true" role="dialog" aria-label="Preview gambar ukuran penuh">
-    <div class="image-modal-card">
-      <div class="image-modal-head">
-        <div class="image-modal-title" id="imageModalTitle">Preview Gambar</div>
-        <button class="image-modal-close" id="imageModalClose" type="button" aria-label="Tutup">×</button>
+
+  <div id="loginModal" class="login-modal show" aria-hidden="false" role="dialog" aria-modal="true">
+    <div class="login-card">
+      <h3 data-i18n="loginTitle">Masuk Peserta</h3>
+      <p data-i18n="loginDesc">Nama Pengguna wajib diisi sebelum website terbuka. Peserta biasa memilih grup, sedangkan admin404 harus memasukkan password.</p>
+      <div class="login-field"><label for="usernameInput" data-i18n="usernameLabel">Nama Pengguna</label><input id="usernameInput" autocomplete="off" placeholder="Masukkan nama pengguna" /></div>
+      <div id="passwordBox" class="login-field hidden"><label for="passwordInput" data-i18n="passwordLabel">Password Admin</label><input id="passwordInput" type="password" placeholder="Masukkan password admin" /></div>
+      <div id="groupBox" class="group-box hidden">
+        <p data-i18n="groupPrompt">Pilih grup sebelum mulai kuis.</p>
+        <div class="group-options">
+          <button class="group-btn" data-group="Badung" type="button">Badung</button>
+          <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
+          <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
+          <button class="group-btn" data-group="Umum" type="button">Umum</button>
+        </div>
       </div>
-      <div class="image-modal-body">
-        <img id="imageModalImg" src="" alt="Preview gambar ukuran penuh">
-      </div>
+      <div id="loginError" class="login-error" aria-live="polite"></div>
+      <div class="modal-actions"><button class="btn" id="loginSubmitBtn" data-i18n="saveButton">Simpan</button></div>
     </div>
   </div>
-<script>
-const IMG={
-"1階":"https://i.ibb.co/XZZFz5fn/1.png","2階":"https://i.ibb.co/B20CXchn/2.png","3階":"https://i.ibb.co/B5SXfZJN/3.png","4階":"https://i.ibb.co/fdmkt15L/image.png","5階":"https://i.ibb.co/v6VX8q4m/5.png","6階":"https://i.ibb.co/XfJmrwdL/6.png","7階":"https://i.ibb.co/6JHRtT9Q/7.png","8階":"https://i.ibb.co/DDcbFgM2/8.png","地下1階":"https://i.ibb.co/fVtQCH3w/1.png","地下2階":"https://i.ibb.co/kVV8yyp8/2.png",
-"アクセサリー":"https://i.ibb.co/RkHNT05g/image.png","おもちゃ":"https://i.ibb.co/GNkqnbb/image.png","かばん":"https://i.ibb.co/svmZJsxp/image.png","スポーツ用品":"https://i.ibb.co/Lhbdy8m5/image.png","デパート":"https://i.ibb.co/qFYqr5Yq/image.png","レストラン":"https://i.ibb.co/NgSgp0sP/image.png","屋上":"https://i.ibb.co/6c23nrFT/image.png","化粧品":"https://i.ibb.co/j9RC5YR6/image.png","家具":"https://i.ibb.co/TqB13h7R/image.png","眼鏡":"https://i.ibb.co/XZyP9jmt/image.png","靴":"https://i.ibb.co/rPvJNLQ/image.png","催し物会場":"https://i.ibb.co/h1DxxrkT/image.png","子ども服":"https://i.ibb.co/1tK6yrRV/image.png","時計":"https://i.ibb.co/0p44k8cp/image.png","食器":"https://i.ibb.co/RTvvdzTp/image.png","食品":"https://i.ibb.co/1JmwFVKV/image.png","紳士服":"https://i.ibb.co/21bZ7JKT/image.png","駐車場":"https://i.ibb.co/5hHf0YBw/image.png","電化製品":"https://i.ibb.co/zhPJ4DVS/image.png","婦人服":"https://i.ibb.co/FbtrwBNg/image.png","文房具":"https://i.ibb.co/6c66gRX8/image.png","本":"https://i.ibb.co/29Fs6wf/image.png","遊園地":"https://i.ibb.co/B2BtKkcq/image.png","旅行用品":"https://i.ibb.co/Ldfz2WqJ/image.png"
+
+  <div id="imageModal" class="image-modal" aria-hidden="true">
+    <div class="image-card">
+      <button id="closeImageModal" class="close" type="button" aria-label="Tutup">×</button>
+      <div class="image-body"><img id="imageModalImg" alt="Gambar penuh"></div>
+      <div id="imageModalCaption" class="image-caption"></div>
+    </div>
+  </div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { addDoc, collection, getDocs, getFirestore, limit, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBCOWbX-nWP7qw4dmEpkwA5wo7G-r9fI-g",
+  authDomain: "flashcard-kosakata-jepang.firebaseapp.com",
+  projectId: "flashcard-kosakata-jepang",
+  storageBucket: "flashcard-kosakata-jepang.firebasestorage.app",
+  messagingSenderId: "169917378552",
+  appId: "1:169917378552:web:d006bfac063631efa8f00d",
+  measurementId: "G-HBCG7KL5W8"
 };
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+const FIREBASE_CATEGORY = "Kata-kata Referensi dan Informasi Bab 3";
+const resultsCollection = collection(db, "quizResults_bab3");
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const TIMER_SECONDS=30, ADMIN_USERNAME="admin404", ADMIN_PASSWORD="kuis44GAKKOU";
+const LOCAL_KEY="depart_toserba_bab3_results";
+let lang="id", currentUsername="", currentGroup="", isAdmin=false, questions=[], idx=0, score=0, review=[], timer=null, remain=TIMER_SECONDS, locked=false, selectedAnswer=null, startTime=0;
+
+const IMG={
+"1階":"https://i.ibb.co/XZZFz5fn/1.png","2階":"https://i.ibb.co/B20CXchn/2.png","3階":"https://i.ibb.co/B5SXfZJN/3.png","４階":"https://i.ibb.co/fdmkt15L/image.png","4階":"https://i.ibb.co/fdmkt15L/image.png","5階":"https://i.ibb.co/v6VX8q4m/5.png","7階":"https://i.ibb.co/6JHRtT9Q/7.png","6階":"https://i.ibb.co/XfJmrwdL/6.png","8階":"https://i.ibb.co/DDcbFgM2/8.png","アクセサリー":"https://i.ibb.co/RkHNT05g/image.png","おもちゃ":"https://i.ibb.co/GNkqnbb/image.png","かばん":"https://i.ibb.co/svmZJsxp/image.png","スポーツ用品":"https://i.ibb.co/Lhbdy8m5/image.png","デパート":"https://i.ibb.co/qFYqr5Yq/image.png","レストラン":"https://i.ibb.co/NgSgp0sP/image.png","屋上":"https://i.ibb.co/6c23nrFT/image.png","化粧品":"https://i.ibb.co/j9RC5YR6/image.png","家具":"https://i.ibb.co/TqB13h7R/image.png","眼鏡":"https://i.ibb.co/XZyP9jmt/image.png","靴":"https://i.ibb.co/rPvJNLQ/image.png","催し物会場":"https://i.ibb.co/h1DxxrkT/image.png","子ども服":"https://i.ibb.co/1tK6yrRV/image.png","時計":"https://i.ibb.co/0p44k8cp/image.png","食器":"https://i.ibb.co/RTvvdzTp/image.png","食品":"https://i.ibb.co/1JmwFVKV/image.png","紳士服":"https://i.ibb.co/21bZ7JKT/image.png","地下1階":"https://i.ibb.co/fVtQCH3w/1.png","地下2階":"https://i.ibb.co/kVV8yyp8/2.png","駐車場":"https://i.ibb.co/5hHf0YBw/image.png","電化製品":"https://i.ibb.co/zhPJ4DVS/image.png","婦人服":"https://i.ibb.co/FbtrwBNg/image.png","文房具":"https://i.ibb.co/6c66gRX8/image.png","本":"https://i.ibb.co/29Fs6wf/image.png","遊園地":"https://i.ibb.co/B2BtKkcq/image.png","旅行用品":"https://i.ibb.co/Ldfz2WqJ/image.png"};
 const floors=[
- {floor:"屋上", jp:"屋上・遊園地", id:"tempat hiburan", items:["遊園地"]},
- {floor:"8階", jp:"レストラン・催し物会場", id:"restoran, tempat pertunjukan", items:["レストラン","催し物会場"]},
- {floor:"7階", jp:"時計・眼鏡", id:"jam, kaca mata", items:["時計","眼鏡"]},
- {floor:"6階", jp:"スポーツ用品・旅行用品", id:"peralatan olahraga, peralatan bepergian", items:["スポーツ用品","旅行用品"]},
- {floor:"5階", jp:"子ども服・おもちゃ・本・文房具", id:"pakaian anak, mainan, buku, alat tulis", items:["子ども服","おもちゃ","本","文房具"]},
- {floor:"4階", jp:"家具・食器・電化製品", id:"perlengkapan rumah, alat makan, barang elektronik", items:["家具","食器","電化製品"]},
- {floor:"3階", jp:"紳士服", id:"pakaian pria", items:["紳士服"]},
- {floor:"2階", jp:"婦人服", id:"pakaian wanita", items:["婦人服"]},
- {floor:"1階", jp:"靴・かばん・アクセサリー・化粧品", id:"sepatu, tas, perhiasan, kosmetik", items:["靴","かばん","アクセサリー","化粧品"]},
- {floor:"地下1階", jp:"食品", id:"makanan", items:["食品"]},
- {floor:"地下2階", jp:"駐車場", id:"tempat parkir", items:["駐車場"]}
+ {floor:"屋上",reading:"おくじょう",id:"Atap",desc:"tempat hiburan",items:["遊園地"]},
+ {floor:"8階",reading:"はっかい",id:"Lantai 8",desc:"restoran, tempat pertunjukan",items:["レストラン","催し物会場"]},
+ {floor:"7階",reading:"ななかい",id:"Lantai 7",desc:"jam, kaca mata",items:["時計","眼鏡"]},
+ {floor:"6階",reading:"ろっかい",id:"Lantai 6",desc:"peralatan olahraga, peralatan bepergian",items:["スポーツ用品","旅行用品"]},
+ {floor:"5階",reading:"ごかい",id:"Lantai 5",desc:"pakaian anak, mainan, buku, alat tulis",items:["子ども服","おもちゃ","本","文房具"]},
+ {floor:"4階",reading:"よんかい",id:"Lantai 4",desc:"perlengkapan rumah, alat makan, barang elektronik",items:["家具","食器","電化製品"]},
+ {floor:"3階",reading:"さんがい",id:"Lantai 3",desc:"pakaian pria",items:["紳士服"]},
+ {floor:"2階",reading:"にかい",id:"Lantai 2",desc:"pakaian wanita",items:["婦人服"]},
+ {floor:"1階",reading:"いっかい",id:"Lantai 1",desc:"sepatu, tas, perhiasan, kosmetik",items:["靴","かばん","アクセサリー","化粧品"]},
+ {floor:"地下1階",reading:"ちかいっかい",id:"Bawah tanah 1",desc:"makanan",items:["食品"]},
+ {floor:"地下2階",reading:"ちかにかい",id:"Bawah tanah 2",desc:"tempat parkir",items:["駐車場"]}
 ];
-const vocab=[
- {jp:"デパート", id:"toserba / department store", floor:"Umum"},
- ...floors.map(f=>({jp:f.floor,id:f.id,floor:"Lantai"})),
- ...floors.flatMap(f=>f.items.map(i=>({jp:i,id:itemMeaning(i),floor:f.floor})))
-];
-function itemMeaning(jp){return ({"遊園地":"tempat hiburan","レストラン":"restoran","催し物会場":"tempat pertunjukan","時計":"jam","眼鏡":"kaca mata","スポーツ用品":"peralatan olahraga","旅行用品":"peralatan bepergian","子ども服":"pakaian anak","おもちゃ":"mainan","本":"buku","文房具":"alat tulis","家具":"furnitur / perlengkapan rumah","食器":"alat makan","電化製品":"barang elektronik","紳士服":"pakaian pria","婦人服":"pakaian wanita","靴":"sepatu","かばん":"tas","アクセサリー":"perhiasan / aksesori","化粧品":"kosmetik","食品":"makanan","駐車場":"tempat parkir"})[jp]||""}
-const $=s=>document.querySelector(s); const $$=s=>document.querySelectorAll(s);
-let questions=[], idx=0, score=0, chosen=false, timer=null, timeLeft=30, review=[];
-function show(id){$$('.screen').forEach(s=>s.classList.remove('active')); $('#'+id).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'});} 
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
-function makeFloorHTML(f,active=false){return `<div class="floor-row ${active?'active':''}" data-floor="${f.floor}"><div class="floor-code">${f.floor}</div><div class="floor-text"><strong>${f.jp}</strong><span>${f.id}</span></div><div class="floor-imgs">${f.items.slice(0,2).map(i=>`<img src="${IMG[i]}" alt="${i}">`).join('')}</div></div>`}
-function renderMaps(){
- $('#miniBuilding').innerHTML=floors.slice(0,10).map(f=>`<div class="mini-floor"><b>${f.floor}</b><span>${f.jp}</span><em>${f.items.length} item</em></div>`).join('');
- $('#floorList').innerHTML=floors.map(f=>makeFloorHTML(f)).join('');
- $('#studyFloorList').innerHTML=floors.map((f,i)=>makeFloorHTML(f,i===0)).join('');
- $('#floorList').addEventListener('click',e=>{const row=e.target.closest('.floor-row'); if(row) highlightFloor(row.dataset.floor)});
- $('#studyFloorList').addEventListener('click',e=>{const row=e.target.closest('.floor-row'); if(row) showFloorDetail(row.dataset.floor)});
- showFloorDetail(floors[0].floor);
-}
-function highlightFloor(fl){$$('#floorList .floor-row').forEach(r=>r.classList.toggle('active',r.dataset.floor===fl));}
-function showFloorDetail(fl){const f=floors.find(x=>x.floor===fl); $$('#studyFloorList .floor-row').forEach(r=>r.classList.toggle('active',r.dataset.floor===fl)); $('#detailFloor').innerHTML=`<span class="jp">${f.floor}</span> ${f.jp}`; $('#detailDesc').textContent=f.id; $('#detailItems').innerHTML=f.items.map(i=>card({jp:i,id:itemMeaning(i),floor:f.floor})).join('');}
-function card(v){return `<div class="vocab-card"><img src="${IMG[v.jp]||''}" alt="${v.jp}" onerror="this.style.display='none'"><h3>${v.jp}</h3><p>${v.id}</p><span class="tag">${v.floor}</span></div>`}
+const nameData={
+"デパート":{reading:"デパート",id:"toserba"},"屋上":{reading:"おくじょう",id:"atap"},"遊園地":{reading:"ゆうえんち",id:"tempat hiburan"},"レストラン":{reading:"レストラン",id:"restoran"},"催し物会場":{reading:"もよおしものかいじょう",id:"tempat pertunjukan"},"時計":{reading:"とけい",id:"jam"},"眼鏡":{reading:"めがね",id:"kaca mata"},"スポーツ用品":{reading:"スポーツようひん",id:"peralatan olahraga"},"旅行用品":{reading:"りょこうようひん",id:"peralatan bepergian"},"子ども服":{reading:"こどもふく",id:"pakaian anak"},"おもちゃ":{reading:"おもちゃ",id:"mainan"},"本":{reading:"ほん",id:"buku"},"文房具":{reading:"ぶんぼうぐ",id:"alat tulis"},"家具":{reading:"かぐ",id:"perlengkapan rumah"},"食器":{reading:"しょっき",id:"alat makan"},"電化製品":{reading:"でんかせいひん",id:"barang elektronik"},"紳士服":{reading:"しんしふく",id:"pakaian pria"},"婦人服":{reading:"ふじんふく",id:"pakaian wanita"},"靴":{reading:"くつ",id:"sepatu"},"かばん":{reading:"かばん",id:"tas"},"アクセサリー":{reading:"アクセサリー",id:"perhiasan"},"化粧品":{reading:"けしょうひん",id:"kosmetik"},"食品":{reading:"しょくひん",id:"makanan"},"駐車場":{reading:"ちゅうしゃじょう",id:"tempat parkir"}
+};
+const vocab=[{jp:"デパート",floor:"全体",...nameData["デパート"]},...floors.map(f=>({jp:f.floor,reading:f.reading,id:f.id+" / "+f.desc,floor:"階"})),...floors.flatMap(f=>f.items.map(jp=>({jp,reading:nameData[jp].reading,id:nameData[jp].id,floor:f.floor})) )];
+const texts={id:{badge:"🏬 Kuis Interaktif Jepang",title:"Toserba",homeLead:"Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Isi nama pengguna melalui popup terlebih dahulu, lalu mulai kuis.",infoMaterial:"Materi",infoTime:"Waktu",infoMode:"Mode",timePerQuestion:"30 detik/soal",modeName:"Gambar + Lantai",startQuiz:"Mulai Kuis",studyMaterial:"Lihat Materi",changeUser:"Ganti Nama Pengguna",adminResult:"Halaman Hasil Admin",counterHint:"Pilih jawaban yang paling tepat.",seconds:"detik",floorHint:"Klik baris lantai untuk melihat isinya.",homeButton:"Beranda",nextButton:"Lanjut",fullMaterial:"📚 Materi Lengkap",vocabTitle:"Kosakata",studyLead:"Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata. Klik gambar untuk melihat ukuran penuh.",floorMap:"Peta Lantai",vocabTab:"Kosakata",resultBadge:"🏆 Hasil Kuis",resultTitle:"Skor Kamu",correctLabel:"Benar",wrongLabel:"Salah",totalLabel:"Total",scoreLabel:"Nilai",timeLabel:"Waktu",reviewTab:"Tinjauan Jawaban",historyTab:"Riwayat",rankingTab:"Peringkat",questionHeader:"Soal",yourAnswerHeader:"Jawaban Kamu",correctAnswerHeader:"Jawaban Benar",statusHeader:"Keterangan",groupHeader:"Grup",categoryHeader:"Kategori",scoreHeader2:"Nilai",timeHeader:"Waktu",dateHeader:"Tanggal",correctHeader:"Benar",retryButton:"Ulangi Kuis",studyAgain:"Belajar Lagi",loginTitle:"Masuk Peserta",loginDesc:"Nama Pengguna wajib diisi sebelum website terbuka. Peserta biasa memilih grup, sedangkan admin404 harus memasukkan password.",usernameLabel:"Nama Pengguna",passwordLabel:"Password Admin",groupPrompt:"Pilih grup sebelum mulai kuis.",saveButton:"Simpan",modeImage:"Mode Gambar",modeFloor:"Mode Lantai",modeMeaning:"Mode Arti",selectAnswer:"Pilih jawaban yang paling tepat.",correct:"Benar",wrong:"Salah",emptyHistory:"Belum ada riwayat.",loading:"Memuat data...",adminMsg:"Admin dapat langsung melihat riwayat dan peringkat tanpa mengerjakan kuis.",needUser:"Nama Pengguna wajib diisi.",needGroup:"Pilih grup terlebih dahulu.",wrongPass:"Password Admin salah.",excellent:"すばらしい! Kamu sudah sangat paham materi toserba.",good:"Bagus! Tinggal ulangi beberapa materi yang masih keliru.",retry:"Ayo belajar lagi lewat menu materi, lalu coba ulangi kuis."},ja:{badge:"🏬 日本語インタラクティブクイズ",title:"デパート / 百貨店",homeLead:"デパートの階、場所、売り場を学びます。先にポップアップでユーザー名を入力してから始めましょう。",infoMaterial:"教材",infoTime:"時間",infoMode:"モード",timePerQuestion:"1問30秒",modeName:"画像＋階",startQuiz:"クイズ開始",studyMaterial:"教材を見る",changeUser:"ユーザー変更",adminResult:"管理者結果ページ",counterHint:"正しい答えを選んでください。",seconds:"秒",floorHint:"階をクリックして内容を見ます。",homeButton:"ホーム",nextButton:"次へ",fullMaterial:"📚 全教材",vocabTitle:"語彙",studyLead:"階別、または全語彙で学習できます。画像をクリックすると大きく表示されます。",floorMap:"フロア案内",vocabTab:"語彙",resultBadge:"🏆 結果",resultTitle:"あなたのスコア",correctLabel:"正解",wrongLabel:"不正解",totalLabel:"合計",scoreLabel:"点数",timeLabel:"時間",reviewTab:"答えの確認",historyTab:"履歴",rankingTab:"ランキング",questionHeader:"問題",yourAnswerHeader:"あなたの答え",correctAnswerHeader:"正解",statusHeader:"状態",groupHeader:"グループ",categoryHeader:"カテゴリー",scoreHeader2:"点数",timeHeader:"時間",dateHeader:"日付",correctHeader:"正解",retryButton:"もう一度",studyAgain:"もう一度学ぶ",loginTitle:"参加者ログイン",loginDesc:"サイトを開く前にユーザー名を入力してください。通常ユーザーはグループを選び、admin404はパスワードが必要です。",usernameLabel:"ユーザー名",passwordLabel:"管理者パスワード",groupPrompt:"クイズ開始前にグループを選んでください。",saveButton:"保存",modeImage:"画像モード",modeFloor:"階モード",modeMeaning:"意味モード",selectAnswer:"正しい答えを選んでください。",correct:"正解",wrong:"不正解",emptyHistory:"履歴はまだありません。",loading:"読み込み中...",adminMsg:"管理者はクイズをせずに履歴とランキングを確認できます。",needUser:"ユーザー名を入力してください。",needGroup:"グループを選んでください。",wrongPass:"管理者パスワードが違います。",excellent:"すばらしい！デパートの語彙をよく理解しています。",good:"よくできました！間違えたところを復習しましょう。",retry:"教材を見て、もう一度挑戦しましょう。"}};
+function t(k){return texts[lang][k]||texts.id[k]||k} function esc(s){return String(s??"").replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[m]))} function shuffle(a){return [...a].sort(()=>Math.random()-.5)} function titleId(s){s=String(s??"").trim(); if(lang==="ja"||!s)return s; return s.split(/(,\s*)/).map(part=>part.match(/,/) ? part : part.charAt(0).toUpperCase()+part.slice(1)).join("");} function fmt(sec){sec=Math.round(sec);if(lang==='ja')return sec<60?sec+"秒":Math.floor(sec/60)+"分 "+(sec%60)+"秒";return sec<60?sec+" detik":Math.floor(sec/60)+" menit "+(sec%60)+" detik"}
+function applyLang(){document.documentElement.lang=lang==="ja"?"ja":"id"; $$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n)); $$('.language-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang)); $('#cardCount').textContent=lang==='ja'?`${vocab.length}語`:`${vocab.length} kartu`; updateLoginSummary(); renderFloors(); renderVocab(); if($('#result').classList.contains('active')) refreshResultsText();}
+function show(id){$$('.screen').forEach(s=>s.classList.remove('active')); $('#'+id).classList.add('active'); $('#app').classList.toggle('top',id!=='home');}
+function imgTag(key, cls=''){return `<img class="${cls}" src="${IMG[key]||''}" alt="${esc(key)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`}
+function openImage(src,cap){ if(!src)return; $('#imageModalImg').src=src; $('#imageModalImg').alt=cap||'Gambar'; $('#imageModalCaption').textContent=cap||''; $('#imageModal').classList.add('show'); $('#imageModal').setAttribute('aria-hidden','false');}
+function closeImage(){ $('#imageModal').classList.remove('show'); $('#imageModal').setAttribute('aria-hidden','true'); $('#imageModalImg').removeAttribute('src');}
+function floorRow(f,active=false){return `<div class="floor-row ${active?'active':''}" data-floor="${esc(f.floor)}"><div class="floor-no">${esc(f.floor)}</div><div><div class="floor-name">${esc(f.items.join('・')||f.id)}</div><div class="floor-sub">${esc(f.reading)} ・ ${esc(lang==='ja'?f.desc:titleId(f.desc))}</div></div><div class="floor-imgs">${f.items.slice(0,3).map(x=>imgTag(x)).join('')}</div></div>`}
+function renderFloors(){ if($('#miniBuilding')) $('#miniBuilding').innerHTML=floors.map(f=>`<div class="mini-floor"><b>${esc(f.floor)}</b><span>${esc(lang==='ja'?f.items.join('・'):titleId(f.desc))}</span>${imgTag(f.floor)}</div>`).join(''); $('#floorList').innerHTML=floors.map(f=>floorRow(f)).join(''); $('#studyFloorList').innerHTML=floors.map((f,i)=>floorRow(f,i===0)).join(''); renderFloorDetail(floors[0]);}
+function renderFloorDetail(f){ $('#detailFloor').textContent=`${f.floor}（${f.reading}）`; $('#detailDesc').textContent=lang==='ja'?`${f.id} ・ ${f.items.join('、')}`:titleId(f.desc); $('#detailItems').innerHTML=f.items.map(jp=>card({jp,reading:nameData[jp].reading,id:nameData[jp].id,floor:f.floor})).join(''); $$('#studyFloorList .floor-row').forEach(r=>r.classList.toggle('active',r.dataset.floor===f.floor));}
+function card(v){return `<div class="vocab-card">${imgTag(v.jp)}<h3>${esc(v.jp)}</h3><div class="reading">${esc(v.reading||'')}</div><p>${esc(titleId(v.id))}</p><span class="tag">${esc(v.floor)}</span></div>`}
 function renderVocab(){ $('#vocabGrid').innerHTML=vocab.map(card).join(''); }
-function buildQuestions(){
- const itemQs=floors.flatMap(f=>f.items.map(i=>({type:'itemToFloor',item:i,answer:f.floor,display:`${i} = ${itemMeaning(i)}`})));
- const floorQs=floors.map(f=>({type:'floorToItems',floor:f.floor,answer:f.jp,display:f.id}));
- return shuffle([...itemQs,...floorQs]).slice(0,20);
-}
-function startQuiz(){questions=buildQuestions();idx=0;score=0;review=[];show('quiz');renderQuestion();}
-function renderQuestion(){
- chosen=false; clearInterval(timer); timeLeft=30; updateTimer();
- const q=questions[idx]; $('#counterText').textContent=`Soal ${idx+1}/${questions.length}`; $('#feedback').textContent=''; $('#feedback').className='feedback'; $('#nextBtn').disabled=true; $$('#floorList .floor-row').forEach(r=>r.classList.remove('active'));
- let opts, html, correctLabel;
- if(q.type==='itemToFloor'){
-   $('#modePill').textContent='Mode Gambar → Lantai'; correctLabel=q.answer; opts=shuffle([q.answer,...shuffle(floors.filter(f=>f.floor!==q.answer).map(f=>f.floor)).slice(0,3)]);
-   html=`<img class="q-img" src="${IMG[q.item]}" alt="${q.item}"><div class="q-jp">${q.item}</div><div class="q-id">${itemMeaning(q.item)}</div><p class="q-instruction">Barang ini ada di lantai berapa?</p>`;
- }else{
-   $('#modePill').textContent='Mode Lantai → Isi'; correctLabel=q.answer; opts=shuffle([q.answer,...shuffle(floors.filter(f=>f.jp!==q.answer).map(f=>f.jp)).slice(0,3)]);
-   html=`<img class="q-img" src="${IMG[q.floor]}" alt="${q.floor}"><div class="q-jp">${q.floor}</div><div class="q-id">${q.display}</div><p class="q-instruction">Apa isi lantai ini?</p>`; highlightFloor(q.floor);
- }
- $('#questionContent').innerHTML=html;
- $('#options').innerHTML=opts.map(o=>`<button class="option jp" data-answer="${escapeHtml(o)}">${o}</button>`).join('');
- $$('#options .option').forEach(b=>b.addEventListener('click',()=>answer(b,correctLabel,q)));
- timer=setInterval(()=>{timeLeft--;updateTimer(); if(timeLeft<=0){timeout(correctLabel,q)}},1000);
-}
-function updateTimer(){ $('#timeText').textContent=timeLeft; const pct=Math.max(0,timeLeft/30*100); $('#timerFill').style.width=pct+'%'; $('#timerFill').classList.toggle('warn',timeLeft<=10); }
-function answer(btn,correct,q){ if(chosen)return; chosen=true; clearInterval(timer); const val=btn.dataset.answer; const ok=val===correct; if(ok)score++; markOptions(correct,val); $('#feedback').textContent=ok?'Benar! 🎉':'Belum tepat. Jawaban benar: '+correct; $('#feedback').classList.add(ok?'ok':'no'); $('#nextBtn').disabled=false; review.push({q:q.type==='itemToFloor'?q.item:q.floor,user:val||'-',correct,ok});}
-function timeout(correct,q){ if(chosen)return; chosen=true; clearInterval(timer); markOptions(correct,''); $('#feedback').textContent='Waktu habis. Jawaban benar: '+correct; $('#feedback').classList.add('no'); $('#nextBtn').disabled=false; review.push({q:q.type==='itemToFloor'?q.item:q.floor,user:'Waktu habis',correct,ok:false});}
-function markOptions(correct,user){ $$('#options .option').forEach(b=>{b.disabled=true;if(b.dataset.answer===correct)b.classList.add('correct');else if(b.dataset.answer===user)b.classList.add('wrong');});}
-function next(){ if(idx<questions.length-1){idx++;renderQuestion();}else finish();}
-function finish(){clearInterval(timer); const total=questions.length, pct=Math.round(score/total*100); $('#scoreCircle').style.setProperty('--deg',(pct*3.6)+'deg'); $('#scoreText').textContent=pct+'%'; $('#rightStat').textContent=score; $('#wrongStat').textContent=total-score; $('#totalStat').textContent=total; $('#pointStat').textContent=pct; $('#resultMessage').textContent=pct>=85?'すばらしい! Kamu sudah sangat paham materi toserba.':pct>=65?'Bagus! Tinggal ulangi beberapa lantai yang masih keliru.':'Ayo belajar lagi lewat menu materi, lalu coba ulangi kuis.'; $('#reviewBody').innerHTML=review.map((r,i)=>`<tr><td>${i+1}</td><td class="jp">${r.q}</td><td class="jp">${r.user}</td><td class="jp">${r.correct}</td><td><span class="pill ${r.ok?'ok':'no'}">${r.ok?'Benar':'Salah'}</span></td></tr>`).join(''); show('result');}
-function escapeHtml(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function buildQuestions(){let qs=[]; vocab.forEach(v=>{if(v.jp==='デパート')return; qs.push({type:'image',answer:v.jp,prompt:v.id,item:v}); qs.push({type:'meaning',answer:v.id,prompt:v.jp,item:v});}); floors.forEach(f=>qs.push({type:'floor',answer:f.floor,prompt:f.items.join('・'),item:f})); return shuffle(qs).slice(0,20);}
+function startQuiz(){ if(!currentUsername){openLogin();return} if(!isAdmin&&!currentGroup){openLogin();return} questions=buildQuestions();idx=0;score=0;review=[];show('quiz');renderQuestion();}
+function startTimer(){clearInterval(timer);remain=TIMER_SECONDS;startTime=Date.now();updateTimer();timer=setInterval(()=>{remain--;updateTimer(); if(remain<=0) selectOption(null,true)},1000)}
+function updateTimer(){ $('#timeText').textContent=Math.max(0,remain); const p=Math.max(0,remain/TIMER_SECONDS*100); $('#timerFill').style.width=p+'%'; $('#timerFill').classList.toggle('warn',remain<=10)}
+function renderQuestion(){locked=false;selectedAnswer=null;$('#nextBtn').disabled=true;$('#feedback').textContent=''; const q=questions[idx]; $('#counterText').textContent=(lang==='ja'?`問題 ${idx+1}/${questions.length}`:`Soal ${idx+1}/${questions.length}`); let html='', answers=[]; if(q.type==='image'){ $('#modePill').textContent=t('modeImage'); html=`${imgTag(q.answer,'q-img')}<div class="q-sub">${esc(titleId(q.prompt))}</div>`; answers=shuffle([q.answer,...shuffle(vocab.filter(v=>v.jp!==q.answer)).slice(0,3).map(v=>v.jp)]); } else if(q.type==='meaning'){ $('#modePill').textContent=t('modeMeaning'); html=`<div><div class="q-title">${esc(q.prompt)}</div><div class="q-reading">${esc(q.item.reading)}</div><div class="q-sub">${t('selectAnswer')}</div></div>`; answers=shuffle([q.answer,...shuffle(vocab.filter(v=>v.id!==q.answer)).slice(0,3).map(v=>v.id)]); } else { $('#modePill').textContent=t('modeFloor'); html=`<div><div class="q-title">${esc(q.prompt)}</div><div class="q-sub">${lang==='ja'?'この売り場は何階ですか。':'Barang/tempat ini ada di lantai berapa?'}</div></div>`; answers=shuffle([q.answer,...shuffle(floors.filter(f=>f.floor!==q.answer)).slice(0,3).map(f=>f.floor)]); } $('#questionContent').innerHTML=html; $('#options').innerHTML=answers.map(a=>`<button class="option" data-answer="${esc(a)}">${esc(titleId(a))}</button>`).join(''); startTimer();}
+function selectOption(ans,timeout=false){ if(locked)return; locked=true; clearInterval(timer); const q=questions[idx]; const ok=ans===q.answer; if(ok)score++; const used=Math.min(TIMER_SECONDS,Math.max(1,Math.round((Date.now()-startTime)/1000))); review.push({q:q.type==='image'?q.prompt:q.prompt,user:ans||'-',correct:q.answer,ok,time:timeout?TIMER_SECONDS:used,reading:q.item?.reading||''}); $$('.option').forEach(b=>{b.disabled=true; if(b.dataset.answer===q.answer)b.classList.add('correct'); if(ans&&b.dataset.answer===ans&&!ok)b.classList.add('wrong');}); $('#feedback').textContent=ok?t('correct'):t('wrong'); $('#feedback').style.color=ok?'#168763':'#c8465c'; $('#nextBtn').disabled=false;}
+async function finish(){clearInterval(timer); const total=questions.length, pct=Math.round(score/total*100), totalTime=review.reduce((s,r)=>s+r.time,0); $('#scoreCircle').style.setProperty('--deg',(pct*3.6)+'deg'); $('#scoreText').textContent=pct+'%'; $('#rightStat').textContent=score; $('#wrongStat').textContent=total-score; $('#totalStat').textContent=total; $('#pointStat').textContent=pct; $('#timeStat').textContent=fmt(totalTime); $('#participantName').textContent=isAdmin?`Admin: ${currentUsername}`:`Nama Pengguna: ${currentUsername} | Grup: ${currentGroup}`; $('#resultMessage').textContent=pct>=85?t('excellent'):pct>=65?t('good'):t('retry'); renderReview(); if(!isAdmin){await saveResult({name:currentUsername,group:currentGroup,category:FIREBASE_CATEGORY,total,correct:score,wrong:total-score,percent:pct,totalTime,date:new Date().toLocaleString(lang==='ja'?'ja-JP':'id-ID')});} await renderHistoryRanking(); activateResultTab('review'); show('result');}
+function renderReview(){ $('#reviewBody').innerHTML=review.length?review.map((r,i)=>`<tr><td>${i+1}</td><td class="jp">${esc(r.q)}${r.reading?`<div class="q-reading">${esc(r.reading)}</div>`:''}</td><td class="jp">${esc(r.user)}</td><td class="jp">${esc(r.correct)}</td><td><span class="pill ${r.ok?'ok':'no'}">${r.ok?t('correct'):t('wrong')}</span></td></tr>`).join(''):`<tr><td colspan="5"><div class="empty-state">${isAdmin?t('adminMsg'):'-'}</div></td></tr>`; }
+function normalize(x){return {name:x.name||'Peserta',group:x.group||'-',category:x.category||FIREBASE_CATEGORY,total:+x.total||0,correct:+x.correct||0,wrong:+x.wrong||0,percent:+x.percent||0,totalTime:+x.totalTime||0,date:x.date||'-'}}
+function localResults(){try{return JSON.parse(localStorage.getItem(LOCAL_KEY))||[]}catch{return[]}}
+function saveLocal(e){const arr=localResults();arr.unshift(e);localStorage.setItem(LOCAL_KEY,JSON.stringify(arr.slice(0,100)));}
+async function saveResult(entry){try{await addDoc(resultsCollection,{...entry,createdAt:serverTimestamp()})}catch(e){console.warn('Firebase gagal, pakai localStorage',e);saveLocal(entry)}}
+async function getResults(){try{const snap=await getDocs(query(resultsCollection,orderBy('createdAt','desc'),limit(100))); const rows=snap.docs.map(d=>normalize(d.data())).filter(x=>x.category===FIREBASE_CATEGORY); if(rows.length)return rows;}catch(e){console.warn('Firebase gagal dibaca',e)} return localResults().map(normalize).filter(x=>x.category===FIREBASE_CATEGORY)}
+function sortRank(a,b){if(b.percent!==a.percent)return b.percent-a.percent;if(b.correct!==a.correct)return b.correct-a.correct;return a.totalTime-b.totalTime}
+async function renderHistoryRanking(){ $('#historyBody').innerHTML=`<tr><td colspan="7"><div class="empty-state">${t('loading')}</div></td></tr>`; $('#rankingBody').innerHTML=`<tr><td colspan="7"><div class="empty-state">${t('loading')}</div></td></tr>`; const data=await getResults(); $('#historyBody').innerHTML=data.length?data.map((x,i)=>`<tr><td>${i+1}</td><td>${esc(x.name)}</td><td>${esc(x.group)}</td><td>${esc(x.category)}</td><td>${x.percent}%</td><td>${fmt(x.totalTime)}</td><td>${esc(x.date)}</td></tr>`).join(''):`<tr><td colspan="7"><div class="empty-state">${t('emptyHistory')}</div></td></tr>`; const rank=[...data].sort(sortRank).slice(0,20); $('#rankingBody').innerHTML=rank.length?rank.map((x,i)=>`<tr><td>${i+1}</td><td>${esc(x.name)}</td><td>${esc(x.group)}</td><td>${esc(x.category)}</td><td>${x.correct}/${x.total}</td><td>${x.percent}%</td><td>${fmt(x.totalTime)}</td></tr>`).join(''):`<tr><td colspan="7"><div class="empty-state">${t('emptyHistory')}</div></td></tr>`;}
+async function showAdminResults(){ review=[]; $('#scoreCircle').style.setProperty('--deg','0deg'); $('#scoreText').textContent='0%'; ['rightStat','wrongStat','totalStat','pointStat'].forEach(id=>$('#'+id).textContent='0'); $('#timeStat').textContent=fmt(0); $('#participantName').textContent=`Admin: ${currentUsername||ADMIN_USERNAME}`; $('#resultMessage').textContent=t('adminMsg'); renderReview(); await renderHistoryRanking(); activateResultTab('history'); show('result');}
+function refreshResultsText(){renderReview(); renderHistoryRanking();}
+function activateResultTab(tab){$$('[data-result-tab]').forEach(b=>b.classList.toggle('active',b.dataset.resultTab===tab)); $('#reviewPanel').classList.toggle('hidden',tab!=='review'); $('#historyPanel').classList.toggle('hidden',tab!=='history'); $('#rankingPanel').classList.toggle('hidden',tab!=='ranking');}
+function updateLoginSummary(){ if(!currentUsername)return; $('#loginSummary').textContent=isAdmin?`Admin: ${currentUsername}`:`Nama Pengguna: ${currentUsername} | ${t('groupHeader')}: ${currentGroup}`; $('#adminActions').classList.toggle('show',isAdmin);}
+function updateLoginUI(){const name=$('#usernameInput').value.trim(); const admin=name===ADMIN_USERNAME; $('#passwordBox').classList.toggle('hidden',!admin); $('#groupBox').classList.toggle('hidden',!name||admin); if(admin){currentGroup=''; $$('.group-btn').forEach(b=>b.classList.remove('active'));}}
+function openLogin(){ $('#loginModal').classList.add('show'); $('#loginModal').setAttribute('aria-hidden','false'); $('#app').classList.remove('unlocked'); $('#usernameInput').focus();}
+function submitLogin(){const name=$('#usernameInput').value.trim();const pass=$('#passwordInput').value; $('#loginError').textContent=''; if(!name){$('#loginError').textContent=t('needUser');return} if(name===ADMIN_USERNAME&&pass!==ADMIN_PASSWORD){$('#loginError').textContent=t('wrongPass');return} if(name!==ADMIN_USERNAME&&!currentGroup){$('#loginError').textContent=t('needGroup');return} currentUsername=name; isAdmin=name===ADMIN_USERNAME; $('#loginModal').classList.remove('show'); $('#loginModal').setAttribute('aria-hidden','true'); $('#app').classList.add('unlocked'); updateLoginSummary(); show('home');}
 
-function openImageModal(src,title){
- const modal=$('#imageModal'), img=$('#imageModalImg'), head=$('#imageModalTitle');
- if(!modal||!img)return;
- img.src=src; img.alt=title||'Preview gambar ukuran penuh';
- if(head) head.textContent=title||'Preview Gambar';
- modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
-}
-function closeImageModal(){
- const modal=$('#imageModal'), img=$('#imageModalImg');
- if(!modal)return;
- modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow='';
- setTimeout(()=>{if(img&&!modal.classList.contains('show')) img.src='';},180);
-}
-document.addEventListener('click',e=>{
- const close=e.target.closest('#imageModalClose');
- if(close){closeImageModal();return;}
- const modal=$('#imageModal');
- if(modal&&modal.classList.contains('show')&&e.target===modal){closeImageModal();return;}
- const img=e.target.closest('img');
- if(!img||img.id==='imageModalImg'||img.closest('#imageModal'))return;
- const src=img.currentSrc||img.src;
- if(!src)return;
- openImageModal(src,img.alt||'Preview Gambar');
-});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeImageModal();});
-
-renderMaps(); renderVocab();
-$('#startQuizBtn').onclick=startQuiz; $('#studyStartBtn').onclick=startQuiz; $('#retryBtn').onclick=startQuiz; $('#studyBtn').onclick=()=>show('study'); $('#reviewStudyBtn').onclick=()=>show('study'); $('#backHomeBtn').onclick=()=>{clearInterval(timer);show('home')}; $('#homeBtn2').onclick=()=>show('home'); $('#nextBtn').onclick=next;
-$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');$('#studyFloors').classList.toggle('hidden',t.dataset.tab!=='floors');$('#studyVocab').classList.toggle('hidden',t.dataset.tab!=='vocab');});
+$('#loginSubmitBtn').onclick=submitLogin; $('#usernameInput').addEventListener('input',updateLoginUI); $('#usernameInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitLogin()}); $('#passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitLogin()}); $$('.group-btn').forEach(b=>b.onclick=()=>{currentGroup=b.dataset.group; $$('.group-btn').forEach(x=>x.classList.toggle('active',x===b)); $('#loginError').textContent='';});
+$$('.language-btn').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;applyLang()}); $('#startQuizBtn').onclick=startQuiz; $('#studyStartBtn').onclick=startQuiz; $('#studyBtn').onclick=()=>show('study'); $('#homeBtn2').onclick=()=>show('home'); $('#backHomeBtn').onclick=()=>{clearInterval(timer);show('home')}; $('#resultHomeBtn').onclick=()=>show('home'); $('#reviewStudyBtn').onclick=()=>show('study'); $('#retryBtn').onclick=startQuiz; $('#openLoginAgainBtn').onclick=openLogin; $('#adminResultBtn').onclick=showAdminResults; $('#nextBtn').onclick=()=>{idx++; idx>=questions.length?finish():renderQuestion()}; document.addEventListener('click',e=>{const opt=e.target.closest('.option'); if(opt)selectOption(opt.dataset.answer,false); const img=e.target.closest('img'); if(img&&($('#app').contains(img)||$('#imageModal').contains(img))&&!$('#imageModal').contains(img)) openImage(img.currentSrc||img.src,img.alt); const row=e.target.closest('#studyFloorList .floor-row'); if(row){const f=floors.find(x=>x.floor===row.dataset.floor); if(f){renderFloorDetail(f); setTimeout(()=>{const target=document.getElementById('floorDetailCard'); if(target) target.scrollIntoView({behavior:'smooth',block:'start'});},80);}}}); $('#closeImageModal').onclick=closeImage; $('#imageModal').addEventListener('click',e=>{if(e.target.id==='imageModal')closeImage()}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeImage();}); $$('.tab[data-tab]').forEach(tbtn=>tbtn.onclick=()=>{$$('.tab[data-tab]').forEach(x=>x.classList.remove('active'));tbtn.classList.add('active');$('#studyFloors').classList.toggle('hidden',tbtn.dataset.tab!=='floors');$('#studyVocab').classList.toggle('hidden',tbtn.dataset.tab!=='vocab');}); $$('[data-result-tab]').forEach(b=>b.onclick=()=>activateResultTab(b.dataset.resultTab));
+// Perlindungan dasar: blok klik kanan dan shortcut inspeksi umum. Ini tidak bisa 100% mencegah developer tools, tetapi mengurangi akses biasa.
+document.addEventListener('contextmenu',e=>e.preventDefault()); document.addEventListener('keydown',e=>{const k=e.key.toLowerCase(); if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(k))||(e.ctrlKey&&['u','s'].includes(k))){e.preventDefault(); e.stopPropagation();}});
+renderFloors(); renderVocab(); applyLang(); openLogin();
 </script>
 </body>
 </html>
