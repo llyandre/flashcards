@@ -113,6 +113,8 @@
       align-items: center;
       justify-content: center;
     }
+    .app-shell.is-locked { padding: 0; }
+    .app-shell.is-locked > .screen { display: none !important; }
     .screen { display: none; width: 100%; animation: fadeIn 0.32s ease both; }
     .screen.active { display: block; }
     .panel {
@@ -357,6 +359,8 @@
       transition: opacity 0.22s ease, visibility 0.22s ease;
     }
     .login-modal.show { opacity: 1; visibility: visible; pointer-events: auto; }
+    .login-modal.is-required .modal-close,
+    .login-modal.is-required #cancelLogin { display: none !important; }
     .login-modal-card {
       width: min(440px, 94vw);
       position: relative;
@@ -432,6 +436,552 @@
       .login-modal-actions .btn { width: 100%; }
     }
 
+    /* ===== Mobile layout final override ===== */
+    @media (max-width: 720px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      body {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+      }
+
+      body::before,
+      body::after {
+        width: 150px !important;
+        height: 150px !important;
+        opacity: 0.2 !important;
+      }
+
+      .language-switch {
+        top: 10px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: max-content !important;
+        max-width: calc(100% - 20px) !important;
+        padding: 4px !important;
+        gap: 4px !important;
+      }
+
+      .language-switch button {
+        min-height: 30px !important;
+        padding: 6px 10px !important;
+        font-size: 11.5px !important;
+        line-height: 1.1 !important;
+      }
+
+      .app-shell {
+        width: 100% !important;
+        min-height: 100svh !important;
+        padding: 58px 10px 18px !important;
+        align-items: flex-start !important;
+        overflow-x: hidden !important;
+      }
+
+      .screen,
+      .screen.active {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .panel {
+        width: 100% !important;
+        max-width: 580px !important;
+        min-height: auto !important;
+        margin: 0 auto !important;
+        padding: 18px !important;
+        border-radius: 24px !important;
+        box-shadow: 0 12px 28px rgba(82, 73, 134, 0.1) !important;
+      }
+
+      .hero {
+        overflow: visible !important;
+      }
+
+      .badge {
+        max-width: 100% !important;
+        padding: 7px 10px !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+      }
+
+      h1 {
+        margin: 13px auto 10px !important;
+        font-size: clamp(26px, 8vw, 36px) !important;
+        line-height: 1.12 !important;
+        letter-spacing: 0 !important;
+      }
+
+      h2 {
+        font-size: clamp(22px, 6.2vw, 30px) !important;
+        line-height: 1.18 !important;
+      }
+
+      p,
+      .hero-text,
+      .section-title p,
+      .greeting-card p,
+      .login-modal-card p {
+        font-size: 13.5px !important;
+        line-height: 1.52 !important;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 16px 0 !important;
+      }
+
+      .info-card {
+        min-height: 76px !important;
+        padding: 12px 10px !important;
+        border-radius: 18px !important;
+        text-align: center !important;
+      }
+
+      .info-card span {
+        font-size: 11px !important;
+        line-height: 1.25 !important;
+      }
+
+      .info-card strong {
+        font-size: 14px !important;
+        line-height: 1.24 !important;
+      }
+
+      .login-area {
+        width: 100% !important;
+        margin: 14px auto 16px !important;
+      }
+
+      .login-trigger,
+      .login-summary,
+      .btn,
+      .answer-btn {
+        min-height: 50px !important;
+        border-radius: 18px !important;
+        font-size: 14.5px !important;
+        line-height: 1.22 !important;
+      }
+
+      .login-summary {
+        text-align: center !important;
+      }
+
+      .note {
+        font-size: 12.5px !important;
+        line-height: 1.4 !important;
+      }
+
+      .actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .actions .btn {
+        width: 100% !important;
+      }
+
+      .section-title {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin-bottom: 14px !important;
+      }
+
+      .material-grid,
+      .greeting-box {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin: 14px 0 18px !important;
+      }
+
+      .material-card {
+        padding: 12px !important;
+        border-radius: 20px !important;
+      }
+
+      .material-card img {
+        padding: 8px !important;
+        border-radius: 16px !important;
+      }
+
+      .name-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .name-card {
+        min-height: 118px !important;
+        padding: 14px 10px !important;
+        border-radius: 18px !important;
+      }
+
+      .name-card::before {
+        left: 9px !important;
+        top: 8px !important;
+        font-size: 22px !important;
+      }
+
+      .jp {
+        font-size: clamp(24px, 7.2vw, 34px) !important;
+        line-height: 1.15 !important;
+      }
+
+      .kana {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+
+      .romaji {
+        font-size: 12.5px !important;
+        line-height: 1.3 !important;
+      }
+
+      .greeting-card {
+        min-height: auto !important;
+        padding: 14px !important;
+        border-radius: 20px !important;
+      }
+
+      .greeting-figure {
+        min-height: 190px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .greeting-figure img {
+        max-height: 185px !important;
+        padding: 8px !important;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        min-width: 0 !important;
+        padding: 12px !important;
+        border-radius: 18px !important;
+      }
+
+      .timer-card {
+        display: grid !important;
+        grid-template-columns: auto 1fr !important;
+        gap: 6px 10px !important;
+        align-items: center !important;
+        text-align: left !important;
+      }
+
+      .timer-track {
+        grid-column: 1 / -1 !important;
+        margin-top: 2px !important;
+      }
+
+      .time-number {
+        font-size: 30px !important;
+      }
+
+      .timer-label,
+      .counter-card small,
+      #questionInfo {
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .quiz-card {
+        min-height: 390px !important;
+        padding: 18px 14px !important;
+        gap: 12px !important;
+        border-radius: 22px !important;
+      }
+
+      .quiz-type {
+        padding: 7px 10px !important;
+        font-size: 11.5px !important;
+      }
+
+      .question-main {
+        font-size: clamp(20px, 6.4vw, 28px) !important;
+        line-height: 1.22 !important;
+      }
+
+      .answer-grid {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+      }
+
+      .answer-btn {
+        min-height: 48px !important;
+        padding: 11px 12px !important;
+      }
+
+      .feedback {
+        min-height: auto !important;
+        font-size: 13.5px !important;
+        line-height: 1.4 !important;
+      }
+
+      .result-head {
+        margin-bottom: 16px !important;
+      }
+
+      .participant-name {
+        width: 100% !important;
+        margin-top: 10px !important;
+        text-align: center !important;
+      }
+
+      .summary-box {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        padding: 16px !important;
+        border-radius: 22px !important;
+        text-align: center !important;
+      }
+
+      .score-circle {
+        width: 132px !important;
+        height: 132px !important;
+      }
+
+      .score-circle::before {
+        inset: 12px !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        margin: 16px 0 !important;
+      }
+
+      .stat-card {
+        padding: 12px 9px !important;
+        border-radius: 18px !important;
+      }
+
+      .stat-card span {
+        margin-bottom: 5px !important;
+        font-size: 11.5px !important;
+      }
+
+      .stat-card strong {
+        font-size: 20px !important;
+      }
+
+      .table-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        border-radius: 18px !important;
+      }
+
+      table {
+        min-width: 620px !important;
+        font-size: 12.5px !important;
+      }
+
+      th,
+      td {
+        padding: 10px 11px !important;
+      }
+
+      .login-modal {
+        padding: 14px !important;
+        align-items: center !important;
+      }
+
+      .login-modal-card {
+        width: 100% !important;
+        max-width: 420px !important;
+        max-height: calc(100svh - 28px) !important;
+        overflow-y: auto !important;
+        padding: 24px 18px 18px !important;
+        border-radius: 24px !important;
+      }
+
+      .login-modal-card h3 {
+        padding-right: 40px !important;
+        font-size: 22px !important;
+      }
+
+      .login-field label,
+      .login-error,
+      .group-box p {
+        font-size: 12.5px !important;
+        line-height: 1.42 !important;
+      }
+
+      .login-field input {
+        min-height: 48px !important;
+        border-radius: 16px !important;
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .group-btn {
+        min-height: 40px !important;
+        border-radius: 14px !important;
+      }
+
+      .login-modal-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        padding: 56px 8px 16px !important;
+      }
+
+      .panel {
+        padding: 15px !important;
+        border-radius: 22px !important;
+      }
+
+      .info-grid,
+      .name-grid,
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .info-card {
+        min-height: 64px !important;
+      }
+
+      h1 {
+        font-size: clamp(25px, 8.5vw, 34px) !important;
+      }
+
+      .greeting-figure {
+        min-height: 170px !important;
+      }
+
+      .greeting-figure img {
+        max-height: 165px !important;
+      }
+
+      .quiz-card {
+        min-height: 360px !important;
+      }
+
+      table {
+        min-width: 560px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .language-switch button {
+        padding: 6px 8px !important;
+        font-size: 10.5px !important;
+      }
+
+      .panel {
+        padding: 13px !important;
+      }
+
+      .jp {
+        font-size: clamp(22px, 7vw, 31px) !important;
+      }
+
+      .quiz-card {
+        min-height: 340px !important;
+      }
+
+      .answer-btn {
+        min-height: 46px !important;
+        font-size: 13.5px !important;
+      }
+    }
+
+    /* ===== Font weight balance: bold hanya untuk bagian yang perlu ditegaskan ===== */
+    body {
+      font-weight: 400;
+    }
+
+    h1 {
+      font-weight: 800;
+    }
+
+    h2,
+    .login-modal-card h3,
+    .question-main {
+      font-weight: 700;
+    }
+
+    .badge,
+    .btn,
+    .quiz-type,
+    th,
+    .status-pill {
+      font-weight: 700;
+    }
+
+    .language-switch button,
+    .login-trigger,
+    .login-summary,
+    .counter-card,
+    .participant-name,
+    .feedback strong,
+    .login-field label,
+    .group-btn,
+    .login-error,
+    .toast {
+      font-weight: 600;
+    }
+
+    p,
+    td,
+    .note,
+    .section-title p,
+    .greeting-card p,
+    .login-modal-card p,
+    .counter-card small,
+    .feedback,
+    .group-box p,
+    .empty-state {
+      font-weight: 400;
+    }
+
+    .info-card span,
+    .timer-label,
+    .stat-card span,
+    .kana,
+    .greeting-card .kana,
+    .login-field input {
+      font-weight: 500;
+    }
+
+    .info-card strong,
+    .romaji,
+    .answer-btn,
+    .greeting-card .kana em {
+      font-weight: 600;
+    }
+
+    .jp,
+    .name-card::before,
+    .time-number,
+    .score-circle strong,
+    .stat-card strong,
+    .modal-close {
+      font-weight: 800;
+    }
+
     /* ===== Proteksi dasar: anti seleksi, anti copy, anti drag, dan anti print ===== */
     html,
     body,
@@ -473,12 +1023,12 @@
     <button type="button" data-lang-btn="ja">日本語</button>
   </div>
 
-  <main class="app-shell">
+  <main class="app-shell is-locked">
     <section id="startScreen" class="screen active">
       <div class="panel hero">
         <span class="badge" data-i18n="heroBadge">日本語クイズ • Kuis Interaktif</span>
         <h1 data-i18n="heroTitle">Nama Keluarga Jepang dan Salam</h1>
-        <p class="hero-text" data-i18n-html="heroText">Kenali nama keluarga yang sering digunakan di Jepang dan pelajari ungkapan sopan saat berkenalan. Masukkan nama, pilih grup, lalu jawab soal acak untuk melihat hasil dan ranking.</p>
+        <p class="hero-text" data-i18n-html="heroText">Kenali nama keluarga yang sering digunakan di Jepang dan pelajari ungkapan sopan saat berkenalan. Masukkan nama, pilih grup, lalu jawab soal acak untuk melihat hasil latihan.</p>
 
         <div class="info-grid" aria-label="Info kuis">
           <div class="info-card"><span data-i18n="infoMaterialLabel">Materi</span><strong data-i18n="infoMaterialValue">Nama keluarga & salam</strong></div>
@@ -495,7 +1045,6 @@
         <div class="actions">
           <button class="btn" id="startQuizBtn" type="button" data-i18n="startQuiz">Mulai Kuis</button>
           <button class="btn secondary" id="openMaterialBtn" type="button" data-i18n="openMaterial">Lihat Materi</button>
-          <button class="btn secondary" id="openHistoryBtn" type="button" data-i18n="openHistory">Riwayat & Ranking</button>
           <button class="btn secondary admin-only" id="adminResultBtn" type="button" hidden data-i18n="adminResultPage">Halaman Admin</button>
         </div>
       </div>
@@ -613,6 +1162,7 @@
           <button class="btn secondary" id="historyBtn" type="button" data-i18n="showHistory">Tampilkan Riwayat</button>
           <button class="btn secondary" id="rankingBtn" type="button" data-i18n="showRanking">Tampilkan Ranking</button>
           <button class="btn danger admin-only" id="clearHistoryBtn" type="button" hidden data-i18n="clearHistory">Hapus Riwayat & Ranking</button>
+          <button class="btn secondary admin-only" id="adminPdfBtn" type="button" hidden data-i18n="savePdfButton">Simpan sebagai PDF</button>
           <button class="btn secondary" data-back-home type="button" data-i18n="home">Home</button>
         </div>
 
@@ -669,20 +1219,20 @@
     </section>
   </main>
 
-  <div id="loginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div id="loginModal" class="login-modal show is-required" aria-hidden="false" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
     <div class="login-modal-card">
       <button id="closeLoginModal" class="modal-close" type="button" aria-label="Tutup">×</button>
-      <h3 id="loginTitle" data-i18n="loginTitle">Data Peserta</h3>
-      <p data-i18n-html="loginDescription">Isi nama peserta dan pilih grup. Khusus admin, gunakan username <strong>admin404</strong> dan masukkan password.</p>
+      <h3 id="loginTitle" data-i18n="loginTitle">Masuk Peserta</h3>
+      <p data-i18n-html="loginDescription">Masukkan username untuk melanjutkan ke kuis. Setelah username diisi, data lanjutan akan muncul otomatis.</p>
       <div class="login-field">
-        <label for="usernameInput" data-i18n="nameLabel">Nama peserta / admin</label>
-        <input id="usernameInput" type="text" autocomplete="name" maxlength="32" data-i18n-placeholder="namePlaceholder" placeholder="Masukkan nama peserta" />
+        <label for="usernameInput" data-i18n="nameLabel">Username</label>
+        <input id="usernameInput" type="text" autocomplete="name" maxlength="32" data-i18n-placeholder="namePlaceholder" placeholder="Masukkan username" />
       </div>
       <div id="passwordBox" class="login-field password-box" hidden>
         <label for="passwordInput" data-i18n="passwordLabel">Password admin</label>
         <input id="passwordInput" type="password" autocomplete="current-password" data-i18n-placeholder="passwordPlaceholder" placeholder="Masukkan password admin" />
       </div>
-      <div id="groupBox" class="group-box">
+      <div id="groupBox" class="group-box" hidden>
         <p data-i18n="groupPrompt">Pilih grup sebelum mulai kuis.</p>
         <div class="group-options" aria-label="Pilihan grup">
           <button class="group-btn" data-group="Badung" type="button">Badung</button>
@@ -737,7 +1287,7 @@
         pageTitle: "Kuis Interaktif: Nama Keluarga Jepang dan Salam",
         heroBadge: "日本語クイズ • Kuis Interaktif",
         heroTitle: "Nama Keluarga Jepang dan Salam",
-        heroText: "Kenali nama keluarga yang sering digunakan di Jepang dan pelajari ungkapan sopan saat berkenalan. Masukkan nama, pilih grup, lalu jawab soal acak untuk melihat hasil dan ranking.",
+        heroText: "Kenali nama keluarga yang sering digunakan di Jepang dan pelajari ungkapan sopan saat berkenalan. Masukkan nama, pilih grup, lalu jawab soal acak untuk melihat hasil latihan.",
         infoMaterialLabel: "Materi",
         infoMaterialValue: "Nama keluarga & salam",
         infoTotalLabel: "Total latihan",
@@ -784,6 +1334,11 @@
         showHistory: "Tampilkan Riwayat",
         showRanking: "Tampilkan Ranking",
         clearHistory: "Hapus Riwayat & Ranking",
+        savePdfButton: "Simpan sebagai PDF",
+        pdfReportTitle: "Laporan Riwayat dan Ranking",
+        pdfReportSubtitle: "Report hasil kuis dari halaman admin.",
+        pdfGeneratedAt: "Dibuat pada",
+        popupBlocked: "Halaman report tidak terbuka. Izinkan popup browser, lalu klik Simpan sebagai PDF lagi.",
         thNo: "No.",
         thQuestion: "Pertanyaan",
         thYourAnswer: "Jawabanmu",
@@ -829,10 +1384,10 @@
         readingExplanation: "{kanji} dibaca {kana} ({romaji}).",
         kanjiExplanation: "{romaji} ditulis {kanji}.",
         romajiJoin: " atau ",
-        loginTitle: "Data Peserta",
-        loginDescription: "Isi nama peserta dan pilih grup. Khusus admin, gunakan username <strong>admin404</strong> dan masukkan password.",
-        nameLabel: "Nama peserta / admin",
-        namePlaceholder: "Masukkan nama peserta",
+        loginTitle: "Masuk Peserta",
+        loginDescription: "Masukkan username untuk melanjutkan ke kuis. Setelah username diisi, data lanjutan akan muncul otomatis.",
+        nameLabel: "Username",
+        namePlaceholder: "Masukkan username",
         passwordLabel: "Password admin",
         passwordPlaceholder: "Masukkan password admin",
         groupPrompt: "Pilih grup sebelum mulai kuis.",
@@ -852,7 +1407,7 @@
         pageTitle: "日本の名字とあいさつクイズ",
         heroBadge: "日本語クイズ・インタラクティブ",
         heroTitle: "日本の名字とあいさつ",
-        heroText: "日本でよく使われる名字と、初対面で使う丁寧なあいさつを楽しく学びましょう。名前とグループを入力してから、ランダム問題に挑戦し、ランキングで結果を確認できます。",
+        heroText: "日本でよく使われる名字と、初対面で使う丁寧なあいさつを楽しく学びましょう。名前とグループを入力してから、ランダム問題に挑戦し、結果を確認できます。",
         infoMaterialLabel: "教材",
         infoMaterialValue: "名字とあいさつ",
         infoTotalLabel: "問題数",
@@ -899,6 +1454,11 @@
         showHistory: "履歴を表示",
         showRanking: "ランキングを表示",
         clearHistory: "履歴・ランキングを削除",
+        savePdfButton: "PDFとして保存",
+        pdfReportTitle: "履歴とランキングのレポート",
+        pdfReportSubtitle: "管理者ページから作成されたクイズ結果レポートです。",
+        pdfGeneratedAt: "作成日時",
+        popupBlocked: "レポートページを開けませんでした。ブラウザのポップアップを許可して、もう一度PDFとして保存を押してください。",
         thNo: "番号",
         thQuestion: "問題",
         thYourAnswer: "あなたの答え",
@@ -944,10 +1504,10 @@
         readingExplanation: "{kanji}の読み方は「{kana}」（{romaji}）です。",
         kanjiExplanation: "{romaji}は「{kanji}」と書きます。",
         romajiJoin: " / ",
-        loginTitle: "参加者情報",
-        loginDescription: "参加者名を入力し、グループを選んでください。管理者はユーザー名 <strong>admin404</strong> とパスワードを入力します。",
-        nameLabel: "参加者名 / 管理者",
-        namePlaceholder: "参加者名を入力",
+        loginTitle: "参加者ログイン",
+        loginDescription: "クイズへ進むにはユーザー名を入力してください。入力後、必要な項目が自動で表示されます。",
+        nameLabel: "ユーザー名",
+        namePlaceholder: "ユーザー名を入力",
         passwordLabel: "管理者パスワード",
         passwordPlaceholder: "管理者パスワードを入力",
         groupPrompt: "クイズを始める前にグループを選んでください。",
@@ -1040,6 +1600,7 @@
       result: document.getElementById("resultScreen")
     };
 
+    const appShell = document.querySelector(".app-shell");
     const loginSummary = document.getElementById("loginSummary");
     const loginNote = document.getElementById("loginNote");
     const loginModal = document.getElementById("loginModal");
@@ -1050,6 +1611,7 @@
     const loginError = document.getElementById("loginError");
     const adminResultBtn = document.getElementById("adminResultBtn");
     const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+    const adminPdfBtn = document.getElementById("adminPdfBtn");
     const nameGrid = document.getElementById("nameGrid");
     const counterText = document.getElementById("counterText");
     const questionInfo = document.getElementById("questionInfo");
@@ -1202,7 +1764,7 @@
       const typed = usernameInput.value.trim();
       const typedAdmin = typed === ADMIN_USERNAME;
       passwordBox.hidden = !typedAdmin;
-      groupBox.hidden = typedAdmin;
+      groupBox.hidden = !typed || typedAdmin;
       if (typedAdmin) currentGroup = "";
       document.querySelectorAll(".group-btn").forEach(button => {
         button.classList.toggle("active", button.dataset.group === currentGroup);
@@ -1238,8 +1800,19 @@
     }
 
     function closeLoginModalBox() {
+      if (!currentUsername && appShell.classList.contains("is-locked")) {
+        loginError.textContent = t("usernameRequired");
+        usernameInput.focus();
+        return;
+      }
       loginModal.classList.remove("show");
       loginModal.setAttribute("aria-hidden", "true");
+    }
+
+    function unlockHomepageAfterLogin() {
+      appShell.classList.remove("is-locked");
+      loginModal.classList.remove("is-required");
+      showScreen("start");
     }
 
     function submitLogin() {
@@ -1261,6 +1834,7 @@
         currentGroup = "";
         isAdmin = true;
         updateLoginSummary();
+        unlockHomepageAfterLogin();
         closeLoginModalBox();
         showToast(t("adminSaved"));
         return;
@@ -1272,6 +1846,7 @@
       currentUsername = name;
       isAdmin = false;
       updateLoginSummary();
+      unlockHomepageAfterLogin();
       closeLoginModalBox();
       showToast(t("participantSaved"));
     }
@@ -1400,6 +1975,7 @@
       document.getElementById("reviewArea").hidden = true;
       document.getElementById("historyArea").hidden = true;
       document.getElementById("rankingArea").hidden = true;
+      adminPdfBtn.hidden = true;
       if (!isAdmin) {
         await saveResult({
           name: currentUsername,
@@ -1551,6 +2127,167 @@
       }
     }
 
+    function buildReportTable(headers, rows, emptyText) {
+      const head = headers.map(header => `<th>${escapeHTML(header)}</th>`).join("");
+      const body = rows.length
+        ? rows.map(row => `<tr>${row.map(cell => `<td>${escapeHTML(String(cell ?? "-"))}</td>`).join("")}</tr>`).join("")
+        : `<tr><td colspan="${headers.length}" class="empty">${escapeHTML(emptyText)}</td></tr>`;
+      return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+    }
+
+    async function saveAdminPdf() {
+      if (!isAdmin) {
+        showToast(t("adminOnly"));
+        return;
+      }
+
+      const reportWindow = window.open("", "_blank");
+      if (!reportWindow) {
+        showToast(t("popupBlocked"));
+        return;
+      }
+
+      reportWindow.document.write(`<!doctype html><title>${escapeHTML(t("pdfReportTitle"))}</title><p>Loading...</p>`);
+      const results = await getResults();
+      const ranking = [...results].sort(sortRanking).slice(0, 50);
+      const generatedAt = new Date().toLocaleString(currentLang === "ja" ? "ja-JP" : "id-ID");
+
+      const historyRows = results.map((item, index) => [
+        index + 1,
+        item.date || "-",
+        item.name || "-",
+        item.group || "-",
+        `${Number(item.percent || 0)}%`,
+        Number(item.correct || 0),
+        Number(item.wrong || 0),
+        Number(item.total || 0)
+      ]);
+
+      const rankingRows = ranking.map((item, index) => [
+        index + 1,
+        item.name || "-",
+        item.group || "-",
+        `${Number(item.percent || 0)}%`,
+        Number(item.correct || 0),
+        Number(item.wrong || 0),
+        Number(item.total || 0),
+        item.date || "-"
+      ]);
+
+      const resultHeaders = [t("thNo"), t("thDate"), t("thName"), t("thGroup"), t("thScore"), t("correctLabel"), t("wrongLabel"), t("totalLabel")];
+      const rankingHeaders = [t("thNo"), t("thName"), t("thGroup"), t("thScore"), t("correctLabel"), t("wrongLabel"), t("totalLabel"), t("thDate")];
+      const reportHtml = `<!doctype html>
+<html lang="${currentLang === "ja" ? "ja" : "id"}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${escapeHTML(t("pdfReportTitle"))}</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 28px;
+      color: #152238;
+      background: #f6f8fb;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .report {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px;
+      background: #fff;
+      border: 1px solid #d9e1ef;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(21, 34, 56, .08);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      padding-bottom: 18px;
+      border-bottom: 2px solid #e8edf5;
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    h2 { margin: 26px 0 12px; font-size: 18px; }
+    p { margin: 0; color: #5d6b82; line-height: 1.6; }
+    .meta { text-align: right; font-size: 13px; color: #5d6b82; }
+    .tools { margin: 22px 0; display: flex; justify-content: flex-end; }
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 18px;
+      color: #fff;
+      background: #2563eb;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #d9e1ef;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 10px 11px;
+      border-bottom: 1px solid #e8edf5;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: #152238;
+      background: #eef4ff;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .empty { text-align: center; color: #7a8799; padding: 20px; }
+    @media print {
+      body { padding: 0; background: #fff; }
+      .report { max-width: none; border: 0; border-radius: 0; box-shadow: none; }
+      .tools { display: none; }
+      table { page-break-inside: auto; }
+      tr { page-break-inside: avoid; page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="report">
+    <header>
+      <div>
+        <h1>${escapeHTML(t("pdfReportTitle"))}</h1>
+        <p>${escapeHTML(t("pdfReportSubtitle"))}</p>
+      </div>
+      <div class="meta">
+        <strong>${escapeHTML(t("pdfGeneratedAt"))}</strong><br />
+        ${escapeHTML(generatedAt)}
+      </div>
+    </header>
+    <div class="tools">
+      <button type="button" onclick="window.print()">${escapeHTML(t("savePdfButton"))}</button>
+    </div>
+    <section>
+      <h2>${escapeHTML(t("historyTitle"))}</h2>
+      ${buildReportTable(resultHeaders, historyRows, t("emptyHistory"))}
+    </section>
+    <section>
+      <h2>${escapeHTML(t("showRanking"))}</h2>
+      ${buildReportTable(rankingHeaders, rankingRows, t("emptyRanking"))}
+    </section>
+  </main>
+</body>
+</html>`;
+
+      reportWindow.document.open();
+      reportWindow.document.write(reportHtml);
+      reportWindow.document.close();
+      reportWindow.focus();
+      setTimeout(() => reportWindow.print(), 500);
+    }
+
     function showToast(message) {
       toast.textContent = message;
       toast.classList.add("show");
@@ -1573,6 +2310,7 @@
       document.getElementById("reviewArea").hidden = true;
       document.getElementById("historyArea").hidden = false;
       document.getElementById("rankingArea").hidden = false;
+      adminPdfBtn.hidden = !(adminMode && isAdmin);
       void renderHistory();
       void renderRanking();
       showScreen("result");
@@ -1599,7 +2337,6 @@
     document.getElementById("startQuizBtn").addEventListener("click", startQuiz);
     document.getElementById("materialStartBtn").addEventListener("click", startQuiz);
     document.getElementById("openMaterialBtn").addEventListener("click", () => showScreen("material"));
-    document.getElementById("openHistoryBtn").addEventListener("click", () => resetResultForHistory(false));
     adminResultBtn.addEventListener("click", () => {
       if (!isAdmin) {
         openLoginModalBox();
@@ -1632,6 +2369,7 @@
       area.hidden = !area.hidden;
     });
     clearHistoryBtn.addEventListener("click", deleteResultsAsAdmin);
+    adminPdfBtn.addEventListener("click", saveAdminPdf);
     document.querySelectorAll("[data-back-home]").forEach(btn => btn.addEventListener("click", () => showScreen("start")));
 
     applyLanguage();
