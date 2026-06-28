@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Interaktif Hari Libur Jepang</title>
+  <link rel="dns-prefetch" href="https://i.ibb.co" />
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <style>
+    :root {
+      --font-main: "Nunito Sans", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-jp: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      --fs-xs: clamp(12px, 0.82vw, 13px);
+      --fs-sm: clamp(13px, 0.95vw, 14.5px);
+      --fs-body: clamp(15px, 1.05vw, 16.5px);
+      --fs-md: clamp(16px, 1.2vw, 18px);
+      --fs-lg: clamp(20px, 2vw, 26px);
+      --fs-xl: clamp(30px, 4.6vw, 52px);
+      --bg-1: #f8fbff;
+      --bg-2: #fff2f7;
+      --bg-3: #f2fff8;
+      --card: rgba(255, 255, 255, 0.82);
+      --card-solid: #ffffff;
+      --text: #253044;
+      --heading: #101d48;
+      --muted: #64748b;
+      --primary: #7c6ff6;
+      --primary-deep: #6d46e8;
+      --primary-soft: rgba(124, 111, 246, 0.12);
+      --green: #20b486;
+      --green-dark: #168763;
+      --red: #ef5d75;
+      --red-dark: #c8465c;
+      --yellow: #ffb84c;
+      --line: rgba(34, 48, 71, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.78);
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 30px;
+      --radius-pill: 999px;
+      --shadow: 0 18px 44px rgba(82, 73, 134, 0.12);
+      --shadow-soft: 0 10px 24px rgba(82, 73, 134, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0;
+      font-family: var(--font-main);
+      font-size: var(--fs-body);
+      line-height: 1.58;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 195, 217, 0.5), transparent 34%),
+        radial-gradient(circle at top right, rgba(184, 232, 255, 0.58), transparent 34%),
+        radial-gradient(circle at 50% 88%, rgba(167, 243, 208, 0.28), transparent 34%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
+      overflow-x: hidden;
+      text-rendering: geometricPrecision;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      width: 230px;
+      height: 230px;
+      border-radius: var(--radius-pill);
+      opacity: 0.34;
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    body::before {
+      left: -76px;
+      bottom: 8%;
+      background: #c9fff1;
+    }
+
+    body::after {
+      right: -92px;
+      top: 18%;
+      background: #ffd2e5;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: var(--fs-body);
+      line-height: 1.7;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    input {
+      font: inherit;
+      -webkit-user-select: text;
+      user-select: text;
+    }
+
+    .jp {
+      font-family: var(--font-jp);
+    }
+
+    .app-shell {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: clamp(20px, 3vw, 36px) 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .screen {
+      width: 100%;
+      display: none;
+      animation: fadeIn 0.32s ease both;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .panel {
+      position: relative;
+      width: min(980px, 100%);
+      margin: 0 auto;
+      padding: clamp(28px, 3.8vw, 42px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.66)),
+        var(--card);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .home-panel {
+      width: min(840px, 100%);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: var(--radius-pill);
+      background: var(--primary-soft);
+      color: var(--primary-deep);
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .language-panel {
+      padding-top: clamp(76px, 7vw, 92px);
+    }
+
+    .language-switch {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      z-index: 20;
+      width: max-content;
+      max-width: calc(100% - 36px);
+      margin: 0;
+      padding: 7px;
+      display: inline-flex;
+      gap: 6px;
+      border-radius: var(--radius-pill);
+      background: #ffffff;
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .lang-btn {
+      min-height: 34px;
+      padding: 7px 13px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #5d5f7c;
+      background: transparent;
+      font-size: var(--fs-xs);
+      font-weight: 850;
+      line-height: 1.15;
+    }
+
+    .lang-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      box-shadow: 0 10px 18px rgba(124, 111, 246, 0.22);
+    }
+
+    .hero h1,
+    .quiz-title {
+      margin: 16px 0 12px;
+      color: var(--heading);
+      font-size: var(--fs-xl);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 18px;
+      color: var(--muted);
+      font-size: var(--fs-md);
+      line-height: 1.72;
+    }
+
+    .hero-info-row,
+    .topbar,
+    .result-actions,
+    .mode-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .hero-info-row,
+    .result-actions,
+    .mode-grid {
+      justify-content: center;
+    }
+
+    .hero-info-card,
+    .counter-card,
+    .timer-card,
+    .stat-card {
+      padding: 14px 16px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-info-card strong,
+    .counter-card strong,
+    .timer-card strong,
+    .stat-card strong {
+      display: block;
+      color: var(--heading);
+      font-size: var(--fs-lg);
+      font-weight: 900;
+      line-height: 1.05;
+    }
+
+    .hero-info-card span,
+    .counter-card span,
+    .timer-card span,
+    .stat-card span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .mode-grid {
+      margin: 22px auto 8px;
+    }
+
+    .mode-btn {
+      width: min(220px, 100%);
+      min-height: 96px;
+      padding: 16px;
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.74);
+      color: var(--text);
+      text-align: left;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .mode-btn:hover,
+    .mode-btn.active {
+      transform: translateY(-2px);
+      border-color: rgba(124, 111, 246, 0.46);
+      background: #fff;
+    }
+
+    .mode-btn.active {
+      box-shadow: 0 18px 32px rgba(124, 111, 246, 0.16);
+    }
+
+    .mode-btn strong {
+      display: block;
+      color: var(--heading);
+      font-size: var(--fs-md);
+      font-weight: 900;
+    }
+
+    .mode-btn span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: var(--fs-sm);
+      line-height: 1.35;
+    }
+
+    .login-summary,
+    .participant-name {
+      margin: 14px auto 0;
+      color: #514a9e;
+      font-size: var(--fs-sm);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .primary-btn,
+    .ghost-btn,
+    .answer-btn {
+      min-height: 52px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      font-weight: 900;
+      line-height: 1.15;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .primary-btn {
+      margin-top: 20px;
+      padding: 15px 26px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      box-shadow: 0 16px 28px rgba(124, 111, 246, 0.25);
+    }
+
+    .ghost-btn {
+      padding: 14px 20px;
+      color: var(--primary-deep);
+      background: var(--primary-soft);
+      border: 1px solid rgba(124, 111, 246, 0.18);
+    }
+
+    .primary-btn:hover,
+    .ghost-btn:hover,
+    .answer-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .topbar {
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .topbar .primary-btn,
+    .topbar .ghost-btn,
+    .result-actions .primary-btn,
+    .result-actions .ghost-btn {
+      margin-top: 0;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 12px;
+      margin-bottom: 22px;
+      border-radius: var(--radius-pill);
+      background: rgba(124, 111, 246, 0.13);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--primary));
+      transition: width 0.28s ease;
+    }
+
+    .quiz-card {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.92fr) minmax(0, 1.08fr);
+      gap: clamp(18px, 3vw, 30px);
+      align-items: center;
+    }
+
+    .image-card {
+      min-height: 360px;
+      padding: 16px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .holiday-image {
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      border-radius: var(--radius-lg);
+      filter: drop-shadow(0 18px 24px rgba(82, 73, 134, 0.12));
+    }
+
+    .question-area {
+      min-width: 0;
+    }
+
+    .question-kicker {
+      margin-bottom: 10px;
+      color: var(--primary-deep);
+      font-size: var(--fs-xs);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .question-text {
+      margin-bottom: 16px;
+      color: var(--heading);
+      font-size: clamp(23px, 3vw, 34px);
+      font-weight: 950;
+      line-height: 1.18;
+      overflow-wrap: anywhere;
+    }
+
+    .question-sub {
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: var(--fs-md);
+      line-height: 1.55;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .answer-btn {
+      width: 100%;
+      min-height: 58px;
+      padding: 14px 18px;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      text-align: left;
+    }
+
+    .answer-btn.correct {
+      color: #fff;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-color: transparent;
+    }
+
+    .answer-btn.wrong {
+      color: #fff;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      border-color: transparent;
+    }
+
+    .answer-btn.locked {
+      pointer-events: none;
+    }
+
+    .feedback {
+      min-height: 54px;
+      margin-top: 16px;
+      padding: 13px 15px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .feedback.good {
+      color: var(--green-dark);
+      background: rgba(32, 180, 134, 0.1);
+    }
+
+    .feedback.bad {
+      color: var(--red-dark);
+      background: rgba(239, 93, 117, 0.1);
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 16px;
+    }
+
+    .review-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .review-item {
+      padding: 14px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      text-align: left;
+    }
+
+    .review-item strong {
+      display: block;
+      color: var(--heading);
+      font-weight: 900;
+    }
+
+    .review-item span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: var(--fs-sm);
+    }
+
+    .mini-table {
+      width: 100%;
+      margin-top: 22px;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.74);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mini-table th,
+    .mini-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(34, 48, 71, 0.1);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .mini-table th {
+      color: var(--heading);
+      font-size: var(--fs-xs);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .mini-table td {
+      font-size: var(--fs-sm);
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .material-card {
+      padding: 14px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+      text-align: left;
+    }
+
+    .material-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 12px;
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .material-card strong {
+      display: block;
+      color: var(--heading);
+      font-size: var(--fs-md);
+      font-weight: 950;
+      line-height: 1.28;
+    }
+
+    .material-card span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: var(--fs-sm);
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .material-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px dashed rgba(124, 111, 246, 0.35);
+      color: var(--text);
+      text-align: left;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-note h3 {
+      margin: 0 0 8px;
+      color: var(--heading);
+      font-size: var(--fs-md);
+      font-weight: 950;
+    }
+
+    .material-note p {
+      margin: 6px 0;
+      color: var(--muted);
+      font-size: var(--fs-sm);
+      line-height: 1.62;
+    }
+
+    .result-panel {
+      width: min(1040px, 100%);
+      text-align: left;
+    }
+
+    .result-head {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 20px;
+    }
+
+    .result-head .quiz-title {
+      margin-bottom: 8px;
+      text-transform: none;
+    }
+
+    .result-desc {
+      max-width: 720px;
+      margin: 10px auto 0;
+      color: var(--muted);
+      font-size: var(--fs-md);
+      line-height: 1.68;
+    }
+
+    .result-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 20px;
+    }
+
+    .result-summary .stat-card {
+      text-align: center;
+    }
+
+    .result-summary .stat-card strong {
+      margin-bottom: 6px;
+    }
+
+    .result-note {
+      padding: 15px 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(124, 111, 246, 0.09);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      color: var(--text);
+      font-size: var(--fs-sm);
+      font-weight: 750;
+      line-height: 1.62;
+      text-align: center;
+    }
+
+    .login-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(16, 29, 72, 0.24);
+      backdrop-filter: blur(12px);
+    }
+
+    .login-modal.show {
+      display: flex;
+    }
+
+    .login-card {
+      width: min(460px, 100%);
+      padding: clamp(22px, 4vw, 32px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.84)),
+        #fff;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+    }
+
+    .login-card h3 {
+      margin: 0 0 8px;
+      color: var(--heading);
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 950;
+      line-height: 1.1;
+    }
+
+    .login-card p {
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: var(--fs-sm);
+    }
+
+    .login-field {
+      display: grid;
+      gap: 7px;
+      margin-top: 12px;
+      text-align: left;
+    }
+
+    .login-field label,
+    .group-box p {
+      color: var(--heading);
+      font-size: var(--fs-sm);
+      font-weight: 900;
+    }
+
+    .login-field input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 15px;
+      border: 1px solid rgba(124, 111, 246, 0.22);
+      border-radius: 16px;
+      color: var(--heading);
+      background: #fff;
+      outline: none;
+    }
+
+    .login-field input:focus {
+      border-color: rgba(124, 111, 246, 0.62);
+      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12);
+    }
+
+    .group-box {
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .group-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .group-btn {
+      min-height: 44px;
+      padding: 10px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(124, 111, 246, 0.2);
+      color: var(--primary-deep);
+      background: var(--primary-soft);
+      font-weight: 900;
+    }
+
+    .group-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      border-color: transparent;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22);
+    }
+
+    .login-error {
+      min-height: 24px;
+      margin-top: 12px;
+      color: var(--red-dark);
+      font-size: var(--fs-sm);
+      font-weight: 900;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .admin-panel {
+      margin-top: 22px;
+      padding: 16px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      text-align: left;
+    }
+
+    .admin-panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .admin-panel h3 {
+      margin: 0 0 6px;
+      color: var(--heading);
+      font-size: var(--fs-lg);
+      font-weight: 950;
+      line-height: 1.15;
+    }
+
+    .admin-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-sm);
+    }
+
+    .admin-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .admin-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .admin-empty {
+      padding: 14px;
+      color: var(--muted);
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .print-header {
+      display: none;
+    }
+
+    @media print {
+      body {
+        background: #fff !important;
+      }
+
+      body::before,
+      body::after,
+      .result-actions,
+      .admin-tools,
+      .topbar,
+      .progress-wrap,
+      .login-modal {
+        display: none !important;
+      }
+
+      .app-shell {
+        width: 100%;
+        min-height: auto;
+        padding: 0;
+      }
+
+      .screen {
+        display: none !important;
+      }
+
+      #resultScreen {
+        display: block !important;
+      }
+
+      .panel {
+        width: 100%;
+        box-shadow: none;
+        border: 0;
+        border-radius: 0;
+        background: #fff;
+        padding: 0;
+      }
+
+      .print-header {
+        display: block;
+        margin-bottom: 14px;
+        color: #17254e;
+        text-align: left;
+      }
+
+      .review-list,
+      .material-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-table,
+      .admin-panel {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 780px) {
+      .app-shell {
+        width: min(100% - 20px, 1180px);
+        align-items: flex-start;
+      }
+
+      .panel {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .quiz-card {
+        grid-template-columns: 1fr;
+      }
+
+      .image-card {
+        min-height: 260px;
+      }
+
+      .holiday-image {
+        max-height: 240px;
+      }
+
+      .topbar {
+        gap: 10px;
+      }
+
+      .counter-card,
+      .timer-card,
+      .stat-card {
+        flex: 1 1 140px;
+      }
+
+      .mode-btn {
+        width: 100%;
+      }
+
+      .review-list {
+        grid-template-columns: 1fr;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .result-actions,
+      .modal-actions,
+      .admin-panel-head,
+      .admin-tools {
+        flex-direction: column;
+      }
+
+      .result-actions button,
+      .modal-actions button,
+      .admin-tools button,
+      .primary-btn,
+      .ghost-btn {
+        width: 100%;
+      }
+
+      .group-options {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-shell {
+        width: min(100% - 14px, 1180px);
+        padding: 10px 0 18px;
+      }
+
+      .panel {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .hero h1,
+      .quiz-title {
+        font-size: clamp(26px, 9vw, 36px);
+      }
+
+      .question-text {
+        font-size: clamp(21px, 7vw, 29px);
+      }
+
+      .hero-info-card,
+      .counter-card,
+      .timer-card,
+      .stat-card {
+        flex: 1 1 100%;
+        padding: 12px;
+      }
+
+      .image-card {
+        min-height: 210px;
+        padding: 10px;
+      }
+
+      .holiday-image {
+        max-height: 200px;
+      }
+
+      .answer-btn {
+        min-height: 54px;
+        padding: 12px 14px;
+      }
+
+      .login-card {
+        padding: 20px;
+      }
+
+      .language-panel {
+        padding-top: 72px;
+      }
+
+      .language-switch {
+        left: 12px;
+        top: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="screen active" id="homeScreen">
+      <div class="panel home-panel language-panel">
+        <div class="language-switch" aria-label="Pilih bahasa">
+          <button class="lang-btn active" type="button" data-lang="id">Indonesia</button>
+          <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+        </div>
+        <div class="hero">
+          <span class="badge" data-i18n="homeBadge">祝祭日 - Hari Libur Nasional Jepang</span>
+          <h1 data-i18n="homeTitle">Kuis Interaktif Hari Libur Jepang</h1>
+          <p data-i18n="homeDesc">
+            Latihan kosakata dari gambar referensi: pilih mode, lihat ilustrasi, lalu jawab arti,
+            kosakata Jepang, atau tanggal hari liburnya.
+          </p>
+          <div class="login-summary" id="loginSummary">Belum masuk sebagai peserta.</div>
+
+          <div class="hero-info-row">
+            <div class="hero-info-card">
+              <strong>15</strong>
+              <span data-i18n="vocabLabel">Kosakata</span>
+            </div>
+            <div class="hero-info-card">
+              <strong>10</strong>
+              <span data-i18n="roundLabel">Soal per ronde</span>
+            </div>
+            <div class="hero-info-card">
+              <strong>30s</strong>
+              <span data-i18n="timerLabel">Timer tiap soal</span>
+            </div>
+          </div>
+
+          <div class="mode-grid" id="modeGrid">
+            <button class="mode-btn active" data-mode="mixed">
+              <strong data-i18n="modeMixedTitle">Campur Seru</strong>
+              <span data-i18n="modeMixedDesc">Arti, kosakata, dan tanggal dicampur acak.</span>
+            </button>
+            <button class="mode-btn" data-mode="meaning">
+              <strong data-i18n="modeMeaningTitle">Tebak Arti</strong>
+              <span data-i18n="modeMeaningDesc">Pilih arti Indonesia dari kosakata Jepang.</span>
+            </button>
+            <button class="mode-btn" data-mode="japanese">
+              <strong data-i18n="modeJapaneseTitle">Tebak Jepang</strong>
+              <span data-i18n="modeJapaneseDesc">Pilih tulisan Jepang dari arti Indonesia.</span>
+            </button>
+            <button class="mode-btn" data-mode="date">
+              <strong data-i18n="modeDateTitle">Tebak Tanggal</strong>
+              <span data-i18n="modeDateDesc">Ingat kapan hari libur itu dirayakan.</span>
+            </button>
+          </div>
+
+          <button class="primary-btn" id="startBtn" data-i18n="startQuiz">Mulai Kuis</button>
+          <button class="ghost-btn" id="materialBtn" data-i18n="viewMaterial">Lihat Materi</button>
+          <button class="ghost-btn" id="changeUserBtn" data-i18n="changeUser">Ganti Username</button>
+          <button class="ghost-btn hidden" id="adminResultBtn" data-i18n="adminResult">Halaman Hasil Admin</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="materialScreen">
+      <div class="panel language-panel">
+        <div class="language-switch" aria-label="Pilih bahasa">
+          <button class="lang-btn active" type="button" data-lang="id">Indonesia</button>
+          <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+        </div>
+        <div class="topbar">
+          <button class="ghost-btn" id="materialHomeBtn" data-i18n="homeButton">Beranda</button>
+          <span class="badge" data-i18n="materialBadge">Materi - Kata-kata Referensi dan Informasi Bab 5</span>
+          <button class="primary-btn" id="startFromMaterialBtn" data-i18n="startQuiz">Mulai Kuis</button>
+        </div>
+        <h2 class="quiz-title" data-i18n="materialTitle">Materi Hari Libur Nasional Jepang</h2>
+        <p data-i18n="materialDesc">
+          Baca kosakata, arti, dan tanggalnya terlebih dahulu. Setelah itu, lanjutkan ke kuis untuk
+          menguji hafalan.
+        </p>
+        <div class="material-grid" id="materialGrid"></div>
+        <div class="material-note" id="materialNote"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="quizScreen">
+      <div class="panel">
+        <div class="topbar">
+          <button class="ghost-btn" id="homeBtn" data-i18n="homeButton">Beranda</button>
+          <div class="counter-card">
+            <strong id="questionCounter">1/10</strong>
+            <span data-i18n="questionLabel">Soal</span>
+          </div>
+          <div class="timer-card">
+            <strong id="timerText">30</strong>
+            <span data-i18n="secondsLabel">Detik</span>
+          </div>
+          <div class="counter-card">
+            <strong id="scoreText">0</strong>
+            <span data-i18n="scoreLabel">Skor</span>
+          </div>
+        </div>
+
+        <div class="progress-wrap" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="image-card">
+            <img class="holiday-image" id="holidayImage" src="" alt="" />
+          </div>
+
+          <div class="question-area">
+            <div class="question-kicker" id="questionType">Tebak Arti</div>
+            <h2 class="question-text" id="questionText">元日（がんじつ）</h2>
+            <p class="question-sub" id="questionSub">Pilih jawaban yang paling tepat.</p>
+            <div class="answers" id="answers"></div>
+            <div class="feedback" id="feedback">Pilih salah satu jawaban.</div>
+            <div class="quiz-actions">
+              <button class="primary-btn hidden" id="nextBtn">Soal Berikutnya</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="resultScreen">
+      <div class="panel result-panel language-panel">
+        <div class="language-switch" aria-label="Pilih bahasa">
+          <button class="lang-btn active" type="button" data-lang="id">Indonesia</button>
+          <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+        </div>
+        <div class="print-header">
+          <h1>Hasil Kuis Hari Libur Jepang</h1>
+          <p>Kategori: Kata-kata Referensi dan Informasi bab 5</p>
+        </div>
+        <div class="result-head">
+          <span class="badge" data-i18n="resultBadge">Hasil Kuis</span>
+          <h2 class="quiz-title" id="resultTitle">Bagus!</h2>
+          <div class="participant-name" id="participantName"></div>
+          <p class="result-desc" id="resultMessage">Kamu sudah menyelesaikan latihan hari libur nasional Jepang.</p>
+        </div>
+
+        <div class="result-summary">
+          <div class="stat-card">
+            <strong id="finalScore">0/10</strong>
+            <span data-i18n="correctAnswers">Jawaban Benar</span>
+          </div>
+          <div class="stat-card">
+            <strong id="finalPercent">0%</strong>
+            <span data-i18n="scoreValueLabel">Nilai</span>
+          </div>
+          <div class="stat-card">
+            <strong id="finalMode">Campur</strong>
+            <span data-i18n="modeLabel">Mode</span>
+          </div>
+        </div>
+        <div class="result-note" id="resultNote"></div>
+
+        <div class="result-actions">
+          <button class="primary-btn" id="retryBtn" data-i18n="retryMode">Ulangi Mode Ini</button>
+          <button class="ghost-btn" id="chooseModeBtn" data-i18n="chooseMode">Pilih Mode Lain</button>
+          <button class="ghost-btn" id="resultMaterialBtn" data-i18n="viewMaterial">Lihat Materi</button>
+          <button class="ghost-btn" id="toggleReviewBtn" data-i18n="showReview">Lihat Ringkasan</button>
+          <button class="ghost-btn" id="savePdfBtn" data-i18n="savePdf">Simpan sebagai PDF</button>
+        </div>
+
+        <div id="reviewBox" class="hidden">
+          <div class="review-list" id="reviewList"></div>
+          <table class="mini-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Kosakata</th>
+                <th>Arti</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody id="vocabTable"></tbody>
+          </table>
+        </div>
+
+        <div class="admin-panel hidden" id="adminPanel">
+          <div class="admin-panel-head">
+            <div>
+              <h3 data-i18n="adminPanelTitle">Data Hasil Peserta</h3>
+              <p data-i18n="adminPanelDesc">Riwayat dan ranking hanya tampil saat login sebagai admin404.</p>
+            </div>
+            <div class="admin-tools">
+              <button class="ghost-btn" id="refreshAdminBtn" data-i18n="refreshData">Muat Ulang Data</button>
+              <button class="ghost-btn" id="downloadAdminPdfBtn" data-i18n="saveAdminPdf">Simpan PDF Admin</button>
+            </div>
+          </div>
+          <h3 data-i18n="historyTitle">Riwayat Pengerjaan</h3>
+          <div class="admin-table-wrap">
+            <table class="mini-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Grup</th>
+                  <th>Kategori</th>
+                  <th>Nilai</th>
+                  <th>Benar</th>
+                  <th>Salah</th>
+                  <th>Tanggal</th>
+                </tr>
+              </thead>
+              <tbody id="adminHistoryBody"></tbody>
+            </table>
+          </div>
+          <h3 data-i18n="rankingTitle">Ranking Peserta</h3>
+          <div class="admin-table-wrap">
+            <table class="mini-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Nama</th>
+                  <th>Grup</th>
+                  <th>Nilai</th>
+                  <th>Benar</th>
+                  <th>Total</th>
+                  <th>Tanggal</th>
+                </tr>
+              </thead>
+              <tbody id="adminRankingBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="login-modal show" id="loginModal" aria-hidden="false" role="dialog" aria-modal="true">
+    <div class="login-card">
+      <h3 data-i18n="loginTitle">Masuk Peserta</h3>
+      <p data-i18n-html="loginDesc">
+        Masukkan nama dan pilih grup. Khusus admin, gunakan username <strong>admin404</strong>
+        dan masukkan password.
+      </p>
+      <div class="login-field">
+        <label for="usernameInput" data-i18n="usernameLabel">Nama Pengguna</label>
+        <input id="usernameInput" autocomplete="off" placeholder="Contoh: Sinta" />
+      </div>
+      <div class="login-field hidden" id="passwordBox">
+        <label for="passwordInput" data-i18n="passwordLabel">Password Admin</label>
+        <input id="passwordInput" type="password" placeholder="Masukkan password admin" />
+      </div>
+      <div class="group-box hidden" id="groupBox">
+        <p data-i18n="groupPrompt">Pilih grup peserta.</p>
+        <div class="group-options">
+          <button class="group-btn" data-group="Badung" type="button">Badung</button>
+          <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
+          <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
+          <button class="group-btn" data-group="Umum" type="button">Umum</button>
+        </div>
+      </div>
+      <div class="login-error" id="loginError" aria-live="polite"></div>
+      <div class="modal-actions">
+        <button class="primary-btn" id="loginSubmitBtn" type="button" data-i18n="saveButton">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const FIREBASE_CATEGORY = "Kata-kata Referensi dan Informasi bab 5";
+    const FIREBASE_COLLECTION = "quizResults_bab5";
+    const ADMIN_USERNAME = "admin404";
+    const ADMIN_PASSWORD = "kuis44GAKKOU";
+    const localStorageKey = "quizResults_bab5_hari_libur_jepang";
+
+    const translations = {
+      id: {
+        homeBadge: "祝祭日 - Hari Libur Nasional Jepang",
+        homeTitle: "Kuis Interaktif Hari Libur Jepang",
+        homeDesc: "Latihan kosakata dari gambar referensi: pilih mode, lihat ilustrasi, lalu jawab arti, kosakata Jepang, atau tanggal hari liburnya.",
+        vocabLabel: "Kosakata",
+        questionLabel: "Soal",
+        secondsLabel: "Detik",
+        scoreLabel: "Skor",
+        scoreValueLabel: "Nilai",
+        modeLabel: "Mode",
+        roundLabel: "Soal per ronde",
+        timerLabel: "Timer tiap soal",
+        modeMixedTitle: "Campur Seru",
+        modeMixedDesc: "Arti, kosakata, dan tanggal dicampur acak.",
+        modeMeaningTitle: "Tebak Arti",
+        modeMeaningDesc: "Pilih arti Indonesia dari kosakata Jepang.",
+        modeJapaneseTitle: "Tebak Jepang",
+        modeJapaneseDesc: "Pilih tulisan Jepang dari arti Indonesia.",
+        modeDateTitle: "Tebak Tanggal",
+        modeDateDesc: "Ingat kapan hari libur itu dirayakan.",
+        startQuiz: "Mulai Kuis",
+        viewMaterial: "Lihat Materi",
+        changeUser: "Ganti Username",
+        adminResult: "Halaman Hasil Admin",
+        homeButton: "Beranda",
+        materialBadge: "Materi - Kata-kata Referensi dan Informasi Bab 5",
+        materialTitle: "Materi Hari Libur Nasional Jepang",
+        materialDesc: "Baca kosakata, arti, tanggal, dan catatan penting dari gambar referensi. Setelah itu, lanjutkan ke kuis untuk menguji hafalan.",
+        meaningLabel: "Arti",
+        dateLabel: "Tanggal",
+        materialNote: "<h3>Catatan dari gambar referensi</h3><p><b>*</b> Tanggal 春分の日 dan 秋分の日 dapat berubah setiap tahun.</p><p><b>**</b> 成人の日 dan 体育の日 jatuh pada hari Senin minggu kedua.</p><p><b>***</b> 海の日 dan 敬老の日 jatuh pada hari Senin minggu ketiga.</p><p>Jika hari libur nasional jatuh pada hari Minggu, libur pengganti biasanya diberikan pada hari Senin. Periode 29 April sampai 5 Mei dikenal sebagai <b>Golden Week</b>, sehingga beberapa perusahaan memberi libur lebih panjang.</p>",
+        resultBadge: "Hasil Kuis",
+        resultExcellentTitle: "Hasil Sangat Baik",
+        resultExcellentDesc: "Pemahaman kamu terhadap kosakata hari libur nasional Jepang sudah kuat. Pertahankan dengan mengulang bagian tanggal dan bacaan hiragana.",
+        resultGoodTitle: "Hasil Cukup Baik",
+        resultGoodDesc: "Kamu sudah memahami sebagian besar materi. Tinjau kembali kosakata yang tanggalnya berubah atau jatuh pada hari Senin tertentu.",
+        resultRetryTitle: "Perlu Belajar Ulang",
+        resultRetryDesc: "Baca kembali materi, terutama bagian arti Indonesia dan tanggal hari libur, lalu kerjakan kuis sekali lagi.",
+        resultNote: "Ringkasan ini dapat disimpan sebagai PDF. Gunakan bagian pembahasan untuk melihat jawaban benar dan kosakata yang perlu diulang.",
+        correctAnswers: "Jawaban Benar",
+        retryMode: "Ulangi Mode Ini",
+        chooseMode: "Pilih Mode Lain",
+        showReview: "Lihat Ringkasan",
+        hideReview: "Sembunyikan Ringkasan",
+        savePdf: "Simpan sebagai PDF",
+        loginTitle: "Masuk Peserta",
+        loginDesc: 'Masukkan nama dan pilih grup. Khusus admin, gunakan username <strong>admin404</strong> dan masukkan password.',
+        usernameLabel: "Nama Pengguna",
+        passwordLabel: "Password Admin",
+        groupPrompt: "Pilih grup peserta.",
+        saveButton: "Simpan",
+        needUser: "Nama pengguna wajib diisi.",
+        needGroup: "Pilih grup terlebih dahulu.",
+        wrongPass: "Password admin salah.",
+        loginSummaryEmpty: "Belum masuk sebagai peserta.",
+        loginSummaryAdmin: "Admin: {name}",
+        loginSummaryUser: "Nama Pengguna: {name} | Grup: {group}",
+        resultParticipantAdmin: "Admin: {name}",
+        resultParticipantUser: "Peserta: {name} | Grup: {group}",
+        adminModeTitle: "Mode Admin",
+        adminModeDesc: "Admin dapat melihat riwayat hasil dan ranking peserta melalui panel di bawah ini.",
+        adminReviewEmpty: "Mode admin aktif. Tidak ada pembahasan kuis karena admin tidak mengerjakan soal.",
+        adminPanelTitle: "Data Hasil Peserta",
+        adminPanelDesc: "Riwayat dan ranking hanya tampil saat login sebagai admin404.",
+        refreshData: "Muat Ulang Data",
+        saveAdminPdf: "Simpan PDF Admin",
+        historyTitle: "Riwayat Pengerjaan",
+        rankingTitle: "Ranking Peserta",
+        loadingData: "Memuat data hasil...",
+        loadingRanking: "Memuat ranking...",
+        emptyHistory: "Belum ada data hasil peserta.",
+        emptyRanking: "Belum ada data ranking.",
+        pdfEmpty: "Belum ada data admin untuk disimpan sebagai PDF.",
+        questionPrompt: "Pilih jawaban yang paling tepat.",
+        nextQuestion: "Soal Berikutnya",
+        seeResult: "Lihat Hasil",
+        correctFeedback: "Benar! {jp} = {meaning}.",
+        wrongFeedback: "Jawaban tepat: {answer}. {meaning} dirayakan pada {date}.",
+        reviewCorrect: "Benar",
+        reviewWrong: "Kurang Tepat"
+      },
+      ja: {
+        homeBadge: "祝祭日 - 日本の国民の祝日",
+        homeTitle: "日本の祝日インタラクティブクイズ",
+        homeDesc: "参考画像の語彙を練習しましょう。モードを選び、イラストを見て、意味・日本語・日付を答えます。",
+        vocabLabel: "語彙",
+        questionLabel: "問題",
+        secondsLabel: "秒",
+        scoreLabel: "スコア",
+        scoreValueLabel: "点数",
+        modeLabel: "モード",
+        roundLabel: "1回の問題数",
+        timerLabel: "各問題の時間",
+        modeMixedTitle: "ミックス",
+        modeMixedDesc: "意味、日本語、日付をランダムに出題します。",
+        modeMeaningTitle: "意味を選ぶ",
+        modeMeaningDesc: "日本語の祝日に合うインドネシア語の意味を選びます。",
+        modeJapaneseTitle: "日本語を選ぶ",
+        modeJapaneseDesc: "意味と画像に合う日本語を選びます。",
+        modeDateTitle: "日付を選ぶ",
+        modeDateDesc: "祝日がいつ行われるかを答えます。",
+        startQuiz: "クイズを始める",
+        viewMaterial: "教材を見る",
+        changeUser: "ユーザー変更",
+        adminResult: "管理者結果ページ",
+        homeButton: "ホーム",
+        materialBadge: "教材 - 参考語彙と情報 第5章",
+        materialTitle: "日本の国民の祝日の教材",
+        materialDesc: "参考画像の語彙、意味、日付、重要な注記を確認してからクイズに進みましょう。",
+        meaningLabel: "意味",
+        dateLabel: "日付",
+        materialNote: "<h3>参考画像の注記</h3><p><b>*</b> 春分の日と秋分の日の日付は毎年変わることがあります。</p><p><b>**</b> 成人の日と体育の日は第2月曜日です。</p><p><b>***</b> 海の日と敬老の日は第3月曜日です。</p><p>国民の祝日が日曜日にあたる場合、通常は翌月曜日が振替休日になります。4月29日から5月5日ごろは <b>ゴールデンウィーク</b> と呼ばれ、会社によっては長い休みになります。</p>",
+        resultBadge: "クイズ結果",
+        resultExcellentTitle: "とても良い結果です",
+        resultExcellentDesc: "日本の祝日の語彙をよく理解できています。日付とひらがなの読みを続けて復習しましょう。",
+        resultGoodTitle: "良い結果です",
+        resultGoodDesc: "多くの内容を理解できています。毎年変わる日付や月曜日の祝日をもう一度確認しましょう。",
+        resultRetryTitle: "復習が必要です",
+        resultRetryDesc: "意味と日付をもう一度確認してから、もう一度クイズに挑戦しましょう。",
+        resultNote: "この結果はPDFとして保存できます。復習欄で正解と復習すべき語彙を確認しましょう。",
+        correctAnswers: "正解数",
+        retryMode: "同じモードでもう一度",
+        chooseMode: "別のモードを選ぶ",
+        showReview: "復習を表示",
+        hideReview: "復習を隠す",
+        savePdf: "PDFとして保存",
+        loginTitle: "参加者ログイン",
+        loginDesc: '名前を入力してグループを選んでください。管理者は username <strong>admin404</strong> とパスワードを入力します。',
+        usernameLabel: "ユーザー名",
+        passwordLabel: "管理者パスワード",
+        groupPrompt: "グループを選んでください。",
+        saveButton: "保存",
+        needUser: "ユーザー名を入力してください。",
+        needGroup: "グループを選んでください。",
+        wrongPass: "管理者パスワードが違います。",
+        loginSummaryEmpty: "まだログインしていません。",
+        loginSummaryAdmin: "Admin: {name}",
+        loginSummaryUser: "ユーザー: {name} | グループ: {group}",
+        resultParticipantAdmin: "Admin: {name}",
+        resultParticipantUser: "参加者: {name} | グループ: {group}",
+        adminModeTitle: "管理者モード",
+        adminModeDesc: "管理者は下のパネルから参加者の履歴とランキングを確認できます。",
+        adminReviewEmpty: "管理者モードです。クイズをしていないため、復習はありません。",
+        adminPanelTitle: "参加者結果データ",
+        adminPanelDesc: "履歴とランキングは admin404 でログインした時だけ表示されます。",
+        refreshData: "データ再読み込み",
+        saveAdminPdf: "管理者PDF保存",
+        historyTitle: "解答履歴",
+        rankingTitle: "参加者ランキング",
+        loadingData: "結果データを読み込み中...",
+        loadingRanking: "ランキングを読み込み中...",
+        emptyHistory: "参加者の結果はまだありません。",
+        emptyRanking: "ランキングはまだありません。",
+        pdfEmpty: "PDFに保存できる管理者データがありません。",
+        questionPrompt: "最も適切な答えを選んでください。",
+        nextQuestion: "次の問題",
+        seeResult: "結果を見る",
+        correctFeedback: "正解！ {jp} = {meaning}。",
+        wrongFeedback: "正解: {answer}。{meaning} は {date} です。",
+        reviewCorrect: "正解",
+        reviewWrong: "不正解"
+      }
+    };
+
+    const holidays = [
+      {
+        no: 1,
+        jp: "元日",
+        reading: "がんじつ",
+        id: "Tahun Baru",
+        date: "1 Januari",
+        image: "https://i.ibb.co/nNK223nR/1-Tahun-Baru.png"
+      },
+      {
+        no: 2,
+        jp: "成人の日",
+        reading: "せいじんのひ",
+        id: "Hari Perayaan Menjadi Dewasa",
+        date: "Senin ke-2 Januari",
+        image: "https://i.ibb.co/Y4bBLkFk/2-Hari-Perayaan-Menjadi-Dewasa.png"
+      },
+      {
+        no: 3,
+        jp: "建国記念の日",
+        reading: "けんこくきねんのひ",
+        id: "Hari Pembangunan Nasional",
+        date: "11 Februari",
+        image: "https://i.ibb.co/bjkQLC5q/3-Hari-Pembangunan-Nasional.png"
+      },
+      {
+        no: 4,
+        jp: "春分の日",
+        reading: "しゅんぶんのひ",
+        id: "Hari Equinox Musim Semi",
+        date: "20 Maret",
+        image: "https://i.ibb.co/0V966bLh/4-Hari-Equinox-Musim-Semi.png"
+      },
+      {
+        no: 5,
+        jp: "昭和の日",
+        reading: "しょうわのひ",
+        id: "Hari Showa",
+        date: "29 April",
+        image: "https://i.ibb.co/BHJdXx7j/5-Hari-Showa.png"
+      },
+      {
+        no: 6,
+        jp: "憲法記念日",
+        reading: "けんぽうきねんび",
+        id: "Hari Peringatan Konstitusi",
+        date: "3 Mei",
+        image: "https://i.ibb.co/9km1QJ6k/6-Hari-Peringatan-Konstitusi-Batch-kecil.png"
+      },
+      {
+        no: 7,
+        jp: "みどりの日",
+        reading: "みどりのひ",
+        id: "Hari Penghijauan",
+        date: "4 Mei",
+        image: "https://i.ibb.co/SX9h6Hyy/7-Hari-Penghijauan.png"
+      },
+      {
+        no: 8,
+        jp: "こどもの日",
+        reading: "こどものひ",
+        id: "Hari Anak",
+        date: "5 Mei",
+        image: "https://i.ibb.co/MxygjJR7/8-Hari-Anak.png"
+      },
+      {
+        no: 9,
+        jp: "海の日",
+        reading: "うみのひ",
+        id: "Hari Bahari",
+        date: "Senin ke-3 Juli",
+        image: "https://i.ibb.co/zhGqbgNy/9-Hari-Bahari.png"
+      },
+      {
+        no: 10,
+        jp: "敬老の日",
+        reading: "けいろうのひ",
+        id: "Hari Hormat kepada Orang Tua",
+        date: "Senin ke-3 September",
+        image: "https://i.ibb.co/G34CC8Q9/10-Hari-Hormat-kepada-Orang-Tua.png"
+      },
+      {
+        no: 11,
+        jp: "秋分の日",
+        reading: "しゅうぶんのひ",
+        id: "Hari Equinox Musim Gugur",
+        date: "23 September",
+        image: "https://i.ibb.co/3yYphfNb/11-Hari-Equinox-Musim-Gugur.png"
+      },
+      {
+        no: 12,
+        jp: "体育の日",
+        reading: "たいいくのひ",
+        id: "Hari Kesehatan dan Olahraga",
+        date: "Senin ke-2 Oktober",
+        image: "https://i.ibb.co/99xKjLHP/12-Hari-Kesehatan-dan-Olahraga.png"
+      },
+      {
+        no: 13,
+        jp: "文化の日",
+        reading: "ぶんかのひ",
+        id: "Hari Kebudayaan",
+        date: "3 November",
+        image: "https://i.ibb.co/WWdYqxQc/13-Hari-Kebudayaan.png"
+      },
+      {
+        no: 14,
+        jp: "勤労感謝の日",
+        reading: "きんろうかんしゃのひ",
+        id: "Hari Bersyukur untuk Pekerjaan",
+        date: "23 November",
+        image: "https://i.ibb.co/7dhVZGDr/14-Hari-Bersyukur-untuk-Pekerjaan.png"
+      },
+      {
+        no: 15,
+        jp: "天皇誕生日",
+        reading: "てんのうたんじょうび",
+        id: "Hari Ulang Tahun Kaisar",
+        date: "23 Desember",
+        image: "https://i.ibb.co/Y7k1WCmS/15-Hari-Ulang-Tahun-Kaisar.png"
+      }
+    ];
+
+    const totalQuestions = 10;
+    const timePerQuestion = 30;
+    const state = {
+      mode: "mixed",
+      queue: [],
+      index: 0,
+      score: 0,
+      locked: false,
+      timer: null,
+      timeLeft: timePerQuestion,
+      history: [],
+      username: "",
+      group: "",
+      isAdmin: false,
+      currentLanguage: "id",
+      adminResults: []
+    };
+
+    const screens = {
+      home: document.getElementById("homeScreen"),
+      material: document.getElementById("materialScreen"),
+      quiz: document.getElementById("quizScreen"),
+      result: document.getElementById("resultScreen")
+    };
+
+    const modeLabels = {
+      id: {
+        mixed: "Campur",
+        meaning: "Tebak Arti",
+        japanese: "Tebak Jepang",
+        date: "Tebak Tanggal"
+      },
+      ja: {
+        mixed: "ミックス",
+        meaning: "意味を選ぶ",
+        japanese: "日本語を選ぶ",
+        date: "日付を選ぶ"
+      }
+    };
+
+    function getModeLabel(mode) {
+      return modeLabels[state.currentLanguage]?.[mode] || modeLabels.id[mode] || mode;
+    }
+
+    const els = {
+      modeGrid: document.getElementById("modeGrid"),
+      startBtn: document.getElementById("startBtn"),
+      materialBtn: document.getElementById("materialBtn"),
+      materialHomeBtn: document.getElementById("materialHomeBtn"),
+      startFromMaterialBtn: document.getElementById("startFromMaterialBtn"),
+      materialGrid: document.getElementById("materialGrid"),
+      materialNote: document.getElementById("materialNote"),
+      changeUserBtn: document.getElementById("changeUserBtn"),
+      adminResultBtn: document.getElementById("adminResultBtn"),
+      homeBtn: document.getElementById("homeBtn"),
+      questionCounter: document.getElementById("questionCounter"),
+      timerText: document.getElementById("timerText"),
+      scoreText: document.getElementById("scoreText"),
+      progressFill: document.getElementById("progressFill"),
+      holidayImage: document.getElementById("holidayImage"),
+      questionType: document.getElementById("questionType"),
+      questionText: document.getElementById("questionText"),
+      questionSub: document.getElementById("questionSub"),
+      answers: document.getElementById("answers"),
+      feedback: document.getElementById("feedback"),
+      nextBtn: document.getElementById("nextBtn"),
+      resultTitle: document.getElementById("resultTitle"),
+      resultMessage: document.getElementById("resultMessage"),
+      finalScore: document.getElementById("finalScore"),
+      finalPercent: document.getElementById("finalPercent"),
+      finalMode: document.getElementById("finalMode"),
+      participantName: document.getElementById("participantName"),
+      resultNote: document.getElementById("resultNote"),
+      loginSummary: document.getElementById("loginSummary"),
+      retryBtn: document.getElementById("retryBtn"),
+      chooseModeBtn: document.getElementById("chooseModeBtn"),
+      resultMaterialBtn: document.getElementById("resultMaterialBtn"),
+      toggleReviewBtn: document.getElementById("toggleReviewBtn"),
+      savePdfBtn: document.getElementById("savePdfBtn"),
+      reviewBox: document.getElementById("reviewBox"),
+      reviewList: document.getElementById("reviewList"),
+      vocabTable: document.getElementById("vocabTable"),
+      adminPanel: document.getElementById("adminPanel"),
+      refreshAdminBtn: document.getElementById("refreshAdminBtn"),
+      downloadAdminPdfBtn: document.getElementById("downloadAdminPdfBtn"),
+      adminHistoryBody: document.getElementById("adminHistoryBody"),
+      adminRankingBody: document.getElementById("adminRankingBody"),
+      loginModal: document.getElementById("loginModal"),
+      languageButtons: document.querySelectorAll(".lang-btn"),
+      usernameInput: document.getElementById("usernameInput"),
+      passwordBox: document.getElementById("passwordBox"),
+      passwordInput: document.getElementById("passwordInput"),
+      groupBox: document.getElementById("groupBox"),
+      groupButtons: document.querySelectorAll(".group-btn"),
+      loginError: document.getElementById("loginError"),
+      loginSubmitBtn: document.getElementById("loginSubmitBtn")
+    };
+
+    let firebaseToolsPromise = null;
+
+    function t(key, replacements = {}) {
+      let text = translations[state.currentLanguage]?.[key] || translations.id[key] || key;
+      Object.entries(replacements).forEach(([name, value]) => {
+        text = text.replaceAll(`{${name}}`, value);
+      });
+      return text;
+    }
+
+    function applyLanguage(lang) {
+      state.currentLanguage = lang;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        element.textContent = t(element.dataset.i18n);
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+        element.innerHTML = t(element.dataset.i18nHtml);
+      });
+
+      els.languageButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      renderMaterial();
+      updateLoginSummary();
+
+      if (screens.result.classList.contains("active")) {
+        if (state.isAdmin && !els.adminPanel.classList.contains("hidden")) {
+          els.resultTitle.textContent = t("adminModeTitle");
+          els.resultMessage.textContent = t("adminModeDesc");
+          els.resultNote.textContent = t("adminReviewEmpty");
+          renderAdminTables();
+        } else if (state.queue.length) {
+          updateResultText();
+          renderReview();
+        }
+      }
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function getLocalResults() {
+      try {
+        return JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveLocalResult(result) {
+      const existing = getLocalResults();
+      existing.unshift(result);
+      localStorage.setItem(localStorageKey, JSON.stringify(existing.slice(0, 300)));
+    }
+
+    async function getFirebaseTools() {
+      if (firebaseToolsPromise) return firebaseToolsPromise;
+
+      firebaseToolsPromise = (async () => {
+        const firebaseConfig = {
+          apiKey: "AIzaSyBCOWbX-nWP7qw4dmEpkwA5wo7G-r9fI-g",
+          authDomain: "flashcard-kosakata-jepang.firebaseapp.com",
+          projectId: "flashcard-kosakata-jepang",
+          storageBucket: "flashcard-kosakata-jepang.firebasestorage.app",
+          messagingSenderId: "169917378552",
+          appId: "1:169917378552:web:d006bfac063631efa8f00d",
+          measurementId: "G-HBCG7KL5W8"
+        };
+
+        const appModule = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js");
+        const firestoreModule = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js");
+        const app = appModule.initializeApp(firebaseConfig);
+        const db = firestoreModule.getFirestore(app);
+        const resultsCollection = firestoreModule.collection(db, FIREBASE_COLLECTION);
+        return { ...firestoreModule, resultsCollection };
+      })().catch((error) => {
+        console.warn("Firebase tidak tersedia, memakai penyimpanan lokal.", error);
+        return null;
+      });
+
+      return firebaseToolsPromise;
+    }
+
+    function normalizeResult(data, id = "") {
+      const createdAt = data.createdAt?.toDate ? data.createdAt.toDate() : null;
+      const dateValue = createdAt
+        ? createdAt.toLocaleString("id-ID")
+        : data.date || "-";
+
+      return {
+        id,
+        name: data.name || "Peserta",
+        group: data.group || "-",
+        category: data.category || FIREBASE_CATEGORY,
+        total: Number(data.total) || 0,
+        correct: Number(data.correct) || 0,
+        wrong: Number(data.wrong) || 0,
+        percent: Number(data.percent) || 0,
+        mode: data.mode || "-",
+        date: dateValue,
+        createdMs: createdAt ? createdAt.getTime() : Number(data.createdMs) || 0
+      };
+    }
+
+    function sortRanking(a, b) {
+      return (b.percent - a.percent) || (b.correct - a.correct) || (b.createdMs - a.createdMs);
+    }
+
+    function showScreen(name) {
+      Object.values(screens).forEach((screen) => screen.classList.remove("active"));
+      screens[name].classList.add("active");
+    }
+
+    function renderMaterial() {
+      els.materialGrid.innerHTML = holidays.map((item) => `
+        <article class="material-card">
+          <img src="${item.image}" alt="${escapeHTML(item.id)}" draggable="false" />
+          <strong class="jp">${escapeHTML(formatJapanese(item))}</strong>
+          <span><b>${t("meaningLabel")}:</b> ${escapeHTML(item.id)}</span>
+          <span><b>${t("dateLabel")}:</b> ${escapeHTML(item.date)}${escapeHTML(getDateMark(item))}</span>
+        </article>
+      `).join("");
+      els.materialNote.innerHTML = t("materialNote");
+    }
+
+    function getDateMark(item) {
+      if ([4, 11].includes(item.no)) return " *";
+      if ([2, 12].includes(item.no)) return " **";
+      if ([9, 10].includes(item.no)) return " ***";
+      return "";
+    }
+
+    function openMaterial() {
+      clearInterval(state.timer);
+      renderMaterial();
+      showScreen("material");
+    }
+
+    function updateLoginSummary() {
+      if (!state.username) {
+        els.loginSummary.textContent = t("loginSummaryEmpty");
+        els.participantName.textContent = "";
+        els.adminResultBtn.classList.add("hidden");
+        return;
+      }
+
+      if (state.isAdmin) {
+        els.loginSummary.textContent = t("loginSummaryAdmin", { name: state.username });
+        els.participantName.textContent = t("resultParticipantAdmin", { name: state.username });
+        els.adminResultBtn.classList.remove("hidden");
+        return;
+      }
+
+      els.loginSummary.textContent = t("loginSummaryUser", { name: state.username, group: state.group });
+      els.participantName.textContent = t("resultParticipantUser", { name: state.username, group: state.group });
+      els.adminResultBtn.classList.add("hidden");
+    }
+
+    function openLogin() {
+      els.loginError.textContent = "";
+      els.loginModal.classList.add("show");
+      els.loginModal.setAttribute("aria-hidden", "false");
+      setTimeout(() => els.usernameInput.focus(), 80);
+    }
+
+    function closeLogin() {
+      els.loginModal.classList.remove("show");
+      els.loginModal.setAttribute("aria-hidden", "true");
+    }
+
+    function updateLoginUI() {
+      const name = els.usernameInput.value.trim();
+      const isAdminName = name === ADMIN_USERNAME;
+      els.passwordBox.classList.toggle("hidden", !isAdminName);
+      els.groupBox.classList.toggle("hidden", !name || isAdminName);
+      if (isAdminName) {
+        state.group = "";
+        els.groupButtons.forEach((button) => button.classList.remove("active"));
+      }
+    }
+
+    function submitLogin() {
+      const name = els.usernameInput.value.trim();
+      const isAdminName = name === ADMIN_USERNAME;
+      const password = els.passwordInput.value;
+      els.loginError.textContent = "";
+
+      if (!name) {
+        els.loginError.textContent = t("needUser");
+        return;
+      }
+
+      if (isAdminName && password !== ADMIN_PASSWORD) {
+        els.loginError.textContent = t("wrongPass");
+        return;
+      }
+
+      if (!isAdminName && !state.group) {
+        els.loginError.textContent = t("needGroup");
+        return;
+      }
+
+      state.username = name;
+      state.isAdmin = isAdminName;
+      if (state.isAdmin) state.group = "";
+      closeLogin();
+      updateLoginSummary();
+      showScreen("home");
+    }
+
+    function shuffle(items) {
+      return [...items].sort(() => Math.random() - 0.5);
+    }
+
+    function sampleWrong(correctItem, field, count) {
+      return shuffle(holidays.filter((item) => item.no !== correctItem.no))
+        .slice(0, count)
+        .map((item) => item[field]);
+    }
+
+    function formatJapanese(item) {
+      return `${item.jp}（${item.reading}）`;
+    }
+
+    function makeQuestion(item) {
+      const mode = state.mode === "mixed"
+        ? shuffle(["meaning", "japanese", "date"])[0]
+        : state.mode;
+
+      if (mode === "meaning") {
+        return {
+          mode,
+          item,
+          kicker: "Tebak Arti Indonesia",
+          text: formatJapanese(item),
+          sub: "Gambar membantu kamu mengingat makna kosakatanya.",
+          answer: item.id,
+          choices: shuffle([item.id, ...sampleWrong(item, "id", 3)])
+        };
+      }
+
+      if (mode === "japanese") {
+        return {
+          mode,
+          item,
+          kicker: "Tebak Kosakata Jepang",
+          text: item.id,
+          sub: "Pilih kosakata Jepang yang sesuai dengan arti dan gambar.",
+          answer: formatJapanese(item),
+          choices: shuffle([formatJapanese(item), ...sampleWrong(item, "jp", 3).map((jp) => {
+            const found = holidays.find((holiday) => holiday.jp === jp);
+            return formatJapanese(found);
+          })])
+        };
+      }
+
+      return {
+        mode,
+        item,
+        kicker: "Tebak Tanggal",
+        text: formatJapanese(item),
+        sub: `Hari libur ini berarti: ${item.id}.`,
+        answer: item.date,
+        choices: shuffle([item.date, ...sampleWrong(item, "date", 3)])
+      };
+    }
+
+    function startQuiz() {
+      if (!state.username || (!state.isAdmin && !state.group)) {
+        openLogin();
+        return;
+      }
+
+      if (state.isAdmin) {
+        showAdminResults();
+        return;
+      }
+
+      clearInterval(state.timer);
+      state.queue = shuffle(holidays).slice(0, totalQuestions).map(makeQuestion);
+      state.index = 0;
+      state.score = 0;
+      state.history = [];
+      showScreen("quiz");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      clearInterval(state.timer);
+      state.locked = false;
+      state.timeLeft = timePerQuestion;
+
+      const question = state.queue[state.index];
+      const item = question.item;
+      els.questionCounter.textContent = `${state.index + 1}/${state.queue.length}`;
+      els.scoreText.textContent = state.score;
+      els.timerText.textContent = state.timeLeft;
+      els.progressFill.style.width = `${(state.index / state.queue.length) * 100}%`;
+      els.holidayImage.src = item.image;
+      els.holidayImage.alt = item.id;
+      els.questionType.textContent = question.kicker;
+      els.questionText.textContent = question.text;
+      els.questionText.classList.toggle("jp", question.mode !== "japanese");
+      els.questionSub.textContent = question.sub;
+      els.feedback.className = "feedback";
+      els.feedback.textContent = t("questionPrompt");
+      els.nextBtn.classList.add("hidden");
+      els.nextBtn.textContent = state.index === state.queue.length - 1 ? t("seeResult") : t("nextQuestion");
+
+      els.answers.innerHTML = "";
+      question.choices.forEach((choice) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "answer-btn";
+        button.textContent = choice;
+        if (question.mode === "japanese") button.classList.add("jp");
+        button.addEventListener("click", () => chooseAnswer(button, choice));
+        els.answers.appendChild(button);
+      });
+
+      state.timer = setInterval(() => {
+        state.timeLeft -= 1;
+        els.timerText.textContent = state.timeLeft;
+        if (state.timeLeft <= 0) {
+          chooseAnswer(null, null);
+        }
+      }, 1000);
+    }
+
+    function chooseAnswer(button, choice) {
+      if (state.locked) return;
+      state.locked = true;
+      clearInterval(state.timer);
+
+      const question = state.queue[state.index];
+      const isCorrect = choice === question.answer;
+      if (isCorrect) state.score += 1;
+
+      Array.from(els.answers.children).forEach((answerBtn) => {
+        answerBtn.classList.add("locked");
+        if (answerBtn.textContent === question.answer) answerBtn.classList.add("correct");
+      });
+
+      if (button && !isCorrect) button.classList.add("wrong");
+
+      els.scoreText.textContent = state.score;
+      els.progressFill.style.width = `${((state.index + 1) / state.queue.length) * 100}%`;
+      els.feedback.className = isCorrect ? "feedback good" : "feedback bad";
+      els.feedback.textContent = isCorrect
+        ? t("correctFeedback", { jp: formatJapanese(question.item), meaning: question.item.id })
+        : t("wrongFeedback", { answer: question.answer, meaning: question.item.id, date: question.item.date });
+
+      state.history.push({
+        item: question.item,
+        mode: question.mode,
+        correct: isCorrect,
+        userAnswer: choice || "Waktu habis",
+        answer: question.answer
+      });
+
+      els.nextBtn.classList.remove("hidden");
+    }
+
+    function nextQuestion() {
+      if (state.index < state.queue.length - 1) {
+        state.index += 1;
+        renderQuestion();
+        return;
+      }
+
+      showResult();
+    }
+
+    function updateResultText() {
+      const total = state.queue.length || totalQuestions;
+      const percent = total ? Math.round((state.score / total) * 100) : 0;
+
+      if (percent >= 90) {
+        els.resultTitle.textContent = t("resultExcellentTitle");
+        els.resultMessage.textContent = t("resultExcellentDesc");
+      } else if (percent >= 70) {
+        els.resultTitle.textContent = t("resultGoodTitle");
+        els.resultMessage.textContent = t("resultGoodDesc");
+      } else {
+        els.resultTitle.textContent = t("resultRetryTitle");
+        els.resultMessage.textContent = t("resultRetryDesc");
+      }
+
+      els.resultNote.textContent = t("resultNote");
+    }
+
+    function showResult() {
+      clearInterval(state.timer);
+      const percent = Math.round((state.score / state.queue.length) * 100);
+      els.finalScore.textContent = `${state.score}/${state.queue.length}`;
+      els.finalPercent.textContent = `${percent}%`;
+      els.finalMode.textContent = getModeLabel(state.mode);
+      els.participantName.textContent = t("resultParticipantUser", { name: state.username, group: state.group });
+      els.adminPanel.classList.add("hidden");
+
+      updateResultText();
+      renderReview();
+      els.reviewBox.classList.add("hidden");
+      els.toggleReviewBtn.textContent = t("showReview");
+      showScreen("result");
+      saveResult({ percent });
+    }
+
+    function renderReview() {
+      els.reviewList.innerHTML = "";
+      state.history.forEach((entry, index) => {
+        const card = document.createElement("div");
+        card.className = "review-item";
+        card.innerHTML = `
+          <strong>${index + 1}. ${entry.correct ? t("reviewCorrect") : t("reviewWrong")} - ${getModeLabel(entry.mode)}</strong>
+          <span class="jp">${formatJapanese(entry.item)}</span>
+          <span>Jawaban: ${entry.answer}</span>
+        `;
+        els.reviewList.appendChild(card);
+      });
+
+      els.vocabTable.innerHTML = holidays.map((item) => `
+        <tr>
+          <td>${item.no}</td>
+          <td class="jp">${formatJapanese(item)}</td>
+          <td>${item.id}</td>
+          <td>${item.date}</td>
+        </tr>
+      `).join("");
+    }
+
+    async function saveResult({ percent }) {
+      const total = state.queue.length;
+      const correct = state.score;
+      const wrong = total - correct;
+      const result = {
+        name: state.username,
+        group: state.group || "-",
+        category: FIREBASE_CATEGORY,
+        collectionName: FIREBASE_COLLECTION,
+        title: "Kuis Interaktif Hari Libur Jepang",
+        total,
+        correct,
+        wrong,
+        percent,
+        mode: getModeLabel(state.mode),
+        date: new Date().toLocaleString("id-ID"),
+        createdMs: Date.now(),
+        answers: state.history.map((entry) => ({
+          kosakata: formatJapanese(entry.item),
+          arti: entry.item.id,
+          tanggal: entry.item.date,
+          mode: getModeLabel(entry.mode),
+          userAnswer: entry.userAnswer,
+          answer: entry.answer,
+          correct: entry.correct
+        }))
+      };
+
+      saveLocalResult(result);
+
+      const tools = await getFirebaseTools();
+      if (!tools) return;
+
+      try {
+        await tools.addDoc(tools.resultsCollection, {
+          ...result,
+          createdAt: tools.serverTimestamp()
+        });
+      } catch (error) {
+        console.warn("Gagal menyimpan hasil ke Firebase.", error);
+      }
+    }
+
+    async function loadAdminResults() {
+      const localResults = getLocalResults().map((item, index) => normalizeResult(item, `local-${index}`));
+      const tools = await getFirebaseTools();
+
+      if (!tools) {
+        state.adminResults = localResults;
+        return state.adminResults;
+      }
+
+      try {
+        const snapshot = await tools.getDocs(tools.query(
+          tools.resultsCollection,
+          tools.orderBy("createdAt", "desc")
+        ));
+        const firebaseResults = snapshot.docs.map((doc) => normalizeResult(doc.data(), doc.id));
+        state.adminResults = [...firebaseResults, ...localResults]
+          .filter((item, index, array) => array.findIndex((other) =>
+            other.name === item.name &&
+            other.group === item.group &&
+            other.createdMs === item.createdMs
+          ) === index);
+      } catch (error) {
+        console.warn("Gagal memuat Firebase, memakai data lokal.", error);
+        state.adminResults = localResults;
+      }
+
+      return state.adminResults;
+    }
+
+    function setAdminLoading() {
+      els.adminHistoryBody.innerHTML = `<tr><td colspan="8"><div class="admin-empty">${t("loadingData")}</div></td></tr>`;
+      els.adminRankingBody.innerHTML = `<tr><td colspan="7"><div class="admin-empty">${t("loadingRanking")}</div></td></tr>`;
+    }
+
+    function renderAdminTables() {
+      if (!state.adminResults.length) {
+        els.adminHistoryBody.innerHTML = `<tr><td colspan="8"><div class="admin-empty">${t("emptyHistory")}</div></td></tr>`;
+        els.adminRankingBody.innerHTML = `<tr><td colspan="7"><div class="admin-empty">${t("emptyRanking")}</div></td></tr>`;
+        return;
+      }
+
+      els.adminHistoryBody.innerHTML = state.adminResults.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHTML(item.name)}</td>
+          <td>${escapeHTML(item.group)}</td>
+          <td>${escapeHTML(item.category)}</td>
+          <td><b>${item.percent}%</b></td>
+          <td>${item.correct}/${item.total}</td>
+          <td>${item.wrong}</td>
+          <td>${escapeHTML(item.date)}</td>
+        </tr>
+      `).join("");
+
+      els.adminRankingBody.innerHTML = [...state.adminResults].sort(sortRanking).map((item, index) => `
+        <tr>
+          <td><b>${index + 1}</b></td>
+          <td>${escapeHTML(item.name)}</td>
+          <td>${escapeHTML(item.group)}</td>
+          <td><b>${item.percent}%</b></td>
+          <td>${item.correct}</td>
+          <td>${item.total}</td>
+          <td>${escapeHTML(item.date)}</td>
+        </tr>
+      `).join("");
+    }
+
+    async function showAdminResults() {
+      clearInterval(state.timer);
+      state.isAdmin = true;
+      els.finalScore.textContent = "Admin";
+      els.finalPercent.textContent = "-";
+      els.finalMode.textContent = "Admin";
+      els.resultTitle.textContent = t("adminModeTitle");
+      els.resultMessage.textContent = t("adminModeDesc");
+      els.resultNote.textContent = t("adminReviewEmpty");
+      els.participantName.textContent = t("resultParticipantAdmin", { name: state.username || ADMIN_USERNAME });
+      els.reviewBox.classList.add("hidden");
+      els.toggleReviewBtn.textContent = "Lihat Ringkasan";
+      els.adminPanel.classList.remove("hidden");
+      setAdminLoading();
+      showScreen("result");
+      await loadAdminResults();
+      renderAdminTables();
+    }
+
+    function saveResultAsPdf() {
+      window.print();
+    }
+
+    function saveAdminPdf() {
+      if (!state.adminResults.length) {
+        alert(t("pdfEmpty"));
+        return;
+      }
+      els.reviewBox.classList.add("hidden");
+      els.adminPanel.classList.remove("hidden");
+      window.print();
+    }
+
+    function goHome() {
+      clearInterval(state.timer);
+      updateLoginSummary();
+      showScreen("home");
+    }
+
+    els.modeGrid.addEventListener("click", (event) => {
+      const button = event.target.closest(".mode-btn");
+      if (!button) return;
+      document.querySelectorAll(".mode-btn").forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+      state.mode = button.dataset.mode;
+    });
+
+    els.startBtn.addEventListener("click", startQuiz);
+    els.materialBtn.addEventListener("click", openMaterial);
+    els.materialHomeBtn.addEventListener("click", goHome);
+    els.startFromMaterialBtn.addEventListener("click", startQuiz);
+    els.changeUserBtn.addEventListener("click", openLogin);
+    els.adminResultBtn.addEventListener("click", showAdminResults);
+    els.nextBtn.addEventListener("click", nextQuestion);
+    els.homeBtn.addEventListener("click", goHome);
+    els.retryBtn.addEventListener("click", startQuiz);
+    els.chooseModeBtn.addEventListener("click", goHome);
+    els.resultMaterialBtn.addEventListener("click", openMaterial);
+    els.savePdfBtn.addEventListener("click", saveResultAsPdf);
+    els.refreshAdminBtn.addEventListener("click", async () => {
+      if (!state.isAdmin) return;
+      setAdminLoading();
+      await loadAdminResults();
+      renderAdminTables();
+    });
+    els.downloadAdminPdfBtn.addEventListener("click", saveAdminPdf);
+    els.toggleReviewBtn.addEventListener("click", () => {
+      els.reviewBox.classList.toggle("hidden");
+      els.toggleReviewBtn.textContent = els.reviewBox.classList.contains("hidden")
+        ? t("showReview")
+        : t("hideReview");
+    });
+
+    els.languageButtons.forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    els.loginSubmitBtn.addEventListener("click", submitLogin);
+    els.usernameInput.addEventListener("input", updateLoginUI);
+    els.usernameInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") submitLogin();
+    });
+    els.passwordInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") submitLogin();
+    });
+    els.groupButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        state.group = button.dataset.group;
+        els.groupButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        els.loginError.textContent = "";
+      });
+    });
+
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    document.addEventListener("dragstart", (event) => event.preventDefault());
+    document.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
+      const blocked =
+        event.key === "F12" ||
+        (event.ctrlKey && event.shiftKey && ["i", "j", "c", "k"].includes(key)) ||
+        (event.ctrlKey && ["u", "s"].includes(key)) ||
+        (event.metaKey && event.altKey && ["i", "j", "c"].includes(key));
+
+      if (blocked) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+
+    applyLanguage("id");
+    renderMaterial();
+    updateLoginUI();
+    updateLoginSummary();
+  </script>
+</body>
+</html>
