@@ -3069,6 +3069,578 @@
       text-align: center;
     }
 
+    /* ===== Mobile layout final override ===== */
+    @media (max-width: 720px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      body {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+      }
+
+      body::before,
+      body::after {
+        width: 150px !important;
+        height: 150px !important;
+        opacity: 0.2 !important;
+      }
+
+      .app-shell {
+        width: 100% !important;
+        min-height: 100svh !important;
+        padding: 10px 10px 18px !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        overflow-x: hidden !important;
+      }
+
+      .screen,
+      .screen.active {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .panel {
+        width: 100% !important;
+        max-width: 560px !important;
+        min-height: auto !important;
+        margin: 0 auto !important;
+        padding: 18px !important;
+        border-radius: 24px !important;
+        box-shadow: 0 12px 28px rgba(82, 73, 134, 0.1) !important;
+      }
+
+      #startScreen .panel.hero {
+        width: 100% !important;
+        max-width: 560px !important;
+        min-height: auto !important;
+        padding: 72px 16px 18px !important;
+        display: block !important;
+      }
+
+      #startScreen .hero > div {
+        max-width: 100% !important;
+      }
+
+      .language-switch {
+        top: 12px !important;
+        left: 12px !important;
+        right: auto !important;
+        max-width: 148px !important;
+        padding: 4px !important;
+        gap: 4px !important;
+      }
+
+      .lang-btn,
+      .language-btn {
+        min-height: 30px !important;
+        padding: 6px 9px !important;
+        font-size: 11px !important;
+        line-height: 1.1 !important;
+      }
+
+      .shuffle-toggle,
+      #shuffleToggle,
+      #shuffleBtn,
+      .fiction-toggle,
+      #fictionToggle {
+        top: 12px !important;
+        right: 12px !important;
+        max-width: calc(100% - 178px) !important;
+        min-height: 36px !important;
+        padding: 7px 10px !important;
+        font-size: 11.5px !important;
+        white-space: normal !important;
+      }
+
+      #startScreen .hero h1,
+      .hero h1,
+      .results-head h2 {
+        margin: 12px 0 10px !important;
+        font-size: clamp(26px, 8vw, 36px) !important;
+        line-height: 1.12 !important;
+      }
+
+      #startScreen .hero p,
+      .hero p,
+      .results-head p,
+      .summary-text p {
+        font-size: 13.5px !important;
+        line-height: 1.52 !important;
+      }
+
+      .badge {
+        max-width: 100% !important;
+        padding: 7px 10px !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+      }
+
+      #startScreen .hero-info-row {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        margin: 16px 0 !important;
+      }
+
+      #startScreen .hero-info-card,
+      .hero-info-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 68px !important;
+        padding: 11px !important;
+        border-radius: 18px !important;
+        gap: 9px !important;
+      }
+
+      #startScreen .hero-info-icon {
+        width: 36px !important;
+        height: 36px !important;
+        flex: 0 0 36px !important;
+      }
+
+      #startScreen .hero-info-icon svg {
+        width: 19px !important;
+        height: 19px !important;
+      }
+
+      #startScreen .hero-info-card span,
+      #startScreen .hero-info-card strong {
+        line-height: 1.25 !important;
+      }
+
+      .username-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 16px 0 0 !important;
+      }
+
+      .login-trigger,
+      .btn,
+      .answer-btn {
+        min-height: 50px !important;
+        border-radius: 18px !important;
+        font-size: 14.5px !important;
+        line-height: 1.22 !important;
+      }
+
+      .login-summary {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+
+      .hero-actions,
+      .result-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-top: 16px !important;
+      }
+
+      .hero-actions .btn,
+      .result-actions .btn {
+        width: 100% !important;
+      }
+
+      .practice-wrap {
+        width: 100% !important;
+        max-width: 560px !important;
+        margin: 0 auto !important;
+        padding: 6px 0 18px !important;
+      }
+
+      .topbar {
+        width: 100% !important;
+        max-width: 560px !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 118px !important;
+        gap: 10px !important;
+        margin: 0 auto 10px !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        min-width: 0 !important;
+        padding: 12px !important;
+        border-radius: 18px !important;
+      }
+
+      .timer-card {
+        text-align: center !important;
+      }
+
+      .time-number {
+        font-size: 30px !important;
+      }
+
+      .timer-label,
+      .counter-card small,
+      .flip-hint {
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .flip-hint {
+        margin: 8px auto 10px !important;
+        max-width: 92% !important;
+      }
+
+      .flashcard {
+        width: 100% !important;
+        max-width: 560px !important;
+        height: clamp(430px, 62svh, 535px) !important;
+        min-height: 430px !important;
+        margin: 0 auto !important;
+      }
+
+      .card-face {
+        border-radius: 24px !important;
+      }
+
+      .card-front {
+        padding: 20px !important;
+      }
+
+      .card-back {
+        padding: 16px !important;
+      }
+
+      .back-content {
+        grid-template-rows: minmax(0, 54%) minmax(108px, auto) !important;
+        gap: 10px !important;
+      }
+
+      .illustration-wrap {
+        width: min(72%, 270px) !important;
+        max-height: 210px !important;
+      }
+
+      .jp-box {
+        width: 100% !important;
+        min-height: 108px !important;
+        padding: 0 6px !important;
+        gap: 5px !important;
+      }
+
+      .card-text {
+        max-width: 100% !important;
+        padding: 8px !important;
+        font-size: clamp(16px, 4.8vw, 22px) !important;
+        line-height: 1.42 !important;
+      }
+
+      .card-text.long {
+        font-size: clamp(13px, 4vw, 18px) !important;
+        line-height: 1.38 !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(24px, 7.2vw, 36px) !important;
+        line-height: 1.16 !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(18px, 5.8vw, 28px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(12px, 3.6vw, 15px) !important;
+        line-height: 1.36 !important;
+      }
+
+      .jp-actions {
+        gap: 6px !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 34px !important;
+        padding: 7px 10px !important;
+        font-size: 11.5px !important;
+      }
+
+      .answer-row {
+        width: 100% !important;
+        max-width: 560px !important;
+        margin: 12px auto 0 !important;
+        gap: 10px !important;
+      }
+
+      .answer-btn {
+        min-height: 52px !important;
+      }
+
+      .results-head {
+        margin-bottom: 16px !important;
+      }
+
+      .participant-name {
+        width: 100% !important;
+        margin-top: 10px !important;
+        text-align: center !important;
+      }
+
+      .tabs {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 16px 0 14px !important;
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        padding: 5px !important;
+        gap: 6px !important;
+      }
+
+      .tab-btn {
+        flex: 0 0 auto !important;
+        padding: 9px 11px !important;
+        font-size: 12px !important;
+      }
+
+      .summary-box {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        padding: 16px !important;
+        border-radius: 22px !important;
+        text-align: center !important;
+      }
+
+      .score-circle {
+        width: 132px !important;
+        height: 132px !important;
+      }
+
+      .score-circle::before {
+        inset: 12px !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        margin: 16px 0 !important;
+      }
+
+      .stat-card {
+        padding: 12px 9px !important;
+        border-radius: 18px !important;
+      }
+
+      .stat-card span {
+        margin-bottom: 5px !important;
+        font-size: 11.5px !important;
+      }
+
+      .stat-card strong {
+        font-size: 20px !important;
+      }
+
+      .table-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        border-radius: 18px !important;
+      }
+
+      table {
+        min-width: 620px !important;
+        font-size: 12.5px !important;
+      }
+
+      th,
+      td {
+        padding: 10px 11px !important;
+      }
+
+      .login-modal {
+        padding: 14px !important;
+        align-items: center !important;
+      }
+
+      .login-modal-card {
+        width: 100% !important;
+        max-width: 420px !important;
+        max-height: calc(100svh - 28px) !important;
+        overflow-y: auto !important;
+        padding: 24px 18px 18px !important;
+        border-radius: 24px !important;
+      }
+
+      .login-modal-card h3 {
+        padding-right: 40px !important;
+        font-size: 22px !important;
+      }
+
+      .login-modal-card p,
+      .login-field label,
+      .login-error {
+        font-size: 12.5px !important;
+        line-height: 1.42 !important;
+      }
+
+      .login-field input {
+        min-height: 48px !important;
+        border-radius: 16px !important;
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .group-btn {
+        min-height: 40px !important;
+        border-radius: 14px !important;
+      }
+
+      .login-modal-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      .image-modal {
+        padding: 12px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 24px) !important;
+        padding: 12px !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-body {
+        min-height: 180px !important;
+        max-height: 72svh !important;
+        padding: 42px 4px 4px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        padding: 8px 8px 16px !important;
+      }
+
+      .panel {
+        padding: 15px !important;
+        border-radius: 22px !important;
+      }
+
+      #startScreen .panel.hero {
+        padding: 70px 14px 16px !important;
+      }
+
+      #startScreen .hero-info-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen .hero-info-card {
+        min-height: 62px !important;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr !important;
+      }
+
+      .timer-card {
+        display: grid !important;
+        grid-template-columns: auto 1fr !important;
+        gap: 6px 10px !important;
+        align-items: center !important;
+        text-align: left !important;
+      }
+
+      .timer-track {
+        grid-column: 1 / -1 !important;
+        margin-top: 2px !important;
+      }
+
+      .flashcard {
+        height: clamp(400px, 58svh, 500px) !important;
+        min-height: 400px !important;
+      }
+
+      .back-content {
+        grid-template-rows: minmax(0, 52%) minmax(116px, auto) !important;
+      }
+
+      .illustration-wrap {
+        width: min(76%, 250px) !important;
+        max-height: 190px !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      table {
+        min-width: 560px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .panel {
+        padding: 13px !important;
+      }
+
+      #startScreen .panel.hero {
+        padding-top: 66px !important;
+      }
+
+      .language-switch {
+        max-width: 132px !important;
+      }
+
+      .lang-btn,
+      .language-btn {
+        padding: 6px 7px !important;
+        font-size: 10.5px !important;
+      }
+
+      .shuffle-toggle,
+      #shuffleToggle,
+      #shuffleBtn,
+      .fiction-toggle,
+      #fictionToggle {
+        max-width: calc(100% - 158px) !important;
+        font-size: 10.5px !important;
+      }
+
+      .flashcard {
+        height: clamp(380px, 56svh, 470px) !important;
+        min-height: 380px !important;
+      }
+
+      .illustration-wrap {
+        width: min(78%, 225px) !important;
+        max-height: 170px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(22px, 7vw, 32px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(17px, 5.4vw, 25px) !important;
+      }
+
+      .answer-btn {
+        min-height: 48px !important;
+        font-size: 13.5px !important;
+      }
+    }
 
   </style>
 </head>
