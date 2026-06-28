@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Interaktif Telepon dan Surat</title>
+  <link rel="dns-prefetch" href="https://i.ibb.co" />
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap");
+
+    :root {
+      --font-main: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-jp: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      --fs-xs: clamp(12px, 0.82vw, 13px);
+      --fs-sm: clamp(13px, 0.95vw, 14.5px);
+      --fs-body: clamp(15px, 1.05vw, 16.5px);
+      --fs-md: clamp(16px, 1.2vw, 18px);
+      --fs-lg: clamp(20px, 2vw, 26px);
+      --fs-xl: clamp(28px, 4.2vw, 46px);
+      --bg-1: #f8fbff;
+      --bg-2: #fff2f7;
+      --bg-3: #f2fff8;
+      --card: rgba(255, 255, 255, 0.82);
+      --card-solid: #ffffff;
+      --text: #253044;
+      --heading: #101d48;
+      --muted: #64748b;
+      --primary: #7c6ff6;
+      --primary-deep: #6d46e8;
+      --primary-soft: rgba(124, 111, 246, 0.12);
+      --green: #20b486;
+      --green-dark: #168763;
+      --red: #ef5d75;
+      --red-dark: #c8465c;
+      --line: rgba(34, 48, 71, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.78);
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 30px;
+      --radius-pill: 999px;
+      --shadow: 0 18px 44px rgba(82, 73, 134, 0.12);
+      --shadow-soft: 0 10px 24px rgba(82, 73, 134, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0;
+      font-family: var(--font-main);
+      font-size: var(--fs-body);
+      line-height: 1.58;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 195, 217, 0.5), transparent 34%),
+        radial-gradient(circle at top right, rgba(184, 232, 255, 0.58), transparent 34%),
+        radial-gradient(circle at 50% 88%, rgba(167, 243, 208, 0.28), transparent 34%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
+      overflow-x: hidden;
+      text-rendering: geometricPrecision;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      width: 230px;
+      height: 230px;
+      border-radius: var(--radius-pill);
+      opacity: 0.34;
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    body::before {
+      left: -76px;
+      bottom: 8%;
+      background: #c9fff1;
+    }
+
+    body::after {
+      right: -92px;
+      top: 18%;
+      background: #ffd2e5;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    p {
+      font-size: var(--fs-body);
+      line-height: 1.7;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html[lang="ja"] body,
+    html[lang="ja"] button {
+      font-family: var(--font-jp);
+    }
+
+    .app-shell {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: clamp(20px, 3vw, 36px) 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .screen {
+      width: 100%;
+      display: none;
+      animation: fadeIn 0.32s ease both;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .panel {
+      position: relative;
+      width: min(980px, 100%);
+      margin: 0 auto;
+      padding: clamp(76px, 7vw, 92px) clamp(22px, 3.8vw, 40px) clamp(24px, 3.8vw, 40px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.66)),
+        var(--card);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .home-panel {
+      width: min(820px, 100%);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: var(--radius-pill);
+      background: var(--primary-soft);
+      color: var(--primary-deep);
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .language-switch {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      z-index: 20;
+      width: max-content;
+      max-width: 100%;
+      margin: 0;
+      padding: 7px;
+      display: inline-flex;
+      gap: 6px;
+      border-radius: var(--radius-pill);
+      background: #ffffff;
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .lang-btn {
+      min-height: 34px;
+      padding: 7px 13px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #5d5f7c;
+      background: transparent;
+      font-size: var(--fs-xs);
+      font-weight: 850;
+      line-height: 1.15;
+    }
+
+    .lang-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      box-shadow: 0 10px 18px rgba(124, 111, 246, 0.22);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero h1,
+    .quiz-title {
+      margin: 16px 0 12px;
+      color: var(--heading);
+      font-size: clamp(30px, 5vw, 50px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: var(--fs-md);
+      line-height: 1.72;
+    }
+
+    .hero-info-row,
+    .topbar,
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .hero-info-row,
+    .result-actions {
+      justify-content: center;
+    }
+
+    .hero-info-card,
+    .counter-card,
+    .timer-card,
+    .stat-card {
+      padding: 14px 16px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-info-card {
+      min-width: 145px;
+      min-height: 86px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .hero-info-card span,
+    .counter-card small,
+    .timer-card span,
+    .stat-card span {
+      color: var(--muted);
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .hero-info-card strong,
+    .counter-card strong,
+    .timer-card strong,
+    .stat-card strong {
+      color: #413f73;
+      font-size: clamp(18px, 2.2vw, 22px);
+      font-weight: 900;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .btn {
+      min-height: 54px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      box-shadow: 0 16px 28px rgba(124, 111, 246, 0.26);
+      font-size: var(--fs-body);
+      font-weight: 900;
+      transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+    }
+
+    .btn.secondary {
+      color: var(--primary-deep);
+      background: var(--primary-soft);
+      box-shadow: none;
+    }
+
+    #shuffleBtn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 21;
+      min-height: 42px;
+      padding: 0 14px 0 40px;
+      color: #514a9e;
+      background: #ffffff;
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      box-shadow: var(--shadow-soft);
+      font-size: var(--fs-sm);
+    }
+
+    #shuffleBtn::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      border-radius: var(--radius-pill);
+      background: rgba(100, 116, 139, 0.2);
+      transform: translateY(-50%);
+      transition: background 0.2s ease;
+    }
+
+    #shuffleBtn::after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+      transform: translateY(-50%);
+      transition: transform 0.2s ease;
+    }
+
+    #shuffleBtn.is-on {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      border-color: transparent;
+    }
+
+    #shuffleBtn.is-on::before {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    #shuffleBtn.is-on::after {
+      transform: translate(10px, -50%);
+    }
+
+    .topbar {
+      margin-bottom: 16px;
+    }
+
+    .quiz-panel {
+      width: min(980px, 100%);
+      padding-top: clamp(68px, 6vw, 78px);
+    }
+
+    .quiz-header {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-status-card,
+    .time-status-card {
+      padding: clamp(14px, 1.8vw, 18px);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .quiz-status-card {
+      display: grid;
+      align-content: center;
+      gap: 8px;
+    }
+
+    .quiz-status-label,
+    .time-label {
+      color: var(--muted);
+      font-size: var(--fs-sm);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .quiz-status-main {
+      color: var(--heading);
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .quiz-status-sub {
+      color: #514a9e;
+      font-size: var(--fs-body);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .time-status-card {
+      display: grid;
+      align-content: center;
+      gap: 10px;
+    }
+
+    .time-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .time-number {
+      color: var(--primary-deep);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 900;
+      line-height: 0.95;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-unit {
+      color: var(--muted);
+      font-size: var(--fs-md);
+      font-weight: 850;
+    }
+
+    .timer-track,
+    .progress-track {
+      height: 10px;
+      overflow: hidden;
+      border-radius: var(--radius-pill);
+      background: rgba(124, 111, 246, 0.13);
+    }
+
+    .timer-fill,
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #8ce5cf, var(--primary));
+      transition: width 0.25s ease;
+    }
+
+    .progress-track {
+      margin: 0;
+    }
+
+    .quiz-panel > .progress-track {
+      margin-bottom: 14px;
+    }
+
+    .progress-caption {
+      color: var(--muted);
+      font-size: var(--fs-sm);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .quiz-card {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(14px, 2vw, 20px);
+      align-items: stretch;
+      padding: clamp(14px, 2vw, 18px);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .question-image {
+      overflow: hidden;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 330px;
+    }
+
+    .question-image img {
+      width: 100%;
+      height: auto;
+      max-height: 54vh;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+      cursor: zoom-in;
+    }
+
+    .question-area {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      padding: clamp(12px, 1.7vw, 16px);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(124, 111, 246, 0.12);
+    }
+
+    .category-pill {
+      width: max-content;
+      max-width: 100%;
+      margin-bottom: 0;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      color: #168763;
+      background: rgba(32, 180, 134, 0.12);
+      border: 1px solid rgba(32, 180, 134, 0.22);
+      font-size: var(--fs-sm);
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .question-text {
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(21px, 2.35vw, 28px);
+      font-weight: 900;
+      line-height: 1.22;
+    }
+
+    .jp {
+      font-family: var(--font-jp);
+      font-weight: 800;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .option-btn {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      border-radius: 18px;
+      color: #273452;
+      background: #ffffff;
+      box-shadow: none;
+      text-align: left;
+      font-size: var(--fs-body);
+      font-weight: 850;
+      line-height: 1.42;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      border-color: rgba(124, 111, 246, 0.42);
+      background: #fff;
+    }
+
+    .option-btn.correct {
+      color: var(--green-dark);
+      border-color: rgba(32, 180, 134, 0.48);
+      background: rgba(32, 180, 134, 0.14);
+      animation: correctGlow 0.5s ease;
+    }
+
+    .option-btn.wrong {
+      color: var(--red-dark);
+      border-color: rgba(239, 93, 117, 0.46);
+      background: rgba(239, 93, 117, 0.13);
+      animation: wrongShake 0.42s ease;
+    }
+
+    .option-btn.dimmed {
+      opacity: 0.62;
+    }
+
+    .feedback {
+      min-height: 62px;
+      margin-top: auto;
+      padding: 14px 16px;
+      border-radius: 18px;
+      color: var(--muted);
+      background: rgba(124, 111, 246, 0.08);
+      border: 1px solid rgba(124, 111, 246, 0.12);
+      font-size: var(--fs-body);
+      font-weight: 700;
+      line-height: 1.62;
+    }
+
+    .feedback strong {
+      color: var(--heading);
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0;
+    }
+
+    .material-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .material-head h1 {
+      margin: 12px 0 8px;
+      color: var(--heading);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      line-height: 1.08;
+    }
+
+    .material-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-body);
+      line-height: 1.72;
+    }
+
+    .material-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .material-sheet {
+      display: grid;
+      gap: 18px;
+    }
+
+    .material-card {
+      margin: 0;
+      overflow: hidden;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+      cursor: zoom-in;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      place-items: center;
+      padding: clamp(14px, 3vw, 28px);
+      background: rgba(15, 23, 42, 0.68);
+      backdrop-filter: blur(8px);
+    }
+
+    .image-modal.show {
+      display: grid;
+    }
+
+    .image-modal-card {
+      width: min(980px, 100%);
+      max-height: 92vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.28);
+    }
+
+    .image-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(124, 111, 246, 0.14);
+    }
+
+    .image-modal-title {
+      color: var(--heading);
+      font-size: var(--fs-sm);
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .image-modal-close {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #514a9e;
+      background: var(--primary-soft);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .image-modal-body {
+      overflow: auto;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .image-modal-body img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .material-caption {
+      padding: 12px 14px;
+      color: #514a9e;
+      background: rgba(124, 111, 246, 0.08);
+      border-top: 1px solid rgba(124, 111, 246, 0.12);
+      font-size: var(--fs-sm);
+      font-weight: 850;
+      line-height: 1.35;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .stat-card {
+      text-align: center;
+    }
+
+    .score-box {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%),
+        rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .score-circle {
+      width: clamp(142px, 19vw, 180px);
+      height: clamp(142px, 19vw, 180px);
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-pill);
+      background: conic-gradient(var(--primary) var(--score-deg, 0deg), rgba(124, 111, 246, 0.14) 0deg);
+    }
+
+    .score-circle::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: inherit;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: inset 0 0 0 1px rgba(124, 111, 246, 0.12);
+    }
+
+    .score-circle strong {
+      position: relative;
+      color: #413f73;
+      font-size: clamp(30px, 4vw, 38px);
+      font-weight: 850;
+    }
+
+    .score-text h2 {
+      margin: 0 0 8px;
+      color: var(--heading);
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .score-text p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-body);
+      line-height: 1.68;
+    }
+
+    .review-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .review-item {
+      padding: 14px 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid #e5e7eb;
+      box-shadow: none;
+    }
+
+    .review-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--heading);
+    }
+
+    .review-item span {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 6px 9px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .review-item span.correct {
+      color: var(--green-dark);
+      background: rgba(32, 180, 134, 0.14);
+    }
+
+    .review-item span.wrong {
+      color: var(--red-dark);
+      background: rgba(239, 93, 117, 0.14);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes correctGlow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      }
+      55% {
+        box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.18), 0 18px 46px rgba(34, 197, 94, 0.16);
+      }
+      100% {
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+      }
+    }
+
+    @keyframes wrongShake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(-5px);
+      }
+      50% {
+        transform: translateX(5px);
+      }
+      75% {
+        transform: translateX(-3px);
+      }
+    }
+
+    @media (max-width: 880px) {
+      .app-shell {
+        width: 100%;
+        align-items: flex-start;
+        padding: 0;
+      }
+
+      .hero,
+      .quiz-header,
+      .quiz-card,
+      .score-box {
+        grid-template-columns: 1fr;
+      }
+
+      .material-head {
+        display: grid;
+      }
+
+      .material-actions {
+        justify-content: stretch;
+      }
+
+      .question-image img {
+        max-height: none;
+      }
+
+      .question-image {
+        min-height: 0;
+      }
+
+      .panel {
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100svh;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        box-shadow: none;
+      }
+
+      .quiz-card {
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      .question-image img {
+        max-height: 42vh;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app-shell {
+        width: 100%;
+      }
+
+      .panel {
+        padding: 74px 14px 18px;
+      }
+
+      .hero h1,
+      .quiz-title {
+        font-size: clamp(28px, 10vw, 38px);
+      }
+
+      .hero-info-row,
+      .topbar,
+      .result-actions,
+      .material-actions {
+        flex-direction: column;
+      }
+
+      .hero-info-card,
+      .counter-card,
+      .timer-card,
+      .btn,
+      .material-actions .btn {
+        width: 100%;
+      }
+
+      #shuffleBtn {
+        top: 12px;
+        right: 12px;
+        width: auto;
+        max-width: calc(100vw - 160px);
+        min-height: 40px;
+        padding-right: 12px;
+        font-size: 12px;
+      }
+
+      .language-switch {
+        left: 12px;
+        top: 12px;
+        max-width: 140px;
+        padding: 5px;
+        gap: 4px;
+      }
+
+      .lang-btn {
+        min-height: 30px;
+        padding: 6px 9px;
+        font-size: 11.5px;
+      }
+
+      .quiz-header {
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .quiz-status-card,
+      .time-status-card {
+        padding: 14px;
+        border-radius: 16px;
+      }
+
+      .quiz-status-main {
+        font-size: 28px;
+      }
+
+      .time-number {
+        font-size: 36px;
+      }
+
+      .question-area {
+        padding: 14px;
+        border-radius: 16px;
+      }
+
+      .option-btn {
+        min-height: 48px;
+        padding: 12px 13px;
+      }
+
+      .question-text {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <section id="startScreen" class="screen active">
+      <div class="panel hero home-panel">
+        <div>
+          <div class="language-switch" aria-label="Pilih bahasa">
+            <button class="lang-btn active" type="button" data-lang="id">Indonesia</button>
+            <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+          </div>
+          <span class="badge" data-i18n="homeBadge">Kuis Gambar 1</span>
+          <h1 data-i18n="homeTitle">Telepon dan Surat</h1>
+          <p data-i18n="homeDesc">
+            Jawab kuis berdasarkan gambar materi tentang cara memakai telepon umum,
+            nomor darurat Jepang, dan cara menulis alamat.
+          </p>
+
+          <div class="hero-info-row">
+            <div class="hero-info-card">
+              <span data-i18n="totalLabel">Jumlah soal</span>
+              <strong id="totalInfo" data-i18n="totalValue">15 soal</strong>
+            </div>
+            <div class="hero-info-card">
+              <span data-i18n="timeHomeLabel">Waktu</span>
+              <strong data-i18n="timeHomeValue">30 detik/soal</strong>
+            </div>
+            <div class="hero-info-card">
+              <span data-i18n="materialLabel">Materi</span>
+              <strong data-i18n="materialValue">Telepon dan Surat</strong>
+            </div>
+          </div>
+
+          <div class="result-actions" style="margin-top: 20px;">
+            <button class="btn" id="startBtn" type="button" data-i18n="startQuiz">Mulai Kuis</button>
+            <button class="btn secondary" id="openMaterialBtn" type="button" data-i18n="viewMaterial">Lihat Materi</button>
+            <button class="btn secondary" id="shuffleBtn" type="button" data-i18n="shuffleOff">Acak Soal</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="materialScreen" class="screen">
+      <div class="panel">
+        <div class="material-head">
+          <div>
+            <div class="language-switch" aria-label="Pilih bahasa">
+              <button class="lang-btn active" type="button" data-lang="id">Indonesia</button>
+              <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+            </div>
+            <span class="badge" data-i18n="materialBadge">Mode Materi</span>
+            <h1 data-i18n="materialTitle">Materi Telepon dan Surat</h1>
+            <p data-i18n="materialDesc">Gambar ditampilkan penuh agar urutan langkah, nomor penting, dan format alamat mudah dibaca.</p>
+          </div>
+          <div class="material-actions">
+            <button class="btn" id="startFromMaterialBtn" type="button" data-i18n="startQuiz">Mulai Kuis</button>
+            <button class="btn secondary" id="backHomeBtn" type="button" data-i18n="back">Kembali</button>
+          </div>
+        </div>
+
+        <div class="material-sheet" aria-label="Materi lengkap">
+          <figure class="material-card">
+            <img src="https://i.ibb.co/FkVP29XY/1.png" alt="Materi telepon dan surat gambar 1" />
+            <figcaption class="material-caption" data-i18n="caption1">Gambar 1 - Cara penggunaan telepon umum, nomor darurat, dan cara menulis alamat</figcaption>
+          </figure>
+          <figure class="material-card">
+            <img src="https://i.ibb.co/svvxxjYG/2.png" alt="Materi telepon dan surat gambar 2" />
+            <figcaption class="material-caption" data-i18n="caption2">Gambar 2 - Materi lanjutan</figcaption>
+          </figure>
+          <figure class="material-card">
+            <img src="https://i.ibb.co/0p5BHHWL/3.png" alt="Materi telepon dan surat gambar 3" />
+            <figcaption class="material-caption" data-i18n="caption3">Gambar 3 - Materi lanjutan</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="quizScreen" class="screen">
+      <div class="panel quiz-panel">
+        <div class="language-switch" aria-label="Pilih bahasa">
+          <button class="lang-btn active" type="button" data-lang="id">Indonesia</button>
+          <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+        </div>
+
+        <div class="quiz-header">
+          <div class="quiz-status-card">
+            <div class="quiz-status-label" data-i18n="questionNumberLabel">Nomor soal</div>
+            <div class="quiz-status-main" id="questionCounter">Soal 1</div>
+            <div class="quiz-status-sub" id="questionCounterSub">Dari 15 soal</div>
+          </div>
+          <div class="time-status-card" aria-live="polite">
+            <div class="time-row">
+              <span class="time-label" data-i18n="timeLeftLabel">Sisa waktu</span>
+              <span><span class="time-number" id="timeNumber">30</span> <span class="time-unit" data-i18n="seconds">detik</span></span>
+            </div>
+            <div class="timer-track">
+              <div class="timer-fill" id="timerFill"></div>
+            </div>
+            <div class="progress-caption" id="progressCaption">Pilih jawaban yang paling tepat.</div>
+          </div>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <article class="quiz-card">
+          <div class="question-image">
+            <img id="questionImage" src="https://i.ibb.co/FkVP29XY/1.png" alt="Gambar pendukung soal" />
+          </div>
+          <div class="question-area">
+            <div class="category-pill" id="categoryPill">Cara Penggunaan Telepon Umum</div>
+            <h2 class="question-text" id="questionText">Pertanyaan tampil di sini</h2>
+            <div class="options" id="options"></div>
+            <div class="feedback" id="feedback">Pilih salah satu jawaban.</div>
+            <div class="quiz-actions">
+              <button class="btn" id="nextBtn" type="button" disabled>Soal Berikutnya</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="panel">
+        <div class="score-box">
+          <div class="score-circle" id="scoreCircle">
+            <strong id="scorePercent">0%</strong>
+          </div>
+          <div class="score-text">
+            <div class="language-switch" aria-label="Pilih bahasa">
+              <button class="lang-btn active" type="button" data-lang="id">Indonesia</button>
+              <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+            </div>
+            <span class="badge" data-i18n="resultBadge">Hasil Kuis</span>
+            <h2 id="resultTitle">Kuis selesai</h2>
+            <p id="resultDesc">Ringkasan hasil akan tampil di sini.</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span data-i18n="statTotalLabel">Total soal</span>
+            <strong id="statTotal">15</strong>
+          </div>
+          <div class="stat-card">
+            <span data-i18n="statCorrectLabel">Benar</span>
+            <strong id="statCorrect">0</strong>
+          </div>
+          <div class="stat-card">
+            <span data-i18n="statWrongLabel">Salah</span>
+            <strong id="statWrong">0</strong>
+          </div>
+          <div class="stat-card">
+            <span data-i18n="statScoreLabel">Nilai</span>
+            <strong id="statScore">0</strong>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn" id="restartBtn" type="button" data-i18n="restartQuiz">Ulangi Kuis</button>
+          <button class="btn secondary" id="reviewToggleBtn" type="button" data-i18n="showReview">Lihat Pembahasan</button>
+          <button class="btn secondary" id="resultMaterialBtn" type="button" data-i18n="viewMaterial">Lihat Materi</button>
+        </div>
+
+        <div class="review-list" id="reviewList" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="image-modal" id="imageModal" aria-hidden="true">
+    <div class="image-modal-card" role="dialog" aria-modal="true" aria-labelledby="imageModalTitle">
+      <div class="image-modal-head">
+        <div class="image-modal-title" id="imageModalTitle">Pratinjau Materi</div>
+        <button class="image-modal-close" id="imageModalClose" type="button" aria-label="Tutup gambar">&times;</button>
+      </div>
+      <div class="image-modal-body">
+        <img id="imageModalImg" src="" alt="Pratinjau gambar materi" />
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import {
+      addDoc,
+      collection,
+      getFirestore,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const imageLinks = [
+      "https://i.ibb.co/FkVP29XY/1.png",
+      "https://i.ibb.co/svvxxjYG/2.png",
+      "https://i.ibb.co/0p5BHHWL/3.png"
+    ];
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCOWbX-nWP7qw4dmEpkwA5wo7G-r9fI-g",
+      authDomain: "flashcard-kosakata-jepang.firebaseapp.com",
+      projectId: "flashcard-kosakata-jepang",
+      storageBucket: "flashcard-kosakata-jepang.firebasestorage.app",
+      messagingSenderId: "169917378552",
+      appId: "1:169917378552:web:d006bfac063631efa8f00d",
+      measurementId: "G-HBCG7KL5W8"
+    };
+
+    const FIREBASE_CATEGORY = "Kata-kata Referensi dan Informasi Bab 4";
+    const firebaseApp = initializeApp(firebaseConfig);
+    const db = getFirestore(firebaseApp);
+    const resultsCollection = collection(db, "quizResults_bab4");
+
+    const translations = {
+      id: {
+        homeBadge: "Kuis Materi",
+        homeTitle: "Telepon dan Surat",
+        homeDesc: "Pelajari materi terlebih dahulu, lalu jawab pertanyaan tentang penggunaan telepon umum, nomor layanan penting di Jepang, dan format penulisan alamat.",
+        totalLabel: "Jumlah soal",
+        totalValue: "15 soal",
+        timeHomeLabel: "Waktu",
+        timeHomeValue: "30 detik/soal",
+        materialLabel: "Materi",
+        materialValue: "Telepon dan Surat",
+        startQuiz: "Mulai Kuis",
+        viewMaterial: "Lihat Materi",
+        shuffleOff: "Acak Soal: OFF",
+        shuffleOn: "Acak Soal: ON",
+        materialBadge: "Mode Materi",
+        materialTitle: "Materi Telepon dan Surat",
+        materialDesc: "Gunakan halaman ini untuk membaca materi secara lengkap sebelum mengerjakan kuis. Perhatikan urutan langkah, nomor layanan, dan bagian-bagian alamat.",
+        back: "Kembali",
+        caption1: "Gambar 1 - Cara penggunaan telepon umum, nomor darurat, dan cara menulis alamat",
+        caption2: "Gambar 2 - Materi lanjutan",
+        caption3: "Gambar 3 - Materi lanjutan",
+        questionNumberLabel: "Nomor soal",
+        questionCounter: "Soal {current}",
+        questionCounterSub: "Dari {total} soal",
+        timeLeftLabel: "Sisa waktu",
+        seconds: "detik",
+        progressCaption: "Baca pertanyaan dengan teliti, lalu pilih jawaban yang paling tepat.",
+        chooseAnswer: "Silakan pilih salah satu jawaban.",
+        nextQuestion: "Soal Berikutnya",
+        viewResult: "Lihat Hasil",
+        timeoutPrefix: "Waktu pengerjaan habis.",
+        correctPrefix: "Jawaban benar.",
+        wrongPrefix: "Jawaban belum tepat.",
+        correctAnswerPrefix: "Jawaban yang benar:",
+        resultBadge: "Hasil Kuis",
+        resultExcellentTitle: "Hasil Sangat Baik",
+        resultExcellentDesc: "Pemahaman kamu terhadap materi telepon umum, nomor layanan penting, dan format alamat Jepang sudah kuat.",
+        resultGoodTitle: "Hasil Cukup Baik",
+        resultGoodDesc: "Kamu sudah memahami sebagian besar materi. Tinjau kembali detail nomor layanan dan urutan penggunaan telepon umum.",
+        resultRetryTitle: "Perlu Belajar Ulang",
+        resultRetryDesc: "Baca kembali materi, terutama bagian nomor layanan dan struktur alamat, lalu kerjakan ulang kuis.",
+        statTotalLabel: "Total soal",
+        statCorrectLabel: "Benar",
+        statWrongLabel: "Salah",
+        statScoreLabel: "Nilai",
+        restartQuiz: "Ulangi Kuis",
+        showReview: "Lihat Pembahasan",
+        hideReview: "Sembunyikan Pembahasan",
+        yourAnswer: "Jawaban kamu:",
+        correctAnswer: "Jawaban benar:",
+        correctStatus: "Benar",
+        wrongStatus: "Salah",
+        noAnswer: "Tidak dijawab"
+      },
+      ja: {
+        homeBadge: "教材クイズ",
+        homeTitle: "電話と手紙",
+        homeDesc: "教材を確認してから、公衆電話の使い方、日本の主な案内番号、住所の書き方に関する問題に答えましょう。",
+        totalLabel: "問題数",
+        totalValue: "15問",
+        timeHomeLabel: "時間",
+        timeHomeValue: "1問30秒",
+        materialLabel: "テーマ",
+        materialValue: "電話と手紙",
+        startQuiz: "クイズを始める",
+        viewMaterial: "資料を見る",
+        shuffleOff: "シャッフル: OFF",
+        shuffleOn: "シャッフル: ON",
+        materialBadge: "資料モード",
+        materialTitle: "電話と手紙の資料",
+        materialDesc: "クイズの前に教材を確認しましょう。手順、案内番号、住所の構成に注目してください。",
+        back: "戻る",
+        caption1: "画像1 - 公衆電話の使い方、緊急番号、住所の書き方",
+        caption2: "画像2 - 続きの資料",
+        caption3: "画像3 - 続きの資料",
+        questionNumberLabel: "問題番号",
+        questionCounter: "第{current}問",
+        questionCounterSub: "全{total}問中",
+        timeLeftLabel: "残り時間",
+        seconds: "秒",
+        progressCaption: "問題をよく読み、最も適切な答えを選んでください。",
+        chooseAnswer: "答えを1つ選択してください。",
+        nextQuestion: "次の問題",
+        viewResult: "結果を見る",
+        timeoutPrefix: "制限時間が終了しました。",
+        correctPrefix: "正解です。",
+        wrongPrefix: "正解ではありません。",
+        correctAnswerPrefix: "正しい答え:",
+        resultBadge: "クイズ結果",
+        resultExcellentTitle: "とても良い結果です",
+        resultExcellentDesc: "公衆電話、主な案内番号、日本の住所表記について十分に理解できています。",
+        resultGoodTitle: "良い結果です",
+        resultGoodDesc: "全体的によく理解できています。番号と手順の細かい部分をもう一度確認しましょう。",
+        resultRetryTitle: "復習が必要です",
+        resultRetryDesc: "教材をもう一度読み、案内番号と住所の構成を確認してから再挑戦しましょう。",
+        statTotalLabel: "問題数",
+        statCorrectLabel: "正解",
+        statWrongLabel: "不正解",
+        statScoreLabel: "点数",
+        restartQuiz: "もう一度",
+        showReview: "解説を見る",
+        hideReview: "解説を閉じる",
+        yourAnswer: "あなたの答え:",
+        correctAnswer: "正しい答え:",
+        correctStatus: "正解",
+        wrongStatus: "不正解",
+        noAnswer: "未回答"
+      }
+    };
+
+    const japaneseQuestions = [
+      {
+        category: "公衆電話の使い方",
+        question: "公衆電話を使うとき、最初にすることは何ですか。",
+        options: ["受話器を上げる", "番号を押す", "テレホンカードを取る", "受話器を戻す"],
+        explanation: "資料では、最初の手順として受話器を上げることが示されています。通話を始める前の基本動作です。"
+      },
+      {
+        category: "公衆電話の使い方",
+        question: "受話器を上げたあと、何をしますか。",
+        options: ["硬貨またはカードを入れる", "すぐに電話を切る", "おつりを取る", "住所を書く"],
+        explanation: "受話器を上げたあと、硬貨またはテレホンカードを入れて通話の準備をします。"
+      },
+      {
+        category: "公衆電話の使い方",
+        question: "3番目の手順では何をしますか。",
+        options: ["番号を押す", "天気予報を聞く", "カードを取る", "郵便番号を入れる"],
+        explanation: "料金を入れたあと、相手先の電話番号を押します。資料ではこの操作が3番目に示されています。"
+      },
+      {
+        category: "公衆電話の使い方",
+        question: "電話機にスタートボタンがある場合、いつ押しますか。",
+        options: ["3番目の手順のあと", "受話器を上げる前", "おつりを取ったあと", "カードを入れる前"],
+        explanation: "スタートボタンがある電話機では、番号を押したあとにスタートボタンを押す必要があります。"
+      },
+      {
+        category: "公衆電話の使い方",
+        question: "画像の公衆電話で使えるものはどれですか。",
+        options: ["10円硬貨、100円硬貨、テレホンカード", "1円硬貨と5円硬貨だけ", "ATMカードと学生証", "1000円札"],
+        explanation: "資料では、使用できるものとして10円硬貨、100円硬貨、テレホンカードが示されています。"
+      },
+      {
+        category: "公衆電話の使い方",
+        question: "100円硬貨を入れると、どうなりますか。",
+        options: ["おつりは出ない", "必ず全額戻る", "電話が使えない", "自動で警察につながる"],
+        explanation: "100円硬貨を入れた場合、おつりは戻りません。使用前に硬貨の種類を確認することが大切です。"
+      },
+      {
+        category: "緊急番号と案内",
+        question: "110番はどこにつながりますか。",
+        options: ["警察", "消防署", "時報", "天気予報"],
+        explanation: "110番は警察に連絡するための番号です。緊急時に使う重要な番号として覚えておきましょう。"
+      },
+      {
+        category: "緊急番号と案内",
+        question: "消防署の番号はどれですか。",
+        options: ["119", "117", "177", "104"],
+        explanation: "119番は消防署につながる番号です。火事や救急の場面で使われます。"
+      },
+      {
+        category: "緊急番号と案内",
+        question: "117番は何のサービスですか。",
+        options: ["時報", "天気予報", "電話番号案内", "警察"],
+        explanation: "117番は現在時刻を確認するための時報サービスです。"
+      },
+      {
+        category: "緊急番号と案内",
+        question: "天気予報を聞きたいとき、何番を押しますか。",
+        options: ["177", "110", "104", "119"],
+        explanation: "177番は天気予報を聞くための番号です。外出前の確認に使われます。"
+      },
+      {
+        category: "緊急番号と案内",
+        question: "104番は何のための番号ですか。",
+        options: ["電話番号案内", "消防署", "警察", "時報"],
+        explanation: "104番は電話番号案内のサービスです。必要な電話番号を調べるときに使います。"
+      },
+      {
+        category: "住所の書き方",
+        question: "住所の記号「〒」は何を表しますか。",
+        options: ["郵便番号", "建物名", "都道府県", "部屋番号"],
+        explanation: "「〒」は郵便番号を表す記号です。日本の住所表記では郵便番号の前に置かれます。"
+      },
+      {
+        category: "住所の書き方",
+        question: "例の住所で、658-0063は何ですか。",
+        options: ["郵便番号", "電話番号", "番地", "天気予報の番号"],
+        explanation: "658-0063は「〒」のあとに書かれているため、住所の郵便番号を示しています。"
+      },
+      {
+        category: "住所の書き方",
+        question: "<span class='jp'>兵庫県</span> は住所のどの部分ですか。",
+        options: ["都道府県", "市", "建物名", "部屋番号"],
+        explanation: "兵庫県は都道府県名です。日本の住所では、郵便番号のあとに都道府県名を書くのが一般的です。"
+      },
+      {
+        category: "住所の書き方",
+        question: "<span class='jp'>コウベハイツ 405号</span> は何を表しますか。",
+        options: ["建物名と部屋番号", "郵便番号と都道府県", "市と地域", "緊急番号"],
+        explanation: "コウベハイツは建物名、405号は部屋番号です。集合住宅では建物名と部屋番号が重要です。"
+      }
+    ];
+
+    const baseQuestions = [
+      {
+        category: "Cara Penggunaan Telepon Umum",
+        image: imageLinks[0],
+        question: "Apa langkah pertama saat menggunakan telepon umum?",
+        options: ["Mengangkat gagang telepon", "Menekan nomor tujuan", "Mengambil kartu telepon", "Mengembalikan gagang telepon"],
+        answer: 0,
+        explanation: "Materi menunjukkan bahwa penggunaan telepon umum diawali dengan mengangkat gagang telepon sebelum memasukkan koin atau kartu."
+      },
+      {
+        category: "Cara Penggunaan Telepon Umum",
+        image: imageLinks[0],
+        question: "Setelah gagang telepon diangkat, apa langkah berikutnya?",
+        options: ["Memasukkan koin atau kartu", "Langsung menutup telepon", "Mengambil kembalian", "Mencatat alamat"],
+        answer: 0,
+        explanation: "Setelah gagang diangkat, pengguna perlu memasukkan koin atau kartu telepon agar panggilan dapat dilakukan."
+      },
+      {
+        category: "Cara Penggunaan Telepon Umum",
+        image: imageLinks[0],
+        question: "Apa yang dilakukan pada langkah nomor 3?",
+        options: ["Menekan nomor", "Menunggu ramalan cuaca", "Mengambil kartu", "Memasukkan kode pos"],
+        answer: 0,
+        explanation: "Pada langkah ketiga, pengguna menekan nomor telepon tujuan setelah alat siap digunakan."
+      },
+      {
+        category: "Cara Penggunaan Telepon Umum",
+        image: imageLinks[0],
+        question: "Jika pesawat telepon memiliki tombol start, kapan tombol itu ditekan?",
+        options: ["Setelah langkah 3", "Sebelum mengangkat gagang", "Setelah mengambil kembalian", "Sebelum memasukkan kartu"],
+        answer: 0,
+        explanation: "Jika tersedia tombol start, tombol tersebut ditekan setelah nomor tujuan dimasukkan."
+      },
+      {
+        category: "Cara Penggunaan Telepon Umum",
+        image: imageLinks[0],
+        question: "Menurut materi, alat pembayaran apa yang dapat digunakan pada telepon umum?",
+        options: ["Koin 10 yen, koin 100 yen, dan kartu telepon", "Koin 1 yen dan 5 yen saja", "Kartu ATM dan kartu pelajar", "Uang kertas 1.000 yen"],
+        answer: 0,
+        explanation: "Materi mencantumkan tiga pilihan pembayaran, yaitu koin 10 yen, koin 100 yen, dan kartu telepon."
+      },
+      {
+        category: "Cara Penggunaan Telepon Umum",
+        image: imageLinks[0],
+        question: "Apa konsekuensi jika menggunakan koin 100 yen pada telepon umum?",
+        options: ["Tidak mendapat kembalian", "Selalu mendapat kembalian penuh", "Telepon tidak bisa digunakan", "Nomor otomatis tersambung ke polisi"],
+        answer: 0,
+        explanation: "Jika menggunakan koin 100 yen, sisa uang tidak dikembalikan. Karena itu, pengguna perlu memperhatikan jenis koin yang dipakai."
+      },
+      {
+        category: "Nomor Darurat dan Informasi",
+        image: imageLinks[0],
+        question: "Nomor 110 digunakan untuk menghubungi layanan apa?",
+        options: ["Kantor polisi", "Pemadam kebakaran", "Pemberitahuan waktu", "Ramalan cuaca"],
+        answer: 0,
+        explanation: "Nomor 110 adalah nomor untuk menghubungi polisi di Jepang, terutama dalam keadaan darurat."
+      },
+      {
+        category: "Nomor Darurat dan Informasi",
+        image: imageLinks[0],
+        question: "Berapa nomor untuk menghubungi pemadam kebakaran?",
+        options: ["119", "117", "177", "104"],
+        answer: 0,
+        explanation: "Nomor 119 digunakan untuk menghubungi pemadam kebakaran dan layanan darurat terkait."
+      },
+      {
+        category: "Nomor Darurat dan Informasi",
+        image: imageLinks[0],
+        question: "Apa fungsi nomor 117?",
+        options: ["Pemberitahuan waktu", "Ramalan cuaca", "Petunjuk nomor telepon", "Kantor polisi"],
+        answer: 0,
+        explanation: "Nomor 117 digunakan untuk layanan pemberitahuan waktu atau informasi waktu."
+      },
+      {
+        category: "Nomor Darurat dan Informasi",
+        image: imageLinks[0],
+        question: "Nomor apa yang digunakan untuk mendengarkan ramalan cuaca?",
+        options: ["177", "110", "104", "119"],
+        answer: 0,
+        explanation: "Nomor 177 digunakan untuk memperoleh informasi ramalan cuaca."
+      },
+      {
+        category: "Nomor Darurat dan Informasi",
+        image: imageLinks[0],
+        question: "Apa fungsi nomor 104?",
+        options: ["Petunjuk nomor telepon", "Pemadam kebakaran", "Kantor polisi", "Pemberitahuan waktu"],
+        answer: 0,
+        explanation: "Nomor 104 merupakan layanan petunjuk atau informasi nomor telepon."
+      },
+      {
+        category: "Cara Menulis Alamat",
+        image: imageLinks[0],
+        question: "Simbol 〒 pada alamat menunjukkan bagian ....",
+        options: ["Kode pos", "Nama gedung", "Prefektur", "Nomor apartemen"],
+        answer: 0,
+        explanation: "Simbol 〒 digunakan sebagai tanda kode pos dalam penulisan alamat di Jepang."
+      },
+      {
+        category: "Cara Menulis Alamat",
+        image: imageLinks[0],
+        question: "Pada contoh alamat, angka 658-0063 adalah ....",
+        options: ["Kode pos", "Nomor telepon", "Nomor rumah", "Nomor layanan cuaca"],
+        answer: 0,
+        explanation: "Angka 658-0063 terletak setelah simbol 〒, sehingga bagian tersebut menunjukkan kode pos."
+      },
+      {
+        category: "Cara Menulis Alamat",
+        image: imageLinks[0],
+        question: "Bagian <span class='jp'>兵庫県</span> pada contoh alamat menunjukkan ....",
+        options: ["Prefektur", "Kota", "Nama gedung", "Nomor kamar"],
+        answer: 0,
+        explanation: "兵庫県 adalah Hyogo-ken, yaitu bagian prefektur dalam struktur alamat Jepang."
+      },
+      {
+        category: "Cara Menulis Alamat",
+        image: imageLinks[0],
+        question: "Bagian <span class='jp'>コウベハイツ 405号</span> menunjukkan ....",
+        options: ["Nama gedung dan nomor kamar", "Kode pos dan prefektur", "Kota dan daerah", "Nomor darurat"],
+        answer: 0,
+        explanation: "コウベハイツ menunjukkan nama gedung, sedangkan 405号 menunjukkan nomor kamar atau unit."
+      }
+    ];
+
+    const startScreen = document.getElementById("startScreen");
+    const materialScreen = document.getElementById("materialScreen");
+    const quizScreen = document.getElementById("quizScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const languageButtons = document.querySelectorAll(".lang-btn");
+    const startBtn = document.getElementById("startBtn");
+    const openMaterialBtn = document.getElementById("openMaterialBtn");
+    const startFromMaterialBtn = document.getElementById("startFromMaterialBtn");
+    const backHomeBtn = document.getElementById("backHomeBtn");
+    const shuffleBtn = document.getElementById("shuffleBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const reviewToggleBtn = document.getElementById("reviewToggleBtn");
+    const resultMaterialBtn = document.getElementById("resultMaterialBtn");
+    const questionCounter = document.getElementById("questionCounter");
+    const questionCounterSub = document.getElementById("questionCounterSub");
+    const timeNumber = document.getElementById("timeNumber");
+    const timerFill = document.getElementById("timerFill");
+    const progressFill = document.getElementById("progressFill");
+    const progressCaption = document.getElementById("progressCaption");
+    const categoryPill = document.getElementById("categoryPill");
+    const questionText = document.getElementById("questionText");
+    const questionImage = document.getElementById("questionImage");
+    const optionsBox = document.getElementById("options");
+    const feedback = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+    const scoreCircle = document.getElementById("scoreCircle");
+    const scorePercent = document.getElementById("scorePercent");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultDesc = document.getElementById("resultDesc");
+    const statTotal = document.getElementById("statTotal");
+    const statCorrect = document.getElementById("statCorrect");
+    const statWrong = document.getElementById("statWrong");
+    const statScore = document.getElementById("statScore");
+    const reviewList = document.getElementById("reviewList");
+    const imageModal = document.getElementById("imageModal");
+    const imageModalImg = document.getElementById("imageModalImg");
+    const imageModalTitle = document.getElementById("imageModalTitle");
+    const imageModalClose = document.getElementById("imageModalClose");
+
+    const QUESTION_SECONDS = 30;
+    let questions = [...baseQuestions];
+    let currentIndex = 0;
+    let selectedAnswers = [];
+    let remainingTime = QUESTION_SECONDS;
+    let timerId = null;
+    let shouldShuffle = false;
+    let currentLanguage = "id";
+    let answered = false;
+
+    function t(key, replacements = {}) {
+      let text = translations[currentLanguage][key] || translations.id[key] || key;
+      Object.entries(replacements).forEach(([name, value]) => {
+        text = text.replaceAll(`{${name}}`, value);
+      });
+      return text;
+    }
+
+    function stripHTML(value) {
+      const template = document.createElement("template");
+      template.innerHTML = String(value || "");
+      return template.content.textContent || "";
+    }
+
+    function getLocalizedItem(item, index) {
+      if (currentLanguage !== "ja") return item;
+      const localized = japaneseQuestions[index] || {};
+      return {
+        ...item,
+        category: localized.category || item.category,
+        question: localized.question || item.question,
+        options: localized.options || item.options,
+        explanation: localized.explanation || item.explanation
+      };
+    }
+
+    function applyLanguage(lang) {
+      currentLanguage = lang;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        element.textContent = t(element.dataset.i18n);
+      });
+
+      languageButtons.forEach(button => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      shuffleBtn.textContent = t(shouldShuffle ? "shuffleOn" : "shuffleOff");
+      shuffleBtn.classList.toggle("is-on", shouldShuffle);
+      reviewToggleBtn.textContent = reviewList.hidden ? t("showReview") : t("hideReview");
+
+      if (quizScreen.classList.contains("active")) {
+        renderQuestion(false);
+      }
+
+      if (resultScreen.classList.contains("active")) {
+        updateResultText();
+        renderReview();
+      }
+    }
+
+    function blockInspectionShortcuts() {
+      ["contextmenu", "copy", "cut", "paste", "selectstart", "dragstart"].forEach(eventName => {
+        document.addEventListener(eventName, event => event.preventDefault());
+      });
+
+      document.addEventListener("keydown", event => {
+        const key = event.key.toLowerCase();
+        const ctrlOrCmd = event.ctrlKey || event.metaKey;
+        const blockedCtrlKeys = ["u", "s", "p", "c", "x", "a"];
+        const blockedShiftKeys = ["i", "j", "c"];
+
+        if (
+          event.key === "F12" ||
+          (ctrlOrCmd && blockedCtrlKeys.includes(key)) ||
+          (ctrlOrCmd && event.shiftKey && blockedShiftKeys.includes(key))
+        ) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+    }
+
+    function showScreen(screen) {
+      [startScreen, materialScreen, quizScreen, resultScreen].forEach(item => item.classList.remove("active"));
+      screen.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function shuffle(array) {
+      const result = [...array];
+      for (let i = result.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    }
+
+    function openMaterial() {
+      clearInterval(timerId);
+      showScreen(materialScreen);
+    }
+
+    function openImageModal(src, title = "Pratinjau Materi") {
+      imageModalImg.src = src;
+      imageModalImg.alt = title;
+      imageModalTitle.textContent = title;
+      imageModal.classList.add("show");
+      imageModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeImageModal() {
+      imageModal.classList.remove("show");
+      imageModal.setAttribute("aria-hidden", "true");
+      imageModalImg.src = "";
+    }
+
+    function backHome() {
+      clearInterval(timerId);
+      showScreen(startScreen);
+    }
+
+    function startQuiz() {
+      questions = shouldShuffle ? shuffle(baseQuestions) : [...baseQuestions];
+      currentIndex = 0;
+      selectedAnswers = [];
+      reviewList.hidden = true;
+      reviewToggleBtn.textContent = t("showReview");
+      showScreen(quizScreen);
+      renderQuestion();
+    }
+
+    function renderQuestion(resetTimer = true) {
+      const item = getLocalizedItem(questions[currentIndex], baseQuestions.indexOf(questions[currentIndex]));
+      const progress = (currentIndex / questions.length) * 100;
+
+      if (resetTimer) {
+        clearInterval(timerId);
+        remainingTime = QUESTION_SECONDS;
+        answered = false;
+      }
+
+      questionCounter.textContent = t("questionCounter", { current: currentIndex + 1 });
+      questionCounterSub.textContent = t("questionCounterSub", { total: questions.length });
+      progressFill.style.width = `${progress}%`;
+      timeNumber.textContent = remainingTime;
+      progressCaption.textContent = t("progressCaption");
+      timerFill.style.width = `${Math.max(0, (remainingTime / QUESTION_SECONDS) * 100)}%`;
+      categoryPill.textContent = item.category;
+      questionText.innerHTML = item.question;
+      questionImage.src = item.image;
+      questionImage.alt = item.category;
+      feedback.textContent = t("chooseAnswer");
+      nextBtn.disabled = true;
+      nextBtn.textContent = currentIndex === questions.length - 1 ? t("viewResult") : t("nextQuestion");
+
+      optionsBox.innerHTML = "";
+      item.options.forEach((option, optionIndex) => {
+        const button = document.createElement("button");
+        button.className = "option-btn";
+        button.type = "button";
+        button.innerHTML = option;
+        button.addEventListener("click", () => chooseAnswer(optionIndex));
+        optionsBox.appendChild(button);
+      });
+
+      if (answered && selectedAnswers[currentIndex]) {
+        applyAnswerState(selectedAnswers[currentIndex], item);
+        return;
+      }
+
+      if (resetTimer) {
+        timerId = setInterval(tickTimer, 1000);
+      }
+    }
+
+    function applyAnswerState(answerData, item) {
+      const buttons = [...optionsBox.querySelectorAll(".option-btn")];
+      buttons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === item.answer) button.classList.add("correct");
+        if (answerData.selectedIndex === index && answerData.selectedIndex !== item.answer) button.classList.add("wrong");
+        if (index !== item.answer && answerData.selectedIndex !== index) button.classList.add("dimmed");
+      });
+
+      if (answerData.byTimeout) {
+        feedback.innerHTML = `<strong>${t("timeoutPrefix")}</strong> ${t("correctAnswerPrefix")} ${item.options[item.answer]}. ${item.explanation}`;
+      } else if (answerData.isCorrect) {
+        feedback.innerHTML = `<strong>${t("correctPrefix")}</strong> ${item.explanation}`;
+      } else {
+        feedback.innerHTML = `<strong>${t("wrongPrefix")}</strong> ${t("correctAnswerPrefix")} ${item.options[item.answer]}. ${item.explanation}`;
+      }
+
+      nextBtn.disabled = false;
+      progressFill.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+    }
+
+    function tickTimer() {
+      remainingTime -= 1;
+      timeNumber.textContent = remainingTime;
+      timerFill.style.width = `${Math.max(0, (remainingTime / QUESTION_SECONDS) * 100)}%`;
+
+      if (remainingTime <= 0) {
+        chooseAnswer(null, true);
+      }
+    }
+
+    function chooseAnswer(optionIndex, byTimeout = false) {
+      if (answered) return;
+      answered = true;
+      const rawItem = questions[currentIndex];
+      const item = getLocalizedItem(rawItem, baseQuestions.indexOf(rawItem));
+      const buttons = [...optionsBox.querySelectorAll(".option-btn")];
+      const isCorrect = optionIndex === item.answer;
+
+      clearInterval(timerId);
+      buttons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === item.answer) button.classList.add("correct");
+        if (optionIndex === index && optionIndex !== item.answer) button.classList.add("wrong");
+        if (index !== item.answer && optionIndex !== index) button.classList.add("dimmed");
+      });
+
+      selectedAnswers[currentIndex] = {
+        sourceIndex: baseQuestions.indexOf(rawItem),
+        question: stripHTML(item.question),
+        selected: optionIndex === null ? t("noAnswer") : stripHTML(item.options[optionIndex]),
+        selectedIndex: optionIndex,
+        correct: stripHTML(item.options[item.answer]),
+        isCorrect,
+        byTimeout,
+        explanation: item.explanation
+      };
+
+      if (byTimeout) {
+        feedback.innerHTML = `<strong>${t("timeoutPrefix")}</strong> ${t("correctAnswerPrefix")} ${item.options[item.answer]}. ${item.explanation}`;
+      } else if (isCorrect) {
+        feedback.innerHTML = `<strong>${t("correctPrefix")}</strong> ${item.explanation}`;
+      } else {
+        feedback.innerHTML = `<strong>${t("wrongPrefix")}</strong> ${t("correctAnswerPrefix")} ${item.options[item.answer]}. ${item.explanation}`;
+      }
+
+      nextBtn.disabled = false;
+      progressFill.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+    }
+
+    function goNext() {
+      if (currentIndex < questions.length - 1) {
+        currentIndex += 1;
+        renderQuestion();
+      } else {
+      showResults();
+      }
+    }
+
+    function updateResultText() {
+      const total = questions.length;
+      const correct = selectedAnswers.filter(item => item?.isCorrect).length;
+      const percent = Math.round((correct / total) * 100);
+
+      if (percent >= 85) {
+        resultTitle.textContent = t("resultExcellentTitle");
+        resultDesc.textContent = t("resultExcellentDesc");
+      } else if (percent >= 65) {
+        resultTitle.textContent = t("resultGoodTitle");
+        resultDesc.textContent = t("resultGoodDesc");
+      } else {
+        resultTitle.textContent = t("resultRetryTitle");
+        resultDesc.textContent = t("resultRetryDesc");
+      }
+    }
+
+    async function saveResultToFirebase({ total, correct, wrong, percent, score }) {
+      try {
+        await addDoc(resultsCollection, {
+          category: FIREBASE_CATEGORY,
+          collectionName: "quizResults_bab4",
+          title: "Kuis Interaktif Telepon dan Surat",
+          total,
+          correct,
+          wrong,
+          percent,
+          score,
+          language: currentLanguage,
+          shuffled: shouldShuffle,
+          answers: selectedAnswers.map(item => ({
+            sourceIndex: item.sourceIndex,
+            selectedIndex: item.selectedIndex,
+            isCorrect: item.isCorrect,
+            byTimeout: item.byTimeout
+          })),
+          createdAt: serverTimestamp()
+        });
+      } catch (error) {
+        console.warn("Firebase gagal menyimpan hasil kuis.", error);
+      }
+    }
+
+    async function showResults() {
+      clearInterval(timerId);
+      const total = questions.length;
+      const correct = selectedAnswers.filter(item => item?.isCorrect).length;
+      const wrong = total - correct;
+      const percent = Math.round((correct / total) * 100);
+      const score = Math.round((correct / total) * 100);
+
+      statTotal.textContent = total;
+      statCorrect.textContent = correct;
+      statWrong.textContent = wrong;
+      statScore.textContent = score;
+      scorePercent.textContent = `${percent}%`;
+      scoreCircle.style.setProperty("--score-deg", `${percent * 3.6}deg`);
+
+      updateResultText();
+      renderReview();
+      showScreen(resultScreen);
+      saveResultToFirebase({ total, correct, wrong, percent, score });
+    }
+
+    function renderReview() {
+      reviewList.innerHTML = selectedAnswers.map((item, index) => `
+        <div class="review-item">
+          ${(() => {
+            const localized = getLocalizedItem(baseQuestions[item.sourceIndex], item.sourceIndex);
+            const selectedText = item.selectedIndex === null ? t("noAnswer") : stripHTML(localized.options[item.selectedIndex]);
+            const correctText = stripHTML(localized.options[localized.answer]);
+            return `
+              <strong>${index + 1}. ${stripHTML(localized.question)}</strong>
+              <div>${t("yourAnswer")} ${selectedText}</div>
+              <div>${t("correctAnswer")} ${correctText}</div>
+              <div>${localized.explanation}</div>
+            `;
+          })()}
+          <span class="${item.isCorrect ? "correct" : "wrong"}">${item.isCorrect ? t("correctStatus") : t("wrongStatus")}</span>
+        </div>
+      `).join("");
+    }
+
+    languageButtons.forEach(button => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+
+    startBtn.addEventListener("click", startQuiz);
+    openMaterialBtn.addEventListener("click", openMaterial);
+    startFromMaterialBtn.addEventListener("click", startQuiz);
+    backHomeBtn.addEventListener("click", backHome);
+    restartBtn.addEventListener("click", startQuiz);
+    resultMaterialBtn.addEventListener("click", openMaterial);
+    nextBtn.addEventListener("click", goNext);
+    shuffleBtn.addEventListener("click", () => {
+      shouldShuffle = !shouldShuffle;
+      shuffleBtn.textContent = t(shouldShuffle ? "shuffleOn" : "shuffleOff");
+      shuffleBtn.classList.toggle("is-on", shouldShuffle);
+    });
+    reviewToggleBtn.addEventListener("click", () => {
+      reviewList.hidden = !reviewList.hidden;
+      reviewToggleBtn.textContent = reviewList.hidden ? t("showReview") : t("hideReview");
+    });
+
+    questionImage.addEventListener("click", () => {
+      openImageModal(questionImage.currentSrc || questionImage.src, categoryPill.textContent || "Pratinjau Materi");
+    });
+
+    document.querySelectorAll(".material-card img").forEach((img, index) => {
+      img.addEventListener("click", () => {
+        openImageModal(img.currentSrc || img.src, img.alt || `Materi ${index + 1}`);
+      });
+    });
+
+    imageModalClose.addEventListener("click", closeImageModal);
+    imageModal.addEventListener("click", event => {
+      if (event.target === imageModal) {
+        closeImageModal();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && imageModal.classList.contains("show")) {
+        closeImageModal();
+      }
+    });
+
+    blockInspectionShortcuts();
+    applyLanguage("id");
+  </script>
+</body>
+</html>
