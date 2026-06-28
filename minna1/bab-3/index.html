@@ -2819,6 +2819,602 @@
       text-align: center;
     }
 
+    /* ===== Mobile final tidy layout: hanya memengaruhi tampilan mobile ===== */
+    @media (max-width: 720px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      body {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+      }
+
+      body::before,
+      body::after {
+        width: 145px !important;
+        height: 145px !important;
+        opacity: 0.22 !important;
+      }
+
+      .app-shell {
+        width: 100% !important;
+        min-height: 100svh !important;
+        padding: 12px 10px max(14px, env(safe-area-inset-bottom)) !important;
+        align-items: flex-start !important;
+        overflow-x: hidden !important;
+      }
+
+      .screen,
+      .screen.active {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .panel {
+        width: 100% !important;
+        max-width: 560px !important;
+        margin: 0 auto !important;
+        padding: 17px !important;
+        border-radius: 24px !important;
+        box-shadow: 0 12px 28px rgba(82, 73, 134, 0.1) !important;
+      }
+
+      #startScreen .panel.hero {
+        min-height: auto !important;
+        padding: 78px 16px 18px !important;
+      }
+
+      .language-switch {
+        top: 10px !important;
+        left: 10px !important;
+        right: auto !important;
+        max-width: calc(100% - 150px) !important;
+        padding: 4px !important;
+        gap: 4px !important;
+      }
+
+      .language-btn {
+        min-height: 30px !important;
+        padding: 6px 9px !important;
+        font-size: 11.5px !important;
+        line-height: 1.1 !important;
+      }
+
+      .fiction-toggle {
+        top: 10px !important;
+        right: 10px !important;
+        max-width: 128px !important;
+        min-height: 34px !important;
+        padding: 5px 6px !important;
+        gap: 6px !important;
+        font-size: 11.5px !important;
+      }
+
+      .fiction-switch {
+        width: 42px !important;
+        height: 24px !important;
+      }
+
+      .fiction-switch::after {
+        width: 18px !important;
+        height: 18px !important;
+      }
+
+      .fiction-toggle[aria-pressed="false"] .fiction-switch::after {
+        transform: translateX(-18px) !important;
+      }
+
+      #startScreen .hero-info-row {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin-bottom: 15px !important;
+      }
+
+      #startScreen .hero-info-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 70px !important;
+        padding: 11px 10px !important;
+        border-radius: 18px !important;
+        gap: 8px !important;
+      }
+
+      #startScreen .hero-info-icon {
+        width: 34px !important;
+        height: 34px !important;
+      }
+
+      #startScreen .hero-info-card span {
+        font-size: 11.5px !important;
+        line-height: 1.25 !important;
+      }
+
+      #startScreen .hero-info-card strong {
+        font-size: 14px !important;
+        line-height: 1.25 !important;
+      }
+
+      #startScreen .hero h1,
+      .hero h1 {
+        margin: 12px 0 9px !important;
+        font-size: clamp(25px, 7.6vw, 34px) !important;
+        line-height: 1.14 !important;
+      }
+
+      #startScreen .hero p,
+      .results-head p,
+      .summary-text p,
+      .username-note,
+      .login-modal-card p,
+      .example-modal-card p {
+        font-size: 13.5px !important;
+        line-height: 1.5 !important;
+      }
+
+      .username-box {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 14px 0 13px !important;
+      }
+
+      .login-trigger,
+      .login-summary,
+      .btn,
+      .answer-btn,
+      .tab-btn {
+        min-height: 48px !important;
+        border-radius: 16px !important;
+        font-size: 14px !important;
+        line-height: 1.22 !important;
+      }
+
+      .login-summary {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+
+      .hero-actions,
+      .result-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+      }
+
+      .hero-actions .btn,
+      .result-actions .btn {
+        width: 100% !important;
+      }
+
+      .practice-wrap {
+        width: 100% !important;
+        max-width: 520px !important;
+        margin: 0 auto !important;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 10px 12px !important;
+        border-radius: 16px !important;
+      }
+
+      .timer-card {
+        display: grid !important;
+        grid-template-columns: auto 1fr !important;
+        gap: 5px 10px !important;
+        align-items: center !important;
+        text-align: left !important;
+      }
+
+      .timer-track {
+        grid-column: 1 / -1 !important;
+        height: 7px !important;
+        margin-top: 2px !important;
+      }
+
+      .time-number {
+        font-size: 29px !important;
+      }
+
+      .counter-card small,
+      .timer-label,
+      .flip-hint {
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .flip-hint {
+        margin: 7px 0 8px !important;
+      }
+
+      .flashcard {
+        width: 100% !important;
+        height: clamp(455px, 62svh, 540px) !important;
+        min-height: 455px !important;
+        border-radius: 24px !important;
+      }
+
+      .card-face {
+        border-radius: 24px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 14px !important;
+      }
+
+      .card-text {
+        max-width: 100% !important;
+        font-size: clamp(18px, 5.3vw, 25px) !important;
+        line-height: 1.35 !important;
+      }
+
+      .card-text.long {
+        font-size: clamp(15px, 4.4vw, 21px) !important;
+      }
+
+      .back-content {
+        grid-template-rows: 54% 46% !important;
+        gap: 6px !important;
+        overflow: hidden !important;
+      }
+
+      .illustration-wrap {
+        width: min(88%, 285px) !important;
+        max-height: 100% !important;
+      }
+
+      .illustration img {
+        max-width: 74% !important;
+        max-height: 74% !important;
+        object-fit: contain !important;
+      }
+
+      .illustration.image-landscape img {
+        width: 80% !important;
+        max-width: 80% !important;
+        max-height: 68% !important;
+      }
+
+      .illustration.image-portrait img,
+      .illustration.image-tall img {
+        height: 70% !important;
+        max-height: 70% !important;
+        max-width: 64% !important;
+      }
+
+      .jp-box {
+        width: 100% !important;
+        min-height: 132px !important;
+        padding: 3px 6px !important;
+        gap: 4px !important;
+        overflow: visible !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(21px, 6.2vw, 31px) !important;
+        line-height: 1.16 !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(16px, 5vw, 24px) !important;
+        line-height: 1.18 !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(11px, 3.2vw, 14px) !important;
+        line-height: 1.28 !important;
+      }
+
+      .jp-actions {
+        gap: 6px !important;
+        margin-top: 1px !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 32px !important;
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+        border-radius: 999px !important;
+      }
+
+      .answer-row {
+        width: 100% !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        margin-top: 9px !important;
+      }
+
+      .answer-btn {
+        min-height: 45px !important;
+      }
+
+      .results-head {
+        margin-bottom: 14px !important;
+      }
+
+      .results-head h2 {
+        font-size: clamp(23px, 6.4vw, 31px) !important;
+        line-height: 1.18 !important;
+      }
+
+      .participant-name {
+        width: 100% !important;
+        margin-top: 10px !important;
+        text-align: center !important;
+      }
+
+      .tabs {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .tab-btn {
+        width: 100% !important;
+        padding: 10px 8px !important;
+      }
+
+      .summary-box {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        padding: 15px !important;
+        border-radius: 22px !important;
+        text-align: center !important;
+      }
+
+      .score-circle {
+        width: 128px !important;
+        height: 128px !important;
+      }
+
+      .score-circle::before {
+        inset: 12px !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+      }
+
+      .stat-card,
+      .stat-card:last-child {
+        grid-column: auto !important;
+        padding: 12px 9px !important;
+        border-radius: 18px !important;
+      }
+
+      .stat-card span {
+        font-size: 11.5px !important;
+      }
+
+      .stat-card strong {
+        font-size: 20px !important;
+      }
+
+      .table-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        border-radius: 18px !important;
+      }
+
+      table {
+        min-width: 640px !important;
+        font-size: 12.5px !important;
+      }
+
+      th,
+      td {
+        padding: 10px 11px !important;
+      }
+
+      .login-modal,
+      .example-modal,
+      .image-modal {
+        padding: 14px !important;
+      }
+
+      .login-modal-card,
+      .example-modal-card {
+        width: 100% !important;
+        max-width: 420px !important;
+        max-height: calc(100svh - 28px) !important;
+        overflow-y: auto !important;
+        padding: 24px 18px 18px !important;
+        border-radius: 24px !important;
+      }
+
+      .login-modal-card h3,
+      .example-modal-card h3 {
+        margin-right: 42px !important;
+        font-size: 22px !important;
+        line-height: 1.18 !important;
+      }
+
+      .login-field label,
+      .login-error,
+      .group-box p {
+        font-size: 12.5px !important;
+        line-height: 1.42 !important;
+      }
+
+      .login-field input {
+        min-height: 48px !important;
+        border-radius: 16px !important;
+        font-size: 15px !important;
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .group-btn {
+        min-height: 40px !important;
+        border-radius: 14px !important;
+      }
+
+      .login-modal-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-width: 460px !important;
+        max-height: calc(100svh - 28px) !important;
+        padding: 14px !important;
+        border-radius: 24px !important;
+      }
+
+      .image-modal-body {
+        min-height: 240px !important;
+        max-height: 68svh !important;
+        padding: 42px 4px 8px !important;
+      }
+
+      .image-modal-body img {
+        max-height: 64svh !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        padding-inline: 8px !important;
+      }
+
+      .panel,
+      #startScreen .panel.hero {
+        border-radius: 22px !important;
+      }
+
+      #startScreen .hero-info-row,
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen .hero-info-card {
+        min-height: 62px !important;
+        flex-direction: row !important;
+        align-items: center !important;
+      }
+
+      .fiction-label {
+        max-width: 76px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+      }
+
+      .flashcard {
+        height: clamp(430px, 58svh, 505px) !important;
+        min-height: 430px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 12px !important;
+      }
+
+      .illustration-wrap {
+        width: min(84%, 260px) !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      .tabs {
+        grid-template-columns: 1fr !important;
+      }
+
+      table {
+        min-width: 560px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .language-btn,
+      .fiction-toggle {
+        font-size: 10.5px !important;
+      }
+
+      #startScreen .panel.hero,
+      .panel {
+        padding-left: 13px !important;
+        padding-right: 13px !important;
+      }
+
+      #startScreen .panel.hero {
+        padding-top: 74px !important;
+      }
+
+      .flashcard {
+        height: clamp(410px, 56svh, 480px) !important;
+        min-height: 410px !important;
+      }
+
+      .card-text {
+        font-size: clamp(17px, 5.4vw, 23px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(19px, 6.4vw, 28px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(15px, 5vw, 21px) !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 30px !important;
+        padding: 5px 8px !important;
+        font-size: 10.5px !important;
+      }
+    }
+
+    @media (max-height: 740px) and (max-width: 720px) {
+      .flip-hint {
+        display: none !important;
+      }
+
+      .flashcard {
+        height: clamp(380px, 54svh, 435px) !important;
+        min-height: 380px !important;
+      }
+
+      .illustration-wrap {
+        width: min(80%, 235px) !important;
+      }
+
+      .jp-box {
+        min-height: 118px !important;
+      }
+
+      .answer-btn {
+        min-height: 40px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3432,7 +4028,7 @@
             "gambar": "https://i.ibb.co/WWtmdM5h/image.png"
       },
       {
-            "indonesia": "nama stasiun di Osaka",
+            "indonesia": "nama stasiun di Osaka (Shin-Osaka)",
             "kanji": "新大阪",
             "kana": "しんおおさか",
             "romaji": "Shin-Oosaka",
