@@ -1033,53 +1033,171 @@
       }
     }
 
-    @media (max-width: 780px) {
+    @media (max-width: 900px) {
       .app-shell {
-        width: min(100% - 20px, 1180px);
+        width: min(100% - 24px, 1180px);
+        min-height: 100svh;
+        padding: 18px 0 26px;
         align-items: flex-start;
       }
 
       .panel {
-        padding: 20px;
+        width: 100%;
+        padding: 22px;
         border-radius: 24px;
       }
 
-      .quiz-card {
-        grid-template-columns: 1fr;
+      .home-panel {
+        text-align: center;
       }
 
-      .image-card {
-        min-height: 260px;
+      .language-panel {
+        padding-top: 76px;
       }
 
-      .holiday-image {
-        max-height: 240px;
+      .language-switch {
+        left: 16px;
+        top: 16px;
+        max-width: calc(100% - 32px);
+        padding: 6px;
       }
 
-      .topbar {
+      .lang-btn {
+        min-height: 34px;
+        padding: 7px 12px;
+        font-size: 12px;
+      }
+
+      .hero h1,
+      .quiz-title {
+        margin-top: 14px;
+        font-size: clamp(30px, 7vw, 42px);
+        line-height: 1.12;
+      }
+
+      .hero p,
+      .result-desc,
+      .question-sub {
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .hero-info-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
+        margin-top: 16px;
       }
 
+      .hero-info-card,
       .counter-card,
       .timer-card,
       .stat-card {
-        flex: 1 1 140px;
+        min-width: 0;
+        padding: 13px;
+        border-radius: 18px;
+      }
+
+      .hero-info-card strong,
+      .counter-card strong,
+      .timer-card strong,
+      .stat-card strong {
+        font-size: clamp(18px, 4vw, 24px);
+      }
+
+      .mode-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
 
       .mode-btn {
         width: 100%;
+        min-height: 104px;
+        padding: 15px;
+        border-radius: 20px;
       }
 
+      .primary-btn,
+      .ghost-btn {
+        min-height: 50px;
+        margin-top: 12px;
+        padding: 13px 18px;
+        border-radius: 18px;
+      }
+
+      .topbar {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .topbar > .ghost-btn,
+      .topbar > .primary-btn {
+        width: 100%;
+        margin-top: 0;
+      }
+
+      .topbar > .badge {
+        grid-column: 1 / -1;
+        order: -1;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .quiz-card {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .image-card {
+        min-height: 260px;
+        padding: 14px;
+      }
+
+      .holiday-image {
+        max-height: 250px;
+      }
+
+      .question-area {
+        text-align: left;
+      }
+
+      .question-text {
+        font-size: clamp(24px, 5.5vw, 34px);
+        line-height: 1.2;
+      }
+
+      .answers {
+        gap: 10px;
+      }
+
+      .answer-btn {
+        min-height: 56px;
+        padding: 13px 15px;
+        border-radius: 18px;
+      }
+
+      .feedback {
+        min-height: auto;
+        padding: 12px 14px;
+        border-radius: 18px;
+        font-size: 14px;
+      }
+
+      .material-grid,
       .review-list {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .material-grid {
-        grid-template-columns: 1fr;
+      .result-panel {
+        padding-inline: 22px;
       }
 
       .result-summary {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 12px;
       }
 
@@ -1087,81 +1205,372 @@
       .modal-actions,
       .admin-panel-head,
       .admin-tools {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
         align-items: stretch;
       }
 
       .result-actions button,
       .modal-actions button,
-      .admin-tools button,
-      .primary-btn,
-      .ghost-btn {
+      .admin-tools button {
         width: 100%;
-      }
-
-      .group-options {
-        grid-template-columns: 1fr;
       }
 
       .mini-table {
         display: block;
+        width: 100%;
         overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      .image-zoom-modal {
+        padding: 14px;
+      }
+
+      .image-zoom-content {
+        width: 100%;
+        max-height: 94svh;
+        padding: 12px;
+      }
+
+      .image-zoom-content img {
+        max-height: 78svh;
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 640px) {
       .app-shell {
-        width: min(100% - 14px, 1180px);
-        padding: 10px 0 18px;
+        width: min(100% - 16px, 1180px);
+        padding: 10px 0 20px;
       }
 
       .panel {
-        padding: 16px;
-        border-radius: 20px;
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .language-panel {
+        padding-top: 70px;
+      }
+
+      .language-switch {
+        left: 50%;
+        top: 12px;
+        transform: translateX(-50%);
+        justify-content: center;
       }
 
       .hero h1,
       .quiz-title {
-        font-size: clamp(26px, 9vw, 36px);
+        font-size: clamp(26px, 8.5vw, 36px);
+        line-height: 1.14;
       }
 
-      .question-text {
-        font-size: clamp(21px, 7vw, 29px);
+      .hero p,
+      .result-desc,
+      .material-note p {
+        font-size: 14px;
+        line-height: 1.6;
       }
 
-      .hero-info-card,
-      .counter-card,
-      .timer-card,
-      .stat-card {
-        flex: 1 1 100%;
-        padding: 12px;
+      .badge {
+        width: 100%;
+        padding: 8px 12px;
+        text-align: center;
+      }
+
+      .login-summary,
+      .participant-name {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 16px;
+        background: rgba(124, 111, 246, 0.08);
+      }
+
+      .hero-info-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .hero-info-card {
+        padding: 11px 8px;
+        text-align: center;
+      }
+
+      .hero-info-card span,
+      .counter-card span,
+      .timer-card span,
+      .stat-card span {
+        font-size: 10.5px;
+        letter-spacing: 0.03em;
+      }
+
+      .mode-grid {
+        grid-template-columns: 1fr;
+        margin-top: 16px;
+      }
+
+      .mode-btn {
+        min-height: auto;
+        padding: 14px;
+      }
+
+      .mode-btn strong {
+        font-size: 16px;
+      }
+
+      .mode-btn span {
+        font-size: 13px;
+      }
+
+      .hero .primary-btn,
+      .hero .ghost-btn {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .topbar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .topbar .counter-card,
+      .topbar .timer-card {
+        padding: 11px 8px;
+        text-align: center;
+      }
+
+      .topbar > .ghost-btn,
+      .topbar > .primary-btn {
+        min-height: 48px;
+        padding: 11px 12px;
+      }
+
+      .progress-wrap {
+        height: 10px;
+        margin-bottom: 16px;
+      }
+
+      .quiz-card {
+        gap: 14px;
       }
 
       .image-card {
         min-height: 210px;
         padding: 10px;
+        border-radius: 20px;
       }
 
       .holiday-image {
-        max-height: 200px;
+        max-height: 190px;
+      }
+
+      .question-kicker {
+        margin-bottom: 8px;
+        font-size: 11px;
+      }
+
+      .question-text {
+        margin-bottom: 10px;
+        font-size: clamp(22px, 7.5vw, 30px);
+      }
+
+      .question-sub {
+        margin-bottom: 12px;
+        font-size: 14px;
       }
 
       .answer-btn {
-        min-height: 54px;
-        padding: 12px 14px;
+        min-height: 52px;
+        padding: 12px 13px;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .quiz-actions {
+        justify-content: stretch;
+      }
+
+      .quiz-actions .primary-btn {
+        width: 100%;
+      }
+
+      .material-grid,
+      .review-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .material-card {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+        padding: 12px;
+      }
+
+      .material-card img {
+        width: 92px;
+        height: 92px;
+        aspect-ratio: 1 / 1;
+        margin: 0;
+        border-radius: 14px;
+      }
+
+      .material-card strong {
+        font-size: 16px;
+      }
+
+      .material-card span {
+        font-size: 13px;
+      }
+
+      .material-note {
+        padding: 14px;
+      }
+
+      .result-panel {
+        padding-inline: 18px;
+        padding-bottom: 24px;
+      }
+
+      .result-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .result-summary .stat-card {
+        min-height: auto;
+        padding: 15px;
+      }
+
+      .result-actions,
+      .modal-actions,
+      .admin-panel-head,
+      .admin-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-panel {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .login-modal {
+        align-items: flex-start;
+        padding: 12px;
+        overflow-y: auto;
       }
 
       .login-card {
+        margin-top: 24px;
         padding: 20px;
+        border-radius: 22px;
+      }
+
+      .login-card h3 {
+        font-size: clamp(24px, 8vw, 32px);
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .image-zoom-modal {
+        padding: 10px;
+      }
+
+      .image-zoom-content {
+        border-radius: 22px;
+        padding: 10px;
+      }
+
+      .image-zoom-content img {
+        max-height: 76svh;
+        border-radius: 16px;
+      }
+
+      .image-zoom-close {
+        right: 10px;
+        top: 10px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .app-shell {
+        width: min(100% - 12px, 1180px);
+      }
+
+      .panel {
+        padding: 14px;
+        border-radius: 20px;
       }
 
       .language-panel {
-        padding-top: 72px;
+        padding-top: 66px;
       }
 
       .language-switch {
-        left: 12px;
-        top: 12px;
+        width: calc(100% - 28px);
+      }
+
+      .lang-btn {
+        flex: 1 1 0;
+        padding: 7px 8px;
+      }
+
+      .hero h1,
+      .quiz-title {
+        font-size: clamp(24px, 9vw, 32px);
+      }
+
+      .hero-info-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-info-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 8px;
+        align-items: center;
+        text-align: left;
+      }
+
+      .hero-info-card strong {
+        font-size: 20px;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .question-text {
+        font-size: clamp(21px, 8vw, 28px);
+      }
+
+      .image-card {
+        min-height: 190px;
+      }
+
+      .holiday-image {
+        max-height: 175px;
+      }
+
+      .material-card {
+        grid-template-columns: 78px minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .material-card img {
+        width: 78px;
+        height: 78px;
+      }
+
+      .mini-table th,
+      .mini-table td {
+        padding: 10px;
+        font-size: 12px;
       }
     }
   </style>
@@ -1624,7 +2033,7 @@
         no: 2,
         jp: "成人の日",
         reading: "せいじんのひ",
-        id: "Hari Perayaan Menjadi Dewasa",
+        id: "Hari Perayaan Menjadi Dewasa (20 tahun)",
         date: "Senin ke-2 Januari",
         dateJp: "1月第2月曜日",
         dateReading: "いちがつ だいに げつようび",
@@ -1644,7 +2053,7 @@
         no: 4,
         jp: "春分の日",
         reading: "しゅんぶんのひ",
-        id: "Hari Equinox Musim Semi",
+        id: "Hari Equinox pada Musim Semi",
         date: "20 Maret",
         dateJp: "3月20日",
         dateReading: "さんがつ はつか",
@@ -1704,7 +2113,7 @@
         no: 10,
         jp: "敬老の日",
         reading: "けいろうのひ",
-        id: "Hari Hormat kepada Orang Tua",
+        id: "Hari Hormat Kepada Orang Tua",
         date: "Senin ke-3 September",
         dateJp: "9月第3月曜日",
         dateReading: "くがつ だいさん げつようび",
@@ -1714,7 +2123,7 @@
         no: 11,
         jp: "秋分の日",
         reading: "しゅうぶんのひ",
-        id: "Hari Equinox Musim Gugur",
+        id: "Hari Equinox pada Musim Gugur",
         date: "23 September",
         dateJp: "9月23日",
         dateReading: "くがつ にじゅうさんにち",
