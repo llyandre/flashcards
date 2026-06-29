@@ -2902,6 +2902,232 @@
     }
 
 
+
+    /* ===== Halaman lihat materi ===== */
+    .material-panel {
+      width: min(1040px, 100%);
+    }
+
+    .material-head {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .material-head h2 {
+      margin: 14px auto 10px;
+      color: var(--heading);
+      font-size: var(--fs-subtitle);
+      font-weight: 760;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .material-head p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .material-groups {
+      display: grid;
+      gap: 18px;
+    }
+
+    .material-group-card {
+      padding: 18px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at top left, rgba(124, 111, 246, 0.12), transparent 32%);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-group-title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px 12px;
+      margin: 0 0 14px;
+      color: var(--heading);
+      font-size: clamp(18px, 2.2vw, 23px);
+      font-weight: 760;
+      line-height: 1.24;
+    }
+
+    .material-group-title span {
+      color: #6557df;
+      font-size: var(--fs-small);
+      font-weight: 700;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 12px;
+    }
+
+    .material-item {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      min-height: 96px;
+      padding: 12px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(124, 111, 246, 0.12);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-image {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(124, 111, 246, 0.06);
+    }
+
+    .material-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      padding: 5px;
+      display: block;
+    }
+
+    .material-text {
+      min-width: 0;
+      display: grid;
+      gap: 3px;
+    }
+
+    .material-id {
+      color: #111827;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-jp {
+      color: #2f2d2c;
+      font-family: var(--font-jp);
+      font-size: clamp(15px, 1.6vw, 18px);
+      font-weight: 760;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .material-romaji {
+      color: #6b7280;
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-meaning {
+      color: #253044;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw);
+      height: min(92svh, 860px);
+      max-height: 92svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: none;
+      padding: 50px 10px 10px;
+      overflow: auto;
+    }
+
+    .image-modal-body img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      margin: auto;
+    }
+
+    @media (max-width: 720px) {
+      .material-panel {
+        padding: 20px 14px !important;
+      }
+
+      .material-head {
+        margin-bottom: 18px;
+      }
+
+      .material-head h2 {
+        font-size: clamp(22px, 7vw, 30px);
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .material-item {
+        grid-template-columns: 82px minmax(0, 1fr);
+        min-height: 104px;
+        padding: 13px;
+      }
+
+      .material-image {
+        width: 82px;
+        height: 82px;
+      }
+
+      .material-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .material-actions .btn {
+        width: 100%;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        height: 92svh !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-body {
+        padding: 52px 6px 8px !important;
+      }
+    }
+
+
     /* ===== Zoom gambar: semua gambar materi/kartu bisa diklik diperbesar ===== */
     img[data-zoomable="true"],
     .illustration img {
@@ -3648,8 +3874,27 @@
 
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
+            <button id="materialBtn" class="btn secondary" type="button" data-i18n="materialButton">Lihat Materi</button>
             <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman materi -->
+    <section id="materialScreen" class="screen">
+      <div class="panel material-panel">
+        <div class="material-head">
+          <span class="badge" data-i18n="materialBadge">Materi Kosakata</span>
+          <h2 data-i18n="materialTitle">Materi Kosakata Negara, Orang, dan Bahasa</h2>
+          <p data-i18n-html="materialDescription">Pelajari kosakata yang sudah dikelompokkan sesuai materi. Klik gambar untuk melihat tampilan penuh.</p>
+        </div>
+
+        <div id="materialGroups" class="material-groups" aria-live="polite"></div>
+
+        <div class="material-actions">
+          <button id="backHomeFromMaterialBtn" class="btn secondary" type="button" data-i18n="backHomeButton">Kembali ke Homepage</button>
+          <button id="startFromMaterialBtn" class="btn" type="button" data-i18n="startButton">Start</button>
         </div>
       </div>
     </section>
@@ -3975,6 +4220,7 @@
     // Elemen utama
     // =========================
     const startScreen = document.getElementById("startScreen");
+    const materialScreen = document.getElementById("materialScreen");
     const practiceScreen = document.getElementById("practiceScreen");
     const resultScreen = document.getElementById("resultScreen");
     const appShell = document.querySelector(".app-shell");
@@ -3984,6 +4230,10 @@
     const fictionToggleState = document.getElementById("fictionToggleState");
     const cardCountValue = document.querySelector('[data-i18n="cardCountValue"]');
     const openLoginBtn = document.getElementById("openLoginBtn");
+    const materialBtn = document.getElementById("materialBtn");
+    const backHomeFromMaterialBtn = document.getElementById("backHomeFromMaterialBtn");
+    const startFromMaterialBtn = document.getElementById("startFromMaterialBtn");
+    const materialGroups = document.getElementById("materialGroups");
     const usernameBox = document.querySelector("#startScreen .username-box");
     const loginSummary = document.getElementById("loginSummary");
     const usernameNote = document.getElementById("usernameNote");
@@ -4059,6 +4309,26 @@
     let currentLanguage = "id";
     let includeFictionWords = true;
 
+    const materialCategoryLabels = {
+      id: {
+        countries: "Negara",
+        people: "Orang / Kewarganegaraan",
+        languages: "Bahasa"
+      },
+      ja: {
+        countries: "国",
+        people: "人・国籍",
+        languages: "言語"
+      }
+    };
+
+    function getMaterialCategory(item) {
+      const meaning = String(item?.indonesia || "");
+      if (meaning.startsWith("Orang ")) return "people";
+      if (meaning.startsWith("Bahasa ")) return "languages";
+      return "countries";
+    }
+
     const translations = {
       id: {
         cardCountLabel: "Jumlah kartu",
@@ -4076,6 +4346,11 @@
         usernameButton: "Isi Username",
         usernameNote: "Klik tombol di atas untuk mengisi username melalui popup.",
         startButton: "Start",
+        materialButton: "Lihat Materi",
+        materialBadge: "Materi Kosakata",
+        materialTitle: "Materi Kosakata Negara, Orang, dan Bahasa",
+        materialDescription: "Pelajari kosakata yang sudah dikelompokkan sesuai materi. Klik gambar untuk melihat tampilan penuh.",
+        backHomeButton: "Kembali ke Homepage",
         skipButton: "Lewati ke halaman hasil",
         cardFlipSmall: "Klik kartu untuk membalik",
         timerLabel: "detik tersisa",
@@ -4201,6 +4476,11 @@
         usernameButton: "ユーザー名を入力",
         usernameNote: "上のボタンからユーザー名を入力してください。",
         startButton: "スタート",
+        materialButton: "教材を見る",
+        materialBadge: "単語教材",
+        materialTitle: "国・人・言語の単語教材",
+        materialDescription: "教材ごとに分けられた単語を確認できます。画像をクリックすると大きく表示されます。",
+        backHomeButton: "ホームに戻る",
         skipButton: "結果ページへ",
         cardFlipSmall: "カードをクリックして裏返す",
         timerLabel: "秒残り",
@@ -4359,6 +4639,7 @@
       });
 
       updateFictionToggleUI();
+      renderMaterial();
       updateLoginSummary();
       if (currentItem && practiceScreen.classList.contains("active")) {
         cardCounter.textContent = t("cardCounterPattern")
@@ -4411,7 +4692,7 @@
     }
 
     function showScreen(screen) {
-      [startScreen, practiceScreen, resultScreen].forEach(item => item.classList.remove("active"));
+      [startScreen, materialScreen, practiceScreen, resultScreen].forEach(item => item.classList.remove("active"));
       screen.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -4442,6 +4723,59 @@
 
       const count = getAvailableVocabulary().length;
       cardCountValue.textContent = currentLanguage === "ja" ? `${count}語` : `${count} kosakata`;
+    }
+
+    function renderMaterial() {
+      if (!materialGroups) return;
+
+      const labels = materialCategoryLabels[currentLanguage] || materialCategoryLabels.id;
+      const groups = [
+        { key: "countries", title: labels.countries, items: [] },
+        { key: "people", title: labels.people, items: [] },
+        { key: "languages", title: labels.languages, items: [] }
+      ];
+
+      const groupMap = new Map(groups.map(group => [group.key, group]));
+
+      vocabulary.forEach((item, index) => {
+        const key = getMaterialCategory(item);
+        const group = groupMap.get(key) || groupMap.get("countries");
+        group.items.push({ ...item, number: index + 1 });
+      });
+
+      materialGroups.innerHTML = groups
+        .filter(group => group.items.length)
+        .map(group => {
+          const cards = group.items.map(item => {
+            const japanese = item.kanji ? `${escapeHTML(item.kanji)}（${escapeHTML(item.kana)}）` : escapeHTML(item.kana);
+            const image = item.gambar
+              ? `<img src="${escapeHTML(item.gambar)}" alt="${escapeHTML(item.indonesia)}" loading="lazy" data-zoomable="true" tabindex="0" />`
+              : `<span class="image-fallback">${escapeHTML(item.indonesia)}</span>`;
+
+            return `
+              <article class="material-item">
+                <div class="material-image">${image}</div>
+                <div class="material-text">
+                  <div class="material-id">${item.number}.</div>
+                  <div class="material-jp">${japanese}</div>
+                  <div class="material-romaji">${escapeHTML(item.romaji)}</div>
+                  <div class="material-meaning">${escapeHTML(item.indonesia)}</div>
+                </div>
+              </article>
+            `;
+          }).join("");
+
+          return `
+            <section class="material-group-card" aria-label="${escapeHTML(group.title)}">
+              <h3 class="material-group-title">
+                ${escapeHTML(group.title)}
+                <span>${group.items.length} ${currentLanguage === "ja" ? "語" : "kosakata"}</span>
+              </h3>
+              <div class="material-grid">${cards}</div>
+            </section>
+          `;
+        })
+        .join("");
     }
 
     function buildSessionDeck() {
@@ -5688,6 +6022,9 @@
     });
 
     startBtn.addEventListener("click", startPractice);
+    materialBtn.addEventListener("click", () => showScreen(materialScreen));
+    backHomeFromMaterialBtn.addEventListener("click", () => showScreen(startScreen));
+    startFromMaterialBtn.addEventListener("click", startPractice);
     restartBtn.addEventListener("click", startPractice);
     savePdfBtn.addEventListener("click", saveResultsAsPdf);
     clearRankingBtn.addEventListener("click", clearRanking);
@@ -5791,6 +6128,7 @@
       button.addEventListener("click", () => activateTab(button.dataset.tab));
     });
 
+    renderMaterial();
     renderHistory();
     renderRanking();
     updateStartState();
