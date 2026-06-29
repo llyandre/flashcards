@@ -3642,7 +3642,165 @@
       }
     }
 
-  </style>
+  
+
+    /* FINAL FIX: tampilan pilihan grup pada popup username dibuat sama seperti contoh gambar */
+    .login-modal-card {
+      width: min(520px, 94vw) !important;
+      padding: clamp(30px, 4vw, 38px) clamp(28px, 4vw, 36px) 34px !important;
+      border-radius: 30px !important;
+      background: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.82) !important;
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.24) !important;
+    }
+
+    .login-modal-card h3 {
+      margin: 0 36px 10px 0 !important;
+      color: var(--heading) !important;
+      font-size: clamp(30px, 3.2vw, 40px) !important;
+      font-weight: 800 !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    .login-modal-card > p {
+      margin: 0 0 20px !important;
+      color: #66758c !important;
+      font-size: clamp(14px, 1.05vw, 16px) !important;
+      font-weight: 500 !important;
+      line-height: 1.65 !important;
+    }
+
+    .login-modal-card .login-field {
+      gap: 8px !important;
+      margin-bottom: 16px !important;
+    }
+
+    .login-modal-card .login-field label,
+    .login-modal-card .group-box p {
+      color: var(--heading) !important;
+      font-size: clamp(13px, 1vw, 15px) !important;
+      font-weight: 800 !important;
+      line-height: 1.35 !important;
+      text-align: left !important;
+    }
+
+    .login-modal-card .login-field input {
+      min-height: 58px !important;
+      padding: 0 18px !important;
+      border-radius: 20px !important;
+      color: var(--heading) !important;
+      background: #ffffff !important;
+      border: 1.5px solid rgba(124, 111, 246, 0.36) !important;
+      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.08) !important;
+      font-size: clamp(15px, 1.1vw, 16px) !important;
+      font-weight: 500 !important;
+    }
+
+    .login-modal-card .login-field input:focus {
+      border-color: rgba(124, 111, 246, 0.72) !important;
+      box-shadow: 0 0 0 5px rgba(124, 111, 246, 0.16) !important;
+    }
+
+    .login-modal-card .group-box {
+      width: 100% !important;
+      margin: 0 0 56px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left !important;
+    }
+
+    .login-modal-card .group-box p {
+      margin: 0 0 22px !important;
+    }
+
+    .login-modal-card .group-options {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 12px 12px !important;
+      margin: 0 !important;
+    }
+
+    .login-modal-card .group-btn {
+      width: 100% !important;
+      min-height: 52px !important;
+      padding: 12px 18px !important;
+      border-radius: var(--radius-pill) !important;
+      border: 1px solid rgba(124, 111, 246, 0.22) !important;
+      color: #6d46e8 !important;
+      background: #f0edff !important;
+      box-shadow: none !important;
+      font-size: clamp(15px, 1.1vw, 16px) !important;
+      font-weight: 800 !important;
+      line-height: 1.15 !important;
+      text-align: center !important;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease !important;
+    }
+
+    .login-modal-card .group-btn:hover,
+    .login-modal-card .group-btn.active {
+      transform: translateY(-1px) !important;
+      color: #ffffff !important;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep)) !important;
+      border-color: transparent !important;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22) !important;
+    }
+
+    .login-modal-card .login-modal-actions {
+      justify-content: flex-end !important;
+      gap: 10px !important;
+      margin-top: 0 !important;
+    }
+
+    .login-modal-card .btn:not(.secondary) {
+      min-height: 58px !important;
+      padding: 14px 28px !important;
+      border-radius: var(--radius-pill) !important;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep)) !important;
+      font-size: clamp(15px, 1.1vw, 16px) !important;
+      font-weight: 800 !important;
+      box-shadow: 0 16px 30px rgba(124, 111, 246, 0.28) !important;
+    }
+
+    @media (max-width: 520px) {
+      .login-modal {
+        padding: 14px !important;
+      }
+
+      .login-modal-card {
+        width: min(100%, 94vw) !important;
+        padding: 28px 22px 24px !important;
+        border-radius: 26px !important;
+      }
+
+      .login-modal-card h3 {
+        font-size: clamp(28px, 8.2vw, 34px) !important;
+      }
+
+      .login-modal-card .group-box {
+        margin-bottom: 34px !important;
+      }
+
+      .login-modal-card .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .login-modal-card .group-btn {
+        min-height: 50px !important;
+        padding: 11px 12px !important;
+        font-size: 14px !important;
+      }
+
+      .login-modal-card .login-modal-actions {
+        display: flex !important;
+        justify-content: flex-end !important;
+      }
+    }
+</style>
 </head>
 <body>
   <main class="app-shell">
