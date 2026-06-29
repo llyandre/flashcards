@@ -432,6 +432,82 @@
       filter: drop-shadow(0 18px 24px rgba(82, 73, 134, 0.12));
     }
 
+    .holiday-image,
+    .material-card img {
+      cursor: zoom-in;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .holiday-image:hover,
+    .material-card img:hover {
+      transform: scale(1.015);
+      filter: drop-shadow(0 20px 28px rgba(82, 73, 134, 0.18));
+    }
+
+    .image-zoom-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 220;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 36px);
+      background: rgba(16, 29, 72, 0.72);
+      backdrop-filter: blur(14px);
+    }
+
+    .image-zoom-modal.show {
+      display: flex;
+    }
+
+    .image-zoom-content {
+      position: relative;
+      width: min(960px, 100%);
+      max-height: 92vh;
+      padding: clamp(12px, 2vw, 18px);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: 0 26px 80px rgba(16, 29, 72, 0.28);
+      display: grid;
+      gap: 12px;
+      justify-items: center;
+    }
+
+    .image-zoom-content img {
+      width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      border-radius: var(--radius-lg);
+      background: #fff;
+    }
+
+    .image-zoom-caption {
+      margin: 0;
+      color: var(--heading);
+      font-size: var(--fs-sm);
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.45;
+    }
+
+    .image-zoom-close {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      font-size: 22px;
+      font-weight: 950;
+      line-height: 1;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.28);
+      cursor: pointer;
+    }
+
     .question-area {
       min-width: 0;
     }
@@ -894,7 +970,8 @@
       .admin-tools,
       .topbar,
       .progress-wrap,
-      .login-modal {
+      .login-modal,
+      .image-zoom-modal {
         display: none !important;
       }
 
@@ -1317,6 +1394,14 @@
     </section>
   </main>
 
+  <div class="image-zoom-modal" id="imageZoomModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="image-zoom-content">
+      <button class="image-zoom-close" id="imageZoomClose" type="button" aria-label="Tutup gambar">×</button>
+      <img id="imageZoomImg" src="" alt="" />
+      <p class="image-zoom-caption" id="imageZoomCaption"></p>
+    </div>
+  </div>
+
   <div class="login-modal show" id="loginModal" aria-hidden="false" role="dialog" aria-modal="true">
     <div class="login-card">
       <h3 data-i18n="loginTitle">Masuk Peserta</h3>
@@ -1386,6 +1471,8 @@
         materialDesc: "Baca kosakata, arti, tanggal, dan catatan penting dari gambar referensi. Setelah itu, lanjutkan ke kuis untuk menguji hafalan.",
         meaningLabel: "Arti",
         dateLabel: "Tanggal",
+        dateJapaneseLabel: "Bahasa Jepang",
+        dateReadingLabel: "Cara baca",
         materialNote: "<h3>Catatan dari gambar referensi</h3><p><b>*</b> Tanggal 春分の日 dan 秋分の日 dapat berubah setiap tahun.</p><p><b>**</b> 成人の日 dan 体育の日 jatuh pada hari Senin minggu kedua.</p><p><b>***</b> 海の日 dan 敬老の日 jatuh pada hari Senin minggu ketiga.</p><p>Jika hari libur nasional jatuh pada hari Minggu, libur pengganti biasanya diberikan pada hari Senin. Periode 29 April sampai 5 Mei dikenal sebagai <b>Golden Week</b>, sehingga beberapa perusahaan memberi libur lebih panjang.</p>",
         resultBadge: "Hasil Kuis",
         resultExcellentTitle: "Hasil Sangat Baik",
@@ -1394,7 +1481,7 @@
         resultGoodDesc: "Kamu sudah memahami sebagian besar materi. Tinjau kembali kosakata yang tanggalnya berubah atau jatuh pada hari Senin tertentu.",
         resultRetryTitle: "Perlu Belajar Ulang",
         resultRetryDesc: "Baca kembali materi, terutama bagian arti Indonesia dan tanggal hari libur, lalu kerjakan kuis sekali lagi.",
-        resultNote: "Ringkasan ini dapat disimpan sebagai PDF. Gunakan bagian pembahasan untuk melihat jawaban benar dan kosakata yang perlu diulang.",
+        resultNote: "Ringkasan ini dapat disimpan sebagai PDF laporan otomatis. PDF memuat statistik, riwayat pengerjaan, ranking peserta, serta detail jawaban kuis terakhir.",
         correctAnswers: "Jawaban Benar",
         retryMode: "Ulangi Mode Ini",
         chooseMode: "Pilih Mode Lain",
@@ -1467,6 +1554,8 @@
         materialDesc: "参考画像の語彙、意味、日付、重要な注記を確認してからクイズに進みましょう。",
         meaningLabel: "意味",
         dateLabel: "日付",
+        dateJapaneseLabel: "日本語",
+        dateReadingLabel: "読み方",
         materialNote: "<h3>参考画像の注記</h3><p><b>*</b> 春分の日と秋分の日の日付は毎年変わることがあります。</p><p><b>**</b> 成人の日と体育の日は第2月曜日です。</p><p><b>***</b> 海の日と敬老の日は第3月曜日です。</p><p>国民の祝日が日曜日にあたる場合、通常は翌月曜日が振替休日になります。4月29日から5月5日ごろは <b>ゴールデンウィーク</b> と呼ばれ、会社によっては長い休みになります。</p>",
         resultBadge: "クイズ結果",
         resultExcellentTitle: "とても良い結果です",
@@ -1475,7 +1564,7 @@
         resultGoodDesc: "多くの内容を理解できています。毎年変わる日付や月曜日の祝日をもう一度確認しましょう。",
         resultRetryTitle: "復習が必要です",
         resultRetryDesc: "意味と日付をもう一度確認してから、もう一度クイズに挑戦しましょう。",
-        resultNote: "この結果はPDFとして保存できます。復習欄で正解と復習すべき語彙を確認しましょう。",
+        resultNote: "この結果は自動レポートPDFとして保存できます。PDFには統計、履歴、ランキング、最後の解答詳細が入ります。",
         correctAnswers: "正解数",
         retryMode: "同じモードでもう一度",
         chooseMode: "別のモードを選ぶ",
@@ -1527,6 +1616,8 @@
         reading: "がんじつ",
         id: "Tahun Baru",
         date: "1 Januari",
+        dateJp: "1月1日",
+        dateReading: "いちがつ ついたち",
         image: "https://i.ibb.co/nNK223nR/1-Tahun-Baru.png"
       },
       {
@@ -1535,6 +1626,8 @@
         reading: "せいじんのひ",
         id: "Hari Perayaan Menjadi Dewasa",
         date: "Senin ke-2 Januari",
+        dateJp: "1月第2月曜日",
+        dateReading: "いちがつ だいに げつようび",
         image: "https://i.ibb.co/Y4bBLkFk/2-Hari-Perayaan-Menjadi-Dewasa.png"
       },
       {
@@ -1543,6 +1636,8 @@
         reading: "けんこくきねんのひ",
         id: "Hari Pembangunan Nasional",
         date: "11 Februari",
+        dateJp: "2月11日",
+        dateReading: "にがつ じゅういちにち",
         image: "https://i.ibb.co/bjkQLC5q/3-Hari-Pembangunan-Nasional.png"
       },
       {
@@ -1551,6 +1646,8 @@
         reading: "しゅんぶんのひ",
         id: "Hari Equinox Musim Semi",
         date: "20 Maret",
+        dateJp: "3月20日",
+        dateReading: "さんがつ はつか",
         image: "https://i.ibb.co/0V966bLh/4-Hari-Equinox-Musim-Semi.png"
       },
       {
@@ -1559,6 +1656,8 @@
         reading: "しょうわのひ",
         id: "Hari Showa",
         date: "29 April",
+        dateJp: "4月29日",
+        dateReading: "しがつ にじゅうくにち",
         image: "https://i.ibb.co/BHJdXx7j/5-Hari-Showa.png"
       },
       {
@@ -1567,6 +1666,8 @@
         reading: "けんぽうきねんび",
         id: "Hari Peringatan Konstitusi",
         date: "3 Mei",
+        dateJp: "5月3日",
+        dateReading: "ごがつ みっか",
         image: "https://i.ibb.co/9km1QJ6k/6-Hari-Peringatan-Konstitusi-Batch-kecil.png"
       },
       {
@@ -1575,6 +1676,8 @@
         reading: "みどりのひ",
         id: "Hari Penghijauan",
         date: "4 Mei",
+        dateJp: "5月4日",
+        dateReading: "ごがつ よっか",
         image: "https://i.ibb.co/SX9h6Hyy/7-Hari-Penghijauan.png"
       },
       {
@@ -1583,6 +1686,8 @@
         reading: "こどものひ",
         id: "Hari Anak",
         date: "5 Mei",
+        dateJp: "5月5日",
+        dateReading: "ごがつ いつか",
         image: "https://i.ibb.co/MxygjJR7/8-Hari-Anak.png"
       },
       {
@@ -1591,6 +1696,8 @@
         reading: "うみのひ",
         id: "Hari Bahari",
         date: "Senin ke-3 Juli",
+        dateJp: "7月第3月曜日",
+        dateReading: "しちがつ だいさん げつようび",
         image: "https://i.ibb.co/zhGqbgNy/9-Hari-Bahari.png"
       },
       {
@@ -1599,6 +1706,8 @@
         reading: "けいろうのひ",
         id: "Hari Hormat kepada Orang Tua",
         date: "Senin ke-3 September",
+        dateJp: "9月第3月曜日",
+        dateReading: "くがつ だいさん げつようび",
         image: "https://i.ibb.co/G34CC8Q9/10-Hari-Hormat-kepada-Orang-Tua.png"
       },
       {
@@ -1607,6 +1716,8 @@
         reading: "しゅうぶんのひ",
         id: "Hari Equinox Musim Gugur",
         date: "23 September",
+        dateJp: "9月23日",
+        dateReading: "くがつ にじゅうさんにち",
         image: "https://i.ibb.co/3yYphfNb/11-Hari-Equinox-Musim-Gugur.png"
       },
       {
@@ -1615,6 +1726,8 @@
         reading: "たいいくのひ",
         id: "Hari Kesehatan dan Olahraga",
         date: "Senin ke-2 Oktober",
+        dateJp: "10月第2月曜日",
+        dateReading: "じゅうがつ だいに げつようび",
         image: "https://i.ibb.co/99xKjLHP/12-Hari-Kesehatan-dan-Olahraga.png"
       },
       {
@@ -1623,6 +1736,8 @@
         reading: "ぶんかのひ",
         id: "Hari Kebudayaan",
         date: "3 November",
+        dateJp: "11月3日",
+        dateReading: "じゅういちがつ みっか",
         image: "https://i.ibb.co/WWdYqxQc/13-Hari-Kebudayaan.png"
       },
       {
@@ -1631,6 +1746,8 @@
         reading: "きんろうかんしゃのひ",
         id: "Hari Bersyukur untuk Pekerjaan",
         date: "23 November",
+        dateJp: "11月23日",
+        dateReading: "じゅういちがつ にじゅうさんにち",
         image: "https://i.ibb.co/7dhVZGDr/14-Hari-Bersyukur-untuk-Pekerjaan.png"
       },
       {
@@ -1639,6 +1756,8 @@
         reading: "てんのうたんじょうび",
         id: "Hari Ulang Tahun Kaisar",
         date: "23 Desember",
+        dateJp: "12月23日",
+        dateReading: "じゅうにがつ にじゅうさんにち",
         image: "https://i.ibb.co/Y7k1WCmS/15-Hari-Ulang-Tahun-Kaisar.png"
       }
     ];
@@ -1731,6 +1850,10 @@
       adminHistoryBody: document.getElementById("adminHistoryBody"),
       adminRankingBody: document.getElementById("adminRankingBody"),
       loginModal: document.getElementById("loginModal"),
+      imageZoomModal: document.getElementById("imageZoomModal"),
+      imageZoomImg: document.getElementById("imageZoomImg"),
+      imageZoomCaption: document.getElementById("imageZoomCaption"),
+      imageZoomClose: document.getElementById("imageZoomClose"),
       languageButtons: document.querySelectorAll(".lang-btn"),
       usernameInput: document.getElementById("usernameInput"),
       passwordBox: document.getElementById("passwordBox"),
@@ -1867,10 +1990,12 @@
     function renderMaterial() {
       els.materialGrid.innerHTML = holidays.map((item) => `
         <article class="material-card">
-          <img src="${item.image}" alt="${escapeHTML(item.id)}" draggable="false" />
+          <img src="${item.image}" alt="${escapeHTML(item.id)}" draggable="false" role="button" tabindex="0" data-zoom-src="${item.image}" data-zoom-caption="${escapeHTML(formatJapanese(item))} - ${escapeHTML(item.id)}" />
           <strong class="jp">${escapeHTML(formatJapanese(item))}</strong>
           <span><b>${t("meaningLabel")}:</b> ${escapeHTML(item.id)}</span>
           <span><b>${t("dateLabel")}:</b> ${escapeHTML(item.date)}${escapeHTML(getDateMark(item))}</span>
+          <span class="jp"><b>${t("dateJapaneseLabel")}:</b> ${escapeHTML(item.dateJp)}</span>
+          <span class="jp"><b>${t("dateReadingLabel")}:</b> ${escapeHTML(item.dateReading)}</span>
         </article>
       `).join("");
       els.materialNote.innerHTML = t("materialNote");
@@ -1975,6 +2100,26 @@
       return `${item.jp}（${item.reading}）`;
     }
 
+    function formatDateDetail(item) {
+      return `${item.date} / ${item.dateJp}（${item.dateReading}）`;
+    }
+
+    function openImageZoom(src, caption = "") {
+      if (!src) return;
+      els.imageZoomImg.src = src;
+      els.imageZoomImg.alt = caption || "Gambar hari libur Jepang";
+      els.imageZoomCaption.textContent = caption;
+      els.imageZoomModal.classList.add("show");
+      els.imageZoomModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeImageZoom() {
+      els.imageZoomModal.classList.remove("show");
+      els.imageZoomModal.setAttribute("aria-hidden", "true");
+      els.imageZoomImg.src = "";
+      els.imageZoomCaption.textContent = "";
+    }
+
     function makeQuestion(item) {
       const mode = state.mode === "mixed"
         ? shuffle(["meaning", "japanese", "date"])[0]
@@ -2051,6 +2196,8 @@
       els.progressFill.style.width = `${(state.index / state.queue.length) * 100}%`;
       els.holidayImage.src = item.image;
       els.holidayImage.alt = item.id;
+      els.holidayImage.title = "Klik untuk memperbesar gambar";
+      els.holidayImage.dataset.zoomCaption = `${formatJapanese(item)} - ${item.id}`;
       els.questionType.textContent = question.kicker;
       els.questionText.textContent = question.text;
       els.questionText.classList.toggle("jp", question.mode !== "japanese");
@@ -2101,7 +2248,7 @@
       els.feedback.className = isCorrect ? "feedback good" : "feedback bad";
       els.feedback.textContent = isCorrect
         ? t("correctFeedback", { jp: formatJapanese(question.item), meaning: question.item.id })
-        : t("wrongFeedback", { answer: question.answer, meaning: question.item.id, date: question.item.date });
+        : t("wrongFeedback", { answer: question.answer, meaning: question.item.id, date: formatDateDetail(question.item) });
 
       state.history.push({
         item: question.item,
@@ -2167,7 +2314,9 @@
         card.innerHTML = `
           <strong>${index + 1}. ${entry.correct ? t("reviewCorrect") : t("reviewWrong")} - ${getModeLabel(entry.mode)}</strong>
           <span class="jp">${formatJapanese(entry.item)}</span>
-          <span>Jawaban: ${entry.answer}</span>
+          <span><b>Jawaban peserta:</b> ${escapeHTML(entry.userAnswer)}</span>
+          <span><b>Jawaban benar:</b> ${escapeHTML(entry.answer)}</span>
+          <span><b>Tanggal:</b> ${escapeHTML(formatDateDetail(entry.item))}</span>
         `;
         els.reviewList.appendChild(card);
       });
@@ -2177,7 +2326,7 @@
           <td>${item.no}</td>
           <td class="jp">${formatJapanese(item)}</td>
           <td>${item.id}</td>
-          <td>${item.date}</td>
+          <td>${formatDateDetail(item)}</td>
         </tr>
       `).join("");
     }
@@ -2202,7 +2351,7 @@
         answers: state.history.map((entry) => ({
           kosakata: formatJapanese(entry.item),
           arti: entry.item.id,
-          tanggal: entry.item.date,
+          tanggal: formatDateDetail(entry.item),
           mode: getModeLabel(entry.mode),
           userAnswer: entry.userAnswer,
           answer: entry.answer,
@@ -2301,8 +2450,52 @@
       const bestScore = totalAttempts
         ? Math.max(...results.map((item) => Number(item.percent || 0)))
         : 0;
+      const totalCorrect = results.reduce((sum, item) => sum + Number(item.correct || 0), 0);
+      const totalQuestionsDone = results.reduce((sum, item) => sum + Number(item.total || 0), 0);
+      const totalWrong = results.reduce((sum, item) => sum + Number(item.wrong || 0), 0);
 
-      return { totalAttempts, participantCount, averageScore, bestScore };
+      return { totalAttempts, participantCount, averageScore, bestScore, totalCorrect, totalWrong, totalQuestionsDone };
+    }
+
+    function getGroupStatistics(results) {
+      const groups = new Map();
+      results.forEach((item) => {
+        const key = item.group || "-";
+        if (!groups.has(key)) {
+          groups.set(key, { group: key, attempts: 0, participants: new Set(), totalPercent: 0, correct: 0, wrong: 0, total: 0 });
+        }
+        const current = groups.get(key);
+        current.attempts += 1;
+        current.participants.add(item.name || "Peserta");
+        current.totalPercent += Number(item.percent || 0);
+        current.correct += Number(item.correct || 0);
+        current.wrong += Number(item.wrong || 0);
+        current.total += Number(item.total || 0);
+      });
+
+      return [...groups.values()].map((item) => ({
+        ...item,
+        participants: item.participants.size,
+        average: item.attempts ? Math.round(item.totalPercent / item.attempts) : 0
+      })).sort((a, b) => b.average - a.average || b.correct - a.correct || a.group.localeCompare(b.group));
+    }
+
+    function buildGroupStatsRows(results) {
+      const stats = getGroupStatistics(results);
+      if (!stats.length) {
+        return `<tr><td colspan="7" class="empty-cell">Belum ada statistik grup.</td></tr>`;
+      }
+      return stats.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${escapeHTML(item.group)}</td>
+          <td>${item.participants}</td>
+          <td>${item.attempts}</td>
+          <td><b>${item.average}%</b></td>
+          <td>${item.correct}</td>
+          <td>${item.wrong}</td>
+        </tr>
+      `).join("");
     }
 
     function getCurrentResultForReport() {
@@ -2326,7 +2519,7 @@
           no: index + 1,
           kosakata: formatJapanese(entry.item),
           arti: entry.item.id,
-          tanggal: entry.item.date,
+          tanggal: formatDateDetail(entry.item),
           mode: getModeLabel(entry.mode),
           userAnswer: entry.userAnswer,
           answer: entry.answer,
@@ -2423,6 +2616,7 @@
       const summary = getReportSummary(results);
       const historyRows = buildReportTableRows(results, "history");
       const rankingRows = buildReportTableRows(results, "ranking");
+      const groupStatsRows = buildGroupStatsRows(results);
 
       return `
         <!doctype html>
@@ -2547,10 +2741,32 @@
               <div><span>Jumlah Peserta</span><strong>${summary.participantCount}</strong></div>
               <div><span>Rata-rata Nilai</span><strong>${summary.averageScore}%</strong></div>
               <div><span>Nilai Tertinggi</span><strong>${summary.bestScore}%</strong></div>
+              <div><span>Total Soal</span><strong>${summary.totalQuestionsDone}</strong></div>
+              <div><span>Total Benar</span><strong>${summary.totalCorrect}</strong></div>
+              <div><span>Total Salah</span><strong>${summary.totalWrong}</strong></div>
+              <div><span>Kategori</span><strong>Bab 5</strong></div>
             </div>
           </section>
 
           ${buildCurrentResultSection(currentResult)}
+
+          <section class="report-section">
+            <h2>Statistik per Grup</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Grup</th>
+                  <th>Peserta</th>
+                  <th>Pengerjaan</th>
+                  <th>Rata-rata</th>
+                  <th>Total Benar</th>
+                  <th>Total Salah</th>
+                </tr>
+              </thead>
+              <tbody>${groupStatsRows}</tbody>
+            </table>
+          </section>
 
           <section class="report-section">
             <h2>Riwayat Pengerjaan Peserta</h2>
@@ -2589,7 +2805,7 @@
             </table>
           </section>
 
-          <p class="print-note">Pada dialog print browser, pilih "Save as PDF" atau "Simpan sebagai PDF" untuk menyimpan laporan.</p>
+          <p class="print-note">Laporan otomatis ini memuat statistik, statistik per grup, riwayat pengerjaan, ranking peserta, dan detail jawaban terakhir. Pada dialog print browser, pilih "Save as PDF" atau "Simpan sebagai PDF" untuk menyimpan laporan.</p>
         </body>
         </html>
       `;
@@ -2622,7 +2838,27 @@
 
       await loadAdminResults();
       const currentResult = includeCurrent ? getCurrentResultForReport() : null;
-      const reportHtml = buildPdfReportHtml(state.adminResults, currentResult);
+      const reportResults = currentResult
+        ? [
+            normalizeResult({
+              ...currentResult,
+              category: FIREBASE_CATEGORY,
+              collectionName: FIREBASE_COLLECTION,
+              title: "Kuis Interaktif Hari Libur Jepang",
+              createdMs: Date.now()
+            }, "current-report"),
+            ...state.adminResults
+          ]
+        : state.adminResults;
+      const uniqueReportResults = reportResults.filter((item, index, array) => array.findIndex((other) =>
+        other.name === item.name &&
+        other.group === item.group &&
+        other.percent === item.percent &&
+        other.correct === item.correct &&
+        other.total === item.total &&
+        other.date === item.date
+      ) === index);
+      const reportHtml = buildPdfReportHtml(uniqueReportResults, currentResult);
 
       reportWindow.document.open();
       reportWindow.document.write(reportHtml);
@@ -2701,6 +2937,29 @@
     els.languageButtons.forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
     });
+
+    els.holidayImage.addEventListener("click", () => {
+      openImageZoom(els.holidayImage.src, els.holidayImage.dataset.zoomCaption || els.holidayImage.alt);
+    });
+
+    els.materialGrid.addEventListener("click", (event) => {
+      const image = event.target.closest("img[data-zoom-src]");
+      if (!image) return;
+      openImageZoom(image.dataset.zoomSrc, image.dataset.zoomCaption || image.alt);
+    });
+
+    els.materialGrid.addEventListener("keydown", (event) => {
+      if (!["Enter", " "].includes(event.key)) return;
+      const image = event.target.closest("img[data-zoom-src]");
+      if (!image) return;
+      event.preventDefault();
+      openImageZoom(image.dataset.zoomSrc, image.dataset.zoomCaption || image.alt);
+    });
+
+    els.imageZoomClose.addEventListener("click", closeImageZoom);
+    els.imageZoomModal.addEventListener("click", (event) => {
+      if (event.target === els.imageZoomModal) closeImageZoom();
+    });
     els.loginSubmitBtn.addEventListener("click", submitLogin);
     els.usernameInput.addEventListener("input", updateLoginUI);
     els.usernameInput.addEventListener("keydown", (event) => {
@@ -2721,6 +2980,10 @@
     document.addEventListener("contextmenu", (event) => event.preventDefault());
     document.addEventListener("dragstart", (event) => event.preventDefault());
     document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && els.imageZoomModal.classList.contains("show")) {
+        closeImageZoom();
+        return;
+      }
       const key = event.key.toLowerCase();
       const blocked =
         event.key === "F12" ||
