@@ -2901,6 +2901,20 @@
       }
     }
 
+
+    /* ===== Zoom gambar: semua gambar materi/kartu bisa diklik diperbesar ===== */
+    img[data-zoomable="true"],
+    .illustration img {
+      cursor: zoom-in;
+    }
+
+    img[data-zoomable="true"]:focus,
+    .illustration img:focus {
+      outline: 3px solid rgba(124, 111, 246, 0.35);
+      outline-offset: 4px;
+      border-radius: 12px;
+    }
+
     .image-modal {
       position: fixed;
       inset: 0;
@@ -3431,7 +3445,21 @@
         grid-template-columns: 1fr !important;
       }
 
-      .image-modal {
+  
+    /* ===== Zoom gambar: semua gambar materi/kartu bisa diklik diperbesar ===== */
+    img[data-zoomable="true"],
+    .illustration img {
+      cursor: zoom-in;
+    }
+
+    img[data-zoomable="true"]:focus,
+    .illustration img:focus {
+      outline: 3px solid rgba(124, 111, 246, 0.35);
+      outline-offset: 4px;
+      border-radius: 12px;
+    }
+
+    .image-modal {
         padding: 12px !important;
       }
 
@@ -4781,6 +4809,7 @@
         img.referrerPolicy = "no-referrer";
         img.tabIndex = 0;
         img.role = "button";
+        img.dataset.zoomable = "true";
         img.title = "Klik untuk melihat gambar penuh";
         img.setAttribute("aria-label", `Lihat gambar penuh: ${img.alt}`);
         img.onload = () => {
@@ -5097,84 +5126,148 @@
       setTimeout(() => printWindow.print(), 350);
     }
 
+    function average(values) {
+      const validValues = values.map(Number).filter(value => Number.isFinite(value));
+      if (!validValues.length) return 0;
+      return Math.round(validValues.reduce((sum, value) => sum + value, 0) / validValues.length);
+    }
+
+    function getUniqueParticipantCount(history) {
+      const unique = new Set();
+      history.forEach(item => {
+        const name = String(item.name || t("defaultParticipant")).trim().toLowerCase();
+        const group = String(item.group || "-").trim().toLowerCase();
+        unique.add(`${group}::${name}`);
+      });
+      return unique.size;
+    }
+
+    function buildOverallStatisticRows(history) {
+      const totalAttempts = history.length;
+      const totalParticipants = getUniqueParticipantCount(history);
+      const totalCorrect = history.reduce((sum, item) => sum + Number(item.correct || 0), 0);
+      const totalWrong = history.reduce((sum, item) => sum + Number(item.wrong || 0), 0);
+      const totalQuestions = history.reduce((sum, item) => sum + Number(item.total || 0), 0);
+      const averageScore = average(history.map(item => item.percent || 0));
+      const bestScore = history.length ? Math.max(...history.map(item => Number(item.percent || 0))) : 0;
+      const averageTime = average(history.map(item => item.totalTime || 0));
+      const groupCount = new Set(history.map(item => item.group || "-")).size;
+
+      return [
+        ["Total percobaan", totalAttempts],
+        ["Total peserta unik", totalParticipants],
+        ["Total grup", groupCount],
+        ["Total soal dikerjakan", totalQuestions],
+        [t("correctHeader"), totalCorrect],
+        [t("wrongHeader"), totalWrong],
+        ["Rata-rata nilai", `${averageScore}%`],
+        ["Nilai tertinggi", `${bestScore}%`],
+        ["Rata-rata waktu", formatSeconds(averageTime)]
+      ];
+    }
+
+    function buildGroupStatisticRows(history) {
+      const groups = new Map();
+
+      history.forEach(item => {
+        const groupName = item.group || "-";
+        if (!groups.has(groupName)) {
+          groups.set(groupName, {
+            name: groupName,
+            attempts: 0,
+            participants: new Set(),
+            scores: [],
+            correct: 0,
+            wrong: 0,
+            total: 0,
+            best: 0
+          });
+        }
+
+        const group = groups.get(groupName);
+        group.attempts += 1;
+        group.participants.add(String(item.name || t("defaultParticipant")).trim().toLowerCase());
+        group.scores.push(Number(item.percent || 0));
+        group.correct += Number(item.correct || 0);
+        group.wrong += Number(item.wrong || 0);
+        group.total += Number(item.total || 0);
+        group.best = Math.max(group.best, Number(item.percent || 0));
+      });
+
+      return [...groups.values()]
+        .sort((a, b) => a.name.localeCompare(b.name, currentLanguage === "ja" ? "ja" : "id"))
+        .map(group => [
+          group.name,
+          group.participants.size,
+          group.attempts,
+          group.total,
+          group.correct,
+          group.wrong,
+          `${average(group.scores)}%`,
+          `${group.best}%`
+        ]);
+    }
+
+    function buildResultRows(history) {
+      return history.map((item, index) => [
+        index + 1,
+        item.name || t("defaultParticipant"),
+        item.group || "-",
+        Number(item.correct || 0),
+        Number(item.wrong || 0),
+        `${Number(item.percent || 0)}%`,
+        formatSeconds(item.totalTime),
+        item.date || "-"
+      ]);
+    }
+
     async function saveAdminRecapAsPdf(printWindow) {
       printWindow.document.open();
-      printWindow.document.write(`<!doctype html><title>${escapeHTML(t("adminPdfTitle"))}</title><p>${escapeHTML(t("historyLoading"))}</p>`);
+      printWindow.document.write(`<!doctype html><title>${escapeHTML(t("pdfTitle"))}</title><p>${escapeHTML(t("historyLoading"))}</p>`);
       printWindow.document.close();
 
       const history = await getResults();
-      const groupOrder = ["Badung", "Jembrana", "Singaraja", "Umum"];
-      const groupLabels = new Set(groupOrder);
-      const usersByGroup = new Map(groupOrder.map(group => [group, new Map()]));
-
-      history.forEach(item => {
-        const group = groupLabels.has(item.group) ? item.group : "Umum";
-        const name = String(item.name || t("defaultParticipant")).trim() || t("defaultParticipant");
-        const key = name.toLowerCase();
-        const groupMap = usersByGroup.get(group);
-        const existing = groupMap.get(key) || {
-          name,
-          group,
-          attempts: 0,
-          bestPercent: 0,
-          lastDate: "-"
-        };
-
-        existing.attempts += 1;
-        existing.bestPercent = Math.max(existing.bestPercent, Number(item.percent || 0));
-        if (existing.lastDate === "-") {
-          existing.lastDate = item.date || "-";
-        }
-        groupMap.set(key, existing);
-      });
-
-      const summaryRows = groupOrder.map(group => {
-        const users = [...usersByGroup.get(group).values()];
-        const attemptCount = users.reduce((sum, user) => sum + user.attempts, 0);
-        return [group, users.length, attemptCount];
-      });
-      const userRows = groupOrder.flatMap(group => [...usersByGroup.get(group).values()]
-        .sort((a, b) => a.name.localeCompare(b.name, "id"))
-        .map((user, index) => [
-          index + 1,
-          user.name,
-          user.group,
-          user.attempts,
-          `${user.bestPercent}%`,
-          user.lastDate
-        ]));
+      const ranking = [...history].sort(sortRanking);
+      const overallRows = buildOverallStatisticRows(history);
+      const groupRows = buildGroupStatisticRows(history);
       const generatedAt = new Date().toLocaleString(currentLanguage === "ja" ? "ja-JP" : "id-ID");
+      const historyRows = buildResultRows(history);
+      const rankingRows = buildResultRows(ranking);
+      const resultHeaders = ["No", t("participantHeader"), t("groupHeader"), t("correctHeader"), t("wrongHeader"), t("scoreHeader"), t("totalTimeHeader"), t("dateHeader")];
+      const groupHeaders = [t("groupHeader"), "Peserta unik", "Percobaan", "Total soal", t("correctHeader"), t("wrongHeader"), "Rata-rata nilai", "Nilai tertinggi"];
 
       const reportHtml = `
         <!doctype html>
         <html lang="${currentLanguage === "ja" ? "ja" : "id"}">
         <head>
           <meta charset="utf-8">
-          <title>${escapeHTML(t("adminPdfTitle"))}</title>
+          <title>${escapeHTML(t("pdfTitle"))}</title>
           <style>${reportStyles()}</style>
         </head>
         <body>
-          <h1>${escapeHTML(t("adminPdfTitle"))}</h1>
-          <p>${escapeHTML(t("adminPdfSubtitle"))}</p>
+          <h1>${escapeHTML(t("pdfTitle"))}</h1>
+          <p>${escapeHTML(t("pdfSubtitle"))}</p>
           <p>${escapeHTML(t("pdfGeneratedAt"))}: ${escapeHTML(generatedAt)}</p>
           <p class="note">${escapeHTML(t("pdfPrintNote"))}</p>
 
           <section class="summary">
-            <h2>${escapeHTML(t("adminPdfSummarySection"))}</h2>
-            ${pdfTable(
-              [t("adminPdfCategoryHeader"), t("adminPdfUsernameCountHeader"), t("adminPdfAttemptCountHeader")],
-              summaryRows,
-              t("historyEmpty")
-            )}
+            <h2>${escapeHTML(t("pdfSummarySection"))}</h2>
+            ${pdfTable([t("pdfInfoHeader"), t("pdfDetailHeader")], overallRows, "-")}
           </section>
 
           <section>
-            <h2>${escapeHTML(t("adminPdfUserListSection"))}</h2>
-            ${pdfTable(
-              ["No", t("adminPdfUsernameHeader"), t("adminPdfCategoryHeader"), t("adminPdfAttemptsHeader"), t("adminPdfBestScoreHeader"), t("adminPdfLastAttemptHeader")],
-              userRows,
-              t("historyEmpty")
-            )}
+            <h2>Statistik per Grup</h2>
+            ${pdfTable(groupHeaders, groupRows, t("historyEmpty"))}
+          </section>
+
+          <section>
+            <h2>${escapeHTML(t("pdfHistorySection"))}</h2>
+            ${pdfTable(resultHeaders, historyRows, t("historyEmpty"))}
+          </section>
+
+          <section>
+            <h2>${escapeHTML(t("pdfRankingSection"))}</h2>
+            ${pdfTable(resultHeaders, rankingRows, t("rankingEmpty"))}
           </section>
         </body>
         </html>
@@ -5200,7 +5293,9 @@
       printWindow.document.close();
 
       const history = await getResults();
-      const ranking = [...history].sort(sortRanking).slice(0, 20);
+      const ranking = [...history].sort(sortRanking);
+      const overallRows = buildOverallStatisticRows(history);
+      const groupRows = buildGroupStatisticRows(history);
       const generatedAt = new Date().toLocaleString(currentLanguage === "ja" ? "ja-JP" : "id-ID");
       const reviewRows = answers.map((item, index) => {
         const jp = getJapanesePlain(item);
@@ -5243,6 +5338,7 @@
       ];
       const reviewHeaders = ["No", t("reviewIndonesiaHeader"), t("reviewJapaneseHeader"), t("reviewStatusHeader"), t("reviewTimeHeader")];
       const resultHeaders = ["No", t("participantHeader"), t("groupHeader"), t("correctHeader"), t("wrongHeader"), t("scoreHeader"), t("totalTimeHeader"), t("dateHeader")];
+      const groupHeaders = [t("groupHeader"), "Peserta unik", "Percobaan", "Total soal", t("correctHeader"), t("wrongHeader"), "Rata-rata nilai", "Nilai tertinggi"];
 
       const reportHtml = `
         <!doctype html>
@@ -5353,6 +5449,16 @@
             ${pdfTable([t("pdfInfoHeader"), t("pdfDetailHeader")], summaryRows, "-")}
           </section>
 
+          <section class="summary">
+            <h2>Statistik Keseluruhan</h2>
+            ${pdfTable([t("pdfInfoHeader"), t("pdfDetailHeader")], overallRows, "-")}
+          </section>
+
+          <section>
+            <h2>Statistik per Grup</h2>
+            ${pdfTable(groupHeaders, groupRows, t("historyEmpty"))}
+          </section>
+
           <section>
             <h2>${escapeHTML(t("pdfReviewSection"))}</h2>
             ${pdfTable(reviewHeaders, reviewRows, t("reviewEmpty"))}
@@ -5396,12 +5502,12 @@
     function saveLocalFallback(entry) {
       const history = getLocalHistory();
       history.unshift(entry);
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, 100)));
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
 
       const ranking = getLocalRanking();
       ranking.push(entry);
       ranking.sort(sortRanking);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(ranking.slice(0, 20)));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ranking));
     }
 
     function normalizeResult(item) {
@@ -5423,7 +5529,7 @@
     }
 
     async function getFirebaseResults() {
-      const snapshot = await getDocs(query(resultsCollection, orderBy("createdAt", "desc"), limit(100)));
+      const snapshot = await getDocs(query(resultsCollection, orderBy("createdAt", "desc")));
       return snapshot.docs.map(doc => normalizeResult(doc.data()));
     }
 
@@ -5475,7 +5581,7 @@
 
     async function renderRanking() {
       rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">${escapeHTML(t("rankingLoading"))}</p></td></tr>`;
-      const ranking = (await getResults()).sort(sortRanking).slice(0, 20);
+      const ranking = (await getResults()).sort(sortRanking);
 
       if (!ranking.length) {
         rankingBody.innerHTML = `<tr><td colspan="8"><p class="empty-state">${escapeHTML(t("rankingEmpty"))}</p></td></tr>`;
@@ -5606,6 +5712,26 @@
     illustration.addEventListener("keydown", event => {
       const img = event.target.closest("img");
       if (!img || (event.key !== "Enter" && event.key !== " ")) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
+    });
+
+    document.addEventListener("click", event => {
+      const img = event.target.closest('img[data-zoomable="true"], .illustration img');
+      if (!img || imageModal?.contains(img)) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+
+      const img = event.target.closest?.('img[data-zoomable="true"], .illustration img');
+      if (!img || imageModal?.contains(img)) return;
 
       event.preventDefault();
       event.stopPropagation();
