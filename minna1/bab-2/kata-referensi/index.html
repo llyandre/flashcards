@@ -1015,6 +1015,127 @@
       }
     }
 
+
+    /* ===== Zoom gambar saat diklik ===== */
+    img[data-zoomable="true"],
+    .material-card img,
+    .greeting-figure img {
+      cursor: zoom-in !important;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      padding: clamp(14px, 3vw, 28px);
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .image-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .image-modal-card {
+      width: min(980px, 100%);
+      max-height: 92svh;
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+      border-radius: 28px;
+      background: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      box-shadow: 0 26px 80px rgba(15, 23, 42, 0.35);
+    }
+
+    .image-modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(124, 111, 246, 0.14);
+    }
+
+    .image-modal-title {
+      color: var(--heading);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal-close {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1;
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .image-modal-body {
+      overflow: auto;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .image-modal-body img {
+      width: 100%;
+      height: auto;
+      max-height: 76svh;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .image-modal-caption {
+      padding: 10px 14px 14px;
+      color: #4f596d;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      border-top: 1px solid rgba(124, 111, 246, 0.12);
+    }
+
+    @media (max-width: 720px) {
+      .image-modal {
+        padding: 14px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 28px) !important;
+        border-radius: 24px !important;
+      }
+
+      .image-modal-body {
+        max-height: 70svh !important;
+      }
+
+      .image-modal-body img {
+        max-height: 66svh !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1249,6 +1370,20 @@
     </div>
   </div>
 
+
+  <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="imageModalTitle">
+    <div class="image-modal-card">
+      <div class="image-modal-head">
+        <div id="imageModalTitle" class="image-modal-title">Pratinjau Gambar</div>
+        <button id="imageModalClose" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
+      </div>
+      <div class="image-modal-body">
+        <img id="imageModalImg" src="" alt="Pratinjau gambar" />
+      </div>
+      <div id="imageModalCaption" class="image-modal-caption"></div>
+    </div>
+  </div>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script type="module">
@@ -1336,7 +1471,7 @@
         clearHistory: "Hapus Riwayat & Ranking",
         savePdfButton: "Simpan sebagai PDF",
         pdfReportTitle: "Laporan Riwayat dan Ranking",
-        pdfReportSubtitle: "Report hasil kuis dari halaman admin.",
+        pdfReportSubtitle: "Laporan otomatis hasil kuis dari halaman admin, berisi statistik, riwayat, dan ranking peserta.",
         pdfGeneratedAt: "Dibuat pada",
         popupBlocked: "Halaman report tidak terbuka. Izinkan popup browser, lalu klik Simpan sebagai PDF lagi.",
         thNo: "No.",
@@ -1685,7 +1820,8 @@
       const wasQuiz = screens.quiz.classList.contains("active");
       currentLang = lang;
       localStorage.setItem("namaKeluargaQuizLang", currentLang);
-      applyLanguage();
+      initializeImageZoom();
+    applyLanguage();
       if (wasQuiz) {
         clearInterval(timer);
         startQuiz();
@@ -2135,6 +2271,55 @@
       return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
     }
 
+
+    function calculateReportStats(results) {
+      const totalAttempts = results.length;
+      const uniqueParticipants = new Set(results.map(item => `${item.name || "-"}|${item.group || "-"}`)).size;
+      const totalCorrect = results.reduce((sum, item) => sum + Number(item.correct || 0), 0);
+      const totalWrong = results.reduce((sum, item) => sum + Number(item.wrong || 0), 0);
+      const totalQuestions = results.reduce((sum, item) => sum + Number(item.total || 0), 0);
+      const averageScore = totalAttempts
+        ? Math.round(results.reduce((sum, item) => sum + Number(item.percent || 0), 0) / totalAttempts)
+        : 0;
+      const highestScore = totalAttempts ? Math.max(...results.map(item => Number(item.percent || 0))) : 0;
+      const groupMap = new Map();
+
+      results.forEach(item => {
+        const group = item.group || "-";
+        if (!groupMap.has(group)) {
+          groupMap.set(group, { group, attempts: 0, participants: new Set(), correct: 0, wrong: 0, total: 0, scoreSum: 0, highest: 0 });
+        }
+        const target = groupMap.get(group);
+        target.attempts += 1;
+        target.participants.add(item.name || "-");
+        target.correct += Number(item.correct || 0);
+        target.wrong += Number(item.wrong || 0);
+        target.total += Number(item.total || 0);
+        target.scoreSum += Number(item.percent || 0);
+        target.highest = Math.max(target.highest, Number(item.percent || 0));
+      });
+
+      return {
+        totalAttempts,
+        uniqueParticipants,
+        totalCorrect,
+        totalWrong,
+        totalQuestions,
+        averageScore,
+        highestScore,
+        groupRows: [...groupMap.values()].map(item => [
+          item.group,
+          item.attempts,
+          item.participants.size,
+          `${Math.round(item.scoreSum / item.attempts)}%`,
+          `${item.highest}%`,
+          item.correct,
+          item.wrong,
+          item.total
+        ])
+      };
+    }
+
     async function saveAdminPdf() {
       if (!isAdmin) {
         showToast(t("adminOnly"));
@@ -2149,7 +2334,8 @@
 
       reportWindow.document.write(`<!doctype html><title>${escapeHTML(t("pdfReportTitle"))}</title><p>Loading...</p>`);
       const results = await getResults();
-      const ranking = [...results].sort(sortRanking).slice(0, 50);
+      const ranking = [...results].sort(sortRanking);
+      const stats = calculateReportStats(results);
       const generatedAt = new Date().toLocaleString(currentLang === "ja" ? "ja-JP" : "id-ID");
 
       const historyRows = results.map((item, index) => [
@@ -2176,6 +2362,8 @@
 
       const resultHeaders = [t("thNo"), t("thDate"), t("thName"), t("thGroup"), t("thScore"), t("correctLabel"), t("wrongLabel"), t("totalLabel")];
       const rankingHeaders = [t("thNo"), t("thName"), t("thGroup"), t("thScore"), t("correctLabel"), t("wrongLabel"), t("totalLabel"), t("thDate")];
+      const groupHeaders = [t("thGroup"), "Jumlah Pengerjaan", "Peserta Unik", "Rata-rata Nilai", "Nilai Tertinggi", t("correctLabel"), t("wrongLabel"), t("totalLabel")];
+
       const reportHtml = `<!doctype html>
 <html lang="${currentLang === "ja" ? "ja" : "id"}">
 <head>
@@ -2192,7 +2380,7 @@
       font-family: Arial, Helvetica, sans-serif;
     }
     .report {
-      max-width: 1040px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 28px;
       background: #fff;
@@ -2222,6 +2410,34 @@
       font-weight: 700;
       cursor: pointer;
     }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 22px 0 4px;
+    }
+    .stat {
+      min-height: 86px;
+      padding: 15px 14px;
+      border: 1px solid #d9e1ef;
+      border-radius: 12px;
+      background: #f8fbff;
+    }
+    .stat span {
+      display: block;
+      color: #5d6b82;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+    .stat strong {
+      display: block;
+      margin-top: 7px;
+      color: #152238;
+      font-size: 24px;
+      line-height: 1.1;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -2229,6 +2445,7 @@
       border-radius: 12px;
       border: 1px solid #d9e1ef;
       font-size: 13px;
+      page-break-inside: auto;
     }
     th, td {
       padding: 10px 11px;
@@ -2245,10 +2462,19 @@
     }
     tr:last-child td { border-bottom: 0; }
     .empty { text-align: center; color: #7a8799; padding: 20px; }
+    .section-note { margin: -4px 0 12px; font-size: 13px; }
+    @media (max-width: 760px) {
+      body { padding: 14px; }
+      .report { padding: 18px; }
+      header { display: block; }
+      .meta { text-align: left; margin-top: 10px; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media print {
       body { padding: 0; background: #fff; }
       .report { max-width: none; border: 0; border-radius: 0; box-shadow: none; }
       .tools { display: none; }
+      h2 { break-after: avoid; }
       table { page-break-inside: auto; }
       tr { page-break-inside: avoid; page-break-after: auto; }
     }
@@ -2269,12 +2495,36 @@
     <div class="tools">
       <button type="button" onclick="window.print()">${escapeHTML(t("savePdfButton"))}</button>
     </div>
+
+    <section>
+      <h2>Statistik Umum</h2>
+      <div class="stats">
+        <div class="stat"><span>Total Pengerjaan</span><strong>${stats.totalAttempts}</strong></div>
+        <div class="stat"><span>Peserta Unik</span><strong>${stats.uniqueParticipants}</strong></div>
+        <div class="stat"><span>Rata-rata Nilai</span><strong>${stats.averageScore}%</strong></div>
+        <div class="stat"><span>Nilai Tertinggi</span><strong>${stats.highestScore}%</strong></div>
+        <div class="stat"><span>Total Benar</span><strong>${stats.totalCorrect}</strong></div>
+        <div class="stat"><span>Total Salah</span><strong>${stats.totalWrong}</strong></div>
+        <div class="stat"><span>Total Soal Dikerjakan</span><strong>${stats.totalQuestions}</strong></div>
+        <div class="stat"><span>Kategori</span><strong>${escapeHTML(I18N.id.infoMaterialValue)}</strong></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Statistik Per Grup</h2>
+      <p class="section-note">Ringkasan nilai peserta berdasarkan grup yang dipilih saat login.</p>
+      ${buildReportTable(groupHeaders, stats.groupRows, t("emptyHistory"))}
+    </section>
+
     <section>
       <h2>${escapeHTML(t("historyTitle"))}</h2>
+      <p class="section-note">Riwayat lengkap seluruh pengerjaan peserta yang tersimpan.</p>
       ${buildReportTable(resultHeaders, historyRows, t("emptyHistory"))}
     </section>
+
     <section>
       <h2>${escapeHTML(t("showRanking"))}</h2>
+      <p class="section-note">Ranking lengkap diurutkan dari nilai tertinggi, jumlah benar terbanyak, kesalahan paling sedikit, lalu data terbaru.</p>
       ${buildReportTable(rankingHeaders, rankingRows, t("emptyRanking"))}
     </section>
   </main>
@@ -2285,7 +2535,7 @@
       reportWindow.document.write(reportHtml);
       reportWindow.document.close();
       reportWindow.focus();
-      setTimeout(() => reportWindow.print(), 500);
+      setTimeout(() => reportWindow.print(), 600);
     }
 
     function showToast(message) {
@@ -2372,6 +2622,7 @@
     adminPdfBtn.addEventListener("click", saveAdminPdf);
     document.querySelectorAll("[data-back-home]").forEach(btn => btn.addEventListener("click", () => showScreen("start")));
 
+    initializeImageZoom();
     applyLanguage();
   </script>
 
