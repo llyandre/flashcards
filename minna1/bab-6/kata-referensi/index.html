@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://i.postimg.cc" crossorigin />
   <link rel="dns-prefetch" href="https://i.ibb.co" />
   <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -475,19 +477,22 @@
 
     .group-box {
       width: min(540px, 100%);
-      margin: 0 auto 16px;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.56);
-      border: 1px solid rgba(124, 111, 246, 0.14);
-      box-shadow: var(--shadow-soft);
+      margin: 14px auto 16px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .login-modal-card .group-box {
       width: 100%;
-      margin: 0 0 14px;
-      background: rgba(255, 255, 255, 0.68);
-      box-shadow: var(--shadow-tiny);
+      margin: 14px 0 14px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .group-box[hidden] {
@@ -495,39 +500,42 @@
     }
 
     .group-box p {
-      margin: 0 0 10px;
-      color: #505a70;
+      margin: 0;
+      color: var(--heading);
       font-size: var(--fs-small);
-      font-weight: 650;
-      text-align: center;
+      font-weight: 900;
+      text-align: left;
+      line-height: 1.35;
     }
 
     .group-options {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .group-btn {
-      min-height: 42px;
-      padding: 9px 8px;
-      border: 1px solid rgba(124, 111, 246, 0.18);
-      border-radius: 14px;
-      color: #514a9e;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow-tiny);
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid rgba(124, 111, 246, 0.2);
+      border-radius: var(--radius-pill);
+      color: var(--primary-deep);
+      background: var(--primary-soft);
+      box-shadow: none;
       font-size: var(--fs-small);
-      font-weight: 700;
-      line-height: 1.2;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+      font-weight: 900;
+      line-height: 1.15;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .group-btn:hover,
     .group-btn.active {
       transform: translateY(-1px);
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #9d8dfd);
-      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.2);
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      border-color: transparent;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22);
     }
 
     .btn {
@@ -554,6 +562,21 @@
 
     #startBtn.show {
       display: inline-flex;
+    }
+
+    #materialBtn:not(.show) {
+      display: none;
+    }
+
+    #materialBtn.show {
+      display: inline-flex;
+    }
+
+    #startFromMaterialBtn:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+      box-shadow: none;
+      filter: grayscale(0.16);
     }
 
     .btn:hover:not(:disabled),
@@ -3842,6 +3865,102 @@
     }
 
 
+
+    /* ===== Revisi: tombol Lihat Materi dan popup gambar responsif ===== */
+    .image-modal {
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)) !important;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw) !important;
+      height: min(92svh, 760px) !important;
+      max-height: 92svh !important;
+      display: flex !important;
+      flex-direction: column !important;
+      position: relative !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      right: auto !important;
+      align-self: flex-end !important;
+      flex: 0 0 auto !important;
+      z-index: 5 !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin: 10px 10px 0 0 !important;
+      background: rgba(255, 255, 255, 0.94) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      box-shadow: 0 10px 22px rgba(31, 41, 55, 0.14) !important;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      width: 100% !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 8px 14px 8px !important;
+      overflow: hidden !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 0 !important;
+      padding: 8px 16px 14px !important;
+      max-height: 58px !important;
+      overflow: auto !important;
+    }
+
+    @media (max-width: 720px) {
+      .image-modal-card {
+        width: calc(100vw - 20px) !important;
+        height: calc(100svh - 20px) !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 20px !important;
+      }
+
+      .image-modal-close {
+        width: 46px !important;
+        height: 46px !important;
+        min-width: 46px !important;
+        min-height: 46px !important;
+        margin: 8px 8px 0 0 !important;
+        font-size: 28px !important;
+      }
+
+      .image-modal-body {
+        padding: 8px 10px 6px !important;
+      }
+
+      .image-modal-caption {
+        padding: 6px 14px 12px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #startScreen .hero-actions {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3893,7 +4012,7 @@
 
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
-            <button id="materialBtn" class="btn secondary" type="button" data-i18n="materialButton">Lihat Materi</button>
+            <button id="materialBtn" class="btn secondary" type="button" disabled data-i18n="materialButton">Lihat Materi</button>
             <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
         </div>
@@ -3907,7 +4026,7 @@
         <div class="material-head">
           <span class="badge" data-i18n="materialBadge">📘 Lihat Materi</span>
           <h2 data-i18n="materialTitle">Materi Kosakata Makanan</h2>
-          <p data-i18n-html="materialDescription">Kosakata dibagi sesuai kelompok pada gambar: makanan, sayuran, buah-buahan, daging, beras/telur, serta ikan dan hasil laut.</p>
+          <p data-i18n-html="materialDescription">Kosakata dibagi sesuai isi gambar: makanan, sayuran, buah-buahan, daging, beras dan telur, serta ikan dan hasil laut.</p>
         </div>
 
         <div id="materialGrid" class="material-grid" aria-live="polite"></div>
@@ -3919,7 +4038,7 @@
 
         <div class="result-actions">
           <button id="backHomeFromMaterialBtn" class="btn secondary" type="button" data-i18n="backHomeButton">Kembali ke Home</button>
-          <button id="startFromMaterialBtn" class="btn" type="button" data-i18n="startButton">Start</button>
+          <button id="startFromMaterialBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
         </div>
       </div>
     </section>
@@ -4087,7 +4206,7 @@
       <div class="login-modal-card">
         <button id="closeLoginModal" class="example-close" type="button" aria-label="Tutup login" data-i18n-aria-label="closeLoginLabel">×</button>
         <h3 id="loginModalTitle" data-i18n="loginTitle">Masuk Peserta</h3>
-        <p data-i18n-html="loginDescription">Isi username terlebih dahulu. Peserta biasa memilih kategori, sedangkan <strong>admin404</strong> akan diminta password.</p>
+        <p data-i18n-html="loginDescription">Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
 
         <div class="login-field">
           <label for="usernameInput" data-i18n="usernameLabel">Username</label>
@@ -4100,11 +4219,11 @@
         </div>
 
                 <div id="groupBox" class="group-box" hidden>
-          <p data-i18n="groupPrompt">Pilih kategori sebelum mulai kuis.</p>
+          <p data-i18n="groupPrompt">Pilih grup sebelum mulai kuis.</p>
           <div class="group-options" aria-label="Pilihan Kategori" data-i18n-aria-label="groupOptionsLabel">
-            <button class="group-btn" data-group="Badung" type="button">Badung</button>
             <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
             <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
+            <button class="group-btn" data-group="Badung" type="button">Badung</button>
             <button class="group-btn" data-group="Umum" type="button">Umum</button>
           </div>
         </div>
@@ -4176,7 +4295,7 @@
             "kanji": "食べ物",
             "kana": "たべもの",
             "romaji": "tabemono",
-            "gambar": "https://i.ibb.co/gb43FDHD/1-makanan.png",
+            "gambar": "https://iili.io/C7u7VIf.png",
             "group": "Makanan"
       },
       {
@@ -4184,7 +4303,7 @@
             "kanji": "野菜",
             "kana": "やさい",
             "romaji": "yasai",
-            "gambar": "https://i.ibb.co/DBxLxbp/2-sayuran.png",
+            "gambar": "https://iili.io/C7u7XLl.png",
             "group": "Sayuran"
       },
       {
@@ -4192,7 +4311,7 @@
             "kanji": "",
             "kana": "きゅうり",
             "romaji": "kyuuri",
-            "gambar": "https://i.ibb.co/PGHbmbJF/3-ketimun.png",
+            "gambar": "https://iili.io/C7u7Ees.png",
             "group": "Sayuran"
       },
       {
@@ -4200,7 +4319,7 @@
             "kanji": "",
             "kana": "トマト",
             "romaji": "tomato",
-            "gambar": "https://i.ibb.co/JWv8VmH5/4-tomat.png",
+            "gambar": "https://iili.io/C7u7GmG.png",
             "group": "Sayuran"
       },
       {
@@ -4208,7 +4327,7 @@
             "kanji": "",
             "kana": "なす",
             "romaji": "nasu",
-            "gambar": "https://i.ibb.co/fzH8yPSw/5-terong.png",
+            "gambar": "https://iili.io/C7u7e29.png",
             "group": "Sayuran"
       },
       {
@@ -4216,7 +4335,7 @@
             "kanji": "",
             "kana": "まめ",
             "romaji": "mame",
-            "gambar": "https://i.ibb.co/6RL0g3qv/6-kacang-kacangan.png",
+            "gambar": "https://iili.io/C7u7k7e.png",
             "group": "Sayuran"
       },
       {
@@ -4224,7 +4343,7 @@
             "kanji": "",
             "kana": "キャベツ",
             "romaji": "kyabetsu",
-            "gambar": "https://i.ibb.co/Mk07zM3V/7-kol.png",
+            "gambar": "https://iili.io/C7u7vku.png",
             "group": "Sayuran"
       },
       {
@@ -4232,15 +4351,15 @@
             "kanji": "",
             "kana": "ねぎ",
             "romaji": "negi",
-            "gambar": "https://i.ibb.co/W4tnQFmq/8-daun-bawang.png",
+            "gambar": "https://iili.io/C7u7rLQ.png",
             "group": "Sayuran"
       },
       {
-            "indonesia": "sawi putih",
+            "indonesia": "sawi",
             "kanji": "",
             "kana": "はくさい",
             "romaji": "hakusai",
-            "gambar": "https://i.ibb.co/ksxrQYY9/9-sawi-putih.png",
+            "gambar": "https://iili.io/C7u7QYF.png",
             "group": "Sayuran"
       },
       {
@@ -4248,15 +4367,15 @@
             "kanji": "",
             "kana": "ほうれんそう",
             "romaji": "hourensou",
-            "gambar": "https://i.ibb.co/QFp3BQbJ/10-bayam.png",
+            "gambar": "https://iili.io/C7u7bTJ.png",
             "group": "Sayuran"
       },
       {
-            "indonesia": "letus / selada",
+            "indonesia": "letas / selada",
             "kanji": "",
             "kana": "レタス",
             "romaji": "retasu",
-            "gambar": "https://i.ibb.co/Swk5s72S/11-letus-selada.png",
+            "gambar": "https://iili.io/C7uYJ4I.png",
             "group": "Sayuran"
       },
       {
@@ -4264,7 +4383,7 @@
             "kanji": "",
             "kana": "じゃがいも",
             "romaji": "jagaimo",
-            "gambar": "https://i.ibb.co/n8cSk5K0/12-kentang.png",
+            "gambar": "https://iili.io/C7uY22t.png",
             "group": "Sayuran"
       },
       {
@@ -4272,7 +4391,7 @@
             "kanji": "",
             "kana": "だいこん",
             "romaji": "daikon",
-            "gambar": "https://i.ibb.co/pjyg3sNK/13-lobak.png",
+            "gambar": "https://iili.io/C7uY3YX.png",
             "group": "Sayuran"
       },
       {
@@ -4280,7 +4399,7 @@
             "kanji": "",
             "kana": "たまねぎ",
             "romaji": "tamanegi",
-            "gambar": "https://i.ibb.co/LzC191TM/14-bawang.png",
+            "gambar": "https://iili.io/C7uYKps.png",
             "group": "Sayuran"
       },
       {
@@ -4288,7 +4407,7 @@
             "kanji": "",
             "kana": "にんじん",
             "romaji": "ninjin",
-            "gambar": "https://i.ibb.co/LdN04LgW/15-wortel.png",
+            "gambar": "https://iili.io/C7uYqTG.png",
             "group": "Sayuran"
       },
       {
@@ -4296,7 +4415,7 @@
             "kanji": "果物",
             "kana": "くだもの",
             "romaji": "kudamono",
-            "gambar": "https://i.ibb.co/FZ36P3S/16-buah-buahan.png",
+            "gambar": "https://iili.io/C7uYxG2.png",
             "group": "Buah-buahan"
       },
       {
@@ -4304,7 +4423,7 @@
             "kanji": "",
             "kana": "いちご",
             "romaji": "ichigo",
-            "gambar": "https://i.ibb.co/pvfh2cjB/17-stroberi.png",
+            "gambar": "https://iili.io/C7uYua9.png",
             "group": "Buah-buahan"
       },
       {
@@ -4312,7 +4431,7 @@
             "kanji": "",
             "kana": "もも",
             "romaji": "momo",
-            "gambar": "https://i.ibb.co/k6XGPbGV/18-buah-peach.png",
+            "gambar": "https://iili.io/C7uYYjj.png",
             "group": "Buah-buahan"
       },
       {
@@ -4320,7 +4439,7 @@
             "kanji": "",
             "kana": "すいか",
             "romaji": "suika",
-            "gambar": "https://i.ibb.co/p6zgCRL9/19-semangka.png",
+            "gambar": "https://iili.io/C7uYaZx.png",
             "group": "Buah-buahan"
       },
       {
@@ -4328,7 +4447,7 @@
             "kanji": "",
             "kana": "ぶどう",
             "romaji": "budou",
-            "gambar": "https://i.ibb.co/WvNm6VDj/20-anggur.png",
+            "gambar": "https://iili.io/C7uY0GV.png",
             "group": "Buah-buahan"
       },
       {
@@ -4336,15 +4455,15 @@
             "kanji": "",
             "kana": "なし",
             "romaji": "nashi",
-            "gambar": "https://i.ibb.co/q3pVqGTS/21-pir.png",
+            "gambar": "https://iili.io/C7uY16B.png",
             "group": "Buah-buahan"
       },
       {
-            "indonesia": "kesemek",
+            "indonesia": "buah kesemek",
             "kanji": "",
             "kana": "かき",
             "romaji": "kaki",
-            "gambar": "https://i.ibb.co/dsZmvq3S/22-kesemek.png",
+            "gambar": "https://iili.io/C7uYMa1.png",
             "group": "Buah-buahan"
       },
       {
@@ -4352,7 +4471,7 @@
             "kanji": "",
             "kana": "みかん",
             "romaji": "mikan",
-            "gambar": "https://i.ibb.co/zhtc9k17/23-jeruk.png",
+            "gambar": "https://iili.io/C7uYWyg.png",
             "group": "Buah-buahan"
       },
       {
@@ -4360,7 +4479,7 @@
             "kanji": "",
             "kana": "りんご",
             "romaji": "ringo",
-            "gambar": "https://i.ibb.co/v4qkVxpQ/24-apel.png",
+            "gambar": "https://iili.io/C7uYjwJ.png",
             "group": "Buah-buahan"
       },
       {
@@ -4368,7 +4487,7 @@
             "kanji": "",
             "kana": "バナナ",
             "romaji": "banana",
-            "gambar": "https://i.ibb.co/cS3ysJKP/25-pisang.png",
+            "gambar": "https://iili.io/C7uYOnR.png",
             "group": "Buah-buahan"
       },
       {
@@ -4376,15 +4495,15 @@
             "kanji": "肉",
             "kana": "にく",
             "romaji": "niku",
-            "gambar": "https://i.ibb.co/nh8cJcS/26-daging.png",
+            "gambar": "https://iili.io/C7uYk6N.png",
             "group": "Daging"
       },
       {
             "indonesia": "daging sapi",
-            "kanji": "牛肉",
+            "kanji": "",
             "kana": "ぎゅうにく",
             "romaji": "gyuuniku",
-            "gambar": "https://i.ibb.co/PGbrsstT/27-daging-sapi.png",
+            "gambar": "https://iili.io/C7uY6wG.png",
             "group": "Daging"
       },
       {
@@ -4392,7 +4511,7 @@
             "kanji": "",
             "kana": "とりにく",
             "romaji": "toriniku",
-            "gambar": "https://i.ibb.co/fdcvpYCQ/28-daging-ayam.png",
+            "gambar": "https://iili.io/C7uYtFS.png",
             "group": "Daging"
       },
       {
@@ -4400,7 +4519,7 @@
             "kanji": "",
             "kana": "ぶたにく",
             "romaji": "butaniku",
-            "gambar": "https://i.ibb.co/fdrTYX5J/29-daging-babi.png",
+            "gambar": "https://iili.io/C7uYDc7.png",
             "group": "Daging"
       },
       {
@@ -4408,7 +4527,7 @@
             "kanji": "",
             "kana": "ソーセージ",
             "romaji": "sooseeji",
-            "gambar": "https://i.ibb.co/wh2smM86/30-sosis.png",
+            "gambar": "https://iili.io/C7ua9wb.png",
             "group": "Daging"
       },
       {
@@ -4416,7 +4535,7 @@
             "kanji": "",
             "kana": "ハム",
             "romaji": "hamu",
-            "gambar": "https://i.ibb.co/8nS487rS/31-ham.png",
+            "gambar": "https://iili.io/C7ua3PV.png",
             "group": "Daging"
       },
       {
@@ -4424,7 +4543,7 @@
             "kanji": "",
             "kana": "こめ",
             "romaji": "kome",
-            "gambar": "https://i.ibb.co/HJ6r2bL/32-beras.png",
+            "gambar": "https://iili.io/C7uaRKN.png",
             "group": "Beras dan Telur"
       },
       {
@@ -4432,7 +4551,7 @@
             "kanji": "",
             "kana": "たまご",
             "romaji": "tamago",
-            "gambar": "https://i.ibb.co/kVFcLT3s/33-telur.png",
+            "gambar": "https://iili.io/C7uaNRe.png",
             "group": "Beras dan Telur"
       },
       {
@@ -4440,7 +4559,7 @@
             "kanji": "魚",
             "kana": "さかな",
             "romaji": "sakana",
-            "gambar": "https://i.ibb.co/nqTrmV4Z/34-ikan.png",
+            "gambar": "https://iili.io/C7uaMil.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4448,7 +4567,7 @@
             "kanji": "",
             "kana": "あじ",
             "romaji": "aji",
-            "gambar": "https://i.ibb.co/xKK7YwY4/35-ikan-horse-mackerel-ikan-aji.png",
+            "gambar": "https://iili.io/C7uagfV.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4456,7 +4575,7 @@
             "kanji": "",
             "kana": "いわし",
             "romaji": "iwashi",
-            "gambar": "https://i.ibb.co/B5GVGBDT/36-ikan-sarden.png",
+            "gambar": "https://iili.io/C7uatWv.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4464,7 +4583,7 @@
             "kanji": "",
             "kana": "さば",
             "romaji": "saba",
-            "gambar": "https://i.ibb.co/mVLJJt4T/37-ikan-kembung-ikan-saba.png",
+            "gambar": "https://iili.io/C7uaPJ1.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4472,7 +4591,7 @@
             "kanji": "",
             "kana": "さんま",
             "romaji": "sanma",
-            "gambar": "https://i.ibb.co/4wm1jxbx/38-ikan-sauri-pasifik-ikan-sanma.png",
+            "gambar": "https://iili.io/C7ucHJt.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4480,7 +4599,7 @@
             "kanji": "",
             "kana": "さけ",
             "romaji": "sake",
-            "gambar": "https://i.ibb.co/hbqSbd5/39-ikan-salmon.png",
+            "gambar": "https://iili.io/C7ucBql.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4488,7 +4607,7 @@
             "kanji": "",
             "kana": "まぐろ",
             "romaji": "maguro",
-            "gambar": "https://i.ibb.co/QvgtVN76/40-ikan-tuna.png",
+            "gambar": "https://iili.io/C7ucAzb.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4496,7 +4615,7 @@
             "kanji": "",
             "kana": "たい",
             "romaji": "tai",
-            "gambar": "https://i.ibb.co/qMMTTCMD/41-ikan-kakap.png",
+            "gambar": "https://iili.io/C7uca1V.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4504,7 +4623,7 @@
             "kanji": "",
             "kana": "たら",
             "romaji": "tara",
-            "gambar": "https://i.ibb.co/23XSmrj8/42-ikan-gabus.png",
+            "gambar": "https://iili.io/C7ucGmg.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4512,7 +4631,7 @@
             "kanji": "",
             "kana": "えび",
             "romaji": "ebi",
-            "gambar": "https://i.ibb.co/nvpRrMP/43-udang.png",
+            "gambar": "https://iili.io/C7ucXLv.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4520,7 +4639,7 @@
             "kanji": "",
             "kana": "かに",
             "romaji": "kani",
-            "gambar": "https://i.ibb.co/7JC4qb8H/44-kepiting.png",
+            "gambar": "https://iili.io/C7ucvkX.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4528,7 +4647,7 @@
             "kanji": "",
             "kana": "いか",
             "romaji": "ika",
-            "gambar": "https://i.ibb.co/tpVgFFNf/45-cumi-cumi.png",
+            "gambar": "https://iili.io/C7ucpQj.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4536,7 +4655,7 @@
             "kanji": "",
             "kana": "たこ",
             "romaji": "tako",
-            "gambar": "https://i.ibb.co/bRGZLB6d/46-gurita.png",
+            "gambar": "https://iili.io/C7ulHEQ.png",
             "group": "Ikan dan Hasil Laut"
       },
       {
@@ -4544,7 +4663,7 @@
             "kanji": "",
             "kana": "かい",
             "romaji": "kai",
-            "gambar": "https://i.ibb.co/20mqVFtZ/47-kerang.png",
+            "gambar": "https://iili.io/C7ul9Cx.png",
             "group": "Ikan dan Hasil Laut"
       }
 ];
@@ -4555,32 +4674,32 @@
     const materialGroups = [
       {
         title: "食べ物（たべもの） / Makanan",
-        description: "Kelompok utama tentang makanan.",
+        description: "Kelompok utama untuk mengenal kosakata umum tentang makanan.",
         items: vocabulary.filter(item => item.group === "Makanan")
       },
       {
         title: "野菜（やさい） / Sayuran",
-        description: "Kosakata sayuran seperti ketimun, tomat, bayam, dan wortel.",
+        description: "Kosakata sayuran seperti ketimun, tomat, terong, bayam, kentang, lobak, bawang, dan wortel.",
         items: vocabulary.filter(item => item.group === "Sayuran")
       },
       {
         title: "果物（くだもの） / Buah-buahan",
-        description: "Kosakata buah-buahan seperti stroberi, semangka, anggur, dan apel.",
+        description: "Kosakata buah-buahan seperti stroberi, peach, semangka, anggur, pir, kesemek, jeruk, apel, dan pisang.",
         items: vocabulary.filter(item => item.group === "Buah-buahan")
       },
       {
         title: "肉（にく） / Daging",
-        description: "Kosakata daging dan olahannya.",
+        description: "Kosakata daging dan olahannya, termasuk daging sapi, ayam, babi, sosis, dan ham.",
         items: vocabulary.filter(item => item.group === "Daging")
       },
       {
         title: "こめ・たまご / Beras dan Telur",
-        description: "Kosakata beras dan telur pada gambar materi.",
+        description: "Kosakata bahan makanan dasar yang muncul pada gambar, yaitu beras dan telur.",
         items: vocabulary.filter(item => item.group === "Beras dan Telur")
       },
       {
         title: "魚（さかな） / Ikan dan Hasil Laut",
-        description: "Kosakata ikan serta hasil laut seperti udang, kepiting, cumi-cumi, gurita, dan kerang.",
+        description: "Kosakata ikan dan hasil laut seperti salmon, tuna, udang, kepiting, cumi-cumi, gurita, dan kerang.",
         items: vocabulary.filter(item => item.group === "Ikan dan Hasil Laut")
       }
     ];
@@ -4695,7 +4814,7 @@
         materialButton: "Lihat Materi",
         materialBadge: "📘 Lihat Materi",
         materialTitle: "Materi Kosakata Makanan",
-        materialDescription: "Kosakata dibagi sesuai kelompok pada gambar: makanan, sayuran, buah-buahan, daging, beras/telur, serta ikan dan hasil laut.",
+        materialDescription: "Kosakata dibagi sesuai isi gambar: makanan, sayuran, buah-buahan, daging, beras dan telur, serta ikan dan hasil laut.",
         materialNoteTitle: "Catatan pada materi",
         backHomeButton: "Kembali ke Home",
         cardFlipSmall: "Klik kartu untuk membalik",
@@ -4729,15 +4848,15 @@
         savePdfButton: "Simpan sebagai PDF",
         restartButton: "Ulangi Latihan",
         clearButton: "Hapus riwayat dan ranking",
-        loginTitle: "Masuk Peserta",
-        loginDescription: 'Isi username terlebih dahulu. Peserta biasa memilih kategori, sedangkan <strong>admin404</strong> akan diminta password.',
+        loginTitle: "Masuk peserta",
+        loginDescription: 'Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.',
         closeLoginLabel: "Tutup login",
         closeExampleLabel: "Tutup contoh",
         usernameLabel: "Username",
         usernamePlaceholder: "Masukkan username",
         passwordLabel: "Password admin",
         passwordPlaceholder: "Masukkan password admin",
-        groupPrompt: "Pilih kategori sebelum mulai kuis.",
+        groupPrompt: "Pilih grup sebelum mulai kuis.",
         groupOptionsLabel: "Pilihan Kategori",
         cancelButton: "Batal",
         saveButton: "Simpan",
@@ -4763,8 +4882,8 @@
         usernameNoteNeedGroup: "Pilih salah satu kategori terlebih dahulu.",
         usernameRequired: "Username wajib diisi.",
         passwordWrong: "Password admin salah.",
-        groupRequired: "Pilih kategori terlebih dahulu.",
-        groupRequiredHome: "Pilih kategori terlebih dahulu: Badung, Jembrana, Singaraja, atau Umum.",
+        groupRequired: "Pilih grup terlebih dahulu.",
+        groupRequiredHome: "Pilih grup dulu: Jembrana, Singaraja, Badung, atau Umum.",
         summaryTitleDefault: "Terus berlatih!",
         summaryDescriptionDefault: "Hasil akan muncul setelah latihan selesai.",
         summaryExcellentTitle: "Hebat sekali!",
@@ -5281,13 +5400,21 @@
     }
 
     function updateStartState() {
-      const canStart = Boolean(currentUsername) && (isAdmin || Boolean(currentGroup));
+      const hasUsername = Boolean(currentUsername);
+      const canStart = hasUsername && (isAdmin || Boolean(currentGroup));
 
       startBtn.disabled = !canStart;
-      startBtn.classList.toggle("show", Boolean(currentUsername));
+      startBtn.classList.toggle("show", hasUsername);
+      if (materialBtn) {
+        materialBtn.disabled = !canStart;
+        materialBtn.classList.toggle("show", hasUsername);
+      }
+      if (startFromMaterialBtn) {
+        startFromMaterialBtn.disabled = !canStart;
+      }
       resultPageBtn.hidden = !isAdmin;
       clearRankingBtn.hidden = !isAdmin;
-      usernameBox.classList.toggle("is-complete", Boolean(currentUsername));
+      usernameBox.classList.toggle("is-complete", hasUsername);
     }
 
     function updateLoginSummary() {
@@ -6206,9 +6333,15 @@
     cancelLoginBtn.addEventListener("click", closeLoginModalBox);
     loginSubmitBtn.addEventListener("click", submitLogin);
     resultPageBtn.addEventListener("click", showAdminResultPage);
-    materialBtn.addEventListener("click", () => showScreen(materialScreen));
+    materialBtn.addEventListener("click", () => {
+      if (materialBtn.disabled) return;
+      showScreen(materialScreen);
+    });
     backHomeFromMaterialBtn.addEventListener("click", () => showScreen(startScreen));
-    startFromMaterialBtn.addEventListener("click", startPractice);
+    startFromMaterialBtn.addEventListener("click", () => {
+      if (startFromMaterialBtn.disabled) return;
+      startPractice();
+    });
 
     materialGrid?.addEventListener("click", event => {
       const img = event.target.closest(".material-thumb img");
