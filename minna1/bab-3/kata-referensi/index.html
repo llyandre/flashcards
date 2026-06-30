@@ -992,10 +992,43 @@
   }
 }
 
+  
+/* ===== Final alur: popup username muncul dulu, homepage setelah login ===== */
+body.login-required #app {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+body.login-required #loginModal.login-modal {
+  display: grid !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+body.login-required #closeLoginModal,
+body.login-required #cancelLoginBtn {
+  display: none !important;
+}
+body:not(.login-required) #app.unlocked {
+  display: flex !important;
+}
+#loginModal.login-modal.show {
+  display: grid !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+#usernameBox.username-box.is-complete,
+#loginSummary.login-summary.show {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
   </style>
 </head>
-<body>
-  <main id="app" class="app unlocked">
+<body class="login-required">
+  <main id="app" class="app">
     <section id="home" class="screen active">
       <div class="panel hero">
         <div class="language-switch" aria-label="Ganti bahasa">
@@ -1005,7 +1038,7 @@
         <div>
           <span class="badge" data-i18n="badge">🏬 Kuis Interaktif Jepang</span>
           <h1><span class="jp">デパート</span><br/><span data-i18n="title">Toserba</span></h1>
-          <p class="lead" data-i18n-html="homeLead"><strong>Belajar kosakata デパート</strong> dengan cara yang lebih mudah: kenali <strong>lantai, tempat, dan barang</strong> melalui gambar. Isi username terlebih dahulu, lalu pilih <strong>Lihat Materi</strong> untuk belajar atau <strong>Mulai Kuis</strong> untuk latihan.</p>
+          <p class="lead" data-i18n-html="homeLead"><strong>Belajar kosakata デパート</strong> dengan cara yang lebih mudah: kenali <strong>lantai, tempat, dan barang</strong> melalui gambar. Pilih <strong>Lihat Materi</strong> untuk belajar dahulu, lalu gunakan <strong>Mulai Kuis</strong> untuk menguji pemahaman.</p>
           <!-- Username wajib diisi sebelum tombol Mulai Kuis dan Lihat Materi muncul -->
           <div class="username-box" id="usernameBox">
             <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="usernameButton">Isi Username</button>
@@ -1097,7 +1130,7 @@
     </section>
   </main>
 
-  <div id="loginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+  <div id="loginModal" class="login-modal show" aria-hidden="false" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
     <div class="login-card login-modal-card">
       <button id="closeLoginModal" class="close example-close" type="button" aria-label="Tutup login">×</button>
       <h3 id="loginModalTitle" data-i18n="loginTitle">Masuk peserta</h3>
@@ -1284,7 +1317,7 @@ const vocab=[
  {jp:"駐車場",floor:"地下2階",...nameData["駐車場"]}
 ];
 
-const texts={id:{badge:"🏬 Kuis Interaktif Jepang",title:"Toserba",homeLead:"<strong>Belajar kosakata デパート</strong> dengan cara yang lebih mudah: kenali <strong>lantai, tempat, dan barang</strong> melalui gambar. Isi username terlebih dahulu, lalu pilih <strong>Lihat Materi</strong> untuk belajar atau <strong>Mulai Kuis</strong> untuk latihan.",infoMaterial:"Materi",infoTime:"Waktu",infoMode:"Mode",timePerQuestion:"30 detik/soal",modeName:"Gambar + Lantai",startQuiz:"Mulai Kuis",studyMaterial:"Lihat Materi",changeUser:"Ganti Nama Pengguna",usernameButton:"Isi Username",usernameNote:"Isi username terlebih dahulu agar tombol Mulai Kuis dan Lihat Materi muncul.",cancelButton:"Batal",adminResult:"Halaman Hasil Admin",counterHint:"Pilih jawaban yang paling tepat.",seconds:"detik",floorHint:"Klik baris lantai untuk melihat isinya.",homeButton:"Beranda",nextButton:"Lanjut",fullMaterial:"📚 Materi Lengkap",vocabTitle:"Kosakata",studyLead:"Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata. Klik gambar untuk melihat ukuran penuh.",floorMap:"Peta Lantai",vocabTab:"Kosakata",resultBadge:"🏆 Hasil Kuis",resultTitle:"Skor Kamu",correctLabel:"Benar",wrongLabel:"Salah",totalLabel:"Total",scoreLabel:"Nilai",timeLabel:"Waktu",reviewTab:"Tinjauan Jawaban",historyTab:"Riwayat",rankingTab:"Peringkat",questionHeader:"Soal",yourAnswerHeader:"Jawaban Kamu",correctAnswerHeader:"Jawaban Benar",statusHeader:"Keterangan",groupHeader:"Grup",categoryHeader:"Kategori",scoreHeader2:"Nilai",timeHeader:"Waktu",dateHeader:"Tanggal",correctHeader:"Benar",retryButton:"Ulangi Kuis",studyAgain:"Belajar Lagi",loginTitle:"Masuk peserta",loginDesc:"Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.",usernameLabel:"Username",passwordLabel:"Password admin",groupPrompt:"Pilih kategori sebelum mulai kuis.",saveButton:"Simpan",savePdfButton:"Simpan sebagai PDF",modeImage:"Mode Gambar",modeFloor:"Mode Lantai",modeMeaning:"Mode Arti",selectAnswer:"Pilih jawaban yang paling tepat.",correct:"Benar",wrong:"Salah",emptyHistory:"Belum ada riwayat.",loading:"Memuat data...",adminMsg:"Admin dapat langsung melihat riwayat dan peringkat tanpa mengerjakan kuis.",needUser:"Nama Pengguna wajib diisi.",needGroup:"Pilih grup terlebih dahulu.",wrongPass:"Password Admin salah.",excellent:"すばらしい! Kamu sudah sangat paham materi toserba.",good:"Bagus! Tinggal ulangi beberapa materi yang masih keliru.",retry:"Ayo belajar lagi lewat menu materi, lalu coba ulangi kuis."},ja:{badge:"🏬 日本語インタラクティブクイズ",title:"デパート / 百貨店",homeLead:"<strong>デパートの語彙</strong>を画像で楽しく学びます。<strong>階・場所・売り場</strong>を確認してから、<strong>教材を見る</strong>または<strong>クイズ開始</strong>を選びましょう。",infoMaterial:"教材",infoTime:"時間",infoMode:"モード",timePerQuestion:"1問30秒",modeName:"画像＋階",startQuiz:"クイズ開始",studyMaterial:"教材を見る",changeUser:"ユーザー変更",adminResult:"管理者結果ページ",counterHint:"正しい答えを選んでください。",seconds:"秒",floorHint:"階をクリックして内容を見ます。",homeButton:"ホーム",nextButton:"次へ",fullMaterial:"📚 全教材",vocabTitle:"語彙",studyLead:"階別、または全語彙で学習できます。画像をクリックすると大きく表示されます。",floorMap:"フロア案内",vocabTab:"語彙",resultBadge:"🏆 結果",resultTitle:"あなたのスコア",correctLabel:"正解",wrongLabel:"不正解",totalLabel:"合計",scoreLabel:"点数",timeLabel:"時間",reviewTab:"答えの確認",historyTab:"履歴",rankingTab:"ランキング",questionHeader:"問題",yourAnswerHeader:"あなたの答え",correctAnswerHeader:"正解",statusHeader:"状態",groupHeader:"グループ",categoryHeader:"カテゴリー",scoreHeader2:"点数",timeHeader:"時間",dateHeader:"日付",correctHeader:"正解",retryButton:"もう一度",studyAgain:"もう一度学ぶ",loginTitle:"参加者ログイン",loginDesc:"先にユーザー名を入力してください。通常ユーザーはここでグループを選び、<strong>admin404</strong> はパスワード入力が必要です。",usernameLabel:"ユーザー名",passwordLabel:"管理者パスワード",groupPrompt:"クイズ開始前にカテゴリーを選んでください。",saveButton:"保存",savePdfButton:"PDFとして保存",modeImage:"画像モード",modeFloor:"階モード",modeMeaning:"意味モード",selectAnswer:"正しい答えを選んでください。",correct:"正解",wrong:"不正解",emptyHistory:"履歴はまだありません。",loading:"読み込み中...",adminMsg:"管理者はクイズをせずに履歴とランキングを確認できます。",needUser:"ユーザー名を入力してください。",needGroup:"グループを選んでください。",wrongPass:"管理者パスワードが違います。",excellent:"すばらしい！デパートの語彙をよく理解しています。",good:"よくできました！間違えたところを復習しましょう。",retry:"教材を見て、もう一度挑戦しましょう。"}};
+const texts={id:{badge:"🏬 Kuis Interaktif Jepang",title:"Toserba",homeLead:"<strong>Belajar kosakata デパート</strong> dengan cara yang lebih mudah: kenali <strong>lantai, tempat, dan barang</strong> melalui gambar. Pilih <strong>Lihat Materi</strong> untuk belajar dahulu, lalu gunakan <strong>Mulai Kuis</strong> untuk menguji pemahaman.",infoMaterial:"Materi",infoTime:"Waktu",infoMode:"Mode",timePerQuestion:"30 detik/soal",modeName:"Gambar + Lantai",startQuiz:"Mulai Kuis",studyMaterial:"Lihat Materi",changeUser:"Ganti Nama Pengguna",usernameButton:"Isi Username",usernameNote:"Isi username terlebih dahulu agar tombol Mulai Kuis dan Lihat Materi muncul.",cancelButton:"Batal",adminResult:"Halaman Hasil Admin",counterHint:"Pilih jawaban yang paling tepat.",seconds:"detik",floorHint:"Klik baris lantai untuk melihat isinya.",homeButton:"Beranda",nextButton:"Lanjut",fullMaterial:"📚 Materi Lengkap",vocabTitle:"Kosakata",studyLead:"Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata. Klik gambar untuk melihat ukuran penuh.",floorMap:"Peta Lantai",vocabTab:"Kosakata",resultBadge:"🏆 Hasil Kuis",resultTitle:"Skor Kamu",correctLabel:"Benar",wrongLabel:"Salah",totalLabel:"Total",scoreLabel:"Nilai",timeLabel:"Waktu",reviewTab:"Tinjauan Jawaban",historyTab:"Riwayat",rankingTab:"Peringkat",questionHeader:"Soal",yourAnswerHeader:"Jawaban Kamu",correctAnswerHeader:"Jawaban Benar",statusHeader:"Keterangan",groupHeader:"Grup",categoryHeader:"Kategori",scoreHeader2:"Nilai",timeHeader:"Waktu",dateHeader:"Tanggal",correctHeader:"Benar",retryButton:"Ulangi Kuis",studyAgain:"Belajar Lagi",loginTitle:"Masuk peserta",loginDesc:"Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.",usernameLabel:"Username",passwordLabel:"Password admin",groupPrompt:"Pilih kategori sebelum mulai kuis.",saveButton:"Simpan",savePdfButton:"Simpan sebagai PDF",modeImage:"Mode Gambar",modeFloor:"Mode Lantai",modeMeaning:"Mode Arti",selectAnswer:"Pilih jawaban yang paling tepat.",correct:"Benar",wrong:"Salah",emptyHistory:"Belum ada riwayat.",loading:"Memuat data...",adminMsg:"Admin dapat langsung melihat riwayat dan peringkat tanpa mengerjakan kuis.",needUser:"Nama Pengguna wajib diisi.",needGroup:"Pilih grup terlebih dahulu.",wrongPass:"Password Admin salah.",excellent:"すばらしい! Kamu sudah sangat paham materi toserba.",good:"Bagus! Tinggal ulangi beberapa materi yang masih keliru.",retry:"Ayo belajar lagi lewat menu materi, lalu coba ulangi kuis."},ja:{badge:"🏬 日本語インタラクティブクイズ",title:"デパート / 百貨店",homeLead:"<strong>デパートの語彙</strong>を画像で楽しく学びます。<strong>階・場所・売り場</strong>を確認してから、<strong>教材を見る</strong>または<strong>クイズ開始</strong>を選びましょう。",infoMaterial:"教材",infoTime:"時間",infoMode:"モード",timePerQuestion:"1問30秒",modeName:"画像＋階",startQuiz:"クイズ開始",studyMaterial:"教材を見る",changeUser:"ユーザー変更",adminResult:"管理者結果ページ",counterHint:"正しい答えを選んでください。",seconds:"秒",floorHint:"階をクリックして内容を見ます。",homeButton:"ホーム",nextButton:"次へ",fullMaterial:"📚 全教材",vocabTitle:"語彙",studyLead:"階別、または全語彙で学習できます。画像をクリックすると大きく表示されます。",floorMap:"フロア案内",vocabTab:"語彙",resultBadge:"🏆 結果",resultTitle:"あなたのスコア",correctLabel:"正解",wrongLabel:"不正解",totalLabel:"合計",scoreLabel:"点数",timeLabel:"時間",reviewTab:"答えの確認",historyTab:"履歴",rankingTab:"ランキング",questionHeader:"問題",yourAnswerHeader:"あなたの答え",correctAnswerHeader:"正解",statusHeader:"状態",groupHeader:"グループ",categoryHeader:"カテゴリー",scoreHeader2:"点数",timeHeader:"時間",dateHeader:"日付",correctHeader:"正解",retryButton:"もう一度",studyAgain:"もう一度学ぶ",loginTitle:"参加者ログイン",loginDesc:"先にユーザー名を入力してください。通常ユーザーはここでグループを選び、<strong>admin404</strong> はパスワード入力が必要です。",usernameLabel:"ユーザー名",passwordLabel:"管理者パスワード",groupPrompt:"クイズ開始前にカテゴリーを選んでください。",saveButton:"保存",savePdfButton:"PDFとして保存",modeImage:"画像モード",modeFloor:"階モード",modeMeaning:"意味モード",selectAnswer:"正しい答えを選んでください。",correct:"正解",wrong:"不正解",emptyHistory:"履歴はまだありません。",loading:"読み込み中...",adminMsg:"管理者はクイズをせずに履歴とランキングを確認できます。",needUser:"ユーザー名を入力してください。",needGroup:"グループを選んでください。",wrongPass:"管理者パスワードが違います。",excellent:"すばらしい！デパートの語彙をよく理解しています。",good:"よくできました！間違えたところを復習しましょう。",retry:"教材を見て、もう一度挑戦しましょう。"}};
 function t(k){return texts[lang][k]||texts.id[k]||k} function esc(s){return String(s??"").replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[m]))} function shuffle(a){return [...a].sort(()=>Math.random()-.5)} function titleId(s){s=String(s??"").trim(); if(lang==="ja"||!s)return s; return s.split(/(,\s*)/).map(part=>part.match(/,/) ? part : part.charAt(0).toUpperCase()+part.slice(1)).join("");} function fmt(sec){sec=Math.round(sec);if(lang==='ja')return sec<60?sec+"秒":Math.floor(sec/60)+"分 "+(sec%60)+"秒";return sec<60?sec+" detik":Math.floor(sec/60)+" menit "+(sec%60)+" detik"}
 function applyLang(){document.documentElement.lang=lang==="ja"?"ja":"id"; $$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n)); $$('[data-i18n-html]').forEach(el=>el.innerHTML=t(el.dataset.i18nHtml)); $$('.language-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang)); $('#cardCount').textContent=lang==='ja'?`${vocab.length}語`:`${vocab.length} kartu`; updateLoginSummary(); renderFloors(); renderVocab(); if($('#result').classList.contains('active')) refreshResultsText();}
 function show(id){$$('.screen').forEach(s=>s.classList.remove('active')); $('#'+id).classList.add('active'); $('#app').classList.toggle('top',id!=='home');}
@@ -1321,6 +1354,8 @@ function refreshResultsText(){renderReview(); renderHistoryRanking();}
 function activateResultTab(tab){$$('[data-result-tab]').forEach(b=>b.classList.toggle('active',b.dataset.resultTab===tab)); $('#reviewPanel').classList.toggle('hidden',tab!=='review'); $('#historyPanel').classList.toggle('hidden',tab!=='history'); $('#rankingPanel').classList.toggle('hidden',tab!=='ranking');}
 function updateLoginSummary(){
   if(!currentUsername){
+    document.body.classList.add('login-required');
+    $('#app')?.classList.remove('unlocked');
     $('#loginSummary')?.classList.remove('show');
     $('#usernameBox')?.classList.remove('is-complete');
     $('#startQuizBtn')?.classList.remove('show');
@@ -1328,8 +1363,10 @@ function updateLoginSummary(){
     $('#adminActions')?.classList.remove('show');
     return;
   }
+  document.body.classList.remove('login-required');
+  $('#app')?.classList.add('unlocked');
   $('#loginSummary').textContent=isAdmin?`Admin: ${currentUsername}`:`Nama Pengguna: ${currentUsername} | ${t('groupHeader')}: ${currentGroup}`;
-  $('#loginSummary').classList.add('show');
+  $('#loginSummary').classList.remove('show');
   $('#usernameBox')?.classList.add('is-complete');
   $('#startQuizBtn')?.classList.add('show');
   $('#studyBtn')?.classList.add('show');
@@ -1337,15 +1374,39 @@ function updateLoginSummary(){
   $('#adminActions').classList.toggle('show',isAdmin);
 }
 function updateLoginUI(){const name=$('#usernameInput').value.trim(); const admin=name===ADMIN_USERNAME; $('#passwordBox').classList.toggle('hidden',!admin); $('#passwordBox').hidden=!admin; $('#groupBox').classList.toggle('hidden',!name||admin); $('#groupBox').hidden=!name||admin; if(admin){currentGroup=''; $$('.group-btn').forEach(b=>b.classList.remove('active'));}}
-function openLogin(){ $('#loginModal').classList.add('show'); $('#loginModal').setAttribute('aria-hidden','false'); $('#app').classList.add('unlocked'); setTimeout(()=>$('#usernameInput').focus(),50);}
-function closeLogin(){ $('#loginModal').classList.remove('show'); $('#loginModal').setAttribute('aria-hidden','true'); $('#app').classList.add('unlocked'); }
-function submitLogin(){const name=$('#usernameInput').value.trim();const pass=$('#passwordInput').value; $('#loginError').textContent=''; if(!name){$('#loginError').textContent=t('needUser');return} if(name===ADMIN_USERNAME&&pass!==ADMIN_PASSWORD){$('#loginError').textContent=t('wrongPass');return} if(name!==ADMIN_USERNAME&&!currentGroup){$('#loginError').textContent=t('needGroup');return} currentUsername=name; isAdmin=name===ADMIN_USERNAME; closeLogin(); updateLoginSummary(); show('home');}
+function openLogin(){
+  $('#loginModal').classList.add('show');
+  $('#loginModal').setAttribute('aria-hidden','false');
+  if(!currentUsername){
+    document.body.classList.add('login-required');
+    $('#app')?.classList.remove('unlocked');
+  }else{
+    document.body.classList.remove('login-required');
+    $('#app')?.classList.add('unlocked');
+  }
+  setTimeout(()=>$('#usernameInput').focus(),50);
+}
+function closeLogin(){
+  if(!currentUsername){
+    document.body.classList.add('login-required');
+    $('#app')?.classList.remove('unlocked');
+    $('#loginModal').classList.add('show');
+    $('#loginModal').setAttribute('aria-hidden','false');
+    $('#loginError').textContent=t('needUser');
+    return;
+  }
+  $('#loginModal').classList.remove('show');
+  $('#loginModal').setAttribute('aria-hidden','true');
+  document.body.classList.remove('login-required');
+  $('#app').classList.add('unlocked');
+}
+function submitLogin(){const name=$('#usernameInput').value.trim();const pass=$('#passwordInput').value; $('#loginError').textContent=''; if(!name){$('#loginError').textContent=t('needUser');return} if(name===ADMIN_USERNAME&&pass!==ADMIN_PASSWORD){$('#loginError').textContent=t('wrongPass');return} if(name!==ADMIN_USERNAME&&!currentGroup){$('#loginError').textContent=t('needGroup');return} currentUsername=name; isAdmin=name===ADMIN_USERNAME; document.body.classList.remove('login-required'); $('#app').classList.add('unlocked'); closeLogin(); updateLoginSummary(); show('home');}
 
 $('#loginSubmitBtn').onclick=submitLogin; $('#openLoginBtn').onclick=openLogin; $('#closeLoginModal').onclick=closeLogin; $('#cancelLoginBtn').onclick=closeLogin; $('#usernameInput').addEventListener('input',updateLoginUI); $('#usernameInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitLogin()}); $('#passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitLogin()}); $$('.group-btn').forEach(b=>b.onclick=()=>{currentGroup=b.dataset.group; $$('.group-btn').forEach(x=>x.classList.toggle('active',x===b)); $('#loginError').textContent='';});
 $$('.language-btn').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;applyLang()}); $('#startQuizBtn').onclick=startQuiz; $('#studyStartBtn').onclick=startQuiz; $('#studyBtn').onclick=()=>{if(!currentUsername){openLogin();return;} show('study');}; $('#homeBtn2').onclick=()=>show('home'); $('#backHomeBtn').onclick=()=>{clearInterval(timer);show('home')}; $('#resultHomeBtn').onclick=()=>show('home'); $('#reviewStudyBtn').onclick=()=>show('study'); $('#retryBtn').onclick=startQuiz; $('#openLoginAgainBtn').onclick=openLogin; $('#adminResultBtn').onclick=showAdminResults; $('#savePdfBtn').onclick=saveAdminPdf; $('#nextBtn').onclick=()=>{idx++; idx>=questions.length?finish():renderQuestion()}; document.addEventListener('click',e=>{const opt=e.target.closest('.option'); if(opt)selectOption(opt.dataset.answer,false); const img=e.target.closest('img'); if(img&&($('#app').contains(img)||$('#imageModal').contains(img))&&!$('#imageModal').contains(img)) openImage(img.currentSrc||img.src,img.alt); const row=e.target.closest('#studyFloorList .floor-row'); if(row){const f=floors.find(x=>x.floor===row.dataset.floor); if(f){renderFloorDetail(f); setTimeout(()=>{const target=document.getElementById('floorDetailCard'); if(target) target.scrollIntoView({behavior:'smooth',block:'start'});},80);}}}); $('#closeImageModal').onclick=closeImage; $('#imageModal').addEventListener('click',e=>{if(e.target.id==='imageModal')closeImage()}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeImage();}); $$('.tab[data-tab]').forEach(tbtn=>tbtn.onclick=()=>{$$('.tab[data-tab]').forEach(x=>x.classList.remove('active'));tbtn.classList.add('active');$('#studyFloors').classList.toggle('hidden',tbtn.dataset.tab!=='floors');$('#studyVocab').classList.toggle('hidden',tbtn.dataset.tab!=='vocab');}); $$('[data-result-tab]').forEach(b=>b.onclick=()=>activateResultTab(b.dataset.resultTab));
 // Perlindungan dasar: blok klik kanan dan shortcut inspeksi umum. Ini tidak bisa 100% mencegah developer tools, tetapi mengurangi akses biasa.
 document.addEventListener('contextmenu',e=>e.preventDefault()); document.addEventListener('keydown',e=>{const k=e.key.toLowerCase(); if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(k))||(e.ctrlKey&&['u','s'].includes(k))){e.preventDefault(); e.stopPropagation();}});
-renderFloors(); renderVocab(); applyLang(); show('home');
+renderFloors(); renderVocab(); applyLang(); show('home'); openLogin();
 </script>
 </body>
 </html>
