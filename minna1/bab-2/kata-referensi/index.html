@@ -1719,17 +1719,322 @@
 
     /* ===== END FINAL USERNAME STYLE MATCH HTML ACUAN ===== */
 
+
+
+    /* ===== REVISI FINAL: USERNAME, BAHASA HOMEPAGE, DAN GAMBAR MATERI ===== */
+    #startScreen .panel.hero {
+      position: relative !important;
+      padding-top: clamp(78px, 8vw, 92px) !important;
+    }
+
+    #startScreen .language-switch {
+      position: absolute !important;
+      top: 18px !important;
+      left: 18px !important;
+      right: auto !important;
+      transform: none !important;
+      z-index: 6 !important;
+      width: max-content !important;
+      max-width: calc(100% - 36px) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 6px !important;
+      padding: 6px !important;
+      border-radius: var(--radius-pill) !important;
+      background: rgba(255, 255, 255, 0.94) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      box-shadow: var(--shadow-tiny) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+    }
+
+    #startScreen .language-switch button {
+      min-height: 34px !important;
+      padding: 7px 12px !important;
+      border-radius: var(--radius-pill) !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      white-space: nowrap !important;
+    }
+
+    .login-area.username-box.is-complete {
+      display: none !important;
+    }
+
+    .login-area.username-box.is-complete + .actions,
+    #startScreen .actions {
+      margin-top: 0 !important;
+    }
+
+    #materialScreen .material-vocab-card {
+      align-items: stretch !important;
+      overflow: visible !important;
+    }
+
+    #materialScreen .material-vocab-image {
+      width: 160px !important;
+      min-height: 150px !important;
+      height: auto !important;
+      aspect-ratio: 1 / 1 !important;
+      overflow: visible !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 8px !important;
+      background: #fff !important;
+    }
+
+    #materialScreen .material-vocab-image img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      padding: 0 !important;
+      display: block !important;
+    }
+
+    #materialScreen .greeting-figure {
+      min-height: 300px !important;
+      height: auto !important;
+      overflow: visible !important;
+      padding: 10px !important;
+      display: grid !important;
+      place-items: center !important;
+    }
+
+    #materialScreen .greeting-figure img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 280px !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      padding: 0 !important;
+      display: block !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .panel.hero {
+        padding-top: 82px !important;
+      }
+
+      #startScreen .language-switch {
+        top: 14px !important;
+        left: 14px !important;
+        right: auto !important;
+        transform: none !important;
+        max-width: calc(100% - 28px) !important;
+        padding: 5px !important;
+        gap: 5px !important;
+      }
+
+      #startScreen .language-switch button {
+        min-height: 32px !important;
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+      }
+
+      #materialScreen .material-vocab-card {
+        grid-template-columns: 128px minmax(0, 1fr) !important;
+        align-items: center !important;
+      }
+
+      #materialScreen .material-vocab-image {
+        width: 128px !important;
+        min-height: 128px !important;
+        aspect-ratio: 1 / 1 !important;
+      }
+
+      #materialScreen .greeting-figure {
+        min-height: 260px !important;
+      }
+
+      #materialScreen .greeting-figure img {
+        max-height: 240px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      #startScreen .panel.hero {
+        padding-top: 78px !important;
+      }
+
+      #startScreen .language-switch {
+        top: 12px !important;
+        left: 12px !important;
+        max-width: calc(100% - 24px) !important;
+      }
+
+      #startScreen .language-switch button {
+        min-height: 30px !important;
+        padding: 6px 9px !important;
+        font-size: 11.5px !important;
+      }
+
+      #materialScreen .material-vocab-card {
+        grid-template-columns: 1fr !important;
+      }
+
+      #materialScreen .material-vocab-image {
+        width: min(100%, 240px) !important;
+        min-height: 190px !important;
+        aspect-ratio: 4 / 3 !important;
+        margin: 0 auto !important;
+      }
+
+      #materialScreen .greeting-figure {
+        min-height: 240px !important;
+      }
+
+      #materialScreen .greeting-figure img {
+        max-height: 220px !important;
+      }
+    }
+    /* ===== END REVISI FINAL ===== */
+
+  
+
+    /* ===== FIX FINAL: gambar materi tidak kepotong / tidak keluar kotak ===== */
+    #materialScreen .material-vocab-grid {
+      align-items: stretch !important;
+    }
+
+    #materialScreen .material-vocab-card {
+      grid-template-columns: minmax(132px, 170px) minmax(0, 1fr) !important;
+      min-height: 194px !important;
+      align-items: center !important;
+      overflow: hidden !important;
+      padding: 16px !important;
+      gap: 16px !important;
+    }
+
+    #materialScreen .material-vocab-image {
+      width: 100% !important;
+      max-width: 170px !important;
+      height: 170px !important;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+      align-self: center !important;
+      justify-self: center !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+      padding: 8px !important;
+      border-radius: 20px !important;
+      background: #fff !important;
+      border: 1px solid rgba(124, 111, 246, 0.14) !important;
+    }
+
+    #materialScreen .material-vocab-image img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      display: block !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    #materialScreen .material-vocab-content strong {
+      font-size: clamp(20px, 2vw, 25px) !important;
+      line-height: 1.22 !important;
+      word-break: keep-all !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    #materialScreen .greeting-card {
+      overflow: hidden !important;
+    }
+
+    #materialScreen .greeting-figure {
+      height: 300px !important;
+      min-height: 300px !important;
+      overflow: hidden !important;
+      padding: 10px !important;
+      display: grid !important;
+      place-items: center !important;
+    }
+
+    #materialScreen .greeting-figure img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: block !important;
+    }
+
+    @media (max-width: 720px) {
+      #materialScreen .material-vocab-card {
+        grid-template-columns: 132px minmax(0, 1fr) !important;
+        min-height: 158px !important;
+        padding: 13px !important;
+        gap: 12px !important;
+      }
+
+      #materialScreen .material-vocab-image {
+        width: 132px !important;
+        max-width: 132px !important;
+        height: 132px !important;
+        padding: 7px !important;
+      }
+
+      #materialScreen .material-vocab-content strong {
+        font-size: clamp(18px, 5vw, 22px) !important;
+        line-height: 1.2 !important;
+      }
+
+      #materialScreen .greeting-figure {
+        height: 250px !important;
+        min-height: 250px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      #materialScreen .material-vocab-card {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+        text-align: center !important;
+        padding: 14px !important;
+      }
+
+      #materialScreen .material-vocab-image {
+        width: min(100%, 240px) !important;
+        max-width: 240px !important;
+        height: 190px !important;
+        margin: 0 auto !important;
+      }
+
+      #materialScreen .material-vocab-content {
+        text-align: center !important;
+      }
+
+      #materialScreen .greeting-figure {
+        height: 230px !important;
+        min-height: 230px !important;
+      }
+    }
+    /* ===== END FIX FINAL GAMBAR MATERI ===== */
+
   </style>
 </head>
 <body>
-  <div class="language-switch" aria-label="Language selector">
-    <button type="button" data-lang-btn="id">Indonesia</button>
-    <button type="button" data-lang-btn="ja">日本語</button>
-  </div>
-
   <main class="app-shell is-locked">
     <section id="startScreen" class="screen active">
       <div class="panel hero">
+      <div class="language-switch" aria-label="Language selector">
+        <button type="button" data-lang-btn="id">Indonesia</button>
+        <button type="button" data-lang-btn="ja">日本語</button>
+      </div>
         <span class="badge" data-i18n="heroBadge">日本語クイズ • Kuis Interaktif</span>
         <h1 data-i18n="heroTitle">Nama Keluarga Jepang dan Salam</h1>
         <p class="hero-text" data-i18n-html="heroText">Kenali nama keluarga yang sering digunakan di Jepang dan pelajari ungkapan sopan saat berkenalan. Masukkan nama, pilih grup, lalu jawab soal acak untuk melihat hasil latihan.</p>
@@ -2345,6 +2650,7 @@
     const appShell = document.querySelector(".app-shell");
     const loginSummary = document.getElementById("loginSummary");
     const loginNote = document.getElementById("loginNote");
+    const loginArea = document.querySelector(".login-area.username-box");
     const loginModal = document.getElementById("loginModal");
     const usernameInput = document.getElementById("usernameInput");
     const passwordInput = document.getElementById("passwordInput");
@@ -2566,19 +2872,22 @@
       const canShowMainActions = Boolean(currentUsername);
       startQuizHomeBtn.classList.toggle("show", canShowMainActions);
       openMaterialHomeBtn.classList.toggle("show", canShowMainActions);
+
+      if (loginArea) {
+        loginArea.classList.toggle("is-complete", canShowMainActions);
+      }
+
       if (!currentUsername) {
         loginSummary.classList.remove("show");
         loginSummary.textContent = "";
         loginNote.textContent = t("loginNote");
         return;
       }
-      loginSummary.classList.add("show");
-      loginSummary.textContent = isAdmin
-        ? `${t("adminLabel")}: ${currentUsername}`
-        : `${t("participantLabel")}: ${currentUsername} | ${t("groupLabel")}: ${currentGroup || "-"}`;
-      loginNote.textContent = isAdmin
-        ? t("adminResultMessage")
-        : `${t("participantLabel")}: ${currentUsername}. ${t("groupLabel")}: ${currentGroup || "-"}.`;
+
+      // Setelah username tersimpan, area username disembunyikan agar homepage hanya menampilkan tombol utama.
+      loginSummary.classList.remove("show");
+      loginSummary.textContent = "";
+      loginNote.textContent = "";
     }
 
     function openLoginModalBox() {
