@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kuis Interaktif Hari Libur Jepang</title>
-  <link rel="dns-prefetch" href="https://i.ibb.co" />
-  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     :root {
       --font-main: "Nunito Sans", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -1573,6 +1573,190 @@
         font-size: 12px;
       }
     }
+
+    /* ===== Revisi akhir: tombol login, materi, popup gambar, dan mobile ===== */
+    .home-panel .login-summary {
+      display: none !important;
+    }
+
+    #startBtn.hidden,
+    #materialBtn.hidden,
+    #changeUserBtn.hidden {
+      display: none !important;
+    }
+
+    #materialScreen .panel {
+      max-height: calc(100svh - 40px);
+      overflow-y: auto;
+      scrollbar-gutter: stable;
+    }
+
+    .material-grid {
+      align-items: stretch;
+    }
+
+    .material-card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .material-card img,
+    .holiday-image {
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .image-zoom-modal {
+      padding: clamp(12px, 3vw, 28px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-zoom-content {
+      width: min(980px, 100%);
+      max-height: calc(100svh - 24px);
+      padding: 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 0;
+      border-radius: var(--radius-xl);
+    }
+
+    .image-zoom-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.98);
+      border-bottom: 1px solid rgba(124, 111, 246, 0.16);
+    }
+
+    .image-zoom-caption {
+      flex: 1 1 auto;
+      min-width: 0;
+      margin: 0;
+      color: var(--heading);
+      font-size: var(--fs-sm);
+      font-weight: 900;
+      text-align: left;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .image-zoom-close {
+      position: static;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-pill);
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      box-shadow: 0 10px 20px rgba(124, 111, 246, 0.24);
+    }
+
+    .image-zoom-body {
+      min-height: 0;
+      overflow: auto;
+      padding: 12px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+    }
+
+    .image-zoom-content img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      max-height: calc(100svh - 108px);
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    @media (max-width: 900px) {
+      #materialScreen .panel {
+        max-height: calc(100svh - 24px);
+      }
+
+      .image-zoom-content {
+        max-height: calc(100svh - 20px);
+        border-radius: 24px;
+      }
+
+      .image-zoom-content img {
+        max-height: calc(100svh - 104px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      #materialScreen .panel {
+        max-height: calc(100svh - 20px);
+      }
+
+      .image-zoom-modal {
+        padding: 8px;
+      }
+
+      .image-zoom-head {
+        padding: 10px;
+        gap: 10px;
+      }
+
+      .image-zoom-caption {
+        font-size: 12.5px;
+        line-height: 1.32;
+      }
+
+      .image-zoom-close {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 22px;
+      }
+
+      .image-zoom-body {
+        padding: 8px;
+      }
+
+      .image-zoom-content img {
+        max-height: calc(100svh - 94px);
+        border-radius: 14px;
+      }
+
+      .material-card {
+        grid-template-columns: 92px minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .image-zoom-content {
+        border-radius: 20px;
+      }
+
+      .image-zoom-head {
+        padding: 9px;
+      }
+
+      .image-zoom-caption {
+        font-size: 12px;
+      }
+
+      .image-zoom-content img {
+        max-height: calc(100svh - 88px);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1626,9 +1810,9 @@
             </button>
           </div>
 
-          <button class="primary-btn" id="startBtn" data-i18n="startQuiz">Mulai Kuis</button>
-          <button class="ghost-btn" id="materialBtn" data-i18n="viewMaterial">Lihat Materi</button>
-          <button class="ghost-btn" id="changeUserBtn" data-i18n="changeUser">Ganti Username</button>
+          <button class="primary-btn hidden" id="startBtn" data-i18n="startQuiz">Mulai Kuis</button>
+          <button class="ghost-btn hidden" id="materialBtn" data-i18n="viewMaterial">Lihat Materi</button>
+          <button class="ghost-btn hidden" id="changeUserBtn" data-i18n="changeUser">Ganti Username</button>
           <button class="ghost-btn hidden" id="adminResultBtn" data-i18n="adminResult">Halaman Hasil Admin</button>
         </div>
       </div>
@@ -1805,9 +1989,13 @@
 
   <div class="image-zoom-modal" id="imageZoomModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="image-zoom-content">
-      <button class="image-zoom-close" id="imageZoomClose" type="button" aria-label="Tutup gambar">×</button>
-      <img id="imageZoomImg" src="" alt="" />
-      <p class="image-zoom-caption" id="imageZoomCaption"></p>
+      <div class="image-zoom-head">
+        <p class="image-zoom-caption" id="imageZoomCaption"></p>
+        <button class="image-zoom-close" id="imageZoomClose" type="button" aria-label="Tutup gambar">×</button>
+      </div>
+      <div class="image-zoom-body">
+        <img id="imageZoomImg" src="" alt="" />
+      </div>
     </div>
   </div>
 
@@ -2027,17 +2215,17 @@
         date: "1 Januari",
         dateJp: "1月1日",
         dateReading: "いちがつ ついたち",
-        image: "https://i.ibb.co/nNK223nR/1-Tahun-Baru.png"
+        image: "https://iili.io/C56mTMu.png"
       },
       {
         no: 2,
         jp: "成人の日",
         reading: "せいじんのひ",
-        id: "Hari Perayaan Menjadi Dewasa (20 tahun)",
+        id: "Hari Perayaan Menjadi Dewasa",
         date: "Senin ke-2 Januari",
         dateJp: "1月第2月曜日",
         dateReading: "いちがつ だいに げつようび",
-        image: "https://i.ibb.co/Y4bBLkFk/2-Hari-Perayaan-Menjadi-Dewasa.png"
+        image: "https://iili.io/C56mu6b.png"
       },
       {
         no: 3,
@@ -2047,17 +2235,17 @@
         date: "11 Februari",
         dateJp: "2月11日",
         dateReading: "にがつ じゅういちにち",
-        image: "https://i.ibb.co/bjkQLC5q/3-Hari-Pembangunan-Nasional.png"
+        image: "https://iili.io/C56mRFj.png"
       },
       {
         no: 4,
         jp: "春分の日",
         reading: "しゅんぶんのひ",
-        id: "Hari Equinox pada Musim Semi",
+        id: "Hari Equinox Musim Semi",
         date: "20 Maret",
         dateJp: "3月20日",
         dateReading: "さんがつ はつか",
-        image: "https://i.ibb.co/0V966bLh/4-Hari-Equinox-Musim-Semi.png"
+        image: "https://iili.io/C56m5cx.png"
       },
       {
         no: 5,
@@ -2067,7 +2255,7 @@
         date: "29 April",
         dateJp: "4月29日",
         dateReading: "しがつ にじゅうくにち",
-        image: "https://i.ibb.co/BHJdXx7j/5-Hari-Showa.png"
+        image: "https://iili.io/C56mXcv.png"
       },
       {
         no: 6,
@@ -2077,7 +2265,7 @@
         date: "3 Mei",
         dateJp: "5月3日",
         dateReading: "ごがつ みっか",
-        image: "https://i.ibb.co/9km1QJ6k/6-Hari-Peringatan-Konstitusi-Batch-kecil.png"
+        image: "https://iili.io/C56mw9p.png"
       },
       {
         no: 7,
@@ -2087,7 +2275,7 @@
         date: "4 Mei",
         dateJp: "5月4日",
         dateReading: "ごがつ よっか",
-        image: "https://i.ibb.co/SX9h6Hyy/7-Hari-Penghijauan.png"
+        image: "https://iili.io/C56mSPs.png"
       },
       {
         no: 8,
@@ -2097,7 +2285,7 @@
         date: "5 Mei",
         dateJp: "5月5日",
         dateReading: "ごがつ いつか",
-        image: "https://i.ibb.co/MxygjJR7/8-Hari-Anak.png"
+        image: "https://iili.io/C56miR2.png"
       },
       {
         no: 9,
@@ -2107,27 +2295,27 @@
         date: "Senin ke-3 Juli",
         dateJp: "7月第3月曜日",
         dateReading: "しちがつ だいさん げつようび",
-        image: "https://i.ibb.co/zhGqbgNy/9-Hari-Bahari.png"
+        image: "https://iili.io/C56mmKb.png"
       },
       {
         no: 10,
         jp: "敬老の日",
         reading: "けいろうのひ",
-        id: "Hari Hormat Kepada Orang Tua",
+        id: "Hari Hormat kepada Orang Tua",
         date: "Senin ke-3 September",
         dateJp: "9月第3月曜日",
         dateReading: "くがつ だいさん げつようび",
-        image: "https://i.ibb.co/G34CC8Q9/10-Hari-Hormat-kepada-Orang-Tua.png"
+        image: "https://iili.io/C56myUx.png"
       },
       {
         no: 11,
         jp: "秋分の日",
         reading: "しゅうぶんのひ",
-        id: "Hari Equinox pada Musim Gugur",
+        id: "Hari Equinox Musim Gugur",
         date: "23 September",
         dateJp: "9月23日",
         dateReading: "くがつ にじゅうさんにち",
-        image: "https://i.ibb.co/3yYphfNb/11-Hari-Equinox-Musim-Gugur.png"
+        image: "https://iili.io/C56pdOB.png"
       },
       {
         no: 12,
@@ -2137,7 +2325,7 @@
         date: "Senin ke-2 Oktober",
         dateJp: "10月第2月曜日",
         dateReading: "じゅうがつ だいに げつようび",
-        image: "https://i.ibb.co/99xKjLHP/12-Hari-Kesehatan-dan-Olahraga.png"
+        image: "https://iili.io/C56pBfa.png"
       },
       {
         no: 13,
@@ -2147,17 +2335,17 @@
         date: "3 November",
         dateJp: "11月3日",
         dateReading: "じゅういちがつ みっか",
-        image: "https://i.ibb.co/WWdYqxQc/13-Hari-Kebudayaan.png"
+        image: "https://iili.io/C56pzRp.png"
       },
       {
         no: 14,
         jp: "勤労感謝の日",
         reading: "きんろうかんしゃのひ",
-        id: "Hari Bersyukur untuk Pekerjaan",
+        id: "Hari Bersyukur untuk Pekerja",
         date: "23 November",
         dateJp: "11月23日",
         dateReading: "じゅういちがつ にじゅうさんにち",
-        image: "https://i.ibb.co/7dhVZGDr/14-Hari-Bersyukur-untuk-Pekerjaan.png"
+        image: "https://iili.io/C56pRWX.png"
       },
       {
         no: 15,
@@ -2167,7 +2355,7 @@
         date: "23 Desember",
         dateJp: "12月23日",
         dateReading: "じゅうにがつ にじゅうさんにち",
-        image: "https://i.ibb.co/Y7k1WCmS/15-Hari-Ulang-Tahun-Kaisar.png"
+        image: "https://iili.io/C56pYfs.png"
       }
     ];
 
@@ -2424,21 +2612,26 @@
     }
 
     function updateLoginSummary() {
+      const isReady = Boolean(state.username);
+      els.startBtn.classList.toggle("hidden", !isReady);
+      els.materialBtn.classList.toggle("hidden", !isReady);
+      if (els.changeUserBtn) els.changeUserBtn.classList.add("hidden");
+
       if (!state.username) {
-        els.loginSummary.textContent = t("loginSummaryEmpty");
+        els.loginSummary.textContent = "";
         els.participantName.textContent = "";
         els.adminResultBtn.classList.add("hidden");
         return;
       }
 
       if (state.isAdmin) {
-        els.loginSummary.textContent = t("loginSummaryAdmin", { name: state.username });
+        els.loginSummary.textContent = "";
         els.participantName.textContent = t("resultParticipantAdmin", { name: state.username });
         els.adminResultBtn.classList.remove("hidden");
         return;
       }
 
-      els.loginSummary.textContent = t("loginSummaryUser", { name: state.username, group: state.group });
+      els.loginSummary.textContent = "";
       els.participantName.textContent = t("resultParticipantUser", { name: state.username, group: state.group });
       els.adminResultBtn.classList.add("hidden");
     }
