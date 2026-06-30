@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flashcard Kosakata Jepang - Bab 6</title>
-  <link rel="dns-prefetch" href="https://i.ibb.co" />
-  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -473,19 +473,22 @@
 
     .group-box {
       width: min(540px, 100%);
-      margin: 0 auto 16px;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.56);
-      border: 1px solid rgba(124, 111, 246, 0.14);
-      box-shadow: var(--shadow-soft);
+      margin: 14px auto 16px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .login-modal-card .group-box {
       width: 100%;
-      margin: 0 0 14px;
-      background: rgba(255, 255, 255, 0.68);
-      box-shadow: var(--shadow-tiny);
+      margin: 14px 0 14px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .group-box[hidden] {
@@ -493,39 +496,42 @@
     }
 
     .group-box p {
-      margin: 0 0 10px;
-      color: #505a70;
+      margin: 0;
+      color: var(--heading);
       font-size: var(--fs-small);
-      font-weight: 650;
-      text-align: center;
+      font-weight: 900;
+      text-align: left;
+      line-height: 1.35;
     }
 
     .group-options {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .group-btn {
-      min-height: 42px;
-      padding: 9px 8px;
-      border: 1px solid rgba(124, 111, 246, 0.18);
-      border-radius: 14px;
-      color: #514a9e;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow-tiny);
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid rgba(124, 111, 246, 0.2);
+      border-radius: var(--radius-pill);
+      color: var(--primary-deep);
+      background: var(--primary-soft);
+      box-shadow: none;
       font-size: var(--fs-small);
-      font-weight: 700;
-      line-height: 1.2;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+      font-weight: 900;
+      line-height: 1.15;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .group-btn:hover,
     .group-btn.active {
       transform: translateY(-1px);
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #9d8dfd);
-      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.2);
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      border-color: transparent;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22);
     }
 
     .btn {
@@ -1743,6 +1749,59 @@
 
     .result-actions {
       margin-top: 18px;
+    }
+
+
+
+    .note-btn {
+      color: #6d46e8;
+      background: rgba(124, 111, 246, 0.12);
+    }
+
+    .note-modal-card {
+      max-height: min(82vh, 520px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .note-modal-content {
+      display: grid;
+      gap: 10px;
+      overflow-y: auto;
+      padding-right: 4px;
+      color: var(--text);
+      font-size: var(--fs-base);
+      line-height: 1.58;
+    }
+
+    .note-modal-content p {
+      margin: 0;
+    }
+
+    .note-modal-content .note-jp {
+      color: #2f2d2c;
+      font-family: var(--font-jp);
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 760;
+      line-height: 1.28;
+    }
+
+    .note-modal-content .note-reading,
+    .note-modal-content .note-meaning {
+      color: var(--muted);
+      font-size: var(--fs-small);
+      font-weight: 650;
+      line-height: 1.45;
+    }
+
+    .note-modal-content .note-body {
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      background: rgba(124, 111, 246, 0.08);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      color: var(--text);
+      font-weight: 500;
     }
 
     @keyframes fadeIn {
@@ -3743,6 +3802,815 @@
       }
     }
 
+
+    /* ===== Fitur Lihat Materi + popup gambar responsif ===== */
+    #materialBtn:not(.show) {
+      display: none;
+    }
+
+    #materialBtn.show {
+      display: inline-flex;
+    }
+
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      letter-spacing: 0;
+      color: #5b3fd7;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(246, 243, 255, 0.72));
+      border: 1px solid rgba(146, 112, 255, 0.34);
+      box-shadow: 0 14px 30px rgba(144, 96, 255, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .material-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 85;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(20, 24, 38, 0.52);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .material-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .material-modal-card {
+      width: min(940px, 96vw);
+      max-height: min(88svh, 820px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+        rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.26);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .material-modal.show .material-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .material-modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 14px;
+      padding: 20px 22px 16px;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid rgba(124, 111, 246, 0.13);
+    }
+
+    .material-modal-head h3 {
+      margin: 9px 0 6px;
+      color: #514a9e;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 760;
+      line-height: 1.2;
+    }
+
+    .material-modal-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      line-height: 1.45;
+    }
+
+    .material-close,
+    .image-modal-close {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 750;
+      line-height: 1;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .material-close:hover,
+    .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .material-modal-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 18px 22px 22px;
+      scrollbar-width: thin;
+    }
+
+    .material-group {
+      display: grid;
+      gap: 14px;
+    }
+
+    .material-group-title {
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(17px, 2.2vw, 21px);
+      font-weight: 760;
+      line-height: 1.25;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .material-item {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 13px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-image-button {
+      width: 96px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 16px;
+      background: rgba(124, 111, 246, 0.07);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .material-image-button img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      padding: 6px;
+      background: transparent;
+    }
+
+    .material-text {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .material-number {
+      width: max-content;
+      max-width: 100%;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.11);
+      font-size: 11.5px;
+      font-weight: 760;
+      line-height: 1.1;
+    }
+
+    .material-japanese {
+      color: #26334e;
+      font-family: var(--font-jp);
+      font-size: clamp(17px, 2vw, 20px);
+      font-weight: 760;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      color: #6b7280;
+      font-size: 12.5px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-meaning {
+      color: var(--text);
+      font-size: var(--fs-small);
+      font-weight: 650;
+      line-height: 1.38;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal {
+      overflow-y: auto;
+      padding: 18px;
+      align-items: center;
+    }
+
+    .image-modal-card {
+      width: min(780px, 96vw) !important;
+      max-height: calc(100svh - 36px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      border-radius: var(--radius-xl) !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      right: auto !important;
+      align-self: flex-end !important;
+      flex: 0 0 auto !important;
+      z-index: 3 !important;
+      margin: 12px 12px 0 auto !important;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 220px !important;
+      max-height: none !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 10px 14px 8px !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 0 !important;
+      padding: 10px 14px 14px !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      border-top: 1px solid rgba(124, 111, 246, 0.1) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal {
+        padding: 10px !important;
+        align-items: stretch !important;
+      }
+
+      .material-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .material-modal-head {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 10px !important;
+        padding: 16px 14px 13px !important;
+      }
+
+      .material-modal-head h3 {
+        font-size: 21px !important;
+        margin: 8px 0 5px !important;
+      }
+
+      .material-modal-head p {
+        font-size: 12.5px !important;
+      }
+
+      .material-close,
+      .image-modal-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+      }
+
+      .material-modal-body {
+        padding: 14px !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 82px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-image-button {
+        width: 82px !important;
+        height: 72px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-japanese {
+        font-size: 17px !important;
+      }
+
+      .material-reading,
+      .material-meaning {
+        font-size: 12px !important;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+        align-items: stretch !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-close {
+        margin: 10px 10px 0 auto !important;
+      }
+
+      .image-modal-body {
+        min-height: 180px !important;
+        padding: 8px 10px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 144px) !important;
+      }
+
+      .image-modal-caption {
+        padding: 9px 12px 12px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-modal-body {
+        padding: 12px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 76px minmax(0, 1fr) !important;
+      }
+
+      .material-image-button {
+        width: 76px !important;
+        height: 68px !important;
+      }
+
+      .material-number {
+        font-size: 11px !important;
+      }
+    }
+
+
+
+    /* ===== Modal Lihat Materi Final ===== */
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      color: #5b3fd7;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(246, 243, 255, 0.78));
+      border: 1px solid rgba(146, 112, 255, 0.36);
+      box-shadow: 0 14px 30px rgba(144, 96, 255, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    .material-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 85;
+      display: grid;
+      place-items: center;
+      padding: clamp(10px, 2.6vw, 20px);
+      background: rgba(20, 24, 38, 0.52);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .material-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .material-modal-card {
+      width: min(1020px, 96vw);
+      max-height: min(90svh, 860px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.36), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.34), transparent 38%),
+        rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.26);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .material-modal.show .material-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .material-modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: start;
+      padding: clamp(16px, 2.6vw, 24px) clamp(16px, 2.8vw, 26px) clamp(14px, 2.2vw, 18px);
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid rgba(124, 111, 246, 0.13);
+    }
+
+    .material-modal-head h3 {
+      margin: 9px 0 6px;
+      color: #514a9e;
+      font-size: clamp(21px, 3vw, 28px);
+      font-weight: 780;
+      line-height: 1.18;
+    }
+
+    .material-modal-head p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      line-height: 1.5;
+      font-weight: 550;
+    }
+
+    .material-close {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      min-height: 46px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .material-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .material-list {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: clamp(14px, 2.4vw, 22px);
+      display: grid;
+      gap: 18px;
+      scrollbar-width: thin;
+    }
+
+    .material-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .material-summary-card {
+      min-height: 88px;
+      display: grid;
+      align-content: center;
+      gap: 8px;
+      padding: 15px 16px;
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at top left, rgba(124, 111, 246, 0.15), transparent 42%);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-summary-card span {
+      color: var(--muted);
+      font-size: var(--fs-small);
+      font-weight: 720;
+      line-height: 1.25;
+    }
+
+    .material-summary-card strong {
+      color: #413f73;
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 800;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-group {
+      display: grid;
+      gap: 13px;
+      padding: clamp(13px, 2vw, 18px);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(124, 111, 246, 0.13);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-group-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .material-group-head h4 {
+      margin: 0 0 5px;
+      color: var(--heading);
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .material-group-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      font-weight: 550;
+      line-height: 1.48;
+    }
+
+    .material-group-head > span {
+      min-width: 74px;
+      padding: 7px 10px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.15;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .material-group-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .material-item {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 13px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-thumb {
+      width: 96px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 16px;
+      background: rgba(124, 111, 246, 0.07);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      padding: 6px;
+      background: transparent;
+    }
+
+    .material-info {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .material-number {
+      width: max-content;
+      max-width: 100%;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.11);
+      font-size: 11.5px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .material-jp {
+      color: #26334e;
+      font-family: var(--font-jp);
+      font-size: clamp(17px, 2vw, 21px);
+      font-weight: 800;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      color: #6b7280;
+      font-size: 12.5px;
+      font-weight: 680;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-meaning {
+      color: var(--text);
+      font-size: var(--fs-small);
+      font-weight: 680;
+      line-height: 1.38;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 820px) {
+      .material-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .material-group-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal {
+        padding: 10px !important;
+        align-items: stretch !important;
+      }
+
+      .material-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .material-modal-head {
+        gap: 10px !important;
+        padding: 15px 13px 12px !important;
+      }
+
+      .material-modal-head h3 {
+        font-size: 21px !important;
+        margin: 8px 0 5px !important;
+      }
+
+      .material-modal-head p {
+        font-size: 12.5px !important;
+      }
+
+      .material-list {
+        padding: 12px !important;
+        gap: 12px !important;
+      }
+
+      .material-group {
+        border-radius: 20px !important;
+        padding: 12px !important;
+      }
+
+      .material-group-head {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+      }
+
+      .material-group-head > span {
+        width: max-content;
+      }
+
+      .material-item {
+        grid-template-columns: 82px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-thumb {
+        width: 82px !important;
+        height: 72px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-jp {
+        font-size: 17px !important;
+      }
+
+      .material-reading,
+      .material-meaning {
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-summary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .material-summary-card {
+        min-height: 76px;
+        padding: 12px;
+        border-radius: 17px;
+      }
+
+      .material-summary-card strong {
+        font-size: 25px;
+      }
+
+      .material-item {
+        grid-template-columns: 76px minmax(0, 1fr) !important;
+      }
+
+      .material-thumb {
+        width: 76px !important;
+        height: 68px !important;
+      }
+
+      .material-number {
+        font-size: 11px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -3800,6 +4668,7 @@
 
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
+            <button id="materialBtn" class="btn material-btn" type="button" data-i18n="materialButton">Lihat Materi</button>
             <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
         </div>
@@ -3983,8 +4852,11 @@
 
         <div id="groupBox" class="group-box" hidden>
           <p data-i18n="groupPrompt">Pilih kategori sebelum mulai kuis.</p>
-          <div class="group-options" aria-label="Kategori Bab 6" data-i18n-aria-label="groupOptionsLabel">
-            <button class="group-btn active" data-group="Bab 6" type="button">Bab 6</button>
+          <div class="group-options" aria-label="Pilihan Kategori" data-i18n-aria-label="groupOptionsLabel">
+            <button class="group-btn" data-group="Badung" type="button">Badung</button>
+            <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
+            <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
+            <button class="group-btn" data-group="Umum" type="button">Umum</button>
           </div>
         </div>
 
@@ -4002,6 +4874,31 @@
         <button id="closeExampleModal" class="example-close" type="button" aria-label="Tutup contoh" data-i18n-aria-label="closeExampleLabel">×</button>
         <h3 id="exampleModalTitle" data-i18n="exampleTitle">Contoh penggunaan</h3>
         <p id="exampleText"></p>
+      </div>
+    </div>
+
+
+
+
+    <div id="noteModal" class="example-modal note-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="noteModalTitle">
+      <div class="example-modal-card note-modal-card">
+        <button id="closeNoteModal" class="example-close" type="button" aria-label="Tutup catatan" data-i18n-aria-label="closeNoteLabel">×</button>
+        <h3 id="noteModalTitle" data-i18n="noteTitle">Catatan kosakata</h3>
+        <div id="noteText" class="note-modal-content"></div>
+      </div>
+    </div>
+
+    <div id="materialModal" class="material-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="materialModalTitle">
+      <div class="material-modal-card">
+        <div class="material-modal-head">
+          <div>
+            <span class="badge" data-i18n="materialBadge">📚 Materi</span>
+            <h3 id="materialModalTitle" data-i18n="materialTitle">Rangkuman Materi Belajar</h3>
+            <p data-i18n="materialDescription">Pelajari kembali seluruh materi sebelum memulai latihan. Setiap kartu berisi kosakata, ungkapan latihan, atau percakapan singkat lengkap dengan gambar pendukung agar lebih mudah diingat.</p>
+          </div>
+          <button id="closeMaterialModal" class="material-close" type="button" aria-label="Tutup materi" data-i18n-aria-label="materialCloseLabel">×</button>
+        </div>
+        <div id="materialList" class="material-modal-body material-list"></div>
       </div>
     </div>
 
@@ -4054,263 +4951,265 @@
     "kanji": "食べます",
     "kana": "たべます",
     "romaji": "tabemasu",
-    "gambar": "https://i.ibb.co/rR1cd8wv/1-makan.png"
+    "gambar": "https://iili.io/C5iCSdN.png"
   },
   {
     "indonesia": "minum",
     "kanji": "飲みます",
     "kana": "のみます",
     "romaji": "nomimasu",
-    "gambar": "https://i.ibb.co/GfRQhHmZ/2-minum.png"
+    "gambar": "https://iili.io/C5iCeqv.png"
   },
   {
-    "indonesia": "merokok / mengisap rokok",
+    "indonesia": "mengisap rokok, merokok",
     "kanji": "吸います",
     "kana": "すいます",
     "romaji": "suimasu",
-    "gambar": "https://i.ibb.co/bRH81ZRJ/3-merokok-mengisap-rokok.png",
-    "contoh": "たばこを吸います（たばこをすいます）= merokok."
+    "gambar": "https://iili.io/C5iCvgp.png",
+    "note": "Bagian ［たばこを～］ menunjukkan contoh objek yang biasa digunakan bersama kata kerja ini, yaitu rokok."
   },
   {
-    "indonesia": "melihat / menonton",
+    "indonesia": "melihat, menonton",
     "kanji": "見ます",
     "kana": "みます",
     "romaji": "mimasu",
-    "gambar": "https://i.ibb.co/hFBnxzDZ/4-melihat-menonton.png"
+    "gambar": "https://iili.io/C5iCk1R.png"
   },
   {
     "indonesia": "mendengar",
     "kanji": "聞きます",
     "kana": "ききます",
     "romaji": "kikimasu",
-    "gambar": "https://i.ibb.co/jkpLG6fc/5-mendengar.png"
+    "gambar": "https://iili.io/C5iC6In.png"
   },
   {
     "indonesia": "membaca",
     "kanji": "読みます",
     "kana": "よみます",
     "romaji": "yomimasu",
-    "gambar": "https://i.ibb.co/xtBYkzm5/6-membaca.png"
+    "gambar": "https://iili.io/C5iCD22.png"
   },
   {
-    "indonesia": "menulis / menggambar",
+    "indonesia": "menulis, menggambar",
     "kanji": "書きます",
     "kana": "かきます",
     "romaji": "kakimasu",
-    "gambar": "https://i.ibb.co/DPPHLSFj/7-menulis-menggambar.png",
-    "contoh": "書きます juga dapat berarti menggambar, tetapi pada daftar ini dipakai untuk menulis dalam hiragana."
+    "gambar": "https://iili.io/C5iCmk7.png",
+    "note": "かきます dapat berarti menulis atau menggambar. Dalam konteks pelajaran ini, kata ini lebih ditekankan untuk kegiatan menulis, misalnya menulis huruf hiragana."
   },
   {
     "indonesia": "membeli",
     "kanji": "買います",
     "kana": "かいます",
     "romaji": "kaimasu",
-    "gambar": "https://i.ibb.co/tMBhXbsc/8-membeli.png"
+    "gambar": "https://iili.io/C5iCpp9.png"
   },
   {
     "indonesia": "mengambil foto",
     "kanji": "撮ります",
     "kana": "とります",
     "romaji": "torimasu",
-    "gambar": "https://i.ibb.co/dJVsZkQp/9-mengambil-foto.png",
-    "contoh": "写真を撮ります（しゃしんをとります）= mengambil foto."
+    "gambar": "https://iili.io/C5inFrQ.png",
+    "note": "Bagian ［しゃしんを～］ menunjukkan bahwa kata kerja ini digunakan untuk kegiatan mengambil foto."
   },
   {
-    "indonesia": "melakukan / mengerjakan",
+    "indonesia": "mengerjakan, melakukan, berbuat",
     "kanji": "",
     "kana": "します",
     "romaji": "shimasu",
-    "gambar": "https://i.ibb.co/yB6zZGp6/10-melakukan-mengerjakan.png"
+    "gambar": "https://iili.io/C5inTCJ.png"
   },
   {
-    "indonesia": "bertemu",
+    "indonesia": "bertemu dengan teman",
     "kanji": "会います",
     "kana": "あいます",
     "romaji": "aimasu",
-    "gambar": "https://i.ibb.co/LhgXJBXG/11-bertemu.png",
-    "contoh": "友達に会います（ともだちにあいます）= bertemu dengan teman."
+    "gambar": "https://iili.io/C5inapt.png",
+    "note": "Bagian ［ともだちに～］ menunjukkan orang yang ditemui, yaitu teman."
   },
   {
     "indonesia": "nasi",
     "kanji": "",
     "kana": "ごはん",
     "romaji": "gohan",
-    "gambar": "https://i.ibb.co/sJmRz1rL/12-nasi.png"
+    "gambar": "https://iili.io/C5inYvI.png"
   },
   {
     "indonesia": "sarapan",
     "kanji": "朝ごはん",
     "kana": "あさごはん",
     "romaji": "asagohan",
-    "gambar": "https://i.ibb.co/mF5qZ4LC/13-sarapan.png"
+    "gambar": "https://iili.io/C5inlTX.png"
   },
   {
     "indonesia": "makan siang",
     "kanji": "昼ごはん",
     "kana": "ひるごはん",
     "romaji": "hirugohan",
-    "gambar": "https://i.ibb.co/rRnmzx3M/14-makan-siang.png"
+    "gambar": "https://iili.io/C5in1Qs.png"
   },
   {
     "indonesia": "makan malam",
     "kanji": "晩ごはん",
     "kana": "ばんごはん",
     "romaji": "bangohan",
-    "gambar": "https://i.ibb.co/DgbwRBZb/15-makan-malam.png"
+    "gambar": "https://iili.io/C5inMGf.png"
   },
   {
     "indonesia": "roti",
     "kanji": "",
     "kana": "パン",
     "romaji": "pan",
-    "gambar": "https://i.ibb.co/RkhY1nMH/16-roti.png"
+    "gambar": "https://iili.io/C5inV44.png"
   },
   {
     "indonesia": "telur",
     "kanji": "卵",
     "kana": "たまご",
     "romaji": "tamago",
-    "gambar": "https://i.ibb.co/HfGD9WSg/17-telur.png"
+    "gambar": "https://iili.io/C5inX3l.png"
   },
   {
     "indonesia": "daging",
     "kanji": "肉",
     "kana": "にく",
     "romaji": "niku",
-    "gambar": "https://i.ibb.co/CxfgVVK/18-daging.png"
+    "gambar": "https://iili.io/C5injvS.png"
   },
   {
     "indonesia": "ikan",
     "kanji": "魚",
     "kana": "さかな",
     "romaji": "sakana",
-    "gambar": "https://i.ibb.co/NdYPtt3g/19-ikan.png"
+    "gambar": "https://iili.io/C5ineje.png"
   },
   {
     "indonesia": "sayur",
     "kanji": "野菜",
     "kana": "やさい",
     "romaji": "yasai",
-    "gambar": "https://i.ibb.co/twmqN0TJ/20-sayur.png"
+    "gambar": "https://iili.io/C5inSGj.png"
   },
   {
     "indonesia": "buah-buahan",
     "kanji": "果物",
     "kana": "くだもの",
     "romaji": "kudamono",
-    "gambar": "https://i.ibb.co/G3c1XFBZ/21-buah-buahan.png"
+    "gambar": "https://iili.io/C5in68B.png"
   },
   {
     "indonesia": "air",
     "kanji": "水",
     "kana": "みず",
     "romaji": "mizu",
-    "gambar": "https://i.ibb.co/zVjHcCbZ/22-air.png"
+    "gambar": "https://iili.io/C5inr3Q.png"
   },
   {
-    "indonesia": "teh Jepang / teh hijau",
+    "indonesia": "teh, teh Jepang / teh hijau",
     "kanji": "お茶",
     "kana": "おちゃ",
     "romaji": "ocha",
-    "gambar": "https://i.ibb.co/SXMXBCYm/23-teh-Jepang-teh-hijau.png"
+    "gambar": "https://iili.io/C5inPyP.png",
+    "note": "Dalam konteks bahasa Jepang, お茶 sering merujuk pada teh Jepang atau teh hijau."
   },
   {
     "indonesia": "teh",
     "kanji": "紅茶",
     "kana": "こうちゃ",
     "romaji": "koucha",
-    "gambar": "https://i.ibb.co/CpNL1m9x/24-teh.png"
+    "gambar": "https://iili.io/C5insu1.png"
   },
   {
     "indonesia": "susu",
     "kanji": "牛乳",
     "kana": "ぎゅうにゅう",
     "romaji": "gyuunyuu",
-    "gambar": "https://i.ibb.co/pvVtHSgP/25-susu.png"
+    "gambar": "https://iili.io/C5inLwF.png"
   },
   {
     "indonesia": "susu",
     "kanji": "",
     "kana": "ミルク",
     "romaji": "miruku",
-    "gambar": "https://i.ibb.co/DgjzmwrP/26-susu.png"
+    "gambar": "https://iili.io/C5inQZg.png"
   },
   {
-    "indonesia": "jus / sari buah",
+    "indonesia": "jus, sari buah",
     "kanji": "",
     "kana": "ジュース",
     "romaji": "juusu",
-    "gambar": "https://i.ibb.co/q35n8gzj/27-jus-sari-buah.png"
+    "gambar": "https://iili.io/C5inDMJ.png"
   },
   {
     "indonesia": "bir",
     "kanji": "",
     "kana": "ビール",
     "romaji": "biiru",
-    "gambar": "https://i.ibb.co/PGdJdW8L/28-bir.png"
+    "gambar": "https://iili.io/C5inb6v.png"
   },
   {
     "indonesia": "minuman keras",
     "kanji": "お酒",
     "kana": "おさけ",
     "romaji": "osake",
-    "gambar": "https://i.ibb.co/xSYWGRw5/29-minuman-keras.png"
+    "gambar": "https://iili.io/C5inyap.png",
+    "note": "お酒 digunakan untuk menyebut minuman beralkohol atau minuman keras."
   },
   {
     "indonesia": "rokok",
     "kanji": "",
     "kana": "たばこ",
     "romaji": "tabako",
-    "gambar": "https://i.ibb.co/Tq1Vpdqy/30-rokok.png"
+    "gambar": "https://iili.io/C5io98N.png"
   },
   {
     "indonesia": "surat",
     "kanji": "手紙",
     "kana": "てがみ",
     "romaji": "tegami",
-    "gambar": "https://i.ibb.co/yFcpXvbp/31-surat.png"
+    "gambar": "https://iili.io/C5ioJ9I.png"
   },
   {
     "indonesia": "laporan",
     "kanji": "",
     "kana": "レポート",
     "romaji": "repooto",
-    "gambar": "https://i.ibb.co/p66rp1zg/32-laporan.png"
+    "gambar": "https://iili.io/C5ioKns.png"
   },
   {
     "indonesia": "foto",
     "kanji": "写真",
     "kana": "しゃしん",
     "romaji": "shashin",
-    "gambar": "https://i.ibb.co/BXmGzH6/33-foto.png"
+    "gambar": "https://iili.io/C5ioqPf.png"
   },
   {
-    "indonesia": "kaset video / VHS",
+    "indonesia": "kaset video, VHS",
     "kanji": "",
     "kana": "ビデオ",
     "romaji": "bideo",
-    "gambar": "https://i.ibb.co/PZwWBzqZ/34-kaset-video-VHS.png"
+    "gambar": "https://iili.io/C5ioz9S.png"
   },
   {
     "indonesia": "toko",
     "kanji": "店",
     "kana": "みせ",
     "romaji": "mise",
-    "gambar": "https://i.ibb.co/VWY8KSWj/35-toko.png"
+    "gambar": "https://iili.io/C5ioTN9.png"
   },
   {
     "indonesia": "halaman",
     "kanji": "庭",
     "kana": "にわ",
     "romaji": "niwa",
-    "gambar": "https://i.ibb.co/TfGn1tt/36-halaman.png"
+    "gambar": "https://iili.io/C5ioaKx.png"
   },
   {
-    "indonesia": "pekerjaan rumah / PR",
+    "indonesia": "pekerjaan rumah, PR",
     "kanji": "宿題",
     "kana": "しゅくだい",
     "romaji": "shukudai",
-    "gambar": "https://i.ibb.co/v4JrDZv2/37-pekerjaan-rumah-PR.png",
+    "gambar": "https://iili.io/C5ioccQ.png",
     "contoh": "宿題をします（しゅくだいをします）= mengerjakan PR."
   },
   {
@@ -4318,7 +5217,7 @@
     "kanji": "",
     "kana": "テニス",
     "romaji": "tenisu",
-    "gambar": "https://i.ibb.co/Rts4TYY/38-tenis.png",
+    "gambar": "https://iili.io/C5ioGN1.png",
     "contoh": "テニスをします = bermain tenis."
   },
   {
@@ -4326,130 +5225,165 @@
     "kanji": "",
     "kana": "サッカー",
     "romaji": "sakkaa",
-    "gambar": "https://i.ibb.co/Xkd8wjdJ/39-sepak-bola.png",
+    "gambar": "https://iili.io/C5ioMDF.png",
     "contoh": "サッカーをします = bermain sepak bola."
   },
   {
-    "indonesia": "hanami / menikmati bunga sakura",
+    "indonesia": "menikmati bunga sakura",
     "kanji": "お花見",
     "kana": "おはなみ",
     "romaji": "ohanami",
-    "gambar": "https://i.ibb.co/8LmjQXdd/40-hanami-menikmati-bunga-sakura.png",
-    "contoh": "お花見をします（おはなみをします）= melihat dan menikmati bunga sakura."
+    "gambar": "https://iili.io/C5ioWog.png",
+    "note": "お花見 adalah kegiatan melihat dan menikmati bunga sakura, biasanya dilakukan saat musim semi di Jepang."
   },
   {
     "indonesia": "apa",
     "kanji": "何",
     "kana": "なに",
     "romaji": "nani",
-    "gambar": "https://i.ibb.co/8LTXJpw3/41-apa.png"
+    "gambar": "https://iili.io/C5iohiJ.png"
   },
   {
     "indonesia": "bersama-sama",
     "kanji": "",
     "kana": "いっしょに",
     "romaji": "issho ni",
-    "gambar": "https://i.ibb.co/hFrdHcwz/42-bersama-sama.png"
+    "gambar": "https://iili.io/C5iowKv.png"
   },
   {
-    "indonesia": "sebentar / sedikit",
+    "indonesia": "sebentar, sedikit",
     "kanji": "",
     "kana": "ちょっと",
     "romaji": "chotto",
-    "gambar": "https://i.ibb.co/h5Hsdkt/43-sebentar-sedikit.png"
+    "gambar": "https://iili.io/C5ioOSp.png"
   },
   {
     "indonesia": "selalu",
     "kanji": "",
     "kana": "いつも",
     "romaji": "itsumo",
-    "gambar": "https://i.ibb.co/XZ9MZ1RC/44-selalu.png"
+    "gambar": "https://iili.io/C5io8Nt.png"
   },
   {
     "indonesia": "kadang-kadang",
     "kanji": "時々",
     "kana": "ときどき",
     "romaji": "tokidoki",
-    "gambar": "https://i.ibb.co/hRHHMsVW/45-kadang-kadang.png"
+    "gambar": "https://iili.io/C5iogxn.png"
   },
   {
-    "indonesia": "setelah itu / kemudian",
+    "indonesia": "setelah itu, kemudian",
     "kanji": "",
     "kana": "それから",
     "romaji": "sorekara",
-    "gambar": "https://i.ibb.co/gZNFjPZG/46-setelah-itu-kemudian.png"
+    "gambar": "https://iili.io/C5io4iG.png"
   },
   {
-    "indonesia": "Ya",
+    "indonesia": "ya",
     "kanji": "",
     "kana": "ええ",
     "romaji": "ee",
-    "gambar": "https://i.ibb.co/t0dXqzg/47-ya.png"
+    "gambar": "https://iili.io/C5iosUl.png"
   },
   {
-    "indonesia": "Bagus ya / baik ya",
+    "indonesia": "Bagus ya. / Baik ya.",
     "kanji": "",
     "kana": "いいですね",
     "romaji": "ii desu ne",
-    "gambar": "https://i.ibb.co/TDRSMThf/48-bagus-ya-baik-ya.png"
+    "gambar": "https://iili.io/C5ioQJ2.png"
   },
   {
-    "indonesia": "Mengerti / baik",
+    "indonesia": "Mengerti. / Baik.",
     "kanji": "",
     "kana": "わかりました",
     "romaji": "wakarimashita",
-    "gambar": "https://i.ibb.co/WNGqLfbF/49-mengerti-baik.png"
+    "gambar": "https://iili.io/C5ioZRS.png"
   },
   {
     "indonesia": "Apa?",
     "kanji": "何ですか",
     "kana": "なんですか",
     "romaji": "nan desu ka",
-    "gambar": "https://i.ibb.co/msbxWZk/50-apa.png"
+    "gambar": "https://iili.io/C5iomxe.png"
   },
   {
-    "indonesia": "Sampai jumpa lagi besok",
+    "indonesia": "Oke, sampai jumpa besok.",
     "kanji": "",
     "kana": "じゃ、また［あした］",
     "romaji": "ja, mata [ashita]",
-    "gambar": "https://i.ibb.co/MDb0CdCD/51-sampai-jumpa-lagi-besok.png"
+    "gambar": "https://iili.io/C5ioyib.png"
   },
   {
     "indonesia": "Meksiko",
     "kanji": "",
     "kana": "メキシコ",
     "romaji": "Mekishiko",
-    "gambar": "https://i.ibb.co/Kc51gYM1/52-Meksiko.png"
+    "gambar": "https://iili.io/C5ixHfj.png"
   },
   {
-    "indonesia": "Toserba Osaka (nama tempat fiksi)",
+    "indonesia": "toserba fiksi (Osaka Department Store / Toserba Osaka)",
     "kanji": "大阪デパート",
     "kana": "おおさかデパート",
     "romaji": "Oosaka depaato",
-    "gambar": "https://i.ibb.co/p6HbyC8H/53-toserba-fiksi.png"
+    "gambar": "https://iili.io/C5ix3JV.png",
+    "note": "Ini adalah nama tempat fiksi. Jangan diterjemahkan secara harfiah. Tampilkan sebagai nama tempat dengan keterangan fiksi."
   },
   {
-    "indonesia": "Restoran Tsuruya (nama tempat fiksi)",
+    "indonesia": "restoran fiksi (Tsuruya)",
     "kanji": "",
     "kana": "つるや",
     "romaji": "Tsuruya",
-    "gambar": "https://i.ibb.co/23b9dzTc/54-restoran-fiksi.png"
+    "gambar": "https://iili.io/C5ixKOP.png",
+    "note": "Ini adalah nama restoran fiksi. Nama つるや tetap ditampilkan sebagai Tsuruya."
   },
   {
-    "indonesia": "Pasar swalayan Furansuya (nama tempat fiksi)",
+    "indonesia": "pasar swalayan fiksi (France-ya / Pasar Swalayan France-ya)",
     "kanji": "フランス屋",
     "kana": "フランスや",
     "romaji": "Furansuya",
-    "gambar": "https://i.ibb.co/Ng9TBSj9/55-pasar-swalayan-fiksi.png"
+    "gambar": "https://iili.io/C5ixCWg.png",
+    "note": "Ini adalah nama pasar swalayan fiksi. Jangan diterjemahkan menjadi ‘Toko Prancis’ secara harfiah."
   },
   {
-    "indonesia": "Pasar swalayan Mainichiya (nama tempat fiksi)",
+    "indonesia": "pasar swalayan fiksi (Mainichi-ya / Pasar Swalayan Mainichi-ya)",
     "kanji": "毎日屋",
     "kana": "まいにちや",
     "romaji": "Mainichiya",
-    "gambar": "https://i.ibb.co/Hf2MbHZp/56-pasar-swalayan-fiksi.png"
+    "gambar": "https://iili.io/C5ixnsa.png",
+    "note": "Ini adalah nama pasar swalayan fiksi. Tampilkan dengan nama romaji Mainichi-ya."
   }
 ];
+
+    const MATERIAL_GROUPS = [
+      {
+        id: "kosakata",
+        labelKey: "materialSummaryKosakata",
+        title: "Kosakata",
+        description: "Materi kosakata berisi aktivitas sehari-hari, tempat umum, penunjuk waktu, hari, keterangan dari–sampai, serta nama kota dan tempat fiksi yang muncul dalam latihan.",
+        indexes: [
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+          12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+          22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+          32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+          42, 43, 44, 45, 46,
+          52, 53, 54, 55, 56
+        ]
+      },
+      {
+        id: "latihanC",
+        labelKey: "materialSummaryLatihanC",
+        title: "Latihan C",
+        description: "Ungkapan pendek untuk melatih respon sederhana dalam situasi sehari-hari.",
+        indexes: [47, 48]
+      },
+      {
+        id: "percakapan",
+        labelKey: "materialSummaryPercakapan",
+        title: "Percakapan",
+        description: "Kalimat praktis yang dapat digunakan untuk latihan berbicara, mendengar, dan memahami konteks percakapan.",
+        indexes: [49, 50, 51]
+      }
+    ];
 
     // =========================
     // Elemen utama
@@ -4463,6 +5397,10 @@
     const fictionToggleState = document.getElementById("fictionToggleState");
     const cardCountValue = document.querySelector('[data-i18n="cardCountValue"]');
     const openLoginBtn = document.getElementById("openLoginBtn");
+    const materialBtn = document.getElementById("materialBtn");
+    const materialModal = document.getElementById("materialModal");
+    const materialList = document.getElementById("materialList");
+    const closeMaterialModal = document.getElementById("closeMaterialModal");
     const usernameBox = document.querySelector("#startScreen .username-box");
     const loginSummary = document.getElementById("loginSummary");
     const usernameNote = document.getElementById("usernameNote");
@@ -4493,6 +5431,9 @@
     const exampleModal = document.getElementById("exampleModal");
     const exampleText = document.getElementById("exampleText");
     const closeExampleModal = document.getElementById("closeExampleModal");
+    const noteModal = document.getElementById("noteModal");
+    const noteText = document.getElementById("noteText");
+    const closeNoteModal = document.getElementById("closeNoteModal");
     const imageModal = document.getElementById("imageModal");
     const imageModalImg = document.getElementById("imageModalImg");
     const imageModalCaption = document.getElementById("imageModalCaption");
@@ -4556,6 +5497,16 @@
         usernameButton: "Isi Username",
         usernameNote: "Klik tombol di atas untuk mengisi username melalui popup.",
         startButton: "Start",
+        materialButton: "Lihat Materi",
+        materialBadge: "📚 Materi",
+        materialTitle: "Rangkuman Materi Belajar",
+        materialDescription: "Pelajari kembali seluruh materi sebelum memulai latihan. Setiap kartu berisi kosakata, ungkapan latihan, atau percakapan singkat lengkap dengan gambar pendukung agar lebih mudah diingat.",
+        materialSummaryTotal: "Total Materi",
+        materialSummaryKosakata: "Kosakata",
+        materialSummaryLatihanC: "Latihan C",
+        materialSummaryPercakapan: "Percakapan",
+        materialCloseLabel: "Tutup materi",
+        materialImageLabel: "Lihat gambar penuh",
         skipButton: "Lewati ke halaman hasil",
         cardFlipSmall: "Klik kartu untuk membalik",
         timerLabel: "detik tersisa",
@@ -4596,8 +5547,8 @@
         usernamePlaceholder: "Masukkan username",
         passwordLabel: "Password admin",
         passwordPlaceholder: "Masukkan password admin",
-        groupPrompt: "Kategori kuis otomatis: Bab 6.",
-        groupOptionsLabel: "Kategori kuis",
+        groupPrompt: "Pilih kategori sebelum mulai kuis.",
+        groupOptionsLabel: "Pilihan Kategori",
         cancelButton: "Batal",
         saveButton: "Simpan",
         exampleTitle: "Contoh penggunaan",
@@ -4608,6 +5559,9 @@
         correctFeedback: "Bagus, jawaban ditandai benar.",
         wrongFeedback: "Tidak apa-apa, jawaban ditandai salah.",
         exampleButton: "Lihat contoh",
+        noteButton: "Catatan",
+        noteTitle: "Catatan kosakata",
+        closeNoteLabel: "Tutup catatan",
         audioButton: "🔊 Dengarkan",
         audioUnavailable: "Audio tidak tersedia",
         audioUnavailableAlert: "Audio tidak tersedia di browser ini.",
@@ -4619,11 +5573,11 @@
         usernameNoteEmpty: "Klik tombol di atas untuk mengisi username melalui popup.",
         usernameNoteAdmin: "Admin dapat membuka halaman hasil dan menghapus riwayat serta ranking.",
         usernameNoteReady: "Grup sudah dipilih. Klik Start untuk mulai kuis.",
-        usernameNoteNeedGroup: "Kategori otomatis: Bab 6.",
+        usernameNoteNeedGroup: "Pilih salah satu kategori terlebih dahulu.",
         usernameRequired: "Username wajib diisi.",
         passwordWrong: "Password admin salah.",
-        groupRequired: "Kategori Bab 6 sudah otomatis dipilih.",
-        groupRequiredHome: "Kategori Bab 6 sudah otomatis dipilih.",
+        groupRequired: "Pilih grup terlebih dahulu.",
+        groupRequiredHome: "Pilih grup dulu: Badung, Jembrana, Singaraja, atau Umum.",
         summaryTitleDefault: "Terus berlatih!",
         summaryDescriptionDefault: "Hasil akan muncul setelah latihan selesai.",
         summaryExcellentTitle: "Hebat sekali!",
@@ -4681,6 +5635,16 @@
         usernameButton: "ユーザー名を入力",
         usernameNote: "上のボタンからユーザー名を入力してください。",
         startButton: "スタート",
+        materialButton: "教材を見る",
+        materialBadge: "📚 教材",
+        materialTitle: "学習教材のまとめ",
+        materialDescription: "練習を始める前に教材を確認しましょう。語彙、短い練習表現、会話表現を画像と一緒に復習できます。",
+        materialSummaryTotal: "教材合計",
+        materialSummaryKosakata: "語彙",
+        materialSummaryLatihanC: "練習 C",
+        materialSummaryPercakapan: "会話",
+        materialCloseLabel: "教材を閉じる",
+        materialImageLabel: "画像を大きく見る",
         skipButton: "結果ページへ",
         cardFlipSmall: "カードをクリックして裏返す",
         timerLabel: "秒残り",
@@ -4721,8 +5685,8 @@
         usernamePlaceholder: "ユーザー名を入力",
         passwordLabel: "管理者パスワード",
         passwordPlaceholder: "管理者パスワードを入力",
-        groupPrompt: "クイズカテゴリー: Bab 6。",
-        groupOptionsLabel: "クイズカテゴリー",
+        groupPrompt: "始める前にカテゴリーを選んでください。",
+        groupOptionsLabel: "カテゴリー選択",
         cancelButton: "キャンセル",
         saveButton: "保存",
         exampleTitle: "使い方の例",
@@ -4733,6 +5697,9 @@
         correctFeedback: "よくできました。正解として記録しました。",
         wrongFeedback: "大丈夫です。不正解として記録しました。",
         exampleButton: "例を見る",
+        noteButton: "メモ",
+        noteTitle: "語彙メモ",
+        closeNoteLabel: "メモを閉じる",
         audioButton: "🔊 聞く",
         audioUnavailable: "音声は利用できません",
         audioUnavailableAlert: "このブラウザでは音声を利用できません。",
@@ -4747,8 +5714,8 @@
         usernameNoteNeedGroup: "カテゴリーを1つ選んでください。",
         usernameRequired: "ユーザー名を入力してください。",
         passwordWrong: "管理者パスワードが違います。",
-        groupRequired: "カテゴリー Bab 6 が自動的に選択されています。",
-        groupRequiredHome: "カテゴリー Bab 6 が自動的に選択されています。",
+        groupRequired: "先にグループを選んでください。",
+        groupRequiredHome: "先に Badung、Jembrana、Singaraja、Umum からグループを選んでください。",
         summaryTitleDefault: "練習を続けましょう",
         summaryDescriptionDefault: "練習が終わると結果が表示されます。",
         summaryExcellentTitle: "すばらしいです！",
@@ -4850,6 +5817,10 @@
 
       if (resultScreen.classList.contains("active")) {
         refreshResultLanguage();
+      }
+
+      if (materialModal?.classList.contains("show")) {
+        renderMaterialList();
       }
     }
 
@@ -4958,6 +5929,7 @@
       const kana = String(item.kana || "").trim();
       const romaji = String(item.romaji || "").trim();
       const contoh = String(item.contoh || "").trim();
+      const note = String(item.note || item.catatan || item.explanationNote || "").trim();
 
       const mainText = kanji.length > 0 ? kanji : kana;
       const readingText = kanji.length > 0 && kana && kana !== kanji
@@ -4969,6 +5941,9 @@
       const exampleButton = contoh
         ? `<button class="example-btn" id="showExampleBtn" type="button">${escapeHTML(t("exampleButton"))}</button>`
         : "";
+      const noteButton = note
+        ? `<button class="example-btn note-btn" id="showNoteBtn" type="button">${escapeHTML(t("noteButton"))}</button>`
+        : "";
       const audioButton = `<button class="audio-btn" id="playAudioBtn" type="button">${escapeHTML(t("audioButton"))}</button>`;
 
       jpText.innerHTML = `
@@ -4978,6 +5953,7 @@
         <div class="jp-actions">
           ${audioButton}
           ${exampleButton}
+          ${noteButton}
         </div>
       `;
 
@@ -5070,6 +6046,30 @@
       exampleModal.setAttribute("aria-hidden", "true");
     }
 
+    function openNoteModal(item) {
+      if (!item || !noteModal || !noteText) return;
+
+      const note = String(item.note || item.catatan || item.explanationNote || "").trim();
+      if (!note) return;
+
+      const jp = getJapanesePlain(item);
+      noteText.innerHTML = `
+        <p class="note-jp">${escapeHTML(jp.main || "-")}</p>
+        <p class="note-reading">${escapeHTML(jp.sub || "-")}</p>
+        <p class="note-meaning">${escapeHTML(item.indonesia || "-")}</p>
+        <p class="note-body">${escapeHTML(note)}</p>
+      `;
+      noteModal.classList.add("show");
+      noteModal.setAttribute("aria-hidden", "false");
+      closeNoteModal?.focus({ preventScroll: true });
+    }
+
+    function closeNoteModalBox() {
+      if (!noteModal) return;
+      noteModal.classList.remove("show");
+      noteModal.setAttribute("aria-hidden", "true");
+    }
+
     function openImageModal(src, altText = "Gambar kosakata") {
       if (!src || !imageModal || !imageModalImg) return;
 
@@ -5091,27 +6091,135 @@
       if (imageModalCaption) imageModalCaption.textContent = "";
     }
 
+
+
+    function getMaterialPrimaryText(item) {
+      const kanji = String(item.kanji || "").trim();
+      const kana = String(item.kana || "").trim();
+      return kanji || kana || "-";
+    }
+
+    function getMaterialReadingText(item) {
+      const kanji = String(item.kanji || "").trim();
+      const kana = String(item.kana || "").trim();
+      const romaji = String(item.romaji || "").trim();
+      const parts = [];
+      if (kana && kana !== kanji) parts.push(kana);
+      if (romaji) parts.push(romaji);
+      return parts.join(" / ") || "-";
+    }
+
+    function getMaterialGroupedItems() {
+      return MATERIAL_GROUPS.map(group => {
+        const wantedIndexes = new Set(group.indexes);
+        const items = vocabulary
+          .map((item, index) => ({ ...item, originalIndex: index + 1 }))
+          .filter(item => wantedIndexes.has(item.originalIndex));
+
+        return {
+          ...group,
+          items
+        };
+      });
+    }
+
+    function updateMaterialSummary(groupedItems) {
+      const counts = groupedItems.reduce((acc, group) => {
+        acc[group.id] = group.items.length;
+        acc.total += group.items.length;
+        return acc;
+      }, { total: 0 });
+
+      const summaryCards = [
+        { label: t("materialSummaryTotal"), value: counts.total },
+        ...groupedItems.map(group => ({ label: t(group.labelKey), value: group.items.length }))
+      ];
+
+      return `
+        <section class="material-summary-grid" aria-label="Ringkasan jumlah materi">
+          ${summaryCards.map(card => `
+            <article class="material-summary-card">
+              <span>${escapeHTML(card.label)}</span>
+              <strong>${card.value}</strong>
+            </article>
+          `).join("")}
+        </section>
+      `;
+    }
+
+    function createMaterialCard(item, index) {
+      const japanese = getMaterialPrimaryText(item);
+      const reading = getMaterialReadingText(item);
+      const meaning = String(item.indonesia || "").trim();
+      const imageUrl = String(item.gambar || "").trim();
+      const altText = `${japanese} - ${meaning}`;
+
+      return `
+        <article class="material-item">
+          <button class="material-thumb" type="button" data-src="${escapeHTML(imageUrl)}" data-alt="${escapeHTML(altText)}" aria-label="${escapeHTML(`${t("materialImageLabel")}: ${altText}`)}">
+            <img src="${escapeHTML(imageUrl)}" alt="${escapeHTML(altText)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+          </button>
+          <div class="material-info">
+            <span class="material-number">${index + 1}</span>
+            <div class="material-jp">${escapeHTML(japanese)}</div>
+            <div class="material-reading">${escapeHTML(reading)}</div>
+            <div class="material-meaning">${escapeHTML(meaning)}</div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderMaterialList() {
+      if (!materialList) return;
+
+      const groupedItems = getMaterialGroupedItems();
+      const summaryHTML = updateMaterialSummary(groupedItems);
+      const groupHTML = groupedItems.map(group => `
+        <section class="material-group" data-group="${escapeHTML(group.id)}">
+          <div class="material-group-head">
+            <div>
+              <h4>${escapeHTML(group.title)}</h4>
+              <p>${escapeHTML(group.description)}</p>
+            </div>
+            <span>${group.items.length} item</span>
+          </div>
+          <div class="material-group-list">
+            ${group.items.map((item, index) => createMaterialCard(item, index)).join("")}
+          </div>
+        </section>
+      `).join("");
+
+      materialList.innerHTML = `${summaryHTML}${groupHTML}`;
+    }
+
+    function openMaterialModalBox() {
+      renderMaterialList();
+      materialModal.classList.add("show");
+      materialModal.setAttribute("aria-hidden", "false");
+      closeMaterialModal.focus({ preventScroll: true });
+    }
+
+    function closeMaterialModalBox() {
+      materialModal.classList.remove("show");
+      materialModal.setAttribute("aria-hidden", "true");
+    }
+
+
     // =========================
     // Login, admin, dan grup
     // =========================
     function updatePasswordBox() {
       const typedUsername = usernameInput.value.trim();
       const needsPassword = typedUsername === ADMIN_USERNAME;
+      const needsGroup = Boolean(typedUsername) && !needsPassword;
 
       passwordBox.hidden = !needsPassword;
       if (!needsPassword) {
         passwordInput.value = "";
       }
 
-      // Kategori Firebase untuk paket ini dibuat tetap: Bab 6.
-      // Peserta tidak perlu memilih kategori manual.
-      groupBox.hidden = true;
-      if (typedUsername && !needsPassword) {
-        currentGroup = QUIZ_CATEGORY;
-        document.querySelectorAll(".group-btn").forEach(button => {
-          button.classList.toggle("active", button.dataset.group === QUIZ_CATEGORY);
-        });
-      } else {
+      groupBox.hidden = !needsGroup;
+      if (!needsGroup) {
         resetGroupSelection();
       }
     }
@@ -5121,6 +6229,7 @@
 
       startBtn.disabled = !canStart;
       startBtn.classList.toggle("show", Boolean(currentUsername));
+      materialBtn.classList.toggle("show", Boolean(currentUsername));
       resultPageBtn.hidden = !isAdmin;
       clearRankingBtn.hidden = !isAdmin;
       usernameBox.classList.toggle("is-complete", Boolean(currentUsername));
@@ -5177,9 +6286,6 @@
       if (isAdmin) {
         resetGroupSelection();
         groupBox.hidden = true;
-      } else {
-        currentGroup = QUIZ_CATEGORY;
-        groupBox.hidden = true;
       }
 
       updateLoginSummary();
@@ -5204,8 +6310,9 @@
         return;
       }
 
-      if (name !== ADMIN_USERNAME) {
-        currentGroup = QUIZ_CATEGORY;
+      if (name !== ADMIN_USERNAME && !currentGroup) {
+        loginError.textContent = t("groupRequired");
+        return;
       }
 
       setLoggedInUser(name, name === ADMIN_USERNAME);
@@ -5236,7 +6343,8 @@
       }
 
       if (!isAdmin && !currentGroup) {
-        currentGroup = QUIZ_CATEGORY;
+        usernameNote.textContent = t("groupRequiredHome");
+        return;
       }
 
       deck = buildSessionDeck();
@@ -5258,6 +6366,7 @@
       }
 
       closeExampleModalBox();
+      closeNoteModalBox();
       closeImageModalBox();
       currentItem = deck[currentIndex];
       isFlipped = false;
@@ -5612,12 +6721,12 @@
       printWindow.document.close();
 
       const history = await getResults();
-      const groupOrder = [QUIZ_CATEGORY];
+      const groupOrder = ["Badung", "Jembrana", "Singaraja", "Umum"];
       const groupLabels = new Set(groupOrder);
       const usersByGroup = new Map(groupOrder.map(group => [group, new Map()]));
 
       history.forEach(item => {
-        const group = groupLabels.has(item.group) ? item.group : QUIZ_CATEGORY;
+        const group = groupLabels.has(item.group) ? item.group : "Umum";
         const name = String(item.name || t("defaultParticipant")).trim() || t("defaultParticipant");
         const key = name.toLowerCase();
         const groupMap = usersByGroup.get(group);
@@ -5971,6 +7080,407 @@
       text-align: center;
     }
 
+
+
+    /* ===== Fitur Lihat Materi + popup gambar responsif ===== */
+    #materialBtn:not(.show) {
+      display: none;
+    }
+
+    #materialBtn.show {
+      display: inline-flex;
+    }
+
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      letter-spacing: 0;
+      color: #5b3fd7;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(246, 243, 255, 0.72));
+      border: 1px solid rgba(146, 112, 255, 0.34);
+      box-shadow: 0 14px 30px rgba(144, 96, 255, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .material-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 85;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(20, 24, 38, 0.52);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .material-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .material-modal-card {
+      width: min(940px, 96vw);
+      max-height: min(88svh, 820px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+        rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.26);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .material-modal.show .material-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .material-modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 14px;
+      padding: 20px 22px 16px;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid rgba(124, 111, 246, 0.13);
+    }
+
+    .material-modal-head h3 {
+      margin: 9px 0 6px;
+      color: #514a9e;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 760;
+      line-height: 1.2;
+    }
+
+    .material-modal-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      line-height: 1.45;
+    }
+
+    .material-close,
+    .image-modal-close {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 750;
+      line-height: 1;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .material-close:hover,
+    .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .material-modal-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 18px 22px 22px;
+      scrollbar-width: thin;
+    }
+
+    .material-group {
+      display: grid;
+      gap: 14px;
+    }
+
+    .material-group-title {
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(17px, 2.2vw, 21px);
+      font-weight: 760;
+      line-height: 1.25;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .material-item {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 13px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-image-button {
+      width: 96px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 16px;
+      background: rgba(124, 111, 246, 0.07);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .material-image-button img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      padding: 6px;
+      background: transparent;
+    }
+
+    .material-text {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .material-number {
+      width: max-content;
+      max-width: 100%;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.11);
+      font-size: 11.5px;
+      font-weight: 760;
+      line-height: 1.1;
+    }
+
+    .material-japanese {
+      color: #26334e;
+      font-family: var(--font-jp);
+      font-size: clamp(17px, 2vw, 20px);
+      font-weight: 760;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      color: #6b7280;
+      font-size: 12.5px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-meaning {
+      color: var(--text);
+      font-size: var(--fs-small);
+      font-weight: 650;
+      line-height: 1.38;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal {
+      overflow-y: auto;
+      padding: 18px;
+      align-items: center;
+    }
+
+    .image-modal-card {
+      width: min(780px, 96vw) !important;
+      max-height: calc(100svh - 36px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      border-radius: var(--radius-xl) !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      right: auto !important;
+      align-self: flex-end !important;
+      flex: 0 0 auto !important;
+      z-index: 3 !important;
+      margin: 12px 12px 0 auto !important;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 220px !important;
+      max-height: none !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 10px 14px 8px !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 0 !important;
+      padding: 10px 14px 14px !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      border-top: 1px solid rgba(124, 111, 246, 0.1) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal {
+        padding: 10px !important;
+        align-items: stretch !important;
+      }
+
+      .material-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .material-modal-head {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 10px !important;
+        padding: 16px 14px 13px !important;
+      }
+
+      .material-modal-head h3 {
+        font-size: 21px !important;
+        margin: 8px 0 5px !important;
+      }
+
+      .material-modal-head p {
+        font-size: 12.5px !important;
+      }
+
+      .material-close,
+      .image-modal-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+      }
+
+      .material-modal-body {
+        padding: 14px !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 82px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-image-button {
+        width: 82px !important;
+        height: 72px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-japanese {
+        font-size: 17px !important;
+      }
+
+      .material-reading,
+      .material-meaning {
+        font-size: 12px !important;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+        align-items: stretch !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-close {
+        margin: 10px 10px 0 auto !important;
+      }
+
+      .image-modal-body {
+        min-height: 180px !important;
+        padding: 8px 10px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 144px) !important;
+      }
+
+      .image-modal-caption {
+        padding: 9px 12px 12px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-modal-body {
+        padding: 12px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 76px minmax(0, 1fr) !important;
+      }
+
+      .material-image-button {
+        width: 76px !important;
+        height: 68px !important;
+      }
+
+      .material-number {
+        font-size: 11px !important;
+      }
+    }
 
   </style>
         </head>
@@ -6383,6 +7893,407 @@
     }
 
 
+
+    /* ===== Fitur Lihat Materi + popup gambar responsif ===== */
+    #materialBtn:not(.show) {
+      display: none;
+    }
+
+    #materialBtn.show {
+      display: inline-flex;
+    }
+
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      letter-spacing: 0;
+      color: #5b3fd7;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(246, 243, 255, 0.72));
+      border: 1px solid rgba(146, 112, 255, 0.34);
+      box-shadow: 0 14px 30px rgba(144, 96, 255, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .material-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 85;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(20, 24, 38, 0.52);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .material-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .material-modal-card {
+      width: min(940px, 96vw);
+      max-height: min(88svh, 820px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+        rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.26);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .material-modal.show .material-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .material-modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 14px;
+      padding: 20px 22px 16px;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid rgba(124, 111, 246, 0.13);
+    }
+
+    .material-modal-head h3 {
+      margin: 9px 0 6px;
+      color: #514a9e;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 760;
+      line-height: 1.2;
+    }
+
+    .material-modal-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      line-height: 1.45;
+    }
+
+    .material-close,
+    .image-modal-close {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12);
+      font-size: 28px;
+      font-weight: 750;
+      line-height: 1;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .material-close:hover,
+    .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2);
+      transform: scale(1.04);
+    }
+
+    .material-modal-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 18px 22px 22px;
+      scrollbar-width: thin;
+    }
+
+    .material-group {
+      display: grid;
+      gap: 14px;
+    }
+
+    .material-group-title {
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(17px, 2.2vw, 21px);
+      font-weight: 760;
+      line-height: 1.25;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .material-item {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 13px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-image-button {
+      width: 96px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 16px;
+      background: rgba(124, 111, 246, 0.07);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .material-image-button img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      padding: 6px;
+      background: transparent;
+    }
+
+    .material-text {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .material-number {
+      width: max-content;
+      max-width: 100%;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.11);
+      font-size: 11.5px;
+      font-weight: 760;
+      line-height: 1.1;
+    }
+
+    .material-japanese {
+      color: #26334e;
+      font-family: var(--font-jp);
+      font-size: clamp(17px, 2vw, 20px);
+      font-weight: 760;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      color: #6b7280;
+      font-size: 12.5px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-meaning {
+      color: var(--text);
+      font-size: var(--fs-small);
+      font-weight: 650;
+      line-height: 1.38;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal {
+      overflow-y: auto;
+      padding: 18px;
+      align-items: center;
+    }
+
+    .image-modal-card {
+      width: min(780px, 96vw) !important;
+      max-height: calc(100svh - 36px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      border-radius: var(--radius-xl) !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      right: auto !important;
+      align-self: flex-end !important;
+      flex: 0 0 auto !important;
+      z-index: 3 !important;
+      margin: 12px 12px 0 auto !important;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 220px !important;
+      max-height: none !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 10px 14px 8px !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 0 !important;
+      padding: 10px 14px 14px !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      border-top: 1px solid rgba(124, 111, 246, 0.1) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal {
+        padding: 10px !important;
+        align-items: stretch !important;
+      }
+
+      .material-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .material-modal-head {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 10px !important;
+        padding: 16px 14px 13px !important;
+      }
+
+      .material-modal-head h3 {
+        font-size: 21px !important;
+        margin: 8px 0 5px !important;
+      }
+
+      .material-modal-head p {
+        font-size: 12.5px !important;
+      }
+
+      .material-close,
+      .image-modal-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+      }
+
+      .material-modal-body {
+        padding: 14px !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 82px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-image-button {
+        width: 82px !important;
+        height: 72px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-japanese {
+        font-size: 17px !important;
+      }
+
+      .material-reading,
+      .material-meaning {
+        font-size: 12px !important;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+        align-items: stretch !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-close {
+        margin: 10px 10px 0 auto !important;
+      }
+
+      .image-modal-body {
+        min-height: 180px !important;
+        padding: 8px 10px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 144px) !important;
+      }
+
+      .image-modal-caption {
+        padding: 9px 12px 12px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-modal-body {
+        padding: 12px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 76px minmax(0, 1fr) !important;
+      }
+
+      .material-image-button {
+        width: 76px !important;
+        height: 68px !important;
+      }
+
+      .material-number {
+        font-size: 11px !important;
+      }
+    }
+
   </style>
         </head>
         <body>
@@ -6594,6 +8505,20 @@
     cancelLoginBtn.addEventListener("click", closeLoginModalBox);
     loginSubmitBtn.addEventListener("click", submitLogin);
     resultPageBtn.addEventListener("click", showAdminResultPage);
+    materialBtn.addEventListener("click", openMaterialModalBox);
+    closeMaterialModal.addEventListener("click", closeMaterialModalBox);
+
+    materialModal.addEventListener("click", event => {
+      if (event.target === materialModal) {
+        closeMaterialModalBox();
+      }
+    });
+
+    materialList.addEventListener("click", event => {
+      const button = event.target.closest(".material-thumb");
+      if (!button) return;
+      openImageModal(button.dataset.src, button.dataset.alt || "Gambar kosakata");
+    });
 
     usernameInput.addEventListener("input", () => {
       loginError.textContent = "";
@@ -6674,6 +8599,13 @@
         return;
       }
 
+      const noteButton = event.target.closest("#showNoteBtn");
+      if (noteButton && currentItem) {
+        event.stopPropagation();
+        openNoteModal(currentItem);
+        return;
+      }
+
       const button = event.target.closest("#showExampleBtn");
 
       if (!button || !currentItem || !currentItem.contoh) return;
@@ -6690,13 +8622,29 @@
       }
     });
 
+    closeNoteModal?.addEventListener("click", closeNoteModalBox);
+
+    noteModal?.addEventListener("click", event => {
+      if (event.target === noteModal) {
+        closeNoteModalBox();
+      }
+    });
+
     document.addEventListener("keydown", event => {
       if (event.key === "Escape" && exampleModal.classList.contains("show")) {
         closeExampleModalBox();
       }
 
+      if (event.key === "Escape" && noteModal?.classList.contains("show")) {
+        closeNoteModalBox();
+      }
+
       if (event.key === "Escape" && imageModal?.classList.contains("show")) {
         closeImageModalBox();
+      }
+
+      if (event.key === "Escape" && materialModal?.classList.contains("show")) {
+        closeMaterialModalBox();
       }
 
       if (event.key === "Escape" && loginModal.classList.contains("show")) {
