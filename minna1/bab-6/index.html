@@ -4894,7 +4894,7 @@
           <div>
             <span class="badge" data-i18n="materialBadge">📚 Materi</span>
             <h3 id="materialModalTitle" data-i18n="materialTitle">Rangkuman Materi Belajar</h3>
-            <p data-i18n="materialDescription">Pelajari kembali seluruh materi sebelum memulai latihan. Setiap kartu berisi kosakata, ungkapan latihan, atau percakapan singkat lengkap dengan gambar pendukung agar lebih mudah diingat.</p>
+            <p data-i18n="materialDescription">Pelajari kembali kosakata sesuai urutan gambar 1 dan 2. Materi ini berisi kata kerja, makanan, minuman, benda, tempat, kegiatan, keterangan waktu, ungkapan percakapan, serta kosakata tambahan seperti nama negara dan tempat fiksi.</p>
           </div>
           <button id="closeMaterialModal" class="material-close" type="button" aria-label="Tutup materi" data-i18n-aria-label="materialCloseLabel">×</button>
         </div>
@@ -5359,29 +5359,28 @@
         id: "kosakata",
         labelKey: "materialSummaryKosakata",
         title: "Kosakata",
-        description: "Materi kosakata berisi aktivitas sehari-hari, tempat umum, penunjuk waktu, hari, keterangan dari–sampai, serta nama kota dan tempat fiksi yang muncul dalam latihan.",
+        description: "Urutan kosakata utama mengikuti gambar 1 dan 2: kata kerja kegiatan sehari-hari, makanan, minuman, benda, tempat, kegiatan, kata tanya, keterangan waktu, dan ungkapan sederhana.",
         indexes: [
           1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
           12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
           22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
           32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
-          42, 43, 44, 45, 46,
-          52, 53, 54, 55, 56
+          42, 43, 44, 45, 46, 47, 48, 49
         ]
-      },
-      {
-        id: "latihanC",
-        labelKey: "materialSummaryLatihanC",
-        title: "Latihan C",
-        description: "Ungkapan pendek untuk melatih respon sederhana dalam situasi sehari-hari.",
-        indexes: [47, 48]
       },
       {
         id: "percakapan",
         labelKey: "materialSummaryPercakapan",
         title: "Percakapan",
-        description: "Kalimat praktis yang dapat digunakan untuk latihan berbicara, mendengar, dan memahami konteks percakapan.",
-        indexes: [49, 50, 51]
+        description: "Bagian percakapan berisi ungkapan tanya jawab singkat seperti menanyakan sesuatu dan mengucapkan sampai jumpa.",
+        indexes: [50, 51]
+      },
+      {
+        id: "tambahan",
+        labelKey: "materialSummaryTambahan",
+        title: "Kosakata Tambahan",
+        description: "Kosakata tambahan setelah garis putus-putus berisi nama negara serta nama tempat fiksi seperti toserba, restoran, dan pasar swalayan.",
+        indexes: [52, 53, 54, 55, 56]
       }
     ];
 
@@ -5500,10 +5499,10 @@
         materialButton: "Lihat Materi",
         materialBadge: "📚 Materi",
         materialTitle: "Rangkuman Materi Belajar",
-        materialDescription: "Pelajari kembali seluruh materi sebelum memulai latihan. Setiap kartu berisi kosakata, ungkapan latihan, atau percakapan singkat lengkap dengan gambar pendukung agar lebih mudah diingat.",
+        materialDescription: "Pelajari kembali kosakata sesuai urutan gambar 1 dan 2. Materi ini berisi kata kerja, makanan, minuman, benda, tempat, kegiatan, keterangan waktu, ungkapan percakapan, serta kosakata tambahan seperti nama negara dan tempat fiksi.",
         materialSummaryTotal: "Total Materi",
         materialSummaryKosakata: "Kosakata",
-        materialSummaryLatihanC: "Latihan C",
+        materialSummaryTambahan: "Kosakata Tambahan",
         materialSummaryPercakapan: "Percakapan",
         materialCloseLabel: "Tutup materi",
         materialImageLabel: "Lihat gambar penuh",
@@ -5638,10 +5637,10 @@
         materialButton: "教材を見る",
         materialBadge: "📚 教材",
         materialTitle: "学習教材のまとめ",
-        materialDescription: "練習を始める前に教材を確認しましょう。語彙、短い練習表現、会話表現を画像と一緒に復習できます。",
+        materialDescription: "画像1・2の順番に沿って語彙を確認しましょう。動詞、食べ物、飲み物、物、場所、活動、時間表現、会話表現、国名、架空の場所を復習できます。",
         materialSummaryTotal: "教材合計",
         materialSummaryKosakata: "語彙",
-        materialSummaryLatihanC: "練習 C",
+        materialSummaryTambahan: "追加語彙",
         materialSummaryPercakapan: "会話",
         materialCloseLabel: "教材を閉じる",
         materialImageLabel: "画像を大きく見る",
