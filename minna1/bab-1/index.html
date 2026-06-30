@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flashcard Kosakata Jepang</title>
-  <link rel="dns-prefetch" href="https://i.postimg.cc" />
-  <link rel="preconnect" href="https://i.postimg.cc" crossorigin />
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -3649,6 +3649,413 @@
     }
 
   
+
+    /* ===== Revisi: tombol materi, popup gambar penuh, dan mobile layout ===== */
+    .material-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 82;
+      display: grid;
+      place-items: center;
+      padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+      background: rgba(20, 24, 38, 0.48);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .material-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .material-modal-card {
+      width: min(980px, calc(100vw - 28px));
+      max-height: calc(100svh - 28px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: clamp(18px, 2.8vw, 28px);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.36), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.34), transparent 36%),
+        rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.26);
+      overflow: hidden;
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .material-modal.show .material-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .material-modal-head {
+      padding-right: 52px;
+    }
+
+    .material-modal-head h3 {
+      margin: 0 0 8px;
+      color: #514a9e;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 780;
+      line-height: 1.2;
+    }
+
+    .material-modal-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .material-list {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      padding: 2px 4px 4px 2px;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+
+    .material-item {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.15);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-thumb {
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+      padding: 4px;
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: none;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background: transparent;
+    }
+
+    .material-info {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .material-number {
+      width: max-content;
+      min-width: 28px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: var(--primary-soft);
+      font-size: 11px;
+      font-weight: 850;
+      line-height: 1.2;
+    }
+
+    .material-jp {
+      display: block;
+      color: var(--heading);
+      font-family: var(--font-jp);
+      font-size: clamp(17px, 2.5vw, 21px);
+      font-weight: 850;
+      line-height: 1.24;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      display: block;
+      margin-top: 1px;
+      color: #817a75;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-info p {
+      margin: 1px 0 0;
+      color: #4f596d;
+      font-size: 12.5px;
+      font-weight: 600;
+      line-height: 1.38;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal {
+      padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    }
+
+    .image-modal-card {
+      width: min(960px, calc(100vw - 20px));
+      max-height: calc(100svh - 20px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .image-modal-body {
+      min-height: 0;
+      max-height: none;
+      flex: 1 1 auto;
+      display: grid;
+      place-items: center;
+      padding: 54px 8px 10px;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+
+    .image-modal-body img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: calc(100svh - 150px);
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto;
+      margin: 6px 8px 0;
+      max-height: 44px;
+      overflow: auto;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      #startScreen .hero-actions .btn,
+      #startScreen #startBtn.show {
+        width: 100%;
+        min-height: 52px;
+        padding-inline: 12px;
+        font-size: clamp(14px, 4vw, 16px);
+      }
+
+      .material-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #startScreen .hero-actions {
+        grid-template-columns: 1fr;
+      }
+
+      #startScreen .hero-actions .btn,
+      #startScreen #startBtn.show {
+        width: 100% !important;
+      }
+
+      .material-modal-card {
+        width: calc(100vw - 18px);
+        max-height: calc(100svh - 18px);
+        padding: 16px;
+        border-radius: 20px;
+        gap: 12px;
+      }
+
+      .material-modal-head {
+        padding-right: 48px;
+      }
+
+      .material-item {
+        grid-template-columns: 66px minmax(0, 1fr);
+        gap: 10px;
+        padding: 9px;
+      }
+
+      .material-thumb {
+        width: 66px;
+        height: 66px;
+        border-radius: 14px;
+      }
+
+      .material-jp {
+        font-size: clamp(16px, 5.2vw, 20px);
+      }
+
+      .material-info p {
+        font-size: 12px;
+      }
+
+      .image-modal-card {
+        width: calc(100vw - 16px);
+        max-height: calc(100svh - 16px);
+        padding: 12px;
+        border-radius: 20px;
+      }
+
+      .image-modal-body {
+        padding: 52px 4px 8px;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 138px);
+      }
+    }
+
+
+    /* ===== Revisi lanjutan: tombol materi muncul setelah username + X popup gambar rapi ===== */
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #imageModal .image-modal-card {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+      padding: clamp(12px, 2.4vw, 18px) !important;
+      overflow: hidden !important;
+    }
+
+    #closeImageModal.image-modal-close {
+      position: static !important;
+      top: auto !important;
+      right: auto !important;
+      flex: 0 0 44px !important;
+      align-self: flex-end !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin: 0 2px 0 auto !important;
+      z-index: 2 !important;
+    }
+
+    #imageModal .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      padding: 6px !important;
+      overflow: auto !important;
+      overscroll-behavior: contain !important;
+      border-radius: 18px !important;
+      background: rgba(255, 255, 255, 0.58) !important;
+    }
+
+    #imageModal .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+
+    #imageModal .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 2px 4px 0 !important;
+      padding: 0 2px !important;
+      max-height: 48px !important;
+      overflow: auto !important;
+    }
+
+    #closeMaterialModal.material-close {
+      position: absolute !important;
+      top: 14px !important;
+      right: 14px !important;
+      margin: 0 !important;
+      align-self: auto !important;
+      z-index: 3 !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        align-items: stretch !important;
+      }
+
+      #startScreen .hero-actions .btn.show,
+      #startScreen .hero-actions #materialBtn.show {
+        width: 100% !important;
+        justify-self: stretch !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 16px) !important;
+        max-height: calc(100svh - 16px) !important;
+        padding: 10px !important;
+        border-radius: 20px !important;
+      }
+
+      #closeImageModal.image-modal-close {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        flex-basis: 42px !important;
+        margin-right: 0 !important;
+      }
+
+      #imageModal .image-modal-body {
+        padding: 5px !important;
+      }
+
+      #imageModal .image-modal-body img {
+        max-height: calc(100svh - 138px) !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #startScreen .hero-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      #materialBtn.show,
+      #startScreen #startBtn.show {
+        min-height: 52px !important;
+        font-size: 15px !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 12px) !important;
+        max-height: calc(100svh - 12px) !important;
+        padding: 9px !important;
+      }
+
+      #imageModal .image-modal-body img {
+        max-height: calc(100svh - 134px) !important;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -3706,6 +4113,7 @@
 
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
+            <button id="materialBtn" class="btn secondary" type="button" data-i18n="materialButton">Lihat Materi</button>
             <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
         </div>
@@ -3914,6 +4322,17 @@
       </div>
     </div>
 
+    <div id="materialModal" class="material-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="materialModalTitle">
+      <div class="material-modal-card">
+        <button id="closeMaterialModal" class="image-modal-close material-close" type="button" aria-label="Tutup materi" data-i18n-aria-label="closeMaterialLabel">×</button>
+        <div class="material-modal-head">
+          <h3 id="materialModalTitle" data-i18n="materialTitle">Materi Kosakata</h3>
+          <p data-i18n="materialDescription">Daftar kosakata lengkap. Klik gambar kecil untuk melihat gambar penuh.</p>
+        </div>
+        <div id="materialList" class="material-list" aria-live="polite"></div>
+      </div>
+    </div>
+
     <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gambar penuh">
       <div class="image-modal-card">
         <button id="closeImageModal" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
@@ -3963,49 +4382,49 @@
     "kanji": "",
     "kana": "わたし",
     "romaji": "watashi",
-    "gambar": "https://i.postimg.cc/jq6WjpbX/watashi.png"
+    "gambar": "https://iili.io/C5wWVEv.png"
   },
   {
     "indonesia": "Anda",
     "kanji": "",
     "kana": "あなた",
     "romaji": "anata",
-    "gambar": "https://i.postimg.cc/WpmD4BvS/anata.png"
+    "gambar": "https://iili.io/C5wWW4R.png"
   },
   {
     "indonesia": "orang itu",
     "kanji": "あの人",
     "kana": "あのひと",
     "romaji": "ano hito",
-    "gambar": "https://i.postimg.cc/bY0Gv7hk/ano-ren.png"
+    "gambar": "https://iili.io/C5wW1hg.png"
   },
   {
     "indonesia": "orang itu, beliau. Bentuk sopan dari あの人.",
     "kanji": "あの方",
     "kana": "あのかた",
     "romaji": "ano kata",
-    "gambar": "https://i.postimg.cc/v871mJst/ano-fang.png"
+    "gambar": "https://iili.io/C5wWMCJ.png"
   },
   {
     "indonesia": "Sdr. ~, Bapak ~, Ibu ~. Akhiran untuk mengekspresikan kesopanan yang diletakkan di belakang nama orang.",
     "kanji": "",
     "kana": "～さん",
     "romaji": "-san",
-    "gambar": "https://i.postimg.cc/7Yx5JKHj/san.png"
+    "gambar": "https://iili.io/C5wWh2p.png"
   },
   {
     "indonesia": "Akhiran yang dipakai untuk anak laki-laki dan anak perempuan sebagai pengganti ～さん yang diletakkan di belakang nama anak.",
     "kanji": "",
     "kana": "～ちゃん",
     "romaji": "-chan",
-    "gambar": "https://i.postimg.cc/7Yx5JKHd/chan.png"
+    "gambar": "https://iili.io/C5wWjYN.png"
   },
   {
     "indonesia": "orang ~. Akhiran yang menyatakan warga negara.",
     "kanji": "～人",
     "kana": "～じん",
     "romaji": "-jin",
-    "gambar": "https://i.postimg.cc/J41sHp7V/ren.png",
+    "gambar": "https://iili.io/C5wWwvI.png",
     "contoh": "アメリカ人（アメリカじん）= orang Amerika Serikat."
   },
   {
@@ -4013,35 +4432,35 @@
     "kanji": "先生",
     "kana": "せんせい",
     "romaji": "sensei",
-    "gambar": "https://i.postimg.cc/QxXFKfNZ/xian-sheng.png"
+    "gambar": "https://iili.io/C5wWeTX.png"
   },
   {
     "indonesia": "guru, dosen.",
     "kanji": "教師",
     "kana": "きょうし",
     "romaji": "kyoushi",
-    "gambar": "https://i.postimg.cc/jdZLHyCS/jiao-shi.png"
+    "gambar": "https://iili.io/C5wWSCG.png"
   },
   {
     "indonesia": "mahasiswa.",
     "kanji": "学生",
     "kana": "がくせい",
     "romaji": "gakusei",
-    "gambar": "https://i.postimg.cc/X7VrBsNY/xue-sheng.png"
+    "gambar": "https://iili.io/C5wWUGf.png"
   },
   {
     "indonesia": "karyawan perusahaan.",
     "kanji": "会社員",
     "kana": "かいしゃいん",
     "romaji": "kaishain",
-    "gambar": "https://i.postimg.cc/282VQn3W/hui-she-yuan.png"
+    "gambar": "https://iili.io/C5wWg44.png"
   },
   {
     "indonesia": "karyawan perusahaan. Dipakai bersama dengan nama perusahaan.",
     "kanji": "社員",
     "kana": "しゃいん",
     "romaji": "shain",
-    "gambar": "https://i.postimg.cc/FsD7y01J/she-yuan.png",
+    "gambar": "https://iili.io/C5wW43l.png",
     "contoh": "IMC の社員（IMC のしゃいん）= karyawan perusahaan IMC."
   },
   {
@@ -4049,245 +4468,245 @@
     "kanji": "銀行員",
     "kana": "ぎんこういん",
     "romaji": "ginkouin",
-    "gambar": "https://i.postimg.cc/qvqgjgCc/yin-xing-yuan.png"
+    "gambar": "https://iili.io/C5wWiy7.png"
   },
   {
     "indonesia": "dokter.",
     "kanji": "医者",
     "kana": "いしゃ",
     "romaji": "isha",
-    "gambar": "https://i.postimg.cc/hPpfLVh9/yi-zhe.png"
+    "gambar": "https://iili.io/C5wW6a2.png"
   },
   {
     "indonesia": "peneliti.",
     "kanji": "研究者",
     "kana": "けんきゅうしゃ",
     "romaji": "kenkyuusha",
-    "gambar": "https://i.postimg.cc/FHz1D1L4/yan-jiu-zhe.png"
+    "gambar": "https://iili.io/C5wWQje.png"
   },
   {
     "indonesia": "universitas.",
     "kanji": "大学",
     "kana": "だいがく",
     "romaji": "daigaku",
-    "gambar": "https://i.postimg.cc/3xqN67gs/da-xue.png"
+    "gambar": "https://iili.io/C5wWDCb.png"
   },
   {
     "indonesia": "rumah sakit.",
     "kanji": "病院",
     "kana": "びょういん",
     "romaji": "byouin",
-    "gambar": "https://i.postimg.cc/g27j5dVG/bing-yuan.png"
+    "gambar": "https://iili.io/C5wWm6x.png"
   },
   {
     "indonesia": "siapa",
     "kanji": "誰",
     "kana": "だれ",
     "romaji": "dare",
-    "gambar": "https://i.postimg.cc/VkhvT1qP/shui.png"
+    "gambar": "https://iili.io/C5wWy3Q.png"
   },
   {
     "indonesia": "siapa. Bentuk sopan dari だれ.",
     "kanji": "",
     "kana": "どなた",
     "romaji": "donata",
-    "gambar": "https://i.postimg.cc/FKJzXqpK/donata.png"
+    "gambar": "https://iili.io/C5wXH8B.png"
   },
   {
     "indonesia": "~ tahun. Akhiran untuk menyatakan umur.",
     "kanji": "～歳",
     "kana": "～さい",
     "romaji": "-sai",
-    "gambar": "https://i.postimg.cc/Xvyq6hL8/sui.png"
+    "gambar": "https://iili.io/C5wX2u1.png"
   },
   {
     "indonesia": "umur berapa",
     "kanji": "何歳",
     "kana": "なんさい",
     "romaji": "nansai",
-    "gambar": "https://i.postimg.cc/CKf5pt74/he-sui.png"
+    "gambar": "https://iili.io/C5wX3wF.png"
   },
   {
     "indonesia": "umur berapa. Bentuk sopan dari なんさい.",
     "kanji": "",
     "kana": "おいくつ",
     "romaji": "oikutsu",
-    "gambar": "https://i.postimg.cc/fb0yQFCH/oikutsu.png"
+    "gambar": "https://iili.io/C5wXqMJ.png"
   },
   {
     "indonesia": "ya.",
     "kanji": "",
     "kana": "はい",
     "romaji": "hai",
-    "gambar": "https://i.postimg.cc/d120Lyzd/hai.png"
+    "gambar": "https://iili.io/C5wXB6v.png"
   },
   {
     "indonesia": "tidak, bukan.",
     "kanji": "",
     "kana": "いいえ",
     "romaji": "iie",
-    "gambar": "https://i.postimg.cc/JnNhGk9D/iie.png"
+    "gambar": "https://iili.io/C5wXnFR.png"
   },
   {
     "indonesia": "Perkenalkan. Ucapan salam pada waktu pertama kali berkenalan.",
     "kanji": "初めまして",
     "kana": "はじめまして",
     "romaji": "hajimemashite",
-    "gambar": "https://i.postimg.cc/FRyK7L2j/chumemashite.png"
+    "gambar": "https://iili.io/C5wXx8N.png"
   },
   {
     "indonesia": "datang dari ~, berasal dari ~.",
     "kanji": "～から来ました",
     "kana": "～からきました",
     "romaji": "-kara kimashita",
-    "gambar": "https://i.postimg.cc/hG7vRws5/kara-laimashita.png"
+    "gambar": "https://iili.io/C5wXI9I.png"
   },
   {
     "indonesia": "Salam kenal. Ucapan terakhir untuk perkenalan diri.",
     "kanji": "どうぞよろしくお願いします",
     "kana": "どうぞよろしくおねがいします",
     "romaji": "douzo yoroshiku onegaishimasu",
-    "gambar": "https://i.postimg.cc/C1GKzqWf/douzoyoroshikuo-yuanishimasu.png"
+    "gambar": "https://iili.io/C5wXuwX.png"
   },
   {
     "indonesia": "permisi, maaf. Digunakan ketika bertanya tentang hal yang pribadi seperti nama, alamat, dan sebagainya.",
     "kanji": "失礼ですが",
     "kana": "しつれいですが",
     "romaji": "shitsurei desu ga",
-    "gambar": "https://i.postimg.cc/nz4LCD6m/shi-lidesuga.png"
+    "gambar": "https://iili.io/C5wXAtn.png"
   },
   {
     "indonesia": "Siapa namanya?",
     "kanji": "お名前は？",
     "kana": "おなまえは？",
     "romaji": "onamae wa?",
-    "gambar": "https://i.postimg.cc/C5wxDKgJ/o-ming-qianha.png"
+    "gambar": "https://iili.io/C5wX7MG.png"
   },
   {
     "indonesia": "Ini adalah Bapak, Ibu, atau Sdr. ~.",
     "kanji": "こちらは～さんです",
     "kana": "こちらは～さんです",
     "romaji": "kochira wa -san desu",
-    "gambar": "https://i.postimg.cc/zvqGWfrP/kochiraha-sandesu.png"
+    "gambar": "https://iili.io/C5wXYPf.png"
   },
   {
     "indonesia": "Amerika Serikat.",
     "kanji": "",
     "kana": "アメリカ",
     "romaji": "Amerika",
-    "gambar": "https://i.postimg.cc/j2RSNjb3/amerika.png"
+    "gambar": "https://iili.io/C5wXcF4.png"
   },
   {
     "indonesia": "Inggris.",
     "kanji": "",
     "kana": "イギリス",
     "romaji": "Igirisu",
-    "gambar": "https://i.postimg.cc/0j9ymNsF/igirisu.png"
+    "gambar": "https://iili.io/C5wXlcl.png"
   },
   {
     "indonesia": "India.",
     "kanji": "",
     "kana": "インド",
     "romaji": "Indo",
-    "gambar": "https://i.postimg.cc/J0K4QWrv/indo.png"
+    "gambar": "https://iili.io/C5wXE9S.png"
   },
   {
     "indonesia": "Indonesia.",
     "kanji": "",
     "kana": "インドネシア",
     "romaji": "Indoneshia",
-    "gambar": "https://i.postimg.cc/MHtKY8ZS/indoneshia.png"
+    "gambar": "https://iili.io/C5wXGA7.png"
   },
   {
     "indonesia": "Korea Selatan.",
     "kanji": "韓国",
     "kana": "かんこく",
     "romaji": "Kankoku",
-    "gambar": "https://i.postimg.cc/vTXHvd8c/han-guo.png"
+    "gambar": "https://iili.io/C5wXMN9.png"
   },
   {
     "indonesia": "Thailand.",
     "kanji": "",
     "kana": "タイ",
     "romaji": "Tai",
-    "gambar": "https://i.postimg.cc/WzSb7Ppp/tai.png"
+    "gambar": "https://iili.io/C5wXVte.png"
   },
   {
     "indonesia": "Cina.",
     "kanji": "中国",
     "kana": "ちゅうごく",
     "romaji": "Chuugoku",
-    "gambar": "https://i.postimg.cc/sfJXz5Y5/zhong-guo.png"
+    "gambar": "https://iili.io/C5wXhMb.png"
   },
   {
     "indonesia": "Jerman.",
     "kanji": "",
     "kana": "ドイツ",
     "romaji": "Doitsu",
-    "gambar": "https://i.postimg.cc/7PN64S3W/doitsu.png"
+    "gambar": "https://iili.io/C5wXNKx.png"
   },
   {
     "indonesia": "Jepang.",
     "kanji": "日本",
     "kana": "にほん",
     "romaji": "Nihon",
-    "gambar": "https://i.postimg.cc/tRzTbF3c/ri-ben.png"
+    "gambar": "https://iili.io/C5wXjPj.png"
   },
   {
     "indonesia": "Brasil.",
     "kanji": "",
     "kana": "ブラジル",
     "romaji": "Burajiru",
-    "gambar": "https://i.postimg.cc/2jx6YnQ0/burajiru.png"
+    "gambar": "https://iili.io/C5wXeSV.png"
   },
   {
     "indonesia": "IMC. Perusahaan fiksi.",
     "kanji": "",
     "kana": "IMC",
     "romaji": "ai emu shii",
-    "gambar": "https://i.postimg.cc/ZYLRm6Ph/IMC.png"
+    "gambar": "https://iili.io/C5wXrog.png"
   },
   {
     "indonesia": "Power Denki. Perusahaan fiksi.",
     "kanji": "パワー電気",
     "kana": "パワーでんき",
     "romaji": "Pawaa Denki",
-    "gambar": "https://i.postimg.cc/022NyrZv/pawa-dian-qi.png"
+    "gambar": "https://iili.io/C5wXiKv.png"
   },
   {
     "indonesia": "Brazil Air. Perusahaan fiksi.",
     "kanji": "",
     "kana": "ブラジルエアー",
     "romaji": "Burajiru Eaa",
-    "gambar": "https://i.postimg.cc/pXXdLykX/burajiruea.png"
+    "gambar": "https://iili.io/C5wXLSp.png"
   },
   {
     "indonesia": "AKC. Organisasi fiksi.",
     "kanji": "",
     "kana": "AKC",
     "romaji": "ee kee shii",
-    "gambar": "https://i.postimg.cc/gkk02r4r/AKC.png"
+    "gambar": "https://iili.io/C5wXtRI.png"
   },
   {
     "indonesia": "Rumah Sakit Kobe. Rumah sakit fiksi.",
     "kanji": "神戸病院",
     "kana": "こうべびょういん",
     "romaji": "Koube Byouin",
-    "gambar": "https://i.postimg.cc/3JJwxW9D/shen-hu-bing-yuan.png"
+    "gambar": "https://iili.io/C5wXbDX.png"
   },
   {
     "indonesia": "Universitas Sakura. Universitas fiksi.",
     "kanji": "さくら大学",
     "kana": "さくらだいがく",
     "romaji": "Sakura Daigaku",
-    "gambar": "https://i.postimg.cc/tCS4ZymV/sakura-da-xue.png"
+    "gambar": "https://iili.io/C5wXyVs.png"
   },
   {
     "indonesia": "Universitas Fuji. Universitas fiksi.",
     "kanji": "富士大学",
     "kana": "ふじだいがく",
     "romaji": "Fuji Daigaku",
-    "gambar": "https://i.postimg.cc/Pr35phFw/fu-shi-da-xue.png"
+    "gambar": "https://iili.io/C5wh2Ul.png"
   }
 ];
 
@@ -4337,6 +4756,10 @@
     const imageModalImg = document.getElementById("imageModalImg");
     const imageModalCaption = document.getElementById("imageModalCaption");
     const closeImageModal = document.getElementById("closeImageModal");
+    const materialBtn = document.getElementById("materialBtn");
+    const materialModal = document.getElementById("materialModal");
+    const materialList = document.getElementById("materialList");
+    const closeMaterialModal = document.getElementById("closeMaterialModal");
     const correctBtn = document.getElementById("correctBtn");
     const wrongBtn = document.getElementById("wrongBtn");
 
@@ -4395,6 +4818,11 @@
         usernameButton: "Isi Username",
         usernameNote: "Klik tombol di atas untuk mengisi username melalui popup.",
         startButton: "Start",
+        materialButton: "Lihat Materi",
+        closeMaterialLabel: "Tutup materi",
+        materialTitle: "Materi Kosakata",
+        materialDescription: "Daftar kosakata lengkap. Klik gambar kecil untuk melihat gambar penuh.",
+        materialImageLabel: "Lihat gambar penuh: {word}",
         skipButton: "Lewati ke halaman hasil",
         cardFlipSmall: "Klik kartu untuk membalik",
         timerLabel: "detik tersisa",
@@ -4520,6 +4948,11 @@
         usernameButton: "ユーザー名を入力",
         usernameNote: "上のボタンからユーザー名を入力してください。",
         startButton: "スタート",
+        materialButton: "教材を見る",
+        closeMaterialLabel: "教材を閉じる",
+        materialTitle: "単語教材",
+        materialDescription: "単語リストです。小さい画像をクリックすると全体画像を表示します。",
+        materialImageLabel: "画像を大きく見る: {word}",
         skipButton: "結果ページへ",
         cardFlipSmall: "カードをクリックして裏返す",
         timerLabel: "秒残り",
@@ -4689,6 +5122,10 @@
 
       if (resultScreen.classList.contains("active")) {
         refreshResultLanguage();
+      }
+
+      if (materialModal?.classList.contains("show")) {
+        renderMaterialList();
       }
     }
 
@@ -4930,6 +5367,55 @@
       if (imageModalCaption) imageModalCaption.textContent = "";
     }
 
+
+    function renderMaterialList() {
+      if (!materialList) return;
+
+      materialList.innerHTML = vocabulary.map((item, index) => {
+        const jp = getJapanesePlain(item);
+        const title = jp.main || item.kana || `Kosakata ${index + 1}`;
+        const reading = jp.sub || item.romaji || "";
+        const meaning = String(item.indonesia || "").replace(/\s+/g, " ").trim();
+        const imageUrl = String(item.gambar || "").trim();
+        const imageLabel = t("materialImageLabel").replace("{word}", title);
+        const imageContent = /^https?:\/\//i.test(imageUrl)
+          ? `<img src="${escapeHTML(imageUrl)}" alt="${escapeHTML(title)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />`
+          : `<span aria-hidden="true">🎴</span>`;
+
+        return `
+          <article class="material-item">
+            <button class="material-thumb" type="button" data-img="${escapeHTML(imageUrl)}" data-alt="${escapeHTML(title)}" aria-label="${escapeHTML(imageLabel)}">
+              ${imageContent}
+            </button>
+            <div class="material-info">
+              <div class="material-number">${index + 1}</div>
+              <div>
+                <strong class="material-jp">${escapeHTML(title)}</strong>
+                <span class="material-reading">${escapeHTML(reading)}</span>
+              </div>
+              <p>${escapeHTML(meaning)}</p>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function openMaterialModalBox() {
+      if (!materialModal) return;
+
+      renderMaterialList();
+      materialModal.classList.add("show");
+      materialModal.setAttribute("aria-hidden", "false");
+      closeMaterialModal?.focus({ preventScroll: true });
+    }
+
+    function closeMaterialModalBox() {
+      if (!materialModal) return;
+
+      materialModal.classList.remove("show");
+      materialModal.setAttribute("aria-hidden", "true");
+    }
+
     // =========================
     // Login, admin, dan grup
     // =========================
@@ -4954,6 +5440,9 @@
 
       startBtn.disabled = !canStart;
       startBtn.classList.toggle("show", Boolean(currentUsername));
+      if (materialBtn) {
+        materialBtn.classList.toggle("show", Boolean(currentUsername));
+      }
       resultPageBtn.hidden = !isAdmin;
       clearRankingBtn.hidden = !isAdmin;
       usernameBox.classList.toggle("is-complete", Boolean(currentUsername));
@@ -6487,6 +6976,23 @@
       openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
     });
 
+    materialBtn?.addEventListener("click", openMaterialModalBox);
+    closeMaterialModal?.addEventListener("click", closeMaterialModalBox);
+
+    materialModal?.addEventListener("click", event => {
+      if (event.target === materialModal) {
+        closeMaterialModalBox();
+        return;
+      }
+
+      const thumb = event.target.closest(".material-thumb");
+      if (!thumb) return;
+
+      const src = thumb.dataset.img || "";
+      const alt = thumb.dataset.alt || "Gambar kosakata";
+      openImageModal(src, alt);
+    });
+
     closeImageModal?.addEventListener("click", closeImageModalBox);
 
     imageModal?.addEventListener("click", event => {
@@ -6529,6 +7035,10 @@
 
       if (event.key === "Escape" && imageModal?.classList.contains("show")) {
         closeImageModalBox();
+      }
+
+      if (event.key === "Escape" && materialModal?.classList.contains("show")) {
+        closeMaterialModalBox();
       }
 
       if (event.key === "Escape" && loginModal.classList.contains("show")) {
