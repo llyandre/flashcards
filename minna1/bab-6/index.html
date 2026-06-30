@@ -4611,7 +4611,1145 @@
         font-size: 11px !important;
       }
     }
-  </style>
+  
+
+    /* =========================================================
+       MOBILE POLISH OVERRIDE - ditambahkan tanpa mengubah data/JS
+       Fokus: 360px, 390px, 430px, 520px, 720px
+    ========================================================= */
+    @media screen and (max-width: 768px) {
+      html,
+      body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box !important;
+      }
+
+      img,
+      svg,
+      canvas,
+      video {
+        max-width: 100% !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      span,
+      button,
+      input,
+      td,
+      th,
+      .badge,
+      .hero-info-card,
+      .login-summary,
+      .group-btn,
+      .card-text,
+      .jp-box,
+      .jp-main-display,
+      .jp-reading,
+      .material-info,
+      .review-jp,
+      .review-sub {
+        overflow-wrap: anywhere !important;
+        word-break: normal !important;
+      }
+
+      body {
+        min-height: 100dvh !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+      }
+
+      body::before,
+      body::after {
+        width: 140px !important;
+        height: 140px !important;
+        opacity: 0.18 !important;
+      }
+
+      .app-shell {
+        width: 100% !important;
+        min-height: 100dvh !important;
+        margin: 0 !important;
+        padding: max(10px, env(safe-area-inset-top)) 10px max(16px, env(safe-area-inset-bottom)) !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        overflow-x: hidden !important;
+      }
+
+      .screen,
+      .screen.active {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .panel {
+        width: 100% !important;
+        max-width: 600px !important;
+        min-width: 0 !important;
+        min-height: auto !important;
+        margin: 0 auto !important;
+        padding: 18px !important;
+        border-radius: 22px !important;
+        overflow: visible !important;
+      }
+
+      #startScreen.screen.active {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: calc(100dvh - 26px) !important;
+      }
+
+      #startScreen .panel.hero {
+        width: 100% !important;
+        max-width: 600px !important;
+        min-height: auto !important;
+        padding: 16px !important;
+        display: block !important;
+        border-radius: 22px !important;
+      }
+
+      #startScreen .hero > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .language-switch,
+      .fiction-toggle,
+      #fictionToggle {
+        position: static !important;
+        transform: none !important;
+        inset: auto !important;
+        max-width: 100% !important;
+      }
+
+      .language-switch {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+        margin: 0 0 8px !important;
+        padding: 5px !important;
+        border-radius: 18px !important;
+      }
+
+      .language-btn {
+        width: 100% !important;
+        min-height: 34px !important;
+        padding: 7px 8px !important;
+        font-size: 12px !important;
+        line-height: 1.15 !important;
+        text-align: center !important;
+        white-space: normal !important;
+      }
+
+      .fiction-toggle,
+      #fictionToggle {
+        width: 100% !important;
+        min-height: 40px !important;
+        margin: 0 0 13px !important;
+        padding: 7px 10px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        border-radius: 18px !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+        white-space: normal !important;
+      }
+
+      .fiction-switch {
+        width: 48px !important;
+        height: 26px !important;
+        flex: 0 0 48px !important;
+      }
+
+      .fiction-switch::after {
+        width: 20px !important;
+        height: 20px !important;
+      }
+
+      .fiction-toggle[aria-pressed="false"] .fiction-switch::after {
+        transform: translateX(-22px) !important;
+      }
+
+      #startScreen .hero-info-row {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 0 0 14px !important;
+      }
+
+      #startScreen .hero-info-card,
+      .hero-info-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 66px !important;
+        padding: 10px !important;
+        gap: 8px !important;
+        border-radius: 17px !important;
+      }
+
+      #startScreen .hero-info-icon {
+        width: 34px !important;
+        height: 34px !important;
+        flex: 0 0 34px !important;
+      }
+
+      #startScreen .hero-info-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+      }
+
+      #startScreen .hero-info-text {
+        min-width: 0 !important;
+        gap: 1px !important;
+      }
+
+      #startScreen .hero-info-card span {
+        font-size: 11.5px !important;
+        line-height: 1.22 !important;
+      }
+
+      #startScreen .hero-info-card strong {
+        font-size: clamp(14px, 3.6vw, 17px) !important;
+        line-height: 1.22 !important;
+      }
+
+      #startScreen .hero h1,
+      .hero h1 {
+        margin: 0 auto 9px !important;
+        font-size: clamp(24px, 6.8vw, 34px) !important;
+        line-height: 1.14 !important;
+        letter-spacing: 0 !important;
+      }
+
+      #startScreen .hero p,
+      .hero p {
+        margin: 0 auto 14px !important;
+        font-size: clamp(13px, 3.35vw, 15px) !important;
+        line-height: 1.5 !important;
+      }
+
+      .username-box,
+      #startScreen .username-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto 12px !important;
+        gap: 8px !important;
+      }
+
+      .input-shell,
+      #startScreen .input-shell,
+      .login-trigger {
+        width: 100% !important;
+        min-height: 48px !important;
+        padding: 0 14px !important;
+        border-radius: 16px !important;
+      }
+
+      .username-box input,
+      .login-field input {
+        min-width: 0 !important;
+        font-size: 15px !important;
+        line-height: 1.25 !important;
+      }
+
+      .login-summary {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        border-radius: 16px !important;
+      }
+
+      .username-note,
+      #startScreen .username-note {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+      }
+
+      .hero-actions,
+      .result-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-top: 10px !important;
+      }
+
+      .btn,
+      .hero-actions .btn,
+      .result-actions .btn,
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 50px !important;
+        padding: 12px 14px !important;
+        border-radius: 16px !important;
+        font-size: 15px !important;
+        line-height: 1.2 !important;
+      }
+
+      .practice-wrap {
+        width: 100% !important;
+        max-width: 600px !important;
+        min-width: 0 !important;
+        margin: 0 auto !important;
+        padding: 4px 0 16px !important;
+      }
+
+      .topbar {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(104px, 118px) !important;
+        gap: 9px !important;
+        align-items: stretch !important;
+        margin: 0 0 9px !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        min-width: 0 !important;
+        padding: 11px !important;
+        border-radius: 17px !important;
+      }
+
+      .counter-card {
+        display: grid !important;
+        align-content: center !important;
+      }
+
+      .counter-card span {
+        font-size: 13.5px !important;
+        line-height: 1.28 !important;
+      }
+
+      .counter-card small,
+      .timer-label,
+      .flip-hint {
+        font-size: 11.5px !important;
+        line-height: 1.35 !important;
+      }
+
+      .time-number {
+        font-size: clamp(24px, 7vw, 30px) !important;
+      }
+
+      .timer-track {
+        height: 8px !important;
+        margin-top: 8px !important;
+      }
+
+      .flip-hint {
+        width: 100% !important;
+        margin: 8px auto 9px !important;
+        padding: 0 4px !important;
+        text-align: center !important;
+      }
+
+      .flashcard {
+        width: 100% !important;
+        max-width: 600px !important;
+        height: clamp(380px, calc(100dvh - 255px), 500px) !important;
+        min-height: 380px !important;
+        margin: 0 auto !important;
+      }
+
+      .card-face {
+        border-radius: 22px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 15px !important;
+      }
+
+      .card-text {
+        max-width: 100% !important;
+        padding: 8px !important;
+        font-size: clamp(16px, 4.4vw, 22px) !important;
+        line-height: 1.42 !important;
+        overflow: visible !important;
+      }
+
+      .card-text.long {
+        font-size: clamp(13px, 3.6vw, 18px) !important;
+        line-height: 1.38 !important;
+      }
+
+      .back-content {
+        width: 100% !important;
+        height: 100% !important;
+        grid-template-rows: minmax(0, 50%) minmax(0, 1fr) !important;
+        gap: 8px !important;
+        overflow: hidden !important;
+      }
+
+      .illustration-wrap {
+        width: min(72%, 250px) !important;
+        height: 100% !important;
+        max-height: 185px !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+      }
+
+      .illustration,
+      .illustration img {
+        max-width: 100% !important;
+        max-height: 100% !important;
+      }
+
+      .illustration img {
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        object-position: center !important;
+      }
+
+      .jp-box {
+        width: 100% !important;
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 0 5px !important;
+        gap: 4px !important;
+        align-content: center !important;
+        overflow: visible !important;
+      }
+
+      .jp-main-display {
+        max-width: 100% !important;
+        font-size: clamp(22px, 7.2vw, 34px) !important;
+        line-height: 1.18 !important;
+        word-break: keep-all !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(17px, 5.8vw, 27px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .jp-divider {
+        width: min(120px, 42%) !important;
+        margin: 1px auto 2px !important;
+      }
+
+      .jp-reading {
+        max-width: 100% !important;
+        font-size: clamp(12px, 3.4vw, 15px) !important;
+        line-height: 1.34 !important;
+      }
+
+      .jp-reading.long {
+        font-size: clamp(11px, 3.1vw, 14px) !important;
+        line-height: 1.3 !important;
+      }
+
+      .jp-actions {
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        margin-top: 4px !important;
+      }
+
+      .audio-btn,
+      .example-btn,
+      .note-btn {
+        min-height: 34px !important;
+        margin-top: 0 !important;
+        padding: 7px 10px !important;
+        border-radius: 999px !important;
+        font-size: 11.5px !important;
+        line-height: 1.15 !important;
+        white-space: normal !important;
+      }
+
+      .answer-row {
+        width: 100% !important;
+        max-width: 600px !important;
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+        margin: 10px auto 0 !important;
+      }
+
+      .answer-btn {
+        width: 100% !important;
+        min-height: 50px !important;
+        padding: 11px 14px !important;
+        border-radius: 16px !important;
+        font-size: 15.5px !important;
+      }
+
+      .results-head {
+        margin-bottom: 14px !important;
+      }
+
+      .results-head h2 {
+        margin: 8px 0 6px !important;
+        font-size: clamp(23px, 6.5vw, 32px) !important;
+        line-height: 1.14 !important;
+      }
+
+      .results-head p,
+      .summary-text p {
+        font-size: 13px !important;
+        line-height: 1.48 !important;
+      }
+
+      .participant-name {
+        width: 100% !important;
+        margin-top: 10px !important;
+        text-align: center !important;
+        border-radius: 16px !important;
+      }
+
+      .tabs {
+        width: 100% !important;
+        margin: 14px 0 12px !important;
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .tab-btn {
+        flex: 0 0 auto !important;
+        min-height: 40px !important;
+        padding: 9px 12px !important;
+      }
+
+      .summary-box {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 13px !important;
+        padding: 14px !important;
+        border-radius: 20px !important;
+        text-align: center !important;
+      }
+
+      .score-circle {
+        width: 128px !important;
+        height: 128px !important;
+      }
+
+      .score-circle::before {
+        inset: 12px !important;
+      }
+
+      .score-circle strong {
+        font-size: 27px !important;
+      }
+
+      .summary-text h3 {
+        margin-bottom: 6px !important;
+        font-size: clamp(19px, 5.2vw, 25px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .stats-grid {
+        width: 100% !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 14px 0 !important;
+      }
+
+      .stat-card,
+      .stat-card:last-child {
+        grid-column: auto !important;
+        min-width: 0 !important;
+        padding: 13px 10px !important;
+        border-radius: 17px !important;
+      }
+
+      .stat-card span {
+        margin-bottom: 6px !important;
+        font-size: 11.5px !important;
+        line-height: 1.25 !important;
+      }
+
+      .stat-card strong {
+        font-size: clamp(18px, 5.4vw, 24px) !important;
+      }
+
+      .table-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 17px !important;
+      }
+
+      table {
+        min-width: 560px !important;
+        font-size: 12.5px !important;
+      }
+
+      th,
+      td {
+        padding: 10px 11px !important;
+        line-height: 1.38 !important;
+      }
+
+      .status-pill {
+        min-width: 66px !important;
+        padding: 6px 8px !important;
+        font-size: 11px !important;
+      }
+
+      .review-sub {
+        font-size: 11.5px !important;
+      }
+
+      .example-modal,
+      .login-modal,
+      .image-modal,
+      .material-modal {
+        padding: 10px !important;
+        align-items: center !important;
+        justify-items: center !important;
+        overflow: hidden !important;
+      }
+
+      .example-modal-card,
+      .login-modal-card,
+      .note-modal-card,
+      .image-modal-card,
+      .material-modal-card {
+        width: 100% !important;
+        max-width: 560px !important;
+        max-height: calc(100dvh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .example-modal-card,
+      .login-modal-card,
+      .note-modal-card {
+        padding: 22px 16px 16px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .example-modal-card h3,
+      .login-modal-card h3 {
+        margin-right: 42px !important;
+        font-size: clamp(18px, 5vw, 22px) !important;
+        line-height: 1.18 !important;
+      }
+
+      .example-modal-card p,
+      .login-modal-card p {
+        font-size: 13px !important;
+        line-height: 1.48 !important;
+      }
+
+      .example-close,
+      #closeLoginModal,
+      .image-modal-close,
+      .material-close {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        top: 10px !important;
+        right: 10px !important;
+        font-size: 26px !important;
+      }
+
+      .login-field {
+        gap: 6px !important;
+        margin-bottom: 11px !important;
+      }
+
+      .login-field label,
+      .group-box p,
+      .login-error {
+        font-size: 12.5px !important;
+        line-height: 1.35 !important;
+      }
+
+      .group-box,
+      .login-modal-card .group-box {
+        width: 100% !important;
+        margin: 12px 0 !important;
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .group-btn {
+        min-height: 42px !important;
+        padding: 9px 10px !important;
+        border-radius: 15px !important;
+        font-size: 12.5px !important;
+      }
+
+      .login-modal-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 9px !important;
+      }
+
+      .login-modal-actions .btn {
+        width: 100% !important;
+        min-height: 48px !important;
+      }
+
+      .note-modal-content {
+        max-height: calc(100dvh - 150px) !important;
+        overflow-y: auto !important;
+        padding-right: 2px !important;
+      }
+
+      .note-modal-content .note-jp {
+        font-size: clamp(20px, 6vw, 26px) !important;
+      }
+
+      .image-modal-card {
+        padding: 12px !important;
+        display: grid !important;
+        grid-template-rows: minmax(0, 1fr) auto !important;
+        overflow: hidden !important;
+      }
+
+      .image-modal-body {
+        min-height: 0 !important;
+        max-height: calc(100dvh - 106px) !important;
+        padding: 44px 4px 4px !important;
+        overflow: hidden !important;
+      }
+
+      .image-modal-body img,
+      #imageModalImg {
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: calc(100dvh - 118px) !important;
+        object-fit: contain !important;
+        object-position: center !important;
+      }
+
+      .image-modal-caption {
+        margin: 7px 4px 0 !important;
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .material-modal {
+        padding: 8px !important;
+      }
+
+      .material-modal-card {
+        max-width: 640px !important;
+        max-height: calc(100dvh - 16px) !important;
+        overflow: hidden !important;
+      }
+
+      .material-modal-head {
+        grid-template-columns: minmax(0, 1fr) 42px !important;
+        gap: 9px !important;
+        padding: 13px 12px 11px !important;
+      }
+
+      .material-modal-head h3 {
+        margin: 6px 0 4px !important;
+        font-size: clamp(19px, 5.4vw, 23px) !important;
+        line-height: 1.16 !important;
+      }
+
+      .material-modal-head p {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+      }
+
+      .material-list {
+        padding: 11px !important;
+        gap: 11px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .material-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .material-summary-card {
+        min-height: 72px !important;
+        padding: 10px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-summary-card span {
+        font-size: 11.5px !important;
+      }
+
+      .material-summary-card strong {
+        font-size: 24px !important;
+      }
+
+      .material-group {
+        padding: 11px !important;
+        gap: 10px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-group-head {
+        grid-template-columns: 1fr !important;
+        gap: 7px !important;
+      }
+
+      .material-group-head h4 {
+        font-size: 17px !important;
+        line-height: 1.2 !important;
+      }
+
+      .material-group-head p {
+        font-size: 12px !important;
+      }
+
+      .material-group-head > span {
+        width: max-content !important;
+        max-width: 100% !important;
+        white-space: normal !important;
+      }
+
+      .material-group-list {
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 78px minmax(0, 1fr) !important;
+        gap: 9px !important;
+        padding: 9px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-thumb {
+        width: 78px !important;
+        height: 68px !important;
+        border-radius: 13px !important;
+      }
+
+      .material-thumb img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        padding: 5px !important;
+      }
+
+      .material-number {
+        font-size: 10.5px !important;
+        line-height: 1.1 !important;
+      }
+
+      .material-jp {
+        font-size: 16px !important;
+        line-height: 1.25 !important;
+      }
+
+      .material-reading,
+      .material-meaning {
+        font-size: 11.5px !important;
+        line-height: 1.32 !important;
+      }
+    }
+
+    @media screen and (max-width: 520px) {
+      .app-shell {
+        padding-left: 9px !important;
+        padding-right: 9px !important;
+      }
+
+      #startScreen.screen.active {
+        align-items: flex-start !important;
+        min-height: auto !important;
+      }
+
+      #startScreen .panel.hero,
+      .panel {
+        padding: 14px !important;
+        border-radius: 20px !important;
+      }
+
+      #startScreen .hero-info-row {
+        gap: 8px !important;
+        margin-bottom: 12px !important;
+      }
+
+      #startScreen .hero-info-card,
+      .hero-info-card {
+        min-height: 62px !important;
+        padding: 9px !important;
+      }
+
+      #startScreen .hero h1,
+      .hero h1 {
+        font-size: clamp(22px, 6.5vw, 30px) !important;
+      }
+
+      #startScreen .hero p,
+      .hero p {
+        margin-bottom: 12px !important;
+        font-size: 13px !important;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr !important;
+      }
+
+      .timer-card {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: auto minmax(0, 1fr) !important;
+        grid-template-areas:
+          "num label"
+          "track track" !important;
+        align-items: center !important;
+        column-gap: 10px !important;
+        text-align: left !important;
+      }
+
+      .time-number {
+        grid-area: num !important;
+        line-height: 1 !important;
+      }
+
+      .timer-label {
+        grid-area: label !important;
+        margin: 0 !important;
+      }
+
+      .timer-track {
+        grid-area: track !important;
+      }
+
+      .flashcard {
+        height: clamp(365px, calc(100dvh - 245px), 470px) !important;
+        min-height: 365px !important;
+      }
+
+      .illustration-wrap {
+        width: min(74%, 230px) !important;
+        max-height: 170px !important;
+      }
+
+      .answer-btn,
+      .btn,
+      .login-trigger {
+        min-height: 48px !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      table {
+        min-width: 540px !important;
+      }
+    }
+
+    @media screen and (max-width: 430px) {
+      .app-shell {
+        padding: 8px 8px 14px !important;
+      }
+
+      #startScreen .panel.hero,
+      .panel {
+        padding: 13px !important;
+        border-radius: 18px !important;
+      }
+
+      .language-switch {
+        gap: 5px !important;
+      }
+
+      .language-btn {
+        min-height: 32px !important;
+        font-size: 11.5px !important;
+      }
+
+      .fiction-toggle,
+      #fictionToggle {
+        min-height: 38px !important;
+        margin-bottom: 11px !important;
+      }
+
+      #startScreen .hero-info-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen .hero-info-card,
+      .hero-info-card {
+        min-height: 58px !important;
+      }
+
+      #startScreen .hero h1,
+      .hero h1 {
+        font-size: clamp(21px, 7vw, 28px) !important;
+        line-height: 1.16 !important;
+      }
+
+      .flashcard {
+        height: clamp(350px, calc(100dvh - 235px), 445px) !important;
+        min-height: 350px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 12px !important;
+      }
+
+      .back-content {
+        grid-template-rows: minmax(0, 47%) minmax(0, 1fr) !important;
+        gap: 7px !important;
+      }
+
+      .illustration-wrap {
+        width: min(72%, 205px) !important;
+        max-height: 148px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(20px, 7vw, 30px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(16px, 5.4vw, 24px) !important;
+      }
+
+      .jp-reading {
+        font-size: clamp(11.5px, 3.6vw, 14px) !important;
+      }
+
+      .answer-row {
+        gap: 8px !important;
+        margin-top: 9px !important;
+      }
+
+      .answer-btn {
+        min-height: 47px !important;
+      }
+
+      .login-modal-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-item {
+        grid-template-columns: 72px minmax(0, 1fr) !important;
+      }
+
+      .material-thumb {
+        width: 72px !important;
+        height: 64px !important;
+      }
+    }
+
+    @media screen and (max-width: 390px) {
+      #startScreen .panel.hero,
+      .panel {
+        padding: 12px !important;
+      }
+
+      .language-switch {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      #startScreen .hero h1,
+      .hero h1 {
+        font-size: clamp(20px, 7.1vw, 26px) !important;
+      }
+
+      #startScreen .hero p,
+      .hero p,
+      .results-head p,
+      .summary-text p {
+        font-size: 12.5px !important;
+      }
+
+      .group-options {
+        grid-template-columns: 1fr !important;
+      }
+
+      .flashcard {
+        height: clamp(340px, calc(100dvh - 228px), 420px) !important;
+        min-height: 340px !important;
+      }
+
+      .illustration-wrap {
+        width: min(70%, 190px) !important;
+        max-height: 132px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(19px, 6.8vw, 28px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(15px, 5.1vw, 22px) !important;
+      }
+
+      .audio-btn,
+      .example-btn,
+      .note-btn {
+        min-height: 32px !important;
+        padding: 7px 9px !important;
+        font-size: 11px !important;
+      }
+
+      .material-summary-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-item {
+        grid-template-columns: 68px minmax(0, 1fr) !important;
+        gap: 8px !important;
+      }
+
+      .material-thumb {
+        width: 68px !important;
+        height: 60px !important;
+      }
+    }
+
+    @media screen and (max-width: 768px) and (max-height: 620px) {
+      #startScreen.screen.active {
+        align-items: flex-start !important;
+      }
+
+      .flashcard {
+        height: 340px !important;
+        min-height: 340px !important;
+      }
+
+      .illustration-wrap {
+        max-height: 125px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 11px !important;
+      }
+    }
+</style>
 </head>
 <body>
   <main class="app-shell">
