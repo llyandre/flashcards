@@ -4927,28 +4927,28 @@
     "gambar": "https://iili.io/C5r6U2n.png"
   },
   {
-    "indonesia": "restoran masakan Jepang fiksi",
+    "indonesia": "restoran masakan Jepang fiksi (Restoran Asuka)",
     "kanji": "",
-    "kana": "おすか",
-    "romaji": "Osuka",
+    "kana": "あすか",
+    "romaji": "Asuka",
     "gambar": "https://iili.io/C5r6g7s.png"
   },
   {
-    "indonesia": "bank fiksi",
+    "indonesia": "bank fiksi (Bank Apel)",
     "kanji": "アップル銀行",
     "kana": "アップルぎんこう",
     "romaji": "Appuru Ginkou",
     "gambar": "https://iili.io/C5r6t49.png"
   },
   {
-    "indonesia": "perpustakaan fiksi",
+    "indonesia": "perpustakaan fiksi (Perpustakaan Hijau)",
     "kanji": "みどり図書館",
     "kana": "みどりとしょかん",
     "romaji": "Midori Toshokan",
     "gambar": "https://iili.io/C5rPHTx.png"
   },
   {
-    "indonesia": "gedung kesenian fiksi",
+    "indonesia": "gedung kesenian fiksi (Gedung Kesenian Yamato)",
     "kanji": "やまと美術館",
     "kana": "やまとびじゅつかん",
     "romaji": "Yamato Bijutsukan",
@@ -5415,7 +5415,8 @@
     }
 
     function isFictionVocabulary(item) {
-      return /fiksi/i.test(String(item?.indonesia || ""));
+      const text = [item?.indonesia, item?.kanji, item?.kana, item?.romaji].join(" ");
+      return /fiksi|あすか|アップル銀行|アップルぎんこう|みどり図書館|みどりとしょかん|やまと美術館|やまとびじゅつかん|Asuka|Appuru|Midori|Yamato/i.test(text);
     }
 
     function getAvailableVocabulary() {
