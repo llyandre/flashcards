@@ -4124,6 +4124,218 @@
       }
     }
 
+
+    /* ===== Revisi final: tombol materi, modal materi, dan popup gambar responsif ===== */
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      letter-spacing: 0;
+      color: #5d55c9;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72));
+      border: 1px solid rgba(124, 111, 246, 0.24);
+      box-shadow: 0 13px 28px rgba(82, 73, 134, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    #startScreen.login-complete .hero-actions {
+      align-items: stretch;
+    }
+
+    .material-modal,
+    .image-modal {
+      overflow: hidden;
+    }
+
+    .material-modal-card {
+      max-height: min(88svh, 860px);
+      overflow: hidden;
+    }
+
+    .material-modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+
+    .material-modal-close,
+    .image-modal-close {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .material-list {
+      scrollbar-gutter: stable;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .material-item {
+      min-height: 108px;
+    }
+
+    .material-item button {
+      flex-shrink: 0;
+    }
+
+    .material-item img,
+    .illustration img,
+    .image-modal-body img {
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+
+    .image-modal-card {
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      max-height: calc(100svh - 28px) !important;
+      overflow: hidden !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      right: auto !important;
+      justify-self: end !important;
+      z-index: 5 !important;
+      margin: 12px 12px 0 0 !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      overflow: auto !important;
+      overscroll-behavior: contain !important;
+      -webkit-overflow-scrolling: touch !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 10px 14px 12px !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 152px) !important;
+      display: block !important;
+      margin: 0 auto !important;
+    }
+
+    .image-modal-caption {
+      min-height: 42px;
+      display: grid;
+      place-items: center;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen.login-complete .hero-actions {
+        width: 100%;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen.login-complete #startBtn.show,
+      #startScreen.login-complete #materialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 24px) !important;
+      }
+
+      .material-modal-head {
+        align-items: flex-start !important;
+      }
+
+      .material-modal-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+      }
+
+      .material-item {
+        min-height: 96px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 24px) !important;
+      }
+
+      .image-modal-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        margin: 10px 10px 0 0 !important;
+      }
+
+      .image-modal-body {
+        padding: 8px 10px 10px !important;
+      }
+
+      .image-modal-body img {
+        max-width: 100% !important;
+        max-height: calc(100svh - 140px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-modal {
+        padding: 10px !important;
+      }
+
+      .material-modal-head {
+        padding: 13px 12px 10px !important;
+      }
+
+      .material-modal-head p {
+        font-size: 12px !important;
+      }
+
+      .material-list {
+        padding: 10px 10px 14px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 72px minmax(0, 1fr) !important;
+        gap: 9px !important;
+        padding: 8px !important;
+      }
+
+      .material-item button {
+        width: 72px !important;
+        height: 72px !important;
+      }
+
+      .material-jp {
+        font-size: 15px !important;
+        line-height: 1.28 !important;
+      }
+
+      .material-reading,
+      .material-id {
+        font-size: 11.5px !important;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-card {
+        border-radius: 22px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 132px) !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4444,347 +4656,347 @@
     // =========================
     const vocabulary = [
       {
-            "indonesia": "sini (bentuk sopan dari ここ)",
-            "kanji": "",
-            "kana": "こちら",
-            "romaji": "kochira",
-            "gambar": "https://iili.io/C5O4dCv.png"
-      },
-      {
-            "indonesia": "(di) mana",
-            "kanji": "",
-            "kana": "どこ",
-            "romaji": "doko",
-            "gambar": "https://iili.io/C5O4h8P.png"
-      },
-      {
-            "indonesia": "situ (bentuk sopan dari そこ)",
-            "kanji": "",
-            "kana": "そちら",
-            "romaji": "sochira",
-            "gambar": "https://iili.io/C5O4lwu.png"
-      },
-      {
-            "indonesia": "sana (bentuk sopan dari あそこ)",
-            "kanji": "",
-            "kana": "あちら",
-            "romaji": "achira",
-            "gambar": "https://iili.io/C5OrzrB.png"
-      },
-      {
-            "indonesia": "mana (bentuk sopan dari どこ)",
-            "kanji": "",
-            "kana": "どちら",
-            "romaji": "dochira",
-            "gambar": "https://iili.io/C5O4voJ.png"
-      },
-      {
-            "indonesia": "ruang kelas",
-            "kanji": "教室",
-            "kana": "きょうしつ",
-            "romaji": "kyoushitsu",
-            "gambar": "https://iili.io/C5Orbv1.png"
-      },
-      {
-            "indonesia": "ruang makan, rumah makan, kantin",
-            "kanji": "食堂",
-            "kana": "しょくどう",
-            "romaji": "shokudou",
-            "gambar": "https://iili.io/C5O4xZG.png"
-      },
-      {
-            "indonesia": "kantor",
-            "kanji": "事務所",
-            "kana": "じむしょ",
-            "romaji": "jimusho",
-            "gambar": "https://iili.io/C5O4faI.png"
-      },
-      {
-            "indonesia": "ruang rapat",
-            "kanji": "会議室",
-            "kana": "かいぎしつ",
-            "romaji": "kaigishitsu",
-            "gambar": "https://iili.io/C5OrPQj.png"
-      },
-      {
-            "indonesia": "meja informasi",
-            "kanji": "受付",
-            "kana": "うけつけ",
-            "romaji": "uketsuke",
-            "gambar": "https://iili.io/C5OrM7t.png"
-      },
-      {
-            "indonesia": "ruang tunggu, lobi",
-            "kanji": "",
-            "kana": "ロビー",
-            "romaji": "robii",
-            "gambar": "https://iili.io/C5O4pl2.png"
-      },
-      {
-            "indonesia": "kamar",
-            "kanji": "部屋",
-            "kana": "へや",
-            "romaji": "heya",
-            "gambar": "https://iili.io/C5O4ZoG.png"
-      },
-      {
-            "indonesia": "kamar kecil, toilet, WC",
-            "kanji": "お手洗い",
-            "kana": "トイレ / おてあらい",
-            "romaji": "toire / otearai",
-            "gambar": "https://iili.io/C5O4WFV.png"
-      },
-      {
-            "indonesia": "tangga",
-            "kanji": "階段",
-            "kana": "かいだん",
-            "romaji": "kaidan",
-            "gambar": "https://iili.io/C5OrQ4V.png"
-      },
-      {
-            "indonesia": "lift",
-            "kanji": "",
-            "kana": "エレベーター",
-            "romaji": "erebeetaa",
-            "gambar": "https://iili.io/C5OrOB4.png"
-      },
-      {
-            "indonesia": "tangga berjalan, eskalator",
-            "kanji": "",
-            "kana": "エスカレーター",
-            "romaji": "esukareetaa",
-            "gambar": "https://iili.io/C5OrwQf.png"
-      },
-      {
-            "indonesia": "mesin jual otomatis",
-            "kanji": "自動販売機",
-            "kana": "じどうはんばいき",
-            "romaji": "jidouhanbaiki",
-            "gambar": "https://iili.io/C5O434p.png"
-      },
-      {
-            "indonesia": "telepon",
-            "kanji": "電話",
-            "kana": "でんわ",
-            "romaji": "denwa",
-            "gambar": "https://iili.io/C5O4M6Q.png"
-      },
-      {
-            "indonesia": "negara, negeri",
-            "kanji": "お国",
-            "kana": "おくに",
-            "romaji": "okuni",
-            "gambar": "https://iili.io/C5Orgpe.png"
-      },
-      {
-            "indonesia": "perusahaan",
-            "kanji": "会社",
-            "kana": "かいしゃ",
-            "romaji": "kaisha",
-            "gambar": "https://iili.io/C5OrLEQ.png"
-      },
-      {
-            "indonesia": "rumah",
-            "kanji": "",
-            "kana": "うち",
-            "romaji": "uchi",
-            "gambar": "https://iili.io/C5OrhIs.png"
-      },
-      {
-            "indonesia": "sepatu",
-            "kanji": "靴",
-            "kana": "くつ",
-            "romaji": "kutsu",
-            "gambar": "https://iili.io/C5OrmyF.png"
-      },
-      {
-            "indonesia": "dasi",
-            "kanji": "",
-            "kana": "ネクタイ",
-            "romaji": "nekutai",
-            "gambar": "https://iili.io/C5O44SI.png"
-      },
-      {
-            "indonesia": "anggur",
-            "kanji": "",
-            "kana": "ワイン",
-            "romaji": "wain",
-            "gambar": "https://iili.io/C5O6HH7.png"
-      },
-      {
-            "indonesia": "bawah tanah, basement",
-            "kanji": "地下",
-            "kana": "ちか",
-            "romaji": "chika",
-            "gambar": "https://iili.io/C5O4Enj.png"
-      },
-      {
-            "indonesia": "tempat penjualan",
-            "kanji": "売り場",
-            "kana": "うりば",
-            "romaji": "uriba",
-            "gambar": "https://iili.io/C5OrjhG.png"
-      },
-      {
-            "indonesia": "lantai satu, tingkat satu",
-            "kanji": "一階",
-            "kana": "いっかい",
-            "romaji": "ikkai",
-            "gambar": "https://iili.io/C5OrlBR.png"
-      },
-      {
-            "indonesia": "lantai berapa, tingkat berapa",
-            "kanji": "何階",
-            "kana": "なんがい",
-            "romaji": "nangai",
-            "gambar": "https://iili.io/C5O4gFp.png"
-      },
-      {
-            "indonesia": "yen",
-            "kanji": "円",
-            "kana": "えん",
-            "romaji": "en",
-            "gambar": "https://iili.io/C5Or82S.png"
-      },
-      {
-            "indonesia": "berapa",
-            "kanji": "",
-            "kana": "いくら",
-            "romaji": "ikura",
-            "gambar": "https://iili.io/C5Or7Ia.png"
-      },
-      {
-            "indonesia": "ratus",
-            "kanji": "百",
-            "kana": "ひゃく",
-            "romaji": "hyaku",
-            "gambar": "https://iili.io/C5O4iAX.png"
-      },
-      {
-            "indonesia": "ribu",
-            "kanji": "千",
-            "kana": "せん",
-            "romaji": "sen",
-            "gambar": "https://iili.io/C5O4787.png"
-      },
-      {
-            "indonesia": "puluh ribu",
-            "kanji": "万",
-            "kana": "まん",
-            "romaji": "man",
-            "gambar": "https://iili.io/C5O4tVf.png"
-      },
-      {
-            "indonesia": "Maaf./Permisi.",
-            "kanji": "",
-            "kana": "すみません。",
-            "romaji": "sumimasen",
-            "gambar": "https://iili.io/C5O4RF2.png"
-      },
-      {
-            "indonesia": "Terima kasih.",
-            "kanji": "",
-            "kana": "どうも。",
-            "romaji": "doumo",
-            "gambar": "https://iili.io/C5O4XcB.png"
-      },
-      {
-            "indonesia": "Selamat datang./Bisa saya bantu? (ungkapan kepada tamu yang masuk ke toko)",
-            "kanji": "",
-            "kana": "いらっしゃいませ。",
-            "romaji": "irasshaimase",
-            "gambar": "https://iili.io/C5Or1rN.png"
-      },
-      {
-            "indonesia": "Tolong perlihatkan [〜].",
-            "kanji": "",
-            "kana": "〜を見せてください。",
-            "romaji": "~ o misete kudasai",
-            "gambar": "https://iili.io/C5O6fix.png"
-      },
-      {
-            "indonesia": "Baiklah, kalau begitu,",
-            "kanji": "",
-            "kana": "じゃ",
-            "romaji": "ja",
-            "gambar": "https://iili.io/C5O4qvt.png"
-      },
-      {
-            "indonesia": "Minta [〜]./Tolong berikan [〜].",
-            "kanji": "",
-            "kana": "〜をください。",
-            "romaji": "~ o kudasai",
-            "gambar": "https://iili.io/C5O6dNe.png"
-      },
-      {
-            "indonesia": "Italia",
-            "kanji": "",
-            "kana": "イタリア",
-            "romaji": "Itaria",
-            "gambar": "https://iili.io/C5OrTdP.png"
-      },
-      {
-            "indonesia": "Swiss",
-            "kanji": "",
-            "kana": "スイス",
-            "romaji": "Suisu",
-            "gambar": "https://iili.io/C5O4TG4.png"
-      },
-      {
-            "indonesia": "Prancis",
-            "kanji": "",
-            "kana": "フランス",
-            "romaji": "Furansu",
-            "gambar": "https://iili.io/C5O4Lts.png"
-      },
-      {
-            "indonesia": "Jakarta",
-            "kanji": "",
-            "kana": "ジャカルタ",
-            "romaji": "Jakaruta",
-            "gambar": "https://iili.io/C5O4ojs.png"
-      },
-      {
-            "indonesia": "Bangkok",
-            "kanji": "",
-            "kana": "バンコク",
-            "romaji": "Bankoku",
-            "gambar": "https://iili.io/C5O4P9t.png"
-      },
-      {
-            "indonesia": "nama stasiun di Osaka (Shin-Osaka)",
-            "kanji": "新大阪",
-            "kana": "しんおおさか",
-            "romaji": "Shin-Oosaka",
-            "gambar": "https://iili.io/C5O6BKQ.png"
-      },
-      {
-            "indonesia": "Berlin",
-            "kanji": "",
-            "kana": "ベルリン",
-            "romaji": "Berurin",
-            "gambar": "https://iili.io/C5O4DP4.png"
-      },
-      {
             "indonesia": "sini",
             "kanji": "",
             "kana": "ここ",
             "romaji": "koko",
-            "gambar": "https://iili.io/C5OryTg.png"
+            "gambar": "https://iili.io/C5gYpKG.png"
       },
       {
             "indonesia": "situ",
             "kanji": "",
             "kana": "そこ",
             "romaji": "soko",
-            "gambar": "https://iili.io/C5O4a99.png"
+            "gambar": "https://iili.io/C5gadR2.png"
       },
       {
             "indonesia": "sana",
             "kanji": "",
             "kana": "あそこ",
             "romaji": "asoko",
-            "gambar": "https://iili.io/C5OrAkF.png"
+            "gambar": "https://iili.io/C5gYylf.png"
+      },
+      {
+            "indonesia": "(di) mana",
+            "kanji": "",
+            "kana": "どこ",
+            "romaji": "doko",
+            "gambar": "https://iili.io/C5gaJHl.png"
+      },
+      {
+            "indonesia": "sini (bentuk sopan dari ここ)",
+            "kanji": "",
+            "kana": "こちら",
+            "romaji": "kochira",
+            "gambar": "https://iili.io/C5gaqiu.png"
+      },
+      {
+            "indonesia": "situ (bentuk sopan dari そこ)",
+            "kanji": "",
+            "kana": "そちら",
+            "romaji": "sochira",
+            "gambar": "https://iili.io/C5gaoUx.png"
+      },
+      {
+            "indonesia": "sana (bentuk sopan dari あそこ)",
+            "kanji": "",
+            "kana": "あちら",
+            "romaji": "achira",
+            "gambar": "https://iili.io/C5gazHQ.png"
+      },
+      {
+            "indonesia": "mana (bentuk sopan dari どこ)",
+            "kanji": "",
+            "kana": "どちら",
+            "romaji": "dochira",
+            "gambar": "https://iili.io/C5gaIRV.png"
+      },
+      {
+            "indonesia": "ruang kelas",
+            "kanji": "教室",
+            "kana": "きょうしつ",
+            "romaji": "kyoushitsu",
+            "gambar": "https://iili.io/C5ga5WF.png"
+      },
+      {
+            "indonesia": "ruang makan, rumah makan, kantin",
+            "kanji": "食堂",
+            "kana": "しょくどう",
+            "romaji": "shokudou",
+            "gambar": "https://iili.io/C5gaafa.png"
+      },
+      {
+            "indonesia": "kantor",
+            "kanji": "事務所",
+            "kana": "じむしょ",
+            "romaji": "jimusho",
+            "gambar": "https://iili.io/C5galUv.png"
+      },
+      {
+            "indonesia": "ruang rapat",
+            "kanji": "会議室",
+            "kana": "かいぎしつ",
+            "romaji": "kaigishitsu",
+            "gambar": "https://iili.io/C5gaMbI.png"
+      },
+      {
+            "indonesia": "meja informasi",
+            "kanji": "受付",
+            "kana": "うけつけ",
+            "romaji": "uketsuke",
+            "gambar": "https://iili.io/C5gahsn.png"
+      },
+      {
+            "indonesia": "ruang tunggu, lobi",
+            "kanji": "",
+            "kana": "ロビー",
+            "romaji": "robii",
+            "gambar": "https://iili.io/C5ga8e2.png"
+      },
+      {
+            "indonesia": "kamar",
+            "kanji": "部屋",
+            "kana": "へや",
+            "romaji": "heya",
+            "gambar": "https://iili.io/C5gaN0G.png"
+      },
+      {
+            "indonesia": "kamar kecil, toilet, W.C.",
+            "kanji": "お手洗い",
+            "kana": "トイレ（おてあらい）",
+            "romaji": "toire (otearai)",
+            "gambar": "https://iili.io/C5gaSbS.png"
+      },
+      {
+            "indonesia": "tangga",
+            "kanji": "階段",
+            "kana": "かいだん",
+            "romaji": "kaidan",
+            "gambar": "https://iili.io/C5ga4se.png"
+      },
+      {
+            "indonesia": "lift",
+            "kanji": "",
+            "kana": "エレベーター",
+            "romaji": "erebeetaa",
+            "gambar": "https://iili.io/C5gasgj.png"
+      },
+      {
+            "indonesia": "tangga berjalan, eskalator",
+            "kanji": "",
+            "kana": "エスカレーター",
+            "romaji": "esukareetaa",
+            "gambar": "https://iili.io/C5gaQdx.png"
+      },
+      {
+            "indonesia": "mesin jual otomatis",
+            "kanji": "自動販売機",
+            "kana": "じどうはんばいき",
+            "romaji": "jidouhanbaiki",
+            "gambar": "https://iili.io/C5gateV.png"
+      },
+      {
+            "indonesia": "telepon",
+            "kanji": "電話",
+            "kana": "でんわ",
+            "romaji": "denwa",
+            "gambar": "https://iili.io/C5gamzP.png"
+      },
+      {
+            "indonesia": "negara, negeri",
+            "kanji": "お国",
+            "kana": "おくに",
+            "romaji": "okuni",
+            "gambar": "https://iili.io/C5gapX1.png"
+      },
+      {
+            "indonesia": "perusahaan",
+            "kanji": "会社",
+            "kana": "かいしゃ",
+            "romaji": "kaisha",
+            "gambar": "https://iili.io/C5gc3dv.png"
+      },
+      {
+            "indonesia": "rumah",
+            "kanji": "",
+            "kana": "うち",
+            "romaji": "uchi",
+            "gambar": "https://iili.io/C5gcKep.png"
+      },
+      {
+            "indonesia": "sepatu",
+            "kanji": "靴",
+            "kana": "くつ",
+            "romaji": "kutsu",
+            "gambar": "https://iili.io/C5gcfmN.png"
+      },
+      {
+            "indonesia": "dasi",
+            "kanji": "",
+            "kana": "ネクタイ",
+            "romaji": "nekutai",
+            "gambar": "https://iili.io/C5gcCXt.png"
+      },
+      {
+            "indonesia": "anggur",
+            "kanji": "",
+            "kana": "ワイン",
+            "romaji": "wain",
+            "gambar": "https://iili.io/C5gcnLX.png"
+      },
+      {
+            "indonesia": "tempat penjualan",
+            "kanji": "売り場",
+            "kana": "うりば",
+            "romaji": "uriba",
+            "gambar": "https://iili.io/C5gcz1s.png"
+      },
+      {
+            "indonesia": "bawah tanah, basement",
+            "kanji": "地下",
+            "kana": "ちか",
+            "romaji": "chika",
+            "gambar": "https://iili.io/C5gcIrG.png"
+      },
+      {
+            "indonesia": "lantai ～, tingkat ～",
+            "kanji": "～階",
+            "kana": "～かい（～がい）",
+            "romaji": "~kai (~gai)",
+            "gambar": "https://iili.io/C5gcA74.png"
+      },
+      {
+            "indonesia": "lantai berapa, tingkat berapa",
+            "kanji": "何階",
+            "kana": "なんがい",
+            "romaji": "nangai",
+            "gambar": "https://iili.io/C5gcYIS.png"
+      },
+      {
+            "indonesia": "～ yen",
+            "kanji": "～円",
+            "kana": "～えん",
+            "romaji": "~en",
+            "gambar": "https://iili.io/C5gc0Be.png"
+      },
+      {
+            "indonesia": "berapa",
+            "kanji": "",
+            "kana": "いくら",
+            "romaji": "ikura",
+            "gambar": "https://iili.io/C5gc1Eu.png"
+      },
+      {
+            "indonesia": "ratus",
+            "kanji": "百",
+            "kana": "ひゃく",
+            "romaji": "hyaku",
+            "gambar": "https://iili.io/C5gcM2j.png"
+      },
+      {
+            "indonesia": "ribu",
+            "kanji": "千",
+            "kana": "せん",
+            "romaji": "sen",
+            "gambar": "https://iili.io/C5gcVYx.png"
+      },
+      {
+            "indonesia": "puluh ribu",
+            "kanji": "万",
+            "kana": "まん",
+            "romaji": "man",
+            "gambar": "https://iili.io/C5gcXpV.png"
+      },
+      {
+            "indonesia": "Maaf / Permisi",
+            "kanji": "",
+            "kana": "すみません",
+            "romaji": "sumimasen",
+            "gambar": "https://iili.io/C5gcNQ1.png"
+      },
+      {
+            "indonesia": "Terima kasih",
+            "kanji": "",
+            "kana": "どうも",
+            "romaji": "doumo",
+            "gambar": "https://iili.io/C5gckEg.png"
+      },
+      {
+            "indonesia": "Selamat datang / Bisa saya bantu?",
+            "kanji": "",
+            "kana": "いらっしゃいませ",
+            "romaji": "irasshaimase",
+            "gambar": "https://iili.io/C5gcS3J.png"
+      },
+      {
+            "indonesia": "Tolong perlihatkan ～",
+            "kanji": "",
+            "kana": "～を見せてください",
+            "romaji": "~ o misete kudasai",
+            "gambar": "https://iili.io/C5gcgvR.png"
+      },
+      {
+            "indonesia": "Baiklah, kalau begitu",
+            "kanji": "",
+            "kana": "じゃ",
+            "romaji": "ja",
+            "gambar": "https://iili.io/C5gcPjI.png"
+      },
+      {
+            "indonesia": "Minta ～ / Tolong berikan ～",
+            "kanji": "",
+            "kana": "～をください",
+            "romaji": "~ o kudasai",
+            "gambar": "https://iili.io/C5gcLCX.png"
+      },
+      {
+            "indonesia": "Italia",
+            "kanji": "",
+            "kana": "イタリア",
+            "romaji": "Itaria",
+            "gambar": "https://iili.io/C5gcbaf.png"
+      },
+      {
+            "indonesia": "Swiss",
+            "kanji": "",
+            "kana": "スイス",
+            "romaji": "Suisu",
+            "gambar": "https://iili.io/C5gcpyl.png"
+      },
+      {
+            "indonesia": "Perancis",
+            "kanji": "",
+            "kana": "フランス",
+            "romaji": "Furansu",
+            "gambar": "https://iili.io/C5gl3Ge.png"
+      },
+      {
+            "indonesia": "Jakarta",
+            "kanji": "",
+            "kana": "ジャカルタ",
+            "romaji": "Jakaruta",
+            "gambar": "https://iili.io/C5glF6u.png"
+      },
+      {
+            "indonesia": "Bangkok",
+            "kanji": "",
+            "kana": "バンコク",
+            "romaji": "Bankoku",
+            "gambar": "https://iili.io/C5glf3b.png"
+      },
+      {
+            "indonesia": "Berlin",
+            "kanji": "",
+            "kana": "ベルリン",
+            "romaji": "Berurin",
+            "gambar": "https://iili.io/C5glqaj.png"
+      },
+      {
+            "indonesia": "nama stasiun yang ada di Osaka",
+            "kanji": "新大阪",
+            "kana": "しんおおさか",
+            "romaji": "Shin-Oosaka",
+            "gambar": "https://iili.io/C5glouV.png"
       }
 ];
 
@@ -5392,7 +5604,7 @@
     function getMaterialTitle(item) {
       const kanji = String(item.kanji || "").trim();
       const kana = String(item.kana || "").trim();
-      return kanji && kana && kanji !== kana ? `${kana}（${kanji}）` : (kana || kanji || "-");
+      return kanji && kana && kanji !== kana ? `${kana} / ${kanji}` : (kana || kanji || "-");
     }
 
     function renderMaterialList() {
