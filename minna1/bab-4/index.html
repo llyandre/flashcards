@@ -4202,6 +4202,424 @@
         max-height: calc(100svh - 140px) !important;
       }
     }
+
+    /* ===== FINAL: Modal Lihat Materi sesuai referensi + pengelompokan otomatis ===== */
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      letter-spacing: 0;
+    }
+
+    .material-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 82;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+      background: rgba(20, 24, 38, 0.48);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .material-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .material-modal-card {
+      width: min(980px, calc(100vw - 28px));
+      height: auto;
+      max-height: none;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: auto 0;
+      padding: clamp(18px, 2.8vw, 28px);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.36), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.34), transparent 36%),
+        rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.26);
+      overflow: visible;
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .material-modal.show .material-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .material-modal-head {
+      flex: 0 0 auto;
+      margin: 0 0 2px;
+      padding: 0 56px 0 0;
+      background: transparent;
+      border-bottom: 0;
+      box-shadow: none;
+    }
+
+    .material-modal-head h3 {
+      margin: 0 0 8px;
+      color: #514a9e;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 780;
+      line-height: 1.2;
+    }
+
+    .material-modal-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    #closeMaterialModal.material-close {
+      position: absolute !important;
+      top: 14px !important;
+      right: 14px !important;
+      z-index: 8 !important;
+      margin: 0 !important;
+      width: 42px !important;
+      height: 42px !important;
+      flex: 0 0 auto !important;
+    }
+
+    .material-list {
+      min-height: 0 !important;
+      height: auto !important;
+      max-height: none !important;
+      display: block !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+
+    .material-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 4px 0 16px;
+    }
+
+    .material-summary-card {
+      min-width: 0;
+      padding: 13px 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.15);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-summary-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .material-summary-card strong {
+      display: block;
+      margin-top: 4px;
+      color: #514a9e;
+      font-size: clamp(18px, 3vw, 25px);
+      font-weight: 850;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-group {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(124, 111, 246, 0.13);
+    }
+
+    .material-group:first-of-type {
+      margin-top: 0;
+    }
+
+    .material-group-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .material-group-head h4 {
+      margin: 0 0 4px;
+      color: var(--heading);
+      font-size: clamp(17px, 2.4vw, 22px);
+      font-weight: 850;
+      line-height: 1.22;
+    }
+
+    .material-group-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .material-group-count {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: var(--primary-soft);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .material-group-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    .material-item {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.15);
+      box-shadow: var(--shadow-tiny);
+      text-align: left;
+    }
+
+    .material-thumb {
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+      padding: 4px;
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: none;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background: transparent;
+    }
+
+    .material-thumb span {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .material-info {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .material-number {
+      width: max-content;
+      min-width: 28px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: var(--primary-soft);
+      font-size: 11px;
+      font-weight: 850;
+      line-height: 1.2;
+    }
+
+    .material-jp {
+      display: block;
+      color: var(--heading);
+      font-family: var(--font-jp);
+      font-size: clamp(17px, 2.5vw, 21px);
+      font-weight: 850;
+      line-height: 1.24;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      display: block;
+      margin-top: 1px;
+      color: #817a75;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-info p {
+      margin: 1px 0 0;
+      color: #4f596d;
+      font-size: 12.5px;
+      font-weight: 600;
+      line-height: 1.38;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal {
+      padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
+    }
+
+    .image-modal-card {
+      width: min(960px, calc(100vw - 20px)) !important;
+      max-height: calc(100svh - 20px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      max-height: none !important;
+      flex: 1 1 auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 54px 8px 10px !important;
+      overflow: auto !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 6px 8px 0 !important;
+      max-height: 44px !important;
+      overflow: auto !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        align-items: stretch !important;
+      }
+
+      #startScreen .hero-actions .btn.show,
+      #startScreen .hero-actions #materialBtn.show {
+        width: 100% !important;
+        justify-self: stretch !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal {
+        padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+      }
+
+      .material-modal-card {
+        width: min(100%, calc(100vw - 20px));
+        margin: 0;
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      .material-modal-head {
+        padding-right: 54px;
+      }
+
+      #closeMaterialModal.material-close {
+        top: 10px !important;
+        right: 10px !important;
+      }
+
+      .material-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .material-group-head {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .material-group-count {
+        width: max-content;
+      }
+
+      .material-group-list {
+        grid-template-columns: 1fr;
+      }
+
+      .material-item {
+        grid-template-columns: 84px minmax(0, 1fr);
+        gap: 11px;
+      }
+
+      .material-thumb {
+        width: 84px;
+        height: 84px;
+        padding: 6px;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 138px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .material-item {
+        grid-template-columns: 74px minmax(0, 1fr);
+      }
+
+      .material-thumb {
+        width: 74px;
+        height: 74px;
+        padding: 5px;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -4259,31 +4677,13 @@
 
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
-            <button id="openMaterialBtn" class="btn secondary" type="button" disabled>Lihat Materi</button>
+            <button id="materialBtn" class="btn secondary" type="button" disabled>Lihat Materi</button>
             <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- Materi kosakata -->
-    <section id="materialScreen" class="screen">
-      <div class="panel material-panel">
-        <div class="material-header">
-          <div>
-            <span class="badge">📚 Materi Kosakata</span>
-            <h2>Materi Kosakata Jepang</h2>
-            <p>Daftar kosakata berikut menampilkan bahasa Jepang, arti bahasa Indonesia, romaji, dan gambar. Klik gambar untuk melihat ukuran penuh.</p>
-          </div>
-          <div class="material-actions">
-            <button id="materialStartBtn" class="btn" type="button">Start</button>
-            <button id="materialHomeBtn" class="btn secondary" type="button">Home</button>
-          </div>
-        </div>
-        <div id="materialGrid" class="material-list" aria-live="polite"></div>
-      </div>
-    </section>
 
     <!-- Question page dari HTML 1 -->
     <section id="practiceScreen" class="screen">
@@ -4484,6 +4884,17 @@
         <button id="closeExampleModal" class="example-close" type="button" aria-label="Tutup contoh" data-i18n-aria-label="closeExampleLabel">×</button>
         <h3 id="exampleModalTitle" data-i18n="exampleTitle">Contoh penggunaan</h3>
         <p id="exampleText"></p>
+      </div>
+    </div>
+
+    <div id="materialModal" class="material-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="materialModalTitle">
+      <div class="material-modal-card">
+        <button id="closeMaterialModal" class="image-modal-close material-close" type="button" aria-label="Tutup materi">×</button>
+        <div class="material-modal-head">
+          <h3 id="materialModalTitle">Rangkuman Materi Belajar</h3>
+          <p>Pelajari kosakata dan ungkapan penting secara lebih mudah. Materi dibagi rapi per bagian, lengkap dengan gambar, bacaan Jepang, dan arti bahasa Indonesia.</p>
+        </div>
+        <div id="materialList" class="material-list" aria-live="polite"></div>
       </div>
     </div>
 
@@ -4962,8 +5373,6 @@
     const startScreen = document.getElementById("startScreen");
     const practiceScreen = document.getElementById("practiceScreen");
     const resultScreen = document.getElementById("resultScreen");
-    const materialScreen = document.getElementById("materialScreen");
-
     const languageButtons = document.querySelectorAll(".language-btn");
     const fictionToggle = document.getElementById("fictionToggle");
     const fictionToggleState = document.getElementById("fictionToggleState");
@@ -4983,10 +5392,10 @@
     const resultPageBtn = document.getElementById("resultPageBtn");
     const usernameInput = document.getElementById("usernameInput");
     const startBtn = document.getElementById("startBtn");
-    const openMaterialBtn = document.getElementById("openMaterialBtn");
-    const materialGrid = document.getElementById("materialGrid");
-    const materialStartBtn = document.getElementById("materialStartBtn");
-    const materialHomeBtn = document.getElementById("materialHomeBtn");
+    const materialBtn = document.getElementById("materialBtn");
+    const materialModal = document.getElementById("materialModal");
+    const materialList = document.getElementById("materialList");
+    const closeMaterialModal = document.getElementById("closeMaterialModal");
     const restartBtn = document.getElementById("restartBtn");
     const savePdfBtn = document.getElementById("savePdfBtn");
     const clearRankingBtn = document.getElementById("clearRankingBtn");
@@ -5400,7 +5809,7 @@
     }
 
     function showScreen(screen) {
-      [startScreen, materialScreen, practiceScreen, resultScreen].forEach(item => item?.classList.remove("active"));
+      [startScreen, practiceScreen, resultScreen].forEach(item => item?.classList.remove("active"));
       screen.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -5432,8 +5841,8 @@
 
       const count = getAvailableVocabulary().length;
       cardCountValue.textContent = currentLanguage === "ja" ? `${count}語` : `${count} kosakata`;
-      if (materialScreen?.classList.contains("active")) {
-        renderMaterial();
+      if (materialModal?.classList.contains("show")) {
+        renderMaterialList();
       }
     }
 
@@ -5625,51 +6034,204 @@
 
 
 
+    const MATERIAL_TEXT = {
+      id: {
+        total: "Total Materi",
+        kosakata: "Kosakata",
+        latihanC: "Latihan C",
+        percakapan: "Percakapan",
+        countSuffix: "materi",
+        kosakataDesc: "Materi kosakata berisi aktivitas sehari-hari, tempat umum, penunjuk waktu, hari, keterangan dari–sampai, serta nama kota dan tempat fiksi yang muncul dalam latihan.",
+        latihanCDesc: "Ungkapan pendek untuk latihan respon sehari-hari agar peserta lebih terbiasa memahami situasi.",
+        percakapanDesc: "Kalimat praktis yang sering dipakai dalam percakapan, cocok untuk latihan berbicara dan mendengar."
+      },
+      ja: {
+        total: "総教材",
+        kosakata: "語彙",
+        latihanC: "練習 C",
+        percakapan: "会話",
+        countSuffix: "項目",
+        kosakataDesc: "毎日の動作、施設、時間、曜日、期間の表現、都市名や架空の場所など、練習に出てくる語彙をまとめています。",
+        latihanCDesc: "場面に合わせた短い返答を練習するための表現です。",
+        percakapanDesc: "話す・聞く練習に使いやすい、実用的な会話表現です。"
+      }
+    };
+
+    function materialText(key) {
+      const lang = currentLanguage === "ja" ? "ja" : "id";
+      return MATERIAL_TEXT[lang]?.[key] || MATERIAL_TEXT.id[key] || key;
+    }
+
+    function normalizeMaterialKey(value) {
+      return String(value || "")
+        .normalize("NFKC")
+        .replace(/\s+/g, "")
+        .replace(/[()（）［］\[\]。.,、・／/]/g, "")
+        .toLowerCase();
+    }
+
+    function materialItemKey(item) {
+      return [item?.kanji, item?.kana, item?.romaji, item?.indonesia]
+        .map(normalizeMaterialKey)
+        .join("|");
+    }
+
+    function isLatihanCItem(item) {
+      const key = materialItemKey(item);
+      return key.includes(normalizeMaterialKey("大変ですね"))
+        || key.includes(normalizeMaterialKey("たいへんですね"))
+        || key.includes(normalizeMaterialKey("Taihen desu ne"))
+        || key.includes(normalizeMaterialKey("berat ya"));
+    }
+
+    function isPercakapanItem(item) {
+      const key = materialItemKey(item);
+      const conversationKeys = [
+        "番号",
+        "ばんごう",
+        "Bangou",
+        "nomor",
+        "何番",
+        "なんばん",
+        "Nanban",
+        "nomor berapa",
+        "そちら",
+        "Sochira",
+        "di situ"
+      ];
+
+      return conversationKeys.some(keyword => key.includes(normalizeMaterialKey(keyword)));
+    }
+
+    const MATERIAL_GROUPS = [
+      {
+        id: "kosakata",
+        title: () => materialText("kosakata"),
+        description: () => materialText("kosakataDesc"),
+        match: item => !isLatihanCItem(item) && !isPercakapanItem(item)
+      },
+      {
+        id: "latihanC",
+        title: () => materialText("latihanC"),
+        description: () => materialText("latihanCDesc"),
+        match: item => isLatihanCItem(item)
+      },
+      {
+        id: "percakapan",
+        title: () => materialText("percakapan"),
+        description: () => materialText("percakapanDesc"),
+        match: item => isPercakapanItem(item)
+      }
+    ];
+
+    function getMaterialGroupedItems() {
+      const grouped = MATERIAL_GROUPS.map(group => ({
+        ...group,
+        items: []
+      }));
+
+      vocabulary.forEach(item => {
+        const target = grouped.find(group => group.match(item)) || grouped[0];
+        target.items.push(item);
+      });
+
+      return grouped.filter(group => group.items.length > 0);
+    }
+
+    function updateMaterialSummary(groups) {
+      const total = groups.reduce((sum, group) => sum + group.items.length, 0);
+      const cards = [
+        { label: materialText("total"), value: total },
+        ...groups.map(group => ({ label: group.title(), value: group.items.length }))
+      ];
+
+      return `
+        <div class="material-summary-grid" aria-label="Ringkasan materi">
+          ${cards.map(card => `
+            <div class="material-summary-card">
+              <span>${escapeHTML(card.label)}</span>
+              <strong>${card.value}</strong>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
     function materialTitle(item) {
       const kanji = String(item.kanji || "").trim();
       const kana = String(item.kana || "").trim();
-      if (kanji && kana && kanji !== kana) return `${kana}（${kanji}）`;
-      return kanji || kana || item.romaji || "-";
+      if (kanji) return kanji;
+      if (kana) return kana;
+      return item.romaji || "-";
     }
 
     function createMaterialCard(item, index) {
       const jp = getJapanesePlain(item);
-      const img = String(item.gambar || "").trim();
-      const imageAlt = `${materialTitle(item)} - ${item.indonesia || ""}`;
+      const title = jp.main || materialTitle(item);
+      const reading = jp.sub || item.romaji || "";
+      const meaning = String(item.indonesia || "").replace(/\s+/g, " ").trim();
+      const imageUrl = String(item.gambar || "").trim();
+      const imageLabel = `${title} - ${meaning}`;
+      const imageContent = /^https?:\/\//i.test(imageUrl)
+        ? `<img src="${escapeHTML(imageUrl)}" alt="${escapeHTML(imageLabel)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />`
+        : `<span aria-hidden="true">🎴</span>`;
+
       return `
-        <article class="material-card">
-          ${img ? `<img src="${escapeHTML(img)}" alt="${escapeHTML(imageAlt)}" loading="lazy" data-material-image="true" />` : ""}
-          <div class="material-jp">${escapeHTML(jp.main || materialTitle(item))}</div>
-          <p class="material-reading">${escapeHTML(jp.sub || "")}</p>
-          <p class="material-romaji">${escapeHTML(item.romaji || "")}</p>
-          <p class="material-id">${escapeHTML(item.indonesia || "")}</p>
+        <article class="material-item">
+          <button class="material-thumb" type="button" data-img="${escapeHTML(imageUrl)}" data-alt="${escapeHTML(imageLabel)}" aria-label="Lihat gambar penuh: ${escapeHTML(title)}">
+            ${imageContent}
+          </button>
+          <div class="material-info">
+            <div class="material-number">${index + 1}</div>
+            <div>
+              <strong class="material-jp">${escapeHTML(title)}</strong>
+              <span class="material-reading">${escapeHTML(reading)}</span>
+            </div>
+            <p>${escapeHTML(meaning)}</p>
+          </div>
         </article>
       `;
     }
 
-    function renderMaterial() {
-      if (!materialGrid) return;
-      const items = getAvailableVocabulary();
-      const common = items.filter(item => !isFictionVocabulary(item));
-      const fiction = items.filter(item => isFictionVocabulary(item));
-      const sections = [
-        { title: currentLanguage === "ja" ? "一般語彙" : "Kosakata Umum", data: common },
-        { title: currentLanguage === "ja" ? "架空名詞" : "Kosakata Fiksi", data: fiction }
-      ].filter(section => section.data.length > 0);
+    function renderMaterialList() {
+      if (!materialList) return;
 
-      materialGrid.innerHTML = sections.map(section => `
-        <section class="material-section">
-          <h3 class="material-section-title">${escapeHTML(section.title)} (${section.data.length})</h3>
-          <div class="material-grid">
-            ${section.data.map(createMaterialCard).join("")}
-          </div>
-        </section>
-      `).join("");
+      const groups = getMaterialGroupedItems();
+      materialList.innerHTML = `
+        ${updateMaterialSummary(groups)}
+        ${groups.map(group => `
+          <section class="material-group" data-group="${escapeHTML(group.id)}">
+            <div class="material-group-head">
+              <div>
+                <h4>${escapeHTML(group.title())}</h4>
+                <p>${escapeHTML(group.description())}</p>
+              </div>
+              <span class="material-group-count">${group.items.length} ${escapeHTML(materialText("countSuffix"))}</span>
+            </div>
+            <div class="material-group-list">
+              ${group.items.map(createMaterialCard).join("")}
+            </div>
+          </section>
+        `).join("")}
+      `;
     }
 
-    function openMaterialScreen() {
-      renderMaterial();
-      showScreen(materialScreen);
+    function openMaterialModalBox() {
+      if (!materialModal) return;
+
+      renderMaterialList();
+      materialModal.scrollTop = 0;
+      materialList?.scrollTo?.({ top: 0, behavior: "auto" });
+      materialModal.classList.add("show");
+      materialModal.setAttribute("aria-hidden", "false");
+      closeMaterialModal?.focus({ preventScroll: true });
+    }
+
+    function closeMaterialModalBox() {
+      if (!materialModal) return;
+
+      materialModal.classList.remove("show");
+      materialModal.setAttribute("aria-hidden", "true");
     }
 
 
@@ -5677,9 +6239,9 @@
       const canStart = Boolean(currentUsername) && (isAdmin || Boolean(currentGroup));
 
       startBtn.disabled = !canStart;
-      openMaterialBtn.disabled = !canStart;
+      if (materialBtn) materialBtn.disabled = !canStart;
       startBtn.classList.toggle("show", Boolean(currentUsername));
-      openMaterialBtn.classList.toggle("show", Boolean(currentUsername));
+      materialBtn?.classList.toggle("show", Boolean(currentUsername));
       resultPageBtn.hidden = !isAdmin;
       clearRankingBtn.hidden = !isAdmin;
       usernameBox.classList.toggle("is-complete", Boolean(currentUsername));
@@ -7916,14 +8478,21 @@
       button.addEventListener("click", () => selectGroup(button.dataset.group));
     });
 
-    openMaterialBtn?.addEventListener("click", openMaterialScreen);
-    materialStartBtn?.addEventListener("click", startPractice);
-    materialHomeBtn?.addEventListener("click", () => showScreen(startScreen));
+    materialBtn?.addEventListener("click", openMaterialModalBox);
+    closeMaterialModal?.addEventListener("click", closeMaterialModalBox);
 
-    materialGrid?.addEventListener("click", event => {
-      const img = event.target.closest("img");
-      if (!img) return;
-      openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
+    materialModal?.addEventListener("click", event => {
+      if (event.target === materialModal) {
+        closeMaterialModalBox();
+        return;
+      }
+
+      const thumb = event.target.closest(".material-thumb");
+      if (!thumb) return;
+
+      const src = thumb.dataset.img || "";
+      const alt = thumb.dataset.alt || "Gambar kosakata";
+      openImageModal(src, alt);
     });
 
     startBtn.addEventListener("click", startPractice);
@@ -7999,6 +8568,10 @@
 
       if (event.key === "Escape" && imageModal?.classList.contains("show")) {
         closeImageModalBox();
+      }
+
+      if (event.key === "Escape" && materialModal?.classList.contains("show")) {
+        closeMaterialModalBox();
       }
 
       if (event.key === "Escape" && loginModal.classList.contains("show")) {
