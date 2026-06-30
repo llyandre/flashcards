@@ -6,6 +6,7 @@
   <title>Flashcard Kosakata Jepang</title>
   <link rel="dns-prefetch" href="https://i.ibb.co" />
   <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -473,19 +474,22 @@
 
     .group-box {
       width: min(540px, 100%);
-      margin: 0 auto 16px;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.56);
-      border: 1px solid rgba(124, 111, 246, 0.14);
-      box-shadow: var(--shadow-soft);
+      margin: 14px auto 16px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .login-modal-card .group-box {
       width: 100%;
-      margin: 0 0 14px;
-      background: rgba(255, 255, 255, 0.68);
-      box-shadow: var(--shadow-tiny);
+      margin: 14px 0 14px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .group-box[hidden] {
@@ -493,39 +497,42 @@
     }
 
     .group-box p {
-      margin: 0 0 10px;
-      color: #505a70;
+      margin: 0;
+      color: var(--heading);
       font-size: var(--fs-small);
-      font-weight: 650;
-      text-align: center;
+      font-weight: 900;
+      text-align: left;
+      line-height: 1.35;
     }
 
     .group-options {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .group-btn {
-      min-height: 42px;
-      padding: 9px 8px;
-      border: 1px solid rgba(124, 111, 246, 0.18);
-      border-radius: 14px;
-      color: #514a9e;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow-tiny);
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid rgba(124, 111, 246, 0.2);
+      border-radius: var(--radius-pill);
+      color: var(--primary-deep);
+      background: var(--primary-soft);
+      box-shadow: none;
       font-size: var(--fs-small);
-      font-weight: 700;
-      line-height: 1.2;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+      font-weight: 900;
+      line-height: 1.15;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .group-btn:hover,
     .group-btn.active {
       transform: translateY(-1px);
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #9d8dfd);
-      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.2);
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      border-color: transparent;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22);
     }
 
     .btn {
@@ -3660,6 +3667,373 @@
     }
 
 
+
+    /* ===== Username style final override: disamakan dengan HTML 2 ===== */
+    #startScreen .username-box {
+      width: min(520px, 100%) !important;
+      max-width: none !important;
+      margin: 0 auto 16px !important;
+      gap: 8px !important;
+    }
+
+    #startScreen .login-trigger {
+      width: 100% !important;
+      min-height: var(--control-h) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      padding: 0 22px !important;
+      border: 1px solid rgba(255, 255, 255, 0.88) !important;
+      border-radius: var(--radius-lg) !important;
+      color: #17254e !important;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)) !important;
+      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12) !important;
+      backdrop-filter: blur(16px) !important;
+      font-size: var(--fs-input) !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+    }
+
+    #loginSummary.login-summary {
+      display: none;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 8px 13px;
+      border-radius: var(--radius-pill);
+      color: #514a9e;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    #loginSummary.login-summary.show {
+      display: inline-flex;
+    }
+
+    #usernameNote.username-note {
+      margin: 0;
+      color: #505a70;
+      font-size: var(--fs-small);
+      font-weight: 500;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    #groupBox.group-box {
+      width: 100% !important;
+      margin: 14px 0 14px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left !important;
+    }
+
+    #groupBox.group-box[hidden],
+    #passwordBox.password-box[hidden],
+    .login-field[hidden] {
+      display: none !important;
+    }
+
+    #groupBox.group-box p {
+      margin: 0 !important;
+      color: var(--heading) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      text-align: left !important;
+      line-height: 1.35 !important;
+    }
+
+    #groupBox .group-options {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      margin-top: 10px !important;
+    }
+
+    #groupBox .group-btn {
+      min-height: 44px !important;
+      padding: 10px 12px !important;
+      border: 1px solid rgba(124, 111, 246, 0.2) !important;
+      border-radius: var(--radius-pill) !important;
+      color: var(--primary-deep) !important;
+      background: var(--primary-soft) !important;
+      box-shadow: none !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      line-height: 1.15 !important;
+    }
+
+    #groupBox .group-btn:hover,
+    #groupBox .group-btn.active {
+      transform: translateY(-1px) !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep)) !important;
+      border-color: transparent !important;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .username-box {
+        width: 100% !important;
+        max-width: none !important;
+      }
+      #startScreen .login-trigger {
+        min-height: var(--control-h-mobile) !important;
+      }
+    }
+
+
+    /* ===== Lihat Materi + popup gambar final ===== */
+    #openMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #openMaterialBtn.show {
+      display: inline-flex !important;
+    }
+
+    .material-panel {
+      width: min(1040px, 100%);
+    }
+
+    .material-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .material-header h2 {
+      margin: 12px 0 8px;
+      color: var(--heading);
+      font-size: clamp(24px, 3.6vw, 36px);
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+    }
+
+    .material-header p {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: var(--fs-base);
+      line-height: 1.58;
+    }
+
+    .material-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .material-section {
+      margin-top: 20px;
+    }
+
+    .material-section-title {
+      margin: 0 0 12px;
+      color: #514a9e;
+      font-size: clamp(18px, 2.6vw, 24px);
+      line-height: 1.2;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .material-card {
+      min-width: 0;
+      min-height: 232px;
+      display: grid;
+      align-content: start;
+      justify-items: center;
+      gap: 7px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.15);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .material-card img {
+      width: 100%;
+      height: 96px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      padding: 6px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      cursor: zoom-in;
+    }
+
+    .material-jp {
+      font-family: var(--font-jp);
+      color: var(--heading);
+      font-size: clamp(18px, 2.2vw, 23px);
+      font-weight: 760;
+      line-height: 1.24;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading,
+    .material-romaji,
+    .material-id {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      font-family: var(--font-jp);
+      color: #756f69;
+      font-weight: 600;
+    }
+
+    .material-romaji {
+      color: #514a9e;
+      font-weight: 700;
+    }
+
+    .material-id {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw) !important;
+      max-height: calc(100svh - 28px) !important;
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      border-radius: 28px !important;
+    }
+
+    .image-modal-close {
+      position: static !important;
+      justify-self: end !important;
+      margin: 12px 14px 8px !important;
+      z-index: 2 !important;
+      width: 42px !important;
+      height: 42px !important;
+      flex: 0 0 auto !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      max-height: none !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 8px 14px !important;
+      background: #fff !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+    .image-modal-caption {
+      margin: 0 !important;
+      padding: 10px 14px 14px !important;
+      border-top: 1px solid rgba(124, 111, 246, 0.12) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions,
+      .material-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen .hero-actions .btn,
+      .material-actions .btn {
+        width: 100% !important;
+      }
+
+      .material-header {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+
+      .material-panel {
+        max-width: 620px !important;
+      }
+
+      .material-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .material-card {
+        min-height: 205px !important;
+        padding: 11px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-card img {
+        height: 72px !important;
+      }
+
+      .material-jp {
+        font-size: 18px !important;
+      }
+
+      .material-reading,
+      .material-romaji,
+      .material-id {
+        font-size: 12px !important;
+      }
+
+      .image-modal {
+        padding: 14px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 28px) !important;
+        border-radius: 24px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 145px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-card {
+        min-height: 190px !important;
+      }
+
+      .material-card img {
+        height: 84px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3717,9 +4091,29 @@
 
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
+            <button id="openMaterialBtn" class="btn secondary" type="button" disabled>Lihat Materi</button>
             <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
         </div>
+      </div>
+    </section>
+
+
+    <!-- Materi kosakata -->
+    <section id="materialScreen" class="screen">
+      <div class="panel material-panel">
+        <div class="material-header">
+          <div>
+            <span class="badge">📚 Materi Kosakata</span>
+            <h2>Materi Kosakata Jepang</h2>
+            <p>Daftar kosakata berikut menampilkan bahasa Jepang, arti bahasa Indonesia, romaji, dan gambar. Klik gambar untuk melihat ukuran penuh.</p>
+          </div>
+          <div class="material-actions">
+            <button id="materialStartBtn" class="btn" type="button">Start</button>
+            <button id="materialHomeBtn" class="btn secondary" type="button">Home</button>
+          </div>
+        </div>
+        <div id="materialGrid" class="material-list" aria-live="polite"></div>
       </div>
     </section>
 
@@ -3899,7 +4293,7 @@
         </div>
 
         <div id="groupBox" class="group-box" hidden>
-          <p data-i18n="groupPrompt">Pilih kategori sebelum mulai kuis.</p>
+          <p data-i18n="groupPrompt">Pilih kategori peserta sebelum mulai kuis.</p>
           <div class="group-options" aria-label="Pilihan Kategori" data-i18n-aria-label="groupOptionsLabel">
             <button class="group-btn" data-group="Badung" type="button">Badung</button>
             <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
@@ -3974,77 +4368,77 @@
     "kanji": "朝",
     "kana": "あさ",
     "romaji": "Asa",
-    "gambar": "https://i.ibb.co/h12DbSMS/image.png"
+    "gambar": "https://iili.io/C5koj8x.png"
   },
   {
     "indonesia": "Lusa",
     "kanji": "",
     "kana": "あさって",
     "romaji": "Asatte",
-    "gambar": "https://i.ibb.co/kgSwRtTv/image.png"
+    "gambar": "https://iili.io/C5kohaj.png"
   },
   {
     "indonesia": "Besok",
     "kanji": "",
     "kana": "あした",
     "romaji": "Ashita",
-    "gambar": "https://i.ibb.co/wr3ynL8g/image.png"
+    "gambar": "https://iili.io/C5koX3b.png"
   },
   {
     "indonesia": "Restoran masakan Jepang fiksi",
     "kanji": "",
     "kana": "あすか",
     "romaji": "Asuka",
-    "gambar": "https://i.ibb.co/FbcXpGxz/image.png"
+    "gambar": "https://iili.io/C5kowyQ.png"
   },
   {
     "indonesia": "Bank Apple fiksi",
     "kanji": "アップル銀行",
     "kana": "アップルぎんこう",
     "romaji": "Appuru Ginkou",
-    "gambar": "https://i.ibb.co/rK26jmXW/image.png"
+    "gambar": "https://iili.io/C5koSMF.png"
   },
   {
     "indonesia": "Sekarang",
     "kanji": "今",
     "kana": "いま",
     "romaji": "Ima",
-    "gambar": "https://i.ibb.co/GfJsqxZh/image.png"
+    "gambar": "https://iili.io/C5koU6g.png"
   },
   {
     "indonesia": "Film",
     "kanji": "映画",
     "kana": "えいが",
     "romaji": "Eiga",
-    "gambar": "https://i.ibb.co/r24wnK1t/image.png"
+    "gambar": "https://iili.io/C5koi9R.png"
   },
   {
     "indonesia": "Bangun",
     "kanji": "起きます",
     "kana": "おきます",
     "romaji": "Okimasu",
-    "gambar": "https://i.ibb.co/7NxMmSqL/image.png"
+    "gambar": "https://iili.io/C5ko68v.png"
   },
   {
     "indonesia": "Dua hari yang lalu, kemarin lusa",
     "kanji": "",
     "kana": "おととい",
     "romaji": "Ototoi",
-    "gambar": "https://i.ibb.co/mrnms60D/image.png"
+    "gambar": "https://iili.io/C5koLwN.png"
   },
   {
     "indonesia": "Selesai",
     "kanji": "終わります",
     "kana": "おわります",
     "romaji": "Owarimasu",
-    "gambar": "https://i.ibb.co/pv24R8SG/image.png"
+    "gambar": "https://iili.io/C5kx2N2.png"
   },
   {
     "indonesia": "Rapat",
     "kanji": "会議",
     "kana": "かいぎ",
     "romaji": "Kaigi",
-    "gambar": "https://i.ibb.co/ztnZFcM/image.png",
+    "gambar": "https://iili.io/C5kxKo7.png",
     "contoh": "会議をします（かいぎをします）= mengadakan rapat."
   },
   {
@@ -4052,119 +4446,119 @@
     "kanji": "火曜日",
     "kana": "かようび",
     "romaji": "Kayoubi",
-    "gambar": "https://i.ibb.co/qM0h3rMF/image.png"
+    "gambar": "https://iili.io/C5kxfV9.png"
   },
   {
     "indonesia": "Dari ~",
     "kanji": "",
     "kana": "〜から",
     "romaji": "-kara",
-    "gambar": "https://i.ibb.co/XZF8RZ4k/image.png"
+    "gambar": "https://iili.io/C5kxqPe.png"
   },
   {
     "indonesia": "Kemarin",
     "kanji": "",
     "kana": "きのう",
     "romaji": "Kinou",
-    "gambar": "https://i.ibb.co/s9Hn049H/image.png"
+    "gambar": "https://iili.io/C5kxIAQ.png"
   },
   {
     "indonesia": "Hari ini",
     "kanji": "",
     "kana": "きょう",
     "romaji": "Kyou",
-    "gambar": "https://i.ibb.co/n8Q3P3s7/image.png"
+    "gambar": "https://iili.io/C5kxRoP.png"
   },
   {
     "indonesia": "Bank",
     "kanji": "銀行",
     "kana": "ぎんこう",
     "romaji": "Ginkou",
-    "gambar": "https://i.ibb.co/HftT592F/image.png"
+    "gambar": "https://iili.io/C5kx7iF.png"
   },
   {
     "indonesia": "Hari Jumat",
     "kanji": "金曜日",
     "kana": "きんようび",
     "romaji": "Kinyoubi",
-    "gambar": "https://i.ibb.co/Dg8TL71C/image.png"
+    "gambar": "https://iili.io/C5kxaKg.png"
   },
   {
     "indonesia": "Pagi ini, tadi pagi",
     "kanji": "",
     "kana": "けさ",
     "romaji": "Kesa",
-    "gambar": "https://i.ibb.co/Vpr3QdTF/image.png"
+    "gambar": "https://iili.io/C5kxcla.png"
   },
   {
     "indonesia": "Hari Senin",
     "kanji": "月曜日",
     "kana": "げつようび",
     "romaji": "Getsuyoubi",
-    "gambar": "https://i.ibb.co/H6KBB4H/image.png"
+    "gambar": "https://iili.io/C5kx1Hv.png"
   },
   {
     "indonesia": "P.m. (waktu setelah jam 12 siang)",
     "kanji": "午後",
     "kana": "ごご",
     "romaji": "Gogo",
-    "gambar": "https://i.ibb.co/YTyv5L4m/image.png"
+    "gambar": "https://iili.io/C5kxERR.png"
   },
   {
     "indonesia": "A.m. (waktu sebelum jam 12 siang)",
     "kanji": "午前",
     "kana": "ごぜん",
     "romaji": "Gozen",
-    "gambar": "https://i.ibb.co/S4J2G2mh/image.png"
+    "gambar": "https://iili.io/C5kxMDN.png"
   },
   {
     "indonesia": "Malam ini, nanti malam",
     "kanji": "今晩",
     "kana": "こんばん",
     "romaji": "Konban",
-    "gambar": "https://i.ibb.co/B2f4rSjc/image.png"
+    "gambar": "https://iili.io/C5kxWxI.png"
   },
   {
     "indonesia": "Jam -, pukul -",
     "kanji": "〜時",
     "kana": "〜じ",
     "romaji": "-ji",
-    "gambar": "https://i.ibb.co/KjtJy6V9/image.png"
+    "gambar": "https://iili.io/C5kxGNp.png"
   },
   {
     "indonesia": "Ujian",
     "kanji": "試験",
     "kana": "しけん",
     "romaji": "Shiken",
-    "gambar": "https://i.ibb.co/wZzF8cQf/image.png"
+    "gambar": "https://iili.io/C5kxwfn.png"
   },
   {
     "indonesia": "Hari Rabu",
     "kanji": "水曜日",
     "kana": "すいようび",
     "romaji": "Suiyoubi",
-    "gambar": "https://i.ibb.co/Jjcr3zcM/image.png"
+    "gambar": "https://iili.io/C5kxOUG.png"
   },
   {
     "indonesia": "Di situ",
     "kanji": "",
     "kana": "そちら",
     "romaji": "Sochira",
-    "gambar": "https://i.ibb.co/CsXBjqKF/image.png"
+    "gambar": "https://iili.io/C5kxkJf.png"
   },
   {
     "indonesia": "Toserba",
     "kanji": "",
     "kana": "デパート",
     "romaji": "Depaato",
-    "gambar": "https://i.ibb.co/vrd5y75/image.png"
+    "gambar": "https://iili.io/C5kx8Ol.png"
   },
   {
     "indonesia": "~ dan ~",
     "kanji": "",
     "kana": "〜と",
     "romaji": "-to",
-    "gambar": "https://i.ibb.co/KJjwwbq/image.png",
+    "gambar": "https://iili.io/C5kxgxS.png",
     "contoh": "Digunakan untuk menyambungkan kata benda."
   },
   {
@@ -4172,224 +4566,224 @@
     "kanji": "図書館",
     "kana": "としょかん",
     "romaji": "Toshokan",
-    "gambar": "https://i.ibb.co/W4ChFYNG/image.png"
+    "gambar": "https://iili.io/C5kx4s9.png"
   },
   {
     "indonesia": "Hari Sabtu",
     "kanji": "土曜日",
     "kana": "どようび",
     "romaji": "Doyoubi",
-    "gambar": "https://i.ibb.co/hJwTp8Km/image.png"
+    "gambar": "https://iili.io/C5kxQJj.png"
   },
   {
     "indonesia": "Jam berapa, pukul berapa",
     "kanji": "何時",
     "kana": "なんじ",
     "romaji": "Nanji",
-    "gambar": "https://i.ibb.co/bj3mjP3L/image.png"
+    "gambar": "https://iili.io/C5kxtOQ.png"
   },
   {
     "indonesia": "Nomor berapa",
     "kanji": "何番",
     "kana": "なんばん",
     "romaji": "Nanban",
-    "gambar": "https://i.ibb.co/1GF8Jnd9/image.png"
+    "gambar": "https://iili.io/C5kxDbV.png"
   },
   {
     "indonesia": "Berapa menit",
     "kanji": "何分",
     "kana": "なんぷん",
     "romaji": "Nanpun",
-    "gambar": "https://i.ibb.co/tRwnTFB/image.png"
+    "gambar": "https://iili.io/C5kxmzB.png"
   },
   {
     "indonesia": "Hari apa",
     "kanji": "何曜日",
     "kana": "なんようび",
     "romaji": "Nanyoubi",
-    "gambar": "https://i.ibb.co/VW6yVF32/image.png"
+    "gambar": "https://iili.io/C5kzdga.png"
   },
   {
     "indonesia": "Hari Minggu",
     "kanji": "日曜日",
     "kana": "にちようび",
     "romaji": "Nichiyoubi",
-    "gambar": "https://i.ibb.co/3Vqtszf/image.png"
+    "gambar": "https://iili.io/C5kz3dJ.png"
   },
   {
     "indonesia": "New York",
     "kanji": "",
     "kana": "ニューヨーク",
     "romaji": "Nyuu Yooku",
-    "gambar": "https://i.ibb.co/WpGRJxrH/image.png"
+    "gambar": "https://iili.io/C5kzfbp.png"
   },
   {
     "indonesia": "Tidur",
     "kanji": "寝ます",
     "kana": "ねます",
     "romaji": "Nemasu",
-    "gambar": "https://i.ibb.co/xK3CKfQQ/image.png"
+    "gambar": "https://iili.io/C5kzBzN.png"
   },
   {
     "indonesia": "Bekerja",
     "kanji": "働きます",
     "kana": "はたらきます",
     "romaji": "Hatarakimasu",
-    "gambar": "https://i.ibb.co/rGcFgzV2/image.png"
+    "gambar": "https://iili.io/C5kzxqX.png"
   },
   {
     "indonesia": "Setengah",
     "kanji": "半",
     "kana": "はん",
     "romaji": "Han",
-    "gambar": "https://i.ibb.co/TxffRyH2/image.png"
+    "gambar": "https://iili.io/C5kzIgs.png"
   },
   {
     "indonesia": "Malam",
     "kanji": "晩（夜）",
     "kana": "ばん（よる）",
     "romaji": "Ban (Yoru)",
-    "gambar": "https://i.ibb.co/23LNR1FW/image.png"
+    "gambar": "https://iili.io/C5kzA7f.png"
   },
   {
     "indonesia": "Nomor",
     "kanji": "番号",
     "kana": "ばんごう",
     "romaji": "Bangou",
-    "gambar": "https://i.ibb.co/zH7TVsP6/image.png"
+    "gambar": "https://iili.io/C5kzRe4.png"
   },
   {
     "indonesia": "Gedung kesenian",
     "kanji": "美術館",
     "kana": "びじゅつかん",
     "romaji": "Bijutsukan",
-    "gambar": "https://i.ibb.co/zVWwmVMX/image.png"
+    "gambar": "https://iili.io/C5kz5ml.png"
   },
   {
     "indonesia": "Siang",
     "kanji": "昼",
     "kana": "ひる",
     "romaji": "Hiru",
-    "gambar": "https://i.ibb.co/xKj9P7SC/image.png"
+    "gambar": "https://iili.io/C5kzaXS.png"
   },
   {
     "indonesia": "Istirahat siang",
     "kanji": "昼休み",
     "kana": "ひるやすみ",
     "romaji": "Hiruyasumi",
-    "gambar": "https://i.ibb.co/JjHBpLrT/image.png"
+    "gambar": "https://iili.io/C5kzYI2.png"
   },
   {
     "indonesia": "- menit",
     "kanji": "〜分",
     "kana": "〜ふん / 〜ぷん",
     "romaji": "-fun / -pun",
-    "gambar": "https://i.ibb.co/MxyMkGLz/image.png"
+    "gambar": "https://iili.io/C5kzcL7.png"
   },
   {
     "indonesia": "Beijing",
     "kanji": "北京",
     "kana": "ペキン",
     "romaji": "Pekin",
-    "gambar": "https://i.ibb.co/1tbrL622/image.png"
+    "gambar": "https://iili.io/C5kzEru.png"
   },
   {
     "indonesia": "Belajar",
     "kanji": "勉強します",
     "kana": "べんきょうします",
     "romaji": "Benkyou Shimasu",
-    "gambar": "https://i.ibb.co/hR8GPvRg/image.png"
+    "gambar": "https://iili.io/C5kzV7j.png"
   },
   {
     "indonesia": "Setiap pagi",
     "kanji": "毎朝",
     "kana": "まいあさ",
     "romaji": "Maiasa",
-    "gambar": "https://i.ibb.co/PSqfk5K/image.png"
+    "gambar": "https://iili.io/C5kzWkx.png"
   },
   {
     "indonesia": "Setiap hari",
     "kanji": "毎日",
     "kana": "まいにち",
     "romaji": "Mainichi",
-    "gambar": "https://i.ibb.co/HTB9qCWT/image.png"
+    "gambar": "https://iili.io/C5kzwhB.png"
   },
   {
     "indonesia": "Setiap malam",
     "kanji": "毎晩",
     "kana": "まいばん",
     "romaji": "Maiban",
-    "gambar": "https://i.ibb.co/MkSc3QbJ/image.png"
+    "gambar": "https://iili.io/C5kzNLP.png"
   },
   {
     "indonesia": "Sampai ~",
     "kanji": "",
     "kana": "〜まで",
     "romaji": "-made",
-    "gambar": "https://i.ibb.co/SWdkwH1/image.png"
+    "gambar": "https://iili.io/C5kzvrg.png"
   },
   {
     "indonesia": "Perpustakaan Midori fiksi",
     "kanji": "みどり図書館",
     "kana": "みどりとしょかん",
     "romaji": "Midori Toshokan",
-    "gambar": "https://i.ibb.co/CpSZVQXM/image.png"
+    "gambar": "https://iili.io/C5kzeB1.png"
   },
   {
     "indonesia": "Hari Kamis",
     "kanji": "木曜日",
     "kana": "もくようび",
     "romaji": "Mokuyoubi",
-    "gambar": "https://i.ibb.co/mVFYHkmk/image.png"
+    "gambar": "https://iili.io/C5kzgkv.png"
   },
   {
     "indonesia": "Istirahat, cuti, libur",
     "kanji": "休み",
     "kana": "やすみ",
     "romaji": "Yasumi",
-    "gambar": "https://i.ibb.co/pjMcYjNB/image.png"
+    "gambar": "https://iili.io/C5kzrpR.png"
   },
   {
     "indonesia": "Beristirahat, libur",
     "kanji": "休みます",
     "kana": "やすみます",
     "romaji": "Yasumimasu",
-    "gambar": "https://i.ibb.co/4nK5vVZd/image.png"
+    "gambar": "https://iili.io/C5kz6Ip.png"
   },
   {
     "indonesia": "Gedung Kesenian Yamato fiksi",
     "kanji": "やまと美術館",
     "kana": "やまとびじゅつかん",
     "romaji": "Yamato Bijutsukan",
-    "gambar": "https://i.ibb.co/d4Z9XTcp/image.png"
+    "gambar": "https://iili.io/C5kzZ4n.png"
   },
   {
     "indonesia": "Kantor pos",
     "kanji": "郵便局",
     "kana": "ゆうびんきょく",
     "romaji": "Yuubinkyoku",
-    "gambar": "https://i.ibb.co/DgsN7yKv/image.png"
+    "gambar": "https://iili.io/C5kzD2s.png"
   },
   {
     "indonesia": "Los Angeles",
     "kanji": "",
     "kana": "ロサンゼルス",
     "romaji": "Rosanzerusu",
-    "gambar": "https://i.ibb.co/20MzJ5PM/image.png"
+    "gambar": "https://iili.io/C5kzpp4.png"
   },
   {
     "indonesia": "London",
     "kanji": "",
     "kana": "ロンドン",
     "romaji": "Rondon",
-    "gambar": "https://i.ibb.co/TMK6DJQ5/image.png"
+    "gambar": "https://iili.io/C5kI9Tl.png"
   },
   {
     "indonesia": "O, berat ya",
     "kanji": "大変ですね",
     "kana": "たいへんですね",
     "romaji": "Taihen desu ne",
-    "gambar": "https://i.ibb.co/xqksPFc5/image.png",
+    "gambar": "https://iili.io/C5kIJQS.png",
     "contoh": "Ungkapan simpati kepada lawan bicara yang mengalami hal yang dianggap susah."
   }
 ];
@@ -4400,6 +4794,7 @@
     const startScreen = document.getElementById("startScreen");
     const practiceScreen = document.getElementById("practiceScreen");
     const resultScreen = document.getElementById("resultScreen");
+    const materialScreen = document.getElementById("materialScreen");
 
     const languageButtons = document.querySelectorAll(".language-btn");
     const fictionToggle = document.getElementById("fictionToggle");
@@ -4420,6 +4815,10 @@
     const resultPageBtn = document.getElementById("resultPageBtn");
     const usernameInput = document.getElementById("usernameInput");
     const startBtn = document.getElementById("startBtn");
+    const openMaterialBtn = document.getElementById("openMaterialBtn");
+    const materialGrid = document.getElementById("materialGrid");
+    const materialStartBtn = document.getElementById("materialStartBtn");
+    const materialHomeBtn = document.getElementById("materialHomeBtn");
     const restartBtn = document.getElementById("restartBtn");
     const savePdfBtn = document.getElementById("savePdfBtn");
     const clearRankingBtn = document.getElementById("clearRankingBtn");
@@ -4538,7 +4937,7 @@
         usernamePlaceholder: "Masukkan username",
         passwordLabel: "Password admin",
         passwordPlaceholder: "Masukkan password admin",
-        groupPrompt: "Pilih kategori sebelum mulai kuis.",
+        groupPrompt: "Pilih kategori peserta sebelum mulai kuis.",
         groupOptionsLabel: "Pilihan kategori",
         cancelButton: "Batal",
         saveButton: "Simpan",
@@ -4663,7 +5062,7 @@
         usernamePlaceholder: "ユーザー名を入力",
         passwordLabel: "管理者パスワード",
         passwordPlaceholder: "管理者パスワードを入力",
-        groupPrompt: "クイズを始める前にカテゴリーを選んでください。",
+        groupPrompt: "クイズを始める前に参加者カテゴリーを選んでください。",
         groupOptionsLabel: "カテゴリー選択",
         cancelButton: "キャンセル",
         saveButton: "保存",
@@ -4833,7 +5232,7 @@
     }
 
     function showScreen(screen) {
-      [startScreen, practiceScreen, resultScreen].forEach(item => item.classList.remove("active"));
+      [startScreen, materialScreen, practiceScreen, resultScreen].forEach(item => item?.classList.remove("active"));
       screen.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -4864,6 +5263,9 @@
 
       const count = getAvailableVocabulary().length;
       cardCountValue.textContent = currentLanguage === "ja" ? `${count}語` : `${count} kosakata`;
+      if (materialScreen?.classList.contains("active")) {
+        renderMaterial();
+      }
     }
 
     function buildSessionDeck() {
@@ -5052,11 +5454,63 @@
       }
     }
 
+
+
+    function materialTitle(item) {
+      const kanji = String(item.kanji || "").trim();
+      const kana = String(item.kana || "").trim();
+      if (kanji && kana && kanji !== kana) return `${kana}（${kanji}）`;
+      return kanji || kana || item.romaji || "-";
+    }
+
+    function createMaterialCard(item, index) {
+      const jp = getJapanesePlain(item);
+      const img = String(item.gambar || "").trim();
+      const imageAlt = `${materialTitle(item)} - ${item.indonesia || ""}`;
+      return `
+        <article class="material-card">
+          ${img ? `<img src="${escapeHTML(img)}" alt="${escapeHTML(imageAlt)}" loading="lazy" data-material-image="true" />` : ""}
+          <div class="material-jp">${escapeHTML(jp.main || materialTitle(item))}</div>
+          <p class="material-reading">${escapeHTML(jp.sub || "")}</p>
+          <p class="material-romaji">${escapeHTML(item.romaji || "")}</p>
+          <p class="material-id">${escapeHTML(item.indonesia || "")}</p>
+        </article>
+      `;
+    }
+
+    function renderMaterial() {
+      if (!materialGrid) return;
+      const items = getAvailableVocabulary();
+      const common = items.filter(item => !isFictionVocabulary(item));
+      const fiction = items.filter(item => isFictionVocabulary(item));
+      const sections = [
+        { title: currentLanguage === "ja" ? "一般語彙" : "Kosakata Umum", data: common },
+        { title: currentLanguage === "ja" ? "架空名詞" : "Kosakata Fiksi", data: fiction }
+      ].filter(section => section.data.length > 0);
+
+      materialGrid.innerHTML = sections.map(section => `
+        <section class="material-section">
+          <h3 class="material-section-title">${escapeHTML(section.title)} (${section.data.length})</h3>
+          <div class="material-grid">
+            ${section.data.map(createMaterialCard).join("")}
+          </div>
+        </section>
+      `).join("");
+    }
+
+    function openMaterialScreen() {
+      renderMaterial();
+      showScreen(materialScreen);
+    }
+
+
     function updateStartState() {
       const canStart = Boolean(currentUsername) && (isAdmin || Boolean(currentGroup));
 
       startBtn.disabled = !canStart;
+      openMaterialBtn.disabled = !canStart;
       startBtn.classList.toggle("show", Boolean(currentUsername));
+      openMaterialBtn.classList.toggle("show", Boolean(currentUsername));
       resultPageBtn.hidden = !isAdmin;
       clearRankingBtn.hidden = !isAdmin;
       usernameBox.classList.toggle("is-complete", Boolean(currentUsername));
@@ -5907,6 +6361,373 @@
     }
 
 
+
+    /* ===== Username style final override: disamakan dengan HTML 2 ===== */
+    #startScreen .username-box {
+      width: min(520px, 100%) !important;
+      max-width: none !important;
+      margin: 0 auto 16px !important;
+      gap: 8px !important;
+    }
+
+    #startScreen .login-trigger {
+      width: 100% !important;
+      min-height: var(--control-h) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      padding: 0 22px !important;
+      border: 1px solid rgba(255, 255, 255, 0.88) !important;
+      border-radius: var(--radius-lg) !important;
+      color: #17254e !important;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)) !important;
+      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12) !important;
+      backdrop-filter: blur(16px) !important;
+      font-size: var(--fs-input) !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+    }
+
+    #loginSummary.login-summary {
+      display: none;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 8px 13px;
+      border-radius: var(--radius-pill);
+      color: #514a9e;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    #loginSummary.login-summary.show {
+      display: inline-flex;
+    }
+
+    #usernameNote.username-note {
+      margin: 0;
+      color: #505a70;
+      font-size: var(--fs-small);
+      font-weight: 500;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    #groupBox.group-box {
+      width: 100% !important;
+      margin: 14px 0 14px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left !important;
+    }
+
+    #groupBox.group-box[hidden],
+    #passwordBox.password-box[hidden],
+    .login-field[hidden] {
+      display: none !important;
+    }
+
+    #groupBox.group-box p {
+      margin: 0 !important;
+      color: var(--heading) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      text-align: left !important;
+      line-height: 1.35 !important;
+    }
+
+    #groupBox .group-options {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      margin-top: 10px !important;
+    }
+
+    #groupBox .group-btn {
+      min-height: 44px !important;
+      padding: 10px 12px !important;
+      border: 1px solid rgba(124, 111, 246, 0.2) !important;
+      border-radius: var(--radius-pill) !important;
+      color: var(--primary-deep) !important;
+      background: var(--primary-soft) !important;
+      box-shadow: none !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      line-height: 1.15 !important;
+    }
+
+    #groupBox .group-btn:hover,
+    #groupBox .group-btn.active {
+      transform: translateY(-1px) !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep)) !important;
+      border-color: transparent !important;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .username-box {
+        width: 100% !important;
+        max-width: none !important;
+      }
+      #startScreen .login-trigger {
+        min-height: var(--control-h-mobile) !important;
+      }
+    }
+
+
+    /* ===== Lihat Materi + popup gambar final ===== */
+    #openMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #openMaterialBtn.show {
+      display: inline-flex !important;
+    }
+
+    .material-panel {
+      width: min(1040px, 100%);
+    }
+
+    .material-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .material-header h2 {
+      margin: 12px 0 8px;
+      color: var(--heading);
+      font-size: clamp(24px, 3.6vw, 36px);
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+    }
+
+    .material-header p {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: var(--fs-base);
+      line-height: 1.58;
+    }
+
+    .material-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .material-section {
+      margin-top: 20px;
+    }
+
+    .material-section-title {
+      margin: 0 0 12px;
+      color: #514a9e;
+      font-size: clamp(18px, 2.6vw, 24px);
+      line-height: 1.2;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .material-card {
+      min-width: 0;
+      min-height: 232px;
+      display: grid;
+      align-content: start;
+      justify-items: center;
+      gap: 7px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.15);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .material-card img {
+      width: 100%;
+      height: 96px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      padding: 6px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      cursor: zoom-in;
+    }
+
+    .material-jp {
+      font-family: var(--font-jp);
+      color: var(--heading);
+      font-size: clamp(18px, 2.2vw, 23px);
+      font-weight: 760;
+      line-height: 1.24;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading,
+    .material-romaji,
+    .material-id {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      font-family: var(--font-jp);
+      color: #756f69;
+      font-weight: 600;
+    }
+
+    .material-romaji {
+      color: #514a9e;
+      font-weight: 700;
+    }
+
+    .material-id {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw) !important;
+      max-height: calc(100svh - 28px) !important;
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      border-radius: 28px !important;
+    }
+
+    .image-modal-close {
+      position: static !important;
+      justify-self: end !important;
+      margin: 12px 14px 8px !important;
+      z-index: 2 !important;
+      width: 42px !important;
+      height: 42px !important;
+      flex: 0 0 auto !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      max-height: none !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 8px 14px !important;
+      background: #fff !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+    .image-modal-caption {
+      margin: 0 !important;
+      padding: 10px 14px 14px !important;
+      border-top: 1px solid rgba(124, 111, 246, 0.12) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions,
+      .material-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen .hero-actions .btn,
+      .material-actions .btn {
+        width: 100% !important;
+      }
+
+      .material-header {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+
+      .material-panel {
+        max-width: 620px !important;
+      }
+
+      .material-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .material-card {
+        min-height: 205px !important;
+        padding: 11px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-card img {
+        height: 72px !important;
+      }
+
+      .material-jp {
+        font-size: 18px !important;
+      }
+
+      .material-reading,
+      .material-romaji,
+      .material-id {
+        font-size: 12px !important;
+      }
+
+      .image-modal {
+        padding: 14px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 28px) !important;
+        border-radius: 24px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 145px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-card {
+        min-height: 190px !important;
+      }
+
+      .material-card img {
+        height: 84px !important;
+      }
+    }
+
   </style>
         </head>
         <body>
@@ -6318,6 +7139,373 @@
     }
 
 
+
+    /* ===== Username style final override: disamakan dengan HTML 2 ===== */
+    #startScreen .username-box {
+      width: min(520px, 100%) !important;
+      max-width: none !important;
+      margin: 0 auto 16px !important;
+      gap: 8px !important;
+    }
+
+    #startScreen .login-trigger {
+      width: 100% !important;
+      min-height: var(--control-h) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      padding: 0 22px !important;
+      border: 1px solid rgba(255, 255, 255, 0.88) !important;
+      border-radius: var(--radius-lg) !important;
+      color: #17254e !important;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)) !important;
+      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12) !important;
+      backdrop-filter: blur(16px) !important;
+      font-size: var(--fs-input) !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+    }
+
+    #loginSummary.login-summary {
+      display: none;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 8px 13px;
+      border-radius: var(--radius-pill);
+      color: #514a9e;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.18);
+      font-size: var(--fs-small);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    #loginSummary.login-summary.show {
+      display: inline-flex;
+    }
+
+    #usernameNote.username-note {
+      margin: 0;
+      color: #505a70;
+      font-size: var(--fs-small);
+      font-weight: 500;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    #groupBox.group-box {
+      width: 100% !important;
+      margin: 14px 0 14px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left !important;
+    }
+
+    #groupBox.group-box[hidden],
+    #passwordBox.password-box[hidden],
+    .login-field[hidden] {
+      display: none !important;
+    }
+
+    #groupBox.group-box p {
+      margin: 0 !important;
+      color: var(--heading) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      text-align: left !important;
+      line-height: 1.35 !important;
+    }
+
+    #groupBox .group-options {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      margin-top: 10px !important;
+    }
+
+    #groupBox .group-btn {
+      min-height: 44px !important;
+      padding: 10px 12px !important;
+      border: 1px solid rgba(124, 111, 246, 0.2) !important;
+      border-radius: var(--radius-pill) !important;
+      color: var(--primary-deep) !important;
+      background: var(--primary-soft) !important;
+      box-shadow: none !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      line-height: 1.15 !important;
+    }
+
+    #groupBox .group-btn:hover,
+    #groupBox .group-btn.active {
+      transform: translateY(-1px) !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep)) !important;
+      border-color: transparent !important;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .username-box {
+        width: 100% !important;
+        max-width: none !important;
+      }
+      #startScreen .login-trigger {
+        min-height: var(--control-h-mobile) !important;
+      }
+    }
+
+
+    /* ===== Lihat Materi + popup gambar final ===== */
+    #openMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #openMaterialBtn.show {
+      display: inline-flex !important;
+    }
+
+    .material-panel {
+      width: min(1040px, 100%);
+    }
+
+    .material-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .material-header h2 {
+      margin: 12px 0 8px;
+      color: var(--heading);
+      font-size: clamp(24px, 3.6vw, 36px);
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+    }
+
+    .material-header p {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: var(--fs-base);
+      line-height: 1.58;
+    }
+
+    .material-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .material-section {
+      margin-top: 20px;
+    }
+
+    .material-section-title {
+      margin: 0 0 12px;
+      color: #514a9e;
+      font-size: clamp(18px, 2.6vw, 24px);
+      line-height: 1.2;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .material-card {
+      min-width: 0;
+      min-height: 232px;
+      display: grid;
+      align-content: start;
+      justify-items: center;
+      gap: 7px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 111, 246, 0.15);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .material-card img {
+      width: 100%;
+      height: 96px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      padding: 6px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      cursor: zoom-in;
+    }
+
+    .material-jp {
+      font-family: var(--font-jp);
+      color: var(--heading);
+      font-size: clamp(18px, 2.2vw, 23px);
+      font-weight: 760;
+      line-height: 1.24;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading,
+    .material-romaji,
+    .material-id {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      font-family: var(--font-jp);
+      color: #756f69;
+      font-weight: 600;
+    }
+
+    .material-romaji {
+      color: #514a9e;
+      font-weight: 700;
+    }
+
+    .material-id {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw) !important;
+      max-height: calc(100svh - 28px) !important;
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      border-radius: 28px !important;
+    }
+
+    .image-modal-close {
+      position: static !important;
+      justify-self: end !important;
+      margin: 12px 14px 8px !important;
+      z-index: 2 !important;
+      width: 42px !important;
+      height: 42px !important;
+      flex: 0 0 auto !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      max-height: none !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 8px 14px !important;
+      background: #fff !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+    .image-modal-caption {
+      margin: 0 !important;
+      padding: 10px 14px 14px !important;
+      border-top: 1px solid rgba(124, 111, 246, 0.12) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions,
+      .material-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen .hero-actions .btn,
+      .material-actions .btn {
+        width: 100% !important;
+      }
+
+      .material-header {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+
+      .material-panel {
+        max-width: 620px !important;
+      }
+
+      .material-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .material-card {
+        min-height: 205px !important;
+        padding: 11px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-card img {
+        height: 72px !important;
+      }
+
+      .material-jp {
+        font-size: 18px !important;
+      }
+
+      .material-reading,
+      .material-romaji,
+      .material-id {
+        font-size: 12px !important;
+      }
+
+      .image-modal {
+        padding: 14px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 28px) !important;
+        border-radius: 24px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 145px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-card {
+        min-height: 190px !important;
+      }
+
+      .material-card img {
+        height: 84px !important;
+      }
+    }
+
   </style>
         </head>
         <body>
@@ -6557,6 +7745,16 @@
 
     document.querySelectorAll(".group-btn").forEach(button => {
       button.addEventListener("click", () => selectGroup(button.dataset.group));
+    });
+
+    openMaterialBtn?.addEventListener("click", openMaterialScreen);
+    materialStartBtn?.addEventListener("click", startPractice);
+    materialHomeBtn?.addEventListener("click", () => showScreen(startScreen));
+
+    materialGrid?.addEventListener("click", event => {
+      const img = event.target.closest("img");
+      if (!img) return;
+      openImageModal(img.currentSrc || img.src, img.alt || "Gambar kosakata");
     });
 
     startBtn.addEventListener("click", startPractice);
