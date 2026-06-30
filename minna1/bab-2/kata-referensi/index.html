@@ -2025,6 +2025,257 @@
     }
     /* ===== END FIX FINAL GAMBAR MATERI ===== */
 
+
+    /* ===== FINAL REVISION REQUEST: LOOK MATERI, POPUP GAMBAR, MOBILE ===== */
+    #startQuizBtn:not(.show),
+    #openMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startQuizBtn.show,
+    #openMaterialBtn.show {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    #materialScreen {
+      min-width: 0 !important;
+    }
+
+    #materialScreen .panel {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    #materialScreen img,
+    .material-vocab-image img,
+    .greeting-figure img {
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+
+    .image-modal {
+      overflow: hidden !important;
+      padding: clamp(10px, 2.5vw, 28px) !important;
+    }
+
+    .image-modal-card {
+      width: min(980px, 100%) !important;
+      max-width: calc(100vw - 20px) !important;
+      max-height: calc(100svh - 20px) !important;
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      overflow: hidden !important;
+    }
+
+    .image-modal-head {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 5 !important;
+      flex: 0 0 auto !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      padding-right: 12px !important;
+    }
+
+    .image-modal-close {
+      position: relative !important;
+      z-index: 6 !important;
+      flex: 0 0 44px !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin-left: auto !important;
+    }
+
+    .image-modal-body {
+      min-width: 0 !important;
+      min-height: 0 !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 158px) !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      display: block !important;
+      margin: auto !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen #startQuizBtn.show,
+      #startScreen #openMaterialBtn.show {
+        width: 100% !important;
+        min-height: 52px !important;
+      }
+
+      #materialScreen .panel {
+        width: 100% !important;
+        padding: 16px !important;
+      }
+
+      #materialScreen .section-title {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      #materialScreen .section-title .actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-vocab-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-vocab-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        grid-template-columns: 108px minmax(0, 1fr) !important;
+      }
+
+      .material-vocab-image {
+        width: 108px !important;
+        height: 108px !important;
+      }
+
+      .image-modal {
+        padding: 8px !important;
+      }
+
+      .image-modal-card {
+        max-width: calc(100vw - 16px) !important;
+        max-height: calc(100svh - 16px) !important;
+        border-radius: 20px !important;
+      }
+
+      .image-modal-head {
+        padding: 10px !important;
+      }
+
+      .image-modal-body {
+        padding: 8px !important;
+      }
+
+      .image-modal-body img {
+        max-width: 100% !important;
+        max-height: calc(100svh - 142px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-vocab-card {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        text-align: center !important;
+      }
+
+      .material-vocab-image {
+        width: min(100%, 200px) !important;
+        height: 150px !important;
+      }
+
+      .material-vocab-content {
+        text-align: center !important;
+      }
+
+      .image-modal-close {
+        flex-basis: 42px !important;
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+      }
+    }
+    /* ===== END FINAL REVISION REQUEST ===== */
+
+  
+    /* ===== REVISI JARAK NOMOR KARTU MATERI ===== */
+    #nameGrid .name-card {
+      padding-top: 32px !important;
+      overflow: visible !important;
+    }
+
+    #nameGrid .name-card::before {
+      top: 10px !important;
+      left: 12px !important;
+      width: 42px !important;
+      height: 26px !important;
+      display: grid !important;
+      place-items: center !important;
+      font-size: 22px !important;
+      line-height: 1 !important;
+    }
+
+    #nameGrid .name-card .jp {
+      margin-top: 6px !important;
+      max-width: calc(100% - 10px) !important;
+      overflow-wrap: normal !important;
+      word-break: keep-all !important;
+    }
+
+    #nameGrid .name-card[data-number="13"] {
+      padding-top: 36px !important;
+      padding-left: 22px !important;
+      padding-right: 12px !important;
+    }
+
+    #nameGrid .name-card[data-number="13"]::before {
+      top: 8px !important;
+      left: 10px !important;
+      font-size: 21px !important;
+    }
+
+    #nameGrid .name-card[data-number="13"] .jp {
+      margin-top: 8px !important;
+      letter-spacing: -0.03em !important;
+    }
+
+    @media (max-width: 720px) {
+      #nameGrid .name-card {
+        padding-top: 34px !important;
+      }
+
+      #nameGrid .name-card::before {
+        top: 9px !important;
+        left: 10px !important;
+        font-size: 21px !important;
+      }
+
+      #nameGrid .name-card[data-number="13"] {
+        padding-top: 38px !important;
+        padding-left: 24px !important;
+        padding-right: 12px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      #nameGrid .name-card::before {
+        font-size: 20px !important;
+      }
+
+      #nameGrid .name-card[data-number="13"] {
+        padding-left: 26px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2078,7 +2329,7 @@
         <div class="material-vocab-grid" aria-label="Daftar kosakata salam">
           <article class="material-vocab-card">
             <div class="material-vocab-image">
-              <img src="https://iili.io/C5OlM5F.png" alt="Ilustrasi 初めまして" loading="lazy" data-zoomable="true" />
+              <img src="https://iili.io/C5gzoS1.png" alt="Ilustrasi 初めまして" loading="lazy" data-zoomable="true" />
             </div>
             <div class="material-vocab-content">
               <span>1</span>
@@ -2088,7 +2339,7 @@
           </article>
           <article class="material-vocab-card">
             <div class="material-vocab-image">
-              <img src="https://iili.io/C5OlGJ1.png" alt="Ilustrasi どうぞよろしくお願いします" loading="lazy" data-zoomable="true" />
+              <img src="https://iili.io/C5gzCKB.png" alt="Ilustrasi どうぞよろしくお願いします" loading="lazy" data-zoomable="true" />
             </div>
             <div class="material-vocab-content">
               <span>2</span>
@@ -2106,7 +2357,7 @@
         <div class="greeting-box">
           <div class="greeting-card greeting-illustrated">
             <figure class="greeting-figure">
-              <img src="https://iili.io/C5OlM5F.png" alt="Ilustrasi 初めまして" loading="lazy" data-zoomable="true" />
+              <img src="https://iili.io/C5gzoS1.png" alt="Ilustrasi 初めまして" loading="lazy" data-zoomable="true" />
             </figure>
             <div class="greeting-content">
               <div class="jp">初めまして。</div>
@@ -2116,7 +2367,7 @@
           </div>
           <div class="greeting-card greeting-illustrated">
             <figure class="greeting-figure">
-              <img src="https://iili.io/C5OlGJ1.png" alt="Ilustrasi どうぞよろしくお願いします" loading="lazy" data-zoomable="true" />
+              <img src="https://iili.io/C5gzCKB.png" alt="Ilustrasi どうぞよろしくお願いします" loading="lazy" data-zoomable="true" />
             </figure>
             <div class="greeting-content">
               <div class="jp">どうぞよろしくお願いします。</div>
@@ -3443,6 +3694,187 @@
       table { page-break-inside: auto; }
       tr { page-break-inside: avoid; page-break-after: auto; }
     }
+
+    /* ===== FINAL REVISION REQUEST: LOOK MATERI, POPUP GAMBAR, MOBILE ===== */
+    #startQuizBtn:not(.show),
+    #openMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startQuizBtn.show,
+    #openMaterialBtn.show {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    #materialScreen {
+      min-width: 0 !important;
+    }
+
+    #materialScreen .panel {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    #materialScreen img,
+    .material-vocab-image img,
+    .greeting-figure img {
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+
+    .image-modal {
+      overflow: hidden !important;
+      padding: clamp(10px, 2.5vw, 28px) !important;
+    }
+
+    .image-modal-card {
+      width: min(980px, 100%) !important;
+      max-width: calc(100vw - 20px) !important;
+      max-height: calc(100svh - 20px) !important;
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      overflow: hidden !important;
+    }
+
+    .image-modal-head {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 5 !important;
+      flex: 0 0 auto !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      padding-right: 12px !important;
+    }
+
+    .image-modal-close {
+      position: relative !important;
+      z-index: 6 !important;
+      flex: 0 0 44px !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin-left: auto !important;
+    }
+
+    .image-modal-body {
+      min-width: 0 !important;
+      min-height: 0 !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 158px) !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      display: block !important;
+      margin: auto !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen #startQuizBtn.show,
+      #startScreen #openMaterialBtn.show {
+        width: 100% !important;
+        min-height: 52px !important;
+      }
+
+      #materialScreen .panel {
+        width: 100% !important;
+        padding: 16px !important;
+      }
+
+      #materialScreen .section-title {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      #materialScreen .section-title .actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-vocab-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-vocab-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        grid-template-columns: 108px minmax(0, 1fr) !important;
+      }
+
+      .material-vocab-image {
+        width: 108px !important;
+        height: 108px !important;
+      }
+
+      .image-modal {
+        padding: 8px !important;
+      }
+
+      .image-modal-card {
+        max-width: calc(100vw - 16px) !important;
+        max-height: calc(100svh - 16px) !important;
+        border-radius: 20px !important;
+      }
+
+      .image-modal-head {
+        padding: 10px !important;
+      }
+
+      .image-modal-body {
+        padding: 8px !important;
+      }
+
+      .image-modal-body img {
+        max-width: 100% !important;
+        max-height: calc(100svh - 142px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-vocab-card {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        text-align: center !important;
+      }
+
+      .material-vocab-image {
+        width: min(100%, 200px) !important;
+        height: 150px !important;
+      }
+
+      .material-vocab-content {
+        text-align: center !important;
+      }
+
+      .image-modal-close {
+        flex-basis: 42px !important;
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+      }
+    }
+    /* ===== END FINAL REVISION REQUEST ===== */
+
   </style>
 </head>
 <body>
