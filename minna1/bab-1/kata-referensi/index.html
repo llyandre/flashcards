@@ -4187,6 +4187,262 @@
       }
     }
 
+
+
+    /* ===== Final fix: Lihat Materi, popup gambar, dan scroll responsif ===== */
+    .app-shell:has(#materialScreen.active) {
+      align-items: flex-start !important;
+    }
+
+    #startBtn:not(.show),
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startBtn.show,
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen .hero-actions {
+      align-items: stretch !important;
+    }
+
+    #startScreen #startBtn.show,
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%) !important;
+      min-height: var(--button-h) !important;
+      border-radius: 16px !important;
+    }
+
+    #startScreen #materialBtn.show {
+      color: #514a9e !important;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.7)) !important;
+      border: 1px solid rgba(124, 111, 246, 0.26) !important;
+      box-shadow: 0 14px 30px rgba(82, 73, 134, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.62) !important;
+    }
+
+    .material-panel {
+      width: min(1040px, 100%) !important;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    .material-head {
+      position: static !important;
+    }
+
+    .material-groups,
+    .material-grid,
+    .material-item,
+    .material-text {
+      min-width: 0 !important;
+    }
+
+    .material-grid {
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)) !important;
+    }
+
+    .material-image img,
+    .illustration img,
+    #imageModalImg {
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+
+    .image-modal {
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)) !important;
+      overflow: hidden !important;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw) !important;
+      height: min(92svh, 860px) !important;
+      max-height: 92svh !important;
+      display: flex !important;
+      flex-direction: column !important;
+      position: relative !important;
+      padding: 14px !important;
+      overflow: hidden !important;
+      border-radius: 26px !important;
+      box-sizing: border-box !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      right: auto !important;
+      align-self: flex-end !important;
+      flex: 0 0 auto !important;
+      z-index: 40 !important;
+      width: 46px !important;
+      height: 46px !important;
+      min-width: 46px !important;
+      min-height: 46px !important;
+      margin: 0 0 10px auto !important;
+      display: grid !important;
+      place-items: center !important;
+      border-radius: var(--radius-pill) !important;
+      color: #6557df !important;
+      background: rgba(255, 255, 255, 0.97) !important;
+      border: 1px solid rgba(124, 111, 246, 0.2) !important;
+      box-shadow: 0 10px 24px rgba(31, 41, 55, 0.18) !important;
+      font-size: 30px !important;
+      line-height: 1 !important;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      padding: 0 !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: auto !important;
+      overscroll-behavior: contain !important;
+      border-radius: 18px !important;
+      background: rgba(255, 255, 255, 0.42) !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      display: block !important;
+      margin: auto !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 10px 4px 0 !important;
+      padding: 0 !important;
+      color: #4f596d !important;
+      text-align: center !important;
+      line-height: 1.35 !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        justify-items: stretch !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-panel {
+        width: 100% !important;
+        padding: 20px 12px !important;
+      }
+
+      .material-head {
+        margin-bottom: 16px !important;
+      }
+
+      .material-head h2 {
+        font-size: clamp(21px, 6.2vw, 28px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .material-head p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-group-card {
+        padding: 14px 10px !important;
+        border-radius: 20px !important;
+      }
+
+      .material-item {
+        width: 100% !important;
+        grid-template-columns: 86px minmax(0, 1fr) !important;
+        gap: 12px !important;
+        padding: 12px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-image {
+        width: 86px !important;
+        height: 86px !important;
+        min-width: 86px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-actions .btn {
+        width: 100% !important;
+      }
+
+      .image-modal-card {
+        width: 96vw !important;
+        height: 90svh !important;
+        max-height: 90svh !important;
+        padding: 10px !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-close {
+        width: 46px !important;
+        height: 46px !important;
+        min-width: 46px !important;
+        min-height: 46px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .image-modal-caption {
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .material-item {
+        grid-template-columns: 78px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+      }
+
+      .material-image {
+        width: 78px !important;
+        height: 78px !important;
+        min-width: 78px !important;
+      }
+
+      .material-id {
+        font-size: 11px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(15px, 5.2vw, 19px) !important;
+      }
+
+      .material-romaji,
+      .material-meaning {
+        font-size: 12px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4516,72 +4772,72 @@
     // Data array kosakata
     // =========================
     const vocabulary = [
-      { indonesia: "Amerika Serikat", kanji: "", kana: "アメリカ", romaji: "Amerika", gambar: "https://iili.io/C5vsAGe.png" },
-      { indonesia: "Inggris", kanji: "", kana: "イギリス", romaji: "Igirisu", gambar: "https://iili.io/C5vsR6u.png" },
-      { indonesia: "Italia", kanji: "", kana: "イタリア", romaji: "Itaria", gambar: "https://iili.io/C5vsYaj.png" },
-      { indonesia: "Iran", kanji: "", kana: "イラン", romaji: "Iran", gambar: "https://iili.io/C5vsa8x.png" },
-      { indonesia: "India", kanji: "", kana: "インド", romaji: "Indo", gambar: "https://iili.io/C5vsEZP.png" },
-      { indonesia: "Indonesia", kanji: "", kana: "インドネシア", romaji: "Indoneshia", gambar: "https://iili.io/C5vsVMF.png" },
-      { indonesia: "Mesir", kanji: "", kana: "エジプト", romaji: "Ejiputo", gambar: "https://iili.io/C5vsw8v.png" },
-      { indonesia: "Australia", kanji: "", kana: "オーストラリア", romaji: "Oosutoraria", gambar: "https://iili.io/C5vsO9R.png" },
-      { indonesia: "Kanada", kanji: "", kana: "カナダ", romaji: "Kanada", gambar: "https://iili.io/C5vsvtI.png" },
-      { indonesia: "Korea Selatan", kanji: "韓国", kana: "かんこく", romaji: "Kankoku", gambar: "https://iili.io/C5NRbyv.png" },
-      { indonesia: "Arab Saudi", kanji: "", kana: "サウジアラビア", romaji: "Sauji Arabia", gambar: "https://iili.io/C5vs4Fs.png" },
-      { indonesia: "Singapura", kanji: "", kana: "シンガポール", romaji: "Shingapooru", gambar: "https://iili.io/C5vs6cG.png" },
-      { indonesia: "Spanyol", kanji: "", kana: "スペイン", romaji: "Supein", gambar: "https://iili.io/C5vss94.png" },
-      { indonesia: "Thailand", kanji: "", kana: "タイ", romaji: "Tai", gambar: "https://iili.io/C5vsZtS.png" },
-      { indonesia: "Cina", kanji: "中国", kana: "ちゅうごく", romaji: "Chuugoku", gambar: "https://iili.io/C5N526X.png" },
-      { indonesia: "Jerman", kanji: "", kana: "ドイツ", romaji: "Doitsu", gambar: "https://iili.io/C5vsmPe.png" },
-      { indonesia: "Jepang", kanji: "日本", kana: "にほん", romaji: "Nihon", gambar: "https://iili.io/C5N5Cu4.png" },
-      { indonesia: "Perancis", kanji: "", kana: "フランス", romaji: "Furansu", gambar: "https://iili.io/C5NRxrg.png" },
-      { indonesia: "Filipina", kanji: "", kana: "フィリピン", romaji: "Firipin", gambar: "https://iili.io/C5vL9cb.png" },
-      { indonesia: "Brazil", kanji: "", kana: "ブラジル", romaji: "Burajiru", gambar: "https://iili.io/C5NRfIV.png" },
-      { indonesia: "Vietnam", kanji: "", kana: "ベトナム", romaji: "Betonamu", gambar: "https://iili.io/C5NRlEX.png" },
-      { indonesia: "Malaysia", kanji: "", kana: "マレーシア", romaji: "Mareeshia", gambar: "https://iili.io/C5NRNC7.png" },
-      { indonesia: "Meksiko", kanji: "", kana: "メキシコ", romaji: "Mekishiko", gambar: "https://iili.io/C5NRrTQ.png" },
-      { indonesia: "Rusia", kanji: "", kana: "ロシア", romaji: "Roshia", gambar: "https://iili.io/C5NRsG1.png" },
-      { indonesia: "orang Amerika", kanji: "", kana: "アメリカ人", romaji: "Amerika-jin", gambar: "https://iili.io/C5vLqV1.png" },
-      { indonesia: "orang Inggris", kanji: "", kana: "イギリス人", romaji: "Igirisu-jin", gambar: "https://iili.io/C5vLBiF.png" },
-      { indonesia: "orang Italia", kanji: "", kana: "イタリア人", romaji: "Itaria-jin", gambar: "https://iili.io/C5vLola.png" },
-      { indonesia: "orang Iran", kanji: "", kana: "イラン人", romaji: "Iran-jin", gambar: "https://iili.io/C5vLxUJ.png" },
-      { indonesia: "orang India", kanji: "", kana: "インド人", romaji: "Indo-jin", gambar: "https://iili.io/C5vLYiX.png" },
-      { indonesia: "orang Indonesia", kanji: "", kana: "インドネシア人", romaji: "Indoneshia-jin", gambar: "https://iili.io/C5vLcfn.png" },
-      { indonesia: "orang Mesir", kanji: "", kana: "エジプト人", romaji: "Ejiputo-jin", gambar: "https://iili.io/C5vLlls.png" },
-      { indonesia: "orang Australia", kanji: "", kana: "オーストラリア人", romaji: "Oosutoraria-jin", gambar: "https://iili.io/C5vL0UG.png" },
-      { indonesia: "orang Kanada", kanji: "", kana: "カナダ人", romaji: "Kanada-jin", gambar: "https://iili.io/C5vLEJf.png" },
-      { indonesia: "orang Korea Selatan", kanji: "韓国人", kana: "かんこくじん", romaji: "Kankoku-jin", gambar: "https://iili.io/C5N5dGt.png" },
-      { indonesia: "orang Arab Saudi", kanji: "", kana: "サウジアラビア人", romaji: "Sauji Arabia-jin", gambar: "https://iili.io/C5vLO0u.png" },
-      { indonesia: "orang Singapura", kanji: "", kana: "シンガポール人", romaji: "Shingapooru-jin", gambar: "https://iili.io/C5vLhW7.png" },
-      { indonesia: "orang Spanyol", kanji: "", kana: "スペイン人", romaji: "Supein-jin", gambar: "https://iili.io/C5vLvJj.png" },
-      { indonesia: "orang Thailand", kanji: "", kana: "タイ人", romaji: "Tai-jin", gambar: "https://iili.io/C5vL85x.png" },
-      { indonesia: "orang Cina", kanji: "中国人", kana: "ちゅうごくじん", romaji: "Chuugoku-jin", gambar: "https://iili.io/C5N5f8G.png" },
-      { indonesia: "orang Jerman", kanji: "", kana: "ドイツ人", romaji: "Doitsu-jin", gambar: "https://iili.io/C5vL4WP.png" },
-      { indonesia: "orang Jepang", kanji: "日本人", kana: "にほんじん", romaji: "Nihon-jin", gambar: "https://iili.io/C5N5IM7.png" },
-      { indonesia: "orang Perancis", kanji: "", kana: "フランス人", romaji: "Furansu-jin", gambar: "https://iili.io/C5NRYQI.png" },
-      { indonesia: "orang Filipina", kanji: "", kana: "フィリピン人", romaji: "Firipin-jin", gambar: "https://iili.io/C5NRqhB.png" },
-      { indonesia: "orang Brazil", kanji: "", kana: "ブラジル人", romaji: "Burajiru-jin", gambar: "https://iili.io/C5NRnB1.png" },
-      { indonesia: "orang Vietnam", kanji: "", kana: "ベトナム人", romaji: "Betonamu-jin", gambar: "https://iili.io/C5NRE2s.png" },
-      { indonesia: "orang Malaysia", kanji: "", kana: "マレーシア人", romaji: "Mareeshia-jin", gambar: "https://iili.io/C5NRUyx.png" },
-      { indonesia: "orang Meksiko", kanji: "", kana: "メキシコ人", romaji: "Mekishiko-jin", gambar: "https://iili.io/C5NR4jV.png" },
-      { indonesia: "orang Rusia", kanji: "", kana: "ロシア人", romaji: "Roshia-jin", gambar: "https://iili.io/C5NRtaa.png" },
-      { indonesia: "bahasa Inggris", kanji: "英語", kana: "えいご", romaji: "Eigo", gambar: "https://iili.io/C5NRD8J.png" },
-      { indonesia: "bahasa Italia", kanji: "", kana: "イタリア語", romaji: "Itaria-go", gambar: "https://iili.io/C5vLt5v.png" },
-      { indonesia: "bahasa Persia", kanji: "", kana: "ペルシア語", romaji: "Perushia-go", gambar: "https://iili.io/C5NRXTl.png" },
-      { indonesia: "bahasa India", kanji: "", kana: "ヒンディー語", romaji: "Hindii-go", gambar: "https://iili.io/C5vLbbp.png" },
-      { indonesia: "bahasa Indonesia", kanji: "", kana: "インドネシア語", romaji: "Indoneshia-go", gambar: "https://iili.io/C5vLDeR.png" },
-      { indonesia: "bahasa Arab", kanji: "", kana: "アラビア語", romaji: "Arabia-go", gambar: "https://iili.io/C5vLpzN.png" },
-      { indonesia: "bahasa Perancis", kanji: "", kana: "フランス語", romaji: "Furansu-go", gambar: "https://iili.io/C5NRukv.png" },
-      { indonesia: "bahasa Korea", kanji: "韓国語", kana: "かんこくご", romaji: "Kankoku-go", gambar: "https://iili.io/C5N5JnI.png" },
-      { indonesia: "bahasa Spanyol", kanji: "", kana: "スペイン語", romaji: "Supein-go", gambar: "https://iili.io/C5vQ9st.png" },
-      { indonesia: "bahasa Thailand", kanji: "", kana: "タイ語", romaji: "Tai-go", gambar: "https://iili.io/C5vLyXI.png" },
-      { indonesia: "bahasa Cina", kanji: "中国語", kana: "ちゅうごくご", romaji: "Chuugoku-go", gambar: "https://iili.io/C5N5FFn.png" },
-      { indonesia: "bahasa Jerman", kanji: "", kana: "ドイツ語", romaji: "Doitsu-go", gambar: "https://iili.io/C5vQK7f.png" },
-      { indonesia: "bahasa Jepang", kanji: "日本語", kana: "にほんご", romaji: "Nihon-go", gambar: "https://iili.io/C5N5znS.png" },
-      { indonesia: "bahasa Filipina", kanji: "", kana: "フィリピン語", romaji: "Firipin-go", gambar: "https://iili.io/C5vQqml.png" },
-      { indonesia: "bahasa Portugis", kanji: "", kana: "ポルトガル語", romaji: "Porutogaru-go", gambar: "https://iili.io/C5NRhj2.png" },
-      { indonesia: "bahasa Vietnam", kanji: "", kana: "ベトナム語", romaji: "Betonamu-go", gambar: "https://iili.io/C5NR04n.png" },
-      { indonesia: "bahasa Malaysia", kanji: "", kana: "マレーシア語", romaji: "Mareeshia-go", gambar: "https://iili.io/C5NR8Yb.png" },
-      { indonesia: "bahasa Rusia", kanji: "", kana: "ロシア語", romaji: "Roshia-go", gambar: "https://iili.io/C5NRZ3g.png" }
+      { indonesia: "Amerika Serikat", kanji: "", kana: "アメリカ", romaji: "Amerika", gambar: "https://iili.io/C5SMIB1.png" },
+      { indonesia: "Inggris", kanji: "", kana: "イギリス", romaji: "Igirisu", gambar: "https://iili.io/C5SMurg.png" },
+      { indonesia: "Italia", kanji: "", kana: "イタリア", romaji: "Itaria", gambar: "https://iili.io/C5SMR2a.png" },
+      { indonesia: "Iran", kanji: "", kana: "イラン", romaji: "Iran", gambar: "https://iili.io/C5SM5YJ.png" },
+      { indonesia: "India", kanji: "", kana: "インド", romaji: "Indo", gambar: "https://iili.io/C5SMcIp.png" },
+      { indonesia: "Indonesia", kanji: "", kana: "インドネシア", romaji: "Indoneshia", gambar: "https://iili.io/C5SMlhN.png" },
+      { indonesia: "Mesir", kanji: "", kana: "エジプト", romaji: "Ejiputo", gambar: "https://iili.io/C5SM0QI.png" },
+      { indonesia: "Australia", kanji: "", kana: "オーストラリア", romaji: "Oosutoraria", gambar: "https://iili.io/C5SMGEX.png" },
+      { indonesia: "Kanada", kanji: "", kana: "カナダ", romaji: "Kanada", gambar: "https://iili.io/C5SMM4n.png" },
+      { indonesia: "Korea Selatan", kanji: "韓国", kana: "かんこく", romaji: "Kankoku", gambar: "https://iili.io/C5SMXYG.png" },
+      { indonesia: "Arab Saudi", kanji: "", kana: "サウジアラビア", romaji: "Sauji Arabia", gambar: "https://iili.io/C5SMhvf.png" },
+      { indonesia: "Singapura", kanji: "", kana: "シンガポール", romaji: "Shingapooru", gambar: "https://iili.io/C5SMjp4.png" },
+      { indonesia: "Spanyol", kanji: "", kana: "スペイン", romaji: "Supein", gambar: "https://iili.io/C5SMvC7.png" },
+      { indonesia: "Thailand", kanji: "", kana: "タイ", romaji: "Tai", gambar: "https://iili.io/C5SMS4e.png" },
+      { indonesia: "Cina", kanji: "中国", kana: "ちゅうごく", romaji: "Chuugoku", gambar: "https://iili.io/C5SM8G9.png" },
+      { indonesia: "Jerman", kanji: "", kana: "ドイツ", romaji: "Doitsu", gambar: "https://iili.io/C5SMrYb.png" },
+      { indonesia: "Jepang", kanji: "日本", kana: "にほん", romaji: "Nihon", gambar: "https://iili.io/C5SM6yx.png" },
+      { indonesia: "Perancis", kanji: "", kana: "フランス", romaji: "Furansu", gambar: "https://iili.io/C5SMiTQ.png" },
+      { indonesia: "Filipina", kanji: "", kana: "フィリピン", romaji: "Firipin", gambar: "https://iili.io/C5SMLZB.png" },
+      { indonesia: "Brazil", kanji: "", kana: "ブラジル", romaji: "Burajiru", gambar: "https://iili.io/C5SMtG1.png" },
+      { indonesia: "Vietnam", kanji: "", kana: "ベトナム", romaji: "Betonamu", gambar: "https://iili.io/C5SMD6F.png" },
+      { indonesia: "Malaysia", kanji: "", kana: "マレーシア", romaji: "Mareeshia", gambar: "https://iili.io/C5SVJuR.png" },
+      { indonesia: "Meksiko", kanji: "", kana: "メキシコ", romaji: "Mekishiko", gambar: "https://iili.io/C5SVdjp.png" },
+      { indonesia: "Rusia", kanji: "", kana: "ロシア", romaji: "Roshia", gambar: "https://iili.io/C5SVKGt.png" },
+      { indonesia: "orang Amerika", kanji: "", kana: "アメリカ人", romaji: "Amerika-jin", gambar: "https://iili.io/C5SVBFn.png" },
+      { indonesia: "orang Inggris", kanji: "", kana: "イギリス人", romaji: "Igirisu-jin", gambar: "https://iili.io/C5SVCas.png" },
+      { indonesia: "orang Italia", kanji: "", kana: "イタリア人", romaji: "Itaria-jin", gambar: "https://iili.io/C5SVzu4.png" },
+      { indonesia: "orang Iran", kanji: "", kana: "イラン人", romaji: "Iran-jin", gambar: "https://iili.io/C5SVAnS.png" },
+      { indonesia: "orang India", kanji: "", kana: "インド人", romaji: "Indo-jin", gambar: "https://iili.io/C5SVRM7.png" },
+      { indonesia: "orang Indonesia", kanji: "", kana: "インドネシア人", romaji: "Indoneshia-jin", gambar: "https://iili.io/C5SV5P9.png" },
+      { indonesia: "orang Mesir", kanji: "", kana: "エジプト人", romaji: "Ejiputo-jin", gambar: "https://iili.io/C5SVacu.png" },
+      { indonesia: "orang Australia", kanji: "", kana: "オーストラリア人", romaji: "Oosutoraria-jin", gambar: "https://iili.io/C5SVc8b.png" },
+      { indonesia: "orang Kanada", kanji: "", kana: "カナダ人", romaji: "Kanada-jin", gambar: "https://iili.io/C5SV09j.png" },
+      { indonesia: "orang Korea Selatan", kanji: "韓国人", kana: "かんこくじん", romaji: "Kankoku-jin", gambar: "https://iili.io/C5SVVoB.png" },
+      { indonesia: "orang Arab Saudi", kanji: "", kana: "サウジアラビア人", romaji: "Sauji Arabia-jin", gambar: "https://iili.io/C5SVXP1.png" },
+      { indonesia: "orang Singapura", kanji: "", kana: "シンガポール人", romaji: "Shingapooru-jin", gambar: "https://iili.io/C5SVwcg.png" },
+      { indonesia: "orang Spanyol", kanji: "", kana: "スペイン人", romaji: "Supein-jin", gambar: "https://iili.io/C5SVNSa.png" },
+      { indonesia: "orang Thailand", kanji: "", kana: "タイ人", romaji: "Tai-jin", gambar: "https://iili.io/C5SVeHJ.png" },
+      { indonesia: "orang Cina", kanji: "中国人", kana: "ちゅうごくじん", romaji: "Chuugoku-jin", gambar: "https://iili.io/C5SVkAv.png" },
+      { indonesia: "orang Jerman", kanji: "", kana: "ドイツ人", romaji: "Doitsu-jin", gambar: "https://iili.io/C5SVgVI.png" },
+      { indonesia: "orang Jepang", kanji: "日本人", kana: "にほんじん", romaji: "Nihon-jin", gambar: "https://iili.io/C5SVvNR.png" },
+      { indonesia: "orang Perancis", kanji: "", kana: "フランス人", romaji: "Furansu-jin", gambar: "https://iili.io/C5SVPln.png" },
+      { indonesia: "orang Filipina", kanji: "", kana: "フィリピン人", romaji: "Firipin-jin", gambar: "https://iili.io/C5SVLHG.png" },
+      { indonesia: "orang Brazil", kanji: "", kana: "ブラジル人", romaji: "Burajiru-jin", gambar: "https://iili.io/C5SVQRf.png" },
+      { indonesia: "orang Vietnam", kanji: "", kana: "ベトナム人", romaji: "Betonamu-jin", gambar: "https://iili.io/C5SVZN4.png" },
+      { indonesia: "orang Malaysia", kanji: "", kana: "マレーシア人", romaji: "Mareeshia-jin", gambar: "https://iili.io/C5SVbx2.png" },
+      { indonesia: "orang Meksiko", kanji: "", kana: "メキシコ人", romaji: "Mekishiko-jin", gambar: "https://iili.io/C5SVmVS.png" },
+      { indonesia: "orang Rusia", kanji: "", kana: "ロシア人", romaji: "Roshia-jin", gambar: "https://iili.io/C5SW9f9.png" },
+      { indonesia: "bahasa Inggris", kanji: "英語", kana: "えいご", romaji: "Eigo", gambar: "https://iili.io/C5SWJUu.png" },
+      { indonesia: "bahasa Italia", kanji: "", kana: "イタリア語", romaji: "Itaria-go", gambar: "https://iili.io/C5SWFOx.png" },
+      { indonesia: "bahasa Persia", kanji: "", kana: "ペルシア語", romaji: "Perushia-go", gambar: "https://iili.io/C5SWqxV.png" },
+      { indonesia: "bahasa India", kanji: "", kana: "ヒンディー語", romaji: "Hindii-go", gambar: "https://iili.io/C5SWBWB.png" },
+      { indonesia: "bahasa Indonesia", kanji: "", kana: "インドネシア語", romaji: "Indoneshia-go", gambar: "https://iili.io/C5SWx0F.png" },
+      { indonesia: "bahasa Arab", kanji: "", kana: "アラビア語", romaji: "Arabia-go", gambar: "https://iili.io/C5SWTJa.png" },
+      { indonesia: "bahasa Perancis", kanji: "", kana: "フランス語", romaji: "Furansu-go", gambar: "https://iili.io/C5SWu5J.png" },
+      { indonesia: "bahasa Korea", kanji: "韓国語", kana: "かんこくご", romaji: "Kankoku-go", gambar: "https://iili.io/C5SWRbR.png" },
+      { indonesia: "bahasa Spanyol", kanji: "", kana: "スペイン語", romaji: "Supein-go", gambar: "https://iili.io/C5SWYWN.png" },
+      { indonesia: "bahasa Thailand", kanji: "", kana: "タイ語", romaji: "Tai-go", gambar: "https://iili.io/C5SWasI.png" },
+      { indonesia: "bahasa Cina", kanji: "中国語", kana: "ちゅうごくご", romaji: "Chuugoku-go", gambar: "https://iili.io/C5SWlft.png" },
+      { indonesia: "bahasa Jerman", kanji: "", kana: "ドイツ語", romaji: "Doitsu-go", gambar: "https://iili.io/C5SW1gn.png" },
+      { indonesia: "bahasa Jepang", kanji: "日本語", kana: "にほんご", romaji: "Nihon-go", gambar: "https://iili.io/C5SWM5G.png" },
+      { indonesia: "bahasa Filipina", kanji: "", kana: "フィリピン語", romaji: "Firipin-go", gambar: "https://iili.io/C5SWWb4.png" },
+      { indonesia: "bahasa Portugis", kanji: "", kana: "ポルトガル語", romaji: "Porutogaru-go", gambar: "https://iili.io/C5SWjX2.png" },
+      { indonesia: "bahasa Vietnam", kanji: "", kana: "ベトナム語", romaji: "Betonamu-go", gambar: "https://iili.io/C5SWOq7.png" },
+      { indonesia: "bahasa Malaysia", kanji: "", kana: "マレーシア語", romaji: "Mareeshia-go", gambar: "https://iili.io/C5SWkge.png" },
+      { indonesia: "bahasa Rusia", kanji: "", kana: "ロシア語", romaji: "Roshia-go", gambar: "https://iili.io/C5SW8du.png" }
     ];
 
     // =========================
@@ -5119,7 +5375,7 @@
             const japanese = escapeHTML(plain.main || item.kana || item.kanji || "");
             const imageAlt = `${plain.main || item.kana || item.kanji || ""} - ${item.indonesia || ""}`.trim();
             const image = item.gambar
-              ? `<img src="${escapeHTML(item.gambar)}" alt="${escapeHTML(imageAlt)}" loading="lazy" data-zoomable="true" tabindex="0" />`
+              ? `<img src="${escapeHTML(item.gambar)}" alt="${escapeHTML(imageAlt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-zoomable="true" tabindex="0" />`
               : `<span class="image-fallback">${escapeHTML(item.indonesia)}</span>`;
 
             return `
@@ -5302,6 +5558,7 @@
       imageModalCaption.textContent = altText || "Gambar kosakata";
       imageModal.classList.add("show");
       imageModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
       closeImageModal?.focus({ preventScroll: true });
     }
 
@@ -5310,6 +5567,7 @@
 
       imageModal.classList.remove("show");
       imageModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
       imageModalImg.removeAttribute("src");
       imageModalImg.alt = "";
       if (imageModalCaption) imageModalCaption.textContent = "";
@@ -6686,6 +6944,7 @@
     startBtn.addEventListener("click", startPractice);
     materialBtn.addEventListener("click", () => {
       if (!currentUsername) return;
+      renderMaterial();
       showScreen(materialScreen);
     });
     backHomeFromMaterialBtn.addEventListener("click", () => showScreen(startScreen));
