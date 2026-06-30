@@ -4336,6 +4336,292 @@
       }
     }
 
+  
+    /* ===== FINAL FIX LIHAT MATERI: teks Indonesia tidak keluar kotak ===== */
+    .material-modal-card,
+    .material-list,
+    .material-item,
+    .material-info {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .material-item {
+      overflow: hidden !important;
+      align-items: flex-start !important;
+    }
+
+    .material-info {
+      width: 100% !important;
+      display: grid !important;
+      gap: 4px !important;
+      overflow: hidden !important;
+    }
+
+    .material-no,
+    .material-jp,
+    .material-reading,
+    .material-id {
+      max-width: 100% !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+      hyphens: auto !important;
+    }
+
+    .material-id {
+      display: block !important;
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      font-weight: 550 !important;
+      line-height: 1.45 !important;
+      padding-right: 2px !important;
+    }
+
+    .material-modal-head > div {
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
+
+    .material-modal-head p {
+      max-width: 100% !important;
+      white-space: normal !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+    }
+
+    @media (max-width: 520px) {
+      .material-list {
+        padding: 12px 12px 16px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 68px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-item button {
+        width: 68px !important;
+        height: 68px !important;
+      }
+
+      .material-jp {
+        font-size: 14.5px !important;
+        line-height: 1.28 !important;
+      }
+
+      .material-reading,
+      .material-id {
+        font-size: 11.5px !important;
+        line-height: 1.42 !important;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .material-item {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-item button {
+        width: 100% !important;
+        height: 96px !important;
+      }
+
+      .material-item img {
+        padding: 8px !important;
+      }
+    }
+
+  
+
+    /* ===== FINAL FIX 2 LIHAT MATERI: kartu lebih lega dan tidak terpotong ===== */
+    .material-modal-card {
+      width: min(1040px, 100%) !important;
+    }
+
+    .material-list {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)) !important;
+      grid-auto-rows: auto !important;
+      align-items: start !important;
+      gap: 16px !important;
+      padding: 18px 20px 22px !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+
+    .material-item {
+      min-width: 0 !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 132px !important;
+      display: grid !important;
+      grid-template-columns: 104px minmax(0, 1fr) !important;
+      gap: 16px !important;
+      align-items: start !important;
+      padding: 14px !important;
+      overflow: visible !important;
+      border-radius: 22px !important;
+    }
+
+    .material-item button {
+      width: 104px !important;
+      height: 104px !important;
+      align-self: start !important;
+      flex: 0 0 auto !important;
+      border-radius: 18px !important;
+    }
+
+    .material-item img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      padding: 8px !important;
+    }
+
+    .material-info {
+      min-width: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 5px !important;
+      overflow: visible !important;
+      text-align: left !important;
+    }
+
+    .material-no,
+    .material-jp,
+    .material-reading,
+    .material-id {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      display: block !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      overflow-wrap: anywhere !important;
+      word-break: normal !important;
+      line-break: anywhere !important;
+      hyphens: auto !important;
+    }
+
+    .material-no {
+      margin-bottom: 1px !important;
+      color: #6557df !important;
+      font-size: 12px !important;
+      font-weight: 900 !important;
+      line-height: 1.15 !important;
+    }
+
+    .material-jp {
+      color: var(--heading) !important;
+      font-family: var(--font-jp) !important;
+      font-size: clamp(17px, 1.8vw, 22px) !important;
+      font-weight: 800 !important;
+      line-height: 1.22 !important;
+      letter-spacing: 0 !important;
+    }
+
+    .material-reading {
+      color: #817a75 !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      line-height: 1.35 !important;
+    }
+
+    .material-id {
+      color: #5f6f86 !important;
+      font-size: 13px !important;
+      font-weight: 650 !important;
+      line-height: 1.42 !important;
+      padding-right: 0 !important;
+    }
+
+    @media (max-width: 720px) {
+      .material-list {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        padding: 12px 12px 16px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 88px minmax(0, 1fr) !important;
+        gap: 12px !important;
+        min-height: auto !important;
+        padding: 12px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-item button {
+        width: 88px !important;
+        height: 88px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(16px, 4.8vw, 20px) !important;
+        line-height: 1.22 !important;
+      }
+
+      .material-reading,
+      .material-id {
+        font-size: 12.5px !important;
+        line-height: 1.4 !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-list {
+        padding: 10px 10px 14px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 78px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+      }
+
+      .material-item button {
+        width: 78px !important;
+        height: 78px !important;
+      }
+
+      .material-no {
+        font-size: 11.5px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(15px, 5vw, 18px) !important;
+        line-height: 1.24 !important;
+      }
+
+      .material-reading,
+      .material-id {
+        font-size: 12px !important;
+        line-height: 1.38 !important;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .material-item {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-item button {
+        width: 100% !important;
+        height: 96px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
