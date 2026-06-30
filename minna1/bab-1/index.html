@@ -4673,6 +4673,1178 @@
       }
     }
 
+
+
+    /* =========================================================
+       FINAL MOBILE-ONLY POLISH OVERRIDE - added by ChatGPT
+       Fokus: mobile layout only. Desktop CSS, HTML data, and JavaScript stay unchanged.
+       ========================================================= */
+    @media (max-width: 768px) {
+      html,
+      body {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100dvh !important;
+        min-height: 100svh !important;
+        overflow-x: hidden !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box !important;
+      }
+
+      img,
+      svg,
+      canvas,
+      video,
+      table {
+        max-width: 100% !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      span,
+      strong,
+      button,
+      input,
+      td,
+      th,
+      .badge,
+      .participant-name,
+      .login-summary,
+      .hero-info-card,
+      .stat-card,
+      .card-text,
+      .jp-main-display,
+      .jp-reading,
+      .material-item,
+      .material-text,
+      .review-jp,
+      .review-sub {
+        overflow-wrap: anywhere !important;
+        word-break: normal !important;
+        line-height: 1.35 !important;
+      }
+
+      body::before,
+      body::after {
+        width: 130px !important;
+        height: 130px !important;
+        opacity: 0.18 !important;
+      }
+
+      .app-shell {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100dvh !important;
+        min-height: 100svh !important;
+        margin: 0 !important;
+        padding: max(10px, env(safe-area-inset-top)) 10px max(14px, env(safe-area-inset-bottom)) !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        overflow-x: hidden !important;
+      }
+
+      .screen,
+      .screen.active {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        padding: 16px !important;
+        border-radius: 22px !important;
+        box-shadow: 0 14px 34px rgba(82, 73, 134, 0.12) !important;
+      }
+
+      /* Homepage */
+      #startScreen.active {
+        display: flex !important;
+        align-items: center !important;
+        min-height: calc(100dvh - 24px) !important;
+        min-height: calc(100svh - 24px) !important;
+      }
+
+      #startScreen .panel.hero {
+        width: 100% !important;
+        max-width: 640px !important;
+        min-height: 0 !important;
+        height: auto !important;
+        margin: 0 auto !important;
+        padding: 14px !important;
+        border-radius: 24px !important;
+        display: block !important;
+      }
+
+      #startScreen .hero > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 12px !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+
+      .language-switch,
+      .fiction-toggle {
+        position: static !important;
+        inset: auto !important;
+        transform: none !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        z-index: auto !important;
+      }
+
+      .language-switch {
+        grid-column: 1 / 2 !important;
+        justify-self: start !important;
+        width: auto !important;
+        display: inline-flex !important;
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        gap: 5px !important;
+        padding: 4px !important;
+        border-radius: 999px !important;
+      }
+
+      .language-btn {
+        min-height: 32px !important;
+        padding: 7px 10px !important;
+        font-size: 12px !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+      }
+
+      .fiction-toggle {
+        grid-column: 2 / 3 !important;
+        justify-self: end !important;
+        width: auto !important;
+        min-height: 38px !important;
+        padding: 6px 7px 6px 10px !important;
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 7px !important;
+        font-size: 12px !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+      }
+
+      .fiction-switch {
+        width: 46px !important;
+        height: 24px !important;
+      }
+
+      .fiction-switch::after {
+        width: 18px !important;
+        height: 18px !important;
+        top: 3px !important;
+        right: 3px !important;
+      }
+
+      .fiction-toggle[aria-pressed="false"] .fiction-switch::after {
+        transform: translateX(-22px) !important;
+      }
+
+      #startScreen .hero-info-row,
+      #startScreen .hero h1,
+      #startScreen .hero p,
+      #startScreen .username-box,
+      #startScreen .hero-actions {
+        grid-column: 1 / -1 !important;
+      }
+
+      #startScreen .hero-info-row {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 2px 0 0 !important;
+      }
+
+      #startScreen .hero-info-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 66px !important;
+        padding: 11px 10px !important;
+        border-radius: 17px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 9px !important;
+      }
+
+      #startScreen .hero-info-icon {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+        flex: 0 0 34px !important;
+      }
+
+      #startScreen .hero-info-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+      }
+
+      #startScreen .hero-info-text {
+        min-width: 0 !important;
+        gap: 1px !important;
+      }
+
+      #startScreen .hero-info-card span {
+        font-size: 11.5px !important;
+        line-height: 1.25 !important;
+      }
+
+      #startScreen .hero-info-card strong {
+        font-size: clamp(13.5px, 3.7vw, 17px) !important;
+        line-height: 1.18 !important;
+      }
+
+      #startScreen .hero h1 {
+        max-width: 100% !important;
+        margin: 2px auto 0 !important;
+        font-size: clamp(23px, 6.4vw, 34px) !important;
+        line-height: 1.12 !important;
+        letter-spacing: -0.01em !important;
+      }
+
+      #startScreen .hero p {
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        color: #596276 !important;
+        font-size: clamp(13.5px, 3.6vw, 15.5px) !important;
+        line-height: 1.48 !important;
+      }
+
+      #startScreen .username-box,
+      .username-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        gap: 8px !important;
+      }
+
+      .login-trigger,
+      #startScreen .input-shell,
+      .input-shell {
+        width: 100% !important;
+        min-height: 50px !important;
+        padding: 0 14px !important;
+        border-radius: 16px !important;
+      }
+
+      #startScreen .username-note,
+      .username-note {
+        margin: 0 !important;
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      #startScreen .hero-actions,
+      .hero-actions {
+        width: 100% !important;
+        margin: 0 !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        justify-content: stretch !important;
+      }
+
+      #startScreen .hero-actions .btn,
+      #startScreen #startBtn.show,
+      #materialBtn.show,
+      #resultPageBtn {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 50px !important;
+        padding: 11px 12px !important;
+        border-radius: 16px !important;
+        font-size: 15px !important;
+        line-height: 1.2 !important;
+      }
+
+      #startScreen #startBtn.show:first-child:last-child,
+      #startScreen .hero-actions .btn:only-child {
+        grid-column: 1 / -1 !important;
+      }
+
+      /* Practice page */
+      .practice-wrap {
+        width: 100% !important;
+        max-width: 620px !important;
+        min-width: 0 !important;
+        margin: 0 auto !important;
+      }
+
+      .topbar {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(116px, 132px) !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+        margin-bottom: 10px !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        min-width: 0 !important;
+        width: 100% !important;
+        padding: 11px 12px !important;
+        border-radius: 17px !important;
+      }
+
+      .counter-card small {
+        margin-top: 2px !important;
+        font-size: 11.5px !important;
+        line-height: 1.35 !important;
+      }
+
+      .time-number {
+        font-size: clamp(24px, 7vw, 32px) !important;
+        line-height: 0.98 !important;
+      }
+
+      .timer-label {
+        margin-top: 3px !important;
+        font-size: 11.5px !important;
+      }
+
+      .timer-track {
+        height: 7px !important;
+        margin-top: 8px !important;
+      }
+
+      .flip-hint {
+        margin: 8px 0 10px !important;
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .flashcard {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: clamp(380px, 58svh, 500px) !important;
+        min-height: 380px !important;
+        margin: 0 auto !important;
+      }
+
+      .card-face {
+        border-radius: 22px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 14px !important;
+      }
+
+      .card-text {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        padding: 10px !important;
+        overflow-y: auto !important;
+        font-size: clamp(16px, 4.6vw, 20px) !important;
+        line-height: 1.45 !important;
+      }
+
+      .card-text.long {
+        font-size: clamp(13px, 3.8vw, 17px) !important;
+        line-height: 1.42 !important;
+      }
+
+      .back-content {
+        width: 100% !important;
+        height: 100% !important;
+        display: grid !important;
+        grid-template-rows: minmax(0, 50%) minmax(0, 1fr) !important;
+        gap: 8px !important;
+        align-items: stretch !important;
+        justify-items: center !important;
+        align-content: stretch !important;
+        overflow: hidden !important;
+      }
+
+      .illustration-wrap {
+        width: min(74%, 250px) !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        align-self: center !important;
+        justify-self: center !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+      }
+
+      .illustration {
+        width: 100% !important;
+        height: 100% !important;
+        display: grid !important;
+        place-items: center !important;
+        overflow: hidden !important;
+      }
+
+      .illustration img,
+      .illustration.image-landscape img,
+      .illustration.image-portrait img,
+      .illustration.image-tall img,
+      .illustration.image-square img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        display: block !important;
+      }
+
+      .jp-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 0 !important;
+        height: 100% !important;
+        padding: 0 4px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 4px !important;
+        overflow-y: auto !important;
+      }
+
+      .jp-main-display {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: clamp(25px, 7.3vw, 37px) !important;
+        line-height: 1.16 !important;
+        white-space: normal !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(19px, 5.6vw, 28px) !important;
+        line-height: 1.18 !important;
+      }
+
+      .jp-divider {
+        width: min(130px, 42%) !important;
+        margin: 0 auto 2px !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: clamp(12px, 3.5vw, 16px) !important;
+        line-height: 1.32 !important;
+      }
+
+      .jp-actions {
+        width: 100% !important;
+        margin-top: 2px !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 6px !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 36px !important;
+        margin-top: 0 !important;
+        padding: 7px 10px !important;
+        border-radius: 999px !important;
+        font-size: 11.5px !important;
+        line-height: 1.15 !important;
+        white-space: normal !important;
+      }
+
+      .answer-row {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 10px auto 0 !important;
+        gap: 10px !important;
+      }
+
+      .answer-btn {
+        min-height: 52px !important;
+        border-radius: 17px !important;
+        padding: 10px 12px !important;
+        font-size: clamp(15px, 4.2vw, 17px) !important;
+      }
+
+      /* Result page */
+      .results-head {
+        margin-bottom: 14px !important;
+      }
+
+      .results-head h2 {
+        margin: 8px 0 6px !important;
+        font-size: clamp(22px, 6vw, 30px) !important;
+        line-height: 1.15 !important;
+      }
+
+      .results-head p {
+        font-size: 13.5px !important;
+        line-height: 1.45 !important;
+      }
+
+      .participant-name {
+        width: auto !important;
+        max-width: 100% !important;
+        margin-top: 10px !important;
+        padding: 8px 12px !important;
+        text-align: center !important;
+      }
+
+      .tabs {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 14px 0 12px !important;
+        padding: 5px !important;
+        gap: 6px !important;
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .tab-btn {
+        flex: 0 0 auto !important;
+        padding: 9px 11px !important;
+        border-radius: 13px !important;
+        font-size: 12px !important;
+      }
+
+      .summary-box {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        padding: 14px !important;
+        border-radius: 20px !important;
+        text-align: center !important;
+      }
+
+      .score-circle {
+        width: clamp(120px, 34vw, 150px) !important;
+        height: clamp(120px, 34vw, 150px) !important;
+      }
+
+      .score-circle::before {
+        inset: 11px !important;
+      }
+
+      .score-circle strong {
+        font-size: clamp(26px, 7.5vw, 32px) !important;
+      }
+
+      .summary-text h3 {
+        margin-bottom: 6px !important;
+        font-size: clamp(18px, 5.4vw, 24px) !important;
+      }
+
+      .summary-text p {
+        font-size: 13.5px !important;
+        line-height: 1.45 !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 14px 0 !important;
+      }
+
+      .stat-card,
+      .stat-card:last-child {
+        grid-column: auto !important;
+        min-width: 0 !important;
+        padding: 12px 10px !important;
+        border-radius: 17px !important;
+      }
+
+      .stat-card span {
+        margin-bottom: 5px !important;
+        font-size: 11.5px !important;
+        line-height: 1.25 !important;
+      }
+
+      .stat-card strong {
+        font-size: clamp(18px, 5.4vw, 24px) !important;
+      }
+
+      .table-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 18px !important;
+      }
+
+      .table-wrap table {
+        width: 100% !important;
+        min-width: 560px !important;
+        table-layout: auto !important;
+        font-size: 12.5px !important;
+      }
+
+      th,
+      td {
+        padding: 10px 9px !important;
+        line-height: 1.35 !important;
+        vertical-align: top !important;
+      }
+
+      th {
+        font-size: 11px !important;
+        letter-spacing: 0.01em !important;
+      }
+
+      .review-sub {
+        font-size: 11.5px !important;
+        line-height: 1.35 !important;
+      }
+
+      .status-pill {
+        min-width: 66px !important;
+        padding: 5px 8px !important;
+        font-size: 11.5px !important;
+      }
+
+      .result-actions {
+        width: 100% !important;
+        margin-top: 14px !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .result-actions .btn {
+        width: 100% !important;
+        min-height: 50px !important;
+        padding: 11px 12px !important;
+      }
+
+      /* Modal / popup */
+      .login-modal,
+      .example-modal,
+      .image-modal,
+      .material-modal {
+        width: 100% !important;
+        max-width: 100% !important;
+        align-items: center !important;
+        justify-content: center !important;
+        place-items: center !important;
+        padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain !important;
+      }
+
+      .login-modal-card,
+      .example-modal-card,
+      .image-modal-card,
+      .material-modal-card {
+        width: min(100%, 560px) !important;
+        max-width: 100% !important;
+        max-height: calc(100dvh - 22px) !important;
+        max-height: calc(100svh - 22px) !important;
+        min-width: 0 !important;
+        margin: auto !important;
+        padding: 18px !important;
+        border-radius: 22px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .login-modal-card h3,
+      .example-modal-card h3,
+      .material-modal-head h3 {
+        margin-right: 46px !important;
+        font-size: clamp(19px, 5.5vw, 23px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .login-modal-card p,
+      .example-modal-card p,
+      .material-modal-head p {
+        font-size: 12.5px !important;
+        line-height: 1.45 !important;
+      }
+
+      .example-close,
+      .image-modal-close,
+      #closeLoginModal,
+      #closeMaterialModal {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        top: 10px !important;
+        right: 10px !important;
+        font-size: 28px !important;
+        z-index: 10 !important;
+      }
+
+      .login-field {
+        gap: 6px !important;
+        margin-bottom: 11px !important;
+      }
+
+      .login-field input {
+        min-height: 48px !important;
+        padding: 0 13px !important;
+        border-radius: 15px !important;
+        font-size: 15px !important;
+      }
+
+      .group-box,
+      .login-modal-card .group-box {
+        width: 100% !important;
+        margin: 10px 0 12px !important;
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .group-btn {
+        min-height: 42px !important;
+        padding: 9px 10px !important;
+        font-size: 12px !important;
+      }
+
+      .login-modal-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+      }
+
+      .login-modal-actions .btn {
+        width: 100% !important;
+        min-height: 48px !important;
+      }
+
+      .example-modal-card #exampleText {
+        max-height: calc(100dvh - 160px) !important;
+        max-height: calc(100svh - 160px) !important;
+        overflow-y: auto !important;
+        padding-right: 2px !important;
+      }
+
+      .image-modal-card {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+
+      .image-modal-body {
+        width: 100% !important;
+        min-height: 0 !important;
+        max-height: calc(100dvh - 130px) !important;
+        max-height: calc(100svh - 130px) !important;
+        padding: 42px 4px 4px !important;
+        display: grid !important;
+        place-items: center !important;
+        overflow: hidden !important;
+      }
+
+      .image-modal-body img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: calc(100dvh - 150px) !important;
+        max-height: calc(100svh - 150px) !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+      }
+
+      .image-modal-caption {
+        margin: 4px 2px 0 !important;
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .material-modal.show {
+        display: flex !important;
+        align-items: flex-start !important;
+      }
+
+      .material-modal-card {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+
+      .material-modal-head {
+        position: static !important;
+        padding: 0 48px 0 0 !important;
+        margin: 0 !important;
+        flex: 0 0 auto !important;
+      }
+
+      .material-list {
+        width: 100% !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding: 0 !important;
+      }
+
+      .material-summary-grid,
+      .material-group-list {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+      }
+
+      .material-summary-card {
+        min-width: 0 !important;
+        min-height: 72px !important;
+        padding: 12px !important;
+        border-radius: 17px !important;
+      }
+
+      .material-group {
+        padding: 12px !important;
+        border-radius: 20px !important;
+      }
+
+      .material-group-head {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 8px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .material-group-head h4 {
+        font-size: clamp(17px, 5vw, 21px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .material-group-head p {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+      }
+
+      .material-item {
+        min-width: 0 !important;
+        grid-template-columns: 66px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 9px !important;
+        border-radius: 17px !important;
+      }
+
+      .material-thumb {
+        width: 66px !important;
+        height: 66px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-thumb img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        padding-inline: 9px !important;
+      }
+
+      .panel {
+        padding: 14px !important;
+        border-radius: 20px !important;
+      }
+
+      #startScreen .panel.hero {
+        padding: 12px !important;
+        border-radius: 22px !important;
+      }
+
+      #startScreen .hero > div {
+        gap: 10px !important;
+      }
+
+      #startScreen .hero h1 {
+        font-size: clamp(22px, 6.2vw, 29px) !important;
+      }
+
+      #startScreen .hero-info-row {
+        gap: 8px !important;
+      }
+
+      #startScreen .hero-info-card {
+        min-height: 62px !important;
+        padding: 10px 9px !important;
+        gap: 8px !important;
+      }
+
+      #startScreen .hero-actions,
+      .hero-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+      }
+
+      .timer-card {
+        display: grid !important;
+        grid-template-columns: auto minmax(0, 1fr) !important;
+        grid-template-areas: "time label" "track track" !important;
+        column-gap: 10px !important;
+        align-items: center !important;
+        text-align: left !important;
+      }
+
+      .time-number { grid-area: time !important; }
+      .timer-label { grid-area: label !important; margin-top: 0 !important; }
+      .timer-track { grid-area: track !important; }
+
+      .flashcard {
+        height: clamp(372px, 56svh, 455px) !important;
+        min-height: 372px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 12px !important;
+      }
+
+      .back-content {
+        grid-template-rows: minmax(0, 47%) minmax(0, 1fr) !important;
+        gap: 7px !important;
+      }
+
+      .illustration-wrap {
+        width: min(76%, 220px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(23px, 7.2vw, 34px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(18px, 5.6vw, 26px) !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+      }
+
+      .answer-btn {
+        min-height: 50px !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .table-wrap table {
+        min-width: 520px !important;
+      }
+
+      .login-modal-card,
+      .example-modal-card,
+      .image-modal-card,
+      .material-modal-card {
+        padding: 16px !important;
+        border-radius: 20px !important;
+      }
+
+      .login-modal-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-summary-grid,
+      .material-group-list {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-group-head {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-group-count {
+        width: max-content !important;
+        max-width: 100% !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .app-shell {
+        padding: 8px 8px 12px !important;
+      }
+
+      #startScreen.active {
+        min-height: calc(100dvh - 20px) !important;
+        min-height: calc(100svh - 20px) !important;
+      }
+
+      #startScreen .hero > div {
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+      }
+
+      .language-switch,
+      .fiction-toggle {
+        grid-column: 1 / -1 !important;
+        justify-self: stretch !important;
+        width: 100% !important;
+      }
+
+      .language-switch {
+        justify-content: center !important;
+      }
+
+      .fiction-toggle {
+        min-height: 36px !important;
+        justify-content: center !important;
+      }
+
+      .fiction-label {
+        display: inline !important;
+      }
+
+      #startScreen .hero-info-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      #startScreen .hero h1 {
+        font-size: clamp(21px, 6.8vw, 28px) !important;
+      }
+
+      #startScreen .hero p {
+        font-size: 13px !important;
+        line-height: 1.42 !important;
+      }
+
+      .flashcard {
+        height: clamp(360px, 55svh, 430px) !important;
+        min-height: 360px !important;
+      }
+
+      .back-content {
+        grid-template-rows: minmax(0, 45%) minmax(0, 1fr) !important;
+      }
+
+      .illustration-wrap {
+        width: min(78%, 205px) !important;
+      }
+
+      .jp-box {
+        gap: 3px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(22px, 7.2vw, 31px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(17px, 5.6vw, 24px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(11.5px, 3.5vw, 14px) !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 34px !important;
+        padding: 7px 9px !important;
+        font-size: 11px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 58px minmax(0, 1fr) !important;
+      }
+
+      .material-thumb {
+        width: 58px !important;
+        height: 58px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .panel,
+      #startScreen .panel.hero {
+        padding: 11px !important;
+        border-radius: 19px !important;
+      }
+
+      #startScreen .hero-info-row {
+        grid-template-columns: 1fr !important;
+        gap: 7px !important;
+      }
+
+      #startScreen .hero-info-card {
+        min-height: 56px !important;
+      }
+
+      .language-btn {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+      }
+
+      .flashcard {
+        height: clamp(350px, 54svh, 410px) !important;
+        min-height: 350px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 10px !important;
+      }
+
+      .illustration-wrap {
+        width: min(78%, 190px) !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(21px, 7vw, 29px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(16px, 5.4vw, 22px) !important;
+      }
+
+      .answer-btn {
+        min-height: 48px !important;
+        font-size: 15px !important;
+      }
+
+      .table-wrap table {
+        min-width: 500px !important;
+        font-size: 12px !important;
+      }
+
+      th,
+      td {
+        padding: 9px 8px !important;
+      }
+    }
+
 </style>
 </head>
 <body>
