@@ -4622,7 +4622,475 @@
       }
     }
 
-  </style>
+  
+
+    /* ===== FINAL: Lihat Materi disamakan dengan referensi + kelompok materi ===== */
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    .material-modal {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 82 !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left)) !important;
+      background: rgba(20, 24, 38, 0.48) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transition: opacity 0.22s ease, visibility 0.22s ease !important;
+    }
+
+    .material-modal.show {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+
+    .material-modal-card {
+      width: min(980px, calc(100vw - 28px)) !important;
+      max-height: calc(100svh - 28px) !important;
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 14px !important;
+      padding: clamp(18px, 2.8vw, 28px) !important;
+      border-radius: var(--radius-xl) !important;
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.36), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.34), transparent 36%),
+        rgba(255, 255, 255, 0.98) !important;
+      border: 1px solid rgba(255, 255, 255, 0.86) !important;
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.26) !important;
+      overflow: hidden !important;
+      transform: translateY(10px) scale(0.97) !important;
+      transition: transform 0.22s ease !important;
+    }
+
+    .material-modal.show .material-modal-card {
+      transform: translateY(0) scale(1) !important;
+    }
+
+    .material-modal-head {
+      display: block !important;
+      padding: 0 52px 0 0 !important;
+      border-bottom: 0 !important;
+      background: transparent !important;
+    }
+
+    .material-modal-head h3 {
+      margin: 0 0 8px !important;
+      color: #514a9e !important;
+      font-size: clamp(20px, 3vw, 26px) !important;
+      font-weight: 780 !important;
+      line-height: 1.2 !important;
+    }
+
+    .material-modal-head p {
+      margin: 0 !important;
+      color: var(--muted) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 600 !important;
+      line-height: 1.5 !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    #closeMaterialModal.material-close {
+      position: absolute !important;
+      top: 14px !important;
+      right: 14px !important;
+      margin: 0 !important;
+      width: 42px !important;
+      height: 42px !important;
+      min-width: 42px !important;
+      min-height: 42px !important;
+      display: grid !important;
+      place-items: center !important;
+      z-index: 4 !important;
+    }
+
+    .material-list {
+      min-height: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 14px !important;
+      padding: 2px 4px 4px 2px !important;
+      overflow: auto !important;
+      overscroll-behavior: contain !important;
+      scrollbar-width: thin !important;
+    }
+
+    .material-summary-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+    }
+
+    .material-summary-card {
+      min-height: 72px !important;
+      display: grid !important;
+      align-content: center !important;
+      gap: 5px !important;
+      padding: 12px 14px !important;
+      border-radius: 18px !important;
+      background: rgba(255, 255, 255, 0.78) !important;
+      border: 1px solid rgba(124, 111, 246, 0.15) !important;
+      box-shadow: var(--shadow-tiny) !important;
+    }
+
+    .material-summary-card.is-total {
+      background:
+        radial-gradient(circle at top left, rgba(124, 111, 246, 0.16), transparent 46%),
+        rgba(255, 255, 255, 0.86) !important;
+    }
+
+    .material-summary-card span {
+      color: #5f6f86 !important;
+      font-size: 12px !important;
+      font-weight: 850 !important;
+      line-height: 1.2 !important;
+    }
+
+    .material-summary-card strong {
+      color: #514a9e !important;
+      font-size: clamp(22px, 2.8vw, 32px) !important;
+      font-weight: 900 !important;
+      line-height: 1 !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    .material-group {
+      display: grid !important;
+      gap: 10px !important;
+      padding: 12px !important;
+      border-radius: var(--radius-lg) !important;
+      background: rgba(255, 255, 255, 0.48) !important;
+      border: 1px solid rgba(124, 111, 246, 0.12) !important;
+    }
+
+    .material-group-head {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+      padding: 2px 2px 0 !important;
+    }
+
+    .material-group-head h4 {
+      margin: 0 0 4px !important;
+      color: var(--heading) !important;
+      font-size: clamp(18px, 2.3vw, 23px) !important;
+      font-weight: 850 !important;
+      line-height: 1.2 !important;
+    }
+
+    .material-group-head p {
+      margin: 0 !important;
+      color: var(--muted) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 600 !important;
+      line-height: 1.45 !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    .material-group-head > span {
+      flex: 0 0 auto !important;
+      padding: 7px 10px !important;
+      border-radius: var(--radius-pill) !important;
+      color: #6557df !important;
+      background: var(--primary-soft) !important;
+      border: 1px solid rgba(124, 111, 246, 0.14) !important;
+      font-size: 12px !important;
+      font-weight: 850 !important;
+      line-height: 1.1 !important;
+      white-space: nowrap !important;
+    }
+
+    .material-group-list {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)) !important;
+      gap: 12px !important;
+    }
+
+    .material-item {
+      min-width: 0 !important;
+      width: 100% !important;
+      min-height: auto !important;
+      display: grid !important;
+      grid-template-columns: 74px minmax(0, 1fr) !important;
+      gap: 12px !important;
+      align-items: center !important;
+      padding: 10px !important;
+      border-radius: var(--radius-lg) !important;
+      background: rgba(255, 255, 255, 0.78) !important;
+      border: 1px solid rgba(124, 111, 246, 0.15) !important;
+      box-shadow: var(--shadow-tiny) !important;
+      overflow: hidden !important;
+    }
+
+    .material-thumb,
+    .material-item button.material-thumb {
+      width: 74px !important;
+      height: 74px !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 4px !important;
+      border: 1px solid rgba(124, 111, 246, 0.14) !important;
+      border-radius: 16px !important;
+      background: #fff !important;
+      box-shadow: none !important;
+      overflow: hidden !important;
+      cursor: zoom-in !important;
+    }
+
+    .material-thumb img,
+    .material-item img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      display: block !important;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    .material-info {
+      min-width: 0 !important;
+      width: 100% !important;
+      display: grid !important;
+      gap: 4px !important;
+      overflow: visible !important;
+      text-align: left !important;
+    }
+
+    .material-number {
+      width: max-content !important;
+      min-width: 28px !important;
+      padding: 3px 8px !important;
+      border-radius: var(--radius-pill) !important;
+      color: #6557df !important;
+      background: var(--primary-soft) !important;
+      font-size: 11px !important;
+      font-weight: 850 !important;
+      line-height: 1.2 !important;
+    }
+
+    .material-jp {
+      display: block !important;
+      color: var(--heading) !important;
+      font-family: var(--font-jp) !important;
+      font-size: clamp(17px, 2.5vw, 21px) !important;
+      font-weight: 850 !important;
+      line-height: 1.24 !important;
+      overflow-wrap: anywhere !important;
+      word-break: normal !important;
+    }
+
+    .material-reading {
+      display: block !important;
+      margin-top: 1px !important;
+      color: #817a75 !important;
+      font-family: var(--font-jp) !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      line-height: 1.35 !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    .material-info p {
+      margin: 1px 0 0 !important;
+      color: #4f596d !important;
+      font-size: 12.5px !important;
+      font-weight: 600 !important;
+      line-height: 1.38 !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+    }
+
+    .image-modal {
+      padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
+    }
+
+    .image-modal-card {
+      width: min(960px, calc(100vw - 20px)) !important;
+      max-height: calc(100svh - 20px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      max-height: none !important;
+      flex: 1 1 auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 54px 8px 10px !important;
+      overflow: auto !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 6px 8px 0 !important;
+      max-height: 44px !important;
+      overflow: auto !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions,
+      #startScreen.login-complete .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen .hero-actions .btn,
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show,
+      #startScreen.login-complete #startBtn.show,
+      #startScreen.login-complete #materialBtn.show {
+        width: 100% !important;
+        min-height: 52px !important;
+        padding-inline: 12px !important;
+        font-size: clamp(14px, 4vw, 16px) !important;
+      }
+
+      .material-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .material-group-head {
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+
+      .material-group-head > span {
+        align-self: flex-start !important;
+      }
+
+      .material-group-list {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #startScreen .hero-actions,
+      #startScreen.login-complete .hero-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen .hero-actions .btn,
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+      }
+
+      .material-modal-card {
+        width: calc(100vw - 18px) !important;
+        max-height: calc(100svh - 18px) !important;
+        padding: 16px !important;
+        border-radius: 20px !important;
+        gap: 12px !important;
+      }
+
+      .material-modal-head {
+        padding-right: 48px !important;
+      }
+
+      .material-summary-card {
+        min-height: 66px !important;
+        padding: 10px 12px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-group {
+        padding: 10px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 66px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-thumb,
+      .material-item button.material-thumb {
+        width: 66px !important;
+        height: 66px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(16px, 5vw, 19px) !important;
+      }
+
+      .material-info p {
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .material-modal-card {
+        width: calc(100vw - 14px) !important;
+        max-height: calc(100svh - 14px) !important;
+        padding: 14px !important;
+      }
+
+      .material-summary-grid {
+        gap: 8px !important;
+      }
+
+      .material-summary-card strong {
+        font-size: 24px !important;
+      }
+
+      .material-group-head h4 {
+        font-size: 18px !important;
+      }
+
+      .material-group-head p,
+      .material-group-head > span {
+        font-size: 11.5px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        text-align: center !important;
+      }
+
+      .material-info {
+        text-align: center !important;
+        justify-items: center !important;
+      }
+
+      .material-thumb,
+      .material-item button.material-thumb {
+        width: 100% !important;
+        height: 96px !important;
+      }
+    }
+</style>
 </head>
 <body>
   <main class="app-shell">
@@ -4882,17 +5350,14 @@
       </div>
     </div>
 
-
     <div id="materialModal" class="material-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="materialModalTitle">
       <div class="material-modal-card">
+        <button id="closeMaterialModal" class="image-modal-close material-close" type="button" aria-label="Tutup materi">×</button>
         <div class="material-modal-head">
-          <div>
-            <h3 id="materialModalTitle">Lihat Materi</h3>
-            <p>Daftar kosakata lengkap beserta arti dan gambar. Klik gambar untuk melihat ukuran penuh.</p>
-          </div>
-          <button id="closeMaterialModal" class="material-modal-close" type="button" aria-label="Tutup materi">×</button>
+          <h3 id="materialModalTitle">Materi Kosakata</h3>
+          <p id="materialSummaryText">Daftar kosakata lengkap berdasarkan kelompok. Klik gambar kecil untuk melihat gambar penuh.</p>
         </div>
-        <div id="materialList" class="material-list" aria-label="Daftar materi kosakata"></div>
+        <div id="materialList" class="material-list" aria-label="Daftar materi kosakata" aria-live="polite"></div>
       </div>
     </div>
 
@@ -5287,6 +5752,46 @@
 ];
 
     // =========================
+    // Kelompok materi sesuai gambar
+    // =========================
+    const MATERIAL_GROUPS = [
+      {
+        key: "kosakata",
+        title: "Kosakata",
+        description: "Daftar kosakata utama dari bagian I. Kosa Kata, termasuk tempat, benda, angka, negara, dan nama kota/stasiun.",
+        match: (index) => !([36, 37, 38, 39, 40, 41].includes(index))
+      },
+      {
+        key: "latihan-c",
+        title: "Latihan C",
+        description: "Ungkapan pendek pada bagian Latihan C.",
+        match: (index) => [36, 37].includes(index)
+      },
+      {
+        key: "percakapan",
+        title: "Percakapan",
+        description: "Ungkapan percakapan untuk situasi di toko atau tempat penjualan.",
+        match: (index) => [38, 39, 40, 41].includes(index)
+      }
+    ];
+
+    function getMaterialGroupedItems() {
+      return MATERIAL_GROUPS.map(group => ({
+        ...group,
+        items: vocabulary
+          .map((item, index) => ({ item, originalIndex: index }))
+          .filter(entry => group.match(entry.originalIndex))
+      }));
+    }
+
+    function getMaterialSummaryText(groups = getMaterialGroupedItems()) {
+      const total = groups.reduce((sum, group) => sum + group.items.length, 0);
+      const details = groups.map(group => `${group.title}: ${group.items.length}`).join(" • ");
+      return `Total materi: ${total} • ${details}`;
+    }
+
+
+    // =========================
     // Elemen utama
     // =========================
     const startScreen = document.getElementById("startScreen");
@@ -5333,6 +5838,7 @@
     const closeImageModal = document.getElementById("closeImageModal");
     const materialModal = document.getElementById("materialModal");
     const materialList = document.getElementById("materialList");
+    const materialSummaryText = document.getElementById("materialSummaryText");
     const closeMaterialModal = document.getElementById("closeMaterialModal");
     const correctBtn = document.getElementById("correctBtn");
     const wrongBtn = document.getElementById("wrongBtn");
@@ -5896,42 +6402,91 @@
     function renderMaterialList() {
       if (!materialList) return;
 
+      const groups = getMaterialGroupedItems();
+      const summaryText = getMaterialSummaryText(groups);
+      if (materialSummaryText) {
+        materialSummaryText.textContent = `${summaryText}. Klik gambar kecil untuk melihat gambar penuh.`;
+      }
+
       materialList.replaceChildren();
-      vocabulary.forEach((item, index) => {
-        const title = getMaterialTitle(item);
-        const reading = String(item.romaji || "").trim();
-        const meaning = String(item.indonesia || "").trim();
-        const imgUrl = String(item.gambar || "").trim();
 
-        const card = document.createElement("article");
-        card.className = "material-item";
+      const summary = document.createElement("div");
+      summary.className = "material-summary-grid";
+      const total = groups.reduce((sum, group) => sum + group.items.length, 0);
+      summary.innerHTML = `
+        <div class="material-summary-card is-total">
+          <span>Total Materi</span>
+          <strong>${total}</strong>
+        </div>
+        ${groups.map(group => `
+          <div class="material-summary-card">
+            <span>${escapeHTML(group.title)}</span>
+            <strong>${group.items.length}</strong>
+          </div>
+        `).join("")}
+      `;
+      materialList.appendChild(summary);
 
-        const imageButton = document.createElement("button");
-        imageButton.type = "button";
-        imageButton.setAttribute("aria-label", `Lihat gambar penuh: ${title}`);
-        imageButton.title = "Klik untuk melihat gambar penuh";
+      groups.forEach(group => {
+        const section = document.createElement("section");
+        section.className = "material-group";
 
-        const img = document.createElement("img");
-        img.src = imgUrl;
-        img.alt = title;
-        img.loading = "lazy";
-        img.decoding = "async";
-        img.referrerPolicy = "no-referrer";
-
-        imageButton.appendChild(img);
-        imageButton.addEventListener("click", () => openImageModal(img.currentSrc || img.src || imgUrl, title));
-
-        const info = document.createElement("div");
-        info.className = "material-info";
-        info.innerHTML = `
-          <div class="material-no">No. ${index + 1}</div>
-          <div class="material-jp">${escapeHTML(title)}</div>
-          <div class="material-reading">${escapeHTML(reading)}</div>
-          <div class="material-id">${escapeHTML(meaning)}</div>
+        const heading = document.createElement("div");
+        heading.className = "material-group-head";
+        heading.innerHTML = `
+          <div>
+            <h4>${escapeHTML(group.title)}</h4>
+            <p>${escapeHTML(group.description)}</p>
+          </div>
+          <span>${group.items.length} materi</span>
         `;
 
-        card.append(imageButton, info);
-        materialList.appendChild(card);
+        const grid = document.createElement("div");
+        grid.className = "material-group-list";
+
+        group.items.forEach((entry, groupIndex) => {
+          const item = entry.item;
+          const title = getMaterialTitle(item);
+          const reading = String(item.romaji || "").trim();
+          const meaning = String(item.indonesia || "").trim();
+          const imgUrl = String(item.gambar || "").trim();
+
+          const card = document.createElement("article");
+          card.className = "material-item";
+
+          const imageButton = document.createElement("button");
+          imageButton.className = "material-thumb";
+          imageButton.type = "button";
+          imageButton.setAttribute("aria-label", `Lihat gambar penuh: ${title}`);
+          imageButton.title = "Klik untuk melihat gambar penuh";
+
+          const img = document.createElement("img");
+          img.src = imgUrl;
+          img.alt = title;
+          img.loading = "lazy";
+          img.decoding = "async";
+          img.referrerPolicy = "no-referrer";
+
+          imageButton.appendChild(img);
+          imageButton.addEventListener("click", () => openImageModal(img.currentSrc || img.src || imgUrl, title));
+
+          const info = document.createElement("div");
+          info.className = "material-info";
+          info.innerHTML = `
+            <div class="material-number">${groupIndex + 1}</div>
+            <div>
+              <strong class="material-jp">${escapeHTML(title)}</strong>
+              <span class="material-reading">${escapeHTML(reading)}</span>
+            </div>
+            <p>${escapeHTML(meaning)}</p>
+          `;
+
+          card.append(imageButton, info);
+          grid.appendChild(card);
+        });
+
+        section.append(heading, grid);
+        materialList.appendChild(section);
       });
     }
 
