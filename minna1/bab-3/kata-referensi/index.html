@@ -907,6 +907,91 @@
   }
 }
 
+  
+    /* ===== Final touch: Lihat Materi & popup gambar responsif ===== */
+    #study .panel {
+      max-height: none;
+      overflow: visible;
+    }
+    #study .study-grid img,
+    #study .floor-imgs img,
+    #study .vocab-card img,
+    #quiz .q-img {
+      object-fit: contain !important;
+    }
+    .image-modal-card {
+      isolation: isolate !important;
+    }
+    .image-modal-head {
+      flex-shrink: 0 !important;
+    }
+    .image-modal-body {
+      min-width: 0 !important;
+      overscroll-behavior: contain !important;
+    }
+    .image-modal-body img {
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+    @media (max-width: 760px) {
+      #study .panel {
+        max-width: 100% !important;
+      }
+      #study .map-title {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      #study .quiz-layout {
+        align-items: stretch !important;
+      }
+      #study .vocab-card {
+        overflow: hidden !important;
+      }
+      #study .vocab-card img {
+        width: 100% !important;
+        object-fit: contain !important;
+      }
+    }
+
+
+/* ===== Revisi final: tombol bahasa di kiri + penjelasan homepage lebih menarik ===== */
+.hero .language-switch,
+.language-switch {
+  left: clamp(16px, 2.4vw, 26px) !important;
+  right: auto !important;
+}
+
+.lead {
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  color: #505a70 !important;
+  font-weight: 520 !important;
+  line-height: 1.72 !important;
+}
+
+.lead strong {
+  color: #514a9e !important;
+  font-weight: 820 !important;
+}
+
+.username-note {
+  max-width: 520px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 760px) {
+  .hero .language-switch,
+  .language-switch {
+    left: 10px !important;
+    right: auto !important;
+  }
+  .lead {
+    font-size: 13.8px !important;
+    line-height: 1.62 !important;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -920,12 +1005,12 @@
         <div>
           <span class="badge" data-i18n="badge">🏬 Kuis Interaktif Jepang</span>
           <h1><span class="jp">デパート</span><br/><span data-i18n="title">Toserba</span></h1>
-          <p class="lead" data-i18n="homeLead">Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Klik Mulai Kuis untuk latihan, atau Lihat Materi untuk belajar terlebih dahulu.</p>
+          <p class="lead" data-i18n-html="homeLead"><strong>Belajar kosakata デパート</strong> dengan cara yang lebih mudah: kenali <strong>lantai, tempat, dan barang</strong> melalui gambar. Isi username terlebih dahulu, lalu pilih <strong>Lihat Materi</strong> untuk belajar atau <strong>Mulai Kuis</strong> untuk latihan.</p>
           <!-- Username wajib diisi sebelum tombol Mulai Kuis dan Lihat Materi muncul -->
           <div class="username-box" id="usernameBox">
             <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="usernameButton">Isi Username</button>
             <div id="loginSummary" class="login-summary" aria-live="polite"></div>
-            <p id="usernameNote" class="username-note" data-i18n="usernameNote">Klik tombol di atas untuk mengisi username melalui popup.</p>
+            <p id="usernameNote" class="username-note" data-i18n="usernameNote">Isi username terlebih dahulu agar tombol Mulai Kuis dan Lihat Materi muncul.</p>
           </div>
           <div class="info-row">
             <div class="info-card"><div class="info-icon">🗂️</div><div><span data-i18n="infoMaterial">Materi</span><strong id="cardCount">34 kartu</strong></div></div>
@@ -1077,25 +1162,129 @@ const LOCAL_KEY="depart_toserba_bab3_results";
 let lang="id", currentUsername="", currentGroup="", isAdmin=false, questions=[], idx=0, score=0, review=[], timer=null, remain=TIMER_SECONDS, locked=false, selectedAnswer=null, startTime=0;
 
 const IMG={
-"1階":"https://iili.io/C5ejPbp.png","2階":"https://iili.io/C5ej6eR.png","3階":"https://iili.io/C5ejszN.png","4階":"https://iili.io/C5ejUga.png","４階":"https://iili.io/C5ejUga.png","5階":"https://iili.io/C5ejQst.png","6階":"https://iili.io/C5ejD1n.png","7階":"https://iili.io/C5ew9e4.png","8階":"https://iili.io/C5ewHml.png","アクセサリー":"https://iili.io/C5ew3L7.png","おもちゃ":"https://iili.io/C5ew2XS.png","かばん":"https://iili.io/C5ewqru.png","スポーツ用品":"https://iili.io/C5ewCdb.png","デパート":"https://iili.io/C5ewxmQ.png","レストラン":"https://iili.io/C5ewIIV.png","屋上":"https://iili.io/C5ewThB.png","化粧品":"https://iili.io/C5ewRB1.png","家具":"https://iili.io/C5ew7rg.png","眼鏡":"https://iili.io/C5ewa2a.png","靴":"https://iili.io/C5ewcYJ.png","催し物会場":"https://iili.io/C5ewlkv.png","子ども服":"https://iili.io/C5ewEIp.png","時計":"https://iili.io/C5ewGhN.png","食器":"https://iili.io/C5ewMQI.png","食品":"https://iili.io/C5eww2s.png","紳士服":"https://iili.io/C5ewNYG.png","地下1階":"https://iili.io/C5ewOvf.png","地下2階":"https://iili.io/C5ewvTl.png","駐車場":"https://iili.io/C5ewrG9.png","電化製品":"https://iili.io/C5ew44e.png","婦人服":"https://iili.io/C5ewiYb.png","文房具":"https://iili.io/C5ewsvj.png","本":"https://iili.io/C5ewLyx.png","遊園地":"https://iili.io/C5ewtjV.png","旅行用品":"https://iili.io/C5ewpG1.png"};
+"デパート":"https://iili.io/C5rnTIj.png",
+"屋上":"https://iili.io/C5rn5BV.png",
+"遊園地":"https://iili.io/C5rnzmb.png",
+"8階":"https://iili.io/C5rnuhx.png",
+"レストラン":"https://iili.io/C5rnc21.png",
+"催し物会場":"https://iili.io/C5rnlYF.png",
+"7階":"https://iili.io/C5rn0kg.png",
+"時計":"https://iili.io/C5rn1pa.png",
+"眼鏡":"https://iili.io/C5rnMhv.png",
+"6階":"https://iili.io/C5rnXBp.png",
+"スポーツ用品":"https://iili.io/C5rnj4I.png",
+"旅行用品":"https://iili.io/C5rnN2t.png",
+"5階":"https://iili.io/C5rnevn.png",
+"子ども服":"https://iili.io/C5rnkps.png",
+"おもちゃ":"https://iili.io/C5rnSjf.png",
+"本":"https://iili.io/C5rnUQ4.png",
+"文房具":"https://iili.io/C5rn4G2.png",
+"4階":"https://iili.io/C5rn64S.png",
+"４階":"https://iili.io/C5rn64S.png",
+"家具":"https://iili.io/C5rnLve.png",
+"食器":"https://iili.io/C5rnyGV.png",
+"電化製品":"https://iili.io/C5ro28F.png",
+"3階":"https://iili.io/C5roCnR.png",
+"紳士服":"https://iili.io/C5ronGp.png",
+"2階":"https://iili.io/C5roIat.png",
+"婦人服":"https://iili.io/C5roT8X.png",
+"1階":"https://iili.io/C5roRus.png",
+"靴":"https://iili.io/C5roan4.png",
+"かばん":"https://iili.io/C5rolP2.png",
+"アクセサリー":"https://iili.io/C5ro1FS.png",
+"化粧品":"https://iili.io/C5roXwb.png",
+"地下1階":"https://iili.io/C5roOPV.png",
+"食品":"https://iili.io/C5rovcP.png",
+"地下2階":"https://iili.io/C5roUHF.png",
+"駐車場":"https://iili.io/C5ro4DJ.png"
+};
 const floors=[
- {floor:"屋上",reading:"おくじょう",id:"Atap",desc:"tempat hiburan",items:["遊園地"]},
- {floor:"8階",reading:"はっかい",id:"Lantai 8",desc:"restoran, tempat pertunjukan",items:["レストラン","催し物会場"]},
- {floor:"7階",reading:"ななかい",id:"Lantai 7",desc:"jam, kaca mata",items:["時計","眼鏡"]},
- {floor:"6階",reading:"ろっかい",id:"Lantai 6",desc:"peralatan olahraga, peralatan bepergian",items:["スポーツ用品","旅行用品"]},
- {floor:"5階",reading:"ごかい",id:"Lantai 5",desc:"pakaian anak, mainan, buku, alat tulis",items:["子ども服","おもちゃ","本","文房具"]},
- {floor:"4階",reading:"よんかい",id:"Lantai 4",desc:"perlengkapan rumah, alat makan, barang elektronik",items:["家具","食器","電化製品"]},
- {floor:"3階",reading:"さんがい",id:"Lantai 3",desc:"pakaian pria",items:["紳士服"]},
- {floor:"2階",reading:"にかい",id:"Lantai 2",desc:"pakaian wanita",items:["婦人服"]},
- {floor:"1階",reading:"いっかい",id:"Lantai 1",desc:"sepatu, tas, perhiasan, kosmetik",items:["靴","かばん","アクセサリー","化粧品"]},
- {floor:"地下1階",reading:"ちかいっかい",id:"Bawah tanah 1",desc:"makanan",items:["食品"]},
- {floor:"地下2階",reading:"ちかにかい",id:"Bawah tanah 2",desc:"tempat parkir",items:["駐車場"]}
+ {floor:"屋上",reading:"おくじょう",id:"atap / rooftop",desc:"tempat hiburan / taman bermain",items:["遊園地"]},
+ {floor:"8階",reading:"はっかい",id:"lantai 8",desc:"restoran, tempat pertunjukan / ruang acara",items:["レストラン","催し物会場"]},
+ {floor:"7階",reading:"ななかい",id:"lantai 7",desc:"jam, kacamata",items:["時計","眼鏡"]},
+ {floor:"6階",reading:"ろっかい",id:"lantai 6",desc:"peralatan olahraga, peralatan bepergian",items:["スポーツ用品","旅行用品"]},
+ {floor:"5階",reading:"ごかい",id:"lantai 5",desc:"pakaian anak, mainan, buku, alat tulis",items:["子ども服","おもちゃ","本","文房具"]},
+ {floor:"4階",reading:"よんかい",id:"lantai 4",desc:"perlengkapan rumah / furnitur, alat makan, barang elektronik",items:["家具","食器","電化製品"]},
+ {floor:"3階",reading:"さんがい",id:"lantai 3",desc:"pakaian pria",items:["紳士服"]},
+ {floor:"2階",reading:"にかい",id:"lantai 2",desc:"pakaian wanita",items:["婦人服"]},
+ {floor:"1階",reading:"いっかい",id:"lantai 1",desc:"sepatu, tas, aksesori, kosmetik",items:["靴","かばん","アクセサリー","化粧品"]},
+ {floor:"地下1階",reading:"ちかいっかい",id:"basement lantai 1",desc:"makanan",items:["食品"]},
+ {floor:"地下2階",reading:"ちかにかい",id:"basement lantai 2",desc:"tempat parkir",items:["駐車場"]}
 ];
 const nameData={
-"デパート":{reading:"デパート",id:"toserba"},"屋上":{reading:"おくじょう",id:"atap"},"遊園地":{reading:"ゆうえんち",id:"tempat hiburan"},"レストラン":{reading:"レストラン",id:"restoran"},"催し物会場":{reading:"もよおしものかいじょう",id:"tempat pertunjukan"},"時計":{reading:"とけい",id:"jam"},"眼鏡":{reading:"めがね",id:"kaca mata"},"スポーツ用品":{reading:"スポーツようひん",id:"peralatan olahraga"},"旅行用品":{reading:"りょこうようひん",id:"peralatan bepergian"},"子ども服":{reading:"こどもふく",id:"pakaian anak"},"おもちゃ":{reading:"おもちゃ",id:"mainan"},"本":{reading:"ほん",id:"buku"},"文房具":{reading:"ぶんぼうぐ",id:"alat tulis"},"家具":{reading:"かぐ",id:"perlengkapan rumah"},"食器":{reading:"しょっき",id:"alat makan"},"電化製品":{reading:"でんかせいひん",id:"barang elektronik"},"紳士服":{reading:"しんしふく",id:"pakaian pria"},"婦人服":{reading:"ふじんふく",id:"pakaian wanita"},"靴":{reading:"くつ",id:"sepatu"},"かばん":{reading:"かばん",id:"tas"},"アクセサリー":{reading:"アクセサリー",id:"perhiasan"},"化粧品":{reading:"けしょうひん",id:"kosmetik"},"食品":{reading:"しょくひん",id:"makanan"},"駐車場":{reading:"ちゅうしゃじょう",id:"tempat parkir"}
+"デパート":{reading:"デパート",id:"toserba"},
+"屋上":{reading:"おくじょう",id:"atap / rooftop"},
+"遊園地":{reading:"ゆうえんち",id:"tempat hiburan / taman bermain"},
+"8階":{reading:"はっかい",id:"lantai 8"},
+"レストラン":{reading:"レストラン",id:"restoran"},
+"催し物会場":{reading:"もよおしものかいじょう",id:"tempat pertunjukan / ruang acara"},
+"7階":{reading:"ななかい",id:"lantai 7"},
+"時計":{reading:"とけい",id:"jam"},
+"眼鏡":{reading:"めがね",id:"kacamata"},
+"6階":{reading:"ろっかい",id:"lantai 6"},
+"スポーツ用品":{reading:"スポーツようひん",id:"peralatan olahraga"},
+"旅行用品":{reading:"りょこうようひん",id:"peralatan bepergian"},
+"5階":{reading:"ごかい",id:"lantai 5"},
+"子ども服":{reading:"こどもふく",id:"pakaian anak"},
+"おもちゃ":{reading:"おもちゃ",id:"mainan"},
+"本":{reading:"ほん",id:"buku"},
+"文房具":{reading:"ぶんぼうぐ",id:"alat tulis"},
+"4階":{reading:"よんかい",id:"lantai 4"},
+"家具":{reading:"かぐ",id:"perlengkapan rumah / furnitur"},
+"食器":{reading:"しょっき",id:"alat makan"},
+"電化製品":{reading:"でんかせいひん",id:"barang elektronik"},
+"3階":{reading:"さんがい",id:"lantai 3"},
+"紳士服":{reading:"しんしふく",id:"pakaian pria"},
+"2階":{reading:"にかい",id:"lantai 2"},
+"婦人服":{reading:"ふじんふく",id:"pakaian wanita"},
+"1階":{reading:"いっかい",id:"lantai 1"},
+"靴":{reading:"くつ",id:"sepatu"},
+"かばん":{reading:"かばん",id:"tas"},
+"アクセサリー":{reading:"アクセサリー",id:"aksesori"},
+"化粧品":{reading:"けしょうひん",id:"kosmetik"},
+"地下1階":{reading:"ちかいっかい",id:"basement lantai 1"},
+"食品":{reading:"しょくひん",id:"makanan"},
+"地下2階":{reading:"ちかにかい",id:"basement lantai 2"},
+"駐車場":{reading:"ちゅうしゃじょう",id:"tempat parkir"}
 };
-const vocab=[{jp:"デパート",floor:"全体",...nameData["デパート"]},...floors.map(f=>({jp:f.floor,reading:f.reading,id:f.id+" / "+f.desc,floor:"階"})),...floors.flatMap(f=>f.items.map(jp=>({jp,reading:nameData[jp].reading,id:nameData[jp].id,floor:f.floor})) )];
-const texts={id:{badge:"🏬 Kuis Interaktif Jepang",title:"Toserba",homeLead:"Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Klik Mulai Kuis untuk latihan, atau Lihat Materi untuk belajar terlebih dahulu.",infoMaterial:"Materi",infoTime:"Waktu",infoMode:"Mode",timePerQuestion:"30 detik/soal",modeName:"Gambar + Lantai",startQuiz:"Mulai Kuis",studyMaterial:"Lihat Materi",changeUser:"Ganti Nama Pengguna",usernameButton:"Isi Username",usernameNote:"Klik tombol di atas untuk mengisi username melalui popup.",cancelButton:"Batal",adminResult:"Halaman Hasil Admin",counterHint:"Pilih jawaban yang paling tepat.",seconds:"detik",floorHint:"Klik baris lantai untuk melihat isinya.",homeButton:"Beranda",nextButton:"Lanjut",fullMaterial:"📚 Materi Lengkap",vocabTitle:"Kosakata",studyLead:"Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata. Klik gambar untuk melihat ukuran penuh.",floorMap:"Peta Lantai",vocabTab:"Kosakata",resultBadge:"🏆 Hasil Kuis",resultTitle:"Skor Kamu",correctLabel:"Benar",wrongLabel:"Salah",totalLabel:"Total",scoreLabel:"Nilai",timeLabel:"Waktu",reviewTab:"Tinjauan Jawaban",historyTab:"Riwayat",rankingTab:"Peringkat",questionHeader:"Soal",yourAnswerHeader:"Jawaban Kamu",correctAnswerHeader:"Jawaban Benar",statusHeader:"Keterangan",groupHeader:"Grup",categoryHeader:"Kategori",scoreHeader2:"Nilai",timeHeader:"Waktu",dateHeader:"Tanggal",correctHeader:"Benar",retryButton:"Ulangi Kuis",studyAgain:"Belajar Lagi",loginTitle:"Masuk peserta",loginDesc:"Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.",usernameLabel:"Username",passwordLabel:"Password admin",groupPrompt:"Pilih kategori sebelum mulai kuis.",saveButton:"Simpan",savePdfButton:"Simpan sebagai PDF",modeImage:"Mode Gambar",modeFloor:"Mode Lantai",modeMeaning:"Mode Arti",selectAnswer:"Pilih jawaban yang paling tepat.",correct:"Benar",wrong:"Salah",emptyHistory:"Belum ada riwayat.",loading:"Memuat data...",adminMsg:"Admin dapat langsung melihat riwayat dan peringkat tanpa mengerjakan kuis.",needUser:"Nama Pengguna wajib diisi.",needGroup:"Pilih grup terlebih dahulu.",wrongPass:"Password Admin salah.",excellent:"すばらしい! Kamu sudah sangat paham materi toserba.",good:"Bagus! Tinggal ulangi beberapa materi yang masih keliru.",retry:"Ayo belajar lagi lewat menu materi, lalu coba ulangi kuis."},ja:{badge:"🏬 日本語インタラクティブクイズ",title:"デパート / 百貨店",homeLead:"デパートの階、場所、売り場を学びます。クイズを開始するか、先に教材を見て学びましょう。",infoMaterial:"教材",infoTime:"時間",infoMode:"モード",timePerQuestion:"1問30秒",modeName:"画像＋階",startQuiz:"クイズ開始",studyMaterial:"教材を見る",changeUser:"ユーザー変更",adminResult:"管理者結果ページ",counterHint:"正しい答えを選んでください。",seconds:"秒",floorHint:"階をクリックして内容を見ます。",homeButton:"ホーム",nextButton:"次へ",fullMaterial:"📚 全教材",vocabTitle:"語彙",studyLead:"階別、または全語彙で学習できます。画像をクリックすると大きく表示されます。",floorMap:"フロア案内",vocabTab:"語彙",resultBadge:"🏆 結果",resultTitle:"あなたのスコア",correctLabel:"正解",wrongLabel:"不正解",totalLabel:"合計",scoreLabel:"点数",timeLabel:"時間",reviewTab:"答えの確認",historyTab:"履歴",rankingTab:"ランキング",questionHeader:"問題",yourAnswerHeader:"あなたの答え",correctAnswerHeader:"正解",statusHeader:"状態",groupHeader:"グループ",categoryHeader:"カテゴリー",scoreHeader2:"点数",timeHeader:"時間",dateHeader:"日付",correctHeader:"正解",retryButton:"もう一度",studyAgain:"もう一度学ぶ",loginTitle:"参加者ログイン",loginDesc:"先にユーザー名を入力してください。通常ユーザーはここでグループを選び、<strong>admin404</strong> はパスワード入力が必要です。",usernameLabel:"ユーザー名",passwordLabel:"管理者パスワード",groupPrompt:"クイズ開始前にカテゴリーを選んでください。",saveButton:"保存",savePdfButton:"PDFとして保存",modeImage:"画像モード",modeFloor:"階モード",modeMeaning:"意味モード",selectAnswer:"正しい答えを選んでください。",correct:"正解",wrong:"不正解",emptyHistory:"履歴はまだありません。",loading:"読み込み中...",adminMsg:"管理者はクイズをせずに履歴とランキングを確認できます。",needUser:"ユーザー名を入力してください。",needGroup:"グループを選んでください。",wrongPass:"管理者パスワードが違います。",excellent:"すばらしい！デパートの語彙をよく理解しています。",good:"よくできました！間違えたところを復習しましょう。",retry:"教材を見て、もう一度挑戦しましょう。"}};
+const vocab=[
+ {jp:"デパート",floor:"全体",...nameData["デパート"]},
+ {jp:"屋上",floor:"階",...nameData["屋上"]},
+ {jp:"遊園地",floor:"屋上",...nameData["遊園地"]},
+ {jp:"8階",floor:"階",...nameData["8階"]},
+ {jp:"レストラン",floor:"8階",...nameData["レストラン"]},
+ {jp:"催し物会場",floor:"8階",...nameData["催し物会場"]},
+ {jp:"7階",floor:"階",...nameData["7階"]},
+ {jp:"時計",floor:"7階",...nameData["時計"]},
+ {jp:"眼鏡",floor:"7階",...nameData["眼鏡"]},
+ {jp:"6階",floor:"階",...nameData["6階"]},
+ {jp:"スポーツ用品",floor:"6階",...nameData["スポーツ用品"]},
+ {jp:"旅行用品",floor:"6階",...nameData["旅行用品"]},
+ {jp:"5階",floor:"階",...nameData["5階"]},
+ {jp:"子ども服",floor:"5階",...nameData["子ども服"]},
+ {jp:"おもちゃ",floor:"5階",...nameData["おもちゃ"]},
+ {jp:"本",floor:"5階",...nameData["本"]},
+ {jp:"文房具",floor:"5階",...nameData["文房具"]},
+ {jp:"4階",floor:"階",...nameData["4階"]},
+ {jp:"家具",floor:"4階",...nameData["家具"]},
+ {jp:"食器",floor:"4階",...nameData["食器"]},
+ {jp:"電化製品",floor:"4階",...nameData["電化製品"]},
+ {jp:"3階",floor:"階",...nameData["3階"]},
+ {jp:"紳士服",floor:"3階",...nameData["紳士服"]},
+ {jp:"2階",floor:"階",...nameData["2階"]},
+ {jp:"婦人服",floor:"2階",...nameData["婦人服"]},
+ {jp:"1階",floor:"階",...nameData["1階"]},
+ {jp:"靴",floor:"1階",...nameData["靴"]},
+ {jp:"かばん",floor:"1階",...nameData["かばん"]},
+ {jp:"アクセサリー",floor:"1階",...nameData["アクセサリー"]},
+ {jp:"化粧品",floor:"1階",...nameData["化粧品"]},
+ {jp:"地下1階",floor:"階",...nameData["地下1階"]},
+ {jp:"食品",floor:"地下1階",...nameData["食品"]},
+ {jp:"地下2階",floor:"階",...nameData["地下2階"]},
+ {jp:"駐車場",floor:"地下2階",...nameData["駐車場"]}
+];
+
+const texts={id:{badge:"🏬 Kuis Interaktif Jepang",title:"Toserba",homeLead:"<strong>Belajar kosakata デパート</strong> dengan cara yang lebih mudah: kenali <strong>lantai, tempat, dan barang</strong> melalui gambar. Isi username terlebih dahulu, lalu pilih <strong>Lihat Materi</strong> untuk belajar atau <strong>Mulai Kuis</strong> untuk latihan.",infoMaterial:"Materi",infoTime:"Waktu",infoMode:"Mode",timePerQuestion:"30 detik/soal",modeName:"Gambar + Lantai",startQuiz:"Mulai Kuis",studyMaterial:"Lihat Materi",changeUser:"Ganti Nama Pengguna",usernameButton:"Isi Username",usernameNote:"Isi username terlebih dahulu agar tombol Mulai Kuis dan Lihat Materi muncul.",cancelButton:"Batal",adminResult:"Halaman Hasil Admin",counterHint:"Pilih jawaban yang paling tepat.",seconds:"detik",floorHint:"Klik baris lantai untuk melihat isinya.",homeButton:"Beranda",nextButton:"Lanjut",fullMaterial:"📚 Materi Lengkap",vocabTitle:"Kosakata",studyLead:"Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata. Klik gambar untuk melihat ukuran penuh.",floorMap:"Peta Lantai",vocabTab:"Kosakata",resultBadge:"🏆 Hasil Kuis",resultTitle:"Skor Kamu",correctLabel:"Benar",wrongLabel:"Salah",totalLabel:"Total",scoreLabel:"Nilai",timeLabel:"Waktu",reviewTab:"Tinjauan Jawaban",historyTab:"Riwayat",rankingTab:"Peringkat",questionHeader:"Soal",yourAnswerHeader:"Jawaban Kamu",correctAnswerHeader:"Jawaban Benar",statusHeader:"Keterangan",groupHeader:"Grup",categoryHeader:"Kategori",scoreHeader2:"Nilai",timeHeader:"Waktu",dateHeader:"Tanggal",correctHeader:"Benar",retryButton:"Ulangi Kuis",studyAgain:"Belajar Lagi",loginTitle:"Masuk peserta",loginDesc:"Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.",usernameLabel:"Username",passwordLabel:"Password admin",groupPrompt:"Pilih kategori sebelum mulai kuis.",saveButton:"Simpan",savePdfButton:"Simpan sebagai PDF",modeImage:"Mode Gambar",modeFloor:"Mode Lantai",modeMeaning:"Mode Arti",selectAnswer:"Pilih jawaban yang paling tepat.",correct:"Benar",wrong:"Salah",emptyHistory:"Belum ada riwayat.",loading:"Memuat data...",adminMsg:"Admin dapat langsung melihat riwayat dan peringkat tanpa mengerjakan kuis.",needUser:"Nama Pengguna wajib diisi.",needGroup:"Pilih grup terlebih dahulu.",wrongPass:"Password Admin salah.",excellent:"すばらしい! Kamu sudah sangat paham materi toserba.",good:"Bagus! Tinggal ulangi beberapa materi yang masih keliru.",retry:"Ayo belajar lagi lewat menu materi, lalu coba ulangi kuis."},ja:{badge:"🏬 日本語インタラクティブクイズ",title:"デパート / 百貨店",homeLead:"<strong>デパートの語彙</strong>を画像で楽しく学びます。<strong>階・場所・売り場</strong>を確認してから、<strong>教材を見る</strong>または<strong>クイズ開始</strong>を選びましょう。",infoMaterial:"教材",infoTime:"時間",infoMode:"モード",timePerQuestion:"1問30秒",modeName:"画像＋階",startQuiz:"クイズ開始",studyMaterial:"教材を見る",changeUser:"ユーザー変更",adminResult:"管理者結果ページ",counterHint:"正しい答えを選んでください。",seconds:"秒",floorHint:"階をクリックして内容を見ます。",homeButton:"ホーム",nextButton:"次へ",fullMaterial:"📚 全教材",vocabTitle:"語彙",studyLead:"階別、または全語彙で学習できます。画像をクリックすると大きく表示されます。",floorMap:"フロア案内",vocabTab:"語彙",resultBadge:"🏆 結果",resultTitle:"あなたのスコア",correctLabel:"正解",wrongLabel:"不正解",totalLabel:"合計",scoreLabel:"点数",timeLabel:"時間",reviewTab:"答えの確認",historyTab:"履歴",rankingTab:"ランキング",questionHeader:"問題",yourAnswerHeader:"あなたの答え",correctAnswerHeader:"正解",statusHeader:"状態",groupHeader:"グループ",categoryHeader:"カテゴリー",scoreHeader2:"点数",timeHeader:"時間",dateHeader:"日付",correctHeader:"正解",retryButton:"もう一度",studyAgain:"もう一度学ぶ",loginTitle:"参加者ログイン",loginDesc:"先にユーザー名を入力してください。通常ユーザーはここでグループを選び、<strong>admin404</strong> はパスワード入力が必要です。",usernameLabel:"ユーザー名",passwordLabel:"管理者パスワード",groupPrompt:"クイズ開始前にカテゴリーを選んでください。",saveButton:"保存",savePdfButton:"PDFとして保存",modeImage:"画像モード",modeFloor:"階モード",modeMeaning:"意味モード",selectAnswer:"正しい答えを選んでください。",correct:"正解",wrong:"不正解",emptyHistory:"履歴はまだありません。",loading:"読み込み中...",adminMsg:"管理者はクイズをせずに履歴とランキングを確認できます。",needUser:"ユーザー名を入力してください。",needGroup:"グループを選んでください。",wrongPass:"管理者パスワードが違います。",excellent:"すばらしい！デパートの語彙をよく理解しています。",good:"よくできました！間違えたところを復習しましょう。",retry:"教材を見て、もう一度挑戦しましょう。"}};
 function t(k){return texts[lang][k]||texts.id[k]||k} function esc(s){return String(s??"").replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[m]))} function shuffle(a){return [...a].sort(()=>Math.random()-.5)} function titleId(s){s=String(s??"").trim(); if(lang==="ja"||!s)return s; return s.split(/(,\s*)/).map(part=>part.match(/,/) ? part : part.charAt(0).toUpperCase()+part.slice(1)).join("");} function fmt(sec){sec=Math.round(sec);if(lang==='ja')return sec<60?sec+"秒":Math.floor(sec/60)+"分 "+(sec%60)+"秒";return sec<60?sec+" detik":Math.floor(sec/60)+" menit "+(sec%60)+" detik"}
 function applyLang(){document.documentElement.lang=lang==="ja"?"ja":"id"; $$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n)); $$('[data-i18n-html]').forEach(el=>el.innerHTML=t(el.dataset.i18nHtml)); $$('.language-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang)); $('#cardCount').textContent=lang==='ja'?`${vocab.length}語`:`${vocab.length} kartu`; updateLoginSummary(); renderFloors(); renderVocab(); if($('#result').classList.contains('active')) refreshResultsText();}
 function show(id){$$('.screen').forEach(s=>s.classList.remove('active')); $('#'+id).classList.add('active'); $('#app').classList.toggle('top',id!=='home');}
