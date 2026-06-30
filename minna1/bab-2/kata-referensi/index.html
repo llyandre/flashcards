@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -1136,6 +1138,587 @@
       }
     }
 
+  
+
+    /* ===== FINAL USERNAME STYLE MATCH HTML ACUAN ===== */
+    .login-area.username-box,
+    .username-box {
+      width: min(520px, 100%) !important;
+      max-width: none !important;
+      margin: 0 auto 16px !important;
+      display: grid !important;
+      gap: 8px !important;
+      text-align: center !important;
+    }
+
+    .login-area.username-box .login-trigger,
+    #openLoginBtn.login-trigger {
+      width: 100% !important;
+      min-height: var(--control-h, 58px) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      padding: 0 22px !important;
+      border: 1px solid rgba(255, 255, 255, 0.88) !important;
+      border-radius: var(--radius-lg, 24px) !important;
+      color: #17254e !important;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)) !important;
+      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      font-size: var(--fs-input, 16px) !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter 0.18s ease !important;
+    }
+
+    .login-area.username-box .login-trigger:hover,
+    #openLoginBtn.login-trigger:hover {
+      transform: translateY(-1px) !important;
+      border-color: rgba(124, 111, 246, 0.34) !important;
+      box-shadow: 0 16px 34px rgba(54, 65, 101, 0.14) !important;
+      filter: brightness(1.02) !important;
+    }
+
+    .login-area.username-box .login-summary,
+    #loginSummary.login-summary {
+      display: none !important;
+      width: max-content !important;
+      max-width: 100% !important;
+      min-height: auto !important;
+      margin: 0 auto !important;
+      padding: 8px 13px !important;
+      border-radius: var(--radius-pill, 999px) !important;
+      color: #514a9e !important;
+      background: rgba(124, 111, 246, 0.1) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      box-shadow: none !important;
+      font-size: var(--fs-small, 13px) !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+    }
+
+    .login-area.username-box .login-summary.show,
+    #loginSummary.login-summary.show {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    #loginNote.note,
+    .login-area.username-box .note {
+      margin: 0 !important;
+      color: #505a70 !important;
+      font-size: var(--fs-small, 13px) !important;
+      font-weight: 500 !important;
+      line-height: 1.45 !important;
+      text-align: center !important;
+    }
+
+    .login-modal {
+      z-index: 80 !important;
+      padding: 22px !important;
+      background: rgba(20, 24, 38, 0.48) !important;
+      backdrop-filter: blur(18px) !important;
+      -webkit-backdrop-filter: blur(18px) !important;
+    }
+
+    .login-modal-card {
+      width: min(430px, 94vw) !important;
+      position: relative !important;
+      padding: 28px 24px 24px !important;
+      border-radius: var(--radius-xl, 30px) !important;
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+        rgba(255, 255, 255, 0.98) !important;
+      border: 1px solid rgba(255, 255, 255, 0.82) !important;
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.24) !important;
+      transform: translateY(10px) scale(0.97) !important;
+      transition: transform 0.22s ease !important;
+    }
+
+    .login-modal.show .login-modal-card {
+      transform: translateY(0) scale(1) !important;
+    }
+
+    .login-modal-card h3,
+    #loginTitle {
+      margin: 0 34px 8px 0 !important;
+      color: #514a9e !important;
+      font-size: clamp(20px, 3vw, 24px) !important;
+      font-weight: 740 !important;
+      letter-spacing: 0 !important;
+      line-height: 1.2 !important;
+      text-align: left !important;
+    }
+
+    .login-modal-card p:not(.login-error),
+    .login-modal-card > p {
+      margin: 0 0 16px !important;
+      color: var(--muted, #64748b) !important;
+      font-size: var(--fs-small, 13px) !important;
+      font-weight: 500 !important;
+      line-height: 1.55 !important;
+      text-align: left !important;
+    }
+
+    .login-modal-card p strong {
+      color: var(--heading, #101d48) !important;
+      font-weight: 700 !important;
+    }
+
+    .login-field {
+      display: grid !important;
+      gap: 7px !important;
+      margin-bottom: 13px !important;
+      text-align: left !important;
+    }
+
+    .login-field[hidden],
+    .password-box[hidden],
+    #passwordBox[hidden],
+    #groupBox[hidden],
+    .group-box[hidden],
+    .admin-only[hidden] {
+      display: none !important;
+    }
+
+    .login-field label {
+      color: #505a70 !important;
+      font-size: var(--fs-small, 13px) !important;
+      font-weight: 650 !important;
+      line-height: 1.35 !important;
+      text-align: left !important;
+    }
+
+    .login-field input {
+      min-height: 50px !important;
+      width: 100% !important;
+      padding: 0 14px !important;
+      border: 1px solid rgba(124, 111, 246, 0.22) !important;
+      border-radius: var(--radius-md, 18px) !important;
+      outline: none !important;
+      color: var(--text, #253044) !important;
+      background: rgba(255, 255, 255, 0.86) !important;
+      box-shadow: var(--shadow-tiny, 0 6px 14px rgba(82, 73, 134, 0.07)) !important;
+      font-size: var(--fs-input, 16px) !important;
+      font-weight: 700 !important;
+      line-height: 1.3 !important;
+    }
+
+    .login-field input::placeholder {
+      color: #728097 !important;
+      opacity: 1 !important;
+      font-weight: 600 !important;
+    }
+
+    .login-field input:focus {
+      border-color: rgba(124, 111, 246, 0.5) !important;
+      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-tiny, 0 6px 14px rgba(82, 73, 134, 0.07)) !important;
+    }
+
+    .login-modal-card .group-box,
+    #groupBox.group-box {
+      width: 100% !important;
+      margin: 14px 0 14px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left !important;
+    }
+
+    .group-box p,
+    #groupBox p {
+      margin: 0 !important;
+      color: var(--heading, #101d48) !important;
+      font-size: var(--fs-small, 13px) !important;
+      font-weight: 900 !important;
+      text-align: left !important;
+      line-height: 1.35 !important;
+    }
+
+    .group-options,
+    #groupBox .group-options {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      margin-top: 10px !important;
+    }
+
+    .group-btn,
+    #groupBox .group-btn {
+      min-height: 44px !important;
+      padding: 10px 12px !important;
+      border: 1px solid rgba(124, 111, 246, 0.2) !important;
+      border-radius: var(--radius-pill, 999px) !important;
+      color: var(--primary-deep, #6d46e8) !important;
+      background: var(--primary-soft, rgba(124, 111, 246, 0.12)) !important;
+      box-shadow: none !important;
+      font-size: var(--fs-small, 13px) !important;
+      font-weight: 900 !important;
+      line-height: 1.15 !important;
+      text-align: center !important;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease !important;
+    }
+
+    .group-btn:hover,
+    .group-btn.active,
+    #groupBox .group-btn:hover,
+    #groupBox .group-btn.active {
+      transform: translateY(-1px) !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, var(--primary, #7c6ff6), var(--primary-deep, #6d46e8)) !important;
+      border-color: transparent !important;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22) !important;
+    }
+
+    .login-error,
+    #loginError {
+      min-height: 20px !important;
+      margin: 2px 0 14px !important;
+      color: var(--red-dark, #c8465c) !important;
+      font-size: var(--fs-small, 13px) !important;
+      font-weight: 650 !important;
+      line-height: 1.35 !important;
+      text-align: left !important;
+    }
+
+    .login-modal-actions {
+      display: flex !important;
+      justify-content: flex-end !important;
+      gap: 10px !important;
+    }
+
+    .login-modal-actions .btn {
+      min-height: 52px !important;
+      border-radius: var(--radius-md, 18px) !important;
+      font-size: clamp(15px, 1.4vw, 17px) !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+    }
+
+    #closeLoginModal,
+    .login-modal-card .modal-close,
+    .login-modal-card .example-close {
+      position: absolute !important;
+      top: 16px !important;
+      right: 16px !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      display: grid !important;
+      place-items: center !important;
+      border: 0 !important;
+      border-radius: var(--radius-pill, 999px) !important;
+      color: #6557df !important;
+      background: rgba(124, 111, 246, 0.11) !important;
+      font-size: 28px !important;
+      font-weight: 700 !important;
+      line-height: 1 !important;
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12) !important;
+      transition: transform 0.18s ease, background 0.18s ease !important;
+    }
+
+    #closeLoginModal:hover,
+    .login-modal-card .modal-close:hover,
+    .login-modal-card .example-close:hover {
+      transform: rotate(8deg) scale(1.04) !important;
+      background: rgba(124, 111, 246, 0.18) !important;
+    }
+
+    @media (max-width: 520px) {
+      .login-area.username-box,
+      .username-box {
+        margin-bottom: 14px !important;
+      }
+
+      .login-area.username-box .login-trigger,
+      #openLoginBtn.login-trigger {
+        min-height: var(--control-h-mobile, 56px) !important;
+        padding: 0 18px !important;
+      }
+
+      .login-modal-card {
+        width: min(430px, 94vw) !important;
+        padding: 28px 24px 24px !important;
+        border-radius: var(--radius-xl, 30px) !important;
+      }
+
+      .group-options,
+      #groupBox .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .group-btn,
+      #groupBox .group-btn {
+        min-height: 44px !important;
+        border-radius: var(--radius-pill, 999px) !important;
+      }
+
+      .login-modal-actions {
+        flex-direction: row !important;
+        justify-content: flex-end !important;
+      }
+
+      .login-modal-actions .btn {
+        width: auto !important;
+      }
+    }
+
+
+    /* ===== LIHAT MATERI + IMAGE POPUP FINAL ===== */
+    #startQuizBtn:not(.show),
+    #openMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startQuizBtn.show,
+    #openMaterialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen .actions {
+      width: min(540px, 100%);
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    #startScreen #startQuizBtn.show,
+    #startScreen #openMaterialBtn.show {
+      width: min(250px, calc(50% - 8px));
+      min-height: 58px;
+      border-radius: 18px;
+      font-weight: 720;
+    }
+
+    .material-subtitle {
+      margin: 8px 0 8px;
+      color: var(--heading);
+      font-size: clamp(22px, 3.2vw, 30px);
+      line-height: 1.18;
+    }
+
+    .material-note {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .material-vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 14px 0 26px;
+    }
+
+    .material-vocab-card {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.62));
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-vocab-image {
+      width: 140px;
+      height: 140px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid rgba(124, 111, 246, 0.14);
+    }
+
+    .material-vocab-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      padding: 8px;
+      cursor: zoom-in;
+    }
+
+    .material-vocab-content {
+      min-width: 0;
+      text-align: left;
+    }
+
+    .material-vocab-content span {
+      width: 30px;
+      height: 30px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 8px;
+      border-radius: 999px;
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .material-vocab-content strong {
+      display: block;
+      color: var(--heading);
+      font-family: var(--font-jp);
+      font-size: clamp(21px, 2.4vw, 28px);
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .material-vocab-content p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    .image-modal {
+      align-items: center !important;
+      justify-items: center !important;
+      padding: clamp(12px, 2.8vw, 28px) !important;
+    }
+
+    .image-modal-card {
+      width: min(980px, 100%) !important;
+      max-height: calc(100svh - 28px) !important;
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      overflow: hidden !important;
+    }
+
+    .image-modal-head {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 3 !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+    }
+
+    .image-modal-close {
+      flex: 0 0 auto !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 14px !important;
+      background: #fff !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 160px) !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      margin: auto !important;
+      background: #fff !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen #startQuizBtn.show,
+      #startScreen #openMaterialBtn.show {
+        width: 100% !important;
+        min-height: 52px !important;
+      }
+
+      .material-vocab-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+
+      .material-vocab-card {
+        grid-template-columns: 112px minmax(0, 1fr) !important;
+        gap: 12px !important;
+        padding: 12px !important;
+        border-radius: 20px !important;
+      }
+
+      .material-vocab-image {
+        width: 112px !important;
+        height: 112px !important;
+        border-radius: 18px !important;
+      }
+
+      .material-vocab-content strong {
+        font-size: clamp(19px, 5.6vw, 24px) !important;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-head {
+        padding: 10px 12px !important;
+      }
+
+      .image-modal-title {
+        font-size: 13px !important;
+      }
+
+      .image-modal-body {
+        padding: 10px !important;
+      }
+
+      .image-modal-body img {
+        max-width: 100% !important;
+        max-height: calc(100svh - 148px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-vocab-card {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+      }
+
+      .material-vocab-image {
+        width: min(100%, 190px) !important;
+        height: 150px !important;
+        margin: 0 auto !important;
+      }
+
+      .material-vocab-content {
+        text-align: center !important;
+      }
+    }
+    /* ===== END LIHAT MATERI + IMAGE POPUP FINAL ===== */
+
+    /* ===== END FINAL USERNAME STYLE MATCH HTML ACUAN ===== */
+
   </style>
 </head>
 <body>
@@ -1157,10 +1740,10 @@
           <div class="info-card"><span data-i18n="infoTimeLabel">Waktu</span><strong data-i18n="infoTimeValue">30 detik/soal</strong></div>
         </div>
 
-        <div class="login-area">
-          <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="participantButton">Isi Nama Peserta</button>
+        <div class="login-area username-box">
+          <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="participantButton">Isi Username</button>
           <div id="loginSummary" class="login-summary" aria-live="polite"></div>
-          <p id="loginNote" class="note" data-i18n="loginNote">Nama peserta wajib diisi melalui popup. Peserta biasa juga harus memilih grup.</p>
+          <p id="loginNote" class="note" data-i18n="loginNote">Klik tombol di atas untuk mengisi username melalui popup.</p>
         </div>
 
         <div class="actions">
@@ -1185,6 +1768,30 @@
           </div>
         </div>
 
+        <h2 class="material-subtitle">Kosakata Salam</h2>
+        <p class="material-note">Klik gambar untuk melihat versi penuh tanpa terpotong.</p>
+        <div class="material-vocab-grid" aria-label="Daftar kosakata salam">
+          <article class="material-vocab-card">
+            <div class="material-vocab-image">
+              <img src="https://iili.io/C5OlM5F.png" alt="Ilustrasi 初めまして" loading="lazy" data-zoomable="true" />
+            </div>
+            <div class="material-vocab-content">
+              <span>1</span>
+              <strong>初めまして</strong>
+              <p>Perkenalkan / digunakan ketika bertemu seseorang untuk pertama kali.</p>
+            </div>
+          </article>
+          <article class="material-vocab-card">
+            <div class="material-vocab-image">
+              <img src="https://iili.io/C5OlGJ1.png" alt="Ilustrasi どうぞよろしくお願いします" loading="lazy" data-zoomable="true" />
+            </div>
+            <div class="material-vocab-content">
+              <span>2</span>
+              <strong>どうぞよろしくお願いします</strong>
+              <p>Salam kenal / mohon bantuannya.</p>
+            </div>
+          </article>
+        </div>
 
         <h2 data-i18n="familyListTitle">20 Nama Keluarga Jepang</h2>
         <p data-i18n="familyListIntro">Tekan tombol mulai kuis untuk menguji hafalan kanji, cara baca, dan pemahaman materi salam.</p>
@@ -1194,7 +1801,7 @@
         <div class="greeting-box">
           <div class="greeting-card greeting-illustrated">
             <figure class="greeting-figure">
-              <img src="https://i.ibb.co/5gKdK22H/image.png" alt="Ilustrasi 初めまして" loading="lazy" />
+              <img src="https://iili.io/C5OlM5F.png" alt="Ilustrasi 初めまして" loading="lazy" data-zoomable="true" />
             </figure>
             <div class="greeting-content">
               <div class="jp">初めまして。</div>
@@ -1204,7 +1811,7 @@
           </div>
           <div class="greeting-card greeting-illustrated">
             <figure class="greeting-figure">
-              <img src="https://i.ibb.co/JjKg645k/image.png" alt="Ilustrasi どうぞよろしくお願いします" loading="lazy" />
+              <img src="https://iili.io/C5OlGJ1.png" alt="Ilustrasi どうぞよろしくお願いします" loading="lazy" data-zoomable="true" />
             </figure>
             <div class="greeting-content">
               <div class="jp">どうぞよろしくお願いします。</div>
@@ -1342,20 +1949,20 @@
 
   <div id="loginModal" class="login-modal show is-required" aria-hidden="false" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
     <div class="login-modal-card">
-      <button id="closeLoginModal" class="modal-close" type="button" aria-label="Tutup">×</button>
-      <h3 id="loginTitle" data-i18n="loginTitle">Masuk Peserta</h3>
-      <p data-i18n-html="loginDescription">Masukkan username untuk melanjutkan ke kuis. Setelah username diisi, data lanjutan akan muncul otomatis.</p>
+      <button id="closeLoginModal" class="modal-close example-close" type="button" aria-label="Tutup login">×</button>
+      <h3 id="loginTitle" data-i18n="loginTitle">Masuk peserta</h3>
+      <p data-i18n-html="loginDescription">Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
       <div class="login-field">
         <label for="usernameInput" data-i18n="nameLabel">Username</label>
-        <input id="usernameInput" type="text" autocomplete="name" maxlength="32" data-i18n-placeholder="namePlaceholder" placeholder="Masukkan username" />
+        <input id="usernameInput" type="text" autocomplete="username" maxlength="32" data-i18n-placeholder="namePlaceholder" placeholder="Masukkan username" />
       </div>
       <div id="passwordBox" class="login-field password-box" hidden>
         <label for="passwordInput" data-i18n="passwordLabel">Password admin</label>
         <input id="passwordInput" type="password" autocomplete="current-password" data-i18n-placeholder="passwordPlaceholder" placeholder="Masukkan password admin" />
       </div>
       <div id="groupBox" class="group-box" hidden>
-        <p data-i18n="groupPrompt">Pilih grup sebelum mulai kuis.</p>
-        <div class="group-options" aria-label="Pilihan grup">
+        <p data-i18n="groupPrompt">Pilih kategori sebelum mulai kuis.</p>
+        <div class="group-options" aria-label="Pilihan Kategori">
           <button class="group-btn" data-group="Badung" type="button">Badung</button>
           <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
           <button class="group-btn" data-group="Singaraja" type="button">Singaraja</button>
@@ -1429,8 +2036,8 @@
         infoTotalValue: "30 soal acak",
         infoTimeLabel: "Waktu",
         infoTimeValue: "30 detik/soal",
-        participantButton: "Isi Nama Peserta",
-        loginNote: "Nama peserta wajib diisi melalui popup. Peserta biasa juga harus memilih grup.",
+        participantButton: "Isi Username",
+        loginNote: "Klik tombol di atas untuk mengisi username melalui popup.",
         startQuiz: "Mulai Kuis",
         openMaterial: "Lihat Materi",
         openHistory: "Riwayat & Ranking",
@@ -1519,16 +2126,16 @@
         readingExplanation: "{kanji} dibaca {kana} ({romaji}).",
         kanjiExplanation: "{romaji} ditulis {kanji}.",
         romajiJoin: " atau ",
-        loginTitle: "Masuk Peserta",
-        loginDescription: "Masukkan username untuk melanjutkan ke kuis. Setelah username diisi, data lanjutan akan muncul otomatis.",
+        loginTitle: "Masuk peserta",
+        loginDescription: "Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.",
         nameLabel: "Username",
         namePlaceholder: "Masukkan username",
         passwordLabel: "Password admin",
         passwordPlaceholder: "Masukkan password admin",
-        groupPrompt: "Pilih grup sebelum mulai kuis.",
+        groupPrompt: "Pilih kategori sebelum mulai kuis.",
         cancel: "Batal",
         saveParticipant: "Simpan",
-        usernameRequired: "Nama peserta wajib diisi.",
+        usernameRequired: "Username wajib diisi.",
         groupRequired: "Pilih grup terlebih dahulu.",
         passwordWrong: "Password admin salah.",
         adminOnly: "Hanya akun admin yang dapat menghapus riwayat dan ranking.",
@@ -1747,6 +2354,8 @@
     const adminResultBtn = document.getElementById("adminResultBtn");
     const clearHistoryBtn = document.getElementById("clearHistoryBtn");
     const adminPdfBtn = document.getElementById("adminPdfBtn");
+    const startQuizHomeBtn = document.getElementById("startQuizBtn");
+    const openMaterialHomeBtn = document.getElementById("openMaterialBtn");
     const nameGrid = document.getElementById("nameGrid");
     const counterText = document.getElementById("counterText");
     const questionInfo = document.getElementById("questionInfo");
@@ -1782,6 +2391,50 @@
 
     function escapeHTML(value) {
       return String(value ?? "").replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
+    }
+
+    function initializeImageZoom() {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("imageModalImg");
+      const modalTitle = document.getElementById("imageModalTitle");
+      const modalCaption = document.getElementById("imageModalCaption");
+      const closeBtn = document.getElementById("imageModalClose");
+      if (!modal || !modalImg || !closeBtn) return;
+
+      const closeZoom = () => {
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        modalImg.removeAttribute("src");
+        modalImg.alt = "Pratinjau gambar";
+      };
+
+      if (!modal.dataset.zoomReady) {
+        closeBtn.addEventListener("click", closeZoom);
+        modal.addEventListener("click", event => {
+          if (event.target === modal) closeZoom();
+        });
+        document.addEventListener("keydown", event => {
+          if (event.key === "Escape" && modal.classList.contains("show")) closeZoom();
+        });
+        modal.dataset.zoomReady = "true";
+      }
+
+      document.querySelectorAll('img[data-zoomable="true"], .material-card img, .greeting-figure img, .material-vocab-card img').forEach(img => {
+        img.dataset.zoomable = "true";
+        if (img.dataset.zoomBound === "true") return;
+        img.dataset.zoomBound = "true";
+        img.addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          const title = img.getAttribute("alt") || t("imagePreviewTitle") || "Pratinjau Gambar";
+          modalTitle.textContent = title;
+          modalCaption.textContent = title;
+          modalImg.src = img.currentSrc || img.src;
+          modalImg.alt = title;
+          modal.classList.add("show");
+          modal.setAttribute("aria-hidden", "false");
+        });
+      });
     }
 
     function showScreen(name) {
@@ -1910,6 +2563,9 @@
     function updateLoginSummary() {
       adminResultBtn.hidden = !isAdmin;
       clearHistoryBtn.hidden = !isAdmin;
+      const canShowMainActions = Boolean(currentUsername);
+      startQuizHomeBtn.classList.toggle("show", canShowMainActions);
+      openMaterialHomeBtn.classList.toggle("show", canShowMainActions);
       if (!currentUsername) {
         loginSummary.classList.remove("show");
         loginSummary.textContent = "";
@@ -2584,9 +3240,16 @@
       });
     });
     loginModal.addEventListener("click", event => { if (event.target === loginModal) closeLoginModalBox(); });
-    document.getElementById("startQuizBtn").addEventListener("click", startQuiz);
+    startQuizHomeBtn.addEventListener("click", startQuiz);
     document.getElementById("materialStartBtn").addEventListener("click", startQuiz);
-    document.getElementById("openMaterialBtn").addEventListener("click", () => showScreen("material"));
+    openMaterialHomeBtn.addEventListener("click", () => {
+      if (!currentUsername) {
+        openLoginModalBox();
+        return;
+      }
+      showScreen("material");
+      initializeImageZoom();
+    });
     adminResultBtn.addEventListener("click", () => {
       if (!isAdmin) {
         openLoginModalBox();
