@@ -4929,6 +4929,181 @@
       }
     }
 
+
+    /* ===== Popup catatan kosakata ===== */
+    .note-btn {
+      margin-top: 4px;
+      padding: 8px 13px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6d46e8;
+      background: rgba(124, 111, 246, 0.13);
+      box-shadow: var(--shadow-tiny);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .note-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(124, 111, 246, 0.2);
+      box-shadow: 0 12px 22px rgba(82, 73, 134, 0.13);
+    }
+
+    .note-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 56;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: rgba(37, 48, 68, 0.32);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .note-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .note-modal-card {
+      width: min(460px, 94vw);
+      max-height: min(78vh, 620px);
+      position: relative;
+      overflow: auto;
+      padding: 28px 24px 24px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+        rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.84);
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.24);
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.22s ease;
+    }
+
+    .note-modal.show .note-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .note-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.11);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .note-modal-close:hover {
+      transform: rotate(8deg) scale(1.04);
+      background: rgba(124, 111, 246, 0.18);
+    }
+
+    .note-badge {
+      display: inline-flex;
+      width: max-content;
+      max-width: calc(100% - 48px);
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: var(--primary-soft);
+      font-size: var(--fs-small);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .note-modal-card h3 {
+      margin: 0 42px 14px 0;
+      color: #514a9e;
+      font-size: clamp(19px, 3vw, 23px);
+      font-weight: 760;
+      line-height: 1.25;
+    }
+
+    .note-modal-body {
+      display: grid;
+      gap: 12px;
+      color: var(--text);
+      font-size: var(--fs-base);
+      line-height: 1.58;
+    }
+
+    .note-info-row {
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(124, 111, 246, 0.15);
+    }
+
+    .note-info-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      font-weight: 750;
+    }
+
+    .note-info-value {
+      color: var(--heading);
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .note-info-value.jp {
+      font-family: var(--font-jp);
+      font-size: clamp(18px, 4vw, 24px);
+      line-height: 1.35;
+    }
+
+    .note-text {
+      margin: 0;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      color: #334155;
+      background: rgba(124, 111, 246, 0.08);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      font-weight: 500;
+    }
+
+    @media (max-width: 520px) {
+      .note-modal {
+        padding: 14px;
+      }
+
+      .note-modal-card {
+        width: min(100%, 94vw);
+        max-height: 82vh;
+        padding: 24px 18px 20px;
+        border-radius: 22px;
+      }
+
+      .note-modal-close {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -5189,6 +5364,16 @@
       </div>
     </div>
 
+    <div id="noteModal" class="note-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="noteModalTitle">
+      <div class="note-modal-card">
+        <button id="closeNoteModal" class="note-modal-close" type="button" aria-label="Tutup catatan">×</button>
+        <span class="note-badge">ⓘ Catatan</span>
+        <h3 id="noteModalTitle">Catatan kosakata</h3>
+        <div id="noteModalBody" class="note-modal-body"></div>
+      </div>
+    </div>
+
+
 
     <div id="materialModal" class="material-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="materialModalTitle">
       <div class="material-modal-card">
@@ -5254,7 +5439,9 @@
             "kanji": "",
             "kana": "これ",
             "romaji": "kore",
-            "gambar": "https://iili.io/C5g9Hy7.png"
+            "gambar": "https://iili.io/C5g9Hy7.png",
+            "catatan": "ini digunakan untuk benda yang ada di dekat si pembicara.",
+            "materiIndonesia": "ini (benda yang ada di dekat si pembicara)"
       },
       {
             "kategori": "Kosakata",
@@ -5262,7 +5449,9 @@
             "kanji": "",
             "kana": "それ",
             "romaji": "sore",
-            "gambar": "https://iili.io/C5g99vS.png"
+            "gambar": "https://iili.io/C5g99vS.png",
+            "catatan": "itu digunakan untuk benda yang ada di dekat lawan bicara.",
+            "materiIndonesia": "itu (benda yang ada di dekat lawan bicara)"
       },
       {
             "kategori": "Kosakata",
@@ -5270,7 +5459,9 @@
             "kanji": "",
             "kana": "あれ",
             "romaji": "are",
-            "gambar": "https://iili.io/C5Uyya2.png"
+            "gambar": "https://iili.io/C5Uyya2.png",
+            "catatan": "itu digunakan untuk benda yang jauh dari si pembicara dan lawan bicara.",
+            "materiIndonesia": "itu (benda yang jauh dari si pembicara dan lawan bicara)"
       },
       {
             "kategori": "Kosakata",
@@ -5278,7 +5469,9 @@
             "kanji": "",
             "kana": "この～",
             "romaji": "kono~",
-            "gambar": "https://iili.io/C5g9du9.png"
+            "gambar": "https://iili.io/C5g9du9.png",
+            "catatan": "～ ini menerangkan benda atau orang yang ada di dekat si pembicara.",
+            "materiIndonesia": "～ ini (menerangkan benda atau orang yang ada di dekat si pembicara.)"
       },
       {
             "kategori": "Kosakata",
@@ -5286,7 +5479,9 @@
             "kanji": "",
             "kana": "その～",
             "romaji": "sono~",
-            "gambar": "https://iili.io/C5g93Zu.png"
+            "gambar": "https://iili.io/C5g93Zu.png",
+            "catatan": "～ itu menerangkan benda atau orang yang ada di dekat lawan bicara.",
+            "materiIndonesia": "～ itu (menerangkan benda atau orang yang ada di dekat lawan bicara.)"
       },
       {
             "kategori": "Kosakata",
@@ -5294,7 +5489,9 @@
             "kanji": "",
             "kana": "あの～",
             "romaji": "ano~",
-            "gambar": "https://iili.io/C5g9KCb.png"
+            "gambar": "https://iili.io/C5g9KCb.png",
+            "catatan": "～ itu menerangkan benda atau orang yang ada jauh dari si pembicara dan lawan bicara.",
+            "materiIndonesia": "～ itu (menerangkan benda atau orang yang ada jauh dari si pembicara dan lawan bicara.)"
       },
       {
             "kategori": "Kosakata",
@@ -5526,7 +5723,8 @@
             "kanji": "～語",
             "kana": "～ご",
             "romaji": "~go",
-            "gambar": "https://iili.io/C5gH0fj.png"
+            "gambar": "https://iili.io/C5gH0fj.png",
+            "catatan": "～ご digunakan untuk menyatakan bahasa tertentu, misalnya にほんご berarti bahasa Jepang."
       },
       {
             "kategori": "Kosakata",
@@ -5550,7 +5748,9 @@
             "kanji": "",
             "kana": "あのう",
             "romaji": "anou",
-            "gambar": "https://iili.io/C5gHvgR.png"
+            "gambar": "https://iili.io/C5gHvgR.png",
+            "catatan": "あのう adalah ungkapan yang digunakan kepada lawan bicara dalam perasaan ragu-ragu.",
+            "materiIndonesia": "Eee…（ungkapan yang digunakan kepada lawan bicara dalam perasaan ragu-ragu）"
       },
       {
             "kategori": "Latihan C",
@@ -5558,19 +5758,23 @@
             "kanji": "",
             "kana": "えっ",
             "romaji": "e",
-            "gambar": "https://iili.io/C5gHrbt.png"
+            "gambar": "https://iili.io/C5gHrbt.png",
+            "catatan": "えっ dipakai ketika mendengar sesuatu yang di luar dugaan.",
+            "materiIndonesia": "Eh（dipakai ketika mendengar sesuatu yang di luar dugaan）"
       },
       {
             "kategori": "Latihan C",
-            "indonesia": "Silakan",
+            "indonesia": "Silakan.",
             "kanji": "",
             "kana": "どうぞ",
             "romaji": "douzo",
-            "gambar": "https://iili.io/C5gH6zX.png"
+            "gambar": "https://iili.io/C5gH6zX.png",
+            "catatan": "どうぞ digunakan ketika menawarkan sesuatu, misalnya barang.",
+            "materiIndonesia": "Silakan.（digunakan ketika menawarkan sesuatu（barang））"
       },
       {
             "kategori": "Latihan C",
-            "indonesia": "Terima kasih / Terima kasih banyak",
+            "indonesia": "Terima kasih (banyak).",
             "kanji": "",
             "kana": "どうもありがとう / ありがとうございます",
             "romaji": "doumo arigatou / arigatou gozaimasu",
@@ -5578,7 +5782,7 @@
       },
       {
             "kategori": "Latihan C",
-            "indonesia": "O, begitu / O, ya",
+            "indonesia": "O, begitu./O, ya.",
             "kanji": "",
             "kana": "そうですか",
             "romaji": "sou desu ka",
@@ -5586,7 +5790,7 @@
       },
       {
             "kategori": "Latihan C",
-            "indonesia": "Bukan / Tidak / Salah",
+            "indonesia": "Bukan./Tidak./Salah.",
             "kanji": "違います",
             "kana": "ちがいます",
             "romaji": "chigaimasu",
@@ -5598,11 +5802,13 @@
             "kanji": "",
             "kana": "あ",
             "romaji": "a",
-            "gambar": "https://iili.io/C5gJFrx.png"
+            "gambar": "https://iili.io/C5gJFrx.png",
+            "catatan": "あ dipakai ketika sadar atau tiba-tiba menyadari sesuatu.",
+            "materiIndonesia": "O, Eh,（dipakai ketika sadar）"
       },
       {
             "kategori": "Percakapan",
-            "indonesia": "Mulai sekarang, saya akan meminta bantuannya",
+            "indonesia": "Mulai sekarang, saya akan meminta bantuannya.",
             "kanji": "",
             "kana": "これからお世話になります",
             "romaji": "korekara osewa ni narimasu",
@@ -5610,11 +5816,13 @@
       },
       {
             "kategori": "Percakapan",
-            "indonesia": "Ya, sama-sama",
+            "indonesia": "Ya, sama-sama.",
             "kanji": "",
             "kana": "こちらこそどうぞよろしくお願いします",
             "romaji": "kochira koso douzo yoroshiku onegaishimasu",
-            "gambar": "https://iili.io/C5gJCmP.png"
+            "gambar": "https://iili.io/C5gJCmP.png",
+            "catatan": "Ungkapan ini adalah jawaban terhadap［どうぞ］よろしく［おねがいします］。",
+            "materiIndonesia": "Ya, sama-sama.（jawaban terhadap［どうぞ］よろしく［おねがいします］。）"
       },
       {
             "kategori": "Percakapan",
@@ -5667,6 +5875,9 @@
     const exampleModal = document.getElementById("exampleModal");
     const exampleText = document.getElementById("exampleText");
     const closeExampleModal = document.getElementById("closeExampleModal");
+    const noteModal = document.getElementById("noteModal");
+    const noteModalBody = document.getElementById("noteModalBody");
+    const closeNoteModal = document.getElementById("closeNoteModal");
     const imageModal = document.getElementById("imageModal");
     const imageModalImg = document.getElementById("imageModalImg");
     const imageModalCaption = document.getElementById("imageModalCaption");
@@ -6108,6 +6319,24 @@
       };
     }
 
+
+
+    function getItemNote(item) {
+      return String(item?.catatan || item?.note || item?.explanationNote || "").trim();
+    }
+
+    function getNoteReadingText(item) {
+      const kanji = String(item?.kanji || "").trim();
+      const kana = String(item?.kana || "").trim();
+      const romaji = String(item?.romaji || "").trim();
+      const parts = [];
+
+      if (kanji && kana && kanji !== kana) parts.push(kana);
+      if (romaji) parts.push(romaji);
+
+      return parts.join(" / ");
+    }
+
     function displayJapanese(item) {
       const kanji = String(item.kanji || "").trim();
       const kana = String(item.kana || "").trim();
@@ -6124,6 +6353,9 @@
       const exampleButton = contoh
         ? `<button class="example-btn" id="showExampleBtn" type="button">${escapeHTML(t("exampleButton"))}</button>`
         : "";
+      const noteButton = getItemNote(item)
+        ? `<button class="note-btn" id="showNoteBtn" type="button">ⓘ Catatan</button>`
+        : "";
       const audioButton = `<button class="audio-btn" id="playAudioBtn" type="button">${escapeHTML(t("audioButton"))}</button>`;
 
       jpText.innerHTML = `
@@ -6133,6 +6365,7 @@
         <div class="jp-actions">
           ${audioButton}
           ${exampleButton}
+          ${noteButton}
         </div>
       `;
 
@@ -6226,6 +6459,43 @@
     }
 
 
+    function openNoteModal(item) {
+      const note = getItemNote(item);
+      if (!note || !noteModal || !noteModalBody) return;
+
+      const mainText = getMaterialMainText(item);
+      const readingText = getNoteReadingText(item);
+      const meaning = String(item?.indonesia || "").trim();
+
+      noteModalBody.innerHTML = `
+        <div class="note-info-row">
+          <span class="note-info-label">Kosakata Jepang</span>
+          <div class="note-info-value jp">${escapeHTML(mainText)}</div>
+        </div>
+        ${readingText ? `
+        <div class="note-info-row">
+          <span class="note-info-label">Hiragana / Romaji</span>
+          <div class="note-info-value">${escapeHTML(readingText)}</div>
+        </div>` : ""}
+        <div class="note-info-row">
+          <span class="note-info-label">Arti utama</span>
+          <div class="note-info-value">${escapeHTML(meaning)}</div>
+        </div>
+        <p class="note-text">${escapeHTML(note)}</p>
+      `;
+
+      noteModal.classList.add("show");
+      noteModal.setAttribute("aria-hidden", "false");
+      closeNoteModal?.focus({ preventScroll: true });
+    }
+
+    function closeNoteModalBox() {
+      if (!noteModal) return;
+      noteModal.classList.remove("show");
+      noteModal.setAttribute("aria-hidden", "true");
+    }
+
+
 
     const MATERIAL_GROUPS = [
       {
@@ -6249,6 +6519,10 @@
       const kanji = String(item.kanji || "").trim();
       const kana = String(item.kana || "").trim();
       return kanji || kana || "-";
+    }
+
+    function getMaterialMeaning(item) {
+      return String(item?.materiIndonesia || item?.materialMeaning || item?.indonesia || "").trim();
     }
 
     function getMaterialReadingText(item) {
@@ -6330,7 +6604,7 @@
         group.items.forEach(({ item }, localIndex) => {
           const mainText = getMaterialMainText(item);
           const reading = getMaterialReadingText(item);
-          const meaning = String(item.indonesia || "").trim();
+          const meaning = getMaterialMeaning(item);
           const imgUrl = String(item.gambar || "").trim();
 
           const card = document.createElement("article");
@@ -6568,6 +6842,7 @@
       }
 
       closeExampleModalBox();
+      closeNoteModalBox();
       currentItem = deck[currentIndex];
       isFlipped = false;
       answered = false;
@@ -7355,6 +7630,13 @@
         return;
       }
 
+      const noteButton = event.target.closest("#showNoteBtn");
+      if (noteButton && currentItem) {
+        event.stopPropagation();
+        openNoteModal(currentItem);
+        return;
+      }
+
       const button = event.target.closest("#showExampleBtn");
 
       if (!button || !currentItem || !currentItem.contoh) return;
@@ -7364,10 +7646,17 @@
     });
 
     closeExampleModal.addEventListener("click", closeExampleModalBox);
+    closeNoteModal?.addEventListener("click", closeNoteModalBox);
 
     exampleModal.addEventListener("click", event => {
       if (event.target === exampleModal) {
         closeExampleModalBox();
+      }
+    });
+
+    noteModal?.addEventListener("click", event => {
+      if (event.target === noteModal) {
+        closeNoteModalBox();
       }
     });
 
@@ -7382,6 +7671,10 @@
     document.addEventListener("keydown", event => {
       if (event.key === "Escape" && exampleModal.classList.contains("show")) {
         closeExampleModalBox();
+      }
+
+      if (event.key === "Escape" && noteModal?.classList.contains("show")) {
+        closeNoteModalBox();
       }
 
       if (event.key === "Escape" && loginModal.classList.contains("show")) {
