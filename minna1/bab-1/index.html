@@ -4530,6 +4530,149 @@
         margin: 0 !important;
       }
     }
+
+    /* ===== Lihat Materi Final: ringkasan, pengelompokan, dan deskripsi sesuai isi ===== */
+    #materialModal .material-list {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 18px !important;
+      width: 100% !important;
+      overflow: visible !important;
+      height: auto !important;
+      max-height: none !important;
+    }
+
+    .material-summary-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 12px !important;
+      width: 100% !important;
+    }
+
+    .material-summary-card {
+      min-height: 86px !important;
+      padding: 14px 16px !important;
+      border-radius: 20px !important;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.86), rgba(255,255,255,0.58)),
+        radial-gradient(circle at top left, rgba(124,111,246,0.16), transparent 46%) !important;
+      border: 1px solid rgba(124, 111, 246, 0.16) !important;
+      box-shadow: 0 10px 22px rgba(82, 73, 134, 0.08) !important;
+      display: grid !important;
+      align-content: center !important;
+      gap: 5px !important;
+    }
+
+    .material-summary-card span {
+      color: #64748b !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+    }
+
+    .material-summary-card strong {
+      color: #413f73 !important;
+      font-size: clamp(22px, 3vw, 30px) !important;
+      font-weight: 800 !important;
+      line-height: 1 !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    .material-group {
+      width: 100% !important;
+      padding: clamp(14px, 2vw, 18px) !important;
+      border-radius: 24px !important;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.74), rgba(255,255,255,0.48)),
+        radial-gradient(circle at top right, rgba(255,218,236,0.28), transparent 42%) !important;
+      border: 1px solid rgba(124, 111, 246, 0.15) !important;
+      box-shadow: 0 12px 26px rgba(82, 73, 134, 0.07) !important;
+    }
+
+    .material-group-head {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) auto !important;
+      gap: 10px 14px !important;
+      align-items: start !important;
+      margin-bottom: 14px !important;
+    }
+
+    .material-group-head h4 {
+      margin: 0 0 5px !important;
+      color: #17254e !important;
+      font-size: clamp(18px, 2.4vw, 22px) !important;
+      font-weight: 800 !important;
+      line-height: 1.2 !important;
+    }
+
+    .material-group-head p {
+      margin: 0 !important;
+      color: #64748b !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 600 !important;
+      line-height: 1.55 !important;
+    }
+
+    .material-group-count {
+      min-width: 86px !important;
+      padding: 8px 12px !important;
+      border-radius: 999px !important;
+      color: #6557df !important;
+      background: rgba(124, 111, 246, 0.12) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 800 !important;
+      line-height: 1.2 !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
+
+    .material-group-list {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 12px !important;
+    }
+
+    .material-empty {
+      margin: 0 !important;
+      padding: 18px !important;
+      border-radius: 18px !important;
+      color: #64748b !important;
+      background: rgba(124,111,246,0.08) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 700 !important;
+      text-align: center !important;
+    }
+
+    @media (max-width: 900px) {
+      .material-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .material-group-list {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .material-summary-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-group {
+        padding: 12px !important;
+        border-radius: 20px !important;
+      }
+
+      .material-group-head {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-group-count {
+        width: max-content !important;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -4800,8 +4943,8 @@
       <div class="material-modal-card">
         <button id="closeMaterialModal" class="image-modal-close material-close" type="button" aria-label="Tutup materi" data-i18n-aria-label="closeMaterialLabel">×</button>
         <div class="material-modal-head">
-          <h3 id="materialModalTitle" data-i18n="materialTitle">Materi Kosakata</h3>
-          <p data-i18n="materialDescription">Daftar kosakata lengkap. Klik gambar kecil untuk melihat gambar penuh.</p>
+          <h3 id="materialModalTitle" data-i18n="materialTitle">Rangkuman Materi Belajar</h3>
+          <p data-i18n="materialDescription">Pelajari kembali seluruh materi sebelum memulai latihan. Setiap kartu berisi kosakata, ungkapan latihan, atau percakapan singkat lengkap dengan gambar pendukung agar lebih mudah diingat.</p>
         </div>
         <div id="materialList" class="material-list" aria-live="polite"></div>
       </div>
@@ -5294,8 +5437,8 @@
         startButton: "Start",
         materialButton: "Lihat Materi",
         closeMaterialLabel: "Tutup materi",
-        materialTitle: "Materi Kosakata",
-        materialDescription: "Daftar kosakata lengkap. Klik gambar kecil untuk melihat gambar penuh.",
+        materialTitle: "Rangkuman Materi Belajar",
+        materialDescription: "Pelajari kembali seluruh materi sebelum memulai latihan. Setiap kartu berisi kosakata, ungkapan latihan, atau percakapan singkat lengkap dengan gambar pendukung agar lebih mudah diingat.",
         materialImageLabel: "Lihat gambar penuh: {word}",
         skipButton: "Lewati ke halaman hasil",
         cardFlipSmall: "Klik kartu untuk membalik",
@@ -5424,8 +5567,8 @@
         startButton: "スタート",
         materialButton: "教材を見る",
         closeMaterialLabel: "教材を閉じる",
-        materialTitle: "単語教材",
-        materialDescription: "単語リストです。小さい画像をクリックすると全体画像を表示します。",
+        materialTitle: "学習内容のまとめ",
+        materialDescription: "練習を始める前に、単語・練習表現・短い会話を画像付きカードで復習できます。",
         materialImageLabel: "画像を大きく見る: {word}",
         skipButton: "結果ページへ",
         cardFlipSmall: "カードをクリックして裏返す",
@@ -5842,37 +5985,157 @@
     }
 
 
+
+    const MATERIAL_GROUPS = [
+      {
+        id: "kosakata",
+        label: "Kosakata",
+        labelJa: "語彙",
+        description: "Materi kosakata berisi kata ganti orang, sapaan dan akhiran nama, profesi, tempat belajar/kerja, umur, jawaban ya atau tidak, negara, serta nama perusahaan, organisasi, rumah sakit, dan universitas fiksi yang muncul dalam latihan.",
+        descriptionJa: "自己紹介で使う人称、呼び方、職業、学校や会社、年齢、はい・いいえ、国名、架空の会社・団体・病院・大学名をまとめています。",
+        match(item) {
+          return !MATERIAL_GROUPS[1].match(item) && !MATERIAL_GROUPS[2].match(item);
+        }
+      },
+      {
+        id: "latihan",
+        label: "Latihan C",
+        labelJa: "練習 C",
+        description: "Ungkapan pendek untuk membuka perkenalan, menyebutkan asal, menyampaikan salam kenal, dan bertanya dengan sopan.",
+        descriptionJa: "初対面のあいさつ、出身、自己紹介の締めくくり、丁寧に質問するときの表現を練習します。",
+        match(item) {
+          const key = `${item.kana || ""} ${item.kanji || ""} ${item.indonesia || ""}`.toLowerCase();
+          return [
+            "初めまして",
+            "はじめまして",
+            "〜から来ました",
+            "〜からきました",
+            "どうぞよろしくお願いします",
+            "どうぞよろしくおねがいします",
+            "失礼ですが",
+            "しつれいですが"
+          ].some(token => key.includes(token.toLowerCase()));
+        }
+      },
+      {
+        id: "percakapan",
+        label: "Percakapan",
+        labelJa: "会話",
+        description: "Kalimat praktis untuk menanyakan nama dan memperkenalkan orang lain dalam percakapan sederhana.",
+        descriptionJa: "名前をたずねたり、ほかの人を紹介したりする短い会話表現です。",
+        match(item) {
+          const key = `${item.kana || ""} ${item.kanji || ""} ${item.indonesia || ""}`.toLowerCase();
+          return [
+            "お名前は",
+            "おなまえは",
+            "こちらは〜さんです",
+            "こちらは"
+          ].some(token => key.includes(token.toLowerCase()));
+        }
+      }
+    ];
+
+    function getMaterialGroupedItems() {
+      const used = new Set();
+
+      return MATERIAL_GROUPS.map(group => {
+        const items = vocabulary
+          .map((item, originalIndex) => ({ item, originalIndex }))
+          .filter(entry => {
+            if (used.has(entry.originalIndex)) return false;
+            const matched = group.match(entry.item, entry.originalIndex);
+            if (matched) used.add(entry.originalIndex);
+            return matched;
+          });
+
+        return { ...group, items };
+      });
+    }
+
+    function updateMaterialSummary(groups) {
+      const total = groups.reduce((sum, group) => sum + group.items.length, 0);
+      return [
+        { label: currentLanguage === "ja" ? "合計" : "Total Materi", value: total },
+        ...groups.map(group => ({
+          label: currentLanguage === "ja" ? group.labelJa : group.label,
+          value: group.items.length
+        }))
+      ];
+    }
+
+    function renderMaterialItem(entry, number) {
+      const item = entry.item;
+      const jp = getJapanesePlain(item);
+      const title = jp.main || item.kana || `Kosakata ${number}`;
+      const reading = jp.sub || item.romaji || "";
+      const meaning = String(item.indonesia || "").replace(/\s+/g, " ").trim();
+      const imageUrl = String(item.gambar || "").trim();
+      const imageLabel = t("materialImageLabel").replace("{word}", title);
+      const imageContent = /^https?:\/\//i.test(imageUrl)
+        ? `<img src="${escapeHTML(imageUrl)}" alt="${escapeHTML(title)}" loading="eager" decoding="async" referrerpolicy="no-referrer" />`
+        : `<span aria-hidden="true">🎴</span>`;
+
+      return `
+        <article class="material-item">
+          <button class="material-thumb" type="button" data-img="${escapeHTML(imageUrl)}" data-alt="${escapeHTML(title)}" aria-label="${escapeHTML(imageLabel)}">
+            ${imageContent}
+          </button>
+          <div class="material-info">
+            <div class="material-number">${number}</div>
+            <div>
+              <strong class="material-jp">${escapeHTML(title)}</strong>
+              <span class="material-reading">${escapeHTML(reading)}</span>
+            </div>
+            <p>${escapeHTML(meaning)}</p>
+          </div>
+        </article>
+      `;
+    }
+
     function renderMaterialList() {
       if (!materialList) return;
 
-      materialList.innerHTML = vocabulary.map((item, index) => {
-        const jp = getJapanesePlain(item);
-        const title = jp.main || item.kana || `Kosakata ${index + 1}`;
-        const reading = jp.sub || item.romaji || "";
-        const meaning = String(item.indonesia || "").replace(/\s+/g, " ").trim();
-        const imageUrl = String(item.gambar || "").trim();
-        const imageLabel = t("materialImageLabel").replace("{word}", title);
-        const imageContent = /^https?:\/\//i.test(imageUrl)
-          ? `<img src="${escapeHTML(imageUrl)}" alt="${escapeHTML(title)}" loading="eager" decoding="async" referrerpolicy="no-referrer" />`
-          : `<span aria-hidden="true">🎴</span>`;
+      const groups = getMaterialGroupedItems();
+      const summary = updateMaterialSummary(groups);
+
+      const summaryHTML = `
+        <div class="material-summary-grid" aria-label="Ringkasan jumlah materi">
+          ${summary.map(card => `
+            <div class="material-summary-card">
+              <span>${escapeHTML(card.label)}</span>
+              <strong>${card.value}</strong>
+            </div>
+          `).join("")}
+        </div>
+      `;
+
+      const groupsHTML = groups.map(group => {
+        const label = currentLanguage === "ja" ? group.labelJa : group.label;
+        const description = currentLanguage === "ja" ? group.descriptionJa : group.description;
+        const countLabel = currentLanguage === "ja" ? `${group.items.length}項目` : `${group.items.length} materi`;
+        const itemHTML = group.items.length
+          ? group.items.map((entry, index) => renderMaterialItem(entry, index + 1)).join("")
+          : `<p class="material-empty">${currentLanguage === "ja" ? "このグループの教材はまだありません。" : "Belum ada materi pada kelompok ini."}</p>`;
 
         return `
-          <article class="material-item">
-            <button class="material-thumb" type="button" data-img="${escapeHTML(imageUrl)}" data-alt="${escapeHTML(title)}" aria-label="${escapeHTML(imageLabel)}">
-              ${imageContent}
-            </button>
-            <div class="material-info">
-              <div class="material-number">${index + 1}</div>
+          <section class="material-group" data-group="${escapeHTML(group.id)}">
+            <div class="material-group-head">
               <div>
-                <strong class="material-jp">${escapeHTML(title)}</strong>
-                <span class="material-reading">${escapeHTML(reading)}</span>
+                <h4>${escapeHTML(label)}</h4>
+                <p>${escapeHTML(description)}</p>
               </div>
-              <p>${escapeHTML(meaning)}</p>
+              <span class="material-group-count">${escapeHTML(countLabel)}</span>
             </div>
-          </article>
+            <div class="material-group-list">
+              ${itemHTML}
+            </div>
+          </section>
         `;
       }).join("");
+
+      materialList.innerHTML = summaryHTML + groupsHTML;
     }
+
 
     function openMaterialModalBox() {
       if (!materialModal) return;
