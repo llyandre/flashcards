@@ -6,6 +6,8 @@
   <title>Kuis Interaktif デパート・Toserba</title>
   <link rel="dns-prefetch" href="https://i.ibb.co" />
   <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -365,10 +367,550 @@
     }
 
 
+
+/* ===== Username/login style disamakan dengan HTML 2 ===== */
+.username-box {
+  width: min(520px, 100%) !important;
+  max-width: none !important;
+  margin: 0 auto 16px !important;
+  display: grid !important;
+  gap: 8px !important;
+}
+
+.login-trigger {
+  width: 100% !important;
+  min-height: var(--control-h, 58px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 0 22px !important;
+  border: 1px solid rgba(255, 255, 255, 0.88) !important;
+  border-radius: var(--radius-lg, 24px) !important;
+  color: #17254e !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)) !important;
+  box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+  font-size: var(--fs-input, 16px) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease !important;
+}
+
+.login-trigger:hover {
+  transform: translateY(-1px) !important;
+  border-color: rgba(124, 111, 246, 0.34) !important;
+  box-shadow: 0 16px 34px rgba(54, 65, 101, 0.14) !important;
+}
+
+.login-summary {
+  display: none !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 8px 13px !important;
+  border-radius: var(--radius-pill, 999px) !important;
+  color: #514a9e !important;
+  background: rgba(124, 111, 246, 0.1) !important;
+  border: 1px solid rgba(124, 111, 246, 0.18) !important;
+  font-size: var(--fs-small, 13px) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+}
+
+.login-summary.show { display: inline-flex !important; }
+
+.username-note {
+  margin: 0 !important;
+  color: #505a70 !important;
+  font-size: var(--fs-small, 13px) !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  text-align: center !important;
+}
+
+.login-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 80 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 22px !important;
+  background: rgba(20, 24, 38, 0.48) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.22s ease, visibility 0.22s ease !important;
+}
+
+.login-modal.show {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.login-card.login-modal-card,
+.login-modal-card {
+  width: min(430px, 94vw) !important;
+  position: relative !important;
+  padding: 28px 24px 24px !important;
+  border-radius: var(--radius-xl, 30px) !important;
+  background:
+    radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+    rgba(255, 255, 255, 0.98) !important;
+  border: 1px solid rgba(255, 255, 255, 0.82) !important;
+  box-shadow: 0 24px 70px rgba(31, 41, 55, 0.24) !important;
+  transform: translateY(10px) scale(0.97) !important;
+  transition: transform 0.22s ease !important;
+}
+
+.login-modal.show .login-modal-card {
+  transform: translateY(0) scale(1) !important;
+}
+
+.login-modal-card h3,
+.login-card h3 {
+  margin: 0 34px 8px 0 !important;
+  color: #514a9e !important;
+  font-size: clamp(20px, 3vw, 24px) !important;
+  font-weight: 740 !important;
+  letter-spacing: 0 !important;
+}
+
+.login-modal-card p,
+.login-card p {
+  margin: 0 0 16px !important;
+  color: var(--muted, #64748b) !important;
+  font-size: var(--fs-small, 13px) !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+}
+
+.login-field {
+  display: grid !important;
+  gap: 7px !important;
+  margin-bottom: 13px !important;
+  text-align: left !important;
+}
+
+.login-field label {
+  color: #505a70 !important;
+  font-size: var(--fs-small, 13px) !important;
+  font-weight: 650 !important;
+}
+
+.login-field input {
+  min-height: 50px !important;
+  width: 100% !important;
+  padding: 0 14px !important;
+  border: 1px solid rgba(124, 111, 246, 0.22) !important;
+  border-radius: var(--radius-md, 18px) !important;
+  outline: none !important;
+  color: var(--text, #253044) !important;
+  background: rgba(255, 255, 255, 0.86) !important;
+  box-shadow: var(--shadow-tiny, 0 6px 14px rgba(82, 73, 134, 0.07)) !important;
+  font-size: var(--fs-input, 16px) !important;
+  font-weight: 700 !important;
+}
+
+.login-field input:focus {
+  border-color: rgba(124, 111, 246, 0.5) !important;
+  box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-tiny, 0 6px 14px rgba(82, 73, 134, 0.07)) !important;
+}
+
+.password-box[hidden],
+.login-field[hidden],
+.group-box[hidden],
+.password-box.hidden,
+.group-box.hidden {
+  display: none !important;
+}
+
+.group-box {
+  width: 100% !important;
+  margin: 14px 0 14px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+
+.group-box p {
+  margin: 0 !important;
+  color: var(--heading, #101d48) !important;
+  font-size: var(--fs-small, 13px) !important;
+  font-weight: 900 !important;
+  text-align: left !important;
+  line-height: 1.35 !important;
+}
+
+.group-options {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin-top: 10px !important;
+}
+
+.group-btn {
+  min-height: 44px !important;
+  padding: 10px 12px !important;
+  border: 1px solid rgba(124, 111, 246, 0.2) !important;
+  border-radius: var(--radius-pill, 999px) !important;
+  color: var(--primary-deep, #6d46e8) !important;
+  background: var(--primary-soft, rgba(124, 111, 246, 0.12)) !important;
+  box-shadow: none !important;
+  font-size: var(--fs-small, 13px) !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease !important;
+}
+
+.group-btn:hover,
+.group-btn.active {
+  transform: translateY(-1px) !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, var(--primary, #7c6ff6), var(--primary-deep, #6d46e8)) !important;
+  border-color: transparent !important;
+  box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22) !important;
+}
+
+.login-modal-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+}
+
+.example-close,
+.close {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 0 !important;
+  border-radius: var(--radius-pill, 999px) !important;
+  color: #6557df !important;
+  background: rgba(124, 111, 246, 0.11) !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  transition: transform 0.18s ease, background 0.18s ease !important;
+}
+
+.example-close:hover,
+.close:hover {
+  transform: rotate(8deg) scale(1.04) !important;
+  background: rgba(124, 111, 246, 0.18) !important;
+}
+
+.legacy-login-btn[hidden] { display: none !important; }
+
+@media (max-width: 520px) {
+  .username-box {
+    margin-bottom: 14px !important;
+  }
+
+  .login-modal-actions {
+    flex-direction: column !important;
+  }
+
+  .login-modal-actions .btn {
+    width: 100% !important;
+  }
+
+  .group-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .group-btn {
+    min-height: 44px !important;
+    border-radius: var(--radius-pill, 999px) !important;
+  }
+
+  .login-card.login-modal-card,
+  .login-modal-card {
+    width: min(430px, 94vw) !important;
+    padding: 28px 24px 24px !important;
+  }
+}
+
+
+/* ===== Username removed final override ===== */
+#usernameBox,
+#loginSummary,
+#loginModal,
+#openLoginAgainBtn,
+.legacy-login-btn {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+#startQuizBtn,
+#studyBtn {
+  display: inline-flex !important;
+}
+#startQuizBtn {
+  min-width: min(260px, 100%);
+}
+.participant-name {
+  display: none !important;
+}
+
+  
+
+/* ===== Compact action buttons final override ===== */
+#home .actions,
+.study-actions {
+  gap: 10px !important;
+  margin-top: 10px !important;
+  justify-content: center !important;
+}
+
+#home .actions .btn,
+.study-actions .btn {
+  width: auto !important;
+  min-width: 138px !important;
+  max-width: 210px !important;
+  min-height: 46px !important;
+  padding: 10px 16px !important;
+  border-radius: 15px !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  box-shadow: 0 10px 20px rgba(124,111,246,.18) !important;
+}
+
+#home #startQuizBtn,
+#studyStartBtn {
+  min-width: 145px !important;
+}
+
+#home #studyBtn,
+#homeBtn2 {
+  min-width: 132px !important;
+}
+
+@media (max-width: 520px) {
+  #home .actions,
+  .study-actions {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 9px !important;
+  }
+
+  #home .actions .btn,
+  .study-actions .btn {
+    width: auto !important;
+    flex: 0 1 auto !important;
+    min-width: 128px !important;
+    max-width: 170px !important;
+    min-height: 44px !important;
+    padding: 9px 14px !important;
+    font-size: 13.5px !important;
+    border-radius: 14px !important;
+  }
+}
+
+  
+
+/* ===== Final revisi: username wajib sebelum tombol utama muncul ===== */
+#usernameBox.username-box {
+  display: grid !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  width: min(520px, 100%) !important;
+  max-width: none !important;
+  margin: 0 auto 16px !important;
+  gap: 8px !important;
+}
+#usernameBox.username-box.is-complete {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+#loginModal.login-modal {
+  display: grid !important;
+}
+#loginModal.login-modal.show {
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+#openLoginBtn.login-trigger {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+#startQuizBtn,
+#studyBtn {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+#startQuizBtn.show,
+#studyBtn.show {
+  display: inline-flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#home .actions {
+  min-height: 54px !important;
+}
+#home .actions .btn {
+  min-width: 145px !important;
+}
+#loginSummary.login-summary.show {
+  display: inline-flex !important;
+}
+.participant-name {
+  display: none !important;
+}
+
+/* ===== Final revisi: popup gambar tidak menabrak area scroll ===== */
+.image-modal {
+  padding: clamp(12px, 3vw, 24px) !important;
+  overflow: hidden !important;
+}
+.image-modal-card,
+.image-card.image-modal-card {
+  width: min(960px, 96vw) !important;
+  max-height: calc(100svh - 28px) !important;
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto !important;
+  overflow: hidden !important;
+  border-radius: 26px !important;
+  background: #fff !important;
+}
+.image-modal-head {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 3 !important;
+  min-height: 58px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 10px 12px 10px 16px !important;
+  background: rgba(255,255,255,.96) !important;
+  border-bottom: 1px solid rgba(124,111,246,.14) !important;
+}
+.image-modal-title {
+  min-width: 0 !important;
+  color: var(--heading, #101d48) !important;
+  font-size: 14px !important;
+  font-weight: 760 !important;
+  line-height: 1.35 !important;
+  overflow-wrap: anywhere !important;
+}
+.image-modal-close,
+#closeImageModal.close {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  flex: 0 0 42px !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #6557df !important;
+  background: rgba(124,111,246,.12) !important;
+  box-shadow: 0 8px 18px rgba(82,73,134,.12) !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+.image-modal-body,
+.image-body.image-modal-body {
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: auto !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 12px !important;
+  background: #fff !important;
+}
+.image-modal-body img,
+.image-body.image-modal-body img {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: calc(100svh - 150px) !important;
+  object-fit: contain !important;
+  display: block !important;
+  background: #fff !important;
+}
+.image-modal-caption,
+#imageModalCaption {
+  padding: 10px 14px 14px !important;
+  border-top: 1px solid rgba(124,111,246,.12) !important;
+  color: #4f596d !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  text-align: center !important;
+}
+@media (max-width: 760px) {
+  #usernameBox.username-box {
+    margin-bottom: 14px !important;
+  }
+  #home .actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  #home .actions .btn,
+  #startQuizBtn.show,
+  #studyBtn.show {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 50px !important;
+    font-size: 14.5px !important;
+    border-radius: 16px !important;
+  }
+  .image-modal {
+    padding: 10px !important;
+  }
+  .image-modal-card,
+  .image-card.image-modal-card {
+    width: 100% !important;
+    max-height: calc(100svh - 20px) !important;
+    border-radius: 22px !important;
+  }
+  .image-modal-head {
+    min-height: 54px !important;
+    padding: 8px 10px 8px 14px !important;
+  }
+  .image-modal-close,
+  #closeImageModal.close {
+    flex-basis: 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
+  .image-modal-body img,
+  .image-body.image-modal-body img {
+    max-height: calc(100svh - 142px) !important;
+  }
+}
+
   </style>
 </head>
 <body>
-  <main id="app" class="app">
+  <main id="app" class="app unlocked">
     <section id="home" class="screen active">
       <div class="panel hero">
         <div class="language-switch" aria-label="Ganti bahasa">
@@ -378,8 +920,13 @@
         <div>
           <span class="badge" data-i18n="badge">🏬 Kuis Interaktif Jepang</span>
           <h1><span class="jp">デパート</span><br/><span data-i18n="title">Toserba</span></h1>
-          <p class="lead" data-i18n="homeLead">Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Isi nama pengguna melalui popup terlebih dahulu, lalu mulai kuis.</p>
-          <div id="loginSummary" class="login-summary"></div>
+          <p class="lead" data-i18n="homeLead">Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Klik Mulai Kuis untuk latihan, atau Lihat Materi untuk belajar terlebih dahulu.</p>
+          <!-- Username wajib diisi sebelum tombol Mulai Kuis dan Lihat Materi muncul -->
+          <div class="username-box" id="usernameBox">
+            <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="usernameButton">Isi Username</button>
+            <div id="loginSummary" class="login-summary" aria-live="polite"></div>
+            <p id="usernameNote" class="username-note" data-i18n="usernameNote">Klik tombol di atas untuk mengisi username melalui popup.</p>
+          </div>
           <div class="info-row">
             <div class="info-card"><div class="info-icon">🗂️</div><div><span data-i18n="infoMaterial">Materi</span><strong id="cardCount">34 kartu</strong></div></div>
             <div class="info-card"><div class="info-icon">⏱️</div><div><span data-i18n="infoTime">Waktu</span><strong data-i18n="timePerQuestion">30 detik/soal</strong></div></div>
@@ -389,7 +936,7 @@
           <div class="actions">
             <button class="btn" id="startQuizBtn" data-i18n="startQuiz">Mulai Kuis</button>
             <button class="btn secondary" id="studyBtn" data-i18n="studyMaterial">Lihat Materi</button>
-            <button class="btn secondary" id="openLoginAgainBtn" data-i18n="changeUser">Ganti Nama Pengguna</button>
+            <button class="btn secondary legacy-login-btn" id="openLoginAgainBtn" data-i18n="changeUser" hidden>Ganti Nama Pengguna</button>
           </div>
           <div id="adminActions" class="admin-actions">
             <button class="btn" id="adminResultBtn" data-i18n="adminResult">Halaman Hasil Admin</button>
@@ -465,14 +1012,21 @@
     </section>
   </main>
 
-  <div id="loginModal" class="login-modal show" aria-hidden="false" role="dialog" aria-modal="true">
-    <div class="login-card">
-      <h3 data-i18n="loginTitle">Masuk Peserta</h3>
-      <p data-i18n-html="loginDesc">Isi nama peserta dan pilih grup. Khusus admin, gunakan username <strong>admin404</strong> dan masukkan password.</p>
-      <div class="login-field"><label for="usernameInput" data-i18n="usernameLabel">Nama Pengguna</label><input id="usernameInput" autocomplete="off" placeholder="Masukkan nama pengguna" /></div>
-      <div id="passwordBox" class="login-field hidden"><label for="passwordInput" data-i18n="passwordLabel">Password Admin</label><input id="passwordInput" type="password" placeholder="Masukkan password admin" /></div>
-      <div id="groupBox" class="group-box hidden">
-        <p data-i18n="groupPrompt">Pilih grup sebelum mulai kuis.</p>
+  <div id="loginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+    <div class="login-card login-modal-card">
+      <button id="closeLoginModal" class="close example-close" type="button" aria-label="Tutup login">×</button>
+      <h3 id="loginModalTitle" data-i18n="loginTitle">Masuk peserta</h3>
+      <p data-i18n-html="loginDesc">Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
+      <div class="login-field">
+        <label for="usernameInput" data-i18n="usernameLabel">Username</label>
+        <input id="usernameInput" type="text" autocomplete="username" placeholder="Masukkan username" />
+      </div>
+      <div id="passwordBox" class="login-field password-box hidden" hidden>
+        <label for="passwordInput" data-i18n="passwordLabel">Password admin</label>
+        <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Masukkan password admin" />
+      </div>
+      <div id="groupBox" class="group-box hidden" hidden>
+        <p data-i18n="groupPrompt">Pilih kategori sebelum mulai kuis.</p>
         <div class="group-options">
           <button class="group-btn" data-group="Badung" type="button">Badung</button>
           <button class="group-btn" data-group="Jembrana" type="button">Jembrana</button>
@@ -481,15 +1035,21 @@
         </div>
       </div>
       <div id="loginError" class="login-error" aria-live="polite"></div>
-      <div class="modal-actions"><button class="btn" id="loginSubmitBtn" data-i18n="saveButton">Simpan</button></div>
+      <div class="modal-actions login-modal-actions">
+        <button class="btn secondary" id="cancelLoginBtn" type="button" data-i18n="cancelButton">Batal</button>
+        <button class="btn" id="loginSubmitBtn" type="button" data-i18n="saveButton">Simpan</button>
+      </div>
     </div>
   </div>
 
   <div id="imageModal" class="image-modal" aria-hidden="true">
-    <div class="image-card">
-      <button id="closeImageModal" class="close" type="button" aria-label="Tutup">×</button>
-      <div class="image-body"><img id="imageModalImg" alt="Gambar penuh"></div>
-      <div id="imageModalCaption" class="image-caption"></div>
+    <div class="image-card image-modal-card">
+      <div class="image-modal-head">
+        <div id="imageModalTitle" class="image-modal-title">Lihat Gambar</div>
+        <button id="closeImageModal" class="close image-modal-close" type="button" aria-label="Tutup">×</button>
+      </div>
+      <div class="image-body image-modal-body"><img id="imageModalImg" alt="Gambar penuh"></div>
+      <div id="imageModalCaption" class="image-caption image-modal-caption"></div>
     </div>
   </div>
 
@@ -517,7 +1077,7 @@ const LOCAL_KEY="depart_toserba_bab3_results";
 let lang="id", currentUsername="", currentGroup="", isAdmin=false, questions=[], idx=0, score=0, review=[], timer=null, remain=TIMER_SECONDS, locked=false, selectedAnswer=null, startTime=0;
 
 const IMG={
-"1階":"https://i.ibb.co/XZZFz5fn/1.png","2階":"https://i.ibb.co/B20CXchn/2.png","3階":"https://i.ibb.co/B5SXfZJN/3.png","４階":"https://i.ibb.co/fdmkt15L/image.png","4階":"https://i.ibb.co/fdmkt15L/image.png","5階":"https://i.ibb.co/v6VX8q4m/5.png","7階":"https://i.ibb.co/6JHRtT9Q/7.png","6階":"https://i.ibb.co/XfJmrwdL/6.png","8階":"https://i.ibb.co/DDcbFgM2/8.png","アクセサリー":"https://i.ibb.co/RkHNT05g/image.png","おもちゃ":"https://i.ibb.co/GNkqnbb/image.png","かばん":"https://i.ibb.co/svmZJsxp/image.png","スポーツ用品":"https://i.ibb.co/Lhbdy8m5/image.png","デパート":"https://i.ibb.co/qFYqr5Yq/image.png","レストラン":"https://i.ibb.co/NgSgp0sP/image.png","屋上":"https://i.ibb.co/6c23nrFT/image.png","化粧品":"https://i.ibb.co/j9RC5YR6/image.png","家具":"https://i.ibb.co/TqB13h7R/image.png","眼鏡":"https://i.ibb.co/XZyP9jmt/image.png","靴":"https://i.ibb.co/rPvJNLQ/image.png","催し物会場":"https://i.ibb.co/h1DxxrkT/image.png","子ども服":"https://i.ibb.co/1tK6yrRV/image.png","時計":"https://i.ibb.co/0p44k8cp/image.png","食器":"https://i.ibb.co/RTvvdzTp/image.png","食品":"https://i.ibb.co/1JmwFVKV/image.png","紳士服":"https://i.ibb.co/21bZ7JKT/image.png","地下1階":"https://i.ibb.co/fVtQCH3w/1.png","地下2階":"https://i.ibb.co/kVV8yyp8/2.png","駐車場":"https://i.ibb.co/5hHf0YBw/image.png","電化製品":"https://i.ibb.co/zhPJ4DVS/image.png","婦人服":"https://i.ibb.co/FbtrwBNg/image.png","文房具":"https://i.ibb.co/6c66gRX8/image.png","本":"https://i.ibb.co/29Fs6wf/image.png","遊園地":"https://i.ibb.co/B2BtKkcq/image.png","旅行用品":"https://i.ibb.co/Ldfz2WqJ/image.png"};
+"1階":"https://iili.io/C5ejPbp.png","2階":"https://iili.io/C5ej6eR.png","3階":"https://iili.io/C5ejszN.png","4階":"https://iili.io/C5ejUga.png","４階":"https://iili.io/C5ejUga.png","5階":"https://iili.io/C5ejQst.png","6階":"https://iili.io/C5ejD1n.png","7階":"https://iili.io/C5ew9e4.png","8階":"https://iili.io/C5ewHml.png","アクセサリー":"https://iili.io/C5ew3L7.png","おもちゃ":"https://iili.io/C5ew2XS.png","かばん":"https://iili.io/C5ewqru.png","スポーツ用品":"https://iili.io/C5ewCdb.png","デパート":"https://iili.io/C5ewxmQ.png","レストラン":"https://iili.io/C5ewIIV.png","屋上":"https://iili.io/C5ewThB.png","化粧品":"https://iili.io/C5ewRB1.png","家具":"https://iili.io/C5ew7rg.png","眼鏡":"https://iili.io/C5ewa2a.png","靴":"https://iili.io/C5ewcYJ.png","催し物会場":"https://iili.io/C5ewlkv.png","子ども服":"https://iili.io/C5ewEIp.png","時計":"https://iili.io/C5ewGhN.png","食器":"https://iili.io/C5ewMQI.png","食品":"https://iili.io/C5eww2s.png","紳士服":"https://iili.io/C5ewNYG.png","地下1階":"https://iili.io/C5ewOvf.png","地下2階":"https://iili.io/C5ewvTl.png","駐車場":"https://iili.io/C5ewrG9.png","電化製品":"https://iili.io/C5ew44e.png","婦人服":"https://iili.io/C5ewiYb.png","文房具":"https://iili.io/C5ewsvj.png","本":"https://iili.io/C5ewLyx.png","遊園地":"https://iili.io/C5ewtjV.png","旅行用品":"https://iili.io/C5ewpG1.png"};
 const floors=[
  {floor:"屋上",reading:"おくじょう",id:"Atap",desc:"tempat hiburan",items:["遊園地"]},
  {floor:"8階",reading:"はっかい",id:"Lantai 8",desc:"restoran, tempat pertunjukan",items:["レストラン","催し物会場"]},
@@ -535,12 +1095,12 @@ const nameData={
 "デパート":{reading:"デパート",id:"toserba"},"屋上":{reading:"おくじょう",id:"atap"},"遊園地":{reading:"ゆうえんち",id:"tempat hiburan"},"レストラン":{reading:"レストラン",id:"restoran"},"催し物会場":{reading:"もよおしものかいじょう",id:"tempat pertunjukan"},"時計":{reading:"とけい",id:"jam"},"眼鏡":{reading:"めがね",id:"kaca mata"},"スポーツ用品":{reading:"スポーツようひん",id:"peralatan olahraga"},"旅行用品":{reading:"りょこうようひん",id:"peralatan bepergian"},"子ども服":{reading:"こどもふく",id:"pakaian anak"},"おもちゃ":{reading:"おもちゃ",id:"mainan"},"本":{reading:"ほん",id:"buku"},"文房具":{reading:"ぶんぼうぐ",id:"alat tulis"},"家具":{reading:"かぐ",id:"perlengkapan rumah"},"食器":{reading:"しょっき",id:"alat makan"},"電化製品":{reading:"でんかせいひん",id:"barang elektronik"},"紳士服":{reading:"しんしふく",id:"pakaian pria"},"婦人服":{reading:"ふじんふく",id:"pakaian wanita"},"靴":{reading:"くつ",id:"sepatu"},"かばん":{reading:"かばん",id:"tas"},"アクセサリー":{reading:"アクセサリー",id:"perhiasan"},"化粧品":{reading:"けしょうひん",id:"kosmetik"},"食品":{reading:"しょくひん",id:"makanan"},"駐車場":{reading:"ちゅうしゃじょう",id:"tempat parkir"}
 };
 const vocab=[{jp:"デパート",floor:"全体",...nameData["デパート"]},...floors.map(f=>({jp:f.floor,reading:f.reading,id:f.id+" / "+f.desc,floor:"階"})),...floors.flatMap(f=>f.items.map(jp=>({jp,reading:nameData[jp].reading,id:nameData[jp].id,floor:f.floor})) )];
-const texts={id:{badge:"🏬 Kuis Interaktif Jepang",title:"Toserba",homeLead:"Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Isi nama pengguna melalui popup terlebih dahulu, lalu mulai kuis.",infoMaterial:"Materi",infoTime:"Waktu",infoMode:"Mode",timePerQuestion:"30 detik/soal",modeName:"Gambar + Lantai",startQuiz:"Mulai Kuis",studyMaterial:"Lihat Materi",changeUser:"Ganti Nama Pengguna",adminResult:"Halaman Hasil Admin",counterHint:"Pilih jawaban yang paling tepat.",seconds:"detik",floorHint:"Klik baris lantai untuk melihat isinya.",homeButton:"Beranda",nextButton:"Lanjut",fullMaterial:"📚 Materi Lengkap",vocabTitle:"Kosakata",studyLead:"Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata. Klik gambar untuk melihat ukuran penuh.",floorMap:"Peta Lantai",vocabTab:"Kosakata",resultBadge:"🏆 Hasil Kuis",resultTitle:"Skor Kamu",correctLabel:"Benar",wrongLabel:"Salah",totalLabel:"Total",scoreLabel:"Nilai",timeLabel:"Waktu",reviewTab:"Tinjauan Jawaban",historyTab:"Riwayat",rankingTab:"Peringkat",questionHeader:"Soal",yourAnswerHeader:"Jawaban Kamu",correctAnswerHeader:"Jawaban Benar",statusHeader:"Keterangan",groupHeader:"Grup",categoryHeader:"Kategori",scoreHeader2:"Nilai",timeHeader:"Waktu",dateHeader:"Tanggal",correctHeader:"Benar",retryButton:"Ulangi Kuis",studyAgain:"Belajar Lagi",loginTitle:"Masuk Peserta",loginDesc:"Isi nama peserta dan pilih grup. Khusus admin, gunakan username <strong>admin404</strong> dan masukkan password.",usernameLabel:"Nama Pengguna",passwordLabel:"Password Admin",groupPrompt:"Pilih grup sebelum mulai kuis.",saveButton:"Simpan",savePdfButton:"Simpan sebagai PDF",modeImage:"Mode Gambar",modeFloor:"Mode Lantai",modeMeaning:"Mode Arti",selectAnswer:"Pilih jawaban yang paling tepat.",correct:"Benar",wrong:"Salah",emptyHistory:"Belum ada riwayat.",loading:"Memuat data...",adminMsg:"Admin dapat langsung melihat riwayat dan peringkat tanpa mengerjakan kuis.",needUser:"Nama Pengguna wajib diisi.",needGroup:"Pilih grup terlebih dahulu.",wrongPass:"Password Admin salah.",excellent:"すばらしい! Kamu sudah sangat paham materi toserba.",good:"Bagus! Tinggal ulangi beberapa materi yang masih keliru.",retry:"Ayo belajar lagi lewat menu materi, lalu coba ulangi kuis."},ja:{badge:"🏬 日本語インタラクティブクイズ",title:"デパート / 百貨店",homeLead:"デパートの階、場所、売り場を学びます。先にポップアップでユーザー名を入力してから始めましょう。",infoMaterial:"教材",infoTime:"時間",infoMode:"モード",timePerQuestion:"1問30秒",modeName:"画像＋階",startQuiz:"クイズ開始",studyMaterial:"教材を見る",changeUser:"ユーザー変更",adminResult:"管理者結果ページ",counterHint:"正しい答えを選んでください。",seconds:"秒",floorHint:"階をクリックして内容を見ます。",homeButton:"ホーム",nextButton:"次へ",fullMaterial:"📚 全教材",vocabTitle:"語彙",studyLead:"階別、または全語彙で学習できます。画像をクリックすると大きく表示されます。",floorMap:"フロア案内",vocabTab:"語彙",resultBadge:"🏆 結果",resultTitle:"あなたのスコア",correctLabel:"正解",wrongLabel:"不正解",totalLabel:"合計",scoreLabel:"点数",timeLabel:"時間",reviewTab:"答えの確認",historyTab:"履歴",rankingTab:"ランキング",questionHeader:"問題",yourAnswerHeader:"あなたの答え",correctAnswerHeader:"正解",statusHeader:"状態",groupHeader:"グループ",categoryHeader:"カテゴリー",scoreHeader2:"点数",timeHeader:"時間",dateHeader:"日付",correctHeader:"正解",retryButton:"もう一度",studyAgain:"もう一度学ぶ",loginTitle:"参加者ログイン",loginDesc:"名前を入力してグループを選んでください。管理者は username <strong>admin404</strong> とパスワードを入力します。",usernameLabel:"ユーザー名",passwordLabel:"管理者パスワード",groupPrompt:"クイズ開始前にグループを選んでください。",saveButton:"保存",savePdfButton:"PDFとして保存",modeImage:"画像モード",modeFloor:"階モード",modeMeaning:"意味モード",selectAnswer:"正しい答えを選んでください。",correct:"正解",wrong:"不正解",emptyHistory:"履歴はまだありません。",loading:"読み込み中...",adminMsg:"管理者はクイズをせずに履歴とランキングを確認できます。",needUser:"ユーザー名を入力してください。",needGroup:"グループを選んでください。",wrongPass:"管理者パスワードが違います。",excellent:"すばらしい！デパートの語彙をよく理解しています。",good:"よくできました！間違えたところを復習しましょう。",retry:"教材を見て、もう一度挑戦しましょう。"}};
+const texts={id:{badge:"🏬 Kuis Interaktif Jepang",title:"Toserba",homeLead:"Belajar lantai, tempat, dan barang di toserba seperti pada gambar materi. Klik Mulai Kuis untuk latihan, atau Lihat Materi untuk belajar terlebih dahulu.",infoMaterial:"Materi",infoTime:"Waktu",infoMode:"Mode",timePerQuestion:"30 detik/soal",modeName:"Gambar + Lantai",startQuiz:"Mulai Kuis",studyMaterial:"Lihat Materi",changeUser:"Ganti Nama Pengguna",usernameButton:"Isi Username",usernameNote:"Klik tombol di atas untuk mengisi username melalui popup.",cancelButton:"Batal",adminResult:"Halaman Hasil Admin",counterHint:"Pilih jawaban yang paling tepat.",seconds:"detik",floorHint:"Klik baris lantai untuk melihat isinya.",homeButton:"Beranda",nextButton:"Lanjut",fullMaterial:"📚 Materi Lengkap",vocabTitle:"Kosakata",studyLead:"Gunakan tab untuk belajar berdasarkan lantai atau semua kosakata. Klik gambar untuk melihat ukuran penuh.",floorMap:"Peta Lantai",vocabTab:"Kosakata",resultBadge:"🏆 Hasil Kuis",resultTitle:"Skor Kamu",correctLabel:"Benar",wrongLabel:"Salah",totalLabel:"Total",scoreLabel:"Nilai",timeLabel:"Waktu",reviewTab:"Tinjauan Jawaban",historyTab:"Riwayat",rankingTab:"Peringkat",questionHeader:"Soal",yourAnswerHeader:"Jawaban Kamu",correctAnswerHeader:"Jawaban Benar",statusHeader:"Keterangan",groupHeader:"Grup",categoryHeader:"Kategori",scoreHeader2:"Nilai",timeHeader:"Waktu",dateHeader:"Tanggal",correctHeader:"Benar",retryButton:"Ulangi Kuis",studyAgain:"Belajar Lagi",loginTitle:"Masuk peserta",loginDesc:"Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.",usernameLabel:"Username",passwordLabel:"Password admin",groupPrompt:"Pilih kategori sebelum mulai kuis.",saveButton:"Simpan",savePdfButton:"Simpan sebagai PDF",modeImage:"Mode Gambar",modeFloor:"Mode Lantai",modeMeaning:"Mode Arti",selectAnswer:"Pilih jawaban yang paling tepat.",correct:"Benar",wrong:"Salah",emptyHistory:"Belum ada riwayat.",loading:"Memuat data...",adminMsg:"Admin dapat langsung melihat riwayat dan peringkat tanpa mengerjakan kuis.",needUser:"Nama Pengguna wajib diisi.",needGroup:"Pilih grup terlebih dahulu.",wrongPass:"Password Admin salah.",excellent:"すばらしい! Kamu sudah sangat paham materi toserba.",good:"Bagus! Tinggal ulangi beberapa materi yang masih keliru.",retry:"Ayo belajar lagi lewat menu materi, lalu coba ulangi kuis."},ja:{badge:"🏬 日本語インタラクティブクイズ",title:"デパート / 百貨店",homeLead:"デパートの階、場所、売り場を学びます。クイズを開始するか、先に教材を見て学びましょう。",infoMaterial:"教材",infoTime:"時間",infoMode:"モード",timePerQuestion:"1問30秒",modeName:"画像＋階",startQuiz:"クイズ開始",studyMaterial:"教材を見る",changeUser:"ユーザー変更",adminResult:"管理者結果ページ",counterHint:"正しい答えを選んでください。",seconds:"秒",floorHint:"階をクリックして内容を見ます。",homeButton:"ホーム",nextButton:"次へ",fullMaterial:"📚 全教材",vocabTitle:"語彙",studyLead:"階別、または全語彙で学習できます。画像をクリックすると大きく表示されます。",floorMap:"フロア案内",vocabTab:"語彙",resultBadge:"🏆 結果",resultTitle:"あなたのスコア",correctLabel:"正解",wrongLabel:"不正解",totalLabel:"合計",scoreLabel:"点数",timeLabel:"時間",reviewTab:"答えの確認",historyTab:"履歴",rankingTab:"ランキング",questionHeader:"問題",yourAnswerHeader:"あなたの答え",correctAnswerHeader:"正解",statusHeader:"状態",groupHeader:"グループ",categoryHeader:"カテゴリー",scoreHeader2:"点数",timeHeader:"時間",dateHeader:"日付",correctHeader:"正解",retryButton:"もう一度",studyAgain:"もう一度学ぶ",loginTitle:"参加者ログイン",loginDesc:"先にユーザー名を入力してください。通常ユーザーはここでグループを選び、<strong>admin404</strong> はパスワード入力が必要です。",usernameLabel:"ユーザー名",passwordLabel:"管理者パスワード",groupPrompt:"クイズ開始前にカテゴリーを選んでください。",saveButton:"保存",savePdfButton:"PDFとして保存",modeImage:"画像モード",modeFloor:"階モード",modeMeaning:"意味モード",selectAnswer:"正しい答えを選んでください。",correct:"正解",wrong:"不正解",emptyHistory:"履歴はまだありません。",loading:"読み込み中...",adminMsg:"管理者はクイズをせずに履歴とランキングを確認できます。",needUser:"ユーザー名を入力してください。",needGroup:"グループを選んでください。",wrongPass:"管理者パスワードが違います。",excellent:"すばらしい！デパートの語彙をよく理解しています。",good:"よくできました！間違えたところを復習しましょう。",retry:"教材を見て、もう一度挑戦しましょう。"}};
 function t(k){return texts[lang][k]||texts.id[k]||k} function esc(s){return String(s??"").replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[m]))} function shuffle(a){return [...a].sort(()=>Math.random()-.5)} function titleId(s){s=String(s??"").trim(); if(lang==="ja"||!s)return s; return s.split(/(,\s*)/).map(part=>part.match(/,/) ? part : part.charAt(0).toUpperCase()+part.slice(1)).join("");} function fmt(sec){sec=Math.round(sec);if(lang==='ja')return sec<60?sec+"秒":Math.floor(sec/60)+"分 "+(sec%60)+"秒";return sec<60?sec+" detik":Math.floor(sec/60)+" menit "+(sec%60)+" detik"}
 function applyLang(){document.documentElement.lang=lang==="ja"?"ja":"id"; $$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n)); $$('[data-i18n-html]').forEach(el=>el.innerHTML=t(el.dataset.i18nHtml)); $$('.language-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang)); $('#cardCount').textContent=lang==='ja'?`${vocab.length}語`:`${vocab.length} kartu`; updateLoginSummary(); renderFloors(); renderVocab(); if($('#result').classList.contains('active')) refreshResultsText();}
 function show(id){$$('.screen').forEach(s=>s.classList.remove('active')); $('#'+id).classList.add('active'); $('#app').classList.toggle('top',id!=='home');}
 function imgTag(key, cls=''){return `<img class="${cls}" src="${IMG[key]||''}" alt="${esc(key)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`}
-function openImage(src,cap){ if(!src)return; $('#imageModalImg').src=src; $('#imageModalImg').alt=cap||'Gambar'; $('#imageModalCaption').textContent=cap||''; $('#imageModal').classList.add('show'); $('#imageModal').setAttribute('aria-hidden','false');}
+function openImage(src,cap){ if(!src)return; $('#imageModalImg').src=src; $('#imageModalImg').alt=cap||'Gambar'; if($('#imageModalTitle')) $('#imageModalTitle').textContent=cap||'Lihat Gambar'; $('#imageModalCaption').textContent=cap||''; $('#imageModal').classList.add('show'); $('#imageModal').setAttribute('aria-hidden','false');}
 function closeImage(){ $('#imageModal').classList.remove('show'); $('#imageModal').setAttribute('aria-hidden','true'); $('#imageModalImg').removeAttribute('src');}
 function floorRow(f,active=false){return `<div class="floor-row ${active?'active':''}" data-floor="${esc(f.floor)}"><div class="floor-no">${esc(f.floor)}</div><div><div class="floor-name">${esc(f.items.join('・')||f.id)}</div><div class="floor-sub">${esc(f.reading)} ・ ${esc(lang==='ja'?f.desc:titleId(f.desc))}</div></div><div class="floor-imgs">${f.items.slice(0,3).map(x=>imgTag(x)).join('')}</div></div>`}
 function renderFloors(){ if($('#miniBuilding')) $('#miniBuilding').innerHTML=floors.map(f=>`<div class="mini-floor"><b>${esc(f.floor)}</b><span>${esc(lang==='ja'?f.items.join('・'):titleId(f.desc))}</span>${imgTag(f.floor)}</div>`).join(''); $('#floorList').innerHTML=floors.map(f=>floorRow(f)).join(''); $('#studyFloorList').innerHTML=floors.map((f,i)=>floorRow(f,i===0)).join(''); renderFloorDetail(floors[0]);}
@@ -548,12 +1108,12 @@ function renderFloorDetail(f){ $('#detailFloor').textContent=`${f.floor}（${f.r
 function card(v){return `<div class="vocab-card">${imgTag(v.jp)}<h3>${esc(v.jp)}</h3><div class="reading">${esc(v.reading||'')}</div><p>${esc(titleId(v.id))}</p><span class="tag">${esc(v.floor)}</span></div>`}
 function renderVocab(){ $('#vocabGrid').innerHTML=vocab.map(card).join(''); }
 function buildQuestions(){let qs=[]; vocab.forEach(v=>{if(v.jp==='デパート')return; qs.push({type:'image',answer:v.jp,prompt:v.id,item:v}); qs.push({type:'meaning',answer:v.id,prompt:v.jp,item:v});}); floors.forEach(f=>qs.push({type:'floor',answer:f.floor,prompt:f.items.join('・'),item:f})); return shuffle(qs).slice(0,20);}
-function startQuiz(){ if(!currentUsername){openLogin();return} if(!isAdmin&&!currentGroup){openLogin();return} questions=buildQuestions();idx=0;score=0;review=[];show('quiz');renderQuestion();}
+function startQuiz(){ if(!currentUsername){openLogin();return;} currentGroup=currentGroup||"Umum"; isAdmin=false; questions=buildQuestions();idx=0;score=0;review=[];show('quiz');renderQuestion();}
 function startTimer(){clearInterval(timer);remain=TIMER_SECONDS;startTime=Date.now();updateTimer();timer=setInterval(()=>{remain--;updateTimer(); if(remain<=0) selectOption(null,true)},1000)}
 function updateTimer(){ $('#timeText').textContent=Math.max(0,remain); const p=Math.max(0,remain/TIMER_SECONDS*100); $('#timerFill').style.width=p+'%'; $('#timerFill').classList.toggle('warn',remain<=10)}
 function renderQuestion(){locked=false;selectedAnswer=null;$('#nextBtn').disabled=true;$('#feedback').textContent=''; const q=questions[idx]; $('#counterText').textContent=(lang==='ja'?`問題 ${idx+1}/${questions.length}`:`Soal ${idx+1}/${questions.length}`); let html='', answers=[]; if(q.type==='image'){ $('#modePill').textContent=t('modeImage'); html=`${imgTag(q.answer,'q-img')}<div class="q-sub">${esc(titleId(q.prompt))}</div>`; answers=shuffle([q.answer,...shuffle(vocab.filter(v=>v.jp!==q.answer)).slice(0,3).map(v=>v.jp)]); } else if(q.type==='meaning'){ $('#modePill').textContent=t('modeMeaning'); html=`<div><div class="q-title">${esc(q.prompt)}</div><div class="q-reading">${esc(q.item.reading)}</div><div class="q-sub">${t('selectAnswer')}</div></div>`; answers=shuffle([q.answer,...shuffle(vocab.filter(v=>v.id!==q.answer)).slice(0,3).map(v=>v.id)]); } else { $('#modePill').textContent=t('modeFloor'); html=`<div><div class="q-title">${esc(q.prompt)}</div><div class="q-sub">${lang==='ja'?'この売り場は何階ですか。':'Barang/tempat ini ada di lantai berapa?'}</div></div>`; answers=shuffle([q.answer,...shuffle(floors.filter(f=>f.floor!==q.answer)).slice(0,3).map(f=>f.floor)]); } $('#questionContent').innerHTML=html; $('#options').innerHTML=answers.map(a=>`<button class="option" data-answer="${esc(a)}">${esc(titleId(a))}</button>`).join(''); startTimer();}
 function selectOption(ans,timeout=false){ if(locked)return; locked=true; clearInterval(timer); const q=questions[idx]; const ok=ans===q.answer; if(ok)score++; const used=Math.min(TIMER_SECONDS,Math.max(1,Math.round((Date.now()-startTime)/1000))); review.push({q:q.type==='image'?q.prompt:q.prompt,user:ans||'-',correct:q.answer,ok,time:timeout?TIMER_SECONDS:used,reading:q.item?.reading||''}); $$('.option').forEach(b=>{b.disabled=true; if(b.dataset.answer===q.answer)b.classList.add('correct'); if(ans&&b.dataset.answer===ans&&!ok)b.classList.add('wrong');}); $('#feedback').textContent=ok?t('correct'):t('wrong'); $('#feedback').style.color=ok?'#168763':'#c8465c'; $('#nextBtn').disabled=false;}
-async function finish(){clearInterval(timer); const total=questions.length, pct=Math.round(score/total*100), totalTime=review.reduce((s,r)=>s+r.time,0); $('#scoreCircle').style.setProperty('--deg',(pct*3.6)+'deg'); $('#scoreText').textContent=pct+'%'; $('#rightStat').textContent=score; $('#wrongStat').textContent=total-score; $('#totalStat').textContent=total; $('#pointStat').textContent=pct; $('#timeStat').textContent=fmt(totalTime); $('#participantName').textContent=isAdmin?`Admin: ${currentUsername}`:`Nama Pengguna: ${currentUsername} | Grup: ${currentGroup}`; $('#resultMessage').textContent=pct>=85?t('excellent'):pct>=65?t('good'):t('retry'); renderReview(); if(!isAdmin){await saveResult({name:currentUsername,group:currentGroup,category:FIREBASE_CATEGORY,total,correct:score,wrong:total-score,percent:pct,totalTime,date:new Date().toLocaleString(lang==='ja'?'ja-JP':'id-ID')});} await renderHistoryRanking(); activateResultTab('review'); $('#savePdfBtn').classList.toggle('hidden',!isAdmin); show('result');}
+async function finish(){clearInterval(timer); const total=questions.length, pct=Math.round(score/total*100), totalTime=review.reduce((s,r)=>s+r.time,0); $('#scoreCircle').style.setProperty('--deg',(pct*3.6)+'deg'); $('#scoreText').textContent=pct+'%'; $('#rightStat').textContent=score; $('#wrongStat').textContent=total-score; $('#totalStat').textContent=total; $('#pointStat').textContent=pct; $('#timeStat').textContent=fmt(totalTime); $('#participantName').textContent=""; $('#resultMessage').textContent=pct>=85?t('excellent'):pct>=65?t('good'):t('retry'); renderReview(); if(!isAdmin){await saveResult({name:currentUsername,group:currentGroup,category:FIREBASE_CATEGORY,total,correct:score,wrong:total-score,percent:pct,totalTime,date:new Date().toLocaleString(lang==='ja'?'ja-JP':'id-ID')});} await renderHistoryRanking(); activateResultTab('review'); $('#savePdfBtn').classList.toggle('hidden',!isAdmin); show('result');}
 function renderReview(){ $('#reviewBody').innerHTML=review.length?review.map((r,i)=>`<tr><td>${i+1}</td><td class="jp">${esc(r.q)}${r.reading?`<div class="q-reading">${esc(r.reading)}</div>`:''}</td><td class="jp">${esc(r.user)}</td><td class="jp">${esc(r.correct)}</td><td><span class="pill ${r.ok?'ok':'no'}">${r.ok?t('correct'):t('wrong')}</span></td></tr>`).join(''):`<tr><td colspan="5"><div class="empty-state">${isAdmin?t('adminMsg'):'-'}</div></td></tr>`; }
 function normalize(x){return {name:x.name||'Peserta',group:x.group||'-',category:x.category||FIREBASE_CATEGORY,total:+x.total||0,correct:+x.correct||0,wrong:+x.wrong||0,percent:+x.percent||0,totalTime:+x.totalTime||0,date:x.date||'-'}}
 function localResults(){try{return JSON.parse(localStorage.getItem(LOCAL_KEY))||[]}catch{return[]}}
@@ -570,16 +1130,33 @@ async function saveAdminPdf(){if(!isAdmin)return;const win=window.open('','_blan
 async function showAdminResults(){ review=[]; $('#scoreCircle').style.setProperty('--deg','0deg'); $('#scoreText').textContent='0%'; ['rightStat','wrongStat','totalStat','pointStat'].forEach(id=>$('#'+id).textContent='0'); $('#timeStat').textContent=fmt(0); $('#participantName').textContent=`Admin: ${currentUsername||ADMIN_USERNAME}`; $('#resultMessage').textContent=t('adminMsg'); renderReview(); await renderHistoryRanking(); activateResultTab('history'); $('#savePdfBtn').classList.remove('hidden'); show('result');}
 function refreshResultsText(){renderReview(); renderHistoryRanking();}
 function activateResultTab(tab){$$('[data-result-tab]').forEach(b=>b.classList.toggle('active',b.dataset.resultTab===tab)); $('#reviewPanel').classList.toggle('hidden',tab!=='review'); $('#historyPanel').classList.toggle('hidden',tab!=='history'); $('#rankingPanel').classList.toggle('hidden',tab!=='ranking');}
-function updateLoginSummary(){ if(!currentUsername)return; $('#loginSummary').textContent=isAdmin?`Admin: ${currentUsername}`:`Nama Pengguna: ${currentUsername} | ${t('groupHeader')}: ${currentGroup}`; $('#adminActions').classList.toggle('show',isAdmin);}
-function updateLoginUI(){const name=$('#usernameInput').value.trim(); const admin=name===ADMIN_USERNAME; $('#passwordBox').classList.toggle('hidden',!admin); $('#groupBox').classList.toggle('hidden',!name||admin); if(admin){currentGroup=''; $$('.group-btn').forEach(b=>b.classList.remove('active'));}}
-function openLogin(){ $('#loginModal').classList.add('show'); $('#loginModal').setAttribute('aria-hidden','false'); $('#app').classList.remove('unlocked'); $('#usernameInput').focus();}
-function submitLogin(){const name=$('#usernameInput').value.trim();const pass=$('#passwordInput').value; $('#loginError').textContent=''; if(!name){$('#loginError').textContent=t('needUser');return} if(name===ADMIN_USERNAME&&pass!==ADMIN_PASSWORD){$('#loginError').textContent=t('wrongPass');return} if(name!==ADMIN_USERNAME&&!currentGroup){$('#loginError').textContent=t('needGroup');return} currentUsername=name; isAdmin=name===ADMIN_USERNAME; $('#loginModal').classList.remove('show'); $('#loginModal').setAttribute('aria-hidden','true'); $('#app').classList.add('unlocked'); updateLoginSummary(); show('home');}
+function updateLoginSummary(){
+  if(!currentUsername){
+    $('#loginSummary')?.classList.remove('show');
+    $('#usernameBox')?.classList.remove('is-complete');
+    $('#startQuizBtn')?.classList.remove('show');
+    $('#studyBtn')?.classList.remove('show');
+    $('#adminActions')?.classList.remove('show');
+    return;
+  }
+  $('#loginSummary').textContent=isAdmin?`Admin: ${currentUsername}`:`Nama Pengguna: ${currentUsername} | ${t('groupHeader')}: ${currentGroup}`;
+  $('#loginSummary').classList.add('show');
+  $('#usernameBox')?.classList.add('is-complete');
+  $('#startQuizBtn')?.classList.add('show');
+  $('#studyBtn')?.classList.add('show');
+  $('#startQuizBtn').disabled=false;
+  $('#adminActions').classList.toggle('show',isAdmin);
+}
+function updateLoginUI(){const name=$('#usernameInput').value.trim(); const admin=name===ADMIN_USERNAME; $('#passwordBox').classList.toggle('hidden',!admin); $('#passwordBox').hidden=!admin; $('#groupBox').classList.toggle('hidden',!name||admin); $('#groupBox').hidden=!name||admin; if(admin){currentGroup=''; $$('.group-btn').forEach(b=>b.classList.remove('active'));}}
+function openLogin(){ $('#loginModal').classList.add('show'); $('#loginModal').setAttribute('aria-hidden','false'); $('#app').classList.add('unlocked'); setTimeout(()=>$('#usernameInput').focus(),50);}
+function closeLogin(){ $('#loginModal').classList.remove('show'); $('#loginModal').setAttribute('aria-hidden','true'); $('#app').classList.add('unlocked'); }
+function submitLogin(){const name=$('#usernameInput').value.trim();const pass=$('#passwordInput').value; $('#loginError').textContent=''; if(!name){$('#loginError').textContent=t('needUser');return} if(name===ADMIN_USERNAME&&pass!==ADMIN_PASSWORD){$('#loginError').textContent=t('wrongPass');return} if(name!==ADMIN_USERNAME&&!currentGroup){$('#loginError').textContent=t('needGroup');return} currentUsername=name; isAdmin=name===ADMIN_USERNAME; closeLogin(); updateLoginSummary(); show('home');}
 
-$('#loginSubmitBtn').onclick=submitLogin; $('#usernameInput').addEventListener('input',updateLoginUI); $('#usernameInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitLogin()}); $('#passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitLogin()}); $$('.group-btn').forEach(b=>b.onclick=()=>{currentGroup=b.dataset.group; $$('.group-btn').forEach(x=>x.classList.toggle('active',x===b)); $('#loginError').textContent='';});
-$$('.language-btn').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;applyLang()}); $('#startQuizBtn').onclick=startQuiz; $('#studyStartBtn').onclick=startQuiz; $('#studyBtn').onclick=()=>show('study'); $('#homeBtn2').onclick=()=>show('home'); $('#backHomeBtn').onclick=()=>{clearInterval(timer);show('home')}; $('#resultHomeBtn').onclick=()=>show('home'); $('#reviewStudyBtn').onclick=()=>show('study'); $('#retryBtn').onclick=startQuiz; $('#openLoginAgainBtn').onclick=openLogin; $('#adminResultBtn').onclick=showAdminResults; $('#savePdfBtn').onclick=saveAdminPdf; $('#nextBtn').onclick=()=>{idx++; idx>=questions.length?finish():renderQuestion()}; document.addEventListener('click',e=>{const opt=e.target.closest('.option'); if(opt)selectOption(opt.dataset.answer,false); const img=e.target.closest('img'); if(img&&($('#app').contains(img)||$('#imageModal').contains(img))&&!$('#imageModal').contains(img)) openImage(img.currentSrc||img.src,img.alt); const row=e.target.closest('#studyFloorList .floor-row'); if(row){const f=floors.find(x=>x.floor===row.dataset.floor); if(f){renderFloorDetail(f); setTimeout(()=>{const target=document.getElementById('floorDetailCard'); if(target) target.scrollIntoView({behavior:'smooth',block:'start'});},80);}}}); $('#closeImageModal').onclick=closeImage; $('#imageModal').addEventListener('click',e=>{if(e.target.id==='imageModal')closeImage()}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeImage();}); $$('.tab[data-tab]').forEach(tbtn=>tbtn.onclick=()=>{$$('.tab[data-tab]').forEach(x=>x.classList.remove('active'));tbtn.classList.add('active');$('#studyFloors').classList.toggle('hidden',tbtn.dataset.tab!=='floors');$('#studyVocab').classList.toggle('hidden',tbtn.dataset.tab!=='vocab');}); $$('[data-result-tab]').forEach(b=>b.onclick=()=>activateResultTab(b.dataset.resultTab));
+$('#loginSubmitBtn').onclick=submitLogin; $('#openLoginBtn').onclick=openLogin; $('#closeLoginModal').onclick=closeLogin; $('#cancelLoginBtn').onclick=closeLogin; $('#usernameInput').addEventListener('input',updateLoginUI); $('#usernameInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitLogin()}); $('#passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitLogin()}); $$('.group-btn').forEach(b=>b.onclick=()=>{currentGroup=b.dataset.group; $$('.group-btn').forEach(x=>x.classList.toggle('active',x===b)); $('#loginError').textContent='';});
+$$('.language-btn').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;applyLang()}); $('#startQuizBtn').onclick=startQuiz; $('#studyStartBtn').onclick=startQuiz; $('#studyBtn').onclick=()=>{if(!currentUsername){openLogin();return;} show('study');}; $('#homeBtn2').onclick=()=>show('home'); $('#backHomeBtn').onclick=()=>{clearInterval(timer);show('home')}; $('#resultHomeBtn').onclick=()=>show('home'); $('#reviewStudyBtn').onclick=()=>show('study'); $('#retryBtn').onclick=startQuiz; $('#openLoginAgainBtn').onclick=openLogin; $('#adminResultBtn').onclick=showAdminResults; $('#savePdfBtn').onclick=saveAdminPdf; $('#nextBtn').onclick=()=>{idx++; idx>=questions.length?finish():renderQuestion()}; document.addEventListener('click',e=>{const opt=e.target.closest('.option'); if(opt)selectOption(opt.dataset.answer,false); const img=e.target.closest('img'); if(img&&($('#app').contains(img)||$('#imageModal').contains(img))&&!$('#imageModal').contains(img)) openImage(img.currentSrc||img.src,img.alt); const row=e.target.closest('#studyFloorList .floor-row'); if(row){const f=floors.find(x=>x.floor===row.dataset.floor); if(f){renderFloorDetail(f); setTimeout(()=>{const target=document.getElementById('floorDetailCard'); if(target) target.scrollIntoView({behavior:'smooth',block:'start'});},80);}}}); $('#closeImageModal').onclick=closeImage; $('#imageModal').addEventListener('click',e=>{if(e.target.id==='imageModal')closeImage()}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeImage();}); $$('.tab[data-tab]').forEach(tbtn=>tbtn.onclick=()=>{$$('.tab[data-tab]').forEach(x=>x.classList.remove('active'));tbtn.classList.add('active');$('#studyFloors').classList.toggle('hidden',tbtn.dataset.tab!=='floors');$('#studyVocab').classList.toggle('hidden',tbtn.dataset.tab!=='vocab');}); $$('[data-result-tab]').forEach(b=>b.onclick=()=>activateResultTab(b.dataset.resultTab));
 // Perlindungan dasar: blok klik kanan dan shortcut inspeksi umum. Ini tidak bisa 100% mencegah developer tools, tetapi mengurangi akses biasa.
 document.addEventListener('contextmenu',e=>e.preventDefault()); document.addEventListener('keydown',e=>{const k=e.key.toLowerCase(); if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(k))||(e.ctrlKey&&['u','s'].includes(k))){e.preventDefault(); e.stopPropagation();}});
-renderFloors(); renderVocab(); applyLang(); openLogin();
+renderFloors(); renderVocab(); applyLang(); show('home');
 </script>
 </body>
 </html>
