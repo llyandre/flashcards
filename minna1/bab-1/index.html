@@ -4056,6 +4056,480 @@
       }
     }
 
+
+    /* ===== FINAL OVERRIDE: Lihat Materi, popup gambar, dan mobile responsive ===== */
+    #startBtn:not(.show),
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startBtn.show,
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen .username-box.is-complete {
+      display: none !important;
+    }
+
+    #startScreen .hero-actions {
+      width: min(540px, 100%) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      justify-content: center !important;
+      align-items: stretch !important;
+    }
+
+    #startScreen #startBtn.show,
+    #startScreen #materialBtn.show {
+      min-height: var(--button-h) !important;
+      border-radius: 18px !important;
+    }
+
+    .material-modal {
+      overflow: hidden !important;
+    }
+
+    .material-modal-card {
+      width: min(1040px, calc(100vw - 28px)) !important;
+      max-height: calc(100svh - 28px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+
+    .material-modal-head {
+      flex: 0 0 auto !important;
+    }
+
+    .material-list {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      overflow: auto !important;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+      align-content: start !important;
+      padding: 4px !important;
+    }
+
+    .material-item {
+      min-width: 0 !important;
+      grid-template-columns: 118px minmax(0, 1fr) !important;
+      align-items: center !important;
+      overflow: hidden !important;
+    }
+
+    .material-thumb {
+      width: 118px !important;
+      height: 118px !important;
+      padding: 8px !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+      background: #fff !important;
+    }
+
+    .material-thumb img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+    }
+
+    .material-info {
+      min-width: 0 !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    .image-modal {
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+    }
+
+    #imageModal .image-modal-card {
+      width: min(980px, calc(100vw - 24px)) !important;
+      max-height: calc(100svh - 24px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      padding: 12px !important;
+    }
+
+    #closeImageModal.image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 5 !important;
+      flex: 0 0 auto !important;
+      align-self: flex-end !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin: 0 0 8px auto !important;
+      background: rgba(124, 111, 246, 0.14) !important;
+    }
+
+    #imageModal .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      width: 100% !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: auto !important;
+      padding: 8px !important;
+      background: #fff !important;
+      border-radius: 18px !important;
+    }
+
+    #imageModal .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 160px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+      margin: auto !important;
+      background: #fff !important;
+    }
+
+    #imageModal .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 8px 4px 0 !important;
+      max-height: 44px !important;
+      overflow: auto !important;
+      text-align: center !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show,
+      #startScreen #resultPageBtn:not([hidden]) {
+        width: 100% !important;
+        justify-self: stretch !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal-card {
+        width: calc(100vw - 18px) !important;
+        max-height: calc(100svh - 18px) !important;
+        padding: 14px !important;
+        border-radius: 22px !important;
+      }
+
+      .material-list {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        padding: 2px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 100px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 9px !important;
+      }
+
+      .material-thumb {
+        width: 100px !important;
+        height: 100px !important;
+        padding: 7px !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 14px) !important;
+        max-height: calc(100svh - 14px) !important;
+        padding: 10px !important;
+      }
+
+      #imageModal .image-modal-body img {
+        max-height: calc(100svh - 150px) !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .material-modal-card {
+        width: calc(100vw - 12px) !important;
+        max-height: calc(100svh - 12px) !important;
+        padding: 12px !important;
+      }
+
+      .material-modal-head {
+        padding-right: 48px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 88px minmax(0, 1fr) !important;
+      }
+
+      .material-thumb {
+        width: 88px !important;
+        height: 88px !important;
+        padding: 6px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(15px, 4.8vw, 19px) !important;
+      }
+
+      .material-reading,
+      .material-info p {
+        font-size: 12px !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 10px) !important;
+        max-height: calc(100svh - 10px) !important;
+        padding: 8px !important;
+      }
+
+      #closeImageModal.image-modal-close {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+      }
+
+      #imageModal .image-modal-body img {
+        max-height: calc(100svh - 142px) !important;
+      }
+    }
+
+
+
+    /* ===== KOREKSI FINAL: Lihat Materi tampil lengkap dan bisa discroll penuh ===== */
+    .material-modal.show {
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: center !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)) !important;
+    }
+
+    .material-modal-card {
+      width: min(1040px, calc(100vw - 24px)) !important;
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      margin: auto 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: visible !important;
+    }
+
+    .material-modal-head {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 6 !important;
+      flex: 0 0 auto !important;
+      margin: calc(clamp(18px, 2.8vw, 28px) * -1) calc(clamp(18px, 2.8vw, 28px) * -1) 10px !important;
+      padding: clamp(18px, 2.8vw, 28px) calc(clamp(18px, 2.8vw, 28px) + 54px) 12px clamp(18px, 2.8vw, 28px) !important;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      border-bottom: 1px solid rgba(124, 111, 246, 0.12) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+    }
+
+    #closeMaterialModal.material-close {
+      position: sticky !important;
+      top: 12px !important;
+      z-index: 8 !important;
+      align-self: flex-end !important;
+      flex: 0 0 auto !important;
+      margin: 0 0 -54px auto !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      display: grid !important;
+      place-items: center !important;
+      background: rgba(124, 111, 246, 0.14) !important;
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.16) !important;
+    }
+
+    .material-list {
+      flex: 0 0 auto !important;
+      height: auto !important;
+      max-height: none !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+      align-content: start !important;
+      gap: 12px !important;
+      padding: 4px 2px 2px !important;
+    }
+
+    .material-item {
+      min-width: 0 !important;
+      min-height: 136px !important;
+      display: grid !important;
+      grid-template-columns: 112px minmax(0, 1fr) !important;
+      gap: 12px !important;
+      align-items: center !important;
+      overflow: hidden !important;
+    }
+
+    .material-thumb {
+      width: 112px !important;
+      height: 112px !important;
+      padding: 8px !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+      background: #fff !important;
+    }
+
+    .material-thumb img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+    }
+
+    @media (max-width: 720px) {
+      .material-modal.show {
+        display: block !important;
+        padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)) !important;
+      }
+
+      .material-modal-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 12px !important;
+        border-radius: 22px !important;
+      }
+
+      .material-modal-head {
+        margin: -12px -12px 10px !important;
+        padding: 16px 58px 12px 14px !important;
+        border-radius: 22px 22px 0 0 !important;
+      }
+
+      #closeMaterialModal.material-close {
+        top: 10px !important;
+        margin-bottom: -52px !important;
+        margin-right: 0 !important;
+        width: 44px !important;
+        height: 44px !important;
+      }
+
+      .material-list {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        overflow: visible !important;
+      }
+
+      .material-item {
+        min-height: 118px !important;
+        grid-template-columns: 96px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 9px !important;
+      }
+
+      .material-thumb {
+        width: 96px !important;
+        height: 96px !important;
+        padding: 7px !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .material-item {
+        min-height: 106px !important;
+        grid-template-columns: 84px minmax(0, 1fr) !important;
+        gap: 9px !important;
+      }
+
+      .material-thumb {
+        width: 84px !important;
+        height: 84px !important;
+        padding: 6px !important;
+      }
+    }
+
+
+
+    /* ===== KOREKSI: header Lihat Materi tidak ikut berpindah saat scroll ===== */
+    #materialModal.material-modal.show {
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: center !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    #materialModal .material-modal-card {
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    #materialModal .material-modal-head {
+      position: static !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      z-index: auto !important;
+      flex: 0 0 auto !important;
+      margin: 0 0 12px 0 !important;
+      padding: 0 56px 0 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      border-bottom: 0 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    #materialModal #closeMaterialModal.material-close {
+      position: absolute !important;
+      top: 14px !important;
+      right: 14px !important;
+      z-index: 8 !important;
+      margin: 0 !important;
+      align-self: auto !important;
+      flex: 0 0 auto !important;
+    }
+
+    #materialModal .material-list {
+      overflow: visible !important;
+      height: auto !important;
+      max-height: none !important;
+      flex: 0 0 auto !important;
+    }
+
+    @media (max-width: 720px) {
+      #materialModal .material-modal-head {
+        margin: 0 0 12px 0 !important;
+        padding: 0 54px 0 0 !important;
+        border-radius: 0 !important;
+      }
+
+      #materialModal #closeMaterialModal.material-close {
+        top: 10px !important;
+        right: 10px !important;
+        margin: 0 !important;
+      }
+    }
 </style>
 </head>
 <body>
@@ -4382,331 +4856,331 @@
     "kanji": "",
     "kana": "わたし",
     "romaji": "watashi",
-    "gambar": "https://iili.io/C5wWVEv.png"
+    "gambar": "https://iili.io/C5S70LG.png"
   },
   {
     "indonesia": "Anda",
     "kanji": "",
     "kana": "あなた",
     "romaji": "anata",
-    "gambar": "https://iili.io/C5wWW4R.png"
+    "gambar": "https://iili.io/C5S7EBf.png"
   },
   {
     "indonesia": "orang itu",
     "kanji": "あの人",
     "kana": "あのひと",
     "romaji": "ano hito",
-    "gambar": "https://iili.io/C5wW1hg.png"
+    "gambar": "https://iili.io/C5S7cIn.png"
   },
   {
-    "indonesia": "orang itu, beliau. Bentuk sopan dari あの人.",
+    "indonesia": "beliau / bentuk sopan dari あの人",
     "kanji": "あの方",
     "kana": "あのかた",
     "romaji": "ano kata",
-    "gambar": "https://iili.io/C5wWMCJ.png"
+    "gambar": "https://iili.io/C5S7lXs.png"
   },
   {
-    "indonesia": "Sdr. ~, Bapak ~, Ibu ~. Akhiran untuk mengekspresikan kesopanan yang diletakkan di belakang nama orang.",
+    "indonesia": "Sdr. / Bapak / Ibu",
     "kanji": "",
-    "kana": "～さん",
+    "kana": "〜さん",
     "romaji": "-san",
-    "gambar": "https://iili.io/C5wWh2p.png"
+    "gambar": "https://iili.io/C5S7G14.png"
   },
   {
-    "indonesia": "Akhiran yang dipakai untuk anak laki-laki dan anak perempuan sebagai pengganti ～さん yang diletakkan di belakang nama anak.",
+    "indonesia": "panggilan untuk anak-anak",
     "kanji": "",
-    "kana": "～ちゃん",
+    "kana": "〜ちゃん",
     "romaji": "-chan",
-    "gambar": "https://iili.io/C5wWjYN.png"
+    "gambar": "https://iili.io/C5S7Mrl.png"
   },
   {
-    "indonesia": "orang ~. Akhiran yang menyatakan warga negara.",
-    "kanji": "～人",
-    "kana": "～じん",
+    "indonesia": "orang / warga negara",
+    "kanji": "〜人",
+    "kana": "〜じん",
     "romaji": "-jin",
-    "gambar": "https://iili.io/C5wWwvI.png",
+    "gambar": "https://iili.io/C5S7W22.png",
     "contoh": "アメリカ人（アメリカじん）= orang Amerika Serikat."
   },
   {
-    "indonesia": "guru, dosen. Tidak dipakai jika menyebutkan pekerjaan sendiri.",
+    "indonesia": "guru / dosen",
     "kanji": "先生",
     "kana": "せんせい",
     "romaji": "sensei",
-    "gambar": "https://iili.io/C5wWeTX.png"
+    "gambar": "https://iili.io/C5S7X7S.png"
   },
   {
-    "indonesia": "guru, dosen.",
+    "indonesia": "guru / dosen",
     "kanji": "教師",
     "kana": "きょうし",
     "romaji": "kyoushi",
-    "gambar": "https://iili.io/C5wWSCG.png"
+    "gambar": "https://iili.io/C5S7jp9.png"
   },
   {
-    "indonesia": "mahasiswa.",
+    "indonesia": "mahasiswa",
     "kanji": "学生",
     "kana": "がくせい",
     "romaji": "gakusei",
-    "gambar": "https://iili.io/C5wWUGf.png"
+    "gambar": "https://iili.io/C5S7Ohu.png"
   },
   {
-    "indonesia": "karyawan perusahaan.",
+    "indonesia": "karyawan perusahaan",
     "kanji": "会社員",
     "kana": "かいしゃいん",
     "romaji": "kaishain",
-    "gambar": "https://iili.io/C5wWg44.png"
+    "gambar": "https://iili.io/C5S7eLb.png"
   },
   {
-    "indonesia": "karyawan perusahaan. Dipakai bersama dengan nama perusahaan.",
+    "indonesia": "karyawan perusahaan",
     "kanji": "社員",
     "kana": "しゃいん",
     "romaji": "shain",
-    "gambar": "https://iili.io/C5wW43l.png",
+    "gambar": "https://iili.io/C5S7vBj.png",
     "contoh": "IMC の社員（IMC のしゃいん）= karyawan perusahaan IMC."
   },
   {
-    "indonesia": "pegawai bank.",
+    "indonesia": "pegawai bank",
     "kanji": "銀行員",
     "kana": "ぎんこういん",
     "romaji": "ginkouin",
-    "gambar": "https://iili.io/C5wWiy7.png"
+    "gambar": "https://iili.io/C5S7SrQ.png"
   },
   {
-    "indonesia": "dokter.",
+    "indonesia": "dokter",
     "kanji": "医者",
     "kana": "いしゃ",
     "romaji": "isha",
-    "gambar": "https://iili.io/C5wW6a2.png"
+    "gambar": "https://iili.io/C5S7g2V.png"
   },
   {
-    "indonesia": "peneliti.",
+    "indonesia": "peneliti",
     "kanji": "研究者",
     "kana": "けんきゅうしゃ",
     "romaji": "kenkyuusha",
-    "gambar": "https://iili.io/C5wWQje.png"
+    "gambar": "https://iili.io/C5S76p1.png"
   },
   {
-    "indonesia": "universitas.",
+    "indonesia": "universitas",
     "kanji": "大学",
     "kana": "だいがく",
     "romaji": "daigaku",
-    "gambar": "https://iili.io/C5wWDCb.png"
+    "gambar": "https://iili.io/C5S7shg.png"
   },
   {
-    "indonesia": "rumah sakit.",
+    "indonesia": "rumah sakit",
     "kanji": "病院",
     "kana": "びょういん",
     "romaji": "byouin",
-    "gambar": "https://iili.io/C5wWm6x.png"
+    "gambar": "https://iili.io/C5S7ZCJ.png"
   },
   {
     "indonesia": "siapa",
     "kanji": "誰",
     "kana": "だれ",
     "romaji": "dare",
-    "gambar": "https://iili.io/C5wWy3Q.png"
+    "gambar": "https://iili.io/C5S7m2p.png"
   },
   {
-    "indonesia": "siapa. Bentuk sopan dari だれ.",
+    "indonesia": "siapa / bentuk sopan dari 誰",
     "kanji": "",
     "kana": "どなた",
     "romaji": "donata",
-    "gambar": "https://iili.io/C5wXH8B.png"
+    "gambar": "https://iili.io/C5S7yvI.png"
   },
   {
-    "indonesia": "~ tahun. Akhiran untuk menyatakan umur.",
-    "kanji": "～歳",
-    "kana": "～さい",
+    "indonesia": "umur / tahun",
+    "kanji": "〜歳",
+    "kana": "〜さい",
     "romaji": "-sai",
-    "gambar": "https://iili.io/C5wX2u1.png"
+    "gambar": "https://iili.io/C5SY9pt.png"
   },
   {
     "indonesia": "umur berapa",
     "kanji": "何歳",
     "kana": "なんさい",
     "romaji": "nansai",
-    "gambar": "https://iili.io/C5wX3wF.png"
+    "gambar": "https://iili.io/C5SYFCG.png"
   },
   {
-    "indonesia": "umur berapa. Bentuk sopan dari なんさい.",
+    "indonesia": "umur berapa / bentuk sopan dari 何歳",
     "kanji": "",
     "kana": "おいくつ",
     "romaji": "oikutsu",
-    "gambar": "https://iili.io/C5wXqMJ.png"
+    "gambar": "https://iili.io/C5SYKGf.png"
   },
   {
-    "indonesia": "ya.",
+    "indonesia": "ya",
     "kanji": "",
     "kana": "はい",
     "romaji": "hai",
-    "gambar": "https://iili.io/C5wXB6v.png"
+    "gambar": "https://iili.io/C5SYf44.png"
   },
   {
-    "indonesia": "tidak, bukan.",
+    "indonesia": "tidak / bukan",
     "kanji": "",
     "kana": "いいえ",
     "romaji": "iie",
-    "gambar": "https://iili.io/C5wXnFR.png"
+    "gambar": "https://iili.io/C5SYCa2.png"
   },
   {
-    "indonesia": "Perkenalkan. Ucapan salam pada waktu pertama kali berkenalan.",
+    "indonesia": "perkenalkan",
     "kanji": "初めまして",
     "kana": "はじめまして",
     "romaji": "hajimemashite",
-    "gambar": "https://iili.io/C5wXx8N.png"
+    "gambar": "https://iili.io/C5SYnvS.png"
   },
   {
-    "indonesia": "datang dari ~, berasal dari ~.",
-    "kanji": "～から来ました",
-    "kana": "～からきました",
+    "indonesia": "datang dari / berasal dari",
+    "kanji": "〜から来ました",
+    "kana": "〜からきました",
     "romaji": "-kara kimashita",
-    "gambar": "https://iili.io/C5wXI9I.png"
+    "gambar": "https://iili.io/C5SYoy7.png"
   },
   {
-    "indonesia": "Salam kenal. Ucapan terakhir untuk perkenalan diri.",
+    "indonesia": "salam kenal",
     "kanji": "どうぞよろしくお願いします",
     "kana": "どうぞよろしくおねがいします",
     "romaji": "douzo yoroshiku onegaishimasu",
-    "gambar": "https://iili.io/C5wXuwX.png"
+    "gambar": "https://iili.io/C5SYzu9.png"
   },
   {
-    "indonesia": "permisi, maaf. Digunakan ketika bertanya tentang hal yang pribadi seperti nama, alamat, dan sebagainya.",
+    "indonesia": "permisi / maaf",
     "kanji": "失礼ですが",
     "kana": "しつれいですが",
     "romaji": "shitsurei desu ga",
-    "gambar": "https://iili.io/C5wXAtn.png"
+    "gambar": "https://iili.io/C5SYTZu.png"
   },
   {
-    "indonesia": "Siapa namanya?",
+    "indonesia": "siapa namanya?",
     "kanji": "お名前は？",
     "kana": "おなまえは？",
     "romaji": "onamae wa?",
-    "gambar": "https://iili.io/C5wX7MG.png"
+    "gambar": "https://iili.io/C5SYRGj.png"
   },
   {
-    "indonesia": "Ini adalah Bapak, Ibu, atau Sdr. ~.",
-    "kanji": "こちらは～さんです",
-    "kana": "こちらは～さんです",
+    "indonesia": "ini Bapak/Ibu/Sdr. ~",
+    "kanji": "こちらは〜さんです",
+    "kana": "こちらは〜さんです",
     "romaji": "kochira wa -san desu",
-    "gambar": "https://iili.io/C5wXYPf.png"
+    "gambar": "https://iili.io/C5SY56x.png"
   },
   {
-    "indonesia": "Amerika Serikat.",
+    "indonesia": "Amerika Serikat",
     "kanji": "",
     "kana": "アメリカ",
     "romaji": "Amerika",
-    "gambar": "https://iili.io/C5wXcF4.png"
+    "gambar": "https://iili.io/C5SYaaV.png"
   },
   {
-    "indonesia": "Inggris.",
+    "indonesia": "Inggris",
     "kanji": "",
     "kana": "イギリス",
     "romaji": "Igirisu",
-    "gambar": "https://iili.io/C5wXlcl.png"
+    "gambar": "https://iili.io/C5SYc8B.png"
   },
   {
-    "indonesia": "India.",
+    "indonesia": "India",
     "kanji": "",
     "kana": "インド",
     "romaji": "Indo",
-    "gambar": "https://iili.io/C5wXE9S.png"
+    "gambar": "https://iili.io/C5SYlyP.png"
   },
   {
-    "indonesia": "Indonesia.",
+    "indonesia": "Indonesia",
     "kanji": "",
     "kana": "インドネシア",
     "romaji": "Indoneshia",
-    "gambar": "https://iili.io/C5wXGA7.png"
+    "gambar": "https://iili.io/C5SYEwF.png"
   },
   {
-    "indonesia": "Korea Selatan.",
+    "indonesia": "Korea Selatan",
     "kanji": "韓国",
     "kana": "かんこく",
     "romaji": "Kankoku",
-    "gambar": "https://iili.io/C5wXMN9.png"
+    "gambar": "https://iili.io/C5SYGZg.png"
   },
   {
-    "indonesia": "Thailand.",
+    "indonesia": "Thailand",
     "kanji": "",
     "kana": "タイ",
     "romaji": "Tai",
-    "gambar": "https://iili.io/C5wXVte.png"
+    "gambar": "https://iili.io/C5SYVna.png"
   },
   {
-    "indonesia": "Cina.",
+    "indonesia": "Cina",
     "kanji": "中国",
     "kana": "ちゅうごく",
     "romaji": "Chuugoku",
-    "gambar": "https://iili.io/C5wXhMb.png"
+    "gambar": "https://iili.io/C5SYX6v.png"
   },
   {
-    "indonesia": "Jerman.",
+    "indonesia": "Jerman",
     "kanji": "",
     "kana": "ドイツ",
     "romaji": "Doitsu",
-    "gambar": "https://iili.io/C5wXNKx.png"
+    "gambar": "https://iili.io/C5SYjFR.png"
   },
   {
-    "indonesia": "Jepang.",
+    "indonesia": "Jepang",
     "kanji": "日本",
     "kana": "にほん",
     "romaji": "Nihon",
-    "gambar": "https://iili.io/C5wXjPj.png"
+    "gambar": "https://iili.io/C5SY8tn.png"
   },
   {
-    "indonesia": "Brasil.",
+    "indonesia": "Brasil",
     "kanji": "",
     "kana": "ブラジル",
     "romaji": "Burajiru",
-    "gambar": "https://iili.io/C5wXeSV.png"
+    "gambar": "https://iili.io/C5SYe9I.png"
   },
   {
-    "indonesia": "IMC. Perusahaan fiksi.",
+    "indonesia": "perusahaan fiksi",
     "kanji": "",
     "kana": "IMC",
     "romaji": "ai emu shii",
-    "gambar": "https://iili.io/C5wXrog.png"
+    "gambar": "https://iili.io/C5SYUns.png"
   },
   {
-    "indonesia": "Power Denki. Perusahaan fiksi.",
+    "indonesia": "perusahaan fiksi",
     "kanji": "パワー電気",
     "kana": "パワーでんき",
     "romaji": "Pawaa Denki",
-    "gambar": "https://iili.io/C5wXiKv.png"
+    "gambar": "https://iili.io/C5SYPcl.png"
   },
   {
-    "indonesia": "Brazil Air. Perusahaan fiksi.",
+    "indonesia": "perusahaan fiksi",
     "kanji": "",
     "kana": "ブラジルエアー",
     "romaji": "Burajiru Eaa",
-    "gambar": "https://iili.io/C5wXLSp.png"
+    "gambar": "https://iili.io/C5SYL9S.png"
   },
   {
-    "indonesia": "AKC. Organisasi fiksi.",
+    "indonesia": "organisasi fiksi",
     "kanji": "",
     "kana": "AKC",
     "romaji": "ee kee shii",
-    "gambar": "https://iili.io/C5wXtRI.png"
+    "gambar": "https://iili.io/C5SYQA7.png"
   },
   {
-    "indonesia": "Rumah Sakit Kobe. Rumah sakit fiksi.",
+    "indonesia": "rumah sakit fiksi",
     "kanji": "神戸病院",
     "kana": "こうべびょういん",
     "romaji": "Koube Byouin",
-    "gambar": "https://iili.io/C5wXbDX.png"
+    "gambar": "https://iili.io/C5SYZN9.png"
   },
   {
-    "indonesia": "Universitas Sakura. Universitas fiksi.",
+    "indonesia": "universitas fiksi",
     "kanji": "さくら大学",
     "kana": "さくらだいがく",
     "romaji": "Sakura Daigaku",
-    "gambar": "https://iili.io/C5wXyVs.png"
+    "gambar": "https://iili.io/C5SaHcQ.png"
   },
   {
-    "indonesia": "Universitas Fuji. Universitas fiksi.",
+    "indonesia": "universitas fiksi",
     "kanji": "富士大学",
     "kana": "ふじだいがく",
     "romaji": "Fuji Daigaku",
-    "gambar": "https://iili.io/C5wh2Ul.png"
+    "gambar": "https://iili.io/C5Sa2HB.png"
   }
 ];
 
@@ -5379,7 +5853,7 @@
         const imageUrl = String(item.gambar || "").trim();
         const imageLabel = t("materialImageLabel").replace("{word}", title);
         const imageContent = /^https?:\/\//i.test(imageUrl)
-          ? `<img src="${escapeHTML(imageUrl)}" alt="${escapeHTML(title)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />`
+          ? `<img src="${escapeHTML(imageUrl)}" alt="${escapeHTML(title)}" loading="eager" decoding="async" referrerpolicy="no-referrer" />`
           : `<span aria-hidden="true">🎴</span>`;
 
         return `
@@ -5404,6 +5878,8 @@
       if (!materialModal) return;
 
       renderMaterialList();
+      if (materialList) materialList.scrollTop = 0;
+      materialModal.scrollTop = 0;
       materialModal.classList.add("show");
       materialModal.setAttribute("aria-hidden", "false");
       closeMaterialModal?.focus({ preventScroll: true });
@@ -6293,7 +6769,254 @@
     }
 
 
-  </style>
+  
+    /* ===== FINAL OVERRIDE: Lihat Materi, popup gambar, dan mobile responsive ===== */
+    #startBtn:not(.show),
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startBtn.show,
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen .username-box.is-complete {
+      display: none !important;
+    }
+
+    #startScreen .hero-actions {
+      width: min(540px, 100%) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      justify-content: center !important;
+      align-items: stretch !important;
+    }
+
+    #startScreen #startBtn.show,
+    #startScreen #materialBtn.show {
+      min-height: var(--button-h) !important;
+      border-radius: 18px !important;
+    }
+
+    .material-modal {
+      overflow: hidden !important;
+    }
+
+    .material-modal-card {
+      width: min(1040px, calc(100vw - 28px)) !important;
+      max-height: calc(100svh - 28px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+
+    .material-modal-head {
+      flex: 0 0 auto !important;
+    }
+
+    .material-list {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      overflow: auto !important;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+      align-content: start !important;
+      padding: 4px !important;
+    }
+
+    .material-item {
+      min-width: 0 !important;
+      grid-template-columns: 118px minmax(0, 1fr) !important;
+      align-items: center !important;
+      overflow: hidden !important;
+    }
+
+    .material-thumb {
+      width: 118px !important;
+      height: 118px !important;
+      padding: 8px !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+      background: #fff !important;
+    }
+
+    .material-thumb img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+    }
+
+    .material-info {
+      min-width: 0 !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    .image-modal {
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+    }
+
+    #imageModal .image-modal-card {
+      width: min(980px, calc(100vw - 24px)) !important;
+      max-height: calc(100svh - 24px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      padding: 12px !important;
+    }
+
+    #closeImageModal.image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 5 !important;
+      flex: 0 0 auto !important;
+      align-self: flex-end !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin: 0 0 8px auto !important;
+      background: rgba(124, 111, 246, 0.14) !important;
+    }
+
+    #imageModal .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      width: 100% !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: auto !important;
+      padding: 8px !important;
+      background: #fff !important;
+      border-radius: 18px !important;
+    }
+
+    #imageModal .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 160px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+      margin: auto !important;
+      background: #fff !important;
+    }
+
+    #imageModal .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 8px 4px 0 !important;
+      max-height: 44px !important;
+      overflow: auto !important;
+      text-align: center !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show,
+      #startScreen #resultPageBtn:not([hidden]) {
+        width: 100% !important;
+        justify-self: stretch !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal-card {
+        width: calc(100vw - 18px) !important;
+        max-height: calc(100svh - 18px) !important;
+        padding: 14px !important;
+        border-radius: 22px !important;
+      }
+
+      .material-list {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        padding: 2px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 100px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 9px !important;
+      }
+
+      .material-thumb {
+        width: 100px !important;
+        height: 100px !important;
+        padding: 7px !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 14px) !important;
+        max-height: calc(100svh - 14px) !important;
+        padding: 10px !important;
+      }
+
+      #imageModal .image-modal-body img {
+        max-height: calc(100svh - 150px) !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .material-modal-card {
+        width: calc(100vw - 12px) !important;
+        max-height: calc(100svh - 12px) !important;
+        padding: 12px !important;
+      }
+
+      .material-modal-head {
+        padding-right: 48px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 88px minmax(0, 1fr) !important;
+      }
+
+      .material-thumb {
+        width: 88px !important;
+        height: 88px !important;
+        padding: 6px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(15px, 4.8vw, 19px) !important;
+      }
+
+      .material-reading,
+      .material-info p {
+        font-size: 12px !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 10px) !important;
+        max-height: calc(100svh - 10px) !important;
+        padding: 8px !important;
+      }
+
+      #closeImageModal.image-modal-close {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+      }
+
+      #imageModal .image-modal-body img {
+        max-height: calc(100svh - 142px) !important;
+      }
+    }
+
+</style>
         </head>
         <body>
           <h1>${escapeHTML(t("adminPdfTitle"))}</h1>
@@ -6704,7 +7427,254 @@
     }
 
 
-  </style>
+  
+    /* ===== FINAL OVERRIDE: Lihat Materi, popup gambar, dan mobile responsive ===== */
+    #startBtn:not(.show),
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startBtn.show,
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen .username-box.is-complete {
+      display: none !important;
+    }
+
+    #startScreen .hero-actions {
+      width: min(540px, 100%) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      justify-content: center !important;
+      align-items: stretch !important;
+    }
+
+    #startScreen #startBtn.show,
+    #startScreen #materialBtn.show {
+      min-height: var(--button-h) !important;
+      border-radius: 18px !important;
+    }
+
+    .material-modal {
+      overflow: hidden !important;
+    }
+
+    .material-modal-card {
+      width: min(1040px, calc(100vw - 28px)) !important;
+      max-height: calc(100svh - 28px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+
+    .material-modal-head {
+      flex: 0 0 auto !important;
+    }
+
+    .material-list {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      overflow: auto !important;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+      align-content: start !important;
+      padding: 4px !important;
+    }
+
+    .material-item {
+      min-width: 0 !important;
+      grid-template-columns: 118px minmax(0, 1fr) !important;
+      align-items: center !important;
+      overflow: hidden !important;
+    }
+
+    .material-thumb {
+      width: 118px !important;
+      height: 118px !important;
+      padding: 8px !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+      background: #fff !important;
+    }
+
+    .material-thumb img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+    }
+
+    .material-info {
+      min-width: 0 !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    .image-modal {
+      display: grid !important;
+      place-items: center !important;
+      overflow: hidden !important;
+    }
+
+    #imageModal .image-modal-card {
+      width: min(980px, calc(100vw - 24px)) !important;
+      max-height: calc(100svh - 24px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      padding: 12px !important;
+    }
+
+    #closeImageModal.image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 5 !important;
+      flex: 0 0 auto !important;
+      align-self: flex-end !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin: 0 0 8px auto !important;
+      background: rgba(124, 111, 246, 0.14) !important;
+    }
+
+    #imageModal .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      width: 100% !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: auto !important;
+      padding: 8px !important;
+      background: #fff !important;
+      border-radius: 18px !important;
+    }
+
+    #imageModal .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 160px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+      margin: auto !important;
+      background: #fff !important;
+    }
+
+    #imageModal .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 8px 4px 0 !important;
+      max-height: 44px !important;
+      overflow: auto !important;
+      text-align: center !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show,
+      #startScreen #resultPageBtn:not([hidden]) {
+        width: 100% !important;
+        justify-self: stretch !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-modal-card {
+        width: calc(100vw - 18px) !important;
+        max-height: calc(100svh - 18px) !important;
+        padding: 14px !important;
+        border-radius: 22px !important;
+      }
+
+      .material-list {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        padding: 2px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 100px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 9px !important;
+      }
+
+      .material-thumb {
+        width: 100px !important;
+        height: 100px !important;
+        padding: 7px !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 14px) !important;
+        max-height: calc(100svh - 14px) !important;
+        padding: 10px !important;
+      }
+
+      #imageModal .image-modal-body img {
+        max-height: calc(100svh - 150px) !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .material-modal-card {
+        width: calc(100vw - 12px) !important;
+        max-height: calc(100svh - 12px) !important;
+        padding: 12px !important;
+      }
+
+      .material-modal-head {
+        padding-right: 48px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 88px minmax(0, 1fr) !important;
+      }
+
+      .material-thumb {
+        width: 88px !important;
+        height: 88px !important;
+        padding: 6px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(15px, 4.8vw, 19px) !important;
+      }
+
+      .material-reading,
+      .material-info p {
+        font-size: 12px !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 10px) !important;
+        max-height: calc(100svh - 10px) !important;
+        padding: 8px !important;
+      }
+
+      #closeImageModal.image-modal-close {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+      }
+
+      #imageModal .image-modal-body img {
+        max-height: calc(100svh - 142px) !important;
+      }
+    }
+
+</style>
         </head>
         <body>
           <h1>${escapeHTML(t("pdfTitle"))}</h1>
