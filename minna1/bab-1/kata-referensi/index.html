@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://i.postimg.cc" crossorigin />
   <link rel="dns-prefetch" href="https://i.ibb.co" />
   <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -480,19 +482,22 @@
 
     .group-box {
       width: min(540px, 100%);
-      margin: 0 auto 16px;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.56);
-      border: 1px solid rgba(124, 111, 246, 0.14);
-      box-shadow: var(--shadow-soft);
+      margin: 14px auto 16px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .login-modal-card .group-box {
       width: 100%;
-      margin: 0 0 14px;
-      background: rgba(255, 255, 255, 0.68);
-      box-shadow: var(--shadow-tiny);
+      margin: 14px 0 14px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .group-box[hidden] {
@@ -500,39 +505,42 @@
     }
 
     .group-box p {
-      margin: 0 0 10px;
-      color: #505a70;
+      margin: 0;
+      color: var(--heading);
       font-size: var(--fs-small);
-      font-weight: 650;
-      text-align: center;
+      font-weight: 900;
+      text-align: left;
+      line-height: 1.35;
     }
 
     .group-options {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .group-btn {
-      min-height: 42px;
-      padding: 9px 8px;
-      border: 1px solid rgba(124, 111, 246, 0.18);
-      border-radius: 14px;
-      color: #514a9e;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow-tiny);
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid rgba(124, 111, 246, 0.2);
+      border-radius: var(--radius-pill);
+      color: var(--primary-deep);
+      background: var(--primary-soft);
+      box-shadow: none;
       font-size: var(--fs-small);
-      font-weight: 700;
-      line-height: 1.2;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+      font-weight: 900;
+      line-height: 1.15;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .group-btn:hover,
     .group-btn.active {
       transform: translateY(-1px);
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #9d8dfd);
-      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.2);
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      border-color: transparent;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22);
     }
 
     .btn {
@@ -3817,6 +3825,368 @@
       }
     }
 
+  
+    /* ===== STYLE USERNAME DISESUAIKAN DENGAN HTML 2 ===== */
+    .group-box {
+      width: min(540px, 100%) !important;
+      margin: 14px auto 16px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left !important;
+    }
+
+    .login-modal-card .group-box {
+      width: 100% !important;
+      margin: 14px 0 14px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left !important;
+    }
+
+    .group-box[hidden] {
+      display: none !important;
+    }
+
+    .group-box p {
+      margin: 0 !important;
+      color: var(--heading) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      text-align: left !important;
+      line-height: 1.35 !important;
+    }
+
+    .group-options {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      margin-top: 10px !important;
+    }
+
+    .group-btn {
+      min-height: 44px !important;
+      padding: 10px 12px !important;
+      border: 1px solid rgba(124, 111, 246, 0.2) !important;
+      border-radius: var(--radius-pill) !important;
+      color: var(--primary-deep) !important;
+      background: var(--primary-soft) !important;
+      box-shadow: none !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      line-height: 1.15 !important;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease !important;
+    }
+
+    .group-btn:hover,
+    .group-btn.active {
+      transform: translateY(-1px) !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep)) !important;
+      border-color: transparent !important;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22) !important;
+    }
+
+    @media (max-width: 640px) {
+      .login-modal-card .group-box {
+        margin: 14px 0 14px !important;
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .group-btn {
+        min-height: 44px !important;
+        border-radius: var(--radius-pill) !important;
+      }
+    }
+
+    /* ===== Revisi akhir: tombol materi, popup gambar, dan mobile layout ===== */
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen #startBtn.show,
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      letter-spacing: 0;
+    }
+
+    #startScreen #materialBtn.show {
+      color: #514a9e;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.68));
+      border: 1px solid rgba(124, 111, 246, 0.24);
+      box-shadow: 0 14px 30px rgba(82, 73, 134, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.62);
+    }
+
+    .material-panel {
+      max-height: none;
+    }
+
+    .material-groups {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .material-grid {
+      width: 100%;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    .material-item {
+      min-width: 0;
+    }
+
+    .material-image {
+      overflow: hidden;
+    }
+
+    .material-image img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain !important;
+      object-position: center center !important;
+      cursor: zoom-in;
+    }
+
+    .image-modal {
+      padding: 14px !important;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw) !important;
+      height: min(92svh, 860px) !important;
+      max-height: 92svh !important;
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 64px 14px 14px !important;
+      overflow: hidden !important;
+      border-radius: 26px !important;
+      box-sizing: border-box !important;
+    }
+
+    .image-modal-close {
+      position: absolute !important;
+      top: 14px !important;
+      right: 14px !important;
+      z-index: 30 !important;
+      width: 46px !important;
+      height: 46px !important;
+      min-width: 46px !important;
+      min-height: 46px !important;
+      display: grid !important;
+      place-items: center !important;
+      border-radius: var(--radius-pill) !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      box-shadow: 0 10px 24px rgba(31, 41, 55, 0.18) !important;
+      color: #6557df !important;
+      font-size: 30px !important;
+      line-height: 1 !important;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      padding: 0 !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: auto !important;
+      overscroll-behavior: contain !important;
+      border-radius: 18px !important;
+      background: rgba(255, 255, 255, 0.42) !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+      margin: auto !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 10px 8px 0 !important;
+      padding: 0 54px 0 8px !important;
+      text-align: center !important;
+      line-height: 1.35 !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        justify-items: stretch !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px 12px !important;
+      }
+
+      .material-head {
+        margin-bottom: 16px !important;
+      }
+
+      .material-head h2 {
+        font-size: clamp(21px, 6.2vw, 28px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .material-head p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-group-card {
+        padding: 14px 10px !important;
+        border-radius: 20px !important;
+      }
+
+      .material-group-title {
+        align-items: flex-start !important;
+        font-size: clamp(17px, 5vw, 21px) !important;
+      }
+
+      .material-item {
+        width: 100% !important;
+        min-width: 0 !important;
+        display: grid !important;
+        grid-template-columns: 86px minmax(0, 1fr) !important;
+        gap: 12px !important;
+        align-items: center !important;
+        padding: 12px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-image {
+        width: 86px !important;
+        height: 86px !important;
+        min-width: 86px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-text {
+        min-width: 0 !important;
+        gap: 3px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(16px, 5vw, 20px) !important;
+        line-height: 1.25 !important;
+      }
+
+      .material-romaji,
+      .material-meaning {
+        font-size: 12.5px !important;
+      }
+
+      .material-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-actions .btn {
+        width: 100% !important;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-card {
+        width: 96vw !important;
+        height: 90svh !important;
+        max-height: 90svh !important;
+        padding: 62px 10px 12px !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-close {
+        top: 10px !important;
+        right: 10px !important;
+        width: 46px !important;
+        height: 46px !important;
+        min-width: 46px !important;
+        min-height: 46px !important;
+      }
+
+      .image-modal-caption {
+        padding: 0 54px 0 4px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .material-item {
+        grid-template-columns: 78px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+      }
+
+      .material-image {
+        width: 78px !important;
+        height: 78px !important;
+        min-width: 78px !important;
+      }
+
+      .material-id {
+        font-size: 11px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(15px, 5.2vw, 19px) !important;
+      }
+
+      .material-romaji,
+      .material-meaning {
+        font-size: 12px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3874,7 +4244,7 @@
 
           <div class="hero-actions">
             <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
-            <button id="materialBtn" class="btn secondary" type="button" data-i18n="materialButton">Lihat Materi</button>
+            <button id="materialBtn" class="btn secondary" type="button" disabled data-i18n="materialButton">Lihat Materi</button>
             <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
         </div>
@@ -4146,74 +4516,74 @@
     // Data array kosakata
     // =========================
     const vocabulary = [
-      { indonesia: "Amerika Serikat", kanji: "", kana: "アメリカ", romaji: "Amerika", gambar: "https://i.ibb.co/ym9mxfRW/image.png" },
-      { indonesia: "Inggris", kanji: "", kana: "イギリス", romaji: "Igirisu", gambar: "https://i.ibb.co/0RKNNf2Q/image.png" },
-      { indonesia: "Italia", kanji: "", kana: "イタリア", romaji: "Itaria", gambar: "https://i.ibb.co/G4V9wDkH/image.png" },
-      { indonesia: "Iran", kanji: "", kana: "イラン", romaji: "Iran", gambar: "https://i.ibb.co/tpbrLFgY/image.png" },
-      { indonesia: "India", kanji: "", kana: "インド", romaji: "Indo", gambar: "https://i.ibb.co/73HnR46/image.png" },
-      { indonesia: "Indonesia", kanji: "", kana: "インドネシア", romaji: "Indoneshia", gambar: "https://i.ibb.co/GfXpd6zw/image.png" },
-      { indonesia: "Mesir", kanji: "", kana: "エジプト", romaji: "Ejiputo", gambar: "https://i.ibb.co/PvCstZ6F/image.png" },
-      { indonesia: "Australia", kanji: "", kana: "オーストラリア", romaji: "Oosutoraria", gambar: "https://i.ibb.co/DHD3jp9G/image.png" },
-      { indonesia: "Kanada", kanji: "", kana: "カナダ", romaji: "Kanada", gambar: "https://i.ibb.co/svvD6fz0/image.png" },
-      { indonesia: "Korea Selatan", kanji: "韓国", kana: "かんこく", romaji: "Kankoku", gambar: "https://i.ibb.co/7dcsPq64/image.png" },
-      { indonesia: "Arab Saudi", kanji: "", kana: "サウジアラビア", romaji: "Sauji Arabia", gambar: "https://i.ibb.co/WvFFD8yh/image.png" },
-      { indonesia: "Singapura", kanji: "", kana: "シンガポール", romaji: "Shingapooru", gambar: "https://i.ibb.co/pr5c8rkz/image.png" },
-      { indonesia: "Spanyol", kanji: "", kana: "スペイン", romaji: "Supein", gambar: "https://i.ibb.co/8ns0Rqqm/image.png" },
-      { indonesia: "Thailand", kanji: "", kana: "タイ", romaji: "Tai", gambar: "https://i.ibb.co/5Wb5BHMd/image.png" },
-      { indonesia: "Cina", kanji: "中国", kana: "ちゅうごく", romaji: "Chuugoku", gambar: "https://i.ibb.co/R4yhH54v/image.png" },
-      { indonesia: "Jerman", kanji: "", kana: "ドイツ", romaji: "Doitsu", gambar: "https://i.ibb.co/3XgkJsp/image.png" },
-      { indonesia: "Jepang", kanji: "日本", kana: "にほん", romaji: "Nihon", gambar: "https://i.ibb.co/spdG5ZLX/image.png" },
-      { indonesia: "Perancis", kanji: "", kana: "フランス", romaji: "Furansu", gambar: "https://i.ibb.co/kgXHMHCq/image.png" },
-      { indonesia: "Filipina", kanji: "", kana: "フィリピン", romaji: "Firipin", gambar: "https://i.ibb.co/LXsWrqcw/image.png" },
-      { indonesia: "Brazil", kanji: "", kana: "ブラジル", romaji: "Burajiru", gambar: "https://i.ibb.co/N2TkTBsq/image.png" },
-      { indonesia: "Vietnam", kanji: "", kana: "ベトナム", romaji: "Betonamu", gambar: "https://i.ibb.co/B2MvmWZx/image.png" },
-      { indonesia: "Malaysia", kanji: "", kana: "マレーシア", romaji: "Mareeshia", gambar: "https://i.ibb.co/8gZk22Xz/image.png" },
-      { indonesia: "Meksiko", kanji: "", kana: "メキシコ", romaji: "Mekishiko", gambar: "https://i.ibb.co/xSkvzdF3/image.png" },
-      { indonesia: "Rusia", kanji: "", kana: "ロシア", romaji: "Roshia", gambar: "https://i.ibb.co/VRWsm7r/image.png" },
+      { indonesia: "Amerika Serikat", kanji: "", kana: "アメリカ", romaji: "Amerika", gambar: "https://iili.io/C5NuGPn.png" },
+      { indonesia: "Inggris", kanji: "", kana: "イギリス", romaji: "Igirisu", gambar: "https://iili.io/C5Nuj94.png" },
+      { indonesia: "Italia", kanji: "", kana: "イタリア", romaji: "Itaria", gambar: "https://iili.io/C5NuQoP.png" },
+      { indonesia: "Iran", kanji: "", kana: "イラン", romaji: "Iran", gambar: "https://iili.io/C5NubKg.png" },
+      { indonesia: "India", kanji: "", kana: "インド", romaji: "Indo", gambar: "https://iili.io/C5NA3xI.png" },
+      { indonesia: "Indonesia", kanji: "", kana: "インドネシア", romaji: "Indoneshia", gambar: "https://iili.io/C5NAFVt.png" },
+      { indonesia: "Mesir", kanji: "", kana: "エジプト", romaji: "Ejiputo", gambar: "https://iili.io/C5NAIb2.png" },
+      { indonesia: "Australia", kanji: "", kana: "オーストラリア", romaji: "Oosutoraria", gambar: "https://iili.io/C5NARs9.png" },
+      { indonesia: "Kanada", kanji: "", kana: "カナダ", romaji: "Kanada", gambar: "https://iili.io/C5NA05x.png" },
+      { indonesia: "Korea Selatan", kanji: "韓国", kana: "かんこく", romaji: "Kankoku", gambar: "https://iili.io/C5NRbyv.png" },
+      { indonesia: "Arab Saudi", kanji: "", kana: "サウジアラビア", romaji: "Sauji Arabia", gambar: "https://iili.io/C5NAMzB.png" },
+      { indonesia: "Singapura", kanji: "", kana: "シンガポール", romaji: "Shingapooru", gambar: "https://iili.io/C5NAwga.png" },
+      { indonesia: "Spanyol", kanji: "", kana: "スペイン", romaji: "Supein", gambar: "https://iili.io/C5NAkeR.png" },
+      { indonesia: "Thailand", kanji: "", kana: "タイ", romaji: "Tai", gambar: "https://iili.io/C5NA4qX.png" },
+      { indonesia: "Cina", kanji: "中国", kana: "ちゅうごく", romaji: "Chuugoku", gambar: "https://iili.io/C5N526X.png" },
+      { indonesia: "Jerman", kanji: "", kana: "ドイツ", romaji: "Doitsu", gambar: "https://iili.io/C5NAZml.png" },
+      { indonesia: "Jepang", kanji: "日本", kana: "にほん", romaji: "Nihon", gambar: "https://iili.io/C5N5Cu4.png" },
+      { indonesia: "Perancis", kanji: "", kana: "フランス", romaji: "Furansu", gambar: "https://iili.io/C5NRxrg.png" },
+      { indonesia: "Filipina", kanji: "", kana: "フィリピン", romaji: "Firipin", gambar: "https://iili.io/C5NRddb.png" },
+      { indonesia: "Brazil", kanji: "", kana: "ブラジル", romaji: "Burajiru", gambar: "https://iili.io/C5NRfIV.png" },
+      { indonesia: "Vietnam", kanji: "", kana: "ベトナム", romaji: "Betonamu", gambar: "https://iili.io/C5NRlEX.png" },
+      { indonesia: "Malaysia", kanji: "", kana: "マレーシア", romaji: "Mareeshia", gambar: "https://iili.io/C5NRNC7.png" },
+      { indonesia: "Meksiko", kanji: "", kana: "メキシコ", romaji: "Mekishiko", gambar: "https://iili.io/C5NRrTQ.png" },
+      { indonesia: "Rusia", kanji: "", kana: "ロシア", romaji: "Roshia", gambar: "https://iili.io/C5NRsG1.png" },
 
-      { indonesia: "Orang Amerika Serikat", kanji: "", kana: "アメリカ人", romaji: "Amerika-jin", gambar: "https://i.ibb.co/Z6S0SxKW/image.png" },
-      { indonesia: "Orang Inggris", kanji: "", kana: "イギリス人", romaji: "Igirisu-jin", gambar: "https://i.ibb.co/5gxQWKbM/image.png" },
-      { indonesia: "Orang Italia", kanji: "", kana: "イタリア人", romaji: "Itaria-jin", gambar: "https://i.ibb.co/vx9ZrTXQ/image.png" },
-      { indonesia: "Orang Iran", kanji: "", kana: "イラン人", romaji: "Iran-jin", gambar: "https://i.ibb.co/tP3WQtbG/image.png" },
-      { indonesia: "Orang India", kanji: "", kana: "インド人", romaji: "Indo-jin", gambar: "https://i.ibb.co/MDwp1DQ5/image.png" },
-      { indonesia: "Orang Indonesia", kanji: "", kana: "インドネシア人", romaji: "Indoneshia-jin", gambar: "https://i.ibb.co/DDX6Xmj8/image.png" },
-      { indonesia: "Orang Mesir", kanji: "", kana: "エジプト人", romaji: "Ejiputo-jin", gambar: "https://i.ibb.co/v6Xn0sVT/image.png" },
-      { indonesia: "Orang Australia", kanji: "", kana: "オーストラリア人", romaji: "Oosutoraria-jin", gambar: "https://i.ibb.co/Z1b9YML5/image.png" },
-      { indonesia: "Orang Kanada", kanji: "", kana: "カナダ人", romaji: "Kanada-jin", gambar: "https://i.ibb.co/zWhjqpp5/image.png" },
-      { indonesia: "Orang Korea Selatan", kanji: "韓国人", kana: "かんこくじん", romaji: "Kankoku-jin", gambar: "https://i.ibb.co/XkNJBrTt/image.png" },
-      { indonesia: "Orang Arab Saudi", kanji: "", kana: "サウジアラビア人", romaji: "Sauji Arabia-jin", gambar: "https://i.ibb.co/GQxJJtYW/image.png" },
-      { indonesia: "Orang Singapura", kanji: "", kana: "シンガポール人", romaji: "Shingapooru-jin", gambar: "https://i.ibb.co/RpwnQXM0/image.png" },
-      { indonesia: "Orang Spanyol", kanji: "", kana: "スペイン人", romaji: "Supein-jin", gambar: "https://i.ibb.co/dskhYD6j/image.png" },
-      { indonesia: "Orang Thailand", kanji: "", kana: "タイ人", romaji: "Tai-jin", gambar: "https://i.ibb.co/TxwvRDh6/image.png" },
-      { indonesia: "Orang Cina", kanji: "中国人", kana: "ちゅうごくじん", romaji: "Chuugoku-jin", gambar: "https://i.ibb.co/d4600BTz/image.png" },
-      { indonesia: "Orang Jerman", kanji: "", kana: "ドイツ人", romaji: "Doitsu-jin", gambar: "https://i.ibb.co/6RvvnTXb/image.png" },
-      { indonesia: "Orang Jepang", kanji: "日本人", kana: "にほんじん", romaji: "Nihon-jin", gambar: "https://i.ibb.co/pVYqKdh/image.png" },
-      { indonesia: "Orang Perancis", kanji: "", kana: "フランス人", romaji: "Furansu-jin", gambar: "https://i.ibb.co/HDfT5Pmh/image.png" },
-      { indonesia: "Orang Filipina", kanji: "", kana: "フィリピン人", romaji: "Firipin-jin", gambar: "https://i.ibb.co/tWDBMMm/image.png" },
-      { indonesia: "Orang Brazil", kanji: "", kana: "ブラジル人", romaji: "Burajiru-jin", gambar: "https://i.ibb.co/QjCSCbqV/image.png" },
-      { indonesia: "Orang Vietnam", kanji: "", kana: "ベトナム人", romaji: "Betonamu-jin", gambar: "https://i.ibb.co/JLTMZ7t/image.png" },
-      { indonesia: "Orang Malaysia", kanji: "", kana: "マレーシア人", romaji: "Mareeshia-jin", gambar: "https://i.ibb.co/jk2bnVQH/image.png" },
-      { indonesia: "Orang Meksiko", kanji: "", kana: "メキシコ人", romaji: "Mekishiko-jin", gambar: "https://i.ibb.co/hrWRRwT/image.png" },
-      { indonesia: "Orang Rusia", kanji: "", kana: "ロシア人", romaji: "Roshia-jin", gambar: "https://i.ibb.co/9HZvvM3q/image.png" },
+      { indonesia: "Orang Amerika Serikat", kanji: "", kana: "アメリカ人", romaji: "Amerika-jin", gambar: "https://iili.io/C5NuNN2.png" },
+      { indonesia: "Orang Inggris", kanji: "", kana: "イギリス人", romaji: "Igirisu-jin", gambar: "https://iili.io/C5NurSj.png" },
+      { indonesia: "Orang Italia", kanji: "", kana: "イタリア人", romaji: "Itaria-jin", gambar: "https://iili.io/C5NuiNV.png" },
+      { indonesia: "Orang Iran", kanji: "", kana: "イラン人", romaji: "Iran-jin", gambar: "https://iili.io/C5NAHRR.png" },
+      { indonesia: "Orang India", kanji: "", kana: "インド人", romaji: "Indo-jin", gambar: "https://iili.io/C5NAzOl.png" },
+      { indonesia: "Orang Indonesia", kanji: "", kana: "インドネシア人", romaji: "Indoneshia-jin", gambar: "https://iili.io/C5NACUG.png" },
+      { indonesia: "Orang Mesir", kanji: "", kana: "エジプト人", romaji: "Ejiputo-jin", gambar: "https://iili.io/C5NAuxS.png" },
+      { indonesia: "Orang Australia", kanji: "", kana: "オーストラリア人", romaji: "Oosutoraria-jin", gambar: "https://iili.io/C5NAY0u.png" },
+      { indonesia: "Orang Kanada", kanji: "", kana: "カナダ人", romaji: "Kanada-jin", gambar: "https://iili.io/C5NAVWP.png" },
+      { indonesia: "Orang Korea Selatan", kanji: "韓国人", kana: "かんこくじん", romaji: "Kankoku-jin", gambar: "https://iili.io/C5N5dGt.png" },
+      { indonesia: "Orang Arab Saudi", kanji: "", kana: "サウジアラビア人", romaji: "Sauji Arabia-jin", gambar: "https://iili.io/C5NAWs1.png" },
+      { indonesia: "Orang Singapura", kanji: "", kana: "シンガポール人", romaji: "Shingapooru-jin", gambar: "https://iili.io/C5NAe5v.png" },
+      { indonesia: "Orang Spanyol", kanji: "", kana: "スペイン人", romaji: "Supein-jin", gambar: "https://iili.io/C5NAUXI.png" },
+      { indonesia: "Orang Thailand", kanji: "", kana: "タイ人", romaji: "Tai-jin", gambar: "https://iili.io/C5NAL7f.png" },
+      { indonesia: "Orang Cina", kanji: "中国人", kana: "ちゅうごくじん", romaji: "Chuugoku-jin", gambar: "https://iili.io/C5N5f8G.png" },
+      { indonesia: "Orang Jerman", kanji: "", kana: "ドイツ人", romaji: "Doitsu-jin", gambar: "https://iili.io/C5NAmL7.png" },
+      { indonesia: "Orang Jepang", kanji: "日本人", kana: "にほんじん", romaji: "Nihon-jin", gambar: "https://iili.io/C5N5IM7.png" },
+      { indonesia: "Orang Perancis", kanji: "", kana: "フランス人", romaji: "Furansu-jin", gambar: "https://iili.io/C5NRYQI.png" },
+      { indonesia: "Orang Filipina", kanji: "", kana: "フィリピン人", romaji: "Firipin-jin", gambar: "https://iili.io/C5NRqhB.png" },
+      { indonesia: "Orang Brazil", kanji: "", kana: "ブラジル人", romaji: "Burajiru-jin", gambar: "https://iili.io/C5NRnB1.png" },
+      { indonesia: "Orang Vietnam", kanji: "", kana: "ベトナム人", romaji: "Betonamu-jin", gambar: "https://iili.io/C5NRE2s.png" },
+      { indonesia: "Orang Malaysia", kanji: "", kana: "マレーシア人", romaji: "Mareeshia-jin", gambar: "https://iili.io/C5NRUyx.png" },
+      { indonesia: "Orang Meksiko", kanji: "", kana: "メキシコ人", romaji: "Mekishiko-jin", gambar: "https://iili.io/C5NR4jV.png" },
+      { indonesia: "Orang Rusia", kanji: "", kana: "ロシア人", romaji: "Roshia-jin", gambar: "https://iili.io/C5NRtaa.png" },
 
-      { indonesia: "Bahasa Inggris", kanji: "英語", kana: "えいご", romaji: "Eigo", gambar: "https://i.ibb.co/9HCX43nG/image.png" },
-      { indonesia: "Bahasa Italia", kanji: "", kana: "イタリア語", romaji: "Itaria-go", gambar: "https://i.ibb.co/MxhDWdWW/image.png" },
-      { indonesia: "Bahasa Persia", kanji: "", kana: "ペルシア語", romaji: "Perushia-go", gambar: "https://i.ibb.co/M5NcYvQg/image.png" },
-      { indonesia: "Bahasa India", kanji: "", kana: "ヒンディー語", romaji: "Hindii-go", gambar: "https://i.ibb.co/knkGxSP/image.png" },
-      { indonesia: "Bahasa Indonesia", kanji: "", kana: "インドネシア語", romaji: "Indoneshia-go", gambar: "https://i.ibb.co/3mjtyqXh/image.png" },
-      { indonesia: "Bahasa Arab", kanji: "", kana: "アラビア語", romaji: "Arabia-go", gambar: "https://i.ibb.co/knkGxSP/image.png" },
-      { indonesia: "Bahasa Perancis", kanji: "", kana: "フランス語", romaji: "Furansu-go", gambar: "https://i.ibb.co/WWYPZLW1/image.png" },
-      { indonesia: "Bahasa Korea", kanji: "韓国語", kana: "かんこくご", romaji: "Kankoku-go", gambar: "https://i.ibb.co/5yfjyrs/image.png" },
-      { indonesia: "Bahasa Spanyol", kanji: "", kana: "スペイン語", romaji: "Supein-go", gambar: "https://i.ibb.co/nND2Xfn2/image.png" },
-      { indonesia: "Bahasa Thailand", kanji: "", kana: "タイ語", romaji: "Tai-go", gambar: "https://i.ibb.co/0pLjXqFY/image.png" },
-      { indonesia: "Bahasa Cina", kanji: "中国語", kana: "ちゅうごくご", romaji: "Chuugoku-go", gambar: "https://i.ibb.co/8gwGLhx8/image.png" },
-      { indonesia: "Bahasa Jerman", kanji: "", kana: "ドイツ語", romaji: "Doitsu-go", gambar: "https://i.ibb.co/G49dpHdh/image.png" },
-      { indonesia: "Bahasa Jepang", kanji: "日本語", kana: "にほんご", romaji: "Nihon-go", gambar: "https://i.ibb.co/VW6x9BG2/image.png" },
-      { indonesia: "Bahasa Filipina", kanji: "", kana: "フィリピン語", romaji: "Firipin-go", gambar: "https://i.ibb.co/QFK4B6ZT/image.png" },
-      { indonesia: "Bahasa Portugis", kanji: "", kana: "ポルトガル語", romaji: "Porutogaru-go", gambar: "https://i.ibb.co/C3LrdmLQ/image.png" },
-      { indonesia: "Bahasa Vietnam", kanji: "", kana: "ベトナム語", romaji: "Betonamu-go", gambar: "https://i.ibb.co/MQfGmkZ/image.png" },
-      { indonesia: "Bahasa Malaysia", kanji: "", kana: "マレーシア語", romaji: "Mareeshia-go", gambar: "https://i.ibb.co/3mCtjgGG/image.png" },
-      { indonesia: "Bahasa Rusia", kanji: "", kana: "ロシア語", romaji: "Roshia-go", gambar: "https://i.ibb.co/KzNv12CW/image.png" }
+      { indonesia: "Bahasa Inggris", kanji: "英語", kana: "えいご", romaji: "Eigo", gambar: "https://iili.io/C5NRD8J.png" },
+      { indonesia: "Bahasa Italia", kanji: "", kana: "イタリア語", romaji: "Itaria-go", gambar: "https://iili.io/C5NuPAQ.png" },
+      { indonesia: "Bahasa Persia", kanji: "", kana: "ペルシア語", romaji: "Perushia-go", gambar: "https://iili.io/C5NRXTl.png" },
+      { indonesia: "Bahasa India", kanji: "", kana: "ヒンディー語", romaji: "Hindii-go", gambar: "https://iili.io/C5NAyB9.png" },
+      { indonesia: "Bahasa Indonesia", kanji: "", kana: "インドネシア語", romaji: "Indoneshia-go", gambar: "https://iili.io/C5NAKiX.png" },
+      { indonesia: "Bahasa Arab", kanji: "", kana: "アラビア語", romaji: "Arabia-go", gambar: "https://iili.io/C5NuwAl.png" },
+      { indonesia: "Bahasa Perancis", kanji: "", kana: "フランス語", romaji: "Furansu-go", gambar: "https://iili.io/C5NRukv.png" },
+      { indonesia: "Bahasa Korea", kanji: "韓国語", kana: "かんこくご", romaji: "Kankoku-go", gambar: "https://iili.io/C5N5JnI.png" },
+      { indonesia: "Bahasa Spanyol", kanji: "", kana: "スペイン語", romaji: "Supein-go", gambar: "https://iili.io/C5NASzN.png" },
+      { indonesia: "Bahasa Thailand", kanji: "", kana: "タイ語", romaji: "Tai-go", gambar: "https://iili.io/C5NA61n.png" },
+      { indonesia: "Bahasa Cina", kanji: "中国語", kana: "ちゅうごくご", romaji: "Chuugoku-go", gambar: "https://iili.io/C5N5FFn.png" },
+      { indonesia: "Bahasa Jerman", kanji: "", kana: "ドイツ語", romaji: "Doitsu-go", gambar: "https://iili.io/C5NADI2.png" },
+      { indonesia: "Bahasa Jepang", kanji: "日本語", kana: "にほんご", romaji: "Nihon-go", gambar: "https://iili.io/C5N5znS.png" },
+      { indonesia: "Bahasa Filipina", kanji: "", kana: "フィリピン語", romaji: "Firipin-go", gambar: "https://iili.io/C5NR27j.png" },
+      { indonesia: "Bahasa Portugis", kanji: "", kana: "ポルトガル語", romaji: "Porutogaru-go", gambar: "https://iili.io/C5NRhj2.png" },
+      { indonesia: "Bahasa Vietnam", kanji: "", kana: "ベトナム語", romaji: "Betonamu-go", gambar: "https://iili.io/C5NR04n.png" },
+      { indonesia: "Bahasa Malaysia", kanji: "", kana: "マレーシア語", romaji: "Mareeshia-go", gambar: "https://iili.io/C5NR8Yb.png" },
+      { indonesia: "Bahasa Rusia", kanji: "", kana: "ロシア語", romaji: "Roshia-go", gambar: "https://iili.io/C5NRZ3g.png" }
     ];
 
     // =========================
@@ -4965,13 +5335,24 @@
     }
 
     function updateStartState() {
-      const canStart = Boolean(currentUsername) && (isAdmin || Boolean(currentGroup));
+      const hasUsername = Boolean(currentUsername);
+      const canStart = hasUsername && (isAdmin || Boolean(currentGroup));
 
       startBtn.disabled = !canStart;
-      startBtn.classList.toggle("show", Boolean(currentUsername));
+      startBtn.classList.toggle("show", hasUsername);
+
+      if (materialBtn) {
+        materialBtn.disabled = !hasUsername;
+        materialBtn.classList.toggle("show", hasUsername);
+      }
+
+      if (startFromMaterialBtn) {
+        startFromMaterialBtn.disabled = !canStart;
+      }
+
       resultPageBtn.hidden = !isAdmin;
       clearRankingBtn.hidden = !isAdmin;
-      usernameBox.classList.toggle("is-complete", Boolean(currentUsername));
+      usernameBox.classList.toggle("is-complete", hasUsername);
     }
 
     function updateLoginSummary() {
@@ -5767,6 +6148,287 @@
       .jp-box {
         min-height: 124px !important;
         padding-top: 2px !important;
+      }
+    }
+
+    /* ===== Revisi akhir: tombol materi, popup gambar, dan mobile layout ===== */
+    #materialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    #startScreen #startBtn.show,
+    #startScreen #materialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      letter-spacing: 0;
+    }
+
+    #startScreen #materialBtn.show {
+      color: #514a9e;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.68));
+      border: 1px solid rgba(124, 111, 246, 0.24);
+      box-shadow: 0 14px 30px rgba(82, 73, 134, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.62);
+    }
+
+    .material-panel {
+      max-height: none;
+    }
+
+    .material-groups {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .material-grid {
+      width: 100%;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    .material-item {
+      min-width: 0;
+    }
+
+    .material-image {
+      overflow: hidden;
+    }
+
+    .material-image img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain !important;
+      object-position: center center !important;
+      cursor: zoom-in;
+    }
+
+    .image-modal {
+      padding: 14px !important;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw) !important;
+      height: min(92svh, 860px) !important;
+      max-height: 92svh !important;
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 64px 14px 14px !important;
+      overflow: hidden !important;
+      border-radius: 26px !important;
+      box-sizing: border-box !important;
+    }
+
+    .image-modal-close {
+      position: absolute !important;
+      top: 14px !important;
+      right: 14px !important;
+      z-index: 30 !important;
+      width: 46px !important;
+      height: 46px !important;
+      min-width: 46px !important;
+      min-height: 46px !important;
+      display: grid !important;
+      place-items: center !important;
+      border-radius: var(--radius-pill) !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      box-shadow: 0 10px 24px rgba(31, 41, 55, 0.18) !important;
+      color: #6557df !important;
+      font-size: 30px !important;
+      line-height: 1 !important;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      padding: 0 !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: auto !important;
+      overscroll-behavior: contain !important;
+      border-radius: 18px !important;
+      background: rgba(255, 255, 255, 0.42) !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+      margin: auto !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      margin: 10px 8px 0 !important;
+      padding: 0 54px 0 8px !important;
+      text-align: center !important;
+      line-height: 1.35 !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        justify-items: stretch !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      .material-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px 12px !important;
+      }
+
+      .material-head {
+        margin-bottom: 16px !important;
+      }
+
+      .material-head h2 {
+        font-size: clamp(21px, 6.2vw, 28px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .material-head p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-group-card {
+        padding: 14px 10px !important;
+        border-radius: 20px !important;
+      }
+
+      .material-group-title {
+        align-items: flex-start !important;
+        font-size: clamp(17px, 5vw, 21px) !important;
+      }
+
+      .material-item {
+        width: 100% !important;
+        min-width: 0 !important;
+        display: grid !important;
+        grid-template-columns: 86px minmax(0, 1fr) !important;
+        gap: 12px !important;
+        align-items: center !important;
+        padding: 12px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-image {
+        width: 86px !important;
+        height: 86px !important;
+        min-width: 86px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-text {
+        min-width: 0 !important;
+        gap: 3px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(16px, 5vw, 20px) !important;
+        line-height: 1.25 !important;
+      }
+
+      .material-romaji,
+      .material-meaning {
+        font-size: 12.5px !important;
+      }
+
+      .material-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .material-actions .btn {
+        width: 100% !important;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-card {
+        width: 96vw !important;
+        height: 90svh !important;
+        max-height: 90svh !important;
+        padding: 62px 10px 12px !important;
+        border-radius: 22px !important;
+      }
+
+      .image-modal-close {
+        top: 10px !important;
+        right: 10px !important;
+        width: 46px !important;
+        height: 46px !important;
+        min-width: 46px !important;
+        min-height: 46px !important;
+      }
+
+      .image-modal-caption {
+        padding: 0 54px 0 4px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .material-item {
+        grid-template-columns: 78px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 10px !important;
+      }
+
+      .material-image {
+        width: 78px !important;
+        height: 78px !important;
+        min-width: 78px !important;
+      }
+
+      .material-id {
+        font-size: 11px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(15px, 5.2vw, 19px) !important;
+      }
+
+      .material-romaji,
+      .material-meaning {
+        font-size: 12px !important;
       }
     }
 
