@@ -2982,6 +2982,136 @@
       }
     }
 
+
+    .material-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: clamp(16px, 2.8vw, 22px);
+    }
+
+    .material-summary-card {
+      min-width: 0;
+      padding: 15px 14px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.28), transparent 42%);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-summary-card span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .material-summary-card strong {
+      display: block;
+      color: #413f73;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 850;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-grouped-list {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: clamp(16px, 2.8vw, 24px) !important;
+    }
+
+    .material-group {
+      padding: clamp(14px, 2.4vw, 18px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.54));
+      border: 1px solid rgba(124, 111, 246, 0.13);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-group-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 13px;
+    }
+
+    .material-group-title {
+      margin: 0 0 6px;
+      color: #514a9e;
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 850;
+      line-height: 1.22;
+    }
+
+    .material-group-desc {
+      margin: 0;
+      max-width: 760px;
+      color: #5b6476;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .material-group-count {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: var(--radius-pill);
+      color: #6d46e8;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .material-group-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .material-thumb {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+      border: 0;
+      border-radius: 18px;
+      background: rgba(124, 111, 246, 0.07);
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      background: transparent;
+    }
+
+    .material-reading {
+      color: #817a75;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
     .image-modal {
       position: fixed;
       inset: 0;
@@ -3532,7 +3662,137 @@
         grid-template-columns: 1fr !important;
       }
 
-      .image-modal {
+  
+    .material-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: clamp(16px, 2.8vw, 22px);
+    }
+
+    .material-summary-card {
+      min-width: 0;
+      padding: 15px 14px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.28), transparent 42%);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-summary-card span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .material-summary-card strong {
+      display: block;
+      color: #413f73;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 850;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-grouped-list {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: clamp(16px, 2.8vw, 24px) !important;
+    }
+
+    .material-group {
+      padding: clamp(14px, 2.4vw, 18px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.54));
+      border: 1px solid rgba(124, 111, 246, 0.13);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-group-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 13px;
+    }
+
+    .material-group-title {
+      margin: 0 0 6px;
+      color: #514a9e;
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 850;
+      line-height: 1.22;
+    }
+
+    .material-group-desc {
+      margin: 0;
+      max-width: 760px;
+      color: #5b6476;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .material-group-count {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: var(--radius-pill);
+      color: #6d46e8;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .material-group-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .material-thumb {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+      border: 0;
+      border-radius: 18px;
+      background: rgba(124, 111, 246, 0.07);
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      background: transparent;
+    }
+
+    .material-reading {
+      color: #817a75;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal {
         padding: 12px !important;
       }
 
@@ -3879,6 +4139,136 @@
       overflow-wrap: anywhere;
     }
 
+
+    .material-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: clamp(16px, 2.8vw, 22px);
+    }
+
+    .material-summary-card {
+      min-width: 0;
+      padding: 15px 14px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.28), transparent 42%);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-summary-card span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .material-summary-card strong {
+      display: block;
+      color: #413f73;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 850;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-grouped-list {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: clamp(16px, 2.8vw, 24px) !important;
+    }
+
+    .material-group {
+      padding: clamp(14px, 2.4vw, 18px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.54));
+      border: 1px solid rgba(124, 111, 246, 0.13);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-group-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 13px;
+    }
+
+    .material-group-title {
+      margin: 0 0 6px;
+      color: #514a9e;
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 850;
+      line-height: 1.22;
+    }
+
+    .material-group-desc {
+      margin: 0;
+      max-width: 760px;
+      color: #5b6476;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .material-group-count {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: var(--radius-pill);
+      color: #6d46e8;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .material-group-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .material-thumb {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+      border: 0;
+      border-radius: 18px;
+      background: rgba(124, 111, 246, 0.07);
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      background: transparent;
+    }
+
+    .material-reading {
+      color: #817a75;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
     .image-modal {
       padding: clamp(12px, 3vw, 22px) !important;
       place-items: center !important;
@@ -4003,9 +4393,23 @@
         padding: 12px !important;
       }
 
-      .material-list {
+      .material-list,
+      .material-group-list {
         grid-template-columns: 1fr !important;
         gap: 10px !important;
+      }
+
+      .material-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .material-group-head {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-group-count {
+        width: max-content !important;
       }
 
       .image-modal-card {
@@ -4046,6 +4450,10 @@
         font-size: 12px !important;
       }
 
+      .material-summary-grid {
+        grid-template-columns: 1fr !important;
+      }
+
       .material-item {
         grid-template-columns: 78px minmax(0, 1fr) !important;
         gap: 10px !important;
@@ -4053,7 +4461,8 @@
         border-radius: 18px !important;
       }
 
-      .material-image-btn {
+      .material-image-btn,
+      .material-thumb {
         width: 78px !important;
         height: 78px !important;
         border-radius: 16px !important;
@@ -4067,7 +4476,137 @@
         font-size: 12px !important;
       }
 
-      .image-modal {
+  
+    .material-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: clamp(16px, 2.8vw, 22px);
+    }
+
+    .material-summary-card {
+      min-width: 0;
+      padding: 15px 14px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.28), transparent 42%);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-summary-card span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .material-summary-card strong {
+      display: block;
+      color: #413f73;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 850;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-grouped-list {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: clamp(16px, 2.8vw, 24px) !important;
+    }
+
+    .material-group {
+      padding: clamp(14px, 2.4vw, 18px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.54));
+      border: 1px solid rgba(124, 111, 246, 0.13);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-group-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 13px;
+    }
+
+    .material-group-title {
+      margin: 0 0 6px;
+      color: #514a9e;
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 850;
+      line-height: 1.22;
+    }
+
+    .material-group-desc {
+      margin: 0;
+      max-width: 760px;
+      color: #5b6476;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .material-group-count {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: var(--radius-pill);
+      color: #6d46e8;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .material-group-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .material-thumb {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+      border: 0;
+      border-radius: 18px;
+      background: rgba(124, 111, 246, 0.07);
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      background: transparent;
+    }
+
+    .material-reading {
+      color: #817a75;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal {
         padding: 8px !important;
       }
 
@@ -4353,8 +4892,8 @@
       <div class="material-modal-card">
         <div class="material-modal-header">
           <div>
-            <h3 id="materialModalTitle" data-i18n="materialTitle">Materi Kosakata</h3>
-            <p data-i18n="materialDescription">Daftar kosakata Jepang, arti bahasa Indonesia, dan gambar.</p>
+            <h3 id="materialModalTitle" data-i18n="materialTitle">Rangkuman Materi Belajar</h3>
+            <p data-i18n="materialDescription">Pelajari kembali seluruh materi sebelum memulai latihan. Setiap kartu berisi kosakata, ungkapan latihan, atau percakapan singkat lengkap dengan gambar pendukung agar lebih mudah diingat.</p>
           </div>
           <button id="closeMaterialModal" class="material-modal-close" type="button" aria-label="Tutup materi" data-i18n-aria-label="closeMaterialLabel">×</button>
         </div>
@@ -4977,9 +5516,16 @@
         closeExampleLabel: "Tutup contoh",
         closeMaterialLabel: "Tutup materi",
         closeImageLabel: "Tutup gambar",
-        materialTitle: "Materi Kosakata",
-        materialDescription: "Daftar kosakata Jepang, arti bahasa Indonesia, dan gambar.",
+        materialTitle: "Rangkuman Materi Belajar",
+        materialDescription: "Pelajari kembali seluruh materi sebelum memulai latihan. Setiap kartu berisi kosakata, ungkapan latihan, atau percakapan singkat lengkap dengan gambar pendukung agar lebih mudah diingat.",
         materialGroupAll: "Semua Kosakata",
+        materialSummaryTotal: "Total Materi",
+        materialGroupKosakata: "Kosakata",
+        materialGroupKosakataDesc: "Materi kosakata berisi kata kerja perjalanan, tempat umum, alat transportasi, orang dan keluarga, penunjuk waktu, bulan, tanggal, hari ulang tahun, serta nama kota dan tempat terkenal di sekitar Osaka.",
+        materialGroupLatihanC: "Latihan C",
+        materialGroupLatihanCDesc: "Ungkapan pendek untuk melatih respon sederhana dalam situasi sehari-hari.",
+        materialGroupPercakapan: "Percakapan",
+        materialGroupPercakapanDesc: "Kalimat praktis yang dapat digunakan untuk latihan berbicara, mendengar, dan memahami konteks percakapan.",
         imageModalTitle: "Gambar Kosakata",
         usernameLabel: "Username",
         usernamePlaceholder: "Masukkan username",
@@ -5104,9 +5650,16 @@
         closeExampleLabel: "例文を閉じる",
         closeMaterialLabel: "教材を閉じる",
         closeImageLabel: "画像を閉じる",
-        materialTitle: "単語教材",
-        materialDescription: "日本語、インドネシア語の意味、画像の一覧です。",
+        materialTitle: "学習内容のまとめ",
+        materialDescription: "練習を始める前に、語彙・練習表現・会話表現を画像付きカードで見直しましょう。",
         materialGroupAll: "すべての単語",
+        materialSummaryTotal: "合計教材",
+        materialGroupKosakata: "語彙",
+        materialGroupKosakataDesc: "移動の動詞、公共施設、交通手段、人や家族、時を表す言葉、月日、誕生日、大阪周辺の地名や名所をまとめた語彙です。",
+        materialGroupLatihanC: "練習 C",
+        materialGroupLatihanCDesc: "日常場面で短く反応するための表現です。",
+        materialGroupPercakapan: "会話",
+        materialGroupPercakapanDesc: "話す・聞く・会話の流れを理解するための実用的な表現です。",
         imageModalTitle: "単語画像",
         usernameLabel: "ユーザー名",
         usernamePlaceholder: "ユーザー名を入力",
@@ -5230,6 +5783,7 @@
       });
 
       updateCardCountUI();
+      renderMaterialList();
       updateLoginSummary();
       if (currentItem && practiceScreen.classList.contains("active")) {
         cardCounter.textContent = t("cardCounterPattern")
@@ -5483,66 +6037,199 @@
       return kanji || kana || "-";
     }
 
+    const LATIHAN_C_ITEMS = new Set([
+      "そうですね。"
+    ]);
+
+    const PERCAKAPAN_ITEMS = new Set([
+      "［どうも］ありがとうございました。",
+      "どういたしまして。",
+      "一番線",
+      "次の",
+      "普通",
+      "急行",
+      "特急"
+    ]);
+
+    const MATERIAL_GROUPS = [
+      {
+        id: "kosakata",
+        labelKey: "materialGroupKosakata",
+        descriptionKey: "materialGroupKosakataDesc",
+        match: item => !LATIHAN_C_ITEMS.has(getMaterialPrimaryKey(item)) && !PERCAKAPAN_ITEMS.has(getMaterialPrimaryKey(item))
+      },
+      {
+        id: "latihan-c",
+        labelKey: "materialGroupLatihanC",
+        descriptionKey: "materialGroupLatihanCDesc",
+        match: item => LATIHAN_C_ITEMS.has(getMaterialPrimaryKey(item))
+      },
+      {
+        id: "percakapan",
+        labelKey: "materialGroupPercakapan",
+        descriptionKey: "materialGroupPercakapanDesc",
+        match: item => PERCAKAPAN_ITEMS.has(getMaterialPrimaryKey(item))
+      }
+    ];
+
+    function getMaterialPrimaryKey(item) {
+      return String(item.kanji || item.kana || "").trim();
+    }
+
+    function getMaterialMainText(item) {
+      const kanji = String(item.kanji || "").trim();
+      const kana = String(item.kana || "").trim();
+      return kanji || kana || "-";
+    }
+
+    function getMaterialReadingText(item) {
+      const kanji = String(item.kanji || "").trim();
+      const kana = String(item.kana || "").trim();
+      const romaji = String(item.romaji || "").trim();
+
+      if (kanji && kana && romaji) return `${kana} / ${romaji}`;
+      if (kanji && kana) return kana;
+      return romaji || "";
+    }
+
+    function getMaterialGroupedItems() {
+      const grouped = MATERIAL_GROUPS.map(group => ({
+        ...group,
+        items: []
+      }));
+
+      getAvailableVocabulary().forEach(item => {
+        const targetGroup = grouped.find(group => group.match(item)) || grouped[0];
+        targetGroup.items.push(item);
+      });
+
+      return grouped;
+    }
+
+    function createMaterialSummaryCard(label, value) {
+      const card = document.createElement("div");
+      card.className = "material-summary-card";
+
+      const title = document.createElement("span");
+      title.textContent = label;
+
+      const number = document.createElement("strong");
+      number.textContent = value;
+
+      card.append(title, number);
+      return card;
+    }
+
+    function updateMaterialSummary(groupedItems) {
+      const summary = document.createElement("div");
+      summary.className = "material-summary-grid";
+
+      const total = groupedItems.reduce((sum, group) => sum + group.items.length, 0);
+      summary.appendChild(createMaterialSummaryCard(t("materialSummaryTotal"), total));
+
+      groupedItems.forEach(group => {
+        summary.appendChild(createMaterialSummaryCard(t(group.labelKey), group.items.length));
+      });
+
+      return summary;
+    }
+
     function renderMaterialList() {
       if (!materialBody) return;
 
-      const items = getAvailableVocabulary();
-      const group = document.createElement("section");
-      group.className = "material-group";
+      const groupedItems = getMaterialGroupedItems();
+      const summary = updateMaterialSummary(groupedItems);
+      const wrapper = document.createElement("div");
+      wrapper.id = "materialList";
+      wrapper.className = "material-list material-grouped-list";
 
-      const title = document.createElement("h4");
-      title.className = "material-group-title";
-      title.textContent = t("materialGroupAll");
+      groupedItems.forEach(groupData => {
+        const section = document.createElement("section");
+        section.className = `material-group material-group-${groupData.id}`;
 
-      const list = document.createElement("div");
-      list.className = "material-list";
+        const head = document.createElement("div");
+        head.className = "material-group-head";
 
-      items.forEach((item, index) => {
-        const card = document.createElement("article");
-        card.className = "material-item";
+        const textBox = document.createElement("div");
 
-        const imageButton = document.createElement("button");
-        imageButton.className = "material-image-btn";
-        imageButton.type = "button";
+        const title = document.createElement("h4");
+        title.className = "material-group-title";
+        title.textContent = t(groupData.labelKey);
 
-        const japanese = getMaterialJapanese(item);
-        const imageUrl = String(item.gambar || "").trim();
-        imageButton.setAttribute("aria-label", `Lihat gambar penuh: ${japanese}`);
+        const desc = document.createElement("p");
+        desc.className = "material-group-desc";
+        desc.textContent = t(groupData.descriptionKey);
 
-        if (/^https?:\/\//i.test(imageUrl)) {
-          const img = document.createElement("img");
-          img.src = imageUrl;
-          img.alt = japanese;
-          img.loading = "lazy";
-          img.decoding = "async";
-          img.referrerPolicy = "no-referrer";
-          imageButton.appendChild(img);
-        } else {
-          imageButton.textContent = "🎴";
-        }
+        const count = document.createElement("span");
+        count.className = "material-group-count";
+        count.textContent = currentLanguage === "ja"
+          ? `${groupData.items.length}項目`
+          : `${groupData.items.length} materi`;
 
-        const info = document.createElement("div");
-        info.className = "material-info";
+        textBox.append(title, desc);
+        head.append(textBox, count);
 
-        const number = document.createElement("div");
-        number.className = "material-number";
-        number.textContent = `${index + 1}.`;
+        const list = document.createElement("div");
+        list.className = "material-group-list";
 
-        const jp = document.createElement("div");
-        jp.className = "material-jp";
-        jp.textContent = japanese;
+        groupData.items.forEach((item, index) => {
+          const card = document.createElement("article");
+          card.className = "material-item";
 
-        const id = document.createElement("div");
-        id.className = "material-id";
-        id.textContent = item.indonesia || "-";
+          const imageButton = document.createElement("button");
+          imageButton.className = "material-thumb material-image-btn";
+          imageButton.type = "button";
 
-        info.append(number, jp, id);
-        card.append(imageButton, info);
-        list.appendChild(card);
+          const mainText = getMaterialMainText(item);
+          const readingText = getMaterialReadingText(item);
+          const japanese = readingText ? `${mainText}｜${readingText}` : mainText;
+          const imageUrl = String(item.gambar || "").trim();
+          imageButton.setAttribute("aria-label", `Lihat gambar penuh: ${mainText}`);
+
+          if (/^https?:\/\//i.test(imageUrl)) {
+            const img = document.createElement("img");
+            img.src = imageUrl;
+            img.alt = mainText;
+            img.loading = "lazy";
+            img.decoding = "async";
+            img.referrerPolicy = "no-referrer";
+            imageButton.appendChild(img);
+          } else {
+            imageButton.textContent = "🎴";
+          }
+
+          const info = document.createElement("div");
+          info.className = "material-info";
+
+          const number = document.createElement("div");
+          number.className = "material-number";
+          number.textContent = `${index + 1}.`;
+
+          const jp = document.createElement("div");
+          jp.className = "material-jp";
+          jp.textContent = mainText;
+
+          const reading = document.createElement("div");
+          reading.className = "material-reading";
+          reading.textContent = readingText;
+
+          const id = document.createElement("div");
+          id.className = "material-id";
+          id.textContent = item.indonesia || "-";
+
+          info.append(number, jp);
+          if (readingText) info.appendChild(reading);
+          info.appendChild(id);
+
+          card.append(imageButton, info);
+          list.appendChild(card);
+        });
+
+        section.append(head, list);
+        wrapper.appendChild(section);
       });
 
-      group.append(title, list);
-      materialBody.replaceChildren(group);
+      materialBody.replaceChildren(summary, wrapper);
     }
 
     function openMaterialModalBox() {
@@ -6338,6 +7025,136 @@
       }
     }
 
+
+    .material-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: clamp(16px, 2.8vw, 22px);
+    }
+
+    .material-summary-card {
+      min-width: 0;
+      padding: 15px 14px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.28), transparent 42%);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-summary-card span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .material-summary-card strong {
+      display: block;
+      color: #413f73;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 850;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-grouped-list {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: clamp(16px, 2.8vw, 24px) !important;
+    }
+
+    .material-group {
+      padding: clamp(14px, 2.4vw, 18px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.54));
+      border: 1px solid rgba(124, 111, 246, 0.13);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-group-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 13px;
+    }
+
+    .material-group-title {
+      margin: 0 0 6px;
+      color: #514a9e;
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 850;
+      line-height: 1.22;
+    }
+
+    .material-group-desc {
+      margin: 0;
+      max-width: 760px;
+      color: #5b6476;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .material-group-count {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: var(--radius-pill);
+      color: #6d46e8;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .material-group-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .material-thumb {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+      border: 0;
+      border-radius: 18px;
+      background: rgba(124, 111, 246, 0.07);
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      background: transparent;
+    }
+
+    .material-reading {
+      color: #817a75;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
     .image-modal {
       position: fixed;
       inset: 0;
@@ -6747,6 +7564,136 @@
       .jp-main-display.long {
         font-size: clamp(17px, 5.3vw, 25px) !important;
       }
+    }
+
+
+    .material-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: clamp(16px, 2.8vw, 22px);
+    }
+
+    .material-summary-card {
+      min-width: 0;
+      padding: 15px 14px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.28), transparent 42%);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-summary-card span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .material-summary-card strong {
+      display: block;
+      color: #413f73;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 850;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .material-grouped-list {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: clamp(16px, 2.8vw, 24px) !important;
+    }
+
+    .material-group {
+      padding: clamp(14px, 2.4vw, 18px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.54));
+      border: 1px solid rgba(124, 111, 246, 0.13);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .material-group-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 13px;
+    }
+
+    .material-group-title {
+      margin: 0 0 6px;
+      color: #514a9e;
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 850;
+      line-height: 1.22;
+    }
+
+    .material-group-desc {
+      margin: 0;
+      max-width: 760px;
+      color: #5b6476;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .material-group-count {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: var(--radius-pill);
+      color: #6d46e8;
+      background: rgba(124, 111, 246, 0.1);
+      border: 1px solid rgba(124, 111, 246, 0.16);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .material-group-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .material-thumb {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+      border: 0;
+      border-radius: 18px;
+      background: rgba(124, 111, 246, 0.07);
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      background: transparent;
+    }
+
+    .material-reading {
+      color: #817a75;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
     .image-modal {
