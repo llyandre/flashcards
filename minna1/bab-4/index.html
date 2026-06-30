@@ -4034,7 +4034,175 @@
       }
     }
 
-  </style>
+  
+
+    /* ===== Revisi final: Lihat Materi, popup gambar, dan mobile responsif ===== */
+    .app-shell:has(#materialScreen.active) {
+      align-items: flex-start !important;
+    }
+
+    #startScreen #openMaterialBtn.show {
+      width: min(250px, 100%);
+      min-height: var(--button-h);
+      border-radius: 16px;
+      font-size: var(--fs-button);
+      font-weight: 720;
+      letter-spacing: 0;
+    }
+
+    #startScreen .hero-actions {
+      align-items: stretch;
+    }
+
+    .material-panel {
+      max-height: none;
+      overflow: visible;
+    }
+
+    .material-list {
+      width: 100%;
+      max-height: none;
+      overflow: visible;
+    }
+
+    .material-card img,
+    .illustration img {
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+
+    .image-modal {
+      padding: clamp(10px, 2.5vw, 18px) !important;
+      align-items: center !important;
+      justify-items: center !important;
+    }
+
+    .image-modal-card {
+      width: min(980px, 96vw) !important;
+      height: auto !important;
+      max-height: calc(100svh - 24px) !important;
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      border-radius: clamp(20px, 4vw, 28px) !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      right: auto !important;
+      justify-self: end !important;
+      z-index: 5 !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin: 12px 14px 8px !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      background: rgba(255, 255, 255, 0.94) !important;
+      color: #514a9e !important;
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.16) !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      max-height: none !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 8px 14px !important;
+      background: #fff !important;
+      overscroll-behavior: contain !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 154px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      display: block !important;
+    }
+
+    .image-modal-caption {
+      margin: 0 !important;
+      padding: 10px 16px 14px !important;
+      border-top: 1px solid rgba(124, 111, 246, 0.12) !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #openMaterialBtn.show {
+        width: 100% !important;
+        min-height: var(--button-h-mobile) !important;
+      }
+
+      #materialScreen .panel {
+        width: 100% !important;
+        padding: 18px !important;
+      }
+
+      .material-header {
+        gap: 12px !important;
+      }
+
+      .material-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .material-card {
+        min-width: 0 !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 20px) !important;
+      }
+
+      .image-modal-close {
+        width: 46px !important;
+        height: 46px !important;
+        min-width: 46px !important;
+        min-height: 46px !important;
+        margin: 10px 12px 6px !important;
+        font-size: 28px !important;
+      }
+
+      .image-modal-body {
+        padding: 8px 10px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 145px) !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .material-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-card img {
+        height: 92px !important;
+      }
+
+      .image-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 140px) !important;
+      }
+    }
+</style>
 </head>
 <body>
   <main class="app-shell">
@@ -4364,427 +4532,427 @@
     // =========================
     const vocabulary = [
   {
-    "indonesia": "Pagi",
-    "kanji": "朝",
-    "kana": "あさ",
-    "romaji": "Asa",
-    "gambar": "https://iili.io/C5koj8x.png"
-  },
-  {
-    "indonesia": "Lusa",
-    "kanji": "",
-    "kana": "あさって",
-    "romaji": "Asatte",
-    "gambar": "https://iili.io/C5kohaj.png"
-  },
-  {
-    "indonesia": "Besok",
-    "kanji": "",
-    "kana": "あした",
-    "romaji": "Ashita",
-    "gambar": "https://iili.io/C5koX3b.png"
-  },
-  {
-    "indonesia": "Restoran masakan Jepang fiksi",
-    "kanji": "",
-    "kana": "あすか",
-    "romaji": "Asuka",
-    "gambar": "https://iili.io/C5kowyQ.png"
-  },
-  {
-    "indonesia": "Bank Apple fiksi",
-    "kanji": "アップル銀行",
-    "kana": "アップルぎんこう",
-    "romaji": "Appuru Ginkou",
-    "gambar": "https://iili.io/C5koSMF.png"
-  },
-  {
-    "indonesia": "Sekarang",
-    "kanji": "今",
-    "kana": "いま",
-    "romaji": "Ima",
-    "gambar": "https://iili.io/C5koU6g.png"
-  },
-  {
-    "indonesia": "Film",
-    "kanji": "映画",
-    "kana": "えいが",
-    "romaji": "Eiga",
-    "gambar": "https://iili.io/C5koi9R.png"
-  },
-  {
-    "indonesia": "Bangun",
+    "indonesia": "bangun",
     "kanji": "起きます",
     "kana": "おきます",
     "romaji": "Okimasu",
-    "gambar": "https://iili.io/C5ko68v.png"
+    "gambar": "https://iili.io/C5rrNyv.png"
   },
   {
-    "indonesia": "Dua hari yang lalu, kemarin lusa",
-    "kanji": "",
-    "kana": "おととい",
-    "romaji": "Ototoi",
-    "gambar": "https://iili.io/C5koLwN.png"
+    "indonesia": "tidur",
+    "kanji": "寝ます",
+    "kana": "ねます",
+    "romaji": "Nemasu",
+    "gambar": "https://iili.io/C5rreuR.png"
   },
   {
-    "indonesia": "Selesai",
+    "indonesia": "bekerja",
+    "kanji": "働きます",
+    "kana": "はたらきます",
+    "romaji": "Hatarakimasu",
+    "gambar": "https://iili.io/C5rrkjp.png"
+  },
+  {
+    "indonesia": "beristirahat, libur",
+    "kanji": "休みます",
+    "kana": "やすみます",
+    "romaji": "Yasumimasu",
+    "gambar": "https://iili.io/C5rrvZN.png"
+  },
+  {
+    "indonesia": "belajar",
+    "kanji": "勉強します",
+    "kana": "べんきょうします",
+    "romaji": "Benkyou Shimasu",
+    "gambar": "https://iili.io/C5rrUGt.png"
+  },
+  {
+    "indonesia": "selesai",
     "kanji": "終わります",
     "kana": "おわります",
     "romaji": "Owarimasu",
-    "gambar": "https://iili.io/C5kx2N2.png"
+    "gambar": "https://iili.io/C5rr6as.png"
   },
   {
-    "indonesia": "Rapat",
-    "kanji": "会議",
-    "kana": "かいぎ",
-    "romaji": "Kaigi",
-    "gambar": "https://iili.io/C5kxKo7.png",
-    "contoh": "会議をします（かいぎをします）= mengadakan rapat."
-  },
-  {
-    "indonesia": "Hari Selasa",
-    "kanji": "火曜日",
-    "kana": "かようび",
-    "romaji": "Kayoubi",
-    "gambar": "https://iili.io/C5kxfV9.png"
-  },
-  {
-    "indonesia": "Dari ~",
-    "kanji": "",
-    "kana": "〜から",
-    "romaji": "-kara",
-    "gambar": "https://iili.io/C5kxqPe.png"
-  },
-  {
-    "indonesia": "Kemarin",
-    "kanji": "",
-    "kana": "きのう",
-    "romaji": "Kinou",
-    "gambar": "https://iili.io/C5kxIAQ.png"
-  },
-  {
-    "indonesia": "Hari ini",
-    "kanji": "",
-    "kana": "きょう",
-    "romaji": "Kyou",
-    "gambar": "https://iili.io/C5kxRoP.png"
-  },
-  {
-    "indonesia": "Bank",
-    "kanji": "銀行",
-    "kana": "ぎんこう",
-    "romaji": "Ginkou",
-    "gambar": "https://iili.io/C5kx7iF.png"
-  },
-  {
-    "indonesia": "Hari Jumat",
-    "kanji": "金曜日",
-    "kana": "きんようび",
-    "romaji": "Kinyoubi",
-    "gambar": "https://iili.io/C5kxaKg.png"
-  },
-  {
-    "indonesia": "Pagi ini, tadi pagi",
-    "kanji": "",
-    "kana": "けさ",
-    "romaji": "Kesa",
-    "gambar": "https://iili.io/C5kxcla.png"
-  },
-  {
-    "indonesia": "Hari Senin",
-    "kanji": "月曜日",
-    "kana": "げつようび",
-    "romaji": "Getsuyoubi",
-    "gambar": "https://iili.io/C5kx1Hv.png"
-  },
-  {
-    "indonesia": "P.m. (waktu setelah jam 12 siang)",
-    "kanji": "午後",
-    "kana": "ごご",
-    "romaji": "Gogo",
-    "gambar": "https://iili.io/C5kxERR.png"
-  },
-  {
-    "indonesia": "A.m. (waktu sebelum jam 12 siang)",
-    "kanji": "午前",
-    "kana": "ごぜん",
-    "romaji": "Gozen",
-    "gambar": "https://iili.io/C5kxMDN.png"
-  },
-  {
-    "indonesia": "Malam ini, nanti malam",
-    "kanji": "今晩",
-    "kana": "こんばん",
-    "romaji": "Konban",
-    "gambar": "https://iili.io/C5kxWxI.png"
-  },
-  {
-    "indonesia": "Jam -, pukul -",
-    "kanji": "〜時",
-    "kana": "〜じ",
-    "romaji": "-ji",
-    "gambar": "https://iili.io/C5kxGNp.png"
-  },
-  {
-    "indonesia": "Ujian",
-    "kanji": "試験",
-    "kana": "しけん",
-    "romaji": "Shiken",
-    "gambar": "https://iili.io/C5kxwfn.png"
-  },
-  {
-    "indonesia": "Hari Rabu",
-    "kanji": "水曜日",
-    "kana": "すいようび",
-    "romaji": "Suiyoubi",
-    "gambar": "https://iili.io/C5kxOUG.png"
-  },
-  {
-    "indonesia": "Di situ",
-    "kanji": "",
-    "kana": "そちら",
-    "romaji": "Sochira",
-    "gambar": "https://iili.io/C5kxkJf.png"
-  },
-  {
-    "indonesia": "Toserba",
+    "indonesia": "toserba",
     "kanji": "",
     "kana": "デパート",
     "romaji": "Depaato",
-    "gambar": "https://iili.io/C5kx8Ol.png"
+    "gambar": "https://iili.io/C5rrLu4.png"
   },
   {
-    "indonesia": "~ dan ~",
-    "kanji": "",
-    "kana": "〜と",
-    "romaji": "-to",
-    "gambar": "https://iili.io/C5kxgxS.png",
-    "contoh": "Digunakan untuk menyambungkan kata benda."
+    "indonesia": "bank",
+    "kanji": "銀行",
+    "kana": "ぎんこう",
+    "romaji": "Ginkou",
+    "gambar": "https://iili.io/C5rrs9f.png"
   },
   {
-    "indonesia": "Perpustakaan",
+    "indonesia": "kantor pos",
+    "kanji": "郵便局",
+    "kana": "ゆうびんきょく",
+    "romaji": "Yuubinkyoku",
+    "gambar": "https://iili.io/C5rrbM7.png"
+  },
+  {
+    "indonesia": "perpustakaan",
     "kanji": "図書館",
     "kana": "としょかん",
     "romaji": "Toshokan",
-    "gambar": "https://iili.io/C5kx4s9.png"
+    "gambar": "https://iili.io/C5rrDnS.png"
   },
   {
-    "indonesia": "Hari Sabtu",
-    "kanji": "土曜日",
-    "kana": "どようび",
-    "romaji": "Doyoubi",
-    "gambar": "https://iili.io/C5kxQJj.png"
+    "indonesia": "gedung kesenian",
+    "kanji": "美術館",
+    "kana": "びじゅつかん",
+    "romaji": "Bijutsukan",
+    "gambar": "https://iili.io/C5rryFe.png"
   },
   {
-    "indonesia": "Jam berapa, pukul berapa",
+    "indonesia": "sekarang",
+    "kanji": "今",
+    "kana": "いま",
+    "romaji": "Ima",
+    "gambar": "https://iili.io/C5rrmP9.png"
+  },
+  {
+    "indonesia": "jam/pukul",
+    "kanji": "〜時",
+    "kana": "〜じ",
+    "romaji": "-ji",
+    "gambar": "https://iili.io/C5r43wQ.png"
+  },
+  {
+    "indonesia": "menit",
+    "kanji": "〜分",
+    "kana": "〜ふん／ぷん",
+    "romaji": "-fun / -pun",
+    "gambar": "https://iili.io/C5r4H8b.png"
+  },
+  {
+    "indonesia": "setengah",
+    "kanji": "半",
+    "kana": "はん",
+    "romaji": "Han",
+    "gambar": "https://iili.io/C5r4foB.png"
+  },
+  {
+    "indonesia": "jam berapa",
     "kanji": "何時",
     "kana": "なんじ",
     "romaji": "Nanji",
-    "gambar": "https://iili.io/C5kxtOQ.png"
+    "gambar": "https://iili.io/C5r4qMP.png"
   },
   {
-    "indonesia": "Nomor berapa",
-    "kanji": "何番",
-    "kana": "なんばん",
-    "romaji": "Nanban",
-    "gambar": "https://iili.io/C5kxDbV.png"
-  },
-  {
-    "indonesia": "Berapa menit",
+    "indonesia": "berapa menit",
     "kanji": "何分",
     "kana": "なんぷん",
     "romaji": "Nanpun",
-    "gambar": "https://iili.io/C5kxmzB.png"
+    "gambar": "https://iili.io/C5r4BP1.png"
   },
   {
-    "indonesia": "Hari apa",
-    "kanji": "何曜日",
-    "kana": "なんようび",
-    "romaji": "Nanyoubi",
-    "gambar": "https://iili.io/C5kzdga.png"
+    "indonesia": "sebelum jam 12 siang",
+    "kanji": "午前",
+    "kana": "ごぜん",
+    "romaji": "Gozen",
+    "gambar": "https://iili.io/C5r4nKF.png"
   },
   {
-    "indonesia": "Hari Minggu",
+    "indonesia": "setelah jam 12 siang",
+    "kanji": "午後",
+    "kana": "ごご",
+    "romaji": "Gogo",
+    "gambar": "https://iili.io/C5r4ocg.png"
+  },
+  {
+    "indonesia": "pagi",
+    "kanji": "朝",
+    "kana": "あさ",
+    "romaji": "Asa",
+    "gambar": "https://iili.io/C5r4IHJ.png"
+  },
+  {
+    "indonesia": "siang",
+    "kanji": "昼",
+    "kana": "ひる",
+    "romaji": "Hiru",
+    "gambar": "https://iili.io/C5r45oN.png"
+  },
+  {
+    "indonesia": "malam",
+    "kanji": "晩／夜",
+    "kana": "ばん／よる",
+    "romaji": "Ban / Yoru",
+    "gambar": "https://iili.io/C5r4YPt.png"
+  },
+  {
+    "indonesia": "kemarin lusa",
+    "kanji": "",
+    "kana": "おととい",
+    "romaji": "Ototoi",
+    "gambar": "https://iili.io/C5r4lln.png"
+  },
+  {
+    "indonesia": "kemarin",
+    "kanji": "",
+    "kana": "きのう",
+    "romaji": "Kinou",
+    "gambar": "https://iili.io/C5r40Ss.png"
+  },
+  {
+    "indonesia": "hari ini",
+    "kanji": "",
+    "kana": "きょう",
+    "romaji": "Kyou",
+    "gambar": "https://iili.io/C5r4EHG.png"
+  },
+  {
+    "indonesia": "besok",
+    "kanji": "",
+    "kana": "あした",
+    "romaji": "Ashita",
+    "gambar": "https://iili.io/C5r4GRf.png"
+  },
+  {
+    "indonesia": "lusa",
+    "kanji": "",
+    "kana": "あさって",
+    "romaji": "Asatte",
+    "gambar": "https://iili.io/C5r4MN4.png"
+  },
+  {
+    "indonesia": "pagi ini",
+    "kanji": "",
+    "kana": "けさ",
+    "romaji": "Kesa",
+    "gambar": "https://iili.io/C5r4VDl.png"
+  },
+  {
+    "indonesia": "malam ini",
+    "kanji": "今晩",
+    "kana": "こんばん",
+    "romaji": "Konban",
+    "gambar": "https://iili.io/C5r4Xx2.png"
+  },
+  {
+    "indonesia": "istirahat, cuti, libur",
+    "kanji": "休み",
+    "kana": "やすみ",
+    "romaji": "Yasumi",
+    "gambar": "https://iili.io/C5r4ji7.png"
+  },
+  {
+    "indonesia": "istirahat siang",
+    "kanji": "昼休み",
+    "kana": "ひるやすみ",
+    "romaji": "Hiruyasumi",
+    "gambar": "https://iili.io/C5r4Nf9.png"
+  },
+  {
+    "indonesia": "ujian",
+    "kanji": "試験",
+    "kana": "しけん",
+    "romaji": "Shiken",
+    "gambar": "https://iili.io/C5r4Ole.png"
+  },
+  {
+    "indonesia": "rapat",
+    "kanji": "会議",
+    "kana": "かいぎ",
+    "romaji": "Kaigi",
+    "gambar": "https://iili.io/C5r4vHb.png",
+    "contoh": "会議をします（かいぎをします）= mengadakan rapat."
+  },
+  {
+    "indonesia": "film",
+    "kanji": "映画",
+    "kana": "えいが",
+    "romaji": "Eiga",
+    "gambar": "https://iili.io/C5r48Rj.png"
+  },
+  {
+    "indonesia": "setiap pagi",
+    "kanji": "毎朝",
+    "kana": "まいあさ",
+    "romaji": "Maiasa",
+    "gambar": "https://iili.io/C5r4UDQ.png"
+  },
+  {
+    "indonesia": "setiap malam",
+    "kanji": "毎晩",
+    "kana": "まいばん",
+    "romaji": "Maiban",
+    "gambar": "https://iili.io/C5r4s0F.png"
+  },
+  {
+    "indonesia": "setiap hari",
+    "kanji": "毎日",
+    "kana": "まいにち",
+    "romaji": "Mainichi",
+    "gambar": "https://iili.io/C5r4LUg.png"
+  },
+  {
+    "indonesia": "hari Senin",
+    "kanji": "月曜日",
+    "kana": "げつようび",
+    "romaji": "Getsuyoubi",
+    "gambar": "https://iili.io/C5r4t5J.png"
+  },
+  {
+    "indonesia": "hari Selasa",
+    "kanji": "火曜日",
+    "kana": "かようび",
+    "romaji": "Kayoubi",
+    "gambar": "https://iili.io/C5r4DOv.png"
+  },
+  {
+    "indonesia": "hari Rabu",
+    "kanji": "水曜日",
+    "kana": "すいようび",
+    "romaji": "Suiyoubi",
+    "gambar": "https://iili.io/C5r4bbR.png"
+  },
+  {
+    "indonesia": "hari Kamis",
+    "kanji": "木曜日",
+    "kana": "もくようび",
+    "romaji": "Mokuyoubi",
+    "gambar": "https://iili.io/C5r4yWN.png"
+  },
+  {
+    "indonesia": "hari Jumat",
+    "kanji": "金曜日",
+    "kana": "きんようび",
+    "romaji": "Kinyoubi",
+    "gambar": "https://iili.io/C5r69sI.png"
+  },
+  {
+    "indonesia": "hari Sabtu",
+    "kanji": "土曜日",
+    "kana": "どようび",
+    "romaji": "Doyoubi",
+    "gambar": "https://iili.io/C5r6d0X.png"
+  },
+  {
+    "indonesia": "hari Minggu",
     "kanji": "日曜日",
     "kana": "にちようび",
     "romaji": "Nichiyoubi",
-    "gambar": "https://iili.io/C5kz3dJ.png"
+    "gambar": "https://iili.io/C5r6qb4.png"
+  },
+  {
+    "indonesia": "hari apa",
+    "kanji": "何曜日",
+    "kana": "なんようび",
+    "romaji": "Nanyoubi",
+    "gambar": "https://iili.io/C5r6fef.png"
+  },
+  {
+    "indonesia": "dari",
+    "kanji": "",
+    "kana": "〜から",
+    "romaji": "-kara",
+    "gambar": "https://iili.io/C5r6Czl.png"
+  },
+  {
+    "indonesia": "sampai",
+    "kanji": "",
+    "kana": "〜まで",
+    "romaji": "-made",
+    "gambar": "https://iili.io/C5r6nX2.png"
+  },
+  {
+    "indonesia": "dan",
+    "kanji": "",
+    "kana": "〜と〜",
+    "romaji": "-to",
+    "gambar": "https://iili.io/C5r6zq7.png",
+    "contoh": "Digunakan untuk menyambung kata benda."
+  },
+  {
+    "indonesia": "berat ya",
+    "kanji": "大変ですね",
+    "kana": "たいへんですね",
+    "romaji": "Taihen desu ne",
+    "gambar": "https://iili.io/C5r6Adu.png",
+    "contoh": "Ungkapan simpati kepada lawan bicara yang mengalami hal yang dianggap susah."
+  },
+  {
+    "indonesia": "nomor",
+    "kanji": "番号",
+    "kana": "ばんごう",
+    "romaji": "Bangou",
+    "gambar": "https://iili.io/C5r6R5b.png"
+  },
+  {
+    "indonesia": "nomor berapa",
+    "kanji": "何番",
+    "kana": "なんばん",
+    "romaji": "Nanban",
+    "gambar": "https://iili.io/C5r67mx.png"
+  },
+  {
+    "indonesia": "di situ",
+    "kanji": "",
+    "kana": "そちら",
+    "romaji": "Sochira",
+    "gambar": "https://iili.io/C5r6lLB.png"
   },
   {
     "indonesia": "New York",
     "kanji": "",
     "kana": "ニューヨーク",
     "romaji": "Nyuu Yooku",
-    "gambar": "https://iili.io/C5kzfbp.png"
-  },
-  {
-    "indonesia": "Tidur",
-    "kanji": "寝ます",
-    "kana": "ねます",
-    "romaji": "Nemasu",
-    "gambar": "https://iili.io/C5kzBzN.png"
-  },
-  {
-    "indonesia": "Bekerja",
-    "kanji": "働きます",
-    "kana": "はたらきます",
-    "romaji": "Hatarakimasu",
-    "gambar": "https://iili.io/C5kzxqX.png"
-  },
-  {
-    "indonesia": "Setengah",
-    "kanji": "半",
-    "kana": "はん",
-    "romaji": "Han",
-    "gambar": "https://iili.io/C5kzIgs.png"
-  },
-  {
-    "indonesia": "Malam",
-    "kanji": "晩（夜）",
-    "kana": "ばん（よる）",
-    "romaji": "Ban (Yoru)",
-    "gambar": "https://iili.io/C5kzA7f.png"
-  },
-  {
-    "indonesia": "Nomor",
-    "kanji": "番号",
-    "kana": "ばんごう",
-    "romaji": "Bangou",
-    "gambar": "https://iili.io/C5kzRe4.png"
-  },
-  {
-    "indonesia": "Gedung kesenian",
-    "kanji": "美術館",
-    "kana": "びじゅつかん",
-    "romaji": "Bijutsukan",
-    "gambar": "https://iili.io/C5kz5ml.png"
-  },
-  {
-    "indonesia": "Siang",
-    "kanji": "昼",
-    "kana": "ひる",
-    "romaji": "Hiru",
-    "gambar": "https://iili.io/C5kzaXS.png"
-  },
-  {
-    "indonesia": "Istirahat siang",
-    "kanji": "昼休み",
-    "kana": "ひるやすみ",
-    "romaji": "Hiruyasumi",
-    "gambar": "https://iili.io/C5kzYI2.png"
-  },
-  {
-    "indonesia": "- menit",
-    "kanji": "〜分",
-    "kana": "〜ふん / 〜ぷん",
-    "romaji": "-fun / -pun",
-    "gambar": "https://iili.io/C5kzcL7.png"
+    "gambar": "https://iili.io/C5r6cXV.png"
   },
   {
     "indonesia": "Beijing",
     "kanji": "北京",
     "kana": "ペキン",
     "romaji": "Pekin",
-    "gambar": "https://iili.io/C5kzEru.png"
-  },
-  {
-    "indonesia": "Belajar",
-    "kanji": "勉強します",
-    "kana": "べんきょうします",
-    "romaji": "Benkyou Shimasu",
-    "gambar": "https://iili.io/C5kzV7j.png"
-  },
-  {
-    "indonesia": "Setiap pagi",
-    "kanji": "毎朝",
-    "kana": "まいあさ",
-    "romaji": "Maiasa",
-    "gambar": "https://iili.io/C5kzWkx.png"
-  },
-  {
-    "indonesia": "Setiap hari",
-    "kanji": "毎日",
-    "kana": "まいにち",
-    "romaji": "Mainichi",
-    "gambar": "https://iili.io/C5kzwhB.png"
-  },
-  {
-    "indonesia": "Setiap malam",
-    "kanji": "毎晩",
-    "kana": "まいばん",
-    "romaji": "Maiban",
-    "gambar": "https://iili.io/C5kzNLP.png"
-  },
-  {
-    "indonesia": "Sampai ~",
-    "kanji": "",
-    "kana": "〜まで",
-    "romaji": "-made",
-    "gambar": "https://iili.io/C5kzvrg.png"
-  },
-  {
-    "indonesia": "Perpustakaan Midori fiksi",
-    "kanji": "みどり図書館",
-    "kana": "みどりとしょかん",
-    "romaji": "Midori Toshokan",
-    "gambar": "https://iili.io/C5kzeB1.png"
-  },
-  {
-    "indonesia": "Hari Kamis",
-    "kanji": "木曜日",
-    "kana": "もくようび",
-    "romaji": "Mokuyoubi",
-    "gambar": "https://iili.io/C5kzgkv.png"
-  },
-  {
-    "indonesia": "Istirahat, cuti, libur",
-    "kanji": "休み",
-    "kana": "やすみ",
-    "romaji": "Yasumi",
-    "gambar": "https://iili.io/C5kzrpR.png"
-  },
-  {
-    "indonesia": "Beristirahat, libur",
-    "kanji": "休みます",
-    "kana": "やすみます",
-    "romaji": "Yasumimasu",
-    "gambar": "https://iili.io/C5kz6Ip.png"
-  },
-  {
-    "indonesia": "Gedung Kesenian Yamato fiksi",
-    "kanji": "やまと美術館",
-    "kana": "やまとびじゅつかん",
-    "romaji": "Yamato Bijutsukan",
-    "gambar": "https://iili.io/C5kzZ4n.png"
-  },
-  {
-    "indonesia": "Kantor pos",
-    "kanji": "郵便局",
-    "kana": "ゆうびんきょく",
-    "romaji": "Yuubinkyoku",
-    "gambar": "https://iili.io/C5kzD2s.png"
+    "gambar": "https://iili.io/C5r61qP.png"
   },
   {
     "indonesia": "Los Angeles",
     "kanji": "",
     "kana": "ロサンゼルス",
     "romaji": "Rosanzerusu",
-    "gambar": "https://iili.io/C5kzpp4.png"
+    "gambar": "https://iili.io/C5r6kBI.png"
   },
   {
     "indonesia": "London",
     "kanji": "",
     "kana": "ロンドン",
     "romaji": "Rondon",
-    "gambar": "https://iili.io/C5kI9Tl.png"
+    "gambar": "https://iili.io/C5r6U2n.png"
   },
   {
-    "indonesia": "O, berat ya",
-    "kanji": "大変ですね",
-    "kana": "たいへんですね",
-    "romaji": "Taihen desu ne",
-    "gambar": "https://iili.io/C5kIJQS.png",
-    "contoh": "Ungkapan simpati kepada lawan bicara yang mengalami hal yang dianggap susah."
+    "indonesia": "restoran masakan Jepang fiksi",
+    "kanji": "",
+    "kana": "おすか",
+    "romaji": "Osuka",
+    "gambar": "https://iili.io/C5r6g7s.png"
+  },
+  {
+    "indonesia": "bank fiksi",
+    "kanji": "アップル銀行",
+    "kana": "アップルぎんこう",
+    "romaji": "Appuru Ginkou",
+    "gambar": "https://iili.io/C5r6t49.png"
+  },
+  {
+    "indonesia": "perpustakaan fiksi",
+    "kanji": "みどり図書館",
+    "kana": "みどりとしょかん",
+    "romaji": "Midori Toshokan",
+    "gambar": "https://iili.io/C5rPHTx.png"
+  },
+  {
+    "indonesia": "gedung kesenian fiksi",
+    "kanji": "やまと美術館",
+    "kana": "やまとびじゅつかん",
+    "romaji": "Yamato Bijutsukan",
+    "gambar": "https://iili.io/C5rPq3F.png"
   }
 ];
 
