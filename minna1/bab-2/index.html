@@ -4168,6 +4168,96 @@
       }
     }
 
+  
+    /* ===== Final safety patch: popup gambar dan Lihat Materi ===== */
+    #startBtn:not(.show),
+    #viewMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startBtn.show,
+    #viewMaterialBtn.show {
+      display: inline-flex !important;
+    }
+
+    .image-modal-body img,
+    .material-image img,
+    .illustration img {
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+
+    .image-modal-card {
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      max-height: calc(100svh - 20px) !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 10 !important;
+      flex: 0 0 auto !important;
+      align-self: flex-end !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      overflow: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .material-modal-card {
+      display: flex !important;
+      flex-direction: column !important;
+      max-height: calc(100svh - 20px) !important;
+      overflow: hidden !important;
+    }
+
+    .material-modal-header {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 5 !important;
+      flex: 0 0 auto !important;
+    }
+
+    .material-list {
+      min-height: 0 !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #viewMaterialBtn.show {
+        width: 100% !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .image-modal,
+      .material-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-card,
+      .material-modal-card {
+        width: 100% !important;
+        border-radius: 22px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4492,329 +4582,329 @@
             "kanji": "",
             "kana": "これ",
             "romaji": "kore",
-            "gambar": "https://iili.io/C58IWcF.png"
+            "gambar": "https://iili.io/C5g9Hy7.png"
       },
       {
             "indonesia": "itu",
             "kanji": "",
             "kana": "それ",
             "romaji": "sore",
-            "gambar": "https://iili.io/C58IVF1.png"
+            "gambar": "https://iili.io/C5g99vS.png"
       },
       {
             "indonesia": "itu",
             "kanji": "",
             "kana": "あれ",
             "romaji": "are",
-            "gambar": "https://iili.io/C58IG6P.png"
+            "gambar": "https://iili.io/C5Uyya2.png"
       },
       {
             "indonesia": "～ ini",
             "kanji": "",
             "kana": "この～",
             "romaji": "kono",
-            "gambar": "https://iili.io/C58IwAJ.png"
+            "gambar": "https://iili.io/C5g9du9.png"
       },
       {
             "indonesia": "～ itu",
             "kanji": "",
             "kana": "その～",
             "romaji": "sono",
-            "gambar": "https://iili.io/C58Iknp.png"
+            "gambar": "https://iili.io/C5g93Zu.png"
       },
       {
             "indonesia": "～ itu",
             "kanji": "",
             "kana": "あの～",
             "romaji": "ano",
-            "gambar": "https://iili.io/C58I8PI.png"
+            "gambar": "https://iili.io/C5g9KCb.png"
       },
       {
             "indonesia": "buku",
             "kanji": "本",
             "kana": "ほん",
             "romaji": "hon",
-            "gambar": "https://iili.io/C5NNlMF.png"
+            "gambar": "https://iili.io/C5g9C3Q.png"
       },
       {
             "indonesia": "kamus",
             "kanji": "辞書",
             "kana": "じしょ",
             "romaji": "jisho",
-            "gambar": "https://iili.io/C5NNI3b.png"
+            "gambar": "https://iili.io/C5g9naV.png"
       },
       {
             "indonesia": "majalah",
             "kanji": "雑誌",
             "kana": "ざっし",
             "romaji": "zasshi",
-            "gambar": "https://iili.io/C58IgcX.png"
+            "gambar": "https://iili.io/C5g9TwF.png"
       },
       {
             "indonesia": "koran, surat kabar",
             "kanji": "新聞",
             "kana": "しんぶん",
             "romaji": "shinbun",
-            "gambar": "https://iili.io/C5NNAyQ.png"
+            "gambar": "https://iili.io/C5g9uZg.png"
       },
       {
             "indonesia": "buku tulis, buku catatan",
             "kanji": "",
             "kana": "ノート",
             "romaji": "nooto",
-            "gambar": "https://iili.io/C58IiNf.png"
+            "gambar": "https://iili.io/C5g95MJ.png"
       },
       {
             "indonesia": "buku agenda",
             "kanji": "手帳",
             "kana": "てちょう",
             "romaji": "techou",
-            "gambar": "https://iili.io/C5NNu8x.png"
+            "gambar": "https://iili.io/C5g9aFR.png"
       },
       {
             "indonesia": "kartu nama",
             "kanji": "名刺",
             "kana": "めいし",
             "romaji": "meishi",
-            "gambar": "https://iili.io/C5NNYZP.png"
+            "gambar": "https://iili.io/C5g919I.png"
       },
       {
             "indonesia": "kartu",
             "kanji": "",
             "kana": "カード",
             "romaji": "kaado",
-            "gambar": "https://iili.io/C58T9Hu.png"
+            "gambar": "https://iili.io/C5g9GwX.png"
       },
       {
             "indonesia": "pensil",
             "kanji": "鉛筆",
             "kana": "えんぴつ",
             "romaji": "enpitsu",
-            "gambar": "https://iili.io/C58T3oQ.png"
+            "gambar": "https://iili.io/C5g9Wns.png"
       },
       {
             "indonesia": "bolpoin",
             "kanji": "",
             "kana": "ボールペン",
             "romaji": "boorupen",
-            "gambar": "https://iili.io/C58TdDx.png"
+            "gambar": "https://iili.io/C5g9hPf.png"
       },
       {
             "indonesia": "pensil mekanik, pensil isi ulang",
             "kanji": "",
             "kana": "シャープペンシル",
             "romaji": "shaapupenshiru",
-            "gambar": "https://iili.io/C58TJNj.png"
+            "gambar": "https://iili.io/C5g9Ncl.png"
       },
       {
             "indonesia": "kunci",
             "kanji": "",
             "kana": "かぎ",
             "romaji": "kagi",
-            "gambar": "https://iili.io/C58TqKP.png"
+            "gambar": "https://iili.io/C5g9k9S.png"
       },
       {
             "indonesia": "jam, arloji",
             "kanji": "時計",
             "kana": "とけい",
             "romaji": "tokei",
-            "gambar": "https://iili.io/C5NNqjS.png"
+            "gambar": "https://iili.io/C5g9Ste.png"
       },
       {
             "indonesia": "payung",
             "kanji": "傘",
             "kana": "かさ",
             "romaji": "kasa",
-            "gambar": "https://iili.io/C5NNFyl.png"
+            "gambar": "https://iili.io/C5g9rMb.png"
       },
       {
             "indonesia": "tas",
             "kanji": "",
             "kana": "かばん",
             "romaji": "kaban",
-            "gambar": "https://iili.io/C58TIDv.png"
+            "gambar": "https://iili.io/C5g9icQ.png"
       },
       {
             "indonesia": "CD",
             "kanji": "",
             "kana": "CD",
             "romaji": "shii dii",
-            "gambar": "https://iili.io/C58TuxR.png"
+            "gambar": "https://iili.io/C5g9QHB.png"
       },
       {
             "indonesia": "televisi",
             "kanji": "",
             "kana": "テレビ",
             "romaji": "terebi",
-            "gambar": "https://iili.io/C58TRiN.png"
+            "gambar": "https://iili.io/C5g9DDF.png"
       },
       {
             "indonesia": "radio",
             "kanji": "",
             "kana": "ラジオ",
             "romaji": "rajio",
-            "gambar": "https://iili.io/C58T7fI.png"
+            "gambar": "https://iili.io/C5g9mog.png"
       },
       {
             "indonesia": "kamera",
             "kanji": "",
             "kana": "カメラ",
             "romaji": "kamera",
-            "gambar": "https://iili.io/C58TlJn.png"
+            "gambar": "https://iili.io/C5g9yiJ.png"
       },
       {
             "indonesia": "komputer, PC",
             "kanji": "",
             "kana": "コンピューター",
             "romaji": "konpyuutaa",
-            "gambar": "https://iili.io/C58T0Rs.png"
+            "gambar": "https://iili.io/C5gHJlR.png"
       },
       {
             "indonesia": "mobil",
             "kanji": "車",
             "kana": "くるま",
             "romaji": "kuruma",
-            "gambar": "https://iili.io/C5NNnn9.png"
+            "gambar": "https://iili.io/C5gHFRI.png"
       },
       {
             "indonesia": "meja, meja tulis",
             "kanji": "机",
             "kana": "つくえ",
             "romaji": "tsukue",
-            "gambar": "https://iili.io/C58TMx4.png"
+            "gambar": "https://iili.io/C5gHKNt.png"
       },
       {
             "indonesia": "kursi",
             "kanji": "",
             "kana": "いす",
             "romaji": "isu",
-            "gambar": "https://iili.io/C58TWs2.png"
+            "gambar": "https://iili.io/C5gHfDX.png"
       },
       {
             "indonesia": "coklat",
             "kanji": "",
             "kana": "チョコレート",
             "romaji": "chokoreeto",
-            "gambar": "https://iili.io/C58ThfS.png"
+            "gambar": "https://iili.io/C5gHniG.png"
       },
       {
             "indonesia": "kopi",
             "kanji": "",
             "kana": "コーヒー",
             "romaji": "koohii",
-            "gambar": "https://iili.io/C58Tj07.png"
+            "gambar": "https://iili.io/C5gHuJ2.png"
       },
       {
             "indonesia": "oleh-oleh",
             "kanji": "お土産",
             "kana": "おみやげ",
             "romaji": "omiyage",
-            "gambar": "https://iili.io/C58TOJe.png"
+            "gambar": "https://iili.io/C5gHRO7.png"
       },
       {
             "indonesia": "bahasa Inggris",
             "kanji": "英語",
             "kana": "えいご",
             "romaji": "eigo",
-            "gambar": "https://iili.io/C58Te5u.png"
+            "gambar": "https://iili.io/C5gH5b9.png"
       },
       {
             "indonesia": "bahasa Jepang",
             "kanji": "日本語",
             "kana": "にほんご",
             "romaji": "nihongo",
-            "gambar": "https://iili.io/C5NN5uV.png"
+            "gambar": "https://iili.io/C5gHcib.png"
       },
       {
             "indonesia": "bahasa ～",
             "kanji": "～語",
             "kana": "～ご",
             "romaji": "-go",
-            "gambar": "https://iili.io/C58TUWQ.png"
+            "gambar": "https://iili.io/C5gH0fj.png"
       },
       {
             "indonesia": "apa",
             "kanji": "何",
             "kana": "なん",
             "romaji": "nan",
-            "gambar": "https://iili.io/C58TL5g.png"
+            "gambar": "https://iili.io/C5gHMJV.png"
       },
       {
             "indonesia": "begitu",
             "kanji": "",
             "kana": "そう",
             "romaji": "sou",
-            "gambar": "https://iili.io/C58TZmJ.png"
+            "gambar": "https://iili.io/C5gHwWg.png"
       },
       {
             "indonesia": "Eee…",
             "kanji": "",
             "kana": "あのう",
             "romaji": "anou",
-            "gambar": "https://iili.io/C58TQea.png"
+            "gambar": "https://iili.io/C5gHvgR.png"
       },
       {
             "indonesia": "Eh",
             "kanji": "",
             "kana": "えっ",
             "romaji": "e",
-            "gambar": "https://iili.io/C58Tmsp.png"
+            "gambar": "https://iili.io/C5gHrbt.png"
       },
       {
             "indonesia": "Silakan",
             "kanji": "",
             "kana": "どうぞ",
             "romaji": "douzo",
-            "gambar": "https://iili.io/C58uddX.png"
+            "gambar": "https://iili.io/C5gH6zX.png"
       },
       {
             "indonesia": "Terima kasih / Terima kasih banyak",
             "kanji": "",
             "kana": "どうもありがとう / ありがとうございます",
             "romaji": "doumo arigatou / arigatou gozaimasu",
-            "gambar": "https://iili.io/C58u3es.png"
+            "gambar": "https://iili.io/C5gHPXn.png"
       },
       {
             "indonesia": "O, begitu / O, ya",
             "kanji": "",
             "kana": "そうですか",
             "romaji": "sou desu ka",
-            "gambar": "https://iili.io/C58ufIf.png"
+            "gambar": "https://iili.io/C5gHQ1f.png"
       },
       {
             "indonesia": "Bukan / Tidak / Salah",
             "kanji": "違います",
             "kana": "ちがいます",
             "romaji": "chigaimasu",
-            "gambar": "https://iili.io/C58uqX4.png"
+            "gambar": "https://iili.io/C5gJHXe.png"
       },
       {
             "indonesia": "O, Eh",
             "kanji": "",
             "kana": "あ",
             "romaji": "a",
-            "gambar": "https://iili.io/C58unB2.png"
+            "gambar": "https://iili.io/C5gJFrx.png"
       },
       {
             "indonesia": "Mulai sekarang, saya akan meminta bantuannya",
             "kanji": "これからお世話になります",
             "kana": "これからおせわになります",
             "romaji": "korekara osewa ni narimasu",
-            "gambar": "https://iili.io/C58uo1S.png"
+            "gambar": "https://iili.io/C5gJq7V.png"
       },
       {
             "indonesia": "Ya, sama-sama",
             "kanji": "",
             "kana": "こちらこそどうぞよろしくお願いします",
             "romaji": "kochira koso douzo yoroshiku onegaishimasu",
-            "gambar": "https://iili.io/C58uI29.png"
+            "gambar": "https://iili.io/C5gJCmP.png"
       },
       {
             "indonesia": "Mohon bantuannya / Senang berkenalan dengan Anda",
             "kanji": "",
             "kana": "どうぞよろしくお願いします",
             "romaji": "douzo yoroshiku onegaishimasu",
-            "gambar": "https://iili.io/C58uT7e.png"
+            "gambar": "https://iili.io/C5gJoI1.png"
       }
 ];
 
@@ -6083,7 +6173,97 @@
         <head>
           <meta charset="utf-8">
           <title>${escapeHTML(t("adminPdfTitle"))}</title>
-          <style>${reportStyles()}</style>
+          <style>${reportStyles()}
+    /* ===== Final safety patch: popup gambar dan Lihat Materi ===== */
+    #startBtn:not(.show),
+    #viewMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startBtn.show,
+    #viewMaterialBtn.show {
+      display: inline-flex !important;
+    }
+
+    .image-modal-body img,
+    .material-image img,
+    .illustration img {
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+
+    .image-modal-card {
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      max-height: calc(100svh - 20px) !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 10 !important;
+      flex: 0 0 auto !important;
+      align-self: flex-end !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      overflow: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .material-modal-card {
+      display: flex !important;
+      flex-direction: column !important;
+      max-height: calc(100svh - 20px) !important;
+      overflow: hidden !important;
+    }
+
+    .material-modal-header {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 5 !important;
+      flex: 0 0 auto !important;
+    }
+
+    .material-list {
+      min-height: 0 !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #viewMaterialBtn.show {
+        width: 100% !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .image-modal,
+      .material-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-card,
+      .material-modal-card {
+        width: 100% !important;
+        border-radius: 22px !important;
+      }
+    }
+
+  </style>
         </head>
         <body>
           <h1>${escapeHTML(t("adminPdfTitle"))}</h1>
@@ -6182,7 +6362,97 @@
         <head>
           <meta charset="utf-8">
           <title>${escapeHTML(t("pdfTitle"))}</title>
-          <style>${reportStyles()}</style>
+          <style>${reportStyles()}
+    /* ===== Final safety patch: popup gambar dan Lihat Materi ===== */
+    #startBtn:not(.show),
+    #viewMaterialBtn:not(.show) {
+      display: none !important;
+    }
+
+    #startBtn.show,
+    #viewMaterialBtn.show {
+      display: inline-flex !important;
+    }
+
+    .image-modal-body img,
+    .material-image img,
+    .illustration img {
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+
+    .image-modal-card {
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      max-height: calc(100svh - 20px) !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 10 !important;
+      flex: 0 0 auto !important;
+      align-self: flex-end !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      overflow: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .material-modal-card {
+      display: flex !important;
+      flex-direction: column !important;
+      max-height: calc(100svh - 20px) !important;
+      overflow: hidden !important;
+    }
+
+    .material-modal-header {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 5 !important;
+      flex: 0 0 auto !important;
+    }
+
+    .material-list {
+      min-height: 0 !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #viewMaterialBtn.show {
+        width: 100% !important;
+      }
+
+      .material-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .image-modal,
+      .material-modal {
+        padding: 10px !important;
+      }
+
+      .image-modal-card,
+      .material-modal-card {
+        width: 100% !important;
+        border-radius: 22px !important;
+      }
+    }
+
+  </style>
         </head>
         <body>
           <h1>${escapeHTML(t("pdfTitle"))}</h1>
