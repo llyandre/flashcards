@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://i.postimg.cc" crossorigin />
   <link rel="dns-prefetch" href="https://i.ibb.co" />
   <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
 
@@ -470,24 +472,27 @@
     }
 
     .username-box.is-complete {
-      display: none;
+      display: grid;
     }
 
     .group-box {
       width: min(540px, 100%);
-      margin: 0 auto 16px;
-      padding: 13px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.56);
-      border: 1px solid rgba(124, 111, 246, 0.14);
-      box-shadow: var(--shadow-soft);
+      margin: 14px auto 16px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .login-modal-card .group-box {
       width: 100%;
-      margin: 0 0 14px;
-      background: rgba(255, 255, 255, 0.68);
-      box-shadow: var(--shadow-tiny);
+      margin: 14px 0 14px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
     }
 
     .group-box[hidden] {
@@ -495,39 +500,42 @@
     }
 
     .group-box p {
-      margin: 0 0 10px;
-      color: #505a70;
+      margin: 0;
+      color: var(--heading);
       font-size: var(--fs-small);
-      font-weight: 650;
-      text-align: center;
+      font-weight: 900;
+      text-align: left;
+      line-height: 1.35;
     }
 
     .group-options {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .group-btn {
-      min-height: 42px;
-      padding: 9px 8px;
-      border: 1px solid rgba(124, 111, 246, 0.18);
-      border-radius: 14px;
-      color: #514a9e;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow-tiny);
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid rgba(124, 111, 246, 0.2);
+      border-radius: var(--radius-pill);
+      color: var(--primary-deep);
+      background: var(--primary-soft);
+      box-shadow: none;
       font-size: var(--fs-small);
-      font-weight: 700;
-      line-height: 1.2;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+      font-weight: 900;
+      line-height: 1.15;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .group-btn:hover,
     .group-btn.active {
       transform: translateY(-1px);
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #9d8dfd);
-      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.2);
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      border-color: transparent;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22);
     }
 
     .btn {
@@ -3415,6 +3423,707 @@
       }
     }
 
+    /* ===== FINAL USERNAME MATCH ACUAN =====
+       Override khusus agar tampilan penulisan username sama dengan HTML acuan. */
+    #startScreen .username-box,
+    .username-box {
+      width: min(520px, 100%) !important;
+      max-width: none !important;
+      margin: 0 auto 16px !important;
+      display: grid !important;
+      gap: 8px !important;
+    }
+
+    #startScreen .input-shell,
+    .input-shell {
+      min-height: var(--control-h) !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 16px !important;
+      padding: 0 22px !important;
+      border-radius: var(--radius-lg) !important;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)) !important;
+      border: 1px solid rgba(255, 255, 255, 0.88) !important;
+      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+    }
+
+    #startScreen .input-icon,
+    .input-icon {
+      width: 30px !important;
+      height: 30px !important;
+      color: #7a8296 !important;
+    }
+
+    .username-box input {
+      width: 100% !important;
+      min-height: 1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: var(--text) !important;
+      font-size: var(--fs-input) !important;
+      font-weight: 600 !important;
+      line-height: 1.3 !important;
+    }
+
+    .username-box input::placeholder {
+      color: #728097 !important;
+      opacity: 1 !important;
+    }
+
+    #startScreen .username-note,
+    .username-note {
+      margin: 0 !important;
+      color: #505a70 !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 500 !important;
+      line-height: 1.45 !important;
+      text-align: center !important;
+    }
+
+    .login-trigger {
+      width: 100% !important;
+      min-height: var(--control-h) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      padding: 0 22px !important;
+      border: 1px solid rgba(255, 255, 255, 0.88) !important;
+      border-radius: var(--radius-lg) !important;
+      color: #17254e !important;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58)) !important;
+      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      font-size: var(--fs-input) !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+    }
+
+    .login-trigger:hover {
+      transform: translateY(-1px) !important;
+      border-color: rgba(124, 111, 246, 0.34) !important;
+      box-shadow: 0 16px 34px rgba(54, 65, 101, 0.14) !important;
+    }
+
+    .login-summary {
+      display: none !important;
+      width: max-content !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 8px 13px !important;
+      border-radius: var(--radius-pill) !important;
+      color: #514a9e !important;
+      background: rgba(124, 111, 246, 0.1) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+    }
+
+    .login-summary.show {
+      display: inline-flex !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+
+    .login-modal {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 60 !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 22px !important;
+      background: rgba(20, 24, 38, 0.48) !important;
+      backdrop-filter: blur(18px) !important;
+      -webkit-backdrop-filter: blur(18px) !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transition: opacity 0.22s ease, visibility 0.22s ease !important;
+    }
+
+    .login-modal.show {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+
+    .login-modal-card {
+      width: min(430px, 94vw) !important;
+      position: relative !important;
+      padding: 28px 24px 24px !important;
+      border-radius: var(--radius-xl) !important;
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
+        rgba(255, 255, 255, 0.98) !important;
+      border: 1px solid rgba(255, 255, 255, 0.82) !important;
+      box-shadow: 0 24px 70px rgba(31, 41, 55, 0.24) !important;
+      transform: translateY(10px) scale(0.97) !important;
+      transition: transform 0.22s ease !important;
+      overflow-y: auto !important;
+    }
+
+    .login-modal.show .login-modal-card {
+      transform: translateY(0) scale(1) !important;
+    }
+
+    .login-modal-card h3 {
+      margin: 0 34px 8px 0 !important;
+      color: #514a9e !important;
+      font-size: clamp(20px, 3vw, 24px) !important;
+      font-weight: 740 !important;
+      letter-spacing: 0 !important;
+      line-height: 1.18 !important;
+    }
+
+    .login-modal-card p {
+      margin: 0 0 16px !important;
+      color: var(--muted) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 500 !important;
+      line-height: 1.55 !important;
+    }
+
+    .login-field {
+      display: grid !important;
+      gap: 7px !important;
+      margin-bottom: 13px !important;
+      text-align: left !important;
+    }
+
+    .login-field[hidden],
+    .password-box[hidden],
+    .group-box[hidden],
+    .admin-only[hidden] {
+      display: none !important;
+    }
+
+    .login-field label {
+      color: #505a70 !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 650 !important;
+    }
+
+    .login-field input {
+      min-height: 50px !important;
+      width: 100% !important;
+      padding: 0 14px !important;
+      border: 1px solid rgba(124, 111, 246, 0.22) !important;
+      border-radius: var(--radius-md) !important;
+      outline: none !important;
+      color: var(--text) !important;
+      background: rgba(255, 255, 255, 0.86) !important;
+      box-shadow: var(--shadow-tiny) !important;
+      font-size: var(--fs-input) !important;
+      font-weight: 700 !important;
+    }
+
+    .login-field input:focus {
+      border-color: rgba(124, 111, 246, 0.5) !important;
+      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-tiny) !important;
+    }
+
+    .group-box,
+    .login-modal-card .group-box {
+      width: 100% !important;
+      margin: 14px 0 14px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      text-align: left !important;
+    }
+
+    .group-box p {
+      margin: 0 !important;
+      color: var(--heading) !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      text-align: left !important;
+      line-height: 1.35 !important;
+    }
+
+    .group-options {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      margin-top: 10px !important;
+    }
+
+    .group-btn {
+      min-height: 44px !important;
+      padding: 10px 12px !important;
+      border: 1px solid rgba(124, 111, 246, 0.2) !important;
+      border-radius: var(--radius-pill) !important;
+      color: var(--primary-deep) !important;
+      background: var(--primary-soft) !important;
+      box-shadow: none !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 900 !important;
+      line-height: 1.15 !important;
+    }
+
+    .group-btn:hover,
+    .group-btn.active {
+      transform: translateY(-1px) !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep)) !important;
+      border-color: transparent !important;
+      box-shadow: 0 12px 22px rgba(124, 111, 246, 0.22) !important;
+    }
+
+    .login-modal-actions {
+      display: flex !important;
+      justify-content: flex-end !important;
+      gap: 10px !important;
+    }
+
+    #closeLoginModal {
+      top: 16px !important;
+      right: 16px !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      font-size: 28px !important;
+      line-height: 1 !important;
+      box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12) !important;
+    }
+
+    @media (max-width: 720px) {
+      #startScreen .username-box,
+      .username-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 16px 0 0 !important;
+      }
+
+      #startScreen .input-shell,
+      .input-shell {
+        min-height: var(--control-h-mobile) !important;
+        padding: 0 18px !important;
+      }
+
+      .login-trigger,
+      .login-summary {
+        min-height: 50px !important;
+        border-radius: 18px !important;
+        font-size: 14.5px !important;
+      }
+
+      .login-modal {
+        padding: 14px !important;
+        align-items: center !important;
+      }
+
+      .login-modal-card {
+        width: 100% !important;
+        max-width: 420px !important;
+        max-height: calc(100svh - 28px) !important;
+        padding: 24px 18px 18px !important;
+        border-radius: 24px !important;
+      }
+
+      .login-modal-card h3 {
+        padding-right: 40px !important;
+        font-size: 22px !important;
+      }
+
+      .login-modal-card p,
+      .login-field label,
+      .login-error {
+        font-size: 12.5px !important;
+        line-height: 1.42 !important;
+      }
+
+      .login-field input {
+        min-height: 48px !important;
+        border-radius: 16px !important;
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .group-btn {
+        min-height: 44px !important;
+        border-radius: var(--radius-pill) !important;
+      }
+
+      .login-modal-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+    }
+    /* ===== END FINAL USERNAME MATCH ===== */
+
+
+
+    /* ===== Fix username homepage ===== */
+    #startScreen .username-box,
+    #startScreen .username-box.is-complete {
+      display: grid !important;
+    }
+
+    #startScreen #openLoginBtn {
+      display: flex !important;
+    }
+
+    #startScreen #loginSummary,
+    #startScreen #loginSummary.show {
+      display: none !important;
+    }
+
+
+    /* ===== Hide homepage username/status note after input ===== */
+    #startScreen #usernameNote[hidden],
+    #startScreen .username-note[hidden] {
+      display: none !important;
+    }
+
+
+    /* ===== Homepage setelah username selesai ===== */
+    /* Penjelasan Bahasa Indonesia tetap tampil; hanya kotak username yang disembunyikan. */
+    #startScreen.login-complete .username-box {
+      display: none !important;
+    }
+
+    #startScreen.login-complete [data-i18n-html="homeDescription"] {
+      display: block !important;
+      margin-bottom: 22px !important;
+    }
+
+    #startScreen.login-complete .hero-actions {
+      margin-top: 0 !important;
+    }
+
+    #startScreen.login-complete #startBtn.show {
+      display: inline-flex !important;
+    }
+
+    /* ===== Lihat Materi + popup gambar rapi ===== */
+    #materialBtn:not(.show) {
+      display: none;
+    }
+
+    #materialBtn.show {
+      display: inline-flex;
+    }
+
+    #startScreen.login-complete #materialBtn.show {
+      display: inline-flex !important;
+    }
+
+    .material-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 115;
+      display: grid;
+      place-items: center;
+      padding: clamp(14px, 3vw, 24px);
+      background: rgba(20, 24, 38, 0.52);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .material-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .material-modal-card {
+      width: min(980px, 100%);
+      max-height: calc(100svh - 32px);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(203, 226, 255, 0.32), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.28), transparent 36%),
+        rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 26px 80px rgba(31, 41, 55, 0.24);
+    }
+
+    .material-modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(124, 111, 246, 0.14);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .material-modal-head h3 {
+      margin: 0 0 5px;
+      color: var(--heading);
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 760;
+      line-height: 1.2;
+    }
+
+    .material-modal-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--fs-small);
+      line-height: 1.45;
+    }
+
+    .material-modal-close {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius-pill);
+      color: #6557df;
+      background: rgba(124, 111, 246, 0.12);
+      box-shadow: var(--shadow-tiny);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+
+    .material-list {
+      min-height: 0;
+      overflow-y: auto;
+      padding: 16px 18px 20px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      overscroll-behavior: contain;
+    }
+
+    .material-item {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 86px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(124, 111, 246, 0.14);
+      box-shadow: var(--shadow-tiny);
+    }
+
+    .material-item button {
+      width: 86px;
+      height: 86px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(124, 111, 246, 0.12);
+      cursor: zoom-in;
+    }
+
+    .material-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      padding: 6px;
+      background: #fff;
+    }
+
+    .material-info {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .material-no {
+      color: #6557df;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .material-jp {
+      color: var(--heading);
+      font-family: var(--font-jp);
+      font-size: 17px;
+      font-weight: 760;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .material-reading {
+      color: #817a75;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .material-id {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .image-modal {
+      z-index: 125 !important;
+    }
+
+    .image-modal-card {
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      width: min(900px, 96vw) !important;
+      max-height: calc(100svh - 28px) !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+    }
+
+    .image-modal-close {
+      position: sticky !important;
+      top: 0 !important;
+      right: auto !important;
+      justify-self: end !important;
+      z-index: 2 !important;
+      margin: 12px 12px 0 0 !important;
+      flex: 0 0 auto !important;
+    }
+
+    .image-modal-body {
+      min-height: 0 !important;
+      max-height: none !important;
+      overflow: auto !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: 8px 14px 12px !important;
+      background: #fff !important;
+    }
+
+    .image-modal-body img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100svh - 150px) !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 auto !important;
+    }
+
+    .image-modal-caption {
+      margin: 0 !important;
+      padding: 10px 14px 14px !important;
+      border-top: 1px solid rgba(124, 111, 246, 0.12) !important;
+      background: #fff !important;
+    }
+
+    @media (max-width: 900px) {
+      .material-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      #startScreen.login-complete .hero-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      #startScreen.login-complete #startBtn.show,
+      #startScreen.login-complete #materialBtn.show {
+        width: 100% !important;
+      }
+
+      .material-modal {
+        padding: 12px !important;
+      }
+
+      .material-modal-card {
+        max-height: calc(100svh - 24px) !important;
+        border-radius: 24px !important;
+      }
+
+      .material-modal-head {
+        padding: 14px 14px 12px !important;
+        gap: 10px !important;
+      }
+
+      .material-modal-head h3 {
+        font-size: 21px !important;
+      }
+
+      .material-list {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        padding: 12px 12px 16px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 78px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 9px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-item button {
+        width: 78px !important;
+        height: 78px !important;
+      }
+
+      .material-jp {
+        font-size: 16px !important;
+      }
+
+      .image-modal {
+        padding: 12px !important;
+      }
+
+      .image-modal-card {
+        width: 100% !important;
+        max-height: calc(100svh - 24px) !important;
+        border-radius: 24px !important;
+      }
+
+      .image-modal-close {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        margin: 10px 10px 0 0 !important;
+      }
+
+      .image-modal-body {
+        padding: 8px 10px 10px !important;
+      }
+
+      .image-modal-body img {
+        max-height: calc(100svh - 140px) !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3456,16 +4165,17 @@
             </div>
           </div>
           <h1 data-i18n="homeTitle">Latihan kosakata Jepang dengan kartu interaktif</h1>
-          <p data-i18n-html="homeDescription">Klik <strong>Isi username</strong>, lengkapi pilihan di pop-up, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.</p>
+          <p data-i18n-html="homeDescription">Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.</p>
 
           <div class="username-box">
-            <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="usernameButton">Isi username</button>
+            <button id="openLoginBtn" class="login-trigger" type="button" data-i18n="usernameButton">Isi Username</button>
             <div id="loginSummary" class="login-summary" aria-live="polite"></div>
-            <p id="usernameNote" class="username-note" data-i18n="usernameNote">Klik tombol di atas untuk mengisi username melalui pop-up.</p>
+            <p id="usernameNote" class="username-note" data-i18n="usernameNote">Klik tombol di atas untuk mengisi username melalui popup.</p>
           </div>
 
           <div class="hero-actions">
-            <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Mulai</button>
+            <button id="startBtn" class="btn" type="button" disabled data-i18n="startButton">Start</button>
+            <button id="materialBtn" class="btn secondary" type="button">Lihat Materi</button>
             <button id="resultPageBtn" class="btn secondary admin-only" type="button" hidden data-i18n="skipButton">Lewati ke halaman hasil</button>
           </div>
         </div>
@@ -3635,7 +4345,7 @@
       <div class="login-modal-card">
         <button id="closeLoginModal" class="example-close" type="button" aria-label="Tutup login" data-i18n-aria-label="closeLoginLabel">×</button>
         <h3 id="loginModalTitle" data-i18n="loginTitle">Masuk peserta</h3>
-        <p data-i18n-html="loginDescription">Isi username terlebih dahulu. Pengguna biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
+        <p data-i18n-html="loginDescription">Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.</p>
 
         <div class="login-field">
           <label for="usernameInput" data-i18n="usernameLabel">Username</label>
@@ -3671,6 +4381,20 @@
         <button id="closeExampleModal" class="example-close" type="button" aria-label="Tutup contoh" data-i18n-aria-label="closeExampleLabel">×</button>
         <h3 id="exampleModalTitle" data-i18n="exampleTitle">Contoh penggunaan</h3>
         <p id="exampleText"></p>
+      </div>
+    </div>
+
+
+    <div id="materialModal" class="material-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="materialModalTitle">
+      <div class="material-modal-card">
+        <div class="material-modal-head">
+          <div>
+            <h3 id="materialModalTitle">Lihat Materi</h3>
+            <p>Daftar kosakata lengkap beserta arti dan gambar. Klik gambar untuk melihat ukuran penuh.</p>
+          </div>
+          <button id="closeMaterialModal" class="material-modal-close" type="button" aria-label="Tutup materi">×</button>
+        </div>
+        <div id="materialList" class="material-list" aria-label="Daftar materi kosakata"></div>
       </div>
     </div>
 
@@ -3724,343 +4448,343 @@
             "kanji": "",
             "kana": "こちら",
             "romaji": "kochira",
-            "gambar": "https://i.ibb.co/KxMCTT93/image.png"
+            "gambar": "https://iili.io/C5O4dCv.png"
       },
       {
             "indonesia": "(di) mana",
             "kanji": "",
             "kana": "どこ",
             "romaji": "doko",
-            "gambar": "https://i.ibb.co/d0trHRGw/image.png"
+            "gambar": "https://iili.io/C5O4h8P.png"
       },
       {
             "indonesia": "situ (bentuk sopan dari そこ)",
             "kanji": "",
             "kana": "そちら",
             "romaji": "sochira",
-            "gambar": "https://i.ibb.co/tMVSFXvg/image.png"
+            "gambar": "https://iili.io/C5O4lwu.png"
       },
       {
             "indonesia": "sana (bentuk sopan dari あそこ)",
             "kanji": "",
             "kana": "あちら",
             "romaji": "achira",
-            "gambar": "https://i.ibb.co/dznYf6m/image.png"
+            "gambar": "https://iili.io/C5OrzrB.png"
       },
       {
             "indonesia": "mana (bentuk sopan dari どこ)",
             "kanji": "",
             "kana": "どちら",
             "romaji": "dochira",
-            "gambar": "https://i.ibb.co/hxD1z6MN/image.png"
+            "gambar": "https://iili.io/C5O4voJ.png"
       },
       {
             "indonesia": "ruang kelas",
             "kanji": "教室",
             "kana": "きょうしつ",
             "romaji": "kyoushitsu",
-            "gambar": "https://i.ibb.co/4RZbTjMr/image.png"
+            "gambar": "https://iili.io/C5Orbv1.png"
       },
       {
             "indonesia": "ruang makan, rumah makan, kantin",
             "kanji": "食堂",
             "kana": "しょくどう",
             "romaji": "shokudou",
-            "gambar": "https://i.ibb.co/pvdQS7Tr/image.png"
+            "gambar": "https://iili.io/C5O4xZG.png"
       },
       {
             "indonesia": "kantor",
             "kanji": "事務所",
             "kana": "じむしょ",
             "romaji": "jimusho",
-            "gambar": "https://i.ibb.co/SzNCp9s/image.png"
+            "gambar": "https://iili.io/C5O4faI.png"
       },
       {
             "indonesia": "ruang rapat",
             "kanji": "会議室",
             "kana": "かいぎしつ",
             "romaji": "kaigishitsu",
-            "gambar": "https://i.ibb.co/SzdH1B0/image.png"
+            "gambar": "https://iili.io/C5OrPQj.png"
       },
       {
             "indonesia": "meja informasi",
             "kanji": "受付",
             "kana": "うけつけ",
             "romaji": "uketsuke",
-            "gambar": "https://i.ibb.co/prrVk9bD/image.png"
+            "gambar": "https://iili.io/C5OrM7t.png"
       },
       {
             "indonesia": "ruang tunggu, lobi",
             "kanji": "",
             "kana": "ロビー",
             "romaji": "robii",
-            "gambar": "https://i.ibb.co/zTYk7Krg/image.png"
+            "gambar": "https://iili.io/C5O4pl2.png"
       },
       {
             "indonesia": "kamar",
             "kanji": "部屋",
             "kana": "へや",
             "romaji": "heya",
-            "gambar": "https://i.ibb.co/hxrM3Gr3/image.png"
+            "gambar": "https://iili.io/C5O4ZoG.png"
       },
       {
             "indonesia": "kamar kecil, toilet, WC",
             "kanji": "お手洗い",
             "kana": "トイレ / おてあらい",
             "romaji": "toire / otearai",
-            "gambar": "https://i.ibb.co/s9cjtv1T/image.png"
+            "gambar": "https://iili.io/C5O4WFV.png"
       },
       {
             "indonesia": "tangga",
             "kanji": "階段",
             "kana": "かいだん",
             "romaji": "kaidan",
-            "gambar": "https://i.ibb.co/6Rv5Q7cZ/image.png"
+            "gambar": "https://iili.io/C5OrQ4V.png"
       },
       {
             "indonesia": "lift",
             "kanji": "",
             "kana": "エレベーター",
             "romaji": "erebeetaa",
-            "gambar": "https://i.ibb.co/NgtfDkHs/image.png"
+            "gambar": "https://iili.io/C5OrOB4.png"
       },
       {
             "indonesia": "tangga berjalan, eskalator",
             "kanji": "",
             "kana": "エスカレーター",
             "romaji": "esukareetaa",
-            "gambar": "https://i.ibb.co/KZft51W/image.png"
+            "gambar": "https://iili.io/C5OrwQf.png"
       },
       {
             "indonesia": "mesin jual otomatis",
             "kanji": "自動販売機",
             "kana": "じどうはんばいき",
             "romaji": "jidouhanbaiki",
-            "gambar": "https://i.ibb.co/84KGp23y/image.png"
+            "gambar": "https://iili.io/C5O434p.png"
       },
       {
             "indonesia": "telepon",
             "kanji": "電話",
             "kana": "でんわ",
             "romaji": "denwa",
-            "gambar": "https://i.ibb.co/BKq45GbD/image.png"
+            "gambar": "https://iili.io/C5O4M6Q.png"
       },
       {
             "indonesia": "negara, negeri",
             "kanji": "お国",
             "kana": "おくに",
             "romaji": "okuni",
-            "gambar": "https://i.ibb.co/Ndyhjs3M/image.png"
+            "gambar": "https://iili.io/C5Orgpe.png"
       },
       {
             "indonesia": "perusahaan",
             "kanji": "会社",
             "kana": "かいしゃ",
             "romaji": "kaisha",
-            "gambar": "https://i.ibb.co/xKCgHQdv/image.png"
+            "gambar": "https://iili.io/C5OrLEQ.png"
       },
       {
             "indonesia": "rumah",
             "kanji": "",
             "kana": "うち",
             "romaji": "uchi",
-            "gambar": "https://i.ibb.co/XQBFWpS/image.png"
+            "gambar": "https://iili.io/C5OrhIs.png"
       },
       {
             "indonesia": "sepatu",
             "kanji": "靴",
             "kana": "くつ",
             "romaji": "kutsu",
-            "gambar": "https://i.ibb.co/FkMPpRS6/image.png"
+            "gambar": "https://iili.io/C5OrmyF.png"
       },
       {
             "indonesia": "dasi",
             "kanji": "",
             "kana": "ネクタイ",
             "romaji": "nekutai",
-            "gambar": "https://i.ibb.co/JRWtygqk/image.png"
+            "gambar": "https://iili.io/C5O44SI.png"
       },
       {
             "indonesia": "anggur",
             "kanji": "",
             "kana": "ワイン",
             "romaji": "wain",
-            "gambar": "https://i.ibb.co/FkggWDbz/image.png"
+            "gambar": "https://iili.io/C5O6HH7.png"
       },
       {
             "indonesia": "bawah tanah, basement",
             "kanji": "地下",
             "kana": "ちか",
             "romaji": "chika",
-            "gambar": "https://i.ibb.co/vCzpG3Pr/image.png"
+            "gambar": "https://iili.io/C5O4Enj.png"
       },
       {
             "indonesia": "tempat penjualan",
             "kanji": "売り場",
             "kana": "うりば",
             "romaji": "uriba",
-            "gambar": "https://i.ibb.co/xTw1H5r/image.png"
+            "gambar": "https://iili.io/C5OrjhG.png"
       },
       {
             "indonesia": "lantai satu, tingkat satu",
             "kanji": "一階",
             "kana": "いっかい",
             "romaji": "ikkai",
-            "gambar": "https://i.ibb.co/dNnhqh4/image.png"
+            "gambar": "https://iili.io/C5OrlBR.png"
       },
       {
             "indonesia": "lantai berapa, tingkat berapa",
             "kanji": "何階",
             "kana": "なんがい",
             "romaji": "nangai",
-            "gambar": "https://i.ibb.co/67qqfdK3/image.png"
+            "gambar": "https://iili.io/C5O4gFp.png"
       },
       {
             "indonesia": "yen",
             "kanji": "円",
             "kana": "えん",
             "romaji": "en",
-            "gambar": "https://i.ibb.co/TqRGNnB2/image.png"
+            "gambar": "https://iili.io/C5Or82S.png"
       },
       {
             "indonesia": "berapa",
             "kanji": "",
             "kana": "いくら",
             "romaji": "ikura",
-            "gambar": "https://i.ibb.co/qYYfqZxq/image.png"
+            "gambar": "https://iili.io/C5Or7Ia.png"
       },
       {
             "indonesia": "ratus",
             "kanji": "百",
             "kana": "ひゃく",
             "romaji": "hyaku",
-            "gambar": "https://i.ibb.co/NgnS7p9B/image.png"
+            "gambar": "https://iili.io/C5O4iAX.png"
       },
       {
             "indonesia": "ribu",
             "kanji": "千",
             "kana": "せん",
             "romaji": "sen",
-            "gambar": "https://i.ibb.co/6ckXKmZs/image.png"
+            "gambar": "https://iili.io/C5O4787.png"
       },
       {
             "indonesia": "puluh ribu",
             "kanji": "万",
             "kana": "まん",
             "romaji": "man",
-            "gambar": "https://i.ibb.co/hJYVNDS4/image.png"
+            "gambar": "https://iili.io/C5O4tVf.png"
       },
       {
             "indonesia": "Maaf./Permisi.",
             "kanji": "",
             "kana": "すみません。",
             "romaji": "sumimasen",
-            "gambar": "https://i.ibb.co/0jz55RwL/image.png"
+            "gambar": "https://iili.io/C5O4RF2.png"
       },
       {
             "indonesia": "Terima kasih.",
             "kanji": "",
             "kana": "どうも。",
             "romaji": "doumo",
-            "gambar": "https://i.ibb.co/chwzBFNC/image.png"
+            "gambar": "https://iili.io/C5O4XcB.png"
       },
       {
             "indonesia": "Selamat datang./Bisa saya bantu? (ungkapan kepada tamu yang masuk ke toko)",
             "kanji": "",
             "kana": "いらっしゃいませ。",
             "romaji": "irasshaimase",
-            "gambar": "https://i.ibb.co/Q3f9GVjT/image.png"
+            "gambar": "https://iili.io/C5Or1rN.png"
       },
       {
             "indonesia": "Tolong perlihatkan [〜].",
             "kanji": "",
             "kana": "〜を見せてください。",
             "romaji": "~ o misete kudasai",
-            "gambar": "https://i.ibb.co/dsDYSgKc/image.png"
+            "gambar": "https://iili.io/C5O6fix.png"
       },
       {
             "indonesia": "Baiklah, kalau begitu,",
             "kanji": "",
             "kana": "じゃ",
             "romaji": "ja",
-            "gambar": "https://i.ibb.co/k2RPwFgQ/image.png"
+            "gambar": "https://iili.io/C5O4qvt.png"
       },
       {
             "indonesia": "Minta [〜]./Tolong berikan [〜].",
             "kanji": "",
             "kana": "〜をください。",
             "romaji": "~ o kudasai",
-            "gambar": "https://i.ibb.co/N29YfYSq/image.png"
+            "gambar": "https://iili.io/C5O6dNe.png"
       },
       {
             "indonesia": "Italia",
             "kanji": "",
             "kana": "イタリア",
             "romaji": "Itaria",
-            "gambar": "https://i.ibb.co/JF53K07y/image.png"
+            "gambar": "https://iili.io/C5OrTdP.png"
       },
       {
             "indonesia": "Swiss",
             "kanji": "",
             "kana": "スイス",
             "romaji": "Suisu",
-            "gambar": "https://i.ibb.co/M5P3VnP2/image.png"
+            "gambar": "https://iili.io/C5O4TG4.png"
       },
       {
             "indonesia": "Prancis",
             "kanji": "",
             "kana": "フランス",
             "romaji": "Furansu",
-            "gambar": "https://i.ibb.co/H14sj18/image.png"
+            "gambar": "https://iili.io/C5O4Lts.png"
       },
       {
             "indonesia": "Jakarta",
             "kanji": "",
             "kana": "ジャカルタ",
             "romaji": "Jakaruta",
-            "gambar": "https://i.ibb.co/j9PkRqtV/image.png"
+            "gambar": "https://iili.io/C5O4ojs.png"
       },
       {
             "indonesia": "Bangkok",
             "kanji": "",
             "kana": "バンコク",
             "romaji": "Bankoku",
-            "gambar": "https://i.ibb.co/WWtmdM5h/image.png"
+            "gambar": "https://iili.io/C5O4P9t.png"
       },
       {
             "indonesia": "nama stasiun di Osaka (Shin-Osaka)",
             "kanji": "新大阪",
             "kana": "しんおおさか",
             "romaji": "Shin-Oosaka",
-            "gambar": "https://i.ibb.co/ZzY1hyLS/image.png"
+            "gambar": "https://iili.io/C5O6BKQ.png"
       },
       {
             "indonesia": "Berlin",
             "kanji": "",
             "kana": "ベルリン",
             "romaji": "Berurin",
-            "gambar": "https://i.ibb.co/ch39XZwT/image.png"
+            "gambar": "https://iili.io/C5O4DP4.png"
       },
       {
             "indonesia": "sini",
             "kanji": "",
             "kana": "ここ",
             "romaji": "koko",
-            "gambar": "https://i.ibb.co/MykpXddz/image.png"
+            "gambar": "https://iili.io/C5OryTg.png"
       },
       {
             "indonesia": "situ",
             "kanji": "",
             "kana": "そこ",
             "romaji": "soko",
-            "gambar": "https://i.ibb.co/JRTcTKdH/image.png"
+            "gambar": "https://iili.io/C5O4a99.png"
       },
       {
             "indonesia": "sana",
             "kanji": "",
             "kana": "あそこ",
             "romaji": "asoko",
-            "gambar": "https://i.ibb.co/0jzVWfZ5/image.png"
+            "gambar": "https://iili.io/C5OrAkF.png"
       }
 ];
 
@@ -4088,6 +4812,7 @@
     const resultPageBtn = document.getElementById("resultPageBtn");
     const usernameInput = document.getElementById("usernameInput");
     const startBtn = document.getElementById("startBtn");
+    const materialBtn = document.getElementById("materialBtn");
     const restartBtn = document.getElementById("restartBtn");
     const savePdfBtn = document.getElementById("savePdfBtn");
     const clearRankingBtn = document.getElementById("clearRankingBtn");
@@ -4108,6 +4833,9 @@
     const imageModalImg = document.getElementById("imageModalImg");
     const imageModalCaption = document.getElementById("imageModalCaption");
     const closeImageModal = document.getElementById("closeImageModal");
+    const materialModal = document.getElementById("materialModal");
+    const materialList = document.getElementById("materialList");
+    const closeMaterialModal = document.getElementById("closeMaterialModal");
     const correctBtn = document.getElementById("correctBtn");
     const wrongBtn = document.getElementById("wrongBtn");
 
@@ -4156,10 +4884,10 @@
         durationValue: "30 detik/kartu",
         practiceInfoLabel: "Informasi latihan",
         homeTitle: "Latihan kosakata Jepang dengan kartu interaktif",
-        homeDescription: 'Klik <strong>Isi username</strong>, lengkapi pilihan di pop-up, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.',
-        usernameButton: "Isi username",
-        usernameNote: "Klik tombol di atas untuk mengisi username melalui pop-up.",
-        startButton: "Mulai",
+        homeDescription: 'Klik <strong>Isi Username</strong>, lengkapi pilihan di popup, lalu mulai latihan. Buka kartu, kemudian pilih <strong>Benar</strong> jika ingat atau <strong>Salah</strong> jika belum.',
+        usernameButton: "Isi Username",
+        usernameNote: "Klik tombol di atas untuk mengisi username melalui popup.",
+        startButton: "Start",
         skipButton: "Lewati ke halaman hasil",
         cardFlipSmall: "Klik kartu untuk membalik",
         timerLabel: "detik tersisa",
@@ -4190,10 +4918,10 @@
         totalTimeHeader: "Total waktu",
         dateHeader: "Tanggal",
         savePdfButton: "Simpan sebagai PDF",
-        restartButton: "Ulangi latihan",
+        restartButton: "Start",
         clearButton: "Hapus riwayat dan peringkat",
         loginTitle: "Masuk peserta",
-        loginDescription: 'Isi username terlebih dahulu. Pengguna biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.',
+        loginDescription: 'Isi username dulu. User biasa memilih grup di sini, sedangkan <strong>admin404</strong> akan diminta password.',
         closeLoginLabel: "Tutup login",
         closeExampleLabel: "Tutup contoh",
         usernameLabel: "Username",
@@ -4277,9 +5005,9 @@
         practiceInfoLabel: "練習情報",
         homeTitle: "インタラクティブカードで日本語単語を練習",
         homeDescription: '<strong>ユーザー名</strong>を入力し、ポップアップで項目を選んでから始めましょう。カードを開き、覚えていたら<strong>正解</strong>、まだなら<strong>不正解</strong>を選びます。',
-        usernameButton: "ユーザー名を入力",
-        usernameNote: "上のボタンからユーザー名を入力してください。",
-        startButton: "スタート",
+        usernameButton: "Isi Username",
+        usernameNote: "Klik tombol di atas untuk mengisi username melalui popup.",
+        startButton: "Start",
         skipButton: "結果ページへ",
         cardFlipSmall: "カードをクリックして裏返す",
         timerLabel: "秒残り",
@@ -4310,7 +5038,7 @@
         totalTimeHeader: "合計時間",
         dateHeader: "日時",
         savePdfButton: "PDFとして保存",
-        restartButton: "もう一度練習",
+        restartButton: "Start",
         clearButton: "履歴とランキングを削除",
         loginTitle: "参加者ログイン",
         loginDescription: '先にユーザー名を入力してください。通常ユーザーはここでグループを選び、<strong>admin404</strong> はパスワードを入力します。',
@@ -4660,6 +5388,73 @@
     }
 
 
+
+    function getMaterialTitle(item) {
+      const kanji = String(item.kanji || "").trim();
+      const kana = String(item.kana || "").trim();
+      return kanji && kana && kanji !== kana ? `${kana}（${kanji}）` : (kana || kanji || "-");
+    }
+
+    function renderMaterialList() {
+      if (!materialList) return;
+
+      materialList.replaceChildren();
+      vocabulary.forEach((item, index) => {
+        const title = getMaterialTitle(item);
+        const reading = String(item.romaji || "").trim();
+        const meaning = String(item.indonesia || "").trim();
+        const imgUrl = String(item.gambar || "").trim();
+
+        const card = document.createElement("article");
+        card.className = "material-item";
+
+        const imageButton = document.createElement("button");
+        imageButton.type = "button";
+        imageButton.setAttribute("aria-label", `Lihat gambar penuh: ${title}`);
+        imageButton.title = "Klik untuk melihat gambar penuh";
+
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        img.alt = title;
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.referrerPolicy = "no-referrer";
+
+        imageButton.appendChild(img);
+        imageButton.addEventListener("click", () => openImageModal(img.currentSrc || img.src || imgUrl, title));
+
+        const info = document.createElement("div");
+        info.className = "material-info";
+        info.innerHTML = `
+          <div class="material-no">No. ${index + 1}</div>
+          <div class="material-jp">${escapeHTML(title)}</div>
+          <div class="material-reading">${escapeHTML(reading)}</div>
+          <div class="material-id">${escapeHTML(meaning)}</div>
+        `;
+
+        card.append(imageButton, info);
+        materialList.appendChild(card);
+      });
+    }
+
+    function openMaterialModalBox() {
+      if (!currentUsername) {
+        openLoginModalBox();
+        return;
+      }
+
+      renderMaterialList();
+      materialModal.classList.add("show");
+      materialModal.setAttribute("aria-hidden", "false");
+      closeMaterialModal?.focus({ preventScroll: true });
+    }
+
+    function closeMaterialModalBox() {
+      materialModal.classList.remove("show");
+      materialModal.setAttribute("aria-hidden", "true");
+    }
+
+
     function openImageModal(src, altText = "Gambar kosakata") {
       if (!src || !imageModal || !imageModalImg) return;
 
@@ -4705,31 +5500,30 @@
 
       startBtn.disabled = !canStart;
       startBtn.classList.toggle("show", Boolean(currentUsername));
+      if (materialBtn) {
+        materialBtn.disabled = !Boolean(currentUsername);
+        materialBtn.classList.toggle("show", Boolean(currentUsername));
+      }
+      startScreen.classList.toggle("login-complete", Boolean(currentUsername));
       resultPageBtn.hidden = !isAdmin;
       clearRankingBtn.hidden = !isAdmin;
       usernameBox.classList.toggle("is-complete", Boolean(currentUsername));
     }
 
     function updateLoginSummary() {
+      // Setelah username disimpan, jangan tampilkan teks username/status apa pun di homepage.
+      // Setelah username selesai, homepage hanya menampilkan tombol Start.
+      loginSummary.textContent = "";
+      loginSummary.classList.remove("show");
+
       if (!currentUsername) {
-        loginSummary.textContent = "";
-        loginSummary.classList.remove("show");
+        usernameNote.hidden = false;
         usernameNote.textContent = t("usernameNoteEmpty");
         return;
       }
 
-      loginSummary.textContent = isAdmin
-        ? `${t("adminLabel")}: ${currentUsername}`
-        : `${t("participantLabel")}: ${currentUsername}${currentGroup ? ` | ${t("groupLabel")}: ${currentGroup}` : ""}`;
-      loginSummary.classList.add("show");
-
-      if (isAdmin) {
-        usernameNote.textContent = t("usernameNoteAdmin");
-      } else if (currentGroup) {
-        usernameNote.textContent = t("usernameNoteReady");
-      } else {
-        usernameNote.textContent = t("usernameNoteNeedGroup");
-      }
+      usernameNote.textContent = "";
+      usernameNote.hidden = true;
     }
 
     function openLoginModalBox() {
@@ -5351,7 +6145,15 @@
         <head>
           <meta charset="utf-8">
           <title>${escapeHTML(t("pdfTitle"))}</title>
-          <style>${reportStyles()}</style>
+          <style>${reportStyles()}
+
+    /* ===== Hide username summary on homepage after input ===== */
+    #startScreen #loginSummary,
+    #startScreen #loginSummary.show {
+      display: none !important;
+      visibility: hidden !important;
+    }
+</style>
         </head>
         <body>
           <h1>${escapeHTML(t("pdfTitle"))}</h1>
@@ -5583,11 +6385,19 @@
       }
     });
 
+    materialModal?.addEventListener("click", event => {
+      if (event.target === materialModal) {
+        closeMaterialModalBox();
+      }
+    });
+
     document.querySelectorAll(".group-btn").forEach(button => {
       button.addEventListener("click", () => selectGroup(button.dataset.group));
     });
 
     startBtn.addEventListener("click", startPractice);
+    materialBtn?.addEventListener("click", openMaterialModalBox);
+    closeMaterialModal?.addEventListener("click", closeMaterialModalBox);
     restartBtn.addEventListener("click", startPractice);
     savePdfBtn.addEventListener("click", saveResultsAsPdf);
     clearRankingBtn.addEventListener("click", clearRanking);
@@ -5642,6 +6452,10 @@
 
       if (event.key === "Escape" && loginModal.classList.contains("show")) {
         closeLoginModalBox();
+      }
+
+      if (event.key === "Escape" && materialModal?.classList.contains("show")) {
+        closeMaterialModalBox();
       }
 
       if (event.key === "Escape" && imageModal?.classList.contains("show")) {
