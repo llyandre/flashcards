@@ -4,10 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flashcard Kosakata Jepang</title>
-  <link rel="dns-prefetch" href="https://i.postimg.cc" />
-  <link rel="preconnect" href="https://i.postimg.cc" crossorigin />
-  <link rel="dns-prefetch" href="https://i.ibb.co" />
-  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
   <link rel="dns-prefetch" href="https://iili.io" />
   <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
@@ -34,23 +30,16 @@
       --bg-2: #fff2f7;
       --bg-3: #f2fff8;
       --card: rgba(255, 255, 255, 0.78);
-      --card-strong: rgba(255, 255, 255, 0.9);
-      --card-solid: #ffffff;
       --text: #253044;
       --heading: #101d48;
       --muted: #64748b;
       --primary: #7c6ff6;
       --primary-deep: #6d46e8;
       --primary-soft: rgba(124, 111, 246, 0.12);
-      --green: #20b486;
       --green-dark: #168763;
-      --red: #ef5d75;
       --red-dark: #c8465c;
-      --line: rgba(34, 48, 71, 0.12);
-      --border: rgba(124, 111, 246, 0.18);
       --glass-border: rgba(255, 255, 255, 0.78);
 
-      --radius-sm: 14px;
       --radius-md: 18px;
       --radius-lg: 24px;
       --radius-xl: 30px;
@@ -64,7 +53,6 @@
       --panel-pad-desktop: clamp(28px, 3.8vw, 42px);
       --panel-pad-mobile: clamp(18px, 4.5vw, 22px);
       --control-h: clamp(52px, 5vw, 58px);
-      --control-h-mobile: clamp(50px, 9vw, 56px);
       --button-h: clamp(52px, 5vw, 60px);
       --button-h-mobile: clamp(50px, 9vw, 56px);
     }
@@ -311,52 +299,6 @@
       font-weight: 450;
     }
 
-    .hero-card {
-      min-height: 280px;
-      position: relative;
-      padding: 26px;
-      border-radius: var(--radius-xl);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,255,255,0.62)),
-        radial-gradient(circle at 30% 20%, rgba(255,205,102,0.32), transparent 32%),
-        radial-gradient(circle at 70% 80%, rgba(124,111,246,0.22), transparent 34%);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
-
-    .hero-emoji {
-      margin-top: 16px;
-      text-align: center;
-      font-size: clamp(78px, 14vw, 132px);
-      line-height: 1;
-      filter: drop-shadow(0 14px 16px rgba(30, 41, 59, 0.13));
-    }
-
-    .mini-card {
-      position: absolute;
-      padding: 12px 14px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(255, 255, 255, 0.84);
-      box-shadow: var(--shadow-tiny);
-      font-size: var(--fs-small);
-      font-weight: 700;
-      color: #5d55c9;
-    }
-
-    .mini-card.one {
-      left: 18px;
-      top: 20px;
-      transform: rotate(-5deg);
-    }
-
-    .mini-card.two {
-      right: 20px;
-      bottom: 24px;
-      transform: rotate(5deg);
-      color: #d5577c;
-    }
 
     .username-box {
       max-width: 380px;
@@ -365,63 +307,6 @@
       gap: 9px;
     }
 
-    .input-shell {
-      min-height: var(--control-h);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 18px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(124, 111, 246, 0.22);
-      box-shadow: var(--shadow-soft);
-      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
-    }
-
-    .input-shell:focus-within {
-      border-color: rgba(124, 111, 246, 0.44);
-      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-soft);
-      transform: translateY(-1px);
-    }
-
-    .input-icon {
-      width: 28px;
-      height: 28px;
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      color: #7a8296;
-    }
-
-    .input-icon svg {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .username-box input {
-      width: 100%;
-      min-height: 1px;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      outline: none;
-      color: var(--text);
-      font-size: var(--fs-input);
-      font-weight: 600;
-      line-height: 1.3;
-    }
-
-    .username-box input::placeholder {
-      color: #728097;
-      opacity: 1;
-    }
 
     .username-note {
       margin: 0;
@@ -847,21 +732,6 @@
       gap: 8px;
     }
 
-    #startScreen .input-shell {
-      min-height: var(--control-h);
-      gap: 16px;
-      padding: 0 22px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58));
-      border: 1px solid rgba(255, 255, 255, 0.88);
-      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12);
-      backdrop-filter: blur(16px);
-    }
-
-    #startScreen .input-icon {
-      width: 30px;
-      height: 30px;
-    }
 
     #startScreen .username-note {
       color: #505a70;
@@ -1994,11 +1864,6 @@
         letter-spacing: 0;
       }
 
-      #startScreen .input-shell,
-      .input-shell {
-        min-height: var(--control-h-mobile);
-        padding: 0 18px;
-      }
 
       #startScreen #startBtn.show {
         min-height: var(--button-h-mobile);
@@ -2334,10 +2199,6 @@
         min-height: 64px;
       }
 
-      #startScreen .input-shell {
-        gap: 12px;
-        padding-inline: 15px;
-      }
 
       .flashcard {
         height: clamp(610px, 88svh, 750px);
@@ -2393,12 +2254,6 @@
         font-size: 11.5px;
       }
     }
-      /* =========================================================
-       TOP REKOMENDASI FIX: gambar dan tulisan selalu kelihatan
-       - Area gambar dan teks dipisah stabil (62% / 38%)
-       - Gambar utuh dengan object-fit: contain
-       - Teks diberi area aman supaya tidak tertimpa gambar
-       ========================================================= */
     .flashcard {
       width: min(100%, 620px) !important;
       height: clamp(620px, 88svh, 780px) !important;
@@ -2552,11 +2407,6 @@
     }
 
 
-    /* =========================================================
-       COMPACT FIX: kartu diperkecil agar halaman tidak terlalu scroll
-       - Tetap pisah area gambar dan tulisan
-       - Semua ukuran dibuat lebih proporsional untuk mobile
-       ========================================================= */
     .practice-wrap {
       width: min(680px, 100%) !important;
     }
@@ -2815,11 +2665,6 @@
     }
 
 
-    /* =========================================================
-       FINAL COMPACT + POPUP GAMBAR
-       - Gambar di kartu dibuat lebih kecil agar utuh terlihat
-       - Klik gambar membuka popup gambar penuh
-       ========================================================= */
     .illustration-wrap {
       overflow: visible !important;
     }
@@ -2910,8 +2755,6 @@
     }
 
 
-
-    /* ===== Halaman lihat materi ===== */
     .material-panel {
       width: min(1040px, 100%);
     }
@@ -3136,7 +2979,6 @@
     }
 
 
-    /* ===== Zoom gambar: semua gambar materi/kartu bisa diklik diperbesar ===== */
     img[data-zoomable="true"],
     .illustration img {
       cursor: zoom-in;
@@ -3242,7 +3084,6 @@
       text-align: center;
     }
 
-    /* ===== Mobile layout final override ===== */
     @media (max-width: 720px) {
       html,
       body {
@@ -3680,7 +3521,6 @@
       }
 
   
-    /* ===== Zoom gambar: semua gambar materi/kartu bisa diklik diperbesar ===== */
     img[data-zoomable="true"],
     .illustration img {
       cursor: zoom-in;
@@ -3826,7 +3666,6 @@
     }
 
   
-    /* ===== STYLE USERNAME DISESUAIKAN DENGAN HTML 2 ===== */
     .group-box {
       width: min(540px, 100%) !important;
       margin: 14px auto 16px !important;
@@ -3906,7 +3745,6 @@
       }
     }
 
-    /* ===== Revisi akhir: tombol materi, popup gambar, dan mobile layout ===== */
     #materialBtn:not(.show) {
       display: none !important;
     }
@@ -4188,8 +4026,6 @@
     }
 
 
-
-    /* ===== Final fix: Lihat Materi, popup gambar, dan scroll responsif ===== */
     .app-shell:has(#materialScreen.active) {
       align-items: flex-start !important;
     }
@@ -4445,7 +4281,6 @@
 
   
 
-    /* ===== FINAL FIX POPUP GAMBAR: tanpa scrollbar dan gambar tidak terpotong ===== */
     .image-modal {
       padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
       overflow: hidden !important;
@@ -4552,9 +4387,6 @@
     }
 
   
-    /* =========================================================
-       MOBILE ONLY FINAL OVERRIDE - rapi, compact, tanpa ubah desktop
-       ========================================================= */
     @media (max-width: 768px) {
       html,
       body {
@@ -4591,7 +4423,6 @@
       .jp-main-display,
       .jp-reading,
       .material-item,
-      .material-info,
       .review-jp,
       .review-sub {
         overflow-wrap: anywhere !important;
@@ -4631,7 +4462,6 @@
         border-radius: 22px !important;
       }
 
-      /* Homepage mobile */
       #startScreen .panel.hero {
         width: 100% !important;
         min-height: auto !important;
@@ -4770,8 +4600,6 @@
         gap: 8px !important;
       }
 
-      #startScreen .input-shell,
-      .input-shell,
       .login-trigger {
         width: 100% !important;
         max-width: 100% !important;
@@ -4780,13 +4608,7 @@
         border-radius: 16px !important;
       }
 
-      #startScreen .input-icon,
-      .input-icon {
-        width: 26px !important;
-        height: 26px !important;
-      }
 
-      .username-box input,
       .login-field input {
         min-width: 0 !important;
         font-size: 15px !important;
@@ -4819,7 +4641,6 @@
         border-radius: 16px !important;
       }
 
-      /* Practice page mobile */
       .practice-wrap {
         padding: 0 !important;
       }
@@ -5025,7 +4846,6 @@
         font-size: 16px !important;
       }
 
-      /* Modal/popup mobile */
       .login-modal,
       .example-modal,
       .image-modal {
@@ -5158,7 +4978,6 @@
         line-height: 1.35 !important;
       }
 
-      /* Material mobile */
       .material-panel {
         padding: 18px 12px !important;
         border-radius: 22px !important;
@@ -5227,9 +5046,6 @@
         object-fit: contain !important;
       }
 
-      .material-info {
-        min-width: 0 !important;
-      }
 
       .material-id {
         font-size: 11px !important;
@@ -5258,7 +5074,6 @@
         width: 100% !important;
       }
 
-      /* Result page mobile */
       #resultScreen .panel {
         padding: 18px 12px !important;
       }
@@ -5601,7 +5416,6 @@
 </head>
 <body>
   <main class="app-shell is-locked">
-    <!-- Homepage dari HTML 2 -->
     <section id="startScreen" class="screen active">
       <div class="panel hero">
         <div>
@@ -5661,7 +5475,6 @@
       </div>
     </section>
 
-    <!-- Halaman materi -->
     <section id="materialScreen" class="screen">
       <div class="panel material-panel">
         <div class="material-head">
@@ -5679,7 +5492,6 @@
       </div>
     </section>
 
-    <!-- Question page dari HTML 1 -->
     <section id="practiceScreen" class="screen">
       <div class="practice-wrap">
           <div class="topbar">
@@ -5721,7 +5533,6 @@
       </div>
     </section>
 
-    <!-- Result page dari HTML 2 -->
     <section id="resultScreen" class="screen">
       <div class="panel">
         <div class="results-head">
@@ -5922,9 +5733,6 @@
     const db = getFirestore(firebaseApp);
     const resultsCollection = collection(db, "quizResults_kata_referensi_informasi_bab1");
 
-    // =========================
-    // Data array kosakata
-    // =========================
     const vocabulary = [
       { indonesia: "Amerika Serikat", kanji: "", kana: "アメリカ", romaji: "Amerika", gambar: "https://iili.io/C5SMIB1.png" },
       { indonesia: "Inggris", kanji: "", kana: "イギリス", romaji: "Igirisu", gambar: "https://iili.io/C5SMurg.png" },
@@ -5994,9 +5802,6 @@
       { indonesia: "bahasa Rusia", kanji: "", kana: "ロシア語", romaji: "Roshia-go", gambar: "https://iili.io/C5SW8du.png" }
     ];
 
-    // =========================
-    // Elemen utama
-    // =========================
     const startScreen = document.getElementById("startScreen");
     const materialScreen = document.getElementById("materialScreen");
     const practiceScreen = document.getElementById("practiceScreen");
@@ -6063,9 +5868,6 @@
     const rankingBody = document.getElementById("rankingBody");
     const historyBody = document.getElementById("historyBody");
 
-    // =========================
-    // State latihan
-    // =========================
     const TIMER_SECONDS = 30;
     const STORAGE_KEY = "jpFlashcardRanking_kata_referensi_informasi_bab1_V2";
     const HISTORY_KEY = "jpFlashcardHistory_kata_referensi_informasi_bab1_V2";
@@ -6370,9 +6172,6 @@
       }
     };
 
-    // =========================
-    // Helper dasar
-    // =========================
     function escapeHTML(value) {
       return String(value ?? "")
         .replaceAll("&", "&amp;")
@@ -6727,9 +6526,6 @@
       if (imageModalCaption) imageModalCaption.textContent = "";
     }
 
-    // =========================
-    // Login, admin, dan grup
-    // =========================
     function updatePasswordBox() {
       const typedUsername = usernameInput.value.trim();
       const needsPassword = typedUsername === ADMIN_USERNAME;
@@ -6871,9 +6667,6 @@
       loginError.textContent = "";
     }
 
-    // =========================
-    // Flashcard
-    // =========================
     function startPractice() {
       const name = currentUsername.trim();
 
@@ -7045,9 +6838,6 @@
       }, 650);
     }
 
-    // =========================
-    // Hasil
-    // =========================
     async function showResults() {
       stopTimer();
       if ("speechSynthesis" in window) {
@@ -7475,12 +7265,6 @@
           <title>${escapeHTML(t("pdfTitle"))}</title>
           <style>${reportStyles()}
 
-    /* =========================================================
-       FINAL ADJUSTMENT: JARAK GAMBAR DAN KATA LEBIH RAPAT
-       - Gambar tetap kecil dan utuh
-       - Kata tidak terlalu jauh dari gambar
-       - Masih ada space agar tidak menempel
-       ========================================================= */
     .back-content {
       grid-template-rows: minmax(0, 54%) minmax(130px, max-content) !important;
       gap: clamp(5px, 1vw, 9px) !important;
@@ -7563,7 +7347,6 @@
       }
     }
 
-    /* ===== Revisi akhir: tombol materi, popup gambar, dan mobile layout ===== */
     #materialBtn:not(.show) {
       display: none !important;
     }
@@ -7888,9 +7671,6 @@
       printReport(printWindow, reportHtml);
     }
 
-    // =========================
-    // Riwayat dan ranking Firebase
-    // =========================
     function getLocalHistory() {
       try {
         return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
@@ -8022,9 +7802,6 @@
       alert(t("clearLocalDone"));
     }
 
-    // =========================
-    // Tab hasil
-    // =========================
     function activateTab(tabName) {
       document.querySelectorAll(".tab-btn").forEach(button => {
         button.classList.toggle("active", button.dataset.tab === tabName);
@@ -8045,9 +7822,6 @@
       }
     }
 
-    // =========================
-    // Event listener
-    // =========================
     blockBrowserShortcuts();
     applyHomeLanguage("id");
 
