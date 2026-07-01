@@ -5379,7 +5379,330 @@ tr:last-child td {
     flex-basis: 100% !important;
   }
 }
-    </style>
+    
+
+/* ===== Final fix popup zoom gambar Kuis + Lihat Materi =====
+   Tujuan: tombol × rapi di kanan atas header, gambar fit tanpa scroll internal. */
+#imageModal.image-modal {
+  z-index: 125 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: clamp(8px, 2vw, 16px) !important;
+  overflow: hidden !important;
+}
+
+#imageModal .image-modal-card {
+  width: min(1120px, calc(100vw - 32px)) !important;
+  max-height: calc(100svh - 16px) !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 32px !important;
+  background: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 28px 80px rgba(18, 24, 38, 0.28) !important;
+}
+
+#imageModal .image-modal-head {
+  position: relative !important;
+  top: auto !important;
+  z-index: 5 !important;
+  width: 100% !important;
+  min-height: 66px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 14px 16px 14px 18px !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid rgba(124, 111, 246, 0.12) !important;
+}
+
+#imageModal .image-modal-caption {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--heading) !important;
+  font-size: clamp(14px, 1.3vw, 16px) !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+#imageModal .image-modal-close,
+#imageModal #closeImageModal {
+  position: static !important;
+  inset: auto !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  bottom: auto !important;
+  margin: 0 0 0 auto !important;
+  flex: 0 0 48px !important;
+  align-self: center !important;
+  justify-self: end !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 0 !important;
+  border-radius: var(--radius-pill) !important;
+  color: #6557df !important;
+  background: rgba(124, 111, 246, 0.12) !important;
+  box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12) !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+#imageModal .image-modal-close:hover,
+#imageModal #closeImageModal:hover {
+  background: rgba(124, 111, 246, 0.18) !important;
+  transform: scale(1.03) !important;
+}
+
+#imageModal .image-modal-body {
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  flex: none !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: clamp(10px, 2vw, 18px) !important;
+  overflow: hidden !important;
+  overscroll-behavior: contain !important;
+  background: #fff !important;
+}
+
+#imageModal .image-modal-body img,
+#imageModal #imageModalImg {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: calc(100svh - 112px) !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+@media (max-width: 720px) {
+  #imageModal.image-modal {
+    padding: 10px !important;
+  }
+
+  #imageModal .image-modal-card {
+    width: calc(100vw - 20px) !important;
+    max-height: calc(100svh - 20px) !important;
+    border-radius: 24px !important;
+  }
+
+  #imageModal .image-modal-head {
+    min-height: 58px !important;
+    gap: 10px !important;
+    padding: 10px 12px 10px 14px !important;
+  }
+
+  #imageModal .image-modal-caption {
+    font-size: 14px !important;
+  }
+
+  #imageModal .image-modal-close,
+  #imageModal #closeImageModal {
+    flex-basis: 42px !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    font-size: 26px !important;
+  }
+
+  #imageModal .image-modal-body {
+    padding: 10px !important;
+  }
+
+  #imageModal .image-modal-body img,
+  #imageModal #imageModalImg {
+    max-width: 100% !important;
+    max-height: calc(100svh - 90px) !important;
+  }
+}
+
+
+
+/* ===== Revisi final popup zoom gambar: berlaku untuk Kuis + Lihat Materi =====
+   Tombol × rapi di kanan atas header, gambar fit tanpa area scroll internal. */
+#imageModal.image-modal {
+  z-index: 125 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: clamp(10px, 2vw, 18px) !important;
+  overflow: hidden !important;
+  background: rgba(20, 24, 38, 0.52) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+#imageModal .image-modal-card {
+  width: min(1120px, calc(100vw - 36px)) !important;
+  height: auto !important;
+  max-height: calc(100svh - 24px) !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 32px !important;
+  background: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 28px 80px rgba(18, 24, 38, 0.28) !important;
+}
+
+#imageModal .image-modal-head {
+  position: relative !important;
+  top: auto !important;
+  z-index: 6 !important;
+  width: 100% !important;
+  min-height: 66px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  padding: 14px 16px 14px 18px !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid rgba(124, 111, 246, 0.12) !important;
+}
+
+#imageModal .image-modal-caption {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--heading) !important;
+  font-size: clamp(14px, 1.3vw, 16px) !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+#imageModal .image-modal-close,
+#imageModal #closeImageModal {
+  position: static !important;
+  inset: auto !important;
+  margin: 0 0 0 auto !important;
+  flex: 0 0 48px !important;
+  align-self: center !important;
+  justify-self: end !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 0 !important;
+  border-radius: var(--radius-pill) !important;
+  color: #6557df !important;
+  background: rgba(124, 111, 246, 0.12) !important;
+  box-shadow: 0 8px 18px rgba(82, 73, 134, 0.12) !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+#imageModal .image-modal-close:hover,
+#imageModal #closeImageModal:hover {
+  background: rgba(124, 111, 246, 0.18) !important;
+  transform: scale(1.03) !important;
+}
+
+#imageModal .image-modal-body {
+  min-height: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: clamp(10px, 2vw, 18px) !important;
+  overflow: hidden !important;
+  overscroll-behavior: contain !important;
+  background: #fff !important;
+}
+
+#imageModal .image-modal-body img,
+#imageModal #imageModalImg {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: calc(100svh - 118px) !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+@media (max-width: 720px) {
+  #imageModal.image-modal {
+    padding: 10px !important;
+  }
+
+  #imageModal .image-modal-card {
+    width: calc(100vw - 20px) !important;
+    max-height: calc(100svh - 20px) !important;
+    border-radius: 24px !important;
+  }
+
+  #imageModal .image-modal-head {
+    min-height: 58px !important;
+    gap: 10px !important;
+    padding: 10px 12px 10px 14px !important;
+  }
+
+  #imageModal .image-modal-caption {
+    font-size: 13px !important;
+  }
+
+  #imageModal .image-modal-close,
+  #imageModal #closeImageModal {
+    flex-basis: 42px !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    font-size: 26px !important;
+  }
+
+  #imageModal .image-modal-body {
+    padding: 10px !important;
+  }
+
+  #imageModal .image-modal-body img,
+  #imageModal #imageModalImg {
+    max-height: calc(100svh - 98px) !important;
+  }
+}
+
+</style>
 </head>
 <body>
   <main class="app-shell">
@@ -5652,11 +5975,13 @@ tr:last-child td {
 
     <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gambar penuh">
       <div class="image-modal-card">
-        <button id="closeImageModal" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
+        <div class="image-modal-head">
+          <p id="imageModalCaption" class="image-modal-caption"></p>
+          <button id="closeImageModal" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
+        </div>
         <div class="image-modal-body">
           <img id="imageModalImg" alt="" />
         </div>
-        <p id="imageModalCaption" class="image-modal-caption"></p>
       </div>
     </div>
 
@@ -6816,7 +7141,7 @@ tr:last-child td {
           img.referrerPolicy = "no-referrer";
 
           imageButton.appendChild(img);
-          imageButton.addEventListener("click", () => openImageModal(img.currentSrc || img.src || imgUrl, title));
+          imageButton.addEventListener("click", () => openImageModal(img.currentSrc || img.src || imgUrl, title, "material"));
 
           const info = document.createElement("div");
           info.className = "material-info";
@@ -6856,9 +7181,11 @@ tr:last-child td {
     }
 
 
-    function openImageModal(src, altText = "Gambar kosakata") {
+    function openImageModal(src, altText = "Gambar kosakata", source = "quiz") {
       if (!src || !imageModal || !imageModalImg) return;
 
+      imageModal.classList.remove("from-quiz", "from-material");
+      imageModal.classList.add(source === "material" ? "from-material" : "from-quiz");
       imageModalImg.src = src;
       imageModalImg.alt = altText || "Gambar kosakata";
       if (imageModalCaption) imageModalCaption.textContent = altText || "Gambar kosakata";
@@ -6870,7 +7197,7 @@ tr:last-child td {
     function closeImageModalBox() {
       if (!imageModal || !imageModalImg) return;
 
-      imageModal.classList.remove("show");
+      imageModal.classList.remove("show", "from-quiz", "from-material");
       imageModal.setAttribute("aria-hidden", "true");
       imageModalImg.removeAttribute("src");
       imageModalImg.alt = "";
@@ -7094,7 +7421,7 @@ tr:last-child td {
         const openFromImage = event => {
           event.preventDefault();
           event.stopPropagation();
-          openImageModal(img.currentSrc || img.src || imageUrl, img.alt);
+          openImageModal(img.currentSrc || img.src || imageUrl, img.alt, "quiz");
         };
         img.addEventListener("click", openFromImage);
         img.addEventListener("keydown", event => {
@@ -7556,6 +7883,118 @@ tr:last-child td {
       display: none !important;
       visibility: hidden !important;
     }
+
+
+/* Perbaikan posisi tombol × khusus popup/zoom gambar di halaman Lihat Materi */
+.image-modal .image-modal-card {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-rows: none !important;
+  width: min(960px, calc(100vw - 20px)) !important;
+  max-height: calc(100svh - 20px) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.image-modal .image-modal-head {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 8 !important;
+  width: 100% !important;
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 14px 14px 12px 16px !important;
+  border-bottom: 1px solid rgba(124, 111, 246, 0.14) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+}
+
+.image-modal .image-modal-caption {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top: 0 !important;
+  color: var(--heading) !important;
+  background: transparent !important;
+  font-size: var(--fs-small) !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+  overflow: visible !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+
+.image-modal .image-modal-close {
+  position: static !important;
+  inset: auto !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0 0 0 auto !important;
+  flex: 0 0 auto !important;
+  justify-self: auto !important;
+  align-self: center !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  z-index: 9 !important;
+}
+
+.image-modal .image-modal-body {
+  min-height: 0 !important;
+  max-height: none !important;
+  flex: 1 1 auto !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 12px 14px 16px !important;
+  overflow: auto !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  background: #fff !important;
+}
+
+.image-modal .image-modal-body img,
+.image-modal #imageModalImg {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: calc(100svh - 118px) !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 640px) {
+  .image-modal .image-modal-head {
+    gap: 10px !important;
+    padding: 12px 12px 10px 14px !important;
+  }
+
+  .image-modal .image-modal-close {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
+
+  .image-modal .image-modal-body {
+    padding: 10px 10px 14px !important;
+  }
+
+  .image-modal .image-modal-body img,
+  .image-modal #imageModalImg {
+    max-height: calc(100svh - 108px) !important;
+  }
+}
+
 </style>
         </head>
         <body>
