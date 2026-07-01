@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flashcard Kosakata Jepang</title>
-  <link rel="dns-prefetch" href="https://i.ibb.co" />
-  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
   <link rel="preconnect" href="https://iili.io" crossorigin />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap");
@@ -13,7 +11,6 @@
     :root {
       --font-main: "Inter", "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-jp: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
-
       --fs-body: clamp(14px, 1vw, 15.5px);
       --fs-small: clamp(12px, 0.95vw, 13px);
       --fs-base: clamp(14.5px, 1.15vw, 16px);
@@ -26,38 +23,27 @@
       --fs-flash-id: clamp(16px, 2.3vw, 20px);
       --fs-jp-main: clamp(28px, 5vw, 44px);
       --fs-jp-reading: clamp(13px, 2.2vw, 17px);
-
       --bg-1: #f8fbff;
       --bg-2: #fff2f7;
       --bg-3: #f2fff8;
       --card: rgba(255, 255, 255, 0.78);
-      --card-strong: rgba(255, 255, 255, 0.9);
-      --card-solid: #ffffff;
       --text: #253044;
       --heading: #101d48;
       --muted: #64748b;
       --primary: #7c6ff6;
       --primary-deep: #6d46e8;
       --primary-soft: rgba(124, 111, 246, 0.12);
-      --green: #20b486;
       --green-dark: #168763;
-      --red: #ef5d75;
       --red-dark: #c8465c;
-      --line: rgba(34, 48, 71, 0.12);
-      --border: rgba(124, 111, 246, 0.18);
       --glass-border: rgba(255, 255, 255, 0.78);
-
-      --radius-sm: 14px;
       --radius-md: 18px;
       --radius-lg: 24px;
       --radius-xl: 30px;
       --radius-2xl: 34px;
       --radius-pill: 999px;
-
       --shadow: 0 18px 44px rgba(82, 73, 134, 0.12);
       --shadow-soft: 0 10px 24px rgba(82, 73, 134, 0.08);
       --shadow-tiny: 0 6px 14px rgba(82, 73, 134, 0.07);
-
       --panel-pad-desktop: clamp(28px, 3.8vw, 42px);
       --panel-pad-mobile: clamp(18px, 4.5vw, 22px);
       --control-h: clamp(52px, 5vw, 58px);
@@ -84,8 +70,7 @@
       font-size: var(--fs-body);
       line-height: 1.55;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(255, 195, 217, 0.5), transparent 34%),
+      background: radial-gradient(circle at top left, rgba(255, 195, 217, 0.5), transparent 34%),
         radial-gradient(circle at top right, rgba(184, 232, 255, 0.58), transparent 34%),
         radial-gradient(circle at 50% 88%, rgba(167, 243, 208, 0.28), transparent 34%),
         linear-gradient(135deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
@@ -146,8 +131,7 @@
     .hero-info-card,
     .login-summary,
     .participant-name,
-    .stat-card,
-    .modal-card {
+    .stat-card {
       overflow-wrap: anywhere;
       word-break: normal;
     }
@@ -216,8 +200,7 @@
       margin: 0 auto;
       padding: var(--panel-pad-desktop);
       border-radius: var(--radius-2xl);
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.66)),
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.66)),
         var(--card);
       border: 1px solid var(--glass-border);
       box-shadow: var(--shadow);
@@ -262,8 +245,7 @@
       padding: 18px 20px;
       border-radius: var(--radius-lg);
       text-align: left;
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.52)),
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.52)),
         radial-gradient(circle at top left, rgba(255, 143, 179, 0.17), transparent 44%),
         radial-gradient(circle at bottom right, rgba(124, 111, 246, 0.16), transparent 42%);
       border: 1px solid rgba(255, 255, 255, 0.82);
@@ -303,116 +285,11 @@
       font-weight: 450;
     }
 
-    .hero-card {
-      min-height: 280px;
-      position: relative;
-      padding: 26px;
-      border-radius: var(--radius-xl);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,255,255,0.62)),
-        radial-gradient(circle at 30% 20%, rgba(255,205,102,0.32), transparent 32%),
-        radial-gradient(circle at 70% 80%, rgba(124,111,246,0.22), transparent 34%);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
-
-    .hero-emoji {
-      margin-top: 16px;
-      text-align: center;
-      font-size: clamp(78px, 14vw, 132px);
-      line-height: 1;
-      filter: drop-shadow(0 14px 16px rgba(30, 41, 59, 0.13));
-    }
-
-    .mini-card {
-      position: absolute;
-      padding: 12px 14px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(255, 255, 255, 0.84);
-      box-shadow: var(--shadow-tiny);
-      font-size: var(--fs-small);
-      font-weight: 700;
-      color: #5d55c9;
-    }
-
-    .mini-card.one {
-      left: 18px;
-      top: 20px;
-      transform: rotate(-5deg);
-    }
-
-    .mini-card.two {
-      right: 20px;
-      bottom: 24px;
-      transform: rotate(5deg);
-      color: #d5577c;
-    }
-
     .username-box {
       max-width: 380px;
       margin: 18px 0 16px;
       display: grid;
       gap: 9px;
-    }
-
-    .input-shell {
-      min-height: var(--control-h);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 18px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(124, 111, 246, 0.22);
-      box-shadow: var(--shadow-soft);
-      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
-    }
-
-    .input-shell:focus-within {
-      border-color: rgba(124, 111, 246, 0.44);
-      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-soft);
-      transform: translateY(-1px);
-    }
-
-    .input-icon {
-      width: 28px;
-      height: 28px;
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      color: #7a8296;
-    }
-
-    .input-icon svg {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .username-box input {
-      width: 100%;
-      min-height: 1px;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      outline: none;
-      color: var(--text);
-      font-size: var(--fs-input);
-      font-weight: 600;
-      line-height: 1.3;
-    }
-
-    .username-box input::placeholder {
-      color: #728097;
-      opacity: 1;
     }
 
     .username-note {
@@ -617,8 +494,7 @@
       justify-content: center;
       padding: clamp(78px, 7vw, 90px) var(--panel-pad-desktop) var(--panel-pad-desktop);
       border-radius: 26px;
-      background:
-        radial-gradient(circle at 14% 16%, rgba(219, 237, 255, 0.72), transparent 34%),
+      background: radial-gradient(circle at 14% 16%, rgba(219, 237, 255, 0.72), transparent 34%),
         radial-gradient(circle at 88% 13%, rgba(255, 225, 241, 0.76), transparent 38%),
         radial-gradient(circle at 92% 88%, rgba(218, 255, 245, 0.68), transparent 34%),
         rgba(255, 255, 255, 0.72);
@@ -754,8 +630,7 @@
       gap: 12px;
       padding: 14px 16px;
       border-radius: 18px;
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.46)),
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.46)),
         radial-gradient(circle at 14% 18%, rgba(203, 226, 255, 0.34), transparent 42%),
         radial-gradient(circle at 92% 28%, rgba(255, 218, 236, 0.3), transparent 40%);
       box-shadow: 0 10px 22px rgba(75, 87, 123, 0.1);
@@ -833,22 +708,6 @@
       max-width: none;
       margin: 0 auto 16px;
       gap: 8px;
-    }
-
-    #startScreen .input-shell {
-      min-height: var(--control-h);
-      gap: 16px;
-      padding: 0 22px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58));
-      border: 1px solid rgba(255, 255, 255, 0.88);
-      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12);
-      backdrop-filter: blur(16px);
-    }
-
-    #startScreen .input-icon {
-      width: 30px;
-      height: 30px;
     }
 
     #startScreen .username-note {
@@ -1031,14 +890,6 @@
     .flashcard.flipped .card-back {
       opacity: 1;
       visibility: visible;
-    }
-
-    .card-front::before,
-    .card-front::after,
-    .card-back::before,
-    .card-back::after {
-      content: none;
-      display: none;
     }
 
     .back-content {
@@ -1343,8 +1194,7 @@
       position: relative;
       padding: 28px 24px 24px;
       border-radius: var(--radius-xl);
-      background:
-        radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
+      background: radial-gradient(circle at top left, rgba(203, 226, 255, 0.34), transparent 34%),
         radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.32), transparent 36%),
         rgba(255, 255, 255, 0.98);
       border: 1px solid rgba(255, 255, 255, 0.82);
@@ -1433,8 +1283,7 @@
       position: relative;
       padding: 28px 24px 24px;
       border-radius: var(--radius-xl);
-      background:
-        radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%),
+      background: radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%),
         radial-gradient(circle at bottom right, rgba(124, 111, 246, 0.16), transparent 36%),
         rgba(255, 255, 255, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.78);
@@ -1583,8 +1432,7 @@
       gap: 18px;
       padding: 18px;
       border-radius: var(--radius-xl);
-      background:
-        radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%),
+      background: radial-gradient(circle at top left, rgba(255, 205, 102, 0.22), transparent 34%),
         rgba(255, 255, 255, 0.66);
       border: 1px solid rgba(124, 111, 246, 0.16);
       box-shadow: var(--shadow-soft);
@@ -1761,6 +1609,7 @@
         opacity: 1;
         transform: translateY(0);
       }
+
     }
 
     @keyframes correctGlow {
@@ -1776,6 +1625,7 @@
         box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
         transform: scale(1);
       }
+
     }
 
     @keyframes wrongShake {
@@ -1796,6 +1646,7 @@
       80% {
         transform: translateX(4px);
       }
+
     }
 
     @keyframes correctButtonPop {
@@ -1809,6 +1660,7 @@
       100% {
         transform: scale(1);
       }
+
     }
 
     @keyframes wrongButtonShake {
@@ -1824,6 +1676,7 @@
       75% {
         transform: translateX(-3px);
       }
+
     }
 
     @media (max-width: 900px) {
@@ -1934,12 +1787,6 @@
       #startScreen .hero h1,
       .hero h1 {
         letter-spacing: 0;
-      }
-
-      #startScreen .input-shell,
-      .input-shell {
-        min-height: var(--control-h-mobile);
-        padding: 0 18px;
       }
 
       #startScreen #startBtn.show {
@@ -2283,11 +2130,6 @@
         min-height: 64px;
       }
 
-      #startScreen .input-shell {
-        gap: 12px;
-        padding-inline: 15px;
-      }
-
       .flashcard {
         height: clamp(540px, 80svh, 640px);
         min-height: 540px;
@@ -2342,14 +2184,7 @@
         font-size: 11.5px;
       }
     }
-  
 
-    /* =========================================================
-       TOP REKOMENDASI FIX: gambar dan tulisan selalu kelihatan
-       - Area gambar dan teks dipisah stabil (62% / 38%)
-       - Gambar utuh dengan object-fit: contain
-       - Teks diberi area aman supaya tidak tertimpa gambar
-       ========================================================= */
     .flashcard {
       width: min(100%, 620px) !important;
       height: clamp(620px, 88svh, 780px) !important;
@@ -2502,12 +2337,6 @@
       }
     }
 
-
-    /* =========================================================
-       COMPACT FIX: kartu diperkecil agar halaman tidak terlalu scroll
-       - Tetap pisah area gambar dan tulisan
-       - Semua ukuran dibuat lebih proporsional untuk mobile
-       ========================================================= */
     .practice-wrap {
       width: min(680px, 100%) !important;
     }
@@ -2765,13 +2594,6 @@
       }
     }
 
-
-    /* =========================================================
-       FINAL COMPACT + POPUP GAMBAR
-       - Gambar di kartu dibuat lebih kecil agar utuh terlihat
-       - Jarak gambar dan kata dibuat rapat tapi tetap ada space
-       - Klik gambar membuka popup gambar penuh
-       ========================================================= */
     .flashcard {
       height: clamp(480px, 66svh, 575px) !important;
       min-height: 480px !important;
@@ -3076,7 +2898,6 @@
       text-align: center;
     }
 
-    /* ===== Final mobile tidy layout: hanya untuk tampilan mobile ===== */
     @media (max-width: 720px) {
       html,
       body {
@@ -3666,9 +3487,6 @@
       }
     }
 
-
-
-    /* ===== Username style final override: disamakan dengan HTML 2 ===== */
     #startScreen .username-box {
       width: min(520px, 100%) !important;
       max-width: none !important;
@@ -3782,19 +3600,10 @@
         width: 100% !important;
         max-width: none !important;
       }
+
       #startScreen .login-trigger {
         min-height: var(--control-h-mobile) !important;
       }
-    }
-
-
-    /* ===== Lihat Materi + popup gambar final ===== */
-    #openMaterialBtn:not(.show) {
-      display: none !important;
-    }
-
-    #openMaterialBtn.show {
-      display: inline-flex !important;
     }
 
     .material-panel {
@@ -4034,22 +3843,6 @@
       }
     }
 
-  
-
-    /* ===== Revisi final: Lihat Materi, popup gambar, dan mobile responsif ===== */
-    .app-shell:has(#materialScreen.active) {
-      align-items: flex-start !important;
-    }
-
-    #startScreen #openMaterialBtn.show {
-      width: min(250px, 100%);
-      min-height: var(--button-h);
-      border-radius: 16px;
-      font-size: var(--fs-button);
-      font-weight: 720;
-      letter-spacing: 0;
-    }
-
     #startScreen .hero-actions {
       align-items: stretch;
     }
@@ -4139,15 +3932,9 @@
         grid-template-columns: 1fr !important;
       }
 
-      #startScreen #startBtn.show,
-      #startScreen #openMaterialBtn.show {
+      #startScreen #startBtn.show {
         width: 100% !important;
         min-height: var(--button-h-mobile) !important;
-      }
-
-      #materialScreen .panel {
-        width: 100% !important;
-        padding: 18px !important;
       }
 
       .material-header {
@@ -4203,7 +3990,6 @@
       }
     }
 
-    /* ===== FINAL: Modal Lihat Materi sesuai referensi + pengelompokan otomatis ===== */
     #materialBtn:not(.show) {
       display: none !important;
     }
@@ -4259,8 +4045,7 @@
       margin: auto 0;
       padding: clamp(18px, 2.8vw, 28px);
       border-radius: var(--radius-xl);
-      background:
-        radial-gradient(circle at top left, rgba(203, 226, 255, 0.36), transparent 34%),
+      background: radial-gradient(circle at top left, rgba(203, 226, 255, 0.36), transparent 34%),
         radial-gradient(circle at bottom right, rgba(255, 218, 236, 0.34), transparent 36%),
         rgba(255, 255, 255, 0.98);
       border: 1px solid rgba(255, 255, 255, 0.86);
@@ -4620,12 +4405,944 @@
       }
     }
 
-</style>
+    @media (max-width: 768px) {
+      html,
+      body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+      }
+
+      body,
+      .app-shell,
+      .screen,
+      .panel,
+      .practice-wrap,
+      .flashcard,
+      .card-inner,
+      .card-face,
+      .login-modal-card,
+      .example-modal-card,
+      .material-modal-card,
+      .image-modal-card,
+      .table-wrap {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      span,
+      strong,
+      button,
+      input,
+      td,
+      th,
+      .jp-main-display,
+      .jp-reading,
+      .material-jp,
+      .material-reading,
+      .review-jp,
+      .review-sub {
+        overflow-wrap: anywhere !important;
+        word-break: normal !important;
+      }
+
+      .app-shell {
+        width: 100% !important;
+        min-height: 100dvh !important;
+        min-height: 100svh !important;
+        padding: max(10px, env(safe-area-inset-top)) 12px max(14px, env(safe-area-inset-bottom)) !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow-x: hidden !important;
+      }
+
+      .app-shell:has(#practiceScreen.active),
+      .app-shell:has(#resultScreen.active) {
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+      }
+
+      .panel {
+        width: 100% !important;
+        padding: 16px !important;
+        border-radius: 22px !important;
+      }
+
+      #startScreen .panel.hero {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 14px !important;
+        border-radius: 22px !important;
+        display: block !important;
+      }
+
+      #startScreen .hero > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        text-align: center !important;
+      }
+
+      .language-switch {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 0 8px !important;
+        padding: 5px !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 5px !important;
+        transform: none !important;
+      }
+
+      .language-btn {
+        width: 100% !important;
+        min-height: 36px !important;
+        padding: 8px 10px !important;
+        font-size: 12.5px !important;
+        line-height: 1.15 !important;
+        white-space: normal !important;
+      }
+
+      .fiction-toggle {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 40px !important;
+        margin: 0 0 12px !important;
+        padding: 7px 10px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        transform: none !important;
+        font-size: 12.5px !important;
+        line-height: 1.2 !important;
+      }
+
+      .fiction-label,
+      .fiction-state {
+        min-width: 0 !important;
+        white-space: normal !important;
+      }
+
+      .fiction-switch {
+        width: 48px !important;
+        height: 26px !important;
+      }
+
+      .fiction-switch::after {
+        width: 20px !important;
+        height: 20px !important;
+      }
+
+      .fiction-toggle[aria-pressed="false"] .fiction-switch::after {
+        transform: translateX(-22px) !important;
+      }
+
+      #startScreen .hero-info-row {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        margin: 0 0 12px !important;
+      }
+
+      #startScreen .hero-info-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: auto !important;
+        padding: 10px !important;
+        gap: 8px !important;
+        border-radius: 16px !important;
+        align-items: center !important;
+      }
+
+      #startScreen .hero-info-icon {
+        width: 34px !important;
+        height: 34px !important;
+      }
+
+      #startScreen .hero-info-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+      }
+
+      #startScreen .hero-info-card span {
+        font-size: 11.5px !important;
+        line-height: 1.25 !important;
+      }
+
+      #startScreen .hero-info-card strong {
+        font-size: clamp(14px, 3.6vw, 17px) !important;
+        line-height: 1.2 !important;
+      }
+
+      #startScreen .hero h1,
+      .hero h1 {
+        margin: 2px auto 8px !important;
+        font-size: clamp(23px, 7vw, 34px) !important;
+        line-height: 1.12 !important;
+        letter-spacing: 0 !important;
+      }
+
+      #startScreen .hero p {
+        margin: 0 auto 12px !important;
+        font-size: clamp(13px, 3.6vw, 15px) !important;
+        line-height: 1.48 !important;
+      }
+
+      #startScreen .username-box,
+      .username-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 0 10px !important;
+        gap: 6px !important;
+      }
+
+      .login-trigger {
+        width: 100% !important;
+        min-height: 46px !important;
+        padding: 0 14px !important;
+        border-radius: 16px !important;
+      }
+
+      .login-trigger {
+        padding: 10px 14px !important;
+        font-size: 14px !important;
+      }
+
+      .login-summary.show {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+
+      #startScreen .username-note {
+        margin: 0 !important;
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+      }
+
+      #startScreen .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+        margin-top: 8px !important;
+      }
+
+      #startScreen #startBtn.show,
+      #startScreen #materialBtn.show,
+      #startScreen #resultPageBtn.show,
+      #startScreen .hero-actions .btn {
+        width: 100% !important;
+        min-height: 48px !important;
+        justify-self: stretch !important;
+        border-radius: 16px !important;
+        font-size: 15px !important;
+      }
+
+      .practice-wrap {
+        width: 100% !important;
+      }
+
+      .topbar {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(96px, 0.46fr) !important;
+        gap: 8px !important;
+        align-items: stretch !important;
+        margin-bottom: 9px !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        min-width: 0 !important;
+        width: 100% !important;
+        padding: 10px 11px !important;
+        border-radius: 16px !important;
+      }
+
+      .counter-card {
+        display: grid !important;
+        align-content: center !important;
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+
+      .counter-card small {
+        margin-top: 2px !important;
+        font-size: 11.5px !important;
+        line-height: 1.35 !important;
+      }
+
+      .time-number {
+        font-size: clamp(24px, 8vw, 32px) !important;
+      }
+
+      .timer-label {
+        font-size: 11.5px !important;
+      }
+
+      .timer-track {
+        height: 7px !important;
+        margin-top: 8px !important;
+      }
+
+      .flip-hint {
+        margin: 8px 0 9px !important;
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+      }
+
+      .flashcard {
+        width: 100% !important;
+        height: clamp(370px, 58dvh, 480px) !important;
+        min-height: 370px !important;
+        max-height: 480px !important;
+        margin: 0 auto !important;
+      }
+
+      .card-face {
+        border-radius: 22px !important;
+        overflow-x: hidden !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 15px !important;
+      }
+
+      .card-front {
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .card-back {
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .back-content {
+        height: auto !important;
+        min-height: 100% !important;
+        display: grid !important;
+        grid-template-rows: auto auto !important;
+        align-content: center !important;
+        justify-items: center !important;
+        gap: 8px !important;
+        overflow: visible !important;
+      }
+
+      .illustration-wrap {
+        width: min(82%, 260px) !important;
+        height: clamp(130px, 26dvh, 200px) !important;
+        max-height: 200px !important;
+        min-height: 120px !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+      }
+
+      .illustration,
+      .illustration img {
+        max-width: 100% !important;
+        max-height: 100% !important;
+      }
+
+      .illustration img {
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        object-position: center !important;
+      }
+
+      .jp-box {
+        width: 100% !important;
+        min-height: 0 !important;
+        padding: 0 4px !important;
+        gap: 5px !important;
+        overflow: visible !important;
+      }
+
+      .jp-main-display {
+        max-width: 100% !important;
+        font-size: clamp(24px, 7.2vw, 36px) !important;
+        line-height: 1.18 !important;
+        word-break: keep-all !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(19px, 5.8vw, 29px) !important;
+        line-height: 1.22 !important;
+      }
+
+      .jp-divider {
+        width: min(132px, 48%) !important;
+        margin: 1px auto 2px !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        max-width: 100% !important;
+        font-size: clamp(12px, 3.6vw, 15px) !important;
+        line-height: 1.35 !important;
+      }
+
+      .jp-actions {
+        width: 100% !important;
+        margin-top: 3px !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 6px !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 36px !important;
+        margin-top: 0 !important;
+        padding: 8px 11px !important;
+        font-size: 12px !important;
+        line-height: 1.15 !important;
+      }
+
+      .card-text {
+        max-width: 100% !important;
+        padding: 8px !important;
+        font-size: clamp(15px, 4.2vw, 19px) !important;
+        line-height: 1.42 !important;
+        overflow: visible !important;
+      }
+
+      .card-text.long {
+        font-size: clamp(12.5px, 3.6vw, 16px) !important;
+        line-height: 1.38 !important;
+      }
+
+      .answer-row {
+        width: 100% !important;
+        margin: 10px auto 0 !important;
+        gap: 8px !important;
+      }
+
+      .answer-btn {
+        min-height: 50px !important;
+        padding: 11px 13px !important;
+        border-radius: 16px !important;
+        font-size: 15px !important;
+      }
+
+      .login-modal,
+      .example-modal,
+      .image-modal {
+        padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
+        align-items: center !important;
+        justify-items: center !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain !important;
+      }
+
+      .login-modal-card,
+      .example-modal-card {
+        width: min(100%, calc(100vw - 20px)) !important;
+        max-height: calc(100dvh - 20px) !important;
+        padding: 20px 16px 16px !important;
+        border-radius: 22px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .login-modal-card h3,
+      .example-modal-card h3 {
+        margin-right: 46px !important;
+        font-size: clamp(18px, 5vw, 22px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .login-modal-card p,
+      .example-modal-card p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+
+      .login-field input {
+        min-height: 46px !important;
+        font-size: 14px !important;
+      }
+
+      .login-modal-actions {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .login-modal-actions .btn {
+        width: 100% !important;
+        min-height: 46px !important;
+        padding-inline: 10px !important;
+      }
+
+      .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .group-btn {
+        min-height: 42px !important;
+        padding: 9px 8px !important;
+        border-radius: 14px !important;
+      }
+
+      .example-close,
+      #closeLoginModal,
+      .image-modal-close,
+      #closeMaterialModal.material-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        font-size: 26px !important;
+      }
+
+      .example-modal-card p,
+      #exampleText {
+        max-height: calc(100dvh - 140px) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .image-modal-card {
+        width: min(100%, calc(100vw - 20px)) !important;
+        max-height: calc(100dvh - 20px) !important;
+        border-radius: 22px !important;
+        overflow: hidden !important;
+      }
+
+      .image-modal-body {
+        min-height: 0 !important;
+        padding: 52px 8px 8px !important;
+        overflow: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .image-modal-body img,
+      #imageModalImg {
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: calc(100dvh - 138px) !important;
+        object-fit: contain !important;
+        object-position: center !important;
+      }
+
+      .image-modal-caption {
+        max-height: 54px !important;
+        margin: 0 !important;
+        padding: 8px 12px 10px !important;
+        overflow-y: auto !important;
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .material-modal {
+        padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow-x: hidden !important;
+      }
+
+      .material-modal-card {
+        width: min(100%, calc(100vw - 20px)) !important;
+        max-height: calc(100dvh - 20px) !important;
+        padding: 16px !important;
+        border-radius: 22px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+      }
+
+      .material-modal-head {
+        flex: 0 0 auto !important;
+        padding-right: 52px !important;
+      }
+
+      .material-modal-head h3 {
+        font-size: clamp(18px, 5.4vw, 23px) !important;
+        line-height: 1.18 !important;
+      }
+
+      .material-modal-head p {
+        font-size: 12.5px !important;
+        line-height: 1.45 !important;
+      }
+
+      .material-list {
+        min-height: 0 !important;
+        flex: 1 1 auto !important;
+        max-height: none !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        padding-right: 2px !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .material-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .material-summary-card {
+        min-width: 0 !important;
+        padding: 10px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-group-head {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+      }
+
+      .material-group-list {
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+      }
+
+      .material-item {
+        grid-template-columns: 74px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        padding: 9px !important;
+        border-radius: 16px !important;
+      }
+
+      .material-thumb {
+        width: 74px !important;
+        height: 74px !important;
+        padding: 5px !important;
+        border-radius: 14px !important;
+      }
+
+      .material-jp {
+        font-size: clamp(16px, 4.7vw, 20px) !important;
+        line-height: 1.22 !important;
+      }
+
+      .material-reading,
+      .material-info p {
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .results-head {
+        margin-bottom: 14px !important;
+      }
+
+      .results-head h2 {
+        margin: 8px 0 6px !important;
+        font-size: clamp(23px, 7vw, 31px) !important;
+      }
+
+      .participant-name {
+        width: 100% !important;
+        margin-top: 10px !important;
+        text-align: center !important;
+        justify-content: center !important;
+      }
+
+      .tabs {
+        width: 100% !important;
+        margin: 14px 0 12px !important;
+        justify-content: flex-start !important;
+      }
+
+      .tab-btn {
+        min-height: 40px !important;
+        padding: 9px 12px !important;
+      }
+
+      .summary-box {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        padding: 14px !important;
+        border-radius: 20px !important;
+      }
+
+      .score-circle {
+        width: clamp(120px, 36vw, 150px) !important;
+        height: clamp(120px, 36vw, 150px) !important;
+      }
+
+      .summary-text {
+        text-align: center !important;
+      }
+
+      .summary-text h3 {
+        font-size: clamp(19px, 5.4vw, 24px) !important;
+        line-height: 1.2 !important;
+      }
+
+      .summary-text p {
+        font-size: 13.5px !important;
+        line-height: 1.5 !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        margin: 14px 0 !important;
+      }
+
+      .stat-card,
+      .stat-card:last-child {
+        grid-column: auto !important;
+        min-width: 0 !important;
+        padding: 12px 9px !important;
+        border-radius: 16px !important;
+      }
+
+      .stat-card span {
+        margin-bottom: 5px !important;
+        font-size: 11.5px !important;
+        line-height: 1.25 !important;
+      }
+
+      .stat-card strong {
+        font-size: clamp(18px, 6vw, 24px) !important;
+      }
+
+      .table-wrap {
+        width: 100% !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 16px !important;
+      }
+
+      table {
+        min-width: 560px !important;
+        font-size: 13px !important;
+      }
+
+      th,
+      td {
+        padding: 10px 11px !important;
+        line-height: 1.35 !important;
+      }
+
+      .review-sub {
+        font-size: 11.5px !important;
+      }
+
+      .result-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+        margin-top: 14px !important;
+      }
+
+      .result-actions .btn {
+        width: 100% !important;
+        min-height: 48px !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        padding-inline: 10px !important;
+      }
+
+      .panel,
+      #startScreen .panel.hero {
+        padding: 14px !important;
+        border-radius: 20px !important;
+      }
+
+      #startScreen .hero-info-row {
+        gap: 7px !important;
+      }
+
+      #startScreen .hero-info-card {
+        padding: 9px 8px !important;
+        gap: 7px !important;
+      }
+
+      .topbar {
+        grid-template-columns: minmax(0, 1fr) minmax(90px, 0.42fr) !important;
+      }
+
+      .flashcard {
+        height: clamp(360px, 56dvh, 440px) !important;
+        min-height: 360px !important;
+        max-height: 440px !important;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      .answer-btn {
+        min-height: 48px !important;
+      }
+
+      .illustration-wrap {
+        width: min(84%, 240px) !important;
+        height: clamp(118px, 24dvh, 178px) !important;
+        min-height: 112px !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-summary-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .app-shell {
+        padding-top: max(8px, env(safe-area-inset-top)) !important;
+        padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
+      }
+
+      #startScreen .hero-info-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      #startScreen .hero-info-card {
+        min-height: 58px !important;
+      }
+
+      #startScreen .hero h1,
+      .hero h1 {
+        font-size: clamp(22px, 7.4vw, 30px) !important;
+      }
+
+      #startScreen .hero p {
+        font-size: 13px !important;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        padding: 9px 10px !important;
+      }
+
+      .flashcard {
+        height: clamp(350px, 55dvh, 420px) !important;
+        min-height: 350px !important;
+        max-height: 420px !important;
+      }
+
+      .card-front,
+      .card-back {
+        padding: 13px 12px !important;
+      }
+
+      .illustration-wrap {
+        width: min(86%, 220px) !important;
+        height: clamp(110px, 22dvh, 160px) !important;
+        min-height: 108px !important;
+      }
+
+      .jp-main-display {
+        font-size: clamp(23px, 7.3vw, 32px) !important;
+      }
+
+      .jp-main-display.long {
+        font-size: clamp(18px, 5.8vw, 26px) !important;
+      }
+
+      .jp-reading,
+      .jp-reading.long {
+        font-size: clamp(11.5px, 3.5vw, 14px) !important;
+      }
+
+      .login-modal-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      .group-options {
+        grid-template-columns: 1fr !important;
+      }
+
+      .material-item {
+        grid-template-columns: 66px minmax(0, 1fr) !important;
+      }
+
+      .material-thumb {
+        width: 66px !important;
+        height: 66px !important;
+      }
+
+      table {
+        min-width: 520px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .language-switch {
+        gap: 4px !important;
+      }
+
+      .language-btn,
+      .fiction-toggle {
+        font-size: 12px !important;
+      }
+
+      #startScreen .panel.hero,
+      .panel {
+        padding: 12px !important;
+      }
+
+      .flashcard {
+        height: clamp(340px, 54dvh, 405px) !important;
+        min-height: 340px !important;
+        max-height: 405px !important;
+      }
+
+      .illustration-wrap {
+        height: clamp(102px, 21dvh, 148px) !important;
+        min-height: 100px !important;
+      }
+
+      .audio-btn,
+      .example-btn {
+        min-height: 34px !important;
+        padding: 7px 10px !important;
+        font-size: 11.5px !important;
+      }
+
+      .answer-btn {
+        min-height: 46px !important;
+        font-size: 14px !important;
+      }
+
+      .material-modal-card,
+      .login-modal-card,
+      .example-modal-card {
+        border-radius: 20px !important;
+        padding: 14px !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="app-shell">
-    <!-- Homepage dari HTML 2 -->
-    <section id="startScreen" class="screen active">
+<section id="startScreen" class="screen active">
       <div class="panel hero">
         <div>
           <div class="language-switch" aria-label="Ganti bahasa">
@@ -4683,10 +5400,7 @@
         </div>
       </div>
     </section>
-
-
-    <!-- Question page dari HTML 1 -->
-    <section id="practiceScreen" class="screen">
+<section id="practiceScreen" class="screen">
       <div class="practice-wrap">
           <div class="topbar">
             <div class="counter-card">
@@ -4726,9 +5440,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Result page dari HTML 2 -->
-    <section id="resultScreen" class="screen">
+<section id="resultScreen" class="screen">
       <div class="panel">
         <div class="results-head">
           <span class="badge" data-i18n="doneBadge">✨ Selesai</span>
@@ -4937,10 +5649,6 @@
     const firebaseApp = initializeApp(firebaseConfig);
     const db = getFirestore(firebaseApp);
     const resultsCollection = collection(db, "quizResults_bab4");
-
-    // =========================
-    // Data array kosakata
-    // =========================
     const vocabulary = [
   {
     "indonesia": "bangun",
@@ -5426,10 +6134,6 @@
     "gambar": "https://iili.io/C5rPq3F.png"
   }
 ];
-
-    // =========================
-    // Elemen utama
-    // =========================
     const startScreen = document.getElementById("startScreen");
     const practiceScreen = document.getElementById("practiceScreen");
     const resultScreen = document.getElementById("resultScreen");
@@ -5492,10 +6196,6 @@
     const reviewBody = document.getElementById("reviewBody");
     const rankingBody = document.getElementById("rankingBody");
     const historyBody = document.getElementById("historyBody");
-
-    // =========================
-    // State latihan
-    // =========================
     const TIMER_SECONDS = 30;
     const STORAGE_KEY = "jpFlashcardRanking_bab4_V2";
     const HISTORY_KEY = "jpFlashcardHistory_bab4_V2";
@@ -5769,10 +6469,6 @@
         pdfBlocked: "ブラウザでポップアップがブロックされました。PDF保存のためにポップアップを許可してください。"
       }
     };
-
-    // =========================
-    // Helper dasar
-    // =========================
     function escapeHTML(value) {
       return String(value ?? "")
         .replaceAll("&", "&amp;")
@@ -6076,10 +6772,6 @@
       imageModalImg.alt = "";
       if (imageModalCaption) imageModalCaption.textContent = "";
     }
-
-    // =========================
-    // Login, admin, dan grup
-    // =========================
     function updatePasswordBox() {
       const typedUsername = usernameInput.value.trim();
       const needsPassword = typedUsername === ADMIN_USERNAME;
@@ -6444,10 +7136,6 @@
 
       loginError.textContent = "";
     }
-
-    // =========================
-    // Flashcard
-    // =========================
     function startPractice() {
       const name = currentUsername.trim();
 
@@ -6621,10 +7309,6 @@
         nextCard();
       }, 650);
     }
-
-    // =========================
-    // Hasil
-    // =========================
     async function showResults() {
       stopTimer();
       if ("speechSynthesis" in window) {
@@ -8374,10 +9058,6 @@
 
       printReport(printWindow, reportHtml);
     }
-
-    // =========================
-    // Riwayat dan ranking Firebase
-    // =========================
     function getLocalHistory() {
       try {
         return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
@@ -8508,10 +9188,6 @@
       renderRanking();
       alert(t("clearLocalDone"));
     }
-
-    // =========================
-    // Tab hasil
-    // =========================
     function activateTab(tabName) {
       document.querySelectorAll(".tab-btn").forEach(button => {
         button.classList.toggle("active", button.dataset.tab === tabName);
@@ -8531,10 +9207,6 @@
         renderRanking();
       }
     }
-
-    // =========================
-    // Event listener
-    // =========================
     blockBrowserShortcuts();
     applyHomeLanguage("id");
 
