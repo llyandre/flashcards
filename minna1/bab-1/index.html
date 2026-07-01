@@ -30,23 +30,15 @@
       --bg-2: #fff2f7;
       --bg-3: #f2fff8;
       --card: rgba(255, 255, 255, 0.78);
-      --card-strong: rgba(255, 255, 255, 0.9);
-      --card-solid: #ffffff;
       --text: #253044;
       --heading: #101d48;
       --muted: #64748b;
       --primary: #7c6ff6;
       --primary-deep: #6d46e8;
       --primary-soft: rgba(124, 111, 246, 0.12);
-      --green: #20b486;
       --green-dark: #168763;
-      --red: #ef5d75;
       --red-dark: #c8465c;
-      --line: rgba(34, 48, 71, 0.12);
-      --border: rgba(124, 111, 246, 0.18);
       --glass-border: rgba(255, 255, 255, 0.78);
-
-      --radius-sm: 14px;
       --radius-md: 18px;
       --radius-lg: 24px;
       --radius-xl: 30px;
@@ -60,7 +52,6 @@
       --panel-pad-desktop: clamp(28px, 3.8vw, 42px);
       --panel-pad-mobile: clamp(18px, 4.5vw, 22px);
       --control-h: clamp(52px, 5vw, 58px);
-      --control-h-mobile: clamp(50px, 9vw, 56px);
       --button-h: clamp(52px, 5vw, 60px);
       --button-h-mobile: clamp(50px, 9vw, 56px);
     }
@@ -145,8 +136,7 @@
     .hero-info-card,
     .login-summary,
     .participant-name,
-    .stat-card,
-    .modal-card {
+    .stat-card {
       overflow-wrap: anywhere;
       word-break: normal;
     }
@@ -302,116 +292,11 @@
       font-weight: 450;
     }
 
-    .hero-card {
-      min-height: 280px;
-      position: relative;
-      padding: 26px;
-      border-radius: var(--radius-xl);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,255,255,0.62)),
-        radial-gradient(circle at 30% 20%, rgba(255,205,102,0.32), transparent 32%),
-        radial-gradient(circle at 70% 80%, rgba(124,111,246,0.22), transparent 34%);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
-
-    .hero-emoji {
-      margin-top: 16px;
-      text-align: center;
-      font-size: clamp(78px, 14vw, 132px);
-      line-height: 1;
-      filter: drop-shadow(0 14px 16px rgba(30, 41, 59, 0.13));
-    }
-
-    .mini-card {
-      position: absolute;
-      padding: 12px 14px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(255, 255, 255, 0.84);
-      box-shadow: var(--shadow-tiny);
-      font-size: var(--fs-small);
-      font-weight: 700;
-      color: #5d55c9;
-    }
-
-    .mini-card.one {
-      left: 18px;
-      top: 20px;
-      transform: rotate(-5deg);
-    }
-
-    .mini-card.two {
-      right: 20px;
-      bottom: 24px;
-      transform: rotate(5deg);
-      color: #d5577c;
-    }
-
     .username-box {
       max-width: 380px;
       margin: 18px 0 16px;
       display: grid;
       gap: 9px;
-    }
-
-    .input-shell {
-      min-height: var(--control-h);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 18px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(124, 111, 246, 0.22);
-      box-shadow: var(--shadow-soft);
-      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
-    }
-
-    .input-shell:focus-within {
-      border-color: rgba(124, 111, 246, 0.44);
-      box-shadow: 0 0 0 4px rgba(124, 111, 246, 0.12), var(--shadow-soft);
-      transform: translateY(-1px);
-    }
-
-    .input-icon {
-      width: 28px;
-      height: 28px;
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      color: #7a8296;
-    }
-
-    .input-icon svg {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .username-box input {
-      width: 100%;
-      min-height: 1px;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      outline: none;
-      color: var(--text);
-      font-size: var(--fs-input);
-      font-weight: 600;
-      line-height: 1.3;
-    }
-
-    .username-box input::placeholder {
-      color: #728097;
-      opacity: 1;
     }
 
     .username-note {
@@ -832,22 +717,6 @@
       max-width: none;
       margin: 0 auto 16px;
       gap: 8px;
-    }
-
-    #startScreen .input-shell {
-      min-height: var(--control-h);
-      gap: 16px;
-      padding: 0 22px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.58));
-      border: 1px solid rgba(255, 255, 255, 0.88);
-      box-shadow: 0 13px 30px rgba(54, 65, 101, 0.12);
-      backdrop-filter: blur(16px);
-    }
-
-    #startScreen .input-icon {
-      width: 30px;
-      height: 30px;
     }
 
     #startScreen .username-note {
@@ -1935,12 +1804,6 @@
         letter-spacing: 0;
       }
 
-      #startScreen .input-shell,
-      .input-shell {
-        min-height: var(--control-h-mobile);
-        padding: 0 18px;
-      }
-
       #startScreen #startBtn.show {
         min-height: var(--button-h-mobile);
         width: min(240px, 100%);
@@ -2282,11 +2145,6 @@
         min-height: 64px;
       }
 
-      #startScreen .input-shell {
-        gap: 12px;
-        padding-inline: 15px;
-      }
-
       .flashcard {
         height: clamp(540px, 80svh, 640px);
         min-height: 540px;
@@ -2341,15 +2199,8 @@
         font-size: 11.5px;
       }
     }
-  
 
-    /* =========================================================
-       TOP REKOMENDASI FIX: gambar dan tulisan selalu kelihatan
-       - Area gambar dan teks dipisah stabil (62% / 38%)
-       - Gambar utuh dengan object-fit: contain
-       - Teks diberi area aman supaya tidak tertimpa gambar
-       ========================================================= */
-    .flashcard {
+.flashcard {
       width: min(100%, 620px) !important;
       height: clamp(620px, 88svh, 780px) !important;
       min-height: 620px !important;
@@ -2501,13 +2352,7 @@
       }
     }
 
-
-    /* =========================================================
-       COMPACT FIX: kartu diperkecil agar halaman tidak terlalu scroll
-       - Tetap pisah area gambar dan tulisan
-       - Semua ukuran dibuat lebih proporsional untuk mobile
-       ========================================================= */
-    .practice-wrap {
+.practice-wrap {
       width: min(680px, 100%) !important;
     }
 
@@ -2764,14 +2609,7 @@
       }
     }
 
-
-    /* =========================================================
-       FINAL COMPACT + POPUP GAMBAR
-       - Gambar di kartu dibuat lebih kecil agar utuh terlihat
-       - Jarak gambar dan kata dibuat rapat tapi tetap ada space
-       - Klik gambar membuka popup gambar penuh
-       ========================================================= */
-    .flashcard {
+.flashcard {
       height: clamp(480px, 66svh, 575px) !important;
       min-height: 480px !important;
     }
@@ -3075,8 +2913,7 @@
       text-align: center;
     }
 
-    /* ===== Mobile layout final override ===== */
-    @media (max-width: 720px) {
+@media (max-width: 720px) {
       html,
       body {
         width: 100%;
@@ -3142,7 +2979,6 @@
         gap: 4px !important;
       }
 
-      .lang-btn,
       .language-btn {
         min-height: 30px !important;
         padding: 6px 9px !important;
@@ -3150,9 +2986,6 @@
         line-height: 1.1 !important;
       }
 
-      .shuffle-toggle,
-      #shuffleToggle,
-      #shuffleBtn,
       .fiction-toggle,
       #fictionToggle {
         top: 12px !important;
@@ -3609,15 +3442,11 @@
         max-width: 132px !important;
       }
 
-      .lang-btn,
       .language-btn {
         padding: 6px 7px !important;
         font-size: 10.5px !important;
       }
 
-      .shuffle-toggle,
-      #shuffleToggle,
-      #shuffleBtn,
       .fiction-toggle,
       #fictionToggle {
         max-width: calc(100% - 158px) !important;
@@ -3648,10 +3477,7 @@
       }
     }
 
-  
-
-    /* ===== Revisi: tombol materi, popup gambar penuh, dan mobile layout ===== */
-    .material-modal {
+.material-modal {
       position: fixed;
       inset: 0;
       z-index: 82;
@@ -3930,9 +3756,7 @@
       }
     }
 
-
-    /* ===== Revisi lanjutan: tombol materi muncul setelah username + X popup gambar rapi ===== */
-    #materialBtn:not(.show) {
+#materialBtn:not(.show) {
       display: none !important;
     }
 
@@ -4056,9 +3880,7 @@
       }
     }
 
-
-    /* ===== FINAL OVERRIDE: Lihat Materi, popup gambar, dan mobile responsive ===== */
-    #startBtn:not(.show),
+#startBtn:not(.show),
     #materialBtn:not(.show) {
       display: none !important;
     }
@@ -4303,10 +4125,7 @@
       }
     }
 
-
-
-    /* ===== KOREKSI FINAL: Lihat Materi tampil lengkap dan bisa discroll penuh ===== */
-    .material-modal.show {
+.material-modal.show {
       display: flex !important;
       align-items: flex-start !important;
       justify-content: center !important;
@@ -4464,10 +4283,7 @@
       }
     }
 
-
-
-    /* ===== KOREKSI: header Lihat Materi tidak ikut berpindah saat scroll ===== */
-    #materialModal.material-modal.show {
+#materialModal.material-modal.show {
       display: flex !important;
       align-items: flex-start !important;
       justify-content: center !important;
@@ -4531,8 +4347,7 @@
       }
     }
 
-    /* ===== Lihat Materi Final: ringkasan, pengelompokan, dan deskripsi sesuai isi ===== */
-    #materialModal .material-list {
+#materialModal .material-list {
       display: flex !important;
       flex-direction: column !important;
       gap: 18px !important;
@@ -4673,13 +4488,7 @@
       }
     }
 
-
-
-    /* =========================================================
-       FINAL MOBILE-ONLY POLISH OVERRIDE - added by ChatGPT
-       Fokus: mobile layout only. Desktop CSS, HTML data, and JavaScript stay unchanged.
-       ========================================================= */
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
       html,
       body {
         width: 100% !important;
@@ -4725,7 +4534,6 @@
       .jp-main-display,
       .jp-reading,
       .material-item,
-      .material-text,
       .review-jp,
       .review-sub {
         overflow-wrap: anywhere !important;
@@ -4769,8 +4577,7 @@
         box-shadow: 0 14px 34px rgba(82, 73, 134, 0.12) !important;
       }
 
-      /* Homepage */
-      #startScreen.active {
+#startScreen.active {
         display: flex !important;
         align-items: center !important;
         min-height: calc(100dvh - 24px) !important;
@@ -4939,9 +4746,7 @@
         gap: 8px !important;
       }
 
-      .login-trigger,
-      #startScreen .input-shell,
-      .input-shell {
+      .login-trigger {
         width: 100% !important;
         min-height: 50px !important;
         padding: 0 14px !important;
@@ -4983,8 +4788,7 @@
         grid-column: 1 / -1 !important;
       }
 
-      /* Practice page */
-      .practice-wrap {
+.practice-wrap {
         width: 100% !important;
         max-width: 620px !important;
         min-width: 0 !important;
@@ -5186,8 +4990,7 @@
         font-size: clamp(15px, 4.2vw, 17px) !important;
       }
 
-      /* Result page */
-      .results-head {
+.results-head {
         margin-bottom: 14px !important;
       }
 
@@ -5335,8 +5138,7 @@
         padding: 11px 12px !important;
       }
 
-      /* Modal / popup */
-      .login-modal,
+.login-modal,
       .example-modal,
       .image-modal,
       .material-modal {
@@ -5849,8 +5651,7 @@
 </head>
 <body>
   <main class="app-shell">
-    <!-- Homepage dari HTML 2 -->
-    <section id="startScreen" class="screen active">
+<section id="startScreen" class="screen active">
       <div class="panel hero">
         <div>
           <div class="language-switch" aria-label="Ganti bahasa">
@@ -5908,9 +5709,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Question page dari HTML 1 -->
-    <section id="practiceScreen" class="screen">
+<section id="practiceScreen" class="screen">
       <div class="practice-wrap">
           <div class="topbar">
             <div class="counter-card">
@@ -5950,9 +5749,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Result page dari HTML 2 -->
-    <section id="resultScreen" class="screen">
+<section id="resultScreen" class="screen">
       <div class="panel">
         <div class="results-head">
           <span class="badge" data-i18n="doneBadge">✨ Selesai</span>
@@ -6162,9 +5959,6 @@
     const db = getFirestore(firebaseApp);
     const resultsCollection = collection(db, "quizResults_bab1");
 
-    // =========================
-    // Data array kosakata
-    // =========================
     const vocabulary = [
   {
     "indonesia": "saya",
@@ -6505,9 +6299,6 @@
   }
 ];
 
-    // =========================
-    // Elemen utama
-    // =========================
     const startScreen = document.getElementById("startScreen");
     const practiceScreen = document.getElementById("practiceScreen");
     const resultScreen = document.getElementById("resultScreen");
@@ -6572,9 +6363,6 @@
     const rankingBody = document.getElementById("rankingBody");
     const historyBody = document.getElementById("historyBody");
 
-    // =========================
-    // State latihan
-    // =========================
     const TIMER_SECONDS = 30;
     const STORAGE_KEY = "jpFlashcardRanking_bab1_V2";
     const HISTORY_KEY = "jpFlashcardHistory_bab1_V2";
@@ -6859,9 +6647,6 @@
       }
     };
 
-    // =========================
-    // Helper dasar
-    // =========================
     function escapeHTML(value) {
       return String(value ?? "")
         .replaceAll("&", "&amp;")
@@ -7167,7 +6952,6 @@
     }
 
 
-
     const MATERIAL_GROUPS = [
       {
         id: "kosakata",
@@ -7337,9 +7121,6 @@
       materialModal.setAttribute("aria-hidden", "true");
     }
 
-    // =========================
-    // Login, admin, dan grup
-    // =========================
     function updatePasswordBox() {
       const typedUsername = usernameInput.value.trim();
       const needsPassword = typedUsername === ADMIN_USERNAME;
@@ -7465,9 +7246,6 @@
       loginError.textContent = "";
     }
 
-    // =========================
-    // Flashcard
-    // =========================
     function startPractice() {
       const name = currentUsername.trim();
 
@@ -7641,9 +7419,6 @@
       }, 650);
     }
 
-    // =========================
-    // Hasil
-    // =========================
     async function showResults() {
       stopTimer();
       if ("speechSynthesis" in window) {
@@ -9154,9 +8929,6 @@
       printReport(printWindow, reportHtml);
     }
 
-    // =========================
-    // Riwayat dan ranking Firebase
-    // =========================
     function getLocalHistory() {
       try {
         return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
@@ -9288,9 +9060,6 @@
       alert(t("clearLocalDone"));
     }
 
-    // =========================
-    // Tab hasil
-    // =========================
     function activateTab(tabName) {
       document.querySelectorAll(".tab-btn").forEach(button => {
         button.classList.toggle("active", button.dataset.tab === tabName);
@@ -9311,9 +9080,6 @@
       }
     }
 
-    // =========================
-    // Event listener
-    // =========================
     blockBrowserShortcuts();
     applyHomeLanguage("id");
 
