@@ -3961,6 +3961,156 @@
       }
     }
 
+
+    /* ===== FINAL FIX: popup/zoom gambar full, tidak crop, tanpa scroll ===== */
+    .image-modal {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 90 !important;
+      display: grid !important;
+      place-items: center !important;
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)) !important;
+      overflow: hidden !important;
+      background: rgba(20, 24, 38, 0.58) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+    }
+
+    .image-modal-card {
+      width: min(96vw, 1100px) !important;
+      height: min(92svh, 850px) !important;
+      max-height: 92svh !important;
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      border-radius: var(--radius-xl) !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+    }
+
+    .image-modal-close {
+      position: absolute !important;
+      top: 12px !important;
+      right: 12px !important;
+      z-index: 10 !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      margin: 0 !important;
+      display: grid !important;
+      place-items: center !important;
+      border-radius: var(--radius-pill) !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      border: 1px solid rgba(124, 111, 246, 0.18) !important;
+      box-shadow: 0 10px 22px rgba(31, 41, 55, 0.14) !important;
+    }
+
+    .image-modal-body {
+      flex: 1 1 auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 62px 14px 8px !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    .image-modal-body img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      display: block !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .image-modal-caption {
+      flex: 0 0 auto !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 6px 56px 14px !important;
+      max-height: 48px !important;
+      overflow: hidden !important;
+      color: #4f596d !important;
+      font-size: var(--fs-small) !important;
+      font-weight: 700 !important;
+      line-height: 1.35 !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (max-width: 720px) {
+      .image-modal {
+        padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)) !important;
+      }
+
+      .image-modal-card {
+        width: 96vw !important;
+        height: 88svh !important;
+        max-height: 88svh !important;
+        border-radius: 20px !important;
+      }
+
+      .image-modal-close {
+        top: 8px !important;
+        right: 8px !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        font-size: 28px !important;
+      }
+
+      .image-modal-body {
+        padding: 56px 10px 6px !important;
+      }
+
+      .image-modal-caption {
+        padding: 5px 50px 10px !important;
+        max-height: 42px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-height: 560px) {
+      .image-modal-card {
+        height: calc(100svh - 16px) !important;
+        max-height: calc(100svh - 16px) !important;
+      }
+
+      .image-modal-close {
+        top: 6px !important;
+        right: 6px !important;
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+      }
+
+      .image-modal-body {
+        padding: 48px 8px 4px !important;
+      }
+
+      .image-modal-caption {
+        padding: 4px 48px 6px !important;
+        max-height: 34px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
