@@ -6,7 +6,6 @@
   <title>Kuis Interaktif: Nama Keluarga Jepang dan Salam</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
   <link rel="dns-prefetch" href="https://iili.io" />
   <link rel="preconnect" href="https://iili.io" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
@@ -222,7 +221,6 @@
 
     .section-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
     .section-title p { margin-bottom: 0; max-width: 660px; }
-    .material-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 18px 0 22px; }
     .material-card { padding: 14px; overflow: visible; }
     .material-card h3, .name-card h3 { margin: 0 0 10px; color: #514a9e; }
     .material-card img { width: 100%; height: auto; max-height: none; object-fit: contain; border-radius: 18px; background: #fff; border: 1px solid rgba(124, 111, 246, 0.16); padding: 10px; }
@@ -419,7 +417,7 @@
       .app-shell { width: min(100% - 24px, 1120px); align-items: flex-start; padding-top: 70px; }
       .panel { border-radius: 24px; padding: 20px; }
       .section-title { display: block; }
-      .material-grid, .greeting-box, .topbar { grid-template-columns: 1fr; }
+      .greeting-box, .topbar { grid-template-columns: 1fr; }
       .timer-card { min-width: 100%; }
       .answer-grid { grid-template-columns: 1fr; }
       .quiz-card { min-height: 520px; }
@@ -438,7 +436,7 @@
       .login-modal-actions .btn { width: 100%; }
     }
 
-    /* ===== Mobile layout final override ===== */
+    
     @media (max-width: 720px) {
       html,
       body {
@@ -597,8 +595,6 @@
         gap: 12px !important;
         margin-bottom: 14px !important;
       }
-
-      .material-grid,
       .greeting-box {
         grid-template-columns: 1fr !important;
         gap: 12px !important;
@@ -910,7 +906,7 @@
       }
     }
 
-    /* ===== Font weight balance: bold hanya untuk bagian yang perlu ditegaskan ===== */
+    
     body {
       font-weight: 400;
     }
@@ -984,7 +980,7 @@
       font-weight: 800;
     }
 
-    /* ===== Proteksi dasar: anti seleksi, anti copy, anti drag, dan anti print ===== */
+    
     html,
     body,
     body * {
@@ -1017,8 +1013,7 @@
       }
     }
 
-
-    /* ===== Zoom gambar saat diklik ===== */
+    
     img[data-zoomable="true"],
     .material-card img,
     .greeting-figure img {
@@ -1140,7 +1135,7 @@
 
   
 
-    /* ===== FINAL USERNAME STYLE MATCH HTML ACUAN ===== */
+    
     .login-area.username-box,
     .username-box {
       width: min(520px, 100%) !important;
@@ -1471,8 +1466,7 @@
       }
     }
 
-
-    /* ===== LIHAT MATERI + IMAGE POPUP FINAL ===== */
+    
     #startQuizBtn:not(.show),
     #openMaterialBtn:not(.show) {
       display: none !important;
@@ -1715,13 +1709,11 @@
         text-align: center !important;
       }
     }
-    /* ===== END LIHAT MATERI + IMAGE POPUP FINAL ===== */
+    
 
-    /* ===== END FINAL USERNAME STYLE MATCH HTML ACUAN ===== */
+    
 
-
-
-    /* ===== REVISI FINAL: USERNAME, BAHASA HOMEPAGE, DAN GAMBAR MATERI ===== */
+    
     #startScreen .panel.hero {
       position: relative !important;
       padding-top: clamp(78px, 8vw, 92px) !important;
@@ -1892,11 +1884,11 @@
         max-height: 220px !important;
       }
     }
-    /* ===== END REVISI FINAL ===== */
+    
 
   
 
-    /* ===== FIX FINAL: gambar materi tidak kepotong / tidak keluar kotak ===== */
+    
     #materialScreen .material-vocab-grid {
       align-items: stretch !important;
     }
@@ -2023,10 +2015,9 @@
         min-height: 230px !important;
       }
     }
-    /* ===== END FIX FINAL GAMBAR MATERI ===== */
+    
 
-
-    /* ===== FINAL REVISION REQUEST: LOOK MATERI, POPUP GAMBAR, MOBILE ===== */
+    
     #startQuizBtn:not(.show),
     #openMaterialBtn:not(.show) {
       display: none !important;
@@ -2204,10 +2195,10 @@
         min-height: 42px !important;
       }
     }
-    /* ===== END FINAL REVISION REQUEST ===== */
+    
 
   
-    /* ===== REVISI JARAK NOMOR KARTU MATERI ===== */
+    
     #nameGrid .name-card {
       padding-top: 32px !important;
       overflow: visible !important;
@@ -2273,6 +2264,838 @@
 
       #nameGrid .name-card[data-number="13"] {
         padding-left: 26px !important;
+      }
+    }
+
+    
+    @media (max-width: 768px) {
+      html,
+      body {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100dvh !important;
+        overflow-x: hidden !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box !important;
+      }
+
+      body {
+        font-size: 14px !important;
+        line-height: 1.52 !important;
+      }
+
+      body::before,
+      body::after {
+        width: 150px !important;
+        height: 150px !important;
+        opacity: 0.18 !important;
+      }
+
+      .language-switch {
+        position: fixed !important;
+        top: max(8px, env(safe-area-inset-top)) !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        z-index: 70 !important;
+        width: max-content !important;
+        max-width: calc(100vw - 20px) !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        padding: 4px !important;
+      }
+
+      .language-switch button {
+        min-height: 30px !important;
+        padding: 6px 10px !important;
+        font-size: 11.5px !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+      }
+
+      .app-shell {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100dvh !important;
+        margin: 0 auto !important;
+        padding: 54px 10px 16px !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        overflow-x: hidden !important;
+      }
+
+      .screen,
+      .screen.active {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .panel {
+        width: 100% !important;
+        max-width: 620px !important;
+        min-width: 0 !important;
+        min-height: auto !important;
+        margin: 0 auto !important;
+        padding: 18px !important;
+        border-radius: 24px !important;
+        overflow: hidden !important;
+      }
+
+      .hero {
+        overflow: visible !important;
+      }
+
+      .badge {
+        max-width: 100% !important;
+        padding: 7px 10px !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      h1 {
+        max-width: 100% !important;
+        margin: 12px auto 9px !important;
+        font-size: clamp(25px, 7.6vw, 36px) !important;
+        line-height: 1.12 !important;
+        letter-spacing: 0 !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      h2 {
+        margin-bottom: 9px !important;
+        font-size: clamp(22px, 6vw, 30px) !important;
+        line-height: 1.18 !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      h3,
+      p,
+      td,
+      th,
+      button,
+      .hero-text,
+      .section-title p,
+      .feedback,
+      .login-summary,
+      .participant-name,
+      .material-vocab-content strong,
+      .material-vocab-content p {
+        max-width: 100% !important;
+        overflow-wrap: anywhere !important;
+        word-break: normal !important;
+      }
+
+      p,
+      .hero-text,
+      .section-title p,
+      .greeting-card p,
+      .login-modal-card p,
+      .material-note,
+      .material-vocab-content p {
+        font-size: 13.5px !important;
+        line-height: 1.52 !important;
+      }
+
+      #startScreen .panel {
+        padding-top: 18px !important;
+        padding-bottom: 18px !important;
+      }
+
+      .info-grid {
+        width: 100% !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+        margin: 15px 0 !important;
+      }
+
+      .info-card {
+        min-width: 0 !important;
+        min-height: 72px !important;
+        padding: 12px 10px !important;
+        border-radius: 18px !important;
+        text-align: center !important;
+      }
+
+      .info-card span {
+        font-size: 11px !important;
+        line-height: 1.25 !important;
+      }
+
+      .info-card strong {
+        font-size: clamp(13px, 3.2vw, 15px) !important;
+        line-height: 1.24 !important;
+      }
+
+      .login-area,
+      .login-area.username-box,
+      .username-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 12px auto 14px !important;
+        gap: 8px !important;
+      }
+
+      .login-trigger,
+      #openLoginBtn.login-trigger,
+      .login-summary,
+      #loginSummary.login-summary {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 50px !important;
+        padding: 10px 14px !important;
+        border-radius: 18px !important;
+        font-size: 14px !important;
+        line-height: 1.25 !important;
+        text-align: center !important;
+      }
+
+      .note,
+      #loginNote.note {
+        font-size: 12.5px !important;
+        line-height: 1.4 !important;
+      }
+
+      .actions,
+      #startScreen .actions {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin: 0 auto !important;
+      }
+
+      .btn,
+      .actions .btn,
+      #startScreen #startQuizBtn.show,
+      #startScreen #openMaterialBtn.show {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 50px !important;
+        padding: 12px 14px !important;
+        border-radius: 18px !important;
+        font-size: 14.5px !important;
+        line-height: 1.22 !important;
+        text-align: center !important;
+      }
+
+      .section-title {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-bottom: 14px !important;
+      }
+      .greeting-box,
+      .material-vocab-grid {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin: 14px 0 18px !important;
+      }
+
+      .material-card,
+      .greeting-card,
+      .material-vocab-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 12px !important;
+        border-radius: 20px !important;
+        overflow: hidden !important;
+      }
+
+      .material-card img {
+        max-width: 100% !important;
+        height: auto !important;
+        padding: 8px !important;
+        border-radius: 16px !important;
+        object-fit: contain !important;
+      }
+
+      .material-subtitle {
+        margin: 10px 0 6px !important;
+        font-size: clamp(20px, 6vw, 28px) !important;
+        line-height: 1.18 !important;
+      }
+
+      .material-vocab-card {
+        display: grid !important;
+        grid-template-columns: minmax(92px, 112px) minmax(0, 1fr) !important;
+        align-items: center !important;
+        gap: 11px !important;
+      }
+
+      .material-vocab-image {
+        width: 100% !important;
+        max-width: 112px !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+        border-radius: 17px !important;
+      }
+
+      .material-vocab-image img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        padding: 7px !important;
+      }
+
+      .material-vocab-content {
+        min-width: 0 !important;
+      }
+
+      .material-vocab-content span {
+        width: 28px !important;
+        height: 28px !important;
+        margin-bottom: 6px !important;
+        font-size: 12px !important;
+      }
+
+      .material-vocab-content strong {
+        font-size: clamp(18px, 5.4vw, 24px) !important;
+        line-height: 1.22 !important;
+      }
+
+      .name-grid,
+      #nameGrid {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .name-card,
+      #nameGrid .name-card {
+        min-width: 0 !important;
+        min-height: 112px !important;
+        padding: 14px 10px !important;
+        border-radius: 18px !important;
+        overflow: hidden !important;
+      }
+
+      .name-card::before,
+      #nameGrid .name-card::before {
+        left: 9px !important;
+        top: 8px !important;
+        font-size: 21px !important;
+      }
+
+      .jp,
+      .greeting-card .jp {
+        font-size: clamp(23px, 7vw, 34px) !important;
+        line-height: 1.16 !important;
+        letter-spacing: 0 !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      .question-main .jp {
+        margin-top: 8px !important;
+        font-size: clamp(34px, 12vw, 58px) !important;
+        line-height: 1.1 !important;
+      }
+
+      .kana,
+      .greeting-card .kana {
+        max-width: 100% !important;
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+        white-space: normal !important;
+      }
+
+      .romaji {
+        font-size: 12.5px !important;
+        line-height: 1.3 !important;
+      }
+
+      .greeting-figure {
+        width: 100% !important;
+        min-height: 178px !important;
+        margin-bottom: 12px !important;
+        overflow: hidden !important;
+      }
+
+      .greeting-figure img {
+        max-width: 100% !important;
+        max-height: 176px !important;
+        height: auto !important;
+        padding: 8px !important;
+        object-fit: contain !important;
+      }
+
+      .topbar {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .counter-card,
+      .timer-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 12px !important;
+        border-radius: 18px !important;
+      }
+
+      .timer-card {
+        display: grid !important;
+        grid-template-columns: auto minmax(0, 1fr) !important;
+        align-items: center !important;
+        gap: 6px 10px !important;
+        text-align: left !important;
+      }
+
+      .timer-track {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+        margin-top: 2px !important;
+      }
+
+      .time-number {
+        font-size: clamp(26px, 8vw, 31px) !important;
+      }
+
+      .timer-label,
+      .counter-card small,
+      #questionInfo {
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+
+      .quiz-card {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 18px 14px !important;
+        gap: 12px !important;
+        border-radius: 22px !important;
+        align-content: center !important;
+      }
+
+      .quiz-type {
+        padding: 7px 10px !important;
+        font-size: 11.5px !important;
+        line-height: 1.2 !important;
+      }
+
+      .question-main {
+        width: 100% !important;
+        font-size: clamp(20px, 6.3vw, 28px) !important;
+        line-height: 1.24 !important;
+      }
+
+      .answer-grid {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+      }
+
+      .answer-btn {
+        width: 100% !important;
+        min-height: 48px !important;
+        padding: 11px 12px !important;
+        font-size: 14px !important;
+        line-height: 1.25 !important;
+      }
+
+      .feedback {
+        width: 100% !important;
+        min-height: auto !important;
+        font-size: 13.5px !important;
+        line-height: 1.42 !important;
+      }
+
+      .result-head {
+        margin-bottom: 15px !important;
+      }
+
+      .participant-name {
+        width: 100% !important;
+        margin-top: 10px !important;
+        text-align: center !important;
+        font-size: 12.5px !important;
+      }
+
+      .summary-box {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        padding: 16px !important;
+        border-radius: 22px !important;
+        text-align: center !important;
+      }
+
+      .score-circle {
+        width: 130px !important;
+        height: 130px !important;
+      }
+
+      .score-circle::before {
+        inset: 12px !important;
+      }
+
+      .score-circle strong {
+        font-size: 28px !important;
+      }
+
+      .stats-grid {
+        width: 100% !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        margin: 16px 0 !important;
+      }
+
+      .stat-card {
+        min-width: 0 !important;
+        padding: 12px 9px !important;
+        border-radius: 18px !important;
+      }
+
+      .stat-card span {
+        margin-bottom: 5px !important;
+        font-size: 11.5px !important;
+        line-height: 1.25 !important;
+      }
+
+      .stat-card strong {
+        font-size: 20px !important;
+      }
+
+      .table-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 18px !important;
+      }
+
+      table {
+        min-width: 620px !important;
+        font-size: 12.5px !important;
+      }
+
+      th,
+      td {
+        padding: 10px 11px !important;
+        line-height: 1.42 !important;
+        white-space: normal !important;
+      }
+
+      .login-modal,
+      .image-modal {
+        padding: 12px !important;
+        align-items: center !important;
+        justify-items: center !important;
+      }
+
+      .login-modal-card,
+      .image-modal-card {
+        width: 100% !important;
+        max-width: 430px !important;
+        max-height: calc(100dvh - 24px) !important;
+        border-radius: 24px !important;
+        overflow: hidden !important;
+      }
+
+      .login-modal-card {
+        overflow-y: auto !important;
+        padding: 24px 18px 18px !important;
+      }
+
+      .login-modal-card h3,
+      #loginTitle {
+        padding-right: 40px !important;
+        font-size: 21px !important;
+        line-height: 1.22 !important;
+      }
+
+      .login-field label,
+      .login-error,
+      .group-box p {
+        font-size: 12.5px !important;
+        line-height: 1.42 !important;
+      }
+
+      .login-field input {
+        min-height: 48px !important;
+        border-radius: 16px !important;
+        font-size: 16px !important;
+      }
+
+      .group-options,
+      #groupBox .group-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .group-btn,
+      #groupBox .group-btn {
+        min-height: 40px !important;
+        padding: 9px 10px !important;
+        border-radius: 999px !important;
+        font-size: 12.5px !important;
+      }
+
+      .login-modal-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 9px !important;
+      }
+
+      .login-modal-actions .btn {
+        width: 100% !important;
+      }
+
+      .modal-close,
+      #closeLoginModal,
+      .image-modal-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        font-size: 28px !important;
+      }
+
+      .image-modal-card {
+        display: grid !important;
+        grid-template-rows: auto minmax(0, 1fr) auto !important;
+      }
+
+      .image-modal-head {
+        padding: 10px 12px !important;
+      }
+
+      .image-modal-title {
+        min-width: 0 !important;
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+
+      .image-modal-body {
+        min-height: 0 !important;
+        max-height: none !important;
+        display: grid !important;
+        place-items: center !important;
+        overflow: auto !important;
+        padding: 10px !important;
+      }
+
+      .image-modal-body img,
+      #imageModalImg {
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: calc(100dvh - 160px) !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        margin: auto !important;
+      }
+
+      .image-modal-caption {
+        padding: 9px 12px 12px !important;
+        font-size: 12.5px !important;
+        line-height: 1.35 !important;
+      }
+
+      .toast {
+        width: min(92vw, 360px) !important;
+        bottom: max(14px, env(safe-area-inset-bottom)) !important;
+        padding: 11px 14px !important;
+        border-radius: 18px !important;
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        padding: 52px 8px 14px !important;
+      }
+
+      .panel {
+        padding: 15px !important;
+        border-radius: 22px !important;
+      }
+
+      .info-grid,
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .info-card {
+        min-height: 62px !important;
+      }
+
+      h1 {
+        font-size: clamp(24px, 8.5vw, 33px) !important;
+      }
+
+      .material-vocab-card {
+        grid-template-columns: 92px minmax(0, 1fr) !important;
+        gap: 10px !important;
+      }
+
+      .material-vocab-image {
+        max-width: 92px !important;
+      }
+
+      .greeting-figure {
+        min-height: 165px !important;
+      }
+
+      .greeting-figure img {
+        max-height: 160px !important;
+      }
+
+      .quiz-card {
+        padding: 16px 12px !important;
+      }
+
+      table {
+        min-width: 560px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .app-shell {
+        padding-top: 50px !important;
+      }
+
+      .language-switch {
+        max-width: calc(100vw - 16px) !important;
+      }
+
+      .language-switch button {
+        padding: 6px 8px !important;
+        font-size: 10.8px !important;
+      }
+
+      .material-vocab-card {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+      }
+
+      .material-vocab-image {
+        width: min(100%, 180px) !important;
+        max-width: 180px !important;
+        margin: 0 auto !important;
+      }
+
+      .material-vocab-content {
+        text-align: center !important;
+      }
+
+      .name-grid,
+      #nameGrid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .name-card,
+      #nameGrid .name-card {
+        min-height: 96px !important;
+        padding: 13px 10px !important;
+      }
+
+      .login-modal-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      #nameGrid .name-card[data-number="13"] {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .app-shell {
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+      }
+
+      .panel {
+        padding: 13px !important;
+      }
+
+      .badge {
+        font-size: 11.5px !important;
+      }
+
+      h1 {
+        font-size: clamp(23px, 8.8vw, 31px) !important;
+      }
+
+      .jp,
+      .greeting-card .jp {
+        font-size: clamp(22px, 7vw, 30px) !important;
+      }
+
+      .question-main .jp {
+        font-size: clamp(32px, 11.5vw, 52px) !important;
+      }
+
+      .quiz-card {
+        gap: 10px !important;
+      }
+
+      .answer-btn {
+        min-height: 46px !important;
+        font-size: 13.5px !important;
+      }
+
+      .score-circle {
+        width: 118px !important;
+        height: 118px !important;
+      }
+
+      .score-circle strong {
+        font-size: 25px !important;
+      }
+
+      table {
+        min-width: 520px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .language-switch button {
+        padding: 5px 7px !important;
+        font-size: 10px !important;
+      }
+
+      .panel {
+        padding: 12px !important;
+      }
+
+      .material-vocab-image {
+        width: min(100%, 160px) !important;
+        max-width: 160px !important;
+      }
+
+      .btn,
+      .answer-btn,
+      .login-trigger,
+      #openLoginBtn.login-trigger {
+        min-height: 46px !important;
+        font-size: 13px !important;
+      }
+
+      .group-btn,
+      #groupBox .group-btn {
+        font-size: 12px !important;
       }
     }
 
@@ -4031,7 +4854,6 @@
   </script>
 
   <script>
-    /* ===== Proteksi dasar: anti klik kanan, copas, drag, shortcut inspect/source/print/save ===== */
     (() => {
       "use strict";
 
