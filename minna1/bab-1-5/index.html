@@ -2817,10 +2817,6 @@
         max-height: 190px !important;
       }
 
-      .jp-main-display {
-        font-size: clamp(22px, 7vw, 32px) !important;
-      }
-
       .jp-main-display.long {
         font-size: clamp(17px, 5.3vw, 25px) !important;
       }
@@ -3403,11 +3399,6 @@
         text-align: left !important;
       }
 
-      .timer-track {
-        grid-column: 1 / -1 !important;
-        margin-top: 2px !important;
-      }
-
       .flashcard {
         height: clamp(400px, 58svh, 500px) !important;
         min-height: 400px !important;
@@ -3424,14 +3415,6 @@
 
       .answer-row {
         grid-template-columns: 1fr 1fr !important;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr !important;
-      }
-
-      table {
-        min-width: 560px !important;
       }
     }
 
@@ -3954,16 +3937,6 @@
       place-items: center !important;
       overflow: hidden !important;
       background: #fff !important;
-    }
-
-    .material-thumb img {
-      width: 100% !important;
-      height: 100% !important;
-      max-width: 100% !important;
-      max-height: 100% !important;
-      object-fit: contain !important;
-      object-position: center center !important;
-      display: block !important;
     }
 
     .material-info {
@@ -4603,9 +4576,7 @@
       }
 
       img,
-      svg,
-      canvas,
-      video {
+      svg {
         max-width: 100% !important;
       }
 
@@ -6003,10 +5974,6 @@
     const firebaseApp = initializeApp(firebaseConfig);
     const db = getFirestore(firebaseApp);
     const resultsCollection = collection(db, "quizResults_bab1_5");
-
-    // =========================
-    // Data array kosakata
-    // =========================
     const BAB_1_VOCABULARY = [
   {
     "indonesia": "saya",
@@ -8873,10 +8840,6 @@ const vocabulary = [
   ...BAB_4_VOCABULARY,
   ...BAB_5_VOCABULARY
 ];
-
-    // =========================
-    // Elemen utama
-    // =========================
     const startScreen = document.getElementById("startScreen");
     const practiceScreen = document.getElementById("practiceScreen");
     const resultScreen = document.getElementById("resultScreen");
@@ -8940,10 +8903,6 @@ const vocabulary = [
     const reviewBody = document.getElementById("reviewBody");
     const rankingBody = document.getElementById("rankingBody");
     const historyBody = document.getElementById("historyBody");
-
-    // =========================
-    // State latihan
-    // =========================
     const TIMER_SECONDS = 30;
     const STORAGE_KEY = "jpFlashcardRanking_bab1_5_V2";
     const HISTORY_KEY = "jpFlashcardHistory_bab1_5_V2";
@@ -9227,10 +9186,6 @@ const vocabulary = [
         pdfBlocked: "ブラウザでポップアップがブロックされました。PDF保存のためにポップアップを許可してください。"
       }
     };
-
-    // =========================
-    // Helper dasar
-    // =========================
     function escapeHTML(value) {
       return String(value ?? "")
         .replaceAll("&", "&amp;")
@@ -9536,7 +9491,6 @@ const vocabulary = [
     }
 
 
-
     
 const CHAPTER_ORDER = ["Bab 1", "Bab 2", "Bab 3", "Bab 4", "Bab 5"];
     const CATEGORY_ORDER = ["Kosakata", "Latihan C", "Percakapan"];
@@ -9726,10 +9680,6 @@ const CHAPTER_ORDER = ["Bab 1", "Bab 2", "Bab 3", "Bab 4", "Bab 5"];
       materialModal.classList.remove("show");
       materialModal.setAttribute("aria-hidden", "true");
     }
-
-    // =========================
-    // Login, admin, dan grup
-    // =========================
     function updatePasswordBox() {
       const typedUsername = usernameInput.value.trim();
       const needsPassword = typedUsername === ADMIN_USERNAME;
@@ -9855,10 +9805,6 @@ const CHAPTER_ORDER = ["Bab 1", "Bab 2", "Bab 3", "Bab 4", "Bab 5"];
 
       loginError.textContent = "";
     }
-
-    // =========================
-    // Flashcard
-    // =========================
     function startPractice() {
       const name = currentUsername.trim();
 
@@ -10031,10 +9977,6 @@ const CHAPTER_ORDER = ["Bab 1", "Bab 2", "Bab 3", "Bab 4", "Bab 5"];
         nextCard();
       }, 650);
     }
-
-    // =========================
-    // Hasil
-    // =========================
     async function showResults() {
       stopTimer();
       if ("speechSynthesis" in window) {
@@ -11545,10 +11487,6 @@ const CHAPTER_ORDER = ["Bab 1", "Bab 2", "Bab 3", "Bab 4", "Bab 5"];
 
       printReport(printWindow, reportHtml);
     }
-
-    // =========================
-    // Riwayat dan ranking Firebase
-    // =========================
     function getLocalHistory() {
       try {
         return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
@@ -11680,10 +11618,6 @@ const CHAPTER_ORDER = ["Bab 1", "Bab 2", "Bab 3", "Bab 4", "Bab 5"];
       renderRanking();
       alert(t("clearLocalDone"));
     }
-
-    // =========================
-    // Tab hasil
-    // =========================
     function activateTab(tabName) {
       document.querySelectorAll(".tab-btn").forEach(button => {
         button.classList.toggle("active", button.dataset.tab === tabName);
@@ -11703,10 +11637,6 @@ const CHAPTER_ORDER = ["Bab 1", "Bab 2", "Bab 3", "Bab 4", "Bab 5"];
         renderRanking();
       }
     }
-
-    // =========================
-    // Event listener
-    // =========================
     blockBrowserShortcuts();
     applyHomeLanguage("id");
 
