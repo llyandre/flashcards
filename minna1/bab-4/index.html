@@ -5338,6 +5338,225 @@
         padding: 14px !important;
       }
     }
+
+
+    /* =========================================================
+       FINAL OVERRIDE POPUP / ZOOM GAMBAR
+       Berlaku hanya untuk popup gambar kuis/flashcard dan Lihat Materi.
+       ========================================================= */
+    #imageModal.image-modal {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 9999 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      justify-items: initial !important;
+      place-items: initial !important;
+      padding: 18px !important;
+      background: rgba(31, 41, 55, 0.72) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      overflow: hidden !important;
+      overscroll-behavior: contain !important;
+      transition: opacity 0.22s ease, visibility 0.22s ease !important;
+    }
+
+    #imageModal.image-modal.show {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      display: flex !important;
+    }
+
+    #imageModal .image-modal-card {
+      width: min(1080px, calc(100vw - 36px)) !important;
+      max-width: calc(100vw - 36px) !important;
+      height: auto !important;
+      max-height: calc(100dvh - 36px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      position: relative !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      border-radius: 30px !important;
+      background: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.86) !important;
+      box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28) !important;
+      transform: translateY(10px) scale(0.97) !important;
+      transition: transform 0.22s ease !important;
+    }
+
+    #imageModal.image-modal.show .image-modal-card {
+      transform: translateY(0) scale(1) !important;
+    }
+
+    #imageModal .image-modal-head {
+      flex: 0 0 auto !important;
+      width: 100% !important;
+      min-height: 70px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      padding: 14px 18px !important;
+      border-bottom: 1px solid rgba(124, 111, 246, 0.12) !important;
+      background: #ffffff !important;
+    }
+
+    #imageModal .image-modal-caption {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      max-height: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      color: #101d48 !important;
+      background: transparent !important;
+      font-size: 15px !important;
+      font-weight: 800 !important;
+      line-height: 1.35 !important;
+      text-align: left !important;
+      overflow: visible !important;
+      overflow-wrap: anywhere !important;
+      word-break: normal !important;
+    }
+
+    #imageModal .image-modal-close {
+      position: static !important;
+      inset: auto !important;
+      top: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+      justify-self: auto !important;
+      align-self: center !important;
+      margin: 0 0 0 auto !important;
+      flex: 0 0 auto !important;
+      width: 48px !important;
+      height: 48px !important;
+      min-width: 48px !important;
+      min-height: 48px !important;
+      display: grid !important;
+      place-items: center !important;
+      border: 0 !important;
+      border-radius: 999px !important;
+      color: #6557df !important;
+      background: rgba(124, 111, 246, 0.12) !important;
+      box-shadow: none !important;
+      font-size: 30px !important;
+      font-weight: 800 !important;
+      line-height: 1 !important;
+      cursor: pointer !important;
+      transform: none !important;
+      transition: transform 0.18s ease, background 0.18s ease !important;
+    }
+
+    #imageModal .image-modal-close:hover {
+      background: rgba(124, 111, 246, 0.2) !important;
+      transform: scale(1.04) !important;
+    }
+
+    #imageModal .image-modal-body {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      place-items: center !important;
+      padding: 14px 18px 18px !important;
+      overflow: hidden !important;
+      background: #ffffff !important;
+      overscroll-behavior: contain !important;
+      -webkit-overflow-scrolling: auto !important;
+    }
+
+    #imageModal .image-modal-body img,
+    #imageModal #imageModalImg,
+    #imageModal .image-modal-img {
+      display: block !important;
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: calc(100dvh - 150px) !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    @supports (height: 100svh) {
+      #imageModal .image-modal-card {
+        max-height: calc(100svh - 36px) !important;
+      }
+
+      #imageModal .image-modal-body img,
+      #imageModal #imageModalImg,
+      #imageModal .image-modal-img {
+        max-height: calc(100svh - 150px) !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      #imageModal.image-modal {
+        padding: 10px !important;
+      }
+
+      #imageModal .image-modal-card {
+        width: calc(100vw - 20px) !important;
+        max-width: calc(100vw - 20px) !important;
+        max-height: calc(100dvh - 20px) !important;
+        border-radius: 22px !important;
+      }
+
+      #imageModal .image-modal-head {
+        min-height: 62px !important;
+        padding: 11px 12px !important;
+        gap: 10px !important;
+      }
+
+      #imageModal .image-modal-caption {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+
+      #imageModal .image-modal-close {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        font-size: 27px !important;
+      }
+
+      #imageModal .image-modal-body {
+        padding: 10px 12px 14px !important;
+        overflow: hidden !important;
+      }
+
+      #imageModal .image-modal-body img,
+      #imageModal #imageModalImg,
+      #imageModal .image-modal-img {
+        max-height: calc(100dvh - 120px) !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      @supports (height: 100svh) {
+        #imageModal .image-modal-card {
+          max-height: calc(100svh - 20px) !important;
+        }
+
+        #imageModal .image-modal-body img,
+        #imageModal #imageModalImg,
+        #imageModal .image-modal-img {
+          max-height: calc(100svh - 120px) !important;
+        }
+      }
+    }
   </style>
 </head>
 <body>
@@ -5610,13 +5829,15 @@
       </div>
     </div>
 
-    <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gambar penuh">
+    <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="imageModalCaption">
       <div class="image-modal-card">
-        <button id="closeImageModal" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
-        <div class="image-modal-body">
-          <img id="imageModalImg" alt="" />
+        <div class="image-modal-head">
+          <p id="imageModalCaption" class="image-modal-caption"></p>
+          <button id="closeImageModal" class="image-modal-close" type="button" aria-label="Tutup gambar">×</button>
         </div>
-        <p id="imageModalCaption" class="image-modal-caption"></p>
+        <div class="image-modal-body">
+          <img id="imageModalImg" class="image-modal-img" alt="" />
+        </div>
       </div>
     </div>
   </main>
